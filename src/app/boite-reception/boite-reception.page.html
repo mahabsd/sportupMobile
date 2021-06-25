@@ -1,0 +1,84 @@
+<ion-header [translucent]="true">
+  <ion-toolbar background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Boite de réception</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="container">
+    <ion-row class="HeaderFilter">
+      <ion-searchbar placeholder=""></ion-searchbar>
+    </ion-row>
+    <ion-row class="BadyFilter">
+      <ion-row  class="myItem" style="width:95% ; border: 20px !important">
+      <ion-col>
+      <ion-item-sliding  >
+    <ion-item  >
+      <ion-label routerLink="/chat" >
+        <p>
+        <ion-icon style="padding-right:10px"  slot="start" name="person"></ion-icon>  
+        Ben Ali Nassir</p>
+      </ion-label>
+      <img  style="width:15px ; height :15px" routerLink="/profil" src="../../assets/icon/connect2.png" />
+    </ion-item>
+    <ion-item-options side="start" >
+      <ion-item-option style="background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25) !important">
+        <div >
+        <ion-icon style="padding-right:10px" slot="icon-only" name="pencil-outline"></ion-icon>
+        <ion-icon style="padding-right:10px"  slot="icon-only" name="heart"></ion-icon>
+        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+        </div>
+      </ion-item-option>
+    </ion-item-options>
+    
+  </ion-item-sliding>
+
+      </ion-col>
+    
+<ion-col   size="1">
+<ion-row  style="background-color:red">
+
+</ion-row>
+</ion-col>
+      </ion-row>
+
+    </ion-row>
+  </div>
+</ion-content>
+<ion-footer class="myFooter" style=" margin-left: 10px;margin-right: 10px;margin-top: 7px;margin-bottom: 7px;">
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img routerLink="/profil" src="../../assets/icon/icon2.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img routerLink="/shearch" src="../../assets/icon/icon1.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../assets/icon/icon5.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img routerLink="/boite-reception" src="../../assets/icon/icon3.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../assets/icon/icon4.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-footer>

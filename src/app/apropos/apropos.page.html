@@ -1,0 +1,266 @@
+
+
+    
+<ion-header [translucent]="true"  >
+  <ion-toolbar    background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)" >
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light" style="text-align:center; margin-left: 20xp;" > Profil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <div id="container">
+    <ion-grid class="ion-justify-content-center" style="background-color:#f1f2f2">
+      <ion-row>
+        <ion-col>
+          <div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <ion-avatar>
+              <img  
+              src="https://www.computerhope.com/jargon/g/guest-user.jpg">
+            </ion-avatar>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row style="background-color:#f1f2f2">
+        <ion-col>
+          <div class="segment">
+            <ion-label style="font-family:Montserrat,sans-serif; color:#898b8b;font-size: small;">BEN ALI Nassir</ion-label>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row style="background-color:#f1f2f2">
+        <ion-col></ion-col>
+        <ion-col>
+          <div>
+            <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">253</p>
+          </div>
+          <div>
+            <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">Publications</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">500</p>
+          </div>
+          <div>
+            <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">Abonnés</p>
+          </div>
+        </ion-col>
+        <ion-col>
+          <div>
+            <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">2K</p>
+          </div>
+          <div>
+            <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">Abonnements</p>
+          </div>
+        </ion-col>
+        <ion-col></ion-col>
+
+      </ion-row>
+      <ion-row style="background-color: white; height: 2px;">
+
+      </ion-row>
+
+
+        <!-- <nav class="slidemenu">
+  
+     
+          <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" checked/>
+          <label style="padding-left: 10px;margin-right: 10px;" for="slide-item-1"><p class="icon">♬</p><span>Home</span></label>
+          
+
+          <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle"/>
+          <label for="slide-item-2"><p class="icon">★</p><span>About</span></label>
+          
+          
+          <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
+          <label for="slide-item-3"><p class="icon">✈</p><span>Folio</span></label>
+          
+   
+          <div class="clear"></div>
+          
+       
+          <div class="slider">
+            <div class="bar"></div>
+          </div>
+          
+        </nav>
+     -->
+
+
+
+      <!-- <ion-row style="background-color :#f1f2f2;padding-top: 5px;">
+        <ion-col>
+          <button (click)="Button_Publication()" class="unit" type="button">
+            <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; ">Publications</h6>
+          
+          </button>
+        </ion-col>
+        <ion-col>
+          <button (click)="Button_A_Propos()" routerLink="/apropos" class="unit" type="button">
+            <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; "> A propos</h6>
+          </button>
+        </ion-col>
+        <ion-col>
+          <button (click)="Button_Plus()" class="unit" type="button">
+            <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; ">Plus</h6>
+          </button>
+        </ion-col>
+      </ion-row> -->
+      <ion-row style="background-color: white !important;">
+        <nav class="slidemenu" style="width: 100%; margin-left: 80px;">
+
+          <!-- Item 1 -->
+            <input type="radio" name="slideItem" id="slide-item-1" class="slide-toggle" />
+            <label for="slide-item-1" style="margin-right: 10px;"><p class="icon"><img src="../../assets/icon/iconc2.png" /></p></label>
+            
+      
+          <!-- Item 2 -->
+         
+            <input type="radio" name="slideItem" id="slide-item-2" class="slide-toggle" checked/>
+            <label for="slide-item-2" style="margin-right: 10px;"><p class="icon"><img src="../../assets/icon/iconc3.png" /></p></label>
+            
+      
+      
+          <!-- Item 3 -->
+      
+            <input type="radio" name="slideItem" id="slide-item-3" class="slide-toggle"/>
+            <label for="slide-item-3" style="margin-right: 10px;"><p class="icon"><img src="../../assets/icon/iconc1.png" /></p></label>
+            
+          
+      
+          <!-- Item 4 -->
+        
+          
+          <div class="clear"></div>
+          
+          <!-- Bar -->
+          <div class="slider">
+            <div class="bar"></div>
+          </div>
+          
+        </nav>
+        <ion-slides pager="true" [options]="slideOpts" style="background-color :white;padding-bottom: 50px" class="shadowbox">
+          <ion-slide>
+            <div class="slide-content" >
+              <ion-card style="background-color :#f1f2f2">
+                <div class="concert bg"></div>
+                <ion-card-header >
+                  <ion-card-title style="text-align: left;font-family: Montserrat;">A propos :</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="item item-body">
+                  <p style="text-align: left;font-family: Montserrat,sans-serif; color:#020202;font-size: small;">
+                    It is a card game for you and small group of friends. 
+                    When you start, you will be given a word or a category
+                    and one of the following subject areas: 
+                    Song Lyrics, Song Title, Movie Quote, Movie Title, 
+                    TV Show Quote, TV Show Title , or Book Title</p>
+      
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="slide-content">
+              <ion-card style="background-color :#f1f2f2">
+                <div class="concert bg"></div>
+                <ion-card-header >
+                  <ion-card-title style="text-align: left;font-family: Montserrat;">A propos :</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="item item-body">
+                  <p style="text-align: left;font-family: Montserrat,sans-serif; color:#020202;font-size: small;">
+                    It is a card game for you and small group of friends. 
+                    When you start, you will be given a word or a category
+                    and one of the following subject areas: 
+                    Song Lyrics, Song Title, Movie Quote, Movie Title, 
+                    TV Show Quote, TV Show Title , or Book Title</p>
+      
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </ion-slide>
+          <ion-slide>
+            <div class="slide-content">
+              <ion-card style="background-color :#f1f2f2">
+                <div class="concert bg"></div>
+                <ion-card-header >
+                  <ion-card-title style="text-align: left;font-family: Montserrat;">A propos :</ion-card-title>
+                </ion-card-header>
+                <ion-card-content class="item item-body">
+                  <p style="text-align: left;font-family: Montserrat,sans-serif; color:#020202;font-size: small;">
+                    It is a card game for you and small group of friends. 
+                    When you start, you will be given a word or a category
+                    and one of the following subject areas: 
+                    Song Lyrics, Song Title, Movie Quote, Movie Title, 
+                    TV Show Quote, TV Show Title , or Book Title</p>
+      
+                </ion-card-content>
+              </ion-card>
+            </div>
+          </ion-slide>
+      
+        </ion-slides>
+      </ion-row>
+      <ion-row>
+      </ion-row>
+
+    </ion-grid>
+
+
+  </div>
+
+</ion-content>
+
+<ion-footer class="myFooter"  
+  style=" margin-left: 10px;margin-right: 10px;margin-top: 7px;margin-bottom: 7px;">
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../assets/icon/icon2.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img  routerLink="/shearch" src="../../assets/icon/icon1.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../assets/icon/icon5.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../assets/icon/icon3.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../assets/icon/icon4.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-footer>

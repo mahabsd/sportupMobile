@@ -1,0 +1,47 @@
+
+<ion-header>
+  <ion-toolbar>
+    <ion-title>log in</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div id="container">
+    <form  >
+
+      <ion-row style="margin-top: 100px;  justify-content: center;">
+        <ion-avatar (click)="ChangeImage()" >
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+      </ion-avatar>
+      </ion-row>
+      <div class="segment">
+        <h1>BIENVENUE</h1>
+      </div>
+      
+      <label>
+        <input type="email"   placeholder="Adresse Email" [(ngModel)]="user.email" ngControl="email" name="email" required  />
+
+      </label>
+      
+      <label>
+        <!-- <ion-icon name="bookmark-outline"></ion-icon> -->
+        <input type="password" placeholder="Mot se passe" [(ngModel)]="user.password"  ngControl="password" name="password" required />
+      </label>
+      <button  (click)="login()" routerLink="/profil" class="red" type="submit"> <ion-icon name="log-in-outline"></ion-icon>        CONNEXION</button>
+      
+      <div class="segment">
+        <button (click)="ConnectFacebook()"  class="unit" type="button"><ion-icon name="logo-facebook"></ion-icon></button>
+        <button  (click)="cropUpload()"  class="unit" type="button"><ion-icon name="logo-google"></ion-icon></button>
+        <button  (click)="SaveUser()"  routerLink="/signin" class="unit" type="button"><ion-icon name="log-in-outline"></ion-icon></button>
+      </div>
+
+
+      
+    </form>
+    <ion-row style="margin-top: 100px;  justify-content: center;">
+
+    <ion-label  (click)="ResetPassword()" >Mot de passe oublié ?</ion-label>
+    </ion-row>
+
+  </div>
+</ion-content>

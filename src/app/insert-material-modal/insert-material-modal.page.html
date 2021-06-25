@@ -1,0 +1,69 @@
+<ion-toolbar color="white">
+
+</ion-toolbar>
+<ion-content>
+
+  <ion-card-content >
+  <ion-row>
+    <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="NOM" [(ngModel)]="material.name"/>
+  </ion-row>
+  <ion-row>
+    <ion-col size="6">
+    <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="QUANTITE" [(ngModel)]="material.quantite"/>
+
+    </ion-col>
+  </ion-row>
+  <ion-row>
+  <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="DESCRIPTION" [(ngModel)]="material.description"/>
+  </ion-row>
+  <ion-row>
+<ion-col >
+    <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder=" PRIX UNITAIRE" [(ngModel)]="material.prixunitaire"/>
+
+    </ion-col>
+    <ion-col >
+    <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="PRIX TTC" [(ngModel)]="material.prixttc"/>
+
+    </ion-col>
+</ion-row>
+
+  <ion-row>
+ 
+  <ion-textarea style="font-size: small;" class="MyinputUpdate" placeholder="NOTE" [(ngModel)]="material.note" ></ion-textarea>
+
+  </ion-row>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col size="5"></ion-col>
+      <ion-col size="2">
+ 
+      </ion-col>
+
+      <ion-col size="5"></ion-col>
+    </ion-row>
+</ion-content>
+<ion-footer >
+<ion-toolbar color="white">
+<ion-row style="padding-bottom: 30px; ">
+    <ion-col size="3">
+    </ion-col>
+    <ion-col  size="3">
+    <div (click)="close()" class="message-box">
+      <div type="submit" class="message-annule">
+      <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Annuler</h6>
+    </div>
+    </div>
+    </ion-col>
+    <ion-col  size="3">
+    <div (click)="save()" class="message-box">
+      <div type="submit" class="message-submit">
+      <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Enregitrer</h6>
+    </div>
+    </div>
+    </ion-col>
+    <ion-col size="3">
+    </ion-col>
+    </ion-row>
+</ion-toolbar>
+</ion-footer>

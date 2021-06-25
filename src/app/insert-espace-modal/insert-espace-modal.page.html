@@ -1,0 +1,71 @@
+<ion-toolbar color="white">
+
+</ion-toolbar>
+<ion-content>
+
+  <ion-card-content >
+  <ion-row>
+    <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="NOM" [(ngModel)]="espace.name"/>
+  </ion-row>
+  <ion-row>
+
+    <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="MATRICULE FISCALE" [(ngModel)]="espace.matriculefiscale"/>
+
+
+  </ion-row>
+  <ion-row>
+  <ion-list  style="border:none"class="MyinputUpdate" style="font-size: small;" >
+  <ion-item lines="none">
+    <ion-select placeholder="ACTIVITE" style="font-size: small;color:grey;">
+      <ion-select-option value="f">AGRICULE</ion-select-option>
+      <ion-select-option value="m">INDESTRIELLE</ion-select-option>
+      <ion-select-option value="N">SERVICES</ion-select-option>
+
+    </ion-select>
+  </ion-item>
+</ion-list>
+<input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="ACTIVITE" [(ngModel)]="espace.activite"/>
+
+  </ion-row>
+  
+
+  <ion-row>
+ 
+  <ion-textarea style="font-size: small;" class="MyinputUpdate" placeholder="NOTE" [(ngModel)]="espace.note" ></ion-textarea>
+
+  </ion-row>
+    </ion-card-content>
+
+    <ion-row>
+      <ion-col size="5"></ion-col>
+      <ion-col size="2">
+ 
+      </ion-col>
+
+      <ion-col size="5"></ion-col>
+    </ion-row>
+</ion-content>
+<ion-footer >
+<ion-toolbar color="white">
+<ion-row style="padding-bottom: 30px; ">
+    <ion-col size="3">
+    </ion-col>
+    <ion-col  size="3">
+    <div (click)="close()" class="message-box">
+      <div type="submit" class="message-annule">
+      <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Annuler</h6>
+    </div>
+    </div>
+    </ion-col>
+    <ion-col  size="3">
+    <div (click)="save()" class="message-box">
+      <div type="submit" class="message-submit">
+      <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Enregitrer</h6>
+    </div>
+    </div>
+    </ion-col>
+    <ion-col size="3">
+    </ion-col>
+    </ion-row>
+</ion-toolbar>
+</ion-footer>
