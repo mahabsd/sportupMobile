@@ -15,6 +15,9 @@ const routes: Routes = [
   {
     path: 'login',
     loadChildren: () => import('./Oauth/login/login.module').then( m => m.LoginPageModule)
+  },{
+    path: 'menu',
+    loadChildren: () => import('./component/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
   },
 
   {
@@ -41,11 +44,7 @@ const routes: Routes = [
     loadChildren: () => import('./shearch/shearch.module').then(m => m.ShearchPageModule),
     canActivate: [AuthguardService]
   },
-  {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
-    canActivate: [AuthguardService]
-  },
+ 
   {
     path: 'modal-sheare',
     loadChildren: () => import('./modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
@@ -221,6 +220,10 @@ const routes: Routes = [
   {
     path: 'profilkids',
     loadChildren: () => import('./kids/profil/profil.module').then( m => m.ProfilPageModule)
+  },
+  {
+    path: 'sidemenu',
+    loadChildren: () => import('./component/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
   }
 ]  
   

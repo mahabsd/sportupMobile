@@ -75,8 +75,7 @@ export class SigninPage implements OnInit {
   }
   login(){
     console.log('back to user');
-    // this.user.mail='';
-    // this.user.password='';
+   
   }
   ResetPassword(){
     console.log('reset Password');

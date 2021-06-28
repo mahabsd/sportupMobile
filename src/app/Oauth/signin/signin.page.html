@@ -1,43 +1,23 @@
 
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Sign in</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <div id="container">
-    <form  >
-
+    <form>
       <ion-row style=" justify-content: center;">
         <ion-avatar >
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
       </ion-avatar>
       </ion-row>
+      <ion-row class="ion-justify-content-center">
+<div class="hr"> </div>
+</ion-row>
       <div class="segment">
         <h1>Créer un compte</h1>
       </div>
-      
-      <label>
-        <input type="text"   placeholder="Non et prénom" [(ngModel)]="user.name" ngControl="name" name="name" required  />
-
-      </label>
-      
-      <label>
-        <input type="email" placeholder="Adresse email" [(ngModel)]="user.mail"  ngControl="mail" name="mail" required />
-      </label>
-      <label>
-        <input type="password"   placeholder="Mot de  passe" [(ngModel)]="user.password" ngControl="password" name="password" required  />
-
-      </label>
-      
-      <label>
-        <input type="password" placeholder="Confirmer le mot de passe" [(ngModel)]="user.confirmepassword"  ngControl="confirmepassword" name="confirmepassword" required />
-      </label>
-
-      
+        <ion-input type="text" class="form-controll ion-margin-bottom"  placeholder="Non et prénom" [(ngModel)]="user.name" ngControl="name" name="name" required  ></ion-input>
+        <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email" [(ngModel)]="user.mail"  ngControl="mail" name="mail" required ></ion-input>
+        <ion-input type="password" class="form-controll ion-margin-bottom"  placeholder="Mot de  passe" [(ngModel)]="user.password" ngControl="password" name="password" required  ></ion-input>
+        <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Confirmer le mot de passe" [(ngModel)]="user.confirmepassword"  ngControl="confirmepassword" name="confirmepassword" required ></ion-input>
       <div class="segment">
-
         <button  (click)="login()"  routerLink="/login" class="unit" type="button">
           <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
@@ -45,11 +25,6 @@
           <ion-icon name="arrow-forward-outline"></ion-icon>
         </button>
       </div>
-
-
-      
     </form>
-
-
   </div>
 </ion-content>

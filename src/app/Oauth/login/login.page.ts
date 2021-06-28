@@ -33,13 +33,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.fg = this.fb.group({
       emailControl: new FormControl('', Validators.required),
-      passwordControl: new FormControl('', Validators.required),
-      confirmControl: new FormControl('', Validators.required),
-      mobileControl: new FormControl('', Validators.required),
-      add1Control: new FormControl(''),
-      add2COntrol: new FormControl(''),
-      postcodeControl: new FormControl(''),
-      stateControl: new FormControl('')
+      passwordControl: new FormControl('', Validators.required)
     });
   }
   ConnectFacebook() {
@@ -48,40 +42,8 @@ export class LoginPage implements OnInit {
   ConnectGoogle() {
     console.log('hello google');
   }
-  cropUpload() {
-    console.log('test');
-    this.imagePicker.getPictures({ maximumImagesCount: 1, outputType: 0 }).then((results) => {
-      
-      for (let i = 0; i < results.length; i++) {
-          console.log('Image URI: ' + results[i]);
-          this.crop.crop(results[i], { quality: 100 })
-            .then(
-              newImage => {
-                console.log('new image path is: ' + newImage);
-                const fileTransfer: FileTransferObject = this.transfer.create();
-                const uploadOpts: FileUploadOptions = {
-                  fileKey: 'file',
-                  fileName: newImage.substr(newImage.lastIndexOf('/') + 1)
-                };
-                fileTransfer.upload(newImage, 'http://localhost:3000/users', uploadOpts)
-                .then((data) => {
-                  console.log(data);
-                  this.respData = JSON.parse(data.response);
-                  console.log(this.respData);
-                  this.fileUrl = this.respData.fileUrl;
-                }, (err) => {
-                  console.log(err);
-                });
-              },
-              error => console.error('Error cropping image', error)
-            );
-      }
-    }, (err) => { console.log(err); });
-  }
-  SaveUser() {
-    console.log('navigate to sign in width successfully');
-  }
-
+  
+  
   ChangeImage() {
     console.log('Change Image');
   }
