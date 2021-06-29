@@ -1,47 +1,49 @@
-
-<ion-header>
-  <ion-toolbar>
-    <ion-title>log in</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <div id="container">
-    <form  >
-
-      <ion-row style="margin-top: 100px;  justify-content: center;">
-        <ion-avatar (click)="ChangeImage()" >
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
-      </ion-avatar>
-      </ion-row>
-      <div class="segment">
-        <h1>BIENVENUE</h1>
-      </div>
-      
-      <label>
-        <input type="email"   placeholder="Adresse Email" [(ngModel)]="user.email" ngControl="email" name="email" required  />
-
-      </label>
-      
-      <label>
-        <!-- <ion-icon name="bookmark-outline"></ion-icon> -->
-        <input type="password" placeholder="Mot se passe" [(ngModel)]="user.password"  ngControl="password" name="password" required />
-      </label>
-      <button  (click)="login()" routerLink="/profil" class="red" type="submit"> <ion-icon name="log-in-outline"></ion-icon>        CONNEXION</button>
-      
-      <div class="segment">
-        <button (click)="ConnectFacebook()"  class="unit" type="button"><ion-icon name="logo-facebook"></ion-icon></button>
-        <button  (click)="cropUpload()"  class="unit" type="button"><ion-icon name="logo-google"></ion-icon></button>
-        <button  (click)="SaveUser()"  routerLink="/signin" class="unit" type="button"><ion-icon name="log-in-outline"></ion-icon></button>
-      </div>
+    <div id="container">
 
 
-      
-    </form>
-    <ion-row style="margin-top: 100px;  justify-content: center;">
+        <ion-row class="ion-padding-top" style=" justify-content: center;">
+            <ion-avatar (click)="ChangeImage()">
+                <img
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+            </ion-avatar>
+        </ion-row>
+        <div class="segment">
+            <h1>Bienvenue</h1>
+        </div>
+        <form [formGroup]="loginForm">
+            <ion-input type="email" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
+                [ngClass]="{'error':loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine}"
+                color="{{loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine ? 'warning':'primary'}}"
+                placeholder="Adresse Email" name="email" [(ngModel)]="user.email" required>
+            </ion-input>
+            <ion-input type="password" class="form-controll ion-margin-bottom" mdInput placeholder="Mot se passe"
+                formControlName="passwordControl" name="password" [(ngModel)]="user.password" required></ion-input>
 
-    <ion-label  (click)="ResetPassword()" >Mot de passe oublié ?</ion-label>
-    </ion-row>
+            <ion-button (click)="login()" color="transparent" shape="round" [disabled]=" loginForm.invalid" class="red "
+                type=" submit">
+                CONNEXION
+            </ion-button>
 
-  </div>
+            <div class="segment">
+                <button (click)="ConnectFacebook()" class="unit" type="button">
+                    <ion-icon name="logo-facebook"></ion-icon>
+                </button>
+                <button class="unit" type="button">
+                    <ion-icon name="logo-google"></ion-icon>
+                </button>
+                <button [routerLink]="['/signin']" class="unit" type="button">
+                    <ion-icon name="log-in-outline"></ion-icon>
+                </button>
+            </div>
+
+
+
+        </form>
+        <ion-row style="  justify-content: center;">
+
+            <ion-label class="ion-padding-top" (click)="ResetPassword()">Mot de passe oublié ?</ion-label>
+        </ion-row>
+
+    </div>
 </ion-content>

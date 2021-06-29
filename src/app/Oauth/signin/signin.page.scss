@@ -1,8 +1,8 @@
 #container {
-    height: 800px;
+    height: 100%;
     background-color: DarkGreen; /* For browsers that do not support gradients */
-    background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
-  }
+    background-image: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);  }
+
 
   $ruler: 16px;
 $color-red: #726b6b;
@@ -13,7 +13,19 @@ $color-white: #FFF;
 body, html {
   background-color:$color-bg;
 }
+.form-controll{
+  background-color: transparent;
+  color: $color-white;
+  box-shadow: none;
+  text-shadow: none;
+  font-weight: 500;
 
+}
+ion-avatar{
+  width: 7em;
+  height: 7em;
+  box-shadow: 0px 3px 6px 0px black;
+}
  input, select, textarea, button {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: -0.2px;
@@ -21,8 +33,8 @@ body, html {
 }
 
 div, p {
-  color: $color-shadow;
-  text-shadow: 1px 1px 1px $color-white;
+  color: $color-white;
+  //text-shadow: 1px 1px 1px $color-white;
 }
 
 
@@ -33,11 +45,11 @@ form {
 }
 
 .segment {
-  padding: $ruler*2 0;
+  padding: $ruler*0.5 0;
   text-align: center;
 }
 
-button, input {
+button, ion-input {
   border: 0;
   outline: 0;
   font-size: $ruler;
@@ -53,8 +65,10 @@ label {
   width: 100%;
 }
 
-input {
+ion-input {
   margin-right: $ruler/2;
+  padding:0.5em !important;
+  border: 2px solid #ccc;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
@@ -70,17 +84,17 @@ input {
 button {
   color:#61677C;
   font-weight: bold;
-  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+  //box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
-  
+  margin-bottom:2em;
   &:hover {
-    box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+    // box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
   }
   
   &:active {
-    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+    // box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
   
   .icon {

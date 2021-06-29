@@ -1,7 +1,7 @@
 #container {
-    height: 800px;
+    height: 100%;
     background-color: DarkGreen; /* For browsers that do not support gradients */
-    background-image: linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238);
+    background-image: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);
   }
 
   $ruler: 16px;
@@ -14,6 +14,24 @@ body, html {
   background-color:$color-bg;
 }
 
+.form-controll{
+  background-color: transparent;
+  color: $color-white;
+  box-shadow: none;
+  text-shadow: none;
+  font-weight: 500;
+}
+
+.hr {
+  margin:3rem 0 0 0;
+  width: 50%;
+  box-shadow: 0px -25px 45px 0.4em black;
+}
+ion-avatar{
+  width: 7em;
+  height: 7em;
+  box-shadow: 0px 3px 6px 0px black;
+}
  input, select, textarea, button {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: -0.2px;
@@ -21,8 +39,8 @@ body, html {
 }
 
 div, p {
-  color: $color-shadow;
-  text-shadow: 1px 1px 1px $color-white;
+  color: $color-white;
+  //text-shadow: 1px 1px 1px $color-white;
 }
 
 
@@ -33,11 +51,21 @@ form {
 }
 
 .segment {
-  padding: $ruler*2 0;
+  padding: $ruler*0.5 0;
   text-align: center;
 }
+ion-button {
 
-button, input {
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler*20;
+  height: 2em;
+  background-color: $color-bg;
+  text-shadow: 1px 1px 0 $color-white;
+}
+button, ion-input {
+
   border: 0;
   outline: 0;
   font-size: $ruler;
@@ -53,8 +81,11 @@ label {
   width: 100%;
 }
 
-input {
+ion-input {
   margin-right: $ruler/2;
+  padding:0.5em !important;
+
+  border: 2px solid #ccc;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
@@ -70,17 +101,19 @@ input {
 button {
   color:#61677C;
   font-weight: bold;
-  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+//  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
-  
+  margin-bottom:2em;
   &:hover {
     box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
   }
   
-  &:active {
-    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  &:active 
+  {
+    background-color: red;
+    // box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
   
   .icon {
@@ -109,7 +142,54 @@ button {
     color:$color-red;
   }
 }
+ion-button {
+  color: #61677C;
+  font-weight: bold;
+  //  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+  margin-bottom: 2em;
 
+  &:hover {
+    box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+  }
+
+  &:active {
+    background-color: red;
+    // box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
+
+  .icon {
+    margin-right: $ruler/2;
+  }
+
+  &.unit {
+    border-radius: $ruler/2;
+    line-height: 0;
+    width: $ruler*3;
+    height: $ruler*3;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 $ruler/2;
+    font-size: $ruler*1.2;
+
+    .icon {
+      margin-right: 0;
+    }
+  }
+
+  &.red {
+    display: block;
+    width: 100%;
+    height: 3.5em;
+    color: $color-red;
+  }
+}
+input::-moz-placeholder{
+  color: #000 !important;
+}
 .input-group {
   display: flex;
   align-items: center;

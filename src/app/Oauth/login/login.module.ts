@@ -8,6 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { AuthService } from '../../shared/Auth/auth.service';
 
 @NgModule({
   imports: [
@@ -17,12 +18,13 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
     LoginPageRoutingModule,
     FormsModule, ReactiveFormsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
 
 
   ],
   providers: [
-    FileTransfer, FileTransferObject,
+    FileTransfer, FileTransferObject,    AuthService
+
   ],
   declarations: [LoginPage]
 })
