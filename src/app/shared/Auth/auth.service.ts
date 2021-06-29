@@ -25,7 +25,7 @@ export class AuthService {
     return this.http.post(UtilsService.API_USER + 'login', user).pipe(map((res: any) => {
       // console.log(res);
       this.setSession(res);
-      this.addUser(res.id);
+      // this.addUser(res.id);
       
       return res.data;
     }, err => {

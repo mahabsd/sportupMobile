@@ -7,11 +7,7 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
-  {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule),
-    canActivate: [AuthguardService]
-  },
+  
   {
     path: 'login',
     loadChildren: () => import('./Oauth/login/login.module').then( m => m.LoginPageModule)
@@ -27,7 +23,7 @@ const routes: Routes = [
   {
     path: 'signinformation',
     loadChildren: () => import('./Oauth/signinformation/signinformation.module').then( m => m.SigninformationPageModule),
-    canActivate: [AuthguardService]
+    // canActivate: [AuthguardService]
   },
   {
     path: 'profil',
@@ -224,6 +220,10 @@ const routes: Routes = [
   {
     path: 'sidemenu',
     loadChildren: () => import('./component/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
+  },
+  {
+    path: '**',
+    redirectTo:''
   }
 ]  
   

@@ -14,6 +14,7 @@ import { ProfilService } from './profil/profil.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { LoginKidsService } from './kids/sign-kids/login-kids.service';
+import { AuthService } from './shared/Auth/auth.service';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { LoginKidsService } from './kids/sign-kids/login-kids.service';
     SigninService,
     LoginKidsService,
     ProfilService,
+    AuthService,
     StatusBar,
     SplashScreen,
     {

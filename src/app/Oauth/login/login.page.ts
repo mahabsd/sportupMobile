@@ -1,38 +1,31 @@
+import { AuthService } from './../../shared/Auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { LoginService } from './login.service';
+import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { Storage } from '@ionic/storage';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { PatternValidator  } from "../../shared/patternValidator";
+import { User } from 'src/app/shared/Model/User';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  fg: FormGroup;
+ loginForm: FormGroup;
   fileUrl: any = null;
   respData: any;
-  user = {
-    email: '',
-    password: ''
-  };
-  logForm(form) {
-    console.log(this.user);
-    this.user.email = '';
-    this.user.password = '';
-  }
+ user:User=new User()
+  
   constructor(
-    private imagePicker: ImagePicker,
-    private crop: Crop,
-    private transfer: FileTransfer,
-    private storage: Storage,
-    public fb: FormBuilder,
-    public loginService: LoginService) { }
+        public fb: FormBuilder,
+    public loginService: AuthService) { }
   ngOnInit() {
-    this.fg = this.fb.group({
-      emailControl: new FormControl('', Validators.required),
+    this.loginForm = new FormGroup({
+      emailControl: new FormControl('', [Validators.required,
+      PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)])
+,
       passwordControl: new FormControl('', Validators.required)
     });
   }
@@ -42,26 +35,21 @@ export class LoginPage implements OnInit {
   ConnectGoogle() {
     console.log('hello google');
   }
-  
-  
-  ChangeImage() {
-    console.log('Change Image');
-  }
+ 
   login() {
+    console.log(this.user);
+    
     this.loginService.login(this.user).subscribe((response) => {
       console.log('hello user', response);
-      if (response.token)
-      {
-        
-        this.storage.set('token', response.token);
-        console.log('hello user', response);
-      } else {
-        console.log('not user');
-      }
-    });
+     
+    }, err => {
+      this.loginService.presentToast(err, 'danger', 'top');
+      console.log(err);
+
+    }
+    
+    );
 
   }
-  ResetPassword(){
-    console.log('reset password');
-  }
+ 
 }

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 import { SigninService } from './signin.service';
-import { User } from './user';
+import { AuthService } from '../../shared/Auth/auth.service';
+import { UserService } from 'src/app/shared/Service/user.service';
+import { User } from 'src/app/shared/Model/User';
+import { PatternValidator } from 'src/app/shared/patternValidator';
 
 @Component({
   selector: 'app-signin',
@@ -10,39 +13,26 @@ import { User } from './user';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-  data: User;
 
-  fg: FormGroup;
-  user = {
-    name: '',
-    mail: '',
-    password: '',
-    confirmepassword: ''
-  };
-  logForm(form) {
-    console.log(this.user);
-    this.user.name = '';
-    this.user.mail = '';
-    this.user.password = '';
-    this.user.confirmepassword = '';
-  }
+  registerForm: FormGroup;
+  user: User = new User();
+ 
   constructor(
     public fb: FormBuilder,
-    public signinService: SigninService,
+    public signinService: UserService,
     public router: Router) {
-      this.data = new User();
+     
   }
 
   ngOnInit() {
-    this.fg = this.fb.group({
-      emailControl: new FormControl('', Validators.required),
+    this.registerForm = new FormGroup({
+      emailControl: new FormControl('', [Validators.required,
+      PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       passwordControl: new FormControl('', Validators.required),
-      confirmControl: new FormControl('', Validators.required),
-      mobileControl: new FormControl('', Validators.required),
-      add1Control: new FormControl(''),
-      add2COntrol: new FormControl(''),
-      postcodeControl: new FormControl(''),
-      stateControl: new FormControl('')
+      confirmPasswordControl: new FormControl('', Validators.required),
+      
+      usernameControl: new FormControl('', Validators.required),
+     
     });
   }
   ConnectFacebook() {
@@ -53,25 +43,15 @@ export class SigninPage implements OnInit {
 
   }
   SaveUser() {
-    console.log('user information saved succefull');
-    // console.log(this.user)
-    this.data.User_Email = this.user.name;
-    this.data.User_Password = this.user.password;
-    this.data.User_First_Name = this.user.name;
-
-    this.signinService.createItem(this.data).subscribe((response) => {
+  console.log(this.user);
+    // this.signinService.signUp(this.user).subscribe((response) => {
       const navigationExtras: NavigationExtras = {
         queryParams: {
-          data: JSON.stringify(response)
+          data: JSON.stringify(this.user)
         }
       };
-      this.router.navigate(['/signinformation'], navigationExtras);
-      console.log(response);
-      this.user.name = '';
-      this.user.mail = '';
-      this.user.password = '';
-      this.user.confirmepassword = '';
-    });
+      this.router.navigateByUrl('/signinformation', navigationExtras); 
+    // });
   }
   login(){
     console.log('back to user');
