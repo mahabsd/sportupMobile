@@ -3,9 +3,9 @@
 
 
         <ion-row class="ion-padding-top" style=" justify-content: center;">
-            <ion-avatar (click)="ChangeImage()">
+            <ion-avatar >
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+                    src="../../../assets/imgs/logo.jpg">
             </ion-avatar>
         </ion-row>
         <div class="segment">
@@ -42,7 +42,7 @@
         </form>
         <ion-row style="  justify-content: center;">
 
-            <ion-label class="ion-padding-top" (click)="ResetPassword()">Mot de passe oublié ?</ion-label>
+            <ion-label class="ion-padding-top" [routerLink]="['/resetPassword']">Mot de passe oublié ?</ion-label>
         </ion-row>
 
     </div>

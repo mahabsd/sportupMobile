@@ -156,7 +156,7 @@ ion-button {
   }
 
   &:active {
-    background-color: red;
+    background-color: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);
     // box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
 

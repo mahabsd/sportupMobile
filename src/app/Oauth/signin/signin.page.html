@@ -4,7 +4,7 @@
         <ion-row class="ion-padding-top ion-justify-content-center">
             <ion-avatar>
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+                    src="../../../assets/imgs/logo.jpg">
             </ion-avatar>
         </ion-row>
         <ion-row class="ion-justify-content-center">
@@ -15,7 +15,7 @@
         </div>
         <form [formGroup]="registerForm">
             <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Non et prénom"
-                [(ngModel)]="user.username" mdInput formControlName="usernameControl" name="username" required>
+                [(ngModel)]="user.name" mdInput formControlName="nameControl" name="name" required>
             </ion-input>
             <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email"
                 [(ngModel)]="user.email" mdInput formControlName="emailControl" name="email" required></ion-input>
@@ -23,20 +23,18 @@
                 [(ngModel)]="user.password" mdInput formControlName="passwordControl" name="password" required>
             </ion-input>
             <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Confirmer le mot de passe"
-                [(ngModel)]="user.confirmepassword" mdInput formControlName="confirmPasswordControl"
+                [(ngModel)]="user.passwordConfirm" mdInput formControlName="confirmPasswordControl"
                 name="confirmepassword" required>
             </ion-input>
             <div class="segment">
                 <button (click)="login()" routerLink="/login" class="unit" type="button">
                     <ion-icon name="arrow-back-outline"></ion-icon>
                 </button>
-                <!-- <button (click)="SaveUser()" [disabled]="registerForm.invalid" class="unit" type="button">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                </button> -->
-                <button (click)="SaveUser()" class="unit" type="button">
+                <button (click)="SaveUser()" [disabled]="registerForm.invalid" class="unit" type="button">
                     <ion-icon name="arrow-forward-outline"></ion-icon>
                 </button>
+               
             </div>
-        </form>
+        </form> 
     </div>
 </ion-content>

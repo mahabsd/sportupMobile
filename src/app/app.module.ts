@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { SigninService } from './Oauth/signin/signin.service';
-import { HttpClientModule  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { ProfilService } from './profil/profil.service';
+import { ProfilService } from './layouts/profil/profil.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
-import { LoginKidsService } from './kids/sign-kids/login-kids.service';
+import { LoginKidsService } from './layouts/kids/sign-kids/login-kids.service';
 import { AuthService } from './shared/Auth/auth.service';
+import { LayoutsModule } from './layouts/layouts.module';
+import { JWTInterceptor } from './shared/Interceptors/JWInterceptors';
+import { H401Interceptor } from './shared/Interceptors/H401Interceptor';
+import { AuthGuard } from './shared/Guard/auth.guard';
 
 
 @NgModule({
@@ -25,8 +29,8 @@ import { AuthService } from './shared/Auth/auth.service';
     AppRoutingModule,
     BrowserModule,
     IonicModule.forRoot(),
-    IonicStorageModule.forRoot(),
     HttpClientModule,
+    LayoutsModule,
 
 
   ],
@@ -37,8 +41,11 @@ import { AuthService } from './shared/Auth/auth.service';
     LoginKidsService,
     ProfilService,
     AuthService,
+    AuthGuard,
     StatusBar,
     SplashScreen,
+    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy

@@ -23,7 +23,7 @@ export class SigninformationPage implements OnInit {
   id: number;
   Editdata: User;
   data: any;
-  fg: FormGroup;
+  registerForm: FormGroup;
   user = {
     age: '',
     taille: '',
@@ -40,26 +40,25 @@ export class SigninformationPage implements OnInit {
     this.user.sexe = '';
   }
   constructor(
-    statusBar: StatusBar,
-    splashScreen: SplashScreen,
+    
     private camera: Camera,
     public fb: FormBuilder,
-    private route: ActivatedRoute,
+    private activeRoute: ActivatedRoute,
     private router: Router,
     public signinService: SigninService
   ) {
     this.Editdata = new User();
-    this.route.queryParams.subscribe(params => {
-      if (params && params.data) {
-        this.data = JSON.parse(params.data);
-        console.log('new passing data', this.data);
-      }
-    });
+    // this.activeRoute.params.subscribe(param => {
+    //   if (param && param.data) {
+    //     this.data = JSON.parse(param.data);
+    //     console.log('new passing data', this.data);
+    //   }
+    // });
 
     this.userImg = 'assets/imgs/logo.png';
   }
   ngOnInit() {
-    this.fg = this.fb.group({
+    this.registerForm = new FormGroup({
       emailControl: new FormControl('', Validators.required),
       passwordControl: new FormControl('', Validators.required),
       confirmControl: new FormControl('', Validators.required),

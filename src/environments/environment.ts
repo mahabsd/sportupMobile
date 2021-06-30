@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-   apiUrl: 'http://localhost:3112/api/v1/',
-  apiImg: 'http://localhost:3112/api/img/',
+  apiUrl: 'http://localhost:4112/api/v1/',
+  apiImg: 'http://localhost:4112/api/img/',
   TOKEN: 'token',
   currentUser: 'currentUser',
   idUser: 'id',

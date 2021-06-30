@@ -3,8 +3,8 @@ import { environment } from './../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 
-import { HttpClient, HttpHeaders, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders, HttpRequest, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 // import { DatePipe } from "@angular/common";
 
 @Injectable({
@@ -27,7 +27,7 @@ export class UtilsService {
   ) {
 
   }
-
+ 
 
 
   public post(url: string, object: any): Observable<any> {
@@ -57,7 +57,7 @@ export class UtilsService {
 
 
   async presentToast(message, color, position) {
-    const toast = await this.toastCtrl.create({
+    var toast = await this.toastCtrl.create({
       message: message,
       duration: 2000,
       color,
