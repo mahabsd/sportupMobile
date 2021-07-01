@@ -16,10 +16,7 @@ const routes: Routes = [
     path: 'login-erp',
     loadChildren: () => import('./Oauth/login-erp/login-erp.module').then( m => m.LoginErpPageModule)
   },
-  {
-    path: 'confirminscription',
-    loadChildren: () => import('./Oauth/confirminscription/confirminscription.module').then(m => m.ConfirmInscriptionPageModule)
-  },
+ 
   {
     path: '',
     loadChildren: () => import('./layouts/layouts.module').then( m => m.LayoutsModule),canActivate:[AuthGuard]
@@ -45,9 +42,14 @@ const routes: Routes = [
   },
  
   {
+    path: 'confirmation',
+    loadChildren: () => import('./Oauth/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+  },
+  {
     path: '**',
     redirectTo:''
-  }
+  },
+
 ];
 
 @NgModule({

@@ -77,7 +77,7 @@ export class LoginPage implements OnInit {
           text: 'Confirmer',
           handler: () => {
         
-            this.router.navigateByUrl('/confirminscription');
+            this.router.navigateByUrl('/confirmation');
           }
         }, {
           text: 'Annuler',

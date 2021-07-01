@@ -26,8 +26,13 @@ export class UserService {
       return res;
     }), catchError(this.handleError))
   }
-  confirmInscription(code:string) {
+  confirmInscription(code) {
     return this.utilsService.post(UtilsService.API_USER + 'confirm', code).pipe(map(res => {
+      return res;
+    }), catchError(this.handleError))
+  }
+  renvoyerToken(user:User) {
+    return this.utilsService.post(UtilsService.API_USER + 'renvoi',user ).pipe(map(res => {
       return res;
     }), catchError(this.handleError))
   }
