@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
+  toast: any;
   constructor(private authService: AuthService,
     public toastCtrl: ToastController,
     private router: Router) {
@@ -50,26 +51,24 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
   checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
 
-    // console.log(this.authService.isAuthenticated())
+     console.log(this.authService.isAuthenticated())
     if (this.authService.isAuthenticated()) {
-
-
+      console.log(this.authService.isAuthenticated())
+      this.presentToast('message', 'danger', 'top')
       return true
     } else {
-
       // this.typeError('Connectez vous!')
-      this.router.navigateByUrl('pages/login')
-
+      this.router.navigateByUrl('login')
       return false;
     }
   }
   async presentToast(message, color, position) {
-    const toast = await this.toastCtrl.create({
+    this.toast = await this.toastCtrl.create({
       message: message,
       duration: 2000,
       color,
       position
     });
-    toast.present();
+    this.toast.present();
   }
 }

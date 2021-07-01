@@ -48,8 +48,8 @@ myToast:any;
     this.signinService.signUp(this.user).subscribe(res => {
       console.log(res);
 
-      this.presentToast("Bienvenue"+ this.user.name ,'success','middle');
-      this.router.navigateByUrl('/confirm-inscription',res.user.data);
+      this.presentToast("Bienvenue "+ this.user.name ,'success','middle');
+      this.router.navigateByUrl('/confirminscription');
     },err=>{
       this.presentToast(err,'danger','top');
     });

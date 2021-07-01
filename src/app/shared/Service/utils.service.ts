@@ -56,13 +56,5 @@ export class UtilsService {
   }
 
 
-  async presentToast(message, color, position) {
-    var toast = await this.toastCtrl.create({
-      message: message,
-      duration: 2000,
-      color,
-      position
-    });
-    toast.present();
-  }
+
 }

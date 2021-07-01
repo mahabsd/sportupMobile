@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { ConfirmInscriptionPage } from './confirm-inscription.page';
+import { ConfirmInscriptionPage } from './confirminscription.page';
 
 const routes: Routes = [
   {

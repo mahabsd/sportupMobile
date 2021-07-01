@@ -1,7 +1,6 @@
 
 import { StorageService } from './../Service/storage.service';
 import { ToastController } from '@ionic/angular';
-import { UtilsService } from './../Service/utils.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
@@ -9,20 +8,22 @@ import { map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import * as moment from 'moment'
+import { UtilsService } from '../Service/utils.service';
 @Injectable()
 export class AuthService {
   role: any;
   constructor(private utilsSer: UtilsService,
     public http: HttpClient,
     public toastCtrl: ToastController,
-    private storage:StorageService,
+    private storage: StorageService,
+    private utilsService:UtilsService,
     private route: Router) {
   }
 
   login(user) {
     // console.log(JSON.stringify(user))
     // localhost:7112/apiv/v1/users/login
-    return this.http.post(UtilsService.API_USER + 'login', user).pipe(map((res: any) => {
+    return this.utilsService.post(UtilsService.API_USER + 'login', user).pipe(map((res: any) => {
       // console.log(res);
       this.setSession(res);
       // this.addUser(res.id);
@@ -31,7 +32,7 @@ export class AuthService {
     }, err => {
       console.log(err);
 
-      return this.presentToast(err.message, 'danger', 'middle')
+      
 
     }));
   }
@@ -95,13 +96,5 @@ export class AuthService {
     // console.log(this.role)
     return this.role
   }
-  async presentToast(message, color, position) {
-    const toast = await this.toastCtrl.create({
-      message: message,
-      duration: 2000,
-      color,
-      position
-    });
-    toast.present();
-  }
+  
 }

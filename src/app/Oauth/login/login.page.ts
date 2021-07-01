@@ -7,6 +7,8 @@ import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { PatternValidator  } from "../../shared/patternValidator";
 import { User } from 'src/app/shared/Model/User';
+import { ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -19,7 +21,9 @@ export class LoginPage implements OnInit {
  user:User=new User()
   
   constructor(
-        public fb: FormBuilder,
+    public fb: FormBuilder,
+    private toastCtrl: ToastController,
+    private router: Router,
     public loginService: AuthService) { }
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -35,20 +39,58 @@ export class LoginPage implements OnInit {
     console.log('hello google');
   }
  
-  login() {
+ async login() {
     console.log(this.user);
     
-    this.loginService.login(this.user).subscribe((response) => {
+   this.loginService.login(this.user).subscribe(async( response) => {
       console.log('hello user', response);
      
-    }, err => {
-      this.loginService.presentToast(err, 'danger', 'top');
+    },async err => {
+   await   this.presentToast(err.error.message, 'danger', 'top');
       console.log(err);
+     await err.status == 402 && this.presentToastWithOptions(err.error.message);
 
     }
     
     );
 
   }
- 
+  async presentToast(message, color, position) {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 2000,
+      color,
+      position
+    });
+    toast.present();
+  }
+  async presentToastWithOptions(message) {
+    const toast = await this.toastCtrl.create({
+      header: '',
+      message,
+      position: 'top',
+
+      buttons: [
+        {
+          side: 'start',
+          
+          text: 'Confirmer',
+          handler: () => {
+        
+            this.router.navigateByUrl('/confirminscription');
+          }
+        }, {
+          text: 'Annuler',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        }
+      ]
+    });
+    await toast.present();
+
+    const { role } = await toast.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
 }
