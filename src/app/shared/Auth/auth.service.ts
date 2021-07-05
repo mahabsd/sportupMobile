@@ -1,23 +1,28 @@
 
-import { StorageService } from './../Service/storage.service';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs/operators';
+import { map, mergeMap } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { from } from 'rxjs';
 
 import * as moment from 'moment'
 import { UtilsService } from '../Service/utils.service';
+import { Storage } from '@ionic/storage';
+import { Observable } from 'rxjs';
+import { StorageService } from '../Service/storage.service';
 @Injectable()
 export class AuthService {
   role: any;
+  statut: boolean = false
   constructor(private utilsSer: UtilsService,
     public http: HttpClient,
     public toastCtrl: ToastController,
+
     private storage: StorageService,
-    private utilsService:UtilsService,
-    private route: Router) {
+    private utilsService: UtilsService,
+    private router: Router) {
   }
 
   login(user) {
@@ -27,74 +32,85 @@ export class AuthService {
       // console.log(res);
       this.setSession(res);
       // this.addUser(res.id);
-      
+
       return res.data;
     }, err => {
       console.log(err);
 
-      
+
 
     }));
   }
 
 
-  isAuthenticated(): boolean {
+  isAuthenticated() {
     // here you can check if user is authenticated or not through his token
-    // console.log(this.getRole())
-
-    return this.isLoggedIn()
+    
+    return this.isLoggedIn().then(res => {
+      console.log(res)
+      return res
+    })
   }
 
   private setSession(authResult) {
-    // console.log(authResult)
-    const expiresAt = moment().add(authResult.expiredIn, 'second');
-    localStorage.setItem(environment.idUser, authResult.id);
-    localStorage.setItem(environment.TOKEN, authResult.token);
-    localStorage.setItem(environment.ExpiresIn, JSON.stringify(expiresAt.valueOf()));
+    // const expiresAt = moment().add(authResult.expiredIn, 'second');
+    console.log(authResult);
+    this.storage.set(environment.idUser, authResult.data.user._id)
+    this.storage.set(environment.TOKEN, authResult.token)
+    this.storage.set(environment.currentUser, authResult.data.user);
+    // localStorage.setItem(environment.idUser, authResult.data.user._id);
+    // localStorage.setItem(environment.TOKEN, authResult.token);
+    // localStorage.setItem(environment.ExpiresIn, JSON.stringify(expiresAt.valueOf()));
   }
 
   logout() {
-    localStorage.clear()
-    location.href='/login';
+    // localStorage.clear();
+    this.storage.clear();
+    this.router.navigateByUrl('/login');
   }
 
   public isLoggedIn() {
-    // console.log(moment().isBefore(this.getExpiration()));
-    return moment().isBefore(this.getExpiration());
+    return this.storage.get(environment.idUser).then(res => {
+      console.log(res);
+
+      return res;
+    })
+
+
   }
 
   isLoggedOut() {
     return !this.isLoggedIn();
   }
 
-  getExpiration() {
-    const expiration = localStorage.getItem(environment.ExpiresIn);
-    const expiresAt = JSON.parse(expiration);
-    // console.log('expiresat', moment(expiresAt));
-    return moment(expiresAt);
-  }
+  // getExpiration() {
+  //   const expiration = localStorage.getItem(environment.ExpiresIn);
+  //   const expiresAt = JSON.parse(expiration);
+  //   // console.log('expiresat', moment(expiresAt));
+  //   return moment(expiresAt);
+  // }
 
   public addUser(id) {
     return this.utilsSer.get(UtilsService.API_USER + 'Me').subscribe((res: any) => {
       console.log('getuser', res.data.data)
-      localStorage.setItem(environment.currentUser, JSON.stringify(res.data.data));
-      // this.storage.set(environment.currentUser, res.data.data);
+      // localStorage.setItem(environment.currentUser, JSON.stringify(res.data.data));
+      this.storage.set(environment.currentUser, res.data.data);
       return res;
     })
   }
 
   public getUser() {
-    console.log(localStorage.getItem(environment.currentUser))
-    let user = JSON.parse(localStorage.getItem(environment.currentUser))
+    console.log(this.storage.get(environment.currentUser))
+    let user = this.storage.get(environment.currentUser)
     return user
   }
 
   public getRole() {
 
-    this.role = JSON.parse(localStorage.getItem(environment.currentUser));
+    this.role = this.storage.get(environment.currentUser)
     if (this.role) this.role = this.role.role
     // console.log(this.role)
     return this.role
   }
-  
+
 }

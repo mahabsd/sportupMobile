@@ -31,6 +31,16 @@ export class UserService {
       return res;
     }), catchError(this.handleError))
   }
+  forgotPassword(user:User) {
+    return this.utilsService.post(UtilsService.API_USER + 'forgotPassword', user).pipe(map(res => {
+      return res;
+    }), catchError(this.handleError))
+  }
+  resetPassword(token:any) {
+    return this.utilsService.patch(UtilsService.API_USER + 'resetPassword', token).pipe(map(res => {
+      return res;
+    }), catchError(this.handleError))
+  }
   renvoyerToken(user:User) {
     return this.utilsService.post(UtilsService.API_USER + 'renvoi',user ).pipe(map(res => {
       return res;
@@ -38,19 +48,20 @@ export class UserService {
   }
   handleError(error: HttpErrorResponse) {
     var errors;
-    if (error.error instanceof ErrorEvent) {
+    if (error?.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
 
-      console.error('An error occurred:', error.error.message);
+      console.error('An error occurred:', error?.error?.message);
+
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
 
-      console.error(`Backend returned code ${error.status}, ` + `body was: ${error.error.message}`);
+      console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
 
     }
     // return an observable with a user-facing error message
-    return throwError(error.error.message);
+    return throwError(error?.error?.message);
   }
 
 

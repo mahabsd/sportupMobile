@@ -1,6 +1,7 @@
 import { Component, OnInit , ViewChild } from '@angular/core';
 import { ModalShearePage } from '../modal-sheare/modal-sheare.page';
 import { ModalController } from '@ionic/angular';
+import { UserService } from '../../shared/Service/user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -14,7 +15,8 @@ export class HomePage implements OnInit {
     width: 55,
     spaceBetween: 25
   };
-  constructor(private modalController: ModalController) {
+  constructor(private modalController: ModalController,
+  private userservice:UserService) {
    }
    async openModal() {
     const modal = await this.modalController.create({
@@ -23,6 +25,7 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
   ngOnInit() {
+    this.getMe()
     const slideOpts = {
       slidesPerView: 3,
       coverflowEffect: {
@@ -106,5 +109,11 @@ export class HomePage implements OnInit {
     }
     let slides = document.querySelector('ion-slides');
     slides.options = slideOpts;
+  }
+  getMe() {
+    this.userservice.getMe().subscribe(res => {
+      console.log(res);
+      
+    })
   }
 }

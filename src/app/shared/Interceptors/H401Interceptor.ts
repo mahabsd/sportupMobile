@@ -32,7 +32,7 @@ private myToast:any;
   private handleAuthError() {
 
    this.authServ.logout();
-   this.typeError()
+    this.typeError();
 }
 async presentToast(message, color, position) {
   this.myToast = await this.toastr.create({

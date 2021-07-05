@@ -49,18 +49,21 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
 
 
-  checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
+  checkUserLogin(route: ActivatedRouteSnapshot, url: any): Promise<boolean> {
 
-     console.log(this.authService.isAuthenticated())
-    if (this.authService.isAuthenticated()) {
-      console.log(this.authService.isAuthenticated())
-      this.presentToast('message', 'danger', 'top')
-      return true
-    } else {
-      // this.typeError('Connectez vous!')
-      this.router.navigateByUrl('login')
-      return false;
-    }
+    return this.authService.isAuthenticated().then(res => {
+      if (res) {
+        // console.log(this.authService.isAuthenticated())
+        return true
+      } else {
+        // this.typeError('Connectez vous!')
+        this.presentToast('Vous n\'avez pas le droit d\'acces', 'warning', 'top')
+
+        this.router.navigateByUrl('login')
+        return false;
+      }
+
+    })
   }
   async presentToast(message, color, position) {
     this.toast = await this.toastCtrl.create({

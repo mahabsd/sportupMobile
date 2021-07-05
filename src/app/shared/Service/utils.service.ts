@@ -31,7 +31,7 @@ export class UtilsService {
 
 
   public post(url: string, object: any): Observable<any> {
-    console.log(object);
+    // console.log(object);
 
     return this.httpClient.post(url, object)
   }

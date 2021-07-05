@@ -7,7 +7,10 @@ const routes: Routes = [
     redirectTo: 'home',
     pathMatch: 'full'
   },
-  
+  {
+    path: 'resetpass',
+    loadChildren: () => import('./Oauth/resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+  },
   {
     path: 'login',
     loadChildren: () => import('./Oauth/login/login.module').then( m => m.LoginPageModule)
@@ -45,10 +48,15 @@ const routes: Routes = [
     path: 'confirmation',
     loadChildren: () => import('./Oauth/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
   },
+  
   {
     path: '**',
     redirectTo:''
   },
+ 
+
+ 
+
 
 ];
 

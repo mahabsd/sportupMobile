@@ -9,27 +9,37 @@ import { PatternValidator } from "../../shared/patternValidator";
 import { User } from 'src/app/shared/Model/User';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { UserService } from '../../shared/Service/user.service';
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+  selector: 'app-resetpass',
+  templateUrl: './resetpass.page.html',
+  styleUrls: ['./resetpass.page.scss'],
 })
-export class LoginPage implements OnInit {
-  loginForm: FormGroup;
+export class ResetpassPage implements OnInit {
+
+  showReset: boolean = false
+  forgotForm: FormGroup;
+  resetForm: FormGroup;
   fileUrl: any = null;
   respData: any;
   user: User = new User()
-
+  codeToken: any
   constructor(
     public fb: FormBuilder,
     private toastCtrl: ToastController,
     private router: Router,
-    public loginService: AuthService) { }
+    public userService: UserService) { }
   ngOnInit() {
-    this.loginForm = new FormGroup({
+    this.forgotForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
       PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
-      passwordControl: new FormControl('', Validators.required)
+
+    });
+    this.resetForm = new FormGroup({
+      passwordControl: new FormControl('', Validators.required),
+      passwordConfirmControl: new FormControl('', Validators.required),
+      codetokenControl: new FormControl('')
     });
   }
   ConnectFacebook() {
@@ -39,12 +49,31 @@ export class LoginPage implements OnInit {
     console.log('hello google');
   }
 
-  async login() {
-    // console.log(this.user);
+  async forgotPassword() {
+    console.log(this.user);
+    this.userService.forgotPassword(this.user).subscribe(async (response) => {
+      console.log('hello user', response);
+      this.showReset = true
+    }, async err => {
+      await this.presentToast(err?.error?.message, 'danger', 'top');
+      console.log(err);
+      await err?.status == 402 && this.presentToastWithOptions(err?.error?.message);
 
-    this.loginService.login(this.user).subscribe(async (response) => {
-      // console.log('hello user', response);
-      this.router.navigateByUrl('/home');
+    }
+
+    );
+
+  }
+  async resetPassword() {
+    let body = {
+      token: this.codeToken,
+      user:this.user
+    }
+
+    this.userService.resetPassword(body).subscribe(async (response) => {
+      console.log('hello user', response);
+      this.router.navigateByUrl('/login');
+      await this.presentToast(response.status, 'success', 'middle');
     }, async err => {
       await this.presentToast(err?.error?.message, 'danger', 'top');
       console.log(err);
@@ -55,10 +84,11 @@ export class LoginPage implements OnInit {
     );
 
   }
+
   async presentToast(message, color, position) {
     const toast = await this.toastCtrl.create({
-      message: message,
-      duration: 2000,
+      message,
+      duration: 3000,
       color,
       position
     });

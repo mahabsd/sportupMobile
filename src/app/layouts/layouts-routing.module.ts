@@ -163,7 +163,7 @@ const routes: Routes = [
         loadChildren: () => import('./erp-space/erp-space.module').then(m => m.ErpSpacePageModule)
       },
       {
-        path: 'accueil',
+        path: 'home',
         loadChildren: () => import('./kids/accueil/accueil.module').then(m => m.AccueilPageModule)
       },
       {

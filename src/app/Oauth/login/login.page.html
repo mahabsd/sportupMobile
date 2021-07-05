@@ -12,7 +12,7 @@
             <h1>Bienvenue</h1>
         </div>
         <form [formGroup]="loginForm">
-            <ion-input type="email" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
+            <ion-input type="email" autofocus="true" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
                 [ngClass]="{'error':loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine}"
                 color="{{loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine ? 'warning':'primary'}}"
                 placeholder="Adresse Email" name="email" [(ngModel)]="user.email" required>
@@ -42,7 +42,7 @@
         </form>
         <ion-row style="  justify-content: center;">
 
-            <ion-label class="ion-padding-top" [routerLink]="['/resetPassword']">Mot de passe oublié ?</ion-label>
+            <ion-label class="ion-padding-top" [routerLink]="['/resetpass']">Mot de passe oublié ?</ion-label>
         </ion-row>
 
     </div>

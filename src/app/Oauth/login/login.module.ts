@@ -16,9 +16,8 @@ import { AuthService } from '../../shared/Auth/auth.service';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    FormsModule, ReactiveFormsModule,
     ReactiveFormsModule,
-    FormsModule,
+    
 
 
   ],
