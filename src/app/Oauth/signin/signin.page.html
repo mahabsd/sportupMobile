@@ -3,38 +3,92 @@
 
         <ion-row class="ion-padding-top ion-justify-content-center">
             <ion-avatar>
-                <img
-                    src="../../../assets/imgs/logo.jpg">
+                <img src="../../../assets/imgs/logo.jpg">
             </ion-avatar>
         </ion-row>
         <ion-row class="ion-justify-content-center">
             <div class="hr"> </div>
         </ion-row>
-        <div class="segment">
-            <h1>Créer un compte</h1>
-        </div>
-        <form [formGroup]="registerForm">
-            <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Non et prénom"
-                [(ngModel)]="user.name" mdInput formControlName="nameControl" name="name" required>
-            </ion-input>
-            <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email"
-                [(ngModel)]="user.email" mdInput formControlName="emailControl" name="email" required></ion-input>
-            <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Mot de passe"
-                [(ngModel)]="user.password" mdInput formControlName="passwordControl" name="password" required>
-            </ion-input>
-            <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Confirmer le mot de passe"
-                [(ngModel)]="user.passwordConfirm" mdInput formControlName="confirmPasswordControl"
-                name="confirmepassword" required>
-            </ion-input>
-            <div class="segment">
-                <button (click)="login()" routerLink="/login" class="unit" type="button">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                </button>
-                <button (click)="SaveUser()" [disabled]="registerForm.invalid" class="unit" type="button">
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
-                </button>
-               
-            </div>
-        </form> 
+        <ng-template [ngIf]="section  === '1'">
+                <form [formGroup]="registerForm">
+                <div class="segment">
+                    <h1>Créer un compte</h1>
+                </div>
+                <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Nom et prénom"
+                    [(ngModel)]="user.name" mdInput formControlName="nameControl" name="name" required>
+                </ion-input>
+                <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email"
+                    [(ngModel)]="user.email" mdInput formControlName="emailControl" name="email" required></ion-input>
+                <ion-input type="number" class="form-controll ion-margin-bottom" placeholder="Téléphone"
+                    [(ngModel)]="user.phone" mdInput formControlName="phoneControl" name="phone" required></ion-input>
+                <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Mot de passe"
+                    [(ngModel)]="user.password" mdInput formControlName="passwordControl" name="password" required>
+                </ion-input>
+                <ion-input type="password" class="form-controll ion-margin-bottom"
+                    placeholder="Confirmer le mot de passe" [(ngModel)]="user.passwordConfirm" mdInput
+                    formControlName="confirmPasswordControl" name="confirmepassword" required>
+                </ion-input>
+
+
+                <ion-select placeholder="Particulier / Professionnel" [(ngModel)]="user.role" mdInput
+                    formControlName="roleControl" class="form-controll ion-margin-bottom" okText="Okay"
+                    cancelText="Dismiss">
+
+                    <ion-select-option value="user">Particulier</ion-select-option>
+                    <ion-select-option value="coach">Professionnel</ion-select-option>
+
+                </ion-select>
+
+                <div class="segment">
+                    <button (click)="login()" routerLink="/login" class="unit" type="button">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </button>
+                    <button (click)="enableSection($event)" id="2" [disabled]="registerForm.invalid" class="unit"
+                        type="button">
+                        <ion-icon name="arrow-forward-outline" id="2"></ion-icon>
+                    </button>
+
+                </div>
+            </form>
+            </ng-template>
+            <ng-template [ngIf]="section  === '2' && user.role==='user'">
+                <form [formGroup]="particulierForm">
+                <div class="segment">
+                    <h1>Particulier</h1>
+                </div>
+                <ion-input type="date" class="form-controll ion-margin-bottom" placeholder="Date de naissance"
+                    [(ngModel)]="user.datedenaissance" mdInput formControlName="dateNaissanceControl"
+                    name="datedenaissance" required>
+                </ion-input>
+                <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Taille"
+                    [(ngModel)]="user.height" mdInput formControlName="heightControl" name="height" required>
+                </ion-input>
+                <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Poids"
+                    [(ngModel)]="user.weight" mdInput formControlName="weightControl" name="weight" required>
+                </ion-input>
+
+
+
+                <ion-select placeholder="Sexe" [(ngModel)]="user.sexe" mdInput [(ngModel)]="user.sexe"
+                    formControlName="sexeControl" class="form-controll ion-margin-bottom" okText="Ok"
+                    cancelText="Annuler">
+
+                    <ion-select-option value="homme">Homme</ion-select-option>
+                    <ion-select-option value="femme">Femme</ion-select-option>
+
+                </ion-select>
+
+                <div class="segment">
+                    <button (click)="enableSection($event)" id="1"  class="unit" type="button">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </button>
+                    <button (click)="SaveUser()" [disabled]="registerForm.invalid" class="unit" type="button">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+
+                </div>
+                </form>
+            </ng-template>
+        
     </div>
 </ion-content>

@@ -1,91 +1,106 @@
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
 
-  #container strong {
-    font-size: 20px;
-    line-height: 26px;
-  }
-  #container p {
-    font-size: 16px;
-    line-height: 22px;
-    color: #8c8c8c;
-    margin: 0;
-  }
-  #container a {
-    text-decoration: none;
-  }
-  #container {
-    height: 800px;
-    // background-color: DarkGreen; /* For browsers that do not support gradients */
-    // background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
-    
+ion-toolbar {
+  background-image: --ion-color-bg;
+}
+
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+#container a {
+  text-decoration: none;
+}
+
+#container {
+  height: 800px;
+  // background-color: DarkGreen; /* For browsers that do not support gradients */
+  // background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+// css button
+$ruler: 16px;
+$color-red: #726b6b;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+
+
+.card-background-page {
+  ion-card {
+    position: relative;
     text-align: center;
+  }
+
+  .card-title {
     position: absolute;
-    left: 0;
-    right: 0;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
   }
-  // css button
-  $ruler: 16px;
-  $color-red: #726b6b;
-  $color-bg: #EBECF0;
-  $color-shadow: #BABECC;
-  $color-white: #FFF;
 
-
-  .card-background-page {
-    ion-card {
-      position: relative;
-      text-align: center;
-    }
-    .card-title {
-      position: absolute;
-      top: 36%;
-      font-size: 2.0em;
-      width: 100%;
-      font-weight: bold;
-      color: #fff;
-    }
-    .card-subtitle {
-      font-size: 1.0em;
-      position: absolute;
-      top: 52%;
-      width: 100%;
-      color: #fff;
-    }
-  }
-  .myFooter{
-    border-radius: $ruler/2;
-    padding-bottom: 05px;
-    line-height: 0;
-    box-shadow: inset 1px 1px 1px 1px #247238;
-    display:inline-flex;
-    justify-content: center;
-    margin: 0 $ruler*2;
-    font-size: $ruler*3.2;
-    width: 340px;
-  }
-  .mygallery{
-    border-radius: 6px; 
-    display:inline-flex;
-  }
-  ion-slides {
-    height: 100%;
-  }
-  :host ::ng-deep .swiper-pagination{
-    bottom: 5%;
-    .swiper-pagination-bullet-active {
-      background: #247238;
-              width: 10px ;
-        height: 10px ;
-        opacity: 5.2;
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
   }
 }
+
+.myFooter {
+  border-radius: $ruler/2;
+  padding-bottom: 05px;
+  line-height: 0;
+  box-shadow: inset 1px 1px 1px 1px #247238;
+  display: inline-flex;
+  justify-content: center;
+  margin: 0 $ruler*2;
+  font-size: $ruler*3.2;
+  width: 340px;
+}
+
+.mygallery {
+  border-radius: 6px;
+  display: inline-flex;
+}
+
+ion-slides {
+  height: 100%;
+}
+
+:host ::ng-deep .swiper-pagination {
+  bottom: 5%;
+
+  .swiper-pagination-bullet-active {
+    background: #247238;
+    width: 10px;
+    height: 10px;
+    opacity: 5.2;
+  }
+}
+
 ion-toolbar {
-  --background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+  --background: var(--ion-color-bg);
 
 }
 
 .shadowbox {
- // border: 1px solid #8EBF25;
- // box-shadow: 2px 1px 1px #247238;
+  // border: 1px solid #8EBF25;
+  // box-shadow: 2px 1px 1px #247238;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
 }
 
@@ -202,23 +217,23 @@ ion-toolbar {
 // }
 
 
-.clear{
+.clear {
   clear: both;
 }
 
 
-.slide-toggle{
+.slide-toggle {
   display: none;
 }
 
-.slidemenu{
+.slidemenu {
   font-family: arial, sans-serif;
   max-width: 100%;
   margin: 10px 10px 20px 20px auto;
- // overflow: hidden;
+  // overflow: hidden;
 }
 
-.slidemenu label{
+.slidemenu label {
   width: 25%;
   text-align: center;
   display: block;
@@ -228,18 +243,18 @@ ion-toolbar {
 
 }
 
-.slidemenu label:hover{
+.slidemenu label:hover {
   cursor: pointer;
   color: green;
 }
 
-.slidemenu label span{
+.slidemenu label span {
   display: block;
-  padding: 10px;   
-  color: #247238; 
+  padding: 10px;
+  color: #247238;
 }
 
-.slidemenu label .icon{
+.slidemenu label .icon {
   font-size: 30px;
   border: solid 2px #247238;
   text-align: center;
@@ -253,7 +268,7 @@ ion-toolbar {
 
 /*Bar Style*/
 
-.slider{
+.slider {
   width: 70%;
   height: 5px;
   display: block;
@@ -262,8 +277,8 @@ ion-toolbar {
   border-radius: 5px;
 }
 
-.slider .bar{
-  width:50%;
+.slider .bar {
+  width: 50%;
   height: 5px;
   background: green;
   border-radius: 5px;
@@ -271,7 +286,8 @@ ion-toolbar {
 
 
 /*Animations*/
-.slidemenu label, .slider .bar {
+.slidemenu label,
+.slider .bar {
   transition: all 500ms ease-in-out;
   -webkit-transition: all 500ms ease-in-out;
   -moz-transition: all 500ms ease-in-out;
@@ -279,87 +295,99 @@ ion-toolbar {
 
 /*Toggle*/
 
-.slidemenu .slide-toggle:checked + label{
+.slidemenu .slide-toggle:checked+label {
   opacity: 1;
 }
 
 
 
-.slidemenu #slide-item-1:checked ~ .slider .bar{ margin-left: 0; }
-.slidemenu #slide-item-2:checked ~ .slider .bar{ margin-left: 25%; }
-.slidemenu #slide-item-3:checked ~ .slider .bar{ margin-left: 50%; }
-.HeaderFilter{
+.slidemenu #slide-item-1:checked~.slider .bar {
+  margin-left: 0;
+}
+
+.slidemenu #slide-item-2:checked~.slider .bar {
+  margin-left: 25%;
+}
+
+.slidemenu #slide-item-3:checked~.slider .bar {
+  margin-left: 50%;
+}
+
+.HeaderFilter {
   //  background-color: #e4e4e4;
-   // height: 5%;
-   
-}
-.BadyFilter{
+  // height: 5%;
 
 }
 
-
- 
- #cart-badge {
-    position: absolute;
-    top: 0px;
-    right: 0px;
- }
-
- .outter-badge {
-    position: relative;
-    margin: 10px;
-    //background: #fff;
-    width: 64px;
-  }
-  .inner-badge-OK {
-    display: table;
-    position: absolute;
-    top: 20px;
-    left: -20px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-   
-
-  }
-  .inner-badge-OK .badgeCancel{
-    display: table-cell;
-    vertical-align: middle;
-    padding: 8px;
-    border-radius: 50%;
-  }
+.BadyFilter {}
 
 
-  .inner-badge-KO {
-    display: table;
-    position: absolute;
-    top: 20px;
-    right: -10px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-  }
-  .inner-badge-KO .badgeCancel{
-    display: table-cell;
-    vertical-align: middle;
-    padding: 8px;
-    
-  }
 
-  .inner-badge-Tchat {
-    display: table;
-    position: absolute;
-    top: -23px;
-    left: -20px;
-    background-repeat: no-repeat;
-    background-size: cover;
-    text-align: center;
-  }
-  .inner-badge-Tchat .badgeCancel{
-    display: table-cell;
-    vertical-align: middle;
-    padding: 8px;
-  }
+#cart-badge {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+.outter-badge {
+  position: relative;
+  margin: 10px;
+  //background: #fff;
+  width: 64px;
+}
+
+.inner-badge-OK {
+  display: table;
+  position: absolute;
+  top: 20px;
+  left: -20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+
+
+}
+
+.inner-badge-OK .badgeCancel {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 8px;
+  border-radius: 50%;
+}
+
+
+.inner-badge-KO {
+  display: table;
+  position: absolute;
+  top: 20px;
+  right: -10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.inner-badge-KO .badgeCancel {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 8px;
+
+}
+
+.inner-badge-Tchat {
+  display: table;
+  position: absolute;
+  top: -23px;
+  left: -20px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+
+.inner-badge-Tchat .badgeCancel {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 8px;
+}
 
 
 
@@ -402,7 +430,7 @@ ion-toolbar {
 //     position: relative;
 //     display: inline-block;
 //   }
-  
+
 //   .images .UserPosted {
 //     position: absolute;
 //     width: 40%;
@@ -411,16 +439,18 @@ ion-toolbar {
 //     left: 0;
 //   }
 
-.ZoneShare{
-   // margin-top: -5px;
-    height: 25px;
-    background: #e4e3e3;
-    border-radius: 23px;
+.ZoneShare {
+  // margin-top: -5px;
+  height: 25px;
+  background: #e4e3e3;
+  border-radius: 23px;
 }
-.swiper-slide:not(.swiper-slide-active) > div {
-  display:none;
+
+.swiper-slide:not(.swiper-slide-active)>div {
+  display: none;
 }
+
 ion-slide {
   width: 4rem !important;
   margin-right: -2px !important;
-  }
+}

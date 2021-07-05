@@ -39,7 +39,7 @@ div, p {
 
 
 form {
-  padding: $ruler;
+  padding:  0 $ruler;
   width: $ruler*20;
   margin: 0 auto;
 }
@@ -58,6 +58,14 @@ button, ion-input {
   background-color:$color-bg;
   text-shadow: 1px 1px 0 $color-white;
 }
+ ion-select {
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler*20;
+  // padding: $ruler;
+ 
+}
 
 label {
   display: block;
@@ -67,9 +75,24 @@ label {
 
 ion-input {
   margin-right: $ruler/2;
-  padding:0.5em !important;
+  // padding:0.5em !important;
   border: 2px solid #ccc;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    box-shadow:  inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
+}
+ion-select {
+  margin-right: $ruler/2;
+  // padding:1em !important;
+  border: 2px solid #ccc;
+  // box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -120,7 +143,7 @@ button {
   &.red {
     display: block;
     width: 100%;
-    color:$color-red;
+    color:#3b8c4f;
   }
 }
 

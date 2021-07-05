@@ -13,13 +13,15 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-
+  section: string = '1';
+  role: string = '';
   registerForm: FormGroup;
+  particulierForm: FormGroup;
   user: User = new User();
-myToast:any;
+  myToast: any;
   constructor(
     public fb: FormBuilder,
-    private toastCtrl:ToastController,
+    private toastCtrl: ToastController,
     public signinService: UserService,
     public router: Router) {
 
@@ -33,8 +35,17 @@ myToast:any;
       confirmPasswordControl: new FormControl('', Validators.required),
 
       nameControl: new FormControl('', Validators.required),
+      roleControl: new FormControl('', Validators.required),
+      phoneControl: new FormControl('', Validators.required),
 
     });
+    this.particulierForm = new FormGroup({
+      dateNaissanceControl: new FormControl('', Validators.required),
+      heightControl: new FormControl('', Validators.required),
+      weightControl: new FormControl('', Validators.required),
+      sexeControl: new FormControl('', Validators.required),
+
+    })
   }
   ConnectFacebook() {
     console.log('hello facebook');
@@ -43,15 +54,22 @@ myToast:any;
     console.log('hello google');
 
   }
+  enableSection(event) {
+    // console.log(event.target);
+    // console.log(this.user.role);
+
+    this.section = event.target.id
+    this.role = this.user.role
+  }
   SaveUser() {
     console.log(this.user);
     this.signinService.signUp(this.user).subscribe(res => {
       console.log(res);
 
-      this.presentToast("Bienvenue "+ this.user.name ,'success','middle');
-      this.router.navigateByUrl('/confirminscription');
-    },err=>{
-      this.presentToast(err,'danger','top');
+      this.presentToast("Bienvenue " + this.user.name, 'success', 'middle');
+      this.router.navigateByUrl('/confirmation');
+    }, err => {
+      this.presentToast(err, 'danger', 'top');
     });
   }
 
@@ -62,17 +80,13 @@ myToast:any;
   ResetPassword() {
     console.log('reset Password');
   }
-   async presentToast(message, color, position) {
-    this.myToast = await this.toastCtrl.create({
+  async presentToast(message, color, position) {
+    const toast = await this.toastCtrl.create({
       message: message,
-      duration: 2000,
-      animated:true,
+      duration: 5000,
       color,
       position
-    }).then((toastData)=>{
-      console.log(toastData);
-      
-      toastData.present();
     });
+    toast.present();
   }
 }

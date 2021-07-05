@@ -7,7 +7,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { SigninService } from './Oauth/signin/signin.service';
 import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ProfilService } from './layouts/profil/profil.service';
@@ -37,7 +36,6 @@ import { AuthGuard } from './shared/Guard/auth.guard';
   providers: [
     ImagePicker,
     Crop,
-    SigninService,
     LoginKidsService,
     ProfilService,
     AuthService,

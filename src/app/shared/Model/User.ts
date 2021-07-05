@@ -11,6 +11,7 @@ export class User{
      firstname: string;
      sexe: string;
      weight: string;
+     height: string;
      cut: string;
      datedenaissance: string;
      location: string;
