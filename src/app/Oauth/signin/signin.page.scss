@@ -75,7 +75,7 @@ label {
 
 ion-input {
   margin-right: $ruler/2;
-  // padding:0.5em !important;
+  padding:0 0.5em !important;
   border: 2px solid #ccc;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
@@ -90,7 +90,7 @@ ion-input {
 }
 ion-select {
   margin-right: $ruler/2;
-  // padding:1em !important;
+  padding:0.5em 1em !important;
   border: 2px solid #ccc;
   // box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;

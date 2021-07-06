@@ -18,6 +18,7 @@ import { LayoutsModule } from './layouts/layouts.module';
 import { JWTInterceptor } from './shared/Interceptors/JWInterceptors';
 import { H401Interceptor } from './shared/Interceptors/H401Interceptor';
 import { AuthGuard } from './shared/Guard/auth.guard';
+import { StorageService } from './shared/Service/storage.service';
 
 
 @NgModule({
@@ -39,15 +40,16 @@ import { AuthGuard } from './shared/Guard/auth.guard';
     LoginKidsService,
     ProfilService,
     AuthService,
+    StorageService,
     AuthGuard,
     StatusBar,
     SplashScreen,
-    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     {
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
+    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     GoogleMaps
   ],
   bootstrap: [AppComponent]

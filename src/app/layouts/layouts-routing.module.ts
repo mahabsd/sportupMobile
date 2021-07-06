@@ -16,8 +16,8 @@ const routes: Routes = [
   
       },
       {
-        path: 'shearch',
-        loadChildren: () => import('./shearch/shearch.module').then(m => m.ShearchPageModule),
+        path: 'search',
+        loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule),
   
       },
 

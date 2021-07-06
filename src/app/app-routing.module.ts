@@ -9,53 +9,66 @@ const routes: Routes = [
   },
   {
     path: 'resetpass',
-    loadChildren: () => import('./Oauth/resetpass/resetpass.module').then( m => m.ResetpassPageModule)
+    loadChildren: () => import('./Oauth/resetpass/resetpass.module').then(m => m.ResetpassPageModule)
   },
   {
     path: 'login',
-    loadChildren: () => import('./Oauth/login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./Oauth/login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'login-erp',
-    loadChildren: () => import('./Oauth/login-erp/login-erp.module').then( m => m.LoginErpPageModule)
+    loadChildren: () => import('./Oauth/login-erp/login-erp.module').then(m => m.LoginErpPageModule)
   },
- 
+
+  // {
+  //   path: '',
+  //   loadChildren: () => import('./layouts/layouts.module').then( m => m.LayoutsModule),canActivate:[AuthGuard]
+  // },
   {
     path: '',
-    loadChildren: () => import('./layouts/layouts.module').then( m => m.LayoutsModule),canActivate:[AuthGuard]
+    loadChildren: () => import('./component/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [AuthGuard]
   },
   {
     path: 'menu',
-    loadChildren: () => import('./component/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
+    loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
   },
 
   {
     path: 'signin',
-    loadChildren: () => import('./Oauth/signin/signin.module').then( m => m.SigninPageModule)
+    loadChildren: () => import('./Oauth/signin/signin.module').then(m => m.SigninPageModule)
   },
   {
     path: 'signinformation',
-    loadChildren: () => import('./Oauth/signinformation/signinformation.module').then( m => m.SigninformationPageModule),
+    loadChildren: () => import('./Oauth/signinformation/signinformation.module').then(m => m.SigninformationPageModule),
     canActivate: [AuthGuard]
   },
-  
+
   {
     path: 'sidemenu',
-    loadChildren: () => import('./component/sidemenu/sidemenu.module').then( m => m.SidemenuPageModule)
+    loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
   },
- 
+
   {
     path: 'confirmation',
-    loadChildren: () => import('./Oauth/confirmation/confirmation.module').then( m => m.ConfirmationPageModule)
+    loadChildren: () => import('./Oauth/confirmation/confirmation.module').then(m => m.ConfirmationPageModule)
   },
-  
+
   {
     path: '**',
-    redirectTo:''
+    redirectTo: ''
   },
- 
+  {
+    path: 'footer',
+    loadChildren: () => import('./component/footer/footer.module').then(m => m.FooterPageModule)
+  },
+  {
+    path: 'tabs',
+    loadChildren: () => import('./component/tabs/tabs.module').then(m => m.TabsPageModule)
+  },
 
- 
+
+
+
 
 
 ];
@@ -66,4 +79,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

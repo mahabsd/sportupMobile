@@ -19,8 +19,8 @@
                 </ion-input>
                 <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email"
                     [(ngModel)]="user.email" mdInput formControlName="emailControl" name="email" required></ion-input>
-                <ion-input type="number" class="form-controll ion-margin-bottom" placeholder="Téléphone"
-                    [(ngModel)]="user.phone" mdInput formControlName="phoneControl" name="phone" required></ion-input>
+               
+                  
                 <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Mot de passe"
                     [(ngModel)]="user.password" mdInput formControlName="passwordControl" name="password" required>
                 </ion-input>
@@ -82,7 +82,34 @@
                     <button (click)="enableSection($event)" id="1"  class="unit" type="button">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </button>
-                    <button (click)="SaveUser()" [disabled]="registerForm.invalid" class="unit" type="button">
+                    <button (click)="SaveUser()" [disabled]="particulierForm.invalid" class="unit" type="button">
+                        <ion-icon name="arrow-forward-outline"></ion-icon>
+                    </button>
+
+                </div>
+                </form>
+            </ng-template>
+            <ng-template [ngIf]="section  === '2' && user.role==='coach'">
+                <form [formGroup]="proForm">
+                <div class="segment">
+                    <h1>Professionnel</h1>
+                </div>
+                <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Activity" [(ngModel)]="user.activite"
+                    mdInput formControlName="activiteControl" name="activite" required>
+                </ion-input>
+                <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Adresse"
+                    [(ngModel)]="user.adresse" mdInput formControlName="adresseControl"
+                    name="adresse" required>
+                </ion-input>
+                
+                <ion-input type="number" class="form-controll ion-margin-bottom" placeholder="Téléphone"
+                    [(ngModel)]="user.phone" mdInput formControlName="phoneControl" name="phone" minlength="8" maxlength="12" required></ion-input>
+
+                <div class="segment">
+                    <button (click)="enableSection($event)" id="1"  class="unit" type="button">
+                        <ion-icon name="arrow-back-outline"></ion-icon>
+                    </button>
+                    <button (click)="SaveUser()" [disabled]="proForm.invalid" class="unit" type="button">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
 

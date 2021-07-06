@@ -17,6 +17,7 @@ export class SigninPage implements OnInit {
   role: string = '';
   registerForm: FormGroup;
   particulierForm: FormGroup;
+  proForm: FormGroup;
   user: User = new User();
   myToast: any;
   constructor(
@@ -36,7 +37,6 @@ export class SigninPage implements OnInit {
 
       nameControl: new FormControl('', Validators.required),
       roleControl: new FormControl('', Validators.required),
-      phoneControl: new FormControl('', Validators.required),
 
     });
     this.particulierForm = new FormGroup({
@@ -44,6 +44,12 @@ export class SigninPage implements OnInit {
       heightControl: new FormControl('', Validators.required),
       weightControl: new FormControl('', Validators.required),
       sexeControl: new FormControl('', Validators.required),
+
+    })
+    this.proForm = new FormGroup({
+      phoneControl: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      adresseControl: new FormControl('', Validators.required),
+      activiteControl: new FormControl('', Validators.required)
 
     })
   }

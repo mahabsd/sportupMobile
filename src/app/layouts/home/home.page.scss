@@ -2,11 +2,21 @@
   font-size: 20px;
   line-height: 26px;
 }
-
+ion-button{
+  --border-radius:50%;
+  border-radius: 50%;
+  background: #1313131f;
+  width: 36px;
+  height: 36px;
+  // fill-opacity: ;
+}
 ion-toolbar {
   background-image: --ion-color-bg;
 }
-
+.ion-activated{
+border-radius:50% !important;
+  --background-color: #13131396 !important;
+}
 #container p {
   font-size: 16px;
   line-height: 22px;

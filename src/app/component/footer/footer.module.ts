@@ -4,17 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ShearchPageRoutingModule } from './shearch-routing.module';
+import { FooterPageRoutingModule } from './footer-routing.module';
 
-import { ShearchPage } from './shearch.page';
+import { FooterPage } from './footer.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ShearchPageRoutingModule
+    FooterPageRoutingModule
   ],
-  declarations: [ShearchPage]
+  exports:[FooterPage],
+  declarations: [FooterPage]
 })
-export class ShearchPageModule {}
+export class FooterPageModule {}

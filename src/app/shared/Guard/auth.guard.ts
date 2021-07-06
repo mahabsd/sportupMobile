@@ -57,7 +57,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
         return true
       } else {
         // this.typeError('Connectez vous!')
-        this.presentToast('Vous n\'avez pas le droit d\'acces', 'warning', 'top')
+        this.presentToast('Connectez vous!', 'warning', 'top')
 
         this.router.navigateByUrl('login')
         return false;
