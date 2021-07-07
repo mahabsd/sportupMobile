@@ -17,7 +17,7 @@
                 color="{{loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine ? 'warning':'primary'}}"
                 placeholder="Adresse Email" name="email" [(ngModel)]="user.email" required>
             </ion-input>
-            <ion-input type="password" class="form-controll ion-margin-bottom" mdInput placeholder="Mot se passe"
+            <ion-input type="password" class="form-controll ion-margin-bottom" mdInput placeholder="Mot de passe"
                 formControlName="passwordControl" name="password" [(ngModel)]="user.password" required></ion-input>
 
             <ion-button (click)="login()" color="transparent" shape="round" [disabled]=" loginForm.invalid" class="red "

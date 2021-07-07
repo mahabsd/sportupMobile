@@ -8,13 +8,20 @@ const routes: Routes = [
   {
     path: '',
     component: SidemenuPage,
-    children:[
+    children: [
       {
         path: 'home',
-        loadChildren: () => import('../../layouts/home/home.module').then(m => m.HomePageModule),canActivate:[AuthGuard]
+        loadChildren: () => import('../../layouts/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
+      },
+      {
+        path: 'layouts',
+        loadChildren: () => import('../../layouts/layouts.module').then(m => m.LayoutsModule), canActivate: [AuthGuard]
       },
     ]
-  },
+  }, {
+    path: '',
+    redirectTo: 'menu/home'
+  }
 
 ];
 
@@ -22,4 +29,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class SidemenuPageRoutingModule {}
+export class SidemenuPageRoutingModule { }

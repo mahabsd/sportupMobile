@@ -1,0 +1,14 @@
+.active-item {
+    border-left: 8px solid #3b8c4f;
+}
+
+ion-header ion-toolbar {
+    background: transparent;
+    --background: var(--ion-color-bg);
+    color:#FFF;
+}
+ion-footer ion-toolbar , ion-footer ion-toolbar ion-item {
+    background: transparent;
+    --background: var(--ion-color-bg);
+    color:#FFF;
+}

@@ -4,7 +4,7 @@ import { AuthGuard } from './shared/Guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'tabs/home',
     pathMatch: 'full'
   },
   {
@@ -25,13 +25,13 @@ const routes: Routes = [
   //   loadChildren: () => import('./layouts/layouts.module').then( m => m.LayoutsModule),canActivate:[AuthGuard]
   // },
   {
-    path: '',
+    path: 'tabs',
     loadChildren: () => import('./component/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [AuthGuard]
   },
-  {
-    path: 'menu',
-    loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
-  },
+  // {
+  //   path: 'menu',
+  //   loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
+  // },
 
   {
     path: 'signin',
@@ -43,10 +43,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  {
-    path: 'sidemenu',
-    loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
-  },
+  
 
   {
     path: 'confirmation',
@@ -54,16 +51,13 @@ const routes: Routes = [
   },
 
   {
-    path: '**',
-    redirectTo: ''
-  },
-  {
     path: 'footer',
     loadChildren: () => import('./component/footer/footer.module').then(m => m.FooterPageModule)
   },
+
   {
-    path: 'tabs',
-    loadChildren: () => import('./component/tabs/tabs.module').then(m => m.TabsPageModule)
+    path: '**',
+    redirectTo: ''
   },
 
 
