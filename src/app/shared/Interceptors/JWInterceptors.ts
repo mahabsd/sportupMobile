@@ -15,7 +15,7 @@ export class JWTInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
     this.platform.ready().then(() => {
-      this.storage.get(environment.TOKEN).then(async res => {
+      this.storage.get(environment.TOKEN).subscribe(async res => {
         res && (this.token = res)
         console.log(res);
         return this.token;

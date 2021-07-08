@@ -2,6 +2,7 @@ import { environment } from './../../../environments/environment';
 import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,35 +15,22 @@ export class StorageService {
   }
 
   async init() {
-    // If using, define drivers here: await this.storage.defineDriver(/*...*/);
-    // const storage = await this.storage.create();
-    // this._storage = storage;
 
   }
 
-  // Create and expose methods that users of this service can
-  // call, for example:
-  public async set(key, value) {
-    console.log(key, value);
-    await this.storage.set(key, value).then(() => console.log('ok')).catch((error) => console.log(error)
-    )
-
-
-
+  public set(key, value): Observable<any> {
+    return from(this.storage.set(key, value));
   }
-  public async get(key) {
-    // console.log(key);
-    return await this.storage.get(key).then(async (res) => {
-      // console.log(res);
-      return await res;
-    }).catch((error) => {
-      console.log(error);
-    });
+  public get(key: string): Observable<any> {
+    return from(this.storage.get(key))
   }
-  public clear() {
-    this.storage.clear();
+  public clear(): Observable<any> {
+    return from(this.storage.clear());
   }
-  public remove(key: string) {
-    this.storage.remove(key);
+  public remove(key: string): Observable<any> {
+    return from(this.storage.remove(key));
+  }
+  public keys(): Observable<Array<string>> {
+    return from(this.storage.keys());
   }
 }

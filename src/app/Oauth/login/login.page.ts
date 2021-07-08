@@ -44,7 +44,7 @@ export class LoginPage implements OnInit {
 
     this.loginService.login(this.user).subscribe(async (response) => {
       // console.log('hello user', response);
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/tabs/home');
     }, async err => {
       await this.presentToast(err?.error?.message, 'danger', 'top');
       console.log(err);

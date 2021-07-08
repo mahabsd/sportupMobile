@@ -25,7 +25,10 @@ import { StorageService } from './shared/Service/storage.service';
   declarations: [AppComponent],
   entryComponents: [],
   imports: [
-    IonicStorageModule.forRoot(),
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['sqlite', 'indexeddb', 'websql', 'localstorage']
+    }),
     AppRoutingModule,
     BrowserModule,
     IonicModule.forRoot(),

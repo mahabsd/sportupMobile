@@ -466,6 +466,9 @@ ion-grid {
 //     top:10px;
 //     left: 0;
 //   }
+ion-title {
+  text-align: center;
+}
 
 .ZoneShare {
   // margin-top: -5px;
@@ -478,9 +481,9 @@ ion-grid {
 .ZoneShare p {
   font-size: xx-small;
   margin-top: 5px;
-  padding:5px;
+  padding: 5px;
   align-items: flex-start;
-    display: grid;
+  display: grid;
 }
 
 .row ion-col:first-child {
