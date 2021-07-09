@@ -2,7 +2,7 @@ import { User } from 'src/app/shared/Model/User';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Camera, CameraOptions } from '@ionic-native/camera';
+// import { Camera, CameraOptions } from '@ionic-native/camera';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 @Component({
@@ -13,12 +13,12 @@ import { StatusBar } from '@ionic-native/status-bar';
 export class SigninformationPage implements OnInit {
   userImg: any = '';
   base64Img = '';
-  gelleryOptions: CameraOptions = {
-    quality: 100,
-    sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
-    destinationType: this.camera.DestinationType.DATA_URL,
-    allowEdit: true
-  };
+  // gelleryOptions: CameraOptions = {
+  //   quality: 100,
+  //   sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+  //   destinationType: this.camera.DestinationType.DATA_URL,
+  //   allowEdit: true
+  // };
   id: number;
   Editdata: User;
   data: any;
@@ -39,8 +39,8 @@ export class SigninformationPage implements OnInit {
     this.user.sexe = '';
   }
   constructor(
-    
-    private camera: Camera,
+
+    // private camera: Camera,
     public fb: FormBuilder,
     private activeRoute: ActivatedRoute,
     private router: Router,
@@ -69,15 +69,15 @@ export class SigninformationPage implements OnInit {
   }
   // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
 
-  openGallery() {
-    this.camera.getPicture(this.gelleryOptions).then((imgData) => {
-      console.log('image data =>  ', imgData);
-      this.base64Img = 'data:image/jpeg;base64,' + imgData;
-      this.userImg = this.base64Img;
-    }, (err) => {
-      console.log(err);
-    });
-  }
+  // openGallery() {
+  //   this.camera.getPicture(this.gelleryOptions).then((imgData) => {
+  //     console.log('image data =>  ', imgData);
+  //     this.base64Img = 'data:image/jpeg;base64,' + imgData;
+  //     this.userImg = this.base64Img;
+  //   }, (err) => {
+  //     console.log(err);
+  //   });
+  // }
   ConnectFacebook() {
     console.log('hello facebook go to inscription by facebook');
   }

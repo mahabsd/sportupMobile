@@ -1,18 +1,22 @@
 <ion-card>
-  <ion-item>
-    <ion-avatar class="align-item-start">
-      <img src="http://placehold.it/75" alt="">
+
+  <ion-item lines="none">
+    <ion-avatar slot="start">
+      <img src="http://placehold.it/75">
     </ion-avatar>
-    <h2>Marty Mcfly</h2>
-    <p>November5, 1995</p>
+    <ion-label>
+      <h3>Lorem ipsum</h3>
+      <p>dolor sit amet</p>
+    </ion-label>
   </ion-item>
+
   <img src="http://placehold.it/300x200" alt="">
   <ion-card-content>
     <p>Wait a minute Wait a minute Doc, uhhh.... Are you telling me </p>
   </ion-card-content>
   <ion-row>
     <ion-col>
-      <ion-button (click)="like()" (press)="showReactions($event)" >
+      <ion-button (click)="like()" (press)="showReactions($event)">
         <ion-icon name="thumbs-up"></ion-icon>
         <div>12 likes</div>
       </ion-button>
