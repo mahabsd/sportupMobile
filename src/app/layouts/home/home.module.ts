@@ -6,6 +6,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { FooterPageModule } from '../../component/footer/footer.module';
 import { StatusComponent } from './status/status.component';
+import { ReactionsPage } from './reactions/reactions.page';
 @NgModule({
   imports: [
     CommonModule,
