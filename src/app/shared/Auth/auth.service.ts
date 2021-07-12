@@ -3,19 +3,17 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map, mergeMap } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { from } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import * as moment from 'moment'
 import { UtilsService } from '../Service/utils.service';
-import { Storage } from '@ionic/storage';
-import { Observable } from 'rxjs';
 import { StorageService } from '../Service/storage.service';
+import { throwError } from 'rxjs';
 @Injectable()
 export class AuthService {
   role: any;
-  statut: boolean = false
+  statut = false;
+  myToast: any;
   constructor(private utilsSer: UtilsService,
     public http: HttpClient,
     public toastCtrl: ToastController,
@@ -27,53 +25,80 @@ export class AuthService {
 
   login(user) {
 
-    return this.utilsService.post(UtilsService.API_USER + 'login', user).pipe(map((res: any) => {
-      // console.log(res);
+    return this.utilsService.post(UtilsService.apiUSER + 'login', user).pipe(map((res: any) => {
+      console.log(res);
       this.setSession(res);
       // this.addUser(res.id);
-
       return res.data;
-    }, err => {
-      console.log(err);
-
-
-
     }));
   }
-
-
+  public isLoggedIn() {
+    return this.storage.get(environment.idUser);
+  }
+  isLoggedOut() {
+    return !this.isLoggedIn();
+  }
   isAuthenticated() {
 
-    return this.isLoggedIn().pipe(map(res => {
-      // console.log(res)
-      return res
-    }))
+    return this.isLoggedIn().pipe(map(res => res));
   }
-
-  private setSession(authResult) {
-     // console.log(authResult);
-    this.storage.set(environment.idUser, authResult.data.user._id)
-    this.storage.set(environment.TOKEN, authResult.token)
-    this.storage.set(environment.currentUser, authResult.data.user);
-
+  public getUser() {
+    // console.log(this.storage.get(environment.currentUser))
+    const user = this.storage.get(environment.currentUser);
+    return user;
   }
-
-  logout() {
+  public logout() {
     // localStorage.clear();
     this.storage.clear();
     this.router.navigateByUrl('/login');
   }
+  public getRole() {
 
-  public isLoggedIn() {
-    return this.storage.get(environment.idUser);
+    this.role = this.storage.get(environment.currentUser);
+    if (this.role) { this.role = this.role.role; };
+    // console.log(this.role)
+    return this.role;
+  }
 
+  private setSession(authResult) {
+    // console.log(authResult);
+    this.storage.set(environment.idUser, authResult.data?.user?._id);
+    this.storage.set(environment.TOKEN, authResult.token);
+    this.storage.set(environment.currentUser, authResult.data.user);
 
   }
 
-  isLoggedOut() {
-    return !this.isLoggedIn();
+
+
+  private handleError(error: HttpErrorResponse) {
+    console.log(error);
+
+    if (error?.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+
+      console.error('An error occurred:', error?.error?.message);
+
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      if (error?.status === 50) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
+      console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
+
+    }
+    // return an observable with a user-facing error message
+    return throwError(error?.error?.message);
   }
 
+
+  private async presentToast(message, color, position) {
+    this.myToast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      color,
+      position
+    });
+    this.myToast.present();
+  }
 
   // public addUser(id) {
   //   return this.utilsSer.get(UtilsService.API_USER + 'Me').subscribe((res: any) => {
@@ -83,18 +108,6 @@ export class AuthService {
   //   })
   // }
 
-  public getUser() {
-    // console.log(this.storage.get(environment.currentUser))
-    let user = this.storage.get(environment.currentUser)
-    return user
-  }
 
-  public getRole() {
-
-    this.role = this.storage.get(environment.currentUser)
-    if (this.role) this.role = this.role.role
-    // console.log(this.role)
-    return this.role
-  }
 
 }

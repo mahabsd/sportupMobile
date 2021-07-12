@@ -26,19 +26,16 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
   canActivate(next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let url: string = state.url;
+    const url: string = state.url;
 
-  
-    return this.checkUserLogin(next, url).pipe(map(res => {
-      // console.log(res);
-      return res
-    }));
+
+    return this.checkUserLogin(next, url).pipe(map(res => res));
 
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.canActivate(childRoute, state)
+    return this.canActivate(childRoute, state);
   }
 
   canDeactivate(component: unknown,
@@ -59,21 +56,21 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
     return this.authService.isAuthenticated().pipe(map(res => {
       if (res) {
-        console.log(this.authService.isAuthenticated())
-        if (res) this.token = true
-        return this.token
+        // console.log(this.authService.isAuthenticated());
+        if (res) { this.token = true; }
+        return this.token;
       } else {
         // this.typeError('Connectez vous!')
-        this.presentToast('Connectez vous!', 'warning', 'top')
+        this.presentToast('Connectez vous!', 'warning', 'top');
 
-        this.router.navigateByUrl('login')
+        this.router.navigateByUrl('login');
         return false;
       }
-    }))
+    }));
   }
   async presentToast(message, color, position) {
     this.toast = await this.toastCtrl.create({
-      message: message,
+      message,
       duration: 2000,
       color,
       position

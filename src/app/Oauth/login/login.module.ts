@@ -1,13 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
 import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { AuthService } from '../../shared/Auth/auth.service';
 
 @NgModule({
@@ -17,14 +17,11 @@ import { AuthService } from '../../shared/Auth/auth.service';
     IonicModule,
     LoginPageRoutingModule,
     ReactiveFormsModule,
-    
-
-
   ],
   providers: [
-    FileTransfer, FileTransferObject,    AuthService
-
+    FileTransfer, FileTransferObject,
+    AuthService
   ],
   declarations: [LoginPage]
 })
-export class LoginPageModule {}
+export class LoginPageModule { }

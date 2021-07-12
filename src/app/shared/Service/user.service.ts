@@ -15,39 +15,30 @@ export class UserService {
   constructor(private utilsService: UtilsService,
     public toastCtrl: ToastController) { }
   getMe() {
-    return this.utilsService.get(UtilsService.API_USER + 'Me').pipe(map(res => {
+    return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
       console.log(res);
       return res.data.data;
 
-    }));
+    }), catchError(this.handleError));
   }
   signUp(user: User) {
-    return this.utilsService.post(UtilsService.API_USER + 'signup', user).pipe(map(res => {
-      return res;
-    }), catchError(this.handleError))
+    return this.utilsService.post(UtilsService.apiUSER + 'signup', user).pipe(map(res => res
+    ), catchError(this.handleError));
   }
   confirmInscription(code) {
-    return this.utilsService.post(UtilsService.API_USER + 'confirm', code).pipe(map(res => {
-      return res;
-    }), catchError(this.handleError))
+    return this.utilsService.post(UtilsService.apiUSER + 'confirm', code).pipe(map(res => res), catchError(this.handleError));
   }
-  forgotPassword(user:User) {
-    return this.utilsService.post(UtilsService.API_USER + 'forgotPassword', user).pipe(map(res => {
-      return res;
-    }), catchError(this.handleError))
+  forgotPassword(user: User) {
+    return this.utilsService.post(UtilsService.apiUSER + 'forgotPassword', user).pipe(map(res => res), catchError(this.handleError));
   }
-  resetPassword(token:any) {
-    return this.utilsService.patch(UtilsService.API_USER + 'resetPassword', token).pipe(map(res => {
-      return res;
-    }), catchError(this.handleError))
+  resetPassword(token: any) {
+    return this.utilsService.patch(UtilsService.apiUSER + 'resetPassword', token).pipe(map(res => res), catchError(this.handleError));
   }
-  renvoyerToken(user:User) {
-    return this.utilsService.post(UtilsService.API_USER + 'renvoi',user ).pipe(map(res => {
-      return res;
-    }), catchError(this.handleError))
+  renvoyerToken(user: User) {
+    return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
   handleError(error: HttpErrorResponse) {
-    var errors;
+
     if (error?.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
 
@@ -56,7 +47,7 @@ export class UserService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-
+      if (error?.status === 50) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
       console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
 
     }
@@ -64,5 +55,13 @@ export class UserService {
     return throwError(error?.error?.message);
   }
 
-
+  async presentToast(message, color, position) {
+    this.myToast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      color,
+      position
+    });
+    this.myToast.present();
+  }
 }

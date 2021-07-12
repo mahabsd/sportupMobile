@@ -33,9 +33,7 @@ import { StorageService } from './shared/Service/storage.service';
     BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
-    LayoutsModule,
-
-
+    LayoutsModule
   ],
   providers: [
     ImagePicker,

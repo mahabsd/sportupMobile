@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { PatternValidator } from "../../shared/patternValidator";
+import { PatternValidator } from '../../shared/patternValidator';
 import { User } from 'src/app/shared/Model/User';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
   loginForm: FormGroup;
   fileUrl: any = null;
   respData: any;
-  user: User = new User()
+  user: User = new User();
 
   constructor(
     public fb: FormBuilder,
@@ -28,28 +28,24 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.loginForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
+      // eslint-disable-next-line max-len
       PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       passwordControl: new FormControl('', Validators.required)
     });
   }
-  ConnectFacebook() {
+  connectFacebook() {
     console.log('hello facebook');
   }
-  ConnectGoogle() {
+  connectGoogle() {
     console.log('hello google');
   }
 
   async login() {
-    // console.log(this.user);
+    console.log(this.user);
 
     this.loginService.login(this.user).subscribe(async (response) => {
-      // console.log('hello user', response);
+      console.log('hello user', response);
       this.router.navigateByUrl('/tabs/home');
-    }, async err => {
-      await this.presentToast(err?.error?.message, 'danger', 'top');
-      console.log(err);
-      await err.status == 402 && this.presentToastWithOptions(err?.error?.message);
-
     }
 
     );
@@ -57,7 +53,7 @@ export class LoginPage implements OnInit {
   }
   async presentToast(message, color, position) {
     const toast = await this.toastCtrl.create({
-      message: message,
+      message,
       duration: 2000,
       color,
       position

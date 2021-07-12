@@ -1,5 +1,5 @@
 #container {
-    height: 100%;
+    height: 100vh;
     background-color: DarkGreen; /* For browsers that do not support gradients */
     background-image: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);
   }
@@ -30,6 +30,7 @@ body, html {
 ion-avatar{
   width: 7em;
   height: 7em;
+  margin-top:5em;
   box-shadow: 0px 3px 6px 0px black;
 }
  input, select, textarea, button {
@@ -109,17 +110,17 @@ button {
   &:hover {
     box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
   }
-  
-  &:active 
+
+  &:active
   {
     background-color: red;
     // box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
-  
+
   .icon {
     margin-right: $ruler/2;
   }
-  
+
   &.unit {
     border-radius: $ruler/2;
     line-height: 0;
@@ -130,12 +131,12 @@ button {
     align-items:center;
     margin: 0 $ruler/2;
     font-size: $ruler*1.2;
-    
+
     .icon {
-      margin-right: 0; 
+      margin-right: 0;
     }
   }
-  
+
   &.red {
     display: block;
     width: 100%;
@@ -194,7 +195,7 @@ input::-moz-placeholder{
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  
+
   label {
     margin: 0;
     flex: 1;

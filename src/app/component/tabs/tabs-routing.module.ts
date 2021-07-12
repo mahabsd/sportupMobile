@@ -1,10 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { TabsPage } from './tabs.page';
-import { ProfilPage } from '../../layouts/kids/profil/profil.page';
-import { ProfilPageModule } from '../../layouts/kids/profil/profil.module';
-
 const routes: Routes = [
   {
     path: '',
@@ -12,12 +8,11 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        children: [{
-
+        children: [
+          {
           path: '',
           loadChildren: () => import('./../../layouts/home/home.module').then(m => m.HomePageModule)
         },
-
         ]
       },
       {
@@ -28,9 +23,13 @@ const routes: Routes = [
         path: 'profile',
         loadChildren: () => import('./../../layouts/profil/profil.module').then(m => m.ProfilPageModule)
       },
-
+      {
+        path: 'home-erp',
+        loadChildren: () => import('./../../layouts/home-erp/home-erp.module').then(m => m.HomeErpPageModule)
+      },
     ]
-  }, {
+  },
+  {
     path: '',
     redirectTo: 'tabs/home',
     pathMatch: 'full'

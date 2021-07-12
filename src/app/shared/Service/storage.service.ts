@@ -22,7 +22,7 @@ export class StorageService {
     return from(this.storage.set(key, value));
   }
   public get(key: string): Observable<any> {
-    return from(this.storage.get(key))
+    return from(this.storage.get(key));
   }
   public clear(): Observable<any> {
     return from(this.storage.clear());
