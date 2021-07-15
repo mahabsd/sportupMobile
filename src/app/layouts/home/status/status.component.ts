@@ -1,59 +1,82 @@
 import { Component, OnInit, AfterViewInit, ViewChildren, ElementRef, QueryList } from '@angular/core';
 import { Gesture, GestureController, IonButton, IonCard, NavController, PopoverController } from '@ionic/angular';
+import { tap } from 'rxjs/operators';
 import { ReactionsPage } from '../reactions/reactions.page';
+import { PostService } from '../../../shared/Service/post.service';
+import { Post } from '../../../shared/Model/Post';
+import { Observable, from } from 'rxjs';
 
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
   styleUrls: ['./status.component.scss'],
 })
-export class StatusComponent implements AfterViewInit {
-  @ViewChildren(IonButton, { read: ElementRef }) buttons: QueryList<ElementRef>;
+export class StatusComponent implements OnInit {
   longPressActive = false;
+  posts: any = [];
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  Post$: Observable<Post[]>;
 
+  tap = 0;
+  press = 0;
+  liked = false;
+  bookmarked = false;
   constructor(private navCtrl: NavController,
-    private gestureCtrl: GestureController,
+    private postService: PostService,
     private popoverCtrl: PopoverController) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
   }
-  ngAfterViewInit() {
-    const cardArray = this.buttons.toArray();
-    this.showReactions(cardArray);
-    console.log(cardArray);
+  ngOnInit() {
+    this.getAllPosts();
 
   }
-  showReactions(cardArray) {
-    console.log(cardArray[0]);
 
-    for (const i of cardArray) {
-      const card = i;
+  async showReactions(ev) {
+    this.press++;
+    const reactions = await this.popoverCtrl.create(
+      {
+        component: ReactionsPage,
+        event: ev
+      }
+    );
 
+    await reactions.present();
+    const { role } = await reactions.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+  getAllPosts() {
+    this.Post$ = this.postService.getPost();
 
-      console.log('event', i);
-      const gesture: Gesture = this.gestureCtrl.create({
-        el: card.nativeElement,
-        threshold: 15,
-        gestureName: 'long',
-        onStart: ev => {
-          console.log(ev);
+    console.log(this.Post$);
 
-          this.longPressActive = true;
-        },
-        onEnd: ev => {
+  }
+  onTap() {
+    console.log('ok');
 
-          this.longPressActive = false;
-        }
-
-      });
-      // const reactions = await this.popoverCtrl.create({ component: ReactionsPage, event });
-      // await reactions.present();
-
-    }
+    this.tap++;
   }
   like() {
     console.log('like');
-
+    this.liked = true;
+  }
+  dislike() {
+    console.log('dislike');
+    this.liked = false;
+  }
+  comment() {
+    console.log('comment');
+  }
+  share() {
+    console.log('share');
+  }
+  bookmark() {
+    console.log('bookmark');
+    this.bookmarked = true;
+  }
+  unbookmark() {
+    console.log('unbookmark');
+    this.bookmarked = false;
   }
 }

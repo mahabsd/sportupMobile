@@ -3,7 +3,7 @@ import { UtilsService } from './utils.service';
 import { map, catchError } from 'rxjs/operators';
 import { User } from '../Model/User';
 import { HttpErrorResponse } from '@angular/common/http';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 
 @Injectable({
@@ -64,4 +64,16 @@ export class UserService {
     });
     this.myToast.present();
   }
+  searchUser(config: User): Observable<{ user: User[] }> {
+    // Convert any filters over to Angular's URLSearchParams
+    const params = {};
+
+    Object.keys(config)
+      .forEach((key) => {
+        params[key] = config[key];
+      });
+
+    return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
+  }
 }
+

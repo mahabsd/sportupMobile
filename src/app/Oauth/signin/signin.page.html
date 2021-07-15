@@ -6,21 +6,21 @@
                 <img src="../../../assets/imgs/logo.jpg">
             </ion-avatar>
         </ion-row>
-        <ion-row class="ion-justify-content-center">
+        <!-- <ion-row class="ion-justify-content-center">
             <div class="hr"> </div>
-        </ion-row>
+        </ion-row> -->
         <ng-template [ngIf]="section  === '1'">
                 <form [formGroup]="registerForm">
                 <div class="segment">
                     <h1>Créer un compte</h1>
                 </div>
-                <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Nom et prénom"
+                <ion-input type="text" autofocus="true" class="form-controll ion-margin-bottom" placeholder="Nom et prénom"
                     [(ngModel)]="user.name" mdInput formControlName="nameControl" name="name" required>
                 </ion-input>
                 <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email"
                     [(ngModel)]="user.email" mdInput formControlName="emailControl" name="email" required></ion-input>
-               
-                  
+
+
                 <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Mot de passe"
                     [(ngModel)]="user.password" mdInput formControlName="passwordControl" name="password" required>
                 </ion-input>
@@ -40,7 +40,7 @@
                 </ion-select>
 
                 <div class="segment">
-                    <button (click)="login()" routerLink="/login" class="unit" type="button">
+                    <button  [routerLink]="['/login']" class="unit" type="button">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </button>
                     <button (click)="enableSection($event)" id="2" [disabled]="registerForm.invalid" class="unit"
@@ -82,7 +82,7 @@
                     <button (click)="enableSection($event)" id="1"  class="unit" type="button">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </button>
-                    <button (click)="SaveUser()" [disabled]="particulierForm.invalid" class="unit" type="button">
+                    <button (click)="saveUser()" [disabled]="particulierForm.invalid" class="unit" type="button">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
 
@@ -101,7 +101,7 @@
                     [(ngModel)]="user.adresse" mdInput formControlName="adresseControl"
                     name="adresse" required>
                 </ion-input>
-                
+
                 <ion-input type="number" class="form-controll ion-margin-bottom" placeholder="Téléphone"
                     [(ngModel)]="user.phone" mdInput formControlName="phoneControl" name="phone" minlength="8" maxlength="12" required></ion-input>
 
@@ -109,13 +109,13 @@
                     <button (click)="enableSection($event)" id="1"  class="unit" type="button">
                         <ion-icon name="arrow-back-outline"></ion-icon>
                     </button>
-                    <button (click)="SaveUser()" [disabled]="proForm.invalid" class="unit" type="button">
+                    <button (click)="saveUser()" [disabled]="proForm.invalid" class="unit" type="button">
                         <ion-icon name="arrow-forward-outline"></ion-icon>
                     </button>
 
                 </div>
                 </form>
             </ng-template>
-        
+
     </div>
 </ion-content>

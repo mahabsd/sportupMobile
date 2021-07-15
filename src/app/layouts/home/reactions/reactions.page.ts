@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, ModalController } from '@ionic/angular';
+import { NavController, NavParams, ModalController, PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-reactions',
@@ -10,7 +10,7 @@ export class ReactionsPage implements OnInit {
 
   constructor(private navCtrl: NavController,
     private navparams: NavParams,
-    private viewCtrl: ModalController) { }
+    private viewCtrl: PopoverController) { }
 
   ngOnInit() { }
   ionViewDidLoad() {
@@ -18,6 +18,7 @@ export class ReactionsPage implements OnInit {
 
   }
   share() {
+    console.log('ion Reaction page');
     this.viewCtrl.dismiss();
   }
 

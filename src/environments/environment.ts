@@ -7,10 +7,10 @@ export const environment = {
   // apiUrl: 'http://localhost:4112/api/v1/',
   apiUrl: 'http://192.168.1.20:4112/api/v1/',
   apiImg: 'http://localhost:4112/api/img/',
-  TOKEN: 'token',
+  token: 'token',
   currentUser: 'currentUser',
   idUser: 'id',
-  ExpiresIn: 'expiredIn'
+  expiresIn: 'expiredIn'
 };
 
 /*

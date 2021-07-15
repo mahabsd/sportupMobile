@@ -1,8 +1,18 @@
 #container {
-  height: 100%;
-  background-color: DarkGreen;
-  /* For browsers that do not support gradients */
-  background-image: linear-gradient(300deg, #8EBF25, #3b8c4f, #247238, #247238);
+
+  height: 100vh;
+  margin-top: auto;
+  margin-bottom: auto;
+  /* align-items: baseline; */
+  justify-content: space-evenly;
+  display: flex;
+  flex-direction: column;
+}
+
+ion-content {
+  background: none;
+  // background-color: DarkGreen;
+  --ion-background-color: linear-gradient(300deg, #8EBF25, #3b8c4f, #247238, #247238);
 }
 
 $ruler: 16px;

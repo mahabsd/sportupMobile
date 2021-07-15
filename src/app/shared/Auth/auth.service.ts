@@ -26,14 +26,14 @@ export class AuthService {
   login(user) {
 
     return this.utilsService.post(UtilsService.apiUSER + 'login', user).pipe(map((res: any) => {
-      console.log(res);
+      // console.log(res);
       this.setSession(res);
       // this.addUser(res.id);
       return res.data;
     }));
   }
   public isLoggedIn() {
-    return this.storage.get(environment.idUser);
+    return this.storage.get(environment.token);
   }
   isLoggedOut() {
     return !this.isLoggedIn();
@@ -60,11 +60,11 @@ export class AuthService {
     return this.role;
   }
 
-  private setSession(authResult) {
-    // console.log(authResult);
-    this.storage.set(environment.idUser, authResult.data?.user?._id);
-    this.storage.set(environment.TOKEN, authResult.token);
-    this.storage.set(environment.currentUser, authResult.data.user);
+  async setSession(authResult) {
+    console.log(authResult);
+    await this.storage.set(environment.idUser, authResult.data?.user?._id);
+    await this.storage.set(environment.token, authResult.token);
+    await this.storage.set(environment.currentUser, authResult.data.user);
 
   }
 

@@ -3,6 +3,11 @@
   line-height: 26px;
 }
 
+
+// ion-toolbar {
+//   --background: var(--ion-color-bg);
+
+// }
 ion-buttons ion-button {
   --border-radius: 50%;
   border-radius: 50%;
@@ -10,10 +15,6 @@ ion-buttons ion-button {
   width: 36px;
   height: 36px;
   // fill-opacity: ;
-}
-
-ion-toolbar {
-  background-image: --ion-color-bg;
 }
 
 .ion-activated {
@@ -107,10 +108,7 @@ ion-slides {
   }
 }
 
-ion-toolbar {
-  --background: var(--ion-color-bg);
 
-}
 
 .shadowbox {
   // border: 1px solid #8EBF25;
@@ -481,7 +479,7 @@ ion-title {
 .ZoneShare p {
   font-size: xx-small;
   margin-top: 5px;
-  padding: 5px;
+  padding: 8px 20px;
   align-items: flex-start;
   display: grid;
 }

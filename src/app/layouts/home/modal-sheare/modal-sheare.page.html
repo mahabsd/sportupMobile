@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title color="light">Créer une publication</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" color="light" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end" >
+      <ion-button (click)="createPost()" class="confirmer" type="submit" [disabled]="postForm.invalid" color="light"
+        shape="round">
+        <ion-icon size="large" name="checkmark-outline">Publier</ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <div id="container">
+    <ion-grid>
+      <ion-row expand="full" class="row ion-align-items-center ion-justify-content-start">
+        <ion-col class="col" size="3" class="ion-justify-content-center">
+          <ion-avatar>
+            <img class="imgProfile" src="http://placehold.it/75">
+          </ion-avatar>
+        </ion-col>
+        <ion-col class="col" size="9">
+          <div class="ZoneShare ion-text-nowrap" [formGroup]="postForm">
+            <ion-textarea placeholder="Veuillez partager quelques sentiments!" formControlName="contentControl"
+              [(ngModel)]="post.content"></ion-textarea>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
+<!-- <app-footer></app-footer> -->

@@ -7,7 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { GoogleMaps } from '@ionic-native/google-maps';
-import { HttpClientModule, HTTP_INTERCEPTORS  } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
 import { ProfilService } from './layouts/profil/profil.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
@@ -49,10 +49,10 @@ import { StorageService } from './shared/Service/storage.service';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     GoogleMaps
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

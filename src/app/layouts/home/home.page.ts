@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ModalShearePage } from '../modal-sheare/modal-sheare.page';
+import { ModalShearePage } from './modal-sheare/modal-sheare.page';
 import { ModalController } from '@ionic/angular';
 import { UserService } from '../../shared/Service/user.service';
 @Component({

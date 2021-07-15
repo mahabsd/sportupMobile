@@ -17,13 +17,13 @@
 <ion-content padding>
   <div id="container">
     <ion-grid>
-    <ion-row (click)="openModal()" expand="full" class="row ion-align-items-center ion-justify-content-start">
+    <ion-row  expand="full" class="row ion-align-items-center ion-justify-content-start">
       <ion-col class="col" size="3" class="ion-justify-content-center">
         <ion-avatar>
           <img class="imgProfile" src="http://placehold.it/75">
         </ion-avatar>
       </ion-col>
-      <ion-col class="col" size="9" >
+      <ion-col class="col" size="9" (click)="openModal()">
         <div class="ZoneShare ion-text-nowrap">
           <p > Que voulez-vous dire ?</p>
         </div>

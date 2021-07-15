@@ -13,8 +13,8 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-  section: string = '1';
-  role: string = '';
+  section = '1';
+  role = '';
   registerForm: FormGroup;
   particulierForm: FormGroup;
   proForm: FormGroup;
@@ -31,6 +31,7 @@ export class SigninPage implements OnInit {
   ngOnInit() {
     this.registerForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
+      // eslint-disable-next-line max-len
       PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       passwordControl: new FormControl('', Validators.required),
       confirmPasswordControl: new FormControl('', Validators.required),
@@ -45,50 +46,45 @@ export class SigninPage implements OnInit {
       weightControl: new FormControl('', Validators.required),
       sexeControl: new FormControl('', Validators.required),
 
-    })
+    });
     this.proForm = new FormGroup({
       phoneControl: new FormControl('', [Validators.required, Validators.minLength(8)]),
       adresseControl: new FormControl('', Validators.required),
       activiteControl: new FormControl('', Validators.required)
 
-    })
+    });
   }
-  ConnectFacebook() {
+  connectFacebook() {
     console.log('hello facebook');
   }
-  ConnectGoogle() {
+  connectGoogle() {
     console.log('hello google');
 
   }
   enableSection(event) {
-    // console.log(event.target);
-    // console.log(this.user.role);
+    console.log(event.target);
+    console.log('section', this.section);
+    console.log(this.user.role);
 
-    this.section = event.target.id
-    this.role = this.user.role
+    // this.section = '';
+    this.section = event.target.id;
+    this.role = this.user.role;
   }
-  SaveUser() {
+  saveUser() {
     console.log(this.user);
     this.signinService.signUp(this.user).subscribe(res => {
       console.log(res);
 
-      this.presentToast("Bienvenue " + this.user.name, 'success', 'middle');
+      this.presentToast('Bienvenue ' + this.user.name, 'success', 'middle');
       this.router.navigateByUrl('/confirmation');
     }, err => {
       this.presentToast(err, 'danger', 'top');
     });
   }
 
-  login() {
-    console.log('back to user');
-
-  }
-  ResetPassword() {
-    console.log('reset Password');
-  }
   async presentToast(message, color, position) {
     const toast = await this.toastCtrl.create({
-      message: message,
+      message,
       duration: 5000,
       color,
       position

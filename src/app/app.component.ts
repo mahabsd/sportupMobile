@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
       url: '/sign-kids'
     }
   ];
-  public Parametre = [{
+  public parametre = [{
     icon: 'settings',
     title: 'Paramétre',
     url: '/parametre'
@@ -60,7 +60,7 @@ export class AppComponent implements OnInit {
     title: 'déconnexion',
     url: '/login'
   }];
-  token: any
+  token: any;
   constructor(private router: Router,
     private storage: StorageService,
     private platform: Platform,
@@ -87,9 +87,9 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.platform.ready().then(() => {
-      this.token = this.storage.get(environment.TOKEN)
+      this.token = this.storage.get(environment.token);
       return this.token;
-    })
+    });
 
   }
 

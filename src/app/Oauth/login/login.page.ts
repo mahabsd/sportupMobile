@@ -41,10 +41,10 @@ export class LoginPage implements OnInit {
   }
 
   async login() {
-    console.log(this.user);
+    // console.log(this.user);
 
     this.loginService.login(this.user).subscribe(async (response) => {
-      console.log('hello user', response);
+      // console.log('hello user', response);
       this.router.navigateByUrl('/tabs/home');
     }
 

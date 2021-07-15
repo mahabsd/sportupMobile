@@ -8,38 +8,38 @@ const routes: Routes = [
       {
         path: 'profil',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
-  
+
       },
       {
         path: 'apropos',
         loadChildren: () => import('./apropos/apropos.module').then(m => m.AproposPageModule),
-  
+
       },
       {
         path: 'search',
         loadChildren: () => import('./search/search.module').then(m => m.SearchPageModule),
-  
+
       },
 
       {
         path: 'modal-sheare',
-        loadChildren: () => import('./modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
-  
+        loadChildren: () => import('./home/modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
+
       },
       {
         path: 'boite-reception',
         loadChildren: () => import('./boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule),
-  
+
       },
       {
         path: 'chat',
         loadChildren: () => import('./chat/chat.module').then(m => m.ChatPageModule),
-  
+
       },
       {
         path: 'maps',
         loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule),
-  
+
       },
       {
         path: 'parametre',
@@ -201,7 +201,7 @@ const routes: Routes = [
     ],
   },
      {path: '', redirectTo: 'home', pathMatch: 'full'},
-  
+
 ]
 ;
 
