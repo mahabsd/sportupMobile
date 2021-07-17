@@ -12,10 +12,13 @@ import {
 } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { AuthService } from './../Auth/auth.service';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<unknown>, CanLoad {
+  toast: any;
+  token: any;
   constructor(private authService: AuthService,
     public toastCtrl: ToastController,
     private router: Router) {
@@ -23,15 +26,16 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
   canActivate(next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let url: string = state.url;
+    const url: string = state.url;
 
-    // console.log(this.checkUserLogin(next, url))
-    return this.checkUserLogin(next, url);
+
+    return this.checkUserLogin(next, url).pipe(map(res => res));
+
   }
 
   canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.canActivate(childRoute, state)
+    return this.canActivate(childRoute, state);
   }
 
   canDeactivate(component: unknown,
@@ -48,28 +52,29 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
 
 
-  checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
+  checkUserLogin(route: ActivatedRouteSnapshot, url: any): Observable<boolean> {
 
-    // console.log(this.authService.isAuthenticated())
-    if (this.authService.isAuthenticated()) {
+    return this.authService.isAuthenticated().pipe(map(res => {
+      if (res) {
+        // console.log(this.authService.isAuthenticated());
+        if (res) { this.token = true; }
+        return this.token;
+      } else {
+        // this.typeError('Connectez vous!')
+        this.presentToast('Connectez vous!', 'warning', 'top');
 
-
-      return true
-    } else {
-
-      // this.typeError('Connectez vous!')
-      this.router.navigateByUrl('pages/login')
-
-      return false;
-    }
+        this.router.navigateByUrl('login');
+        return false;
+      }
+    }));
   }
   async presentToast(message, color, position) {
-    const toast = await this.toastCtrl.create({
-      message: message,
+    this.toast = await this.toastCtrl.create({
+      message,
       duration: 2000,
       color,
       position
     });
-    toast.present();
+    this.toast.present();
   }
 }

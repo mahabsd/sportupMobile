@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
+import { AuthService } from '../../shared/Auth/auth.service';
 
 @Component({
   selector: 'app-sidemenu',
@@ -6,20 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidemenu.page.scss'],
 })
 export class SidemenuPage implements OnInit {
+  selectedPath: any = '';
   public appPages = [
-    {
-      title: 'Login',
-      url: '/login',
-      icon: 'settings'
-    },
+    
     {
       title: 'Accueil',
-      url: '/home',
+      url: '/menu/home',
       icon: 'paper-plane'
     },
     {
       title: 'Messagerie ',
-      url: '/boite-reception',
+      url: '/menu/boite-reception',
       icon: 'heart'
     },
     {
@@ -43,7 +42,7 @@ export class SidemenuPage implements OnInit {
       url: '/sign-kids'
     }
   ];
-  public Parametre = [    {
+  public Parametre = [{
     icon: 'settings',
     title: 'Paramétre',
     url: '/parametre'
@@ -51,10 +50,20 @@ export class SidemenuPage implements OnInit {
     icon: 'log-out',
     title: 'déconnexion',
     url: '/login'
-  } ];
-  constructor() { }
+  }];
+  constructor(private router: Router,
+    private authService: AuthService) {
+    this.router.events.subscribe((event: RouterEvent) => {
+      // console.log(event.url);
 
+      if (event && event.url) {
+        this.selectedPath = event.url;
+      }
+    });
+  }
   ngOnInit() {
   }
-
+  logout() {
+    this.authService.logout();
+  }
 }

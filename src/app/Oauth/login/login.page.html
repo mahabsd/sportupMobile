@@ -1,23 +1,23 @@
 <ion-content>
-    <div id="container">
+    <div id="container" >
 
 
         <ion-row class="ion-padding-top" style=" justify-content: center;">
-            <ion-avatar (click)="ChangeImage()">
+            <ion-avatar  >
                 <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+                    src="../../../assets/imgs/logo.jpg">
             </ion-avatar>
         </ion-row>
         <div class="segment">
             <h1>Bienvenue</h1>
         </div>
         <form [formGroup]="loginForm">
-            <ion-input type="email" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
+            <ion-input type="email" autofocus="true" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
                 [ngClass]="{'error':loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine}"
                 color="{{loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine ? 'warning':'primary'}}"
                 placeholder="Adresse Email" name="email" [(ngModel)]="user.email" required>
             </ion-input>
-            <ion-input type="password" class="form-controll ion-margin-bottom" mdInput placeholder="Mot se passe"
+            <ion-input type="password" class="form-controll ion-margin-bottom" mdInput placeholder="Mot de passe"
                 formControlName="passwordControl" name="password" [(ngModel)]="user.password" required></ion-input>
 
             <ion-button (click)="login()" color="transparent" shape="round" [disabled]=" loginForm.invalid" class="red "
@@ -26,7 +26,7 @@
             </ion-button>
 
             <div class="segment">
-                <button (click)="ConnectFacebook()" class="unit" type="button">
+                <button (click)="connectFacebook()" class="unit" type="button">
                     <ion-icon name="logo-facebook"></ion-icon>
                 </button>
                 <button class="unit" type="button">
@@ -42,7 +42,7 @@
         </form>
         <ion-row style="  justify-content: center;">
 
-            <ion-label class="ion-padding-top" (click)="ResetPassword()">Mot de passe oublié ?</ion-label>
+            <ion-label class="ion-padding-top" [routerLink]="['/resetpass']">Mot de passe oublié ?</ion-label>
         </ion-row>
 
     </div>

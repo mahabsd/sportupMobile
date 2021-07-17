@@ -6,12 +6,9 @@ describe('new App', () => {
   beforeEach(() => {
     page = new AppPage();
   });
-  describe('default screen', () => {
-    beforeEach(() => {
-      page.navigateTo('/Setting');
-    });
-    it('should say Setting', () => {
-      expect(page.getParagraphText()).toContain('Setting');
-    });
+
+  it('should be blank', () => {
+    page.navigateTo();
+    expect(page.getParagraphText()).toContain('Start with Ionic UI Components');
   });
 });

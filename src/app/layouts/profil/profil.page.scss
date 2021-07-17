@@ -1,0 +1,110 @@
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+#container strong {
+  font-size: 20px;
+  line-height: 26px;
+}
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+#container a {
+  text-decoration: none;
+}
+#container {
+  height: 800px;
+  background-color: DarkGreen; /* For browsers that do not support gradients */
+  background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+// css button
+$ruler: 16px;
+$color-red: #726b6b;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+ button {
+  font-family: 'Montserrat', sans-serif;
+  letter-spacing: -0.2px;
+  font-size: $ruler;
+}
+button {
+border: 0;
+outline: 0;
+font-size: $ruler;
+border-radius: $ruler*20;
+padding: $ruler;
+background-color:$color-bg;
+text-shadow: 1px 1px 0 $color-white;
+}
+button {
+color:#61677C;
+font-weight: bold;
+box-shadow: -5px -5px 20px $color-white,  1px 1px 5px #247238;
+transition: all 0.2s ease-in-out;
+cursor: pointer;
+font-weight: 800;
+&:active {
+  box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+}
+&.unit {
+  border-radius: $ruler/2;
+  line-height: 0;
+  //box-shadow: inset 1px 1px 2px 1px;
+  display:inline-flex;
+  justify-content: center;
+  align-items:center;
+  margin: 0 $ruler/2;
+  font-size: $ruler*1.2;
+  width: 90px;
+  height: 30px;
+  .icon {
+    margin-right: 0; 
+  }
+}
+}
+.card-background-page {
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+}
+.myFooter{
+  border-radius: $ruler/2;
+  padding-bottom: 05px;
+  line-height: 0;
+  box-shadow: inset 1px 1px 1px 1px #646464;
+  display:inline-flex;
+  justify-content: center;
+  //align-items:center;
+  margin: 0 $ruler*2;
+  font-size: $ruler*3.2;
+  width: 340px;
+ // height: 40px;
+}
+.mygallery{
+  border-radius: 6px; 
+  display:inline-flex;
+
+}

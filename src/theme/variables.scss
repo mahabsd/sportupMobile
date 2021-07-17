@@ -10,6 +10,8 @@
   --ion-color-primary-contrast-rgb: 255, 255, 255;
   --ion-color-primary-shade: #3171e0;
   --ion-color-primary-tint: #4c8dff;
+  --ion-color-bg: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);
+
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -153,6 +155,7 @@
    */
 
   .ios body {
+    $popover-ios-width:95%;
     --ion-background-color: #000000;
     --ion-background-color-rgb: 0,0,0;
 
@@ -193,6 +196,8 @@
    */
 
   .md body {
+    $popover-md-width:95%;
+
     --ion-background-color: #121212;
     --ion-background-color-rgb: 18,18,18;
 
@@ -232,6 +237,7 @@
 }
 $colors: (
    blue:    #387ef5,
+   
    secondary:  #32db64,
    danger:     #f53d3d,
    light:      #f4f4f4,  // the light color we're using

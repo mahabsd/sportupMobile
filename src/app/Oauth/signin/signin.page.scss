@@ -1,15 +1,24 @@
 #container {
-    height: 100%;
-    background-color: DarkGreen; /* For browsers that do not support gradients */
-    background-image: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);  }
 
+  height: 100vh;
+  margin-top: auto;
+  margin-bottom: auto;
+  /* align-items: baseline; */
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+}
 
   $ruler: 16px;
 $color-red: #726b6b;
 $color-bg: #EBECF0;
 $color-shadow: #BABECC;
 $color-white: #FFF;
-
+ion-content {
+  background: none;
+  // background-color: DarkGreen;
+  --ion-background-color: linear-gradient(300deg, #8EBF25, #3b8c4f, #247238, #247238);
+}
 body, html {
   background-color:$color-bg;
 }
@@ -39,7 +48,7 @@ div, p {
 
 
 form {
-  padding: $ruler;
+  padding:  0 $ruler;
   width: $ruler*20;
   margin: 0 auto;
 }
@@ -58,6 +67,14 @@ button, ion-input {
   background-color:$color-bg;
   text-shadow: 1px 1px 0 $color-white;
 }
+ ion-select {
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler*20;
+  // padding: $ruler;
+
+}
 
 label {
   display: block;
@@ -67,9 +84,24 @@ label {
 
 ion-input {
   margin-right: $ruler/2;
-  padding:0.5em !important;
+  padding:0 0.5em !important;
   border: 2px solid #ccc;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    box-shadow:  inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
+}
+ion-select {
+  margin-right: $ruler/2;
+  padding:0.5em 1em !important;
+  border: 2px solid #ccc;
+  // box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
@@ -92,15 +124,15 @@ button {
   &:hover {
     // box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
   }
-  
+
   &:active {
     // box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
-  
+
   .icon {
     margin-right: $ruler/2;
   }
-  
+
   &.unit {
     border-radius: $ruler/2;
     line-height: 0;
@@ -111,16 +143,16 @@ button {
     align-items:center;
     margin: 0 $ruler/2;
     font-size: $ruler*1.2;
-    
+
     .icon {
-      margin-right: 0; 
+      margin-right: 0;
     }
   }
-  
+
   &.red {
     display: block;
     width: 100%;
-    color:$color-red;
+    color:#3b8c4f;
   }
 }
 
@@ -128,7 +160,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  
+
   label {
     margin: 0;
     flex: 1;

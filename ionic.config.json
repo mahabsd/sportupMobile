@@ -1,9 +1,6 @@
 {
-  "name": "myApp",
+  "name": "sportUpIo",
   "integrations": {
-    "capacitor": {
-      "enabled": false
-    },
     "cordova": {}
   },
   "type": "angular"

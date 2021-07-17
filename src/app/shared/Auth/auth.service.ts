@@ -1,107 +1,113 @@
 
-import { StorageService } from './../Service/storage.service';
 import { ToastController } from '@ionic/angular';
-import { UtilsService } from './../Service/utils.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map, catchError } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
-import * as moment from 'moment'
+import { UtilsService } from '../Service/utils.service';
+import { StorageService } from '../Service/storage.service';
+import { throwError } from 'rxjs';
 @Injectable()
 export class AuthService {
   role: any;
+  statut = false;
+  myToast: any;
   constructor(private utilsSer: UtilsService,
     public http: HttpClient,
     public toastCtrl: ToastController,
-    private storage:StorageService,
-    private route: Router) {
+
+    private storage: StorageService,
+    private utilsService: UtilsService,
+    private router: Router) {
   }
 
   login(user) {
-    // console.log(JSON.stringify(user))
-    // localhost:7112/apiv/v1/users/login
-    return this.http.post(UtilsService.API_USER + 'login', user).pipe(map((res: any) => {
+
+    return this.utilsService.post(UtilsService.apiUSER + 'login', user).pipe(map((res: any) => {
       // console.log(res);
       this.setSession(res);
       // this.addUser(res.id);
-      
       return res.data;
-    }, err => {
-      console.log(err);
-
-      return this.presentToast(err.message, 'danger', 'middle')
-
     }));
   }
-
-
-  isAuthenticated(): boolean {
-    // here you can check if user is authenticated or not through his token
-    // console.log(this.getRole())
-
-    return this.isLoggedIn()
-  }
-
-  private setSession(authResult) {
-    // console.log(authResult)
-    const expiresAt = moment().add(authResult.expiredIn, 'second');
-    localStorage.setItem(environment.idUser, authResult.id);
-    localStorage.setItem(environment.TOKEN, authResult.token);
-    localStorage.setItem(environment.ExpiresIn, JSON.stringify(expiresAt.valueOf()));
-  }
-
-  logout() {
-    localStorage.clear()
-    location.href='/auth/login';
-  }
-
   public isLoggedIn() {
-    // console.log(moment().isBefore(this.getExpiration()));
-    return moment().isBefore(this.getExpiration());
+    return this.storage.get(environment.token);
   }
-
   isLoggedOut() {
     return !this.isLoggedIn();
   }
+  isAuthenticated() {
 
-  getExpiration() {
-    const expiration = localStorage.getItem(environment.ExpiresIn);
-    const expiresAt = JSON.parse(expiration);
-    // console.log('expiresat', moment(expiresAt));
-    return moment(expiresAt);
+    return this.isLoggedIn().pipe(map(res => res));
   }
-
-  public addUser(id) {
-    return this.utilsSer.get(UtilsService.API_USER + 'Me').subscribe((res: any) => {
-      console.log('getuser', res.data.data)
-      localStorage.setItem(environment.currentUser, JSON.stringify(res.data.data));
-      // this.storage.set(environment.currentUser, res.data.data);
-      return res;
-    })
-  }
-
   public getUser() {
-    console.log(localStorage.getItem(environment.currentUser))
-    let user = JSON.parse(localStorage.getItem(environment.currentUser))
-    return user
+    // console.log(this.storage.get(environment.currentUser))
+    const user = this.storage.get(environment.currentUser);
+    return user;
   }
-
+  public logout() {
+    // localStorage.clear();
+    this.storage.clear();
+    this.router.navigateByUrl('/login');
+  }
   public getRole() {
 
-    this.role = JSON.parse(localStorage.getItem(environment.currentUser));
-    if (this.role) this.role = this.role.role
+    this.role = this.storage.get(environment.currentUser);
+    if (this.role) { this.role = this.role.role; };
     // console.log(this.role)
-    return this.role
+    return this.role;
   }
-  async presentToast(message, color, position) {
-    const toast = await this.toastCtrl.create({
-      message: message,
+
+  async setSession(authResult) {
+    console.log(authResult);
+    await this.storage.set(environment.idUser, authResult.data?.user?._id);
+    await this.storage.set(environment.token, authResult.token);
+    await this.storage.set(environment.currentUser, authResult.data.user);
+
+  }
+
+
+
+  private handleError(error: HttpErrorResponse) {
+    console.log(error);
+
+    if (error?.error instanceof ErrorEvent) {
+      // A client-side or network error occurred. Handle it accordingly.
+
+      console.error('An error occurred:', error?.error?.message);
+
+    } else {
+      // The backend returned an unsuccessful response code.
+      // The response body may contain clues as to what went wrong,
+      if (error?.status === 50) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
+      console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
+
+    }
+    // return an observable with a user-facing error message
+    return throwError(error?.error?.message);
+  }
+
+
+  private async presentToast(message, color, position) {
+    this.myToast = await this.toastCtrl.create({
+      message,
       duration: 2000,
       color,
       position
     });
-    toast.present();
+    this.myToast.present();
   }
+
+  // public addUser(id) {
+  //   return this.utilsSer.get(UtilsService.API_USER + 'Me').subscribe((res: any) => {
+
+  //     // this.storage.set(environment.currentUser, res.data.data);
+  //     return res;
+  //   })
+  // }
+
+
+
 }

@@ -1,0 +1,69 @@
+<ion-content>
+  <div id="container">
+
+
+    <ion-row class="ion-padding-top" style=" justify-content: center;">
+      <ion-avatar>
+        <img src="../../../assets/imgs/logo.jpg">
+      </ion-avatar>
+    </ion-row>
+    <div *ngIf="!showReset;else Reset">
+      <div class="segment">
+        <h1>Réinitialisez votre mot de passe</h1>
+        <p>Entrez l'adresse e-mail vérifiée de votre compte utilisateur </p>
+        <p>et nous vous enverrons un lien de
+          réinitialisation de mot de passe.</p>
+      </div>
+      <form [formGroup]="forgotForm">
+        <ion-input type="email" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
+          placeholder="Adresse Email" name="email" [(ngModel)]="user.email" required>
+        </ion-input>
+
+
+        <ion-button (click)="forgotPassword()" color="transparent" shape="round" [disabled]=" forgotForm.invalid"
+          class="red " type=" submit">
+          Confirmer
+        </ion-button>
+
+
+
+
+
+
+      </form>
+    </div>
+    <ng-template #Reset>
+      <div class="segment">
+        <h1>Changer mot de passe </h1>
+      </div>
+      <form [formGroup]="resetForm">
+        <ion-input type="text" class="form-controll ion-margin-bottom" mdInput formControlName="codetokenControl"
+          placeholder="Token" name="token" [(ngModel)]="codeToken" required>
+        </ion-input>
+        <ion-input type="password" class="form-controll ion-margin-bottom" mdInput formControlName="passwordControl"
+          placeholder="Nouveau mot de passe" name="password" [(ngModel)]="user.password" required>
+        </ion-input>
+        <ion-input type="password" class="form-controll ion-margin-bottom" mdInput
+          formControlName="passwordConfirmControl" placeholder="Confirmer votre mot de passe" name="passwordConfirm"
+          [(ngModel)]="user.passwordConfirm" required>
+        </ion-input>
+
+
+        <ion-button (click)="resetPassword()" color="transparent" shape="round" [disabled]=" resetForm.invalid"
+          class="red " type=" submit">
+          Confirmer
+        </ion-button>
+
+
+
+
+
+      </form>
+    </ng-template>
+    <ion-row style="  justify-content: center;">
+
+      <ion-label class="ion-padding-top" [routerLink]="['/login']">Se connecter ?</ion-label>
+    </ion-row>
+
+  </div>
+</ion-content>
