@@ -12,13 +12,9 @@ export class StorageService {
   private _storage: Storage | null = null;
 
   constructor(private storage: Storage) {
-    this.init();
   }
 
-  async init() {
-
-  }
-
+  
   public set(key, value): Observable<any> {
     console.log(this.storage$.next(value));
 

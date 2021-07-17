@@ -5,7 +5,7 @@
   "homepage": "https://ionicframework.com/",
   "scripts": {
     "ng": "ng",
-    "serve": "ionic serve --address 192.168.1.20",
+    "serve": "ionic serve ",
     "start": "ng serve",
     "tel": "ionic cordova run android --no-native-run  -l -d --external",
     "build": "ng build",
