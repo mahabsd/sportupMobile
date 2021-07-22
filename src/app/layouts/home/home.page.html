@@ -11,47 +11,49 @@
         <img src="../../assets/icon/icon_scan.png" alt="">
       </ion-button>
     </ion-buttons>
-    <ion-title color="light" > Accueil</ion-title>
+    <ion-title color="light"> Accueil</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content padding>
   <div id="container">
     <ion-grid>
-    <ion-row  expand="full" class="row ion-align-items-center ion-justify-content-start">
-      <ion-col class="col" size="3" class="ion-justify-content-center">
-        <ion-avatar>
-          <img class="imgProfile" src="http://placehold.it/75">
-        </ion-avatar>
-      </ion-col>
-      <ion-col class="col" size="9" (click)="openModal()">
-        <div class="ZoneShare ion-text-nowrap">
-          <p > Que voulez-vous dire ?</p>
-        </div>
-      </ion-col>
-    </ion-row>
+      <ion-row expand="full" class="row ion-align-items-center ion-justify-content-start">
+        <ion-col class="col" size="3" class="ion-justify-content-center">
+          <ion-avatar>
+            <img class="imgProfile" src="http://placehold.it/75">
+          </ion-avatar>
+        </ion-col>
+        <ion-col class="col" size="9" (click)="openModal()">
+          <div class="ZoneShare ion-text-nowrap">
+            <p> Que voulez-vous dire ?</p>
+          </div>
+        </ion-col>
+      </ion-row>
 
       <ion-row id="rowTabFiltre">
         <ion-col>
-          <ion-button class="unit" type="button">
-           Tout     </ion-button>
+          <ion-button class="unit" type="button" (click)="getAllPosts()">
+            Tout </ion-button>
         </ion-col>
         <ion-col>
           <ion-button routerLink="/apropos" class="unit" type="button">
-           Favoris        </ion-button>
+            Favoris </ion-button>
         </ion-col>
         <ion-col>
           <ion-button class="unit" type="button">
-           Abonnement
+            Abonnement
           </ion-button>
         </ion-col>
       </ion-row>
 
-    <div style="background-color: grey !important; height: 0.25px !important;"></div>
-    <ion-row class="row">
-    </ion-row>
-    <div style="background-color: grey !important; height: 2px !important;"></div>
-    <div class=" myStory cion-padding" style="padding-top: 10px; width:160px;    margin-left:110px">
-      <!-- <ion-slides pager="false">
+
+      <div style="background-color: grey !important; height: 0.25px !important;"></div>
+      <ion-row class="row">
+      </ion-row>
+
+      <div style="background-color: grey !important; height: 2px !important;"></div>
+      <div class=" myStory cion-padding" style="padding-top: 10px; width:160px;    margin-left:110px">
+        <!-- <ion-slides pager="false">
         <ion-slide>
           <ion-avatar>
             <img style="width: 110px !important;hight: 150px !important;" [src]="imgSrc">
@@ -83,12 +85,25 @@
           </ion-avatar>
         </ion-slide>
       </ion-slides> -->
-    </div>
-    <ion-row class="BadyFilter">
+      </div>
+    </ion-grid>
+    <!-- <ion-grid class="postClass"> -->
+    <ion-row class="bodyFilter">
+      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+          refreshingSpinner="circles" refreshingText="Refreshing...">
+        </ion-refresher-content>
+      </ion-refresher>
 
-    <app-status></app-status>
-</ion-row>
-  </ion-grid>
+      <ion-card *ngFor="let post of posts">
+        <app-status [post]="post"></app-status>
+      </ion-card>
+      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
+    </ion-row>
+    <!-- </ion-grid> -->
   </div>
 </ion-content>
 <!-- <app-footer></app-footer> -->

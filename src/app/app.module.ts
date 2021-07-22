@@ -50,7 +50,7 @@ import { StorageService } from './shared/Service/storage.service';
       useClass: IonicRouteStrategy
     },
     // { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     GoogleMaps
   ],
   bootstrap: [AppComponent]

@@ -45,7 +45,7 @@ export class LoginPage implements OnInit {
 
     this.loginService.login(this.user).subscribe(async (response) => {
       // console.log('hello user', response);
-      this.router.navigateByUrl('/tabs/home');
+      location.href='/tabs/home';
     }
 
     );

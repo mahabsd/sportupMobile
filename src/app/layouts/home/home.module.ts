@@ -14,7 +14,7 @@ import { ReactionsPage } from './reactions/reactions.page';
     IonicModule,
     HomePageRoutingModule,
     FooterPageModule,
-    
+
   ],
   declarations: [HomePage,StatusComponent]
 })

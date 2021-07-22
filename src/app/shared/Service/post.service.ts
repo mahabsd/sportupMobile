@@ -18,26 +18,11 @@ export class PostService {
   createPost(post: Post): Observable<Post> {
     return this.utilsService.post(UtilsService.apiPost, post).pipe(map(res => res));
   }
+  likePost(post: Post): Observable<Post> {
+    return this.utilsService.post(UtilsService.apiPost+'likePost', post).pipe(map(res => res));
+  }
   getPost(): Observable<Post[]> {
-    return this.utilsService.get(UtilsService.apiPost).pipe(map(res => res));
+    return this.utilsService.get(UtilsService.apiPost+'?sort=-createdAt').pipe(map(res => res.data.data));
   }
-  private async jwt() {
-    return new Promise((resolve) => {
 
-      var token;
-      this.storage.get(environment.token).subscribe(async res => {
-
-        token = await res;
-        console.log(token);
-        resolve(token);
-        if (token) {
-          let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + token });
-          //   console.log(headers);
-          return ({ headers: headers });
-        }
-      })
-    });
-
-
-  }
 }

@@ -23,10 +23,7 @@ export class JWTInterceptor implements HttpInterceptor {
 
 
 
-
-
-
-    }
+  }
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler): Observable<HttpEvent<any>> {
@@ -34,11 +31,11 @@ export class JWTInterceptor implements HttpInterceptor {
 
 
 
-      request = request.clone({
-        setHeaders: {
-          authorization: `Bearer ${this.token$}`
-        }
-      });
+    request = request.clone({
+      setHeaders: {
+        authorization: `Bearer ${this.token$}`
+      }
+    });
 
     return next.handle(request);
 
@@ -65,7 +62,17 @@ export class JWTInterceptor implements HttpInterceptor {
     //   }));
 
   }
+  getToken(): Observable<any> {
+    return this.storage.get(environment.token).pipe(map(res => { this.token$ = res; }));
+  }
+  public jwt() {
 
+
+    this.getToken();
+    const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token$ });
+    //   console.log(headers);
+    return ({ headers });
+  }
 
   private typeError() {
     return this.presentToast('Votre session est expiré', 'danger', 'top');
@@ -87,19 +94,5 @@ export class JWTInterceptor implements HttpInterceptor {
       toastData.present();
     });
   }
-  getToken():Observable<any>{
-    return this.storage.get(environment.token).pipe(map(res => {
 
-      return this.token$ = res;
-
-    }));
-  }
-  public jwt() {
-
-
-    this.getToken();
-    let headers = new HttpHeaders({ 'Authorization': 'Bearer ' + this.token$ });
-    //   console.log(headers);
-    return ({ headers: headers });
-}
 }

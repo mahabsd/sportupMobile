@@ -24,6 +24,7 @@ export class H401Interceptor implements HttpInterceptor {
             this.handleServer();
             return of(err);
           }
+          this.presentToast(err.error.message, 'danger', 'top');
           throw err;
         }
       )
