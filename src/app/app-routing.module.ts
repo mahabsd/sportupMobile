@@ -43,7 +43,6 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
 
-  
 
   {
     path: 'confirmation',

@@ -19,10 +19,13 @@ export class PostService {
     return this.utilsService.post(UtilsService.apiPost, post).pipe(map(res => res));
   }
   likePost(post: Post): Observable<Post> {
-    return this.utilsService.post(UtilsService.apiPost+'likePost', post).pipe(map(res => res));
+    return this.utilsService.patch(UtilsService.apiPost + 'likePost', post).pipe(map(res => res));
   }
-  getPost(): Observable<Post[]> {
-    return this.utilsService.get(UtilsService.apiPost+'?sort=-createdAt').pipe(map(res => res.data.data));
+  disLikePost(post: Post): Observable<Post> {
+    return this.utilsService.patch(UtilsService.apiPost + 'dislikePost', post).pipe(map(res => res));
+  }
+  getAllPosts(): Observable<Post[]> {
+    return this.utilsService.get(UtilsService.apiPost + '?sort=-createdAt').pipe(map(res => res.data.data));
   }
 
 }

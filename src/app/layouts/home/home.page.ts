@@ -3,13 +3,17 @@ import { ModalShearePage } from './modal-sheare/modal-sheare.page';
 import { ModalController } from '@ionic/angular';
 import { UserService } from '../../shared/Service/user.service';
 import { PostService } from '../../shared/Service/post.service';
+import { Observable } from 'rxjs';
+import { Post } from '../../shared/Model/Post';
+import { User } from 'src/app/Shared/Model/user';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  posts: any = [];
+  posts$: any = [];
+  user$: Observable<User>;
   slideOpts = {
     loop: true,
     effect: 'slide',
@@ -30,16 +34,14 @@ export class HomePage implements OnInit {
     return await modal.present();
   }
   ngOnInit() {
+    this.user$ = this.userservice.getMe();
+    console.log(this.user$);
+
     this.getAllPosts();
   }
-  getAllPosts() {
-    return this.postService.getPost().subscribe(res => {
 
-      console.log(res);
-      this.posts = res;
-    });
-
-
+  getAllPosts(): Observable<Post[]> {
+    return this.posts$ = this.postService.getAllPosts();
   }
   doRefresh(event) {
     console.log('Begin async operation');
@@ -49,22 +51,20 @@ export class HomePage implements OnInit {
       event.target.complete();
     }, 2000);
   }
-  loadData(event) {
 
-    // Using settimeout to simulate api call
-    setTimeout(() => {
-
-      // load more data
+  like(post) {
+    console.log('like');
+    this.postService.likePost(post).subscribe(res => {
+      console.log(res);
+    });
+  }
+  disLike(post) {
+    console.log('dislike');
+    this.postService.disLikePost(post).subscribe(res => {
+      console.log(res);
       this.getAllPosts();
 
-      //Hide Infinite List Loader on Complete
-      event.target.complete();
-      //Rerender Virtual Scroll List After Adding New Data
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      if (this.posts.length === 1000) {
-        event.target.disabled = true;
-      }
-    }, 500);
+    });
+    ;
   }
 }

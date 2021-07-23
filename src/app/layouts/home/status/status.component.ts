@@ -1,9 +1,12 @@
-import { Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
 import { Post } from '../../../shared/Model/Post';
 import { Observable } from 'rxjs';
+import { AuthService } from '../../../../../../sportUpWeb/src/app/Shared/Service/auth.service';
+import { User } from 'src/app/Shared/Model/user';
+import { UserService } from '../../../shared/Service/user.service';
 
 @Component({
   selector: 'app-status',
@@ -13,13 +16,15 @@ import { Observable } from 'rxjs';
 export class StatusComponent implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  @Input()
-  post: Post;
+  @Input() post: Post;
+
+  @Output() likeFn = new EventEmitter();
+  @Output() disLikeFn = new EventEmitter();
   longPressActive = false;
   posts: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
-
+  user: any;
   tap = 0;
   press = 0;
   liked = false;
@@ -27,16 +32,21 @@ export class StatusComponent implements OnInit {
 
   constructor(private navCtrl: NavController,
     private postService: PostService,
+    private userService: UserService,
     private popoverCtrl: PopoverController) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
   }
   ngOnInit() {
-    // this.getAllPosts();
+
+    this.getMe();
+
 
   }
-
+  getMe() {
+    this.userService.getMe().subscribe(res => this.user = res);
+  }
   async showReactions(ev) {
     this.press++;
     const reactions = await this.popoverCtrl.create(
@@ -50,32 +60,20 @@ export class StatusComponent implements OnInit {
     const { role } = await reactions.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }
-  // getAllPosts() {
-  //   return this.postService.getPost().subscribe(res => {
 
-  //     console.log(res);
-  //     this.posts = res;
-  //   });
-
-
-  // }
   onTap() {
     console.log('ok');
 
     this.tap++;
   }
-  like(post) {
-    console.log('like');
-    this.liked = true;
-    this.postService.likePost(post).subscribe(res => {
-      console.log(res);
 
-    });
+  like(post) {
+    this.likeFn.emit(post);
   }
-  dislike() {
-    console.log('dislike');
-    this.liked = false;
+  disLike(post) {
+    this.disLikeFn.emit(post);
   }
+
   comment() {
     console.log('comment');
   }
@@ -86,7 +84,7 @@ export class StatusComponent implements OnInit {
     console.log('bookmark');
     this.bookmarked = true;
   }
-  unbookmark() {
+  unBookmark() {
     console.log('unbookmark');
     this.bookmarked = false;
   }

@@ -95,13 +95,13 @@
         </ion-refresher-content>
       </ion-refresher>
 
-      <ion-card *ngFor="let post of posts">
-        <app-status [post]="post"></app-status>
+      <ion-card *ngFor="let post of (posts$ | async)">
+        <app-status [post]="post"    (likeFn)="like(post)"></app-status>
       </ion-card>
-      <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+      <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
         </ion-infinite-scroll-content>
-      </ion-infinite-scroll>
+      </ion-infinite-scroll> -->
     </ion-row>
     <!-- </ion-grid> -->
   </div>

@@ -7,4 +7,8 @@ export class Post {
   updateAt: string;
   comments: Comment;
   user: User;
+  likes: number;
+  dislikes: number;
+  dislidBy: [];
+  likedBy: [];
 }

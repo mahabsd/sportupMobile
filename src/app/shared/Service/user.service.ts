@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(private utilsService: UtilsService,
     public toastCtrl: ToastController) { }
-  getMe() {
+  getMe(){
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
       console.log(res);
       return res.data.data;

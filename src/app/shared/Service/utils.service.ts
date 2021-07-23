@@ -30,10 +30,7 @@ export class UtilsService {
     private storage: StorageService,
     private toastCtrl: ToastController
   ) {
-    this.jwt().subscribe(res => {
-      console.log(res);
-      return this.header = res;
-    });
+    this.jwt().subscribe(res => this.header = res);
     // this.jwt();
   }
   public async presentToast(message, color, position) {
