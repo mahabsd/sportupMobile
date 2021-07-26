@@ -1,10 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
 import { Post } from '../../../shared/Model/Post';
 import { Observable } from 'rxjs';
-import { AuthService } from '../../../../../../sportUpWeb/src/app/Shared/Service/auth.service';
 import { User } from 'src/app/Shared/Model/user';
 import { UserService } from '../../../shared/Service/user.service';
 
@@ -24,12 +23,12 @@ export class StatusComponent implements OnInit {
   posts: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
-  user: any;
+  user: User = new User();
   tap = 0;
   press = 0;
   liked = false;
   bookmarked = false;
-
+  id: number;
   constructor(private navCtrl: NavController,
     private postService: PostService,
     private userService: UserService,
@@ -45,7 +44,12 @@ export class StatusComponent implements OnInit {
 
   }
   getMe() {
-    this.userService.getMe().subscribe(res => this.user = res);
+    this.userService.getMe().subscribe(res => {
+      // eslint-disable-next-line no-underscore-dangle
+      this.id = res._id;
+      // eslint-disable-next-line no-underscore-dangle
+      console.log(this.user._id);
+    });
   }
   async showReactions(ev) {
     this.press++;
