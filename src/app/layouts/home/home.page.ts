@@ -1,3 +1,4 @@
+import { User } from './../../shared/Model/User';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
 import { ModalController } from '@ionic/angular';
@@ -5,7 +6,6 @@ import { UserService } from '../../shared/Service/user.service';
 import { PostService } from '../../shared/Service/post.service';
 import { Observable } from 'rxjs';
 import { Post } from '../../shared/Model/Post';
-import { User } from 'src/app/Shared/Model/user';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -35,7 +35,7 @@ export class HomePage implements OnInit {
   }
   ngOnInit() {
     this.user$ = this.userservice.getMe();
-    console.log(this.user$);
+    // console.log(this.user$);
 
     this.getAllPosts();
   }
@@ -65,6 +65,6 @@ export class HomePage implements OnInit {
       this.getAllPosts();
 
     });
-    ;
+    
   }
 }

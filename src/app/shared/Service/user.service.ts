@@ -16,7 +16,7 @@ export class UserService {
     public toastCtrl: ToastController) { }
   getMe(){
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
-      console.log(res);
+     
       return res.data.data;
 
     }), catchError(this.handleError));

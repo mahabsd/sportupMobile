@@ -23,7 +23,7 @@ export class StatusComponent implements OnInit {
   posts: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
-  user: User = new User();
+  user: any;
   tap = 0;
   press = 0;
   liked = false;
@@ -41,14 +41,14 @@ export class StatusComponent implements OnInit {
 
     this.getMe();
 
-
+ 
   }
   getMe() {
     this.userService.getMe().subscribe(res => {
       // eslint-disable-next-line no-underscore-dangle
       this.id = res._id;
       // eslint-disable-next-line no-underscore-dangle
-      console.log(this.user._id);
+      console.log(this.id);
     });
   }
   async showReactions(ev) {

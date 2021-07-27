@@ -49,7 +49,7 @@ import { StorageService } from './shared/Service/storage.service';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-    // { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     GoogleMaps
   ],
