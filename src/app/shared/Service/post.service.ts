@@ -24,8 +24,8 @@ export class PostService {
   disLikePost(post: Post): Observable<Post> {
     return this.utilsService.patch(UtilsService.apiPost + 'dislikePost', post).pipe(map(res => res));
   }
-  getAllPosts(): Observable<Post[]> {
-    return this.utilsService.get(UtilsService.apiPost ).pipe(map(res => res.data.data));
+  getAllPosts(page): Observable<Post[]> {
+    return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}`).pipe(map(res => res.data.data));
   }
 
 }

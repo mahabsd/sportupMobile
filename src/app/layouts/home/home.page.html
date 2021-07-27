@@ -91,5 +91,9 @@
     </ion-row>
     <!-- </ion-grid> -->
   </div>
+  <ion-infinite-scroll threshold="25%" [disabled]="true" position="bottom" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 <!-- <app-footer></app-footer> -->

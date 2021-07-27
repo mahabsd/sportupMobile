@@ -14,6 +14,7 @@ import { Post } from '../../shared/Model/Post';
 export class HomePage implements OnInit {
   // posts$: any = [];
   posts: any = [];
+  page = 1;
   user$: Observable<User>;
   slideOpts = {
     loop: true,
@@ -40,9 +41,12 @@ export class HomePage implements OnInit {
 
     this.getAllPosts();
   }
-  getAllPosts() {
-    this.postService.getAllPosts().subscribe(res => {
+  getAllPosts(event) {
+    this.postService.getAllPosts(this.page).subscribe(res => {
       this.posts = res;
+      if (event) {
+        event.target.complete();
+      }
     });
   }
   // getAllPosts(): Observable<Post[]> {
@@ -70,6 +74,13 @@ export class HomePage implements OnInit {
       this.getAllPosts();
 
     });
+
+  }
+
+  loadMore(event) {
+    this.page++;
+    this.getAllPosts(event);
+    console.log(event);
 
   }
 }
