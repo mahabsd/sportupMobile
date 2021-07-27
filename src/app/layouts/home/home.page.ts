@@ -12,7 +12,8 @@ import { Post } from '../../shared/Model/Post';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  posts$: any = [];
+  // posts$: any = [];
+  posts: any = [];
   user$: Observable<User>;
   slideOpts = {
     loop: true,
@@ -39,10 +40,14 @@ export class HomePage implements OnInit {
 
     this.getAllPosts();
   }
-
-  getAllPosts(): Observable<Post[]> {
-    return this.posts$ = this.postService.getAllPosts();
+  getAllPosts() {
+    this.postService.getAllPosts().subscribe(res => {
+      this.posts = res;
+    });
   }
+  // getAllPosts(): Observable<Post[]> {
+  //   return this.posts$ = this.postService.getAllPosts();
+  // }
   doRefresh(event) {
     console.log('Begin async operation');
 
@@ -65,6 +70,6 @@ export class HomePage implements OnInit {
       this.getAllPosts();
 
     });
-    
+
   }
 }

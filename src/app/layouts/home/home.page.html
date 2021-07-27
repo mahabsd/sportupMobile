@@ -1,19 +1,4 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color="light"></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button shape="rounded">
-        <img src="../../assets/icon/icon_position.png" alt="">
-      </ion-button>
-      <ion-button shape="rounded">
-        <img src="../../assets/icon/icon_scan.png" alt="">
-      </ion-button>
-    </ion-buttons>
-    <ion-title color="light"> Accueil</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Home" ></app-header>
 <ion-content padding>
   <div id="container">
     <ion-grid>
@@ -95,8 +80,9 @@
         </ion-refresher-content>
       </ion-refresher>
 
-      <ion-card *ngFor="let post of (posts$ | async)">
-        <app-status [post]="post"  (disLikeFn)="disLike(post)"   (likeFn)="like(post)"></app-status>
+      <!-- <ion-card *ngFor="let post of (posts$ | async)"> -->
+      <ion-card *ngFor="let post of posts">
+        <app-status [post]="post" (disLikeFn)="disLike(post)" (likeFn)="like(post)"></app-status>
       </ion-card>
       <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
         <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">

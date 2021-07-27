@@ -38,10 +38,7 @@ export class StatusComponent implements OnInit {
     });
   }
   ngOnInit() {
-
     this.getMe();
-
- 
   }
   getMe() {
     this.userService.getMe().subscribe(res => {

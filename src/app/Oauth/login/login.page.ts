@@ -1,10 +1,6 @@
 import { AuthService } from './../../shared/Auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Storage } from '@ionic/storage';
-import { Crop } from '@ionic-native/crop/ngx';
-import { ImagePicker } from '@ionic-native/image-picker/ngx';
-import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { PatternValidator } from '../../shared/patternValidator';
 import { User } from 'src/app/shared/Model/User';
 import { ToastController } from '@ionic/angular';

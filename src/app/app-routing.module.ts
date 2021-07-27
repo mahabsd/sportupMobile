@@ -54,10 +54,7 @@ const routes: Routes = [
     loadChildren: () => import('./component/footer/footer.module').then(m => m.FooterPageModule)
   },
 
-  {
-    path: 'test',
-    loadChildren: () => import('./test/test.module').then( m => m.TestPageModule)
-  },
+
   {
     path: '**',
     redirectTo: ''

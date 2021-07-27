@@ -14,8 +14,9 @@ import { ModalShearePage } from './modal-sheare.page';
     FormsModule,
     IonicModule,
     ModalShearePageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+
   ],
   declarations: [ModalShearePage]
 })
-export class ModalShearePageModule {}
+export class ModalShearePageModule { }

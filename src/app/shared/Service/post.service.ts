@@ -25,7 +25,7 @@ export class PostService {
     return this.utilsService.patch(UtilsService.apiPost + 'dislikePost', post).pipe(map(res => res));
   }
   getAllPosts(): Observable<Post[]> {
-    return this.utilsService.get(UtilsService.apiPost + '?sort=-createdAt').pipe(map(res => res.data.data));
+    return this.utilsService.get(UtilsService.apiPost ).pipe(map(res => res.data.data));
   }
 
 }

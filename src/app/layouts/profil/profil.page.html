@@ -1,11 +1,5 @@
-<ion-header [translucent]="true" style="background-color:rgb(10, 51, 10)">
-  <ion-toolbar style="background-color:#247238">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title></ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header [title]="myInformation.User_Last_Name" isDetails="true"></app-header>
+
 <ion-content>
   <div id="container">
     <ion-grid class="ion-justify-content-center" style="background-color:#f1f2f2">
@@ -37,7 +31,8 @@
       <ion-row style="background-color:#f1f2f2">
         <ion-col>
           <div class="segment">
-            <ion-label style="font-family:Montserrat,sans-serif; color:#898b8b;font-size: small;">{{MyInformation.User_Last_Name}}         {{MyInformation.User_First_Name}}</ion-label>
+            <ion-label style="font-family:Montserrat,sans-serif; color:#898b8b;font-size: small;">
+              {{myInformation.User_Last_Name}} {{myInformation.User_First_Name}}</ion-label>
           </div>
         </ion-col>
       </ion-row>
@@ -73,17 +68,17 @@
       </ion-row>
       <ion-row style="background-color :#f1f2f2;padding-top: 5px;">
         <ion-col>
-          <button (click)="Button_Publication()" class="unit" type="button">
+          <button (click)="buttonPublication()" class="unit" type="button">
             <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; ">Publications</h6>
           </button>
         </ion-col>
         <ion-col>
-          <button (click)="Button_A_Propos()" routerLink="/apropos" class="unit" type="button">
+          <button (click)="buttonAPropos()" routerLink="/apropos" class="unit" type="button">
             <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; "> A propos</h6>
           </button>
         </ion-col>
         <ion-col>
-          <button (click)="Button_Plus()" class="unit" type="button">
+          <button (click)="buttonPlus()" class="unit" type="button">
             <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; ">Plus</h6>
           </button>
         </ion-col>
@@ -94,83 +89,67 @@
     <ion-grid style="background-color :#f1f2f2;padding-top: 5px;" class="ion-no-padding">
       <ion-row class="ion-no-padding">
         <ion-col size="8" class="ion-no-padding">
-          <img   width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
-          
+          <img width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://medias.lequipe.fr/img-photo-jpg/en-stand-by-depuis-le-debut-de-l-epidemie-de-coronavirus-les-sports-de-combat-notamment-la-boxe-s/1500000001355628/181:248,1803:1329-624-416-75/a50b7.jpg"
             alt="">
         </ion-col>
         <!-- <ion-col size="4" class="ion-no-padding"> -->
-          <ion-col size="4" class="ion-no-padding">
+        <ion-col size="4" class="ion-no-padding">
           <ion-row class="ion-no-padding" style="height: 50%;">
-              <img width="100%" height="100%" class="mygallery"
-              style="padding-bottom: 2px;padding-right: 2px;"
-                src="https://www.education.gouv.fr/sites/default/files/styles/banner_1340x730/public/2020-04/sport-college-gem0700788-67110.jpg?h=af28b706&itok=Cb9a2BE_"
-                alt="">
-          </ion-row >
-          <ion-row  class="ion-no-padding" style="height: 40%;">
-              <img  width="100%" height="120%" class="mygallery"
-              style="padding-right: 2px;"
-                src="https://s1.lprs1.fr/images/2019/06/24/8101692_f5f778e4-9697-11e9-a46e-e7f6bbcbb6fa-1.jpg"
-                alt="">
-          </ion-row >
+            <img width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
+              src="https://www.education.gouv.fr/sites/default/files/styles/banner_1340x730/public/2020-04/sport-college-gem0700788-67110.jpg?h=af28b706&itok=Cb9a2BE_"
+              alt="">
+          </ion-row>
+          <ion-row class="ion-no-padding" style="height: 40%;">
+            <img width="100%" height="120%" class="mygallery" style="padding-right: 2px;"
+              src="https://s1.lprs1.fr/images/2019/06/24/8101692_f5f778e4-9697-11e9-a46e-e7f6bbcbb6fa-1.jpg" alt="">
+          </ion-row>
         </ion-col>
       </ion-row>
-      <ion-row class="ion-no-padding" >
+      <ion-row class="ion-no-padding">
         <ion-col size="4" class="ion-no-padding">
-          <img class="mygallery"   width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://www.football.ch/fr/Portaldata/27/Resources/bilder/kinder-und_schulfussball/fussball_in_der_schule/Gestaltung_Pausenplatz.jpg"
             alt="">
         </ion-col>
         <ion-col size="4" class="ion-no-padding">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://ecolescommunales.marche.be/hollogne/wp-content/uploads/sites/4/2016/06/HollognePhotoCours.png"
             alt="">
         </ion-col>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
-            src="https://upload.wikimedia.org/wikipedia/commons/1/14/Water_sports_composite.jpg"
-            alt="">
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
+            src="https://upload.wikimedia.org/wikipedia/commons/1/14/Water_sports_composite.jpg" alt="">
         </ion-col>
       </ion-row>
-      <ion-row >
+      <ion-row>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://lh3.googleusercontent.com/proxy/bNKgDPphJVug4HqrcO2JIgU0bf4RbNUJBex-hyjOlKkoYVE4HjU3UkwVjkX1BEU8XJkbDmdHueX2EGxjxYCK1yv-9qeJ1akD13AXrOAw-ljej6xk2p249YCSz6NmJuI"
             alt="">
         </ion-col>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
-            src="https://www.astucedefille.com/wp-content/uploads/2015/08/Jeux-nautique1-OTSRACH.ARN_.jpg"
-            alt="">
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
+            src="https://www.astucedefille.com/wp-content/uploads/2015/08/Jeux-nautique1-OTSRACH.ARN_.jpg" alt="">
         </ion-col>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://static.toiimg.com/thumb/msid-75883116,width-1070,height-580,imgsize-1312298,resizemode-75,overlay-toi_sw,pt-32,y_pad-40/photo.jpg"
             alt="">
         </ion-col>
       </ion-row>
-      <ion-row >
+      <ion-row>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
-            src="https://www.ghanatalksradio.com/wp-content/uploads/2020/05/sportsgrene-750x420-1.jpg"
-            alt="">
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
+            src="https://www.ghanatalksradio.com/wp-content/uploads/2020/05/sportsgrene-750x420-1.jpg" alt="">
         </ion-col>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://lh3.googleusercontent.com/proxy/oriaXGXv2u5tFEJi_URMBS0SnTQF7TolfggP9t36ZmBeIo4JFtdnRlQJzVcoquI7PDm_4U-6YieRF86vX70cJuO_InTPUa1iYubrVMkDbSF8GwtZNk_EOu__fv3NpNq-ZEs"
             alt="">
         </ion-col>
         <ion-col size="4">
-          <img class="mygallery"  width="100%" height="100%"
-          style="padding-bottom: 2px;padding-right: 2px;"
+          <img class="mygallery" width="100%" height="100%" style="padding-bottom: 2px;padding-right: 2px;"
             src="https://lh3.googleusercontent.com/proxy/oriaXGXv2u5tFEJi_URMBS0SnTQF7TolfggP9t36ZmBeIo4JFtdnRlQJzVcoquI7PDm_4U-6YieRF86vX70cJuO_InTPUa1iYubrVMkDbSF8GwtZNk_EOu__fv3NpNq-ZEs"
             alt="">
         </ion-col>

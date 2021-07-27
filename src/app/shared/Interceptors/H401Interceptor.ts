@@ -15,7 +15,7 @@ export class H401Interceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       catchError(
         (err, caught) => {
-          console.log(err.error);
+          // console.log(err.error);
           if (err.status === 401 && err.statusText !== 'Unauthorized') {
             this.handleAuthError();
             return of(err);
