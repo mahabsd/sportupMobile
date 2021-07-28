@@ -1,3 +1,6 @@
+
+
+
 #container {
     height: 800px;
     background-color: DarkGreen; /* For browsers that do not support gradients */
@@ -14,7 +17,7 @@ body, html {
   background-color:$color-bg;
 }
 
- input, select, textarea, button {
+ input,ion-input, select, textarea, button {
     font-family: 'Montserrat', sans-serif;
     letter-spacing: -0.2px;
     font-size: $ruler;
@@ -37,23 +40,29 @@ form {
   text-align: center;
 }
 
-button, input {
+button, input,ion-input {
   border: 0;
   outline: 0;
   font-size: $ruler;
   border-radius: $ruler*20;
   padding: $ruler;
   background-color:$color-bg;
-  text-shadow: 1px 1px 0 $color-white;
+  height:50px;
 }
-
+ion-input {
+  padding: 15px;
+}
+ion-input{
+  --placeholder-color: #8a8b8e;
+  --placeholder-opacity: 1;
+}
 label {
   display: block;
   margin-bottom: $ruler*1.5;
   width: 100%;
 }
 
-input {
+input,ion-input {
   margin-right: $ruler/2;
   box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
@@ -74,19 +83,19 @@ button {
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   font-weight: 600;
-  
+
   &:hover {
     box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
   }
-  
+
   &:active {
     box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
   }
-  
+
   .icon {
     margin-right: $ruler/2;
   }
-  
+
   &.unit {
     border-radius: $ruler/2;
     line-height: 0;
@@ -97,12 +106,12 @@ button {
     align-items:center;
     margin: 0 $ruler/2;
     font-size: $ruler*1.2;
-    
+
     .icon {
-      margin-right: 0; 
+      margin-right: 0;
     }
   }
-  
+
   &.red {
     display: block;
     width: 100%;
@@ -114,7 +123,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  
+
   label {
     margin: 0;
     flex: 1;
@@ -127,3 +136,55 @@ button {
     border-radius:25px;
 
 }
+.fishes
+    {
+      position: relative;
+
+    }
+    .fish
+    {
+      position: absolute;
+      height:30vh;
+      width: auto;
+      margin: auto;
+      display: block;
+    }
+    .logosignin{
+      width: 80px; height: 80px;   display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .container {
+      position: relative;
+    }
+    .image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0px;
+      color: #f1f1f1;
+      width: 100%;
+      transition: 0.5s ease;
+      opacity: 0;
+      color: white;
+      font-size: 20px;
+      padding: 20px 0 0 0;
+      text-align: center;
+      opacity: 1;
+      left: 32%;
+      top: 15%;
+    }
+
+    .img2 {
+      width: auto;
+      height: auto;
+
+      img {
+        width: 36%;
+      }
+    }
