@@ -7,6 +7,7 @@ import { HomePage } from './home.page';
 import { FooterPageModule } from '../../component/footer/footer.module';
 import { StatusComponent } from './status/status.component';
 import { ReactionsPage } from './reactions/reactions.page';
+import { ComponentModule } from '../../component/component.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -14,8 +15,8 @@ import { ReactionsPage } from './reactions/reactions.page';
     IonicModule,
     HomePageRoutingModule,
     FooterPageModule,
-    
+ComponentModule
   ],
-  declarations: [HomePage,StatusComponent]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

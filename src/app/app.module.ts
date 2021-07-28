@@ -19,6 +19,7 @@ import { JWTInterceptor } from './shared/Interceptors/JWInterceptors';
 import { H401Interceptor } from './shared/Interceptors/H401Interceptor';
 import { AuthGuard } from './shared/Guard/auth.guard';
 import { StorageService } from './shared/Service/storage.service';
+import { ComponentModule } from './component/component.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { StorageService } from './shared/Service/storage.service';
     BrowserModule,
     IonicModule.forRoot(),
     HttpClientModule,
-    LayoutsModule
+    LayoutsModule,
+    ComponentModule
   ],
   providers: [
     ImagePicker,
@@ -49,8 +51,8 @@ import { StorageService } from './shared/Service/storage.service';
       provide: RouteReuseStrategy,
       useClass: IonicRouteStrategy
     },
-    // { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
-    // { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     GoogleMaps
   ],
   bootstrap: [AppComponent]

@@ -13,8 +13,6 @@ export class StorageService {
 
   constructor(private storage: Storage) {
   }
-
-  
   public set(key, value): Observable<any> {
     console.log(this.storage$.next(value));
 

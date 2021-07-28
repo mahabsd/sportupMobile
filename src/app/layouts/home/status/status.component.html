@@ -1,65 +1,65 @@
-<ion-card *ngFor="let post of (Post$ | async)">
+<ion-item lines="none">
+  <ion-avatar slot="start">
+    <img src="http://placehold.it/75">
+  </ion-avatar>
+  <ion-label>
 
-  <ion-item lines="none">
-    <ion-avatar slot="start">
-      <img src="http://placehold.it/75">
-    </ion-avatar>
-    <ion-label>
+    <h3>{{user?.name}}</h3>
+    <h3>{{post?.user?.name}}</h3>
+    <p>{{post?.createdAt | date}}</p>
+  </ion-label>
+</ion-item>
 
-      <h2>{{post | json}}</h2>
-      <p>November 5, 1955</p>
-    </ion-label>
-  </ion-item>
+<img src="http://placehold.it/300x200" />
 
-  <img src="http://placehold.it/300x200" />
+<ion-card-content>
+  <p>{{post?.content}}</p>
+</ion-card-content>
 
-  <ion-card-content>
-    <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a
-      De Lorean?! Whoa. This is heavy.</p>
-  </ion-card-content>
+<ion-row lines="none">
+  <ion-col size="col-2">
 
-  <ion-row lines="none">
-    <ion-col size="col-2">
-      <ng-container *ngIf="!liked; else dislikedTemp">
-        <ion-button (dblclick)="showReactions($event)" (click)="like()" shape="round" fill="clear" size="large">
-          <img src="../../../../assets/iconPost/icon_like.svg" />
+    <ng-container *ngIf="post.likedBy.indexOf(id); else dislikedTemp">
+    <ion-button (dblclick)="showReactions($event)"  (click)="like(post)" shape="round" fill="clear" size="large">
 
-        </ion-button>
-      </ng-container>
+      <img src="../../../../assets/iconPost/icon_like.svg" />
+      <sub>{{post?.likes}}</sub>
+
+    </ion-button>
+    </ng-container>
       <ng-template #dislikedTemp>
-        <ion-button (dblclick)="showReactions($event)" (click)="dislike()" shape="round" fill="clear" size="large">
+        <ion-button (dblclick)="showReactions($event)" (click)="disLike(post)" shape="round" fill="clear" size="large">
           <img src="../../../../assets/iconPost/icon_liked.svg" />
 
         </ion-button>
 
       </ng-template>
 
-    </ion-col>
-    <ion-col style="text-align:end;">
-      <ion-button (click)="comment()" shape="round" fill="clear" size="large">
-        <img src="../../../../assets/iconPost/icon_comment.svg" />
+  </ion-col>
+  <ion-col style="text-align:end;">
+    <ion-button (click)="comment()" shape="round" fill="clear" size="large">
+      <img src="../../../../assets/iconPost/icon_comment.svg" />
+
+    </ion-button>
+    <ion-button (click)="share()" shape="round" fill="clear" size="large ">
+      <img src="../../../../assets/iconPost/icon_share.svg" />
+
+    </ion-button>
+    <ng-container *ngIf="!bookmarked; else unbook">
+      <ion-button (click)="bookmark()" shape="round" fill="clear" size="large ">
+        <img src="../../../../assets/iconPost/icon_bookmark.svg" class="last" />
 
       </ion-button>
-      <ion-button (click)="share()" shape="round" fill="clear" size="large ">
-        <img src="../../../../assets/iconPost/icon_share.svg" />
+    </ng-container>
+    <ng-template #unbook>
+      <ion-button (click)="unBookmark()" shape="round" fill="clear" size="large ">
+        <img src="../../../../assets/iconPost/icon_bookmarked.svg" class="last" />
 
       </ion-button>
-      <ng-container *ngIf="!bookmarked; else unbook">
-        <ion-button (click)="bookmark()" shape="round" fill="clear" size="large ">
-          <img src="../../../../assets/iconPost/icon_bookmark.svg" class="last" />
 
-        </ion-button>
-      </ng-container>
-      <ng-template #unbook>
-        <ion-button (click)="unbookmark()" shape="round" fill="clear" size="large ">
-          <img src="../../../../assets/iconPost/icon_bookmarked.svg" class="last" />
+    </ng-template>
 
-        </ion-button>
+  </ion-col>
 
-      </ng-template>
+</ion-row>
 
-    </ion-col>
-
-  </ion-row>
-
-</ion-card>
