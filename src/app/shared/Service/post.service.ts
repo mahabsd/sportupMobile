@@ -4,8 +4,6 @@ import { Post } from '../Model/Post';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
-import { environment } from 'src/environments/environment';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -24,8 +22,10 @@ export class PostService {
   disLikePost(post: Post): Observable<Post> {
     return this.utilsService.patch(UtilsService.apiPost + 'dislikePost', post).pipe(map(res => res));
   }
-  getAllPosts(page): Observable<Post[]> {
-    return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}`).pipe(map(res => res.data.data));
+  getAllPosts(): Observable<Post[]> {
+    // console.log(page);
+    // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
+    return this.utilsService.get(`${UtilsService.apiPost}`).pipe(map(res => res.data));
   }
 
 }

@@ -42,6 +42,10 @@ export class LoginPage implements OnInit {
     this.loginService.login(this.user).subscribe(async (response) => {
       // console.log('hello user', response);
       location.href='/tabs/home';
+    }, error => {
+      console.error(error);
+
+      if (error.error.message === "Vous devez activer votre compte"){this.presentToastWithOptions(error.error.message)}
     }
 
     );

@@ -12,10 +12,10 @@ import { Post } from '../../shared/Model/Post';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  // posts$: any = [];
   posts: any = [];
   page = 1;
-  user$: Observable<User>;
+  maximumPages = 10;
+  user$: any = [];
   slideOpts = {
     loop: true,
     effect: 'slide',
@@ -32,25 +32,51 @@ export class HomePage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalShearePage
     });
-    this.getAllPosts();
+    this.getAllPostsByEvent();
     return await modal.present();
   }
   ngOnInit() {
-    this.user$ = this.userservice.getMe();
-    // console.log(this.user$);
+    this.getMe();
 
-    this.getAllPosts();
+    this.getAllPostsByEvent();
   }
-  getAllPosts(event) {
-    this.postService.getAllPosts(this.page).subscribe(res => {
-      this.posts = res;
-      if (event) {
-        event.target.complete();
-      }
+
+  getAllPostsByEvent() {
+    this.postService.getAllPosts().subscribe(res => {
+      this.posts = res['data'].sort((a, b) => {
+        // console.log(a.user.name);
+        if (a.user.name < b.user.name) {
+          return -1;
+        }
+        if (a.user.name > b.user.name) {
+          return 1;
+        }
+        return 0;
+      });
+      // console.log(this.posts);
+
     });
   }
-  // getAllPosts(): Observable<Post[]> {
-  //   return this.posts$ = this.postService.getAllPosts();
+  // getAllPostsByEvent(event?) {
+  //   this.postService.getAllPosts(this.page).subscribe(res => {
+  //     this.posts = this.posts.concat(res['data']);
+  //     // console.log(this.posts);
+
+  //     if (event) {
+  //       event.target.complete();
+  //     }
+  //   });
+  // }
+  // separateLetter(record, recordIndex, records) {
+  //   if (recordIndex == 0) {
+  //     return record.user.name[0].toUpperCase();
+  //   }
+  //   let first_prev = records[recordIndex - 1].user.name[0];
+  //   let first_current = record.user.name[0];
+  //   if (first_prev != first_current) {
+  //     return first_current.toUpperCase();
+  //   }
+  //   return null;
   // }
   doRefresh(event) {
     console.log('Begin async operation');
@@ -60,27 +86,40 @@ export class HomePage implements OnInit {
       event.target.complete();
     }, 2000);
   }
+  getMe() {
+    this.userservice.getMe().subscribe(res => {
+      this.user$ = res
+      // console.log(this.user$);
 
+    })
+  }
+  // Function to call deslike API
   like(post) {
+
     console.log('like');
     this.postService.likePost(post).subscribe(res => {
-      console.log(res);
+      // console.log(res);
+      this.getAllPostsByEvent();
     });
   }
+  // Function to call deslike API
   disLike(post) {
     console.log('dislike');
     this.postService.disLikePost(post).subscribe(res => {
-      console.log(res);
-      this.getAllPosts();
+      // console.log(res);
+      this.getAllPostsByEvent();
 
     });
 
   }
-
+  // Function to load data when we reach the bottom of the page
   loadMore(event) {
     this.page++;
-    this.getAllPosts(event);
-    console.log(event);
-
+    // this.getAllPostsByEvent(event);
+    this.getAllPostsByEvent();
+    // console.log(this.page);
+    if (this.page === this.maximumPages) {
+      event.target.disabled = true;
+    }
   }
 }

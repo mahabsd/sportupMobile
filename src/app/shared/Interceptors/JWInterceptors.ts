@@ -27,6 +27,8 @@ export class JWTInterceptor implements HttpInterceptor {
 
       let cloneReq = this.addToken(request, token);
       return next.handle(cloneReq).pipe(catchError(error => {
+        console.log(error);
+
         let msg = error.message;
         this.presentToast(msg, 'danger', 'top');
         throw error;
