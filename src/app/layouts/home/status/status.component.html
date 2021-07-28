@@ -4,36 +4,36 @@
   </ion-avatar>
   <ion-label>
 
-    <h3>{{user?.name}}</h3>
-    <h3>{{post?.user?.name}}</h3>
+    <!-- <h3>{{user?.name}}</h3> -->
+    <h3 class="ion-text-capitalize">{{post?.user?.name}}</h3>
     <p>{{post?.createdAt | date}}</p>
   </ion-label>
 </ion-item>
 
 <img src="http://placehold.it/300x200" />
 
-<ion-card-content>
+<ion-card-content class="ion-text-start">
   <p>{{post?.content}}</p>
 </ion-card-content>
 
 <ion-row lines="none">
   <ion-col size="col-2">
+    <ng-container *ngIf="post?.likedBy.indexOf(id); else dislikedTemp">
+      <ion-button (dblclick)="showReactions($event)" (click)="like(post)" shape="round" fill="clear" size="large">
 
-    <ng-container *ngIf="post.likedBy.indexOf(id); else dislikedTemp">
-    <ion-button (dblclick)="showReactions($event)"  (click)="like(post)" shape="round" fill="clear" size="large">
+        <img src="../../../../assets/iconPost/icon_like.svg" />
+        <sub>{{post?.likes}}</sub>
 
-      <img src="../../../../assets/iconPost/icon_like.svg" />
-      <sub>{{post?.likes}}</sub>
-
-    </ion-button>
+      </ion-button>
     </ng-container>
-      <ng-template #dislikedTemp>
-        <ion-button (dblclick)="showReactions($event)" (click)="disLike(post)" shape="round" fill="clear" size="large">
-          <img src="../../../../assets/iconPost/icon_liked.svg" />
+    <ng-template #dislikedTemp>
+      <ion-button (dblclick)="showReactions($event)" (click)="disLike(post)" shape="round" fill="clear" size="large">
+        <img src="../../../../assets/iconPost/icon_liked.svg" />
+        <sub>{{post?.likes}}</sub>
 
-        </ion-button>
+      </ion-button>
 
-      </ng-template>
+    </ng-template>
 
   </ion-col>
   <ion-col style="text-align:end;">
@@ -61,5 +61,17 @@
 
   </ion-col>
 
-</ion-row>
 
+
+</ion-row>
+<ion-item class="commentaire">
+  <ion-col size="8" style="text-align:start;">
+    <ion-input class="commentaire" type="text" placeholder="Ecrire un commentaire"></ion-input>
+  </ion-col>
+  <ion-col size="4" style="text-align:end;">
+
+    <ion-button class="commentaire" (click)="sendComment(post)" shape="round" fill="clear" size="small ">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </ion-col>
+</ion-item>

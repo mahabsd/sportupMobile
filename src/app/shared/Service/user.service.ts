@@ -14,9 +14,9 @@ export class UserService {
 
   constructor(private utilsService: UtilsService,
     public toastCtrl: ToastController) { }
-  getMe(){
+  getMe():Observable<User>{
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
-     
+
       return res.data.data;
 
     }), catchError(this.handleError));
@@ -38,6 +38,7 @@ export class UserService {
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
   handleError(error: HttpErrorResponse) {
+console.log(error);
 
     if (error?.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -47,7 +48,7 @@ export class UserService {
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
-      if (error?.status === 50) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
+      if (error?.status === 500) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
       console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
 
     }

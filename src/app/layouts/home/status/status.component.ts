@@ -16,6 +16,7 @@ export class StatusComponent implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
   @Input() post: Post;
+  @Input() user: User;
 
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
@@ -23,7 +24,7 @@ export class StatusComponent implements OnInit {
   posts: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
-  user: any;
+  // user: any;
   tap = 0;
   press = 0;
   liked = false;
@@ -36,18 +37,12 @@ export class StatusComponent implements OnInit {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
+    // this.getMe();
   }
   ngOnInit() {
-    this.getMe();
+    this.id = this.user?._id;
   }
-  getMe() {
-    this.userService.getMe().subscribe(res => {
-      // eslint-disable-next-line no-underscore-dangle
-      this.id = res._id;
-      // eslint-disable-next-line no-underscore-dangle
-      console.log(this.id);
-    });
-  }
+
   async showReactions(ev) {
     this.press++;
     const reactions = await this.popoverCtrl.create(
@@ -89,7 +84,9 @@ export class StatusComponent implements OnInit {
     console.log('unbookmark');
     this.bookmarked = false;
   }
+  sendComment(post) {
 
+  }
 
 
 

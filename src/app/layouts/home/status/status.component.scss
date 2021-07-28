@@ -18,6 +18,23 @@ ion-button {
 ion-button img {
   width: 30px;
 }
+
 ion-button img.last {
   width: 20px;
+}
+
+ion-input.commentaire:focus {
+  --highlight-color-focused: none;
+}
+
+ion-item.commentaire {
+  --highlight-color-focused: var(--ion-color-light-shade);
+--inner-padding-end:0;
+  --background: var(--ion-color-light-tint);
+}
+
+
+ion-button.commentaire {
+
+  --inner-padding-end:0;
 }

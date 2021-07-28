@@ -33,7 +33,7 @@ export class ConfirmationPage implements OnInit {
       this.router.navigateByUrl('/login');
     }, err => {
       console.log(err);
-      this.presentToast(err, 'danger', 'middle')
+      this.presentToast(err?.error?.error?.message, 'danger', 'middle')
     });
   }
   async presentToast(message, color, position) {

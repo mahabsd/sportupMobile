@@ -1,4 +1,4 @@
-<app-header title="Home" ></app-header>
+<app-header title="Home"></app-header>
 <ion-content padding>
   <div id="container">
     <ion-grid>
@@ -14,10 +14,9 @@
           </div>
         </ion-col>
       </ion-row>
-
       <ion-row id="rowTabFiltre">
         <ion-col>
-          <ion-button class="unit" type="button" (click)="getAllPosts()">
+          <ion-button class="unit" type="button" (click)="getAllPostsByEvent()">
             Tout </ion-button>
         </ion-col>
         <ion-col>
@@ -30,14 +29,11 @@
           </ion-button>
         </ion-col>
       </ion-row>
-
-
       <div style="background-color: grey !important; height: 0.25px !important;"></div>
       <ion-row class="row">
       </ion-row>
-
       <div style="background-color: grey !important; height: 2px !important;"></div>
-      <div class=" myStory cion-padding" style="padding-top: 10px; width:160px;    margin-left:110px">
+      <div class=" myStory cion-padding" style=" width:160px;    margin-left:110px">
         <!-- <ion-slides pager="false">
         <ion-slide>
           <ion-avatar>
@@ -72,28 +68,20 @@
       </ion-slides> -->
       </div>
     </ion-grid>
-    <!-- <ion-grid class="postClass"> -->
     <ion-row class="bodyFilter">
       <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
           refreshingSpinner="circles" refreshingText="Refreshing...">
         </ion-refresher-content>
       </ion-refresher>
-
-      <!-- <ion-card *ngFor="let post of (posts$ | async)"> -->
-      <ion-card *ngFor="let post of posts">
-        <app-status [post]="post" (disLikeFn)="disLike(post)" (likeFn)="like(post)"></app-status>
-      </ion-card>
-      <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
-        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-        </ion-infinite-scroll-content>
-      </ion-infinite-scroll> -->
+      <ion-virtual-scroll [items]="posts" [headerFn]="separateLetter">
+       <!-- <ion-item-divider *virtualHeader="let header">
+         <ion-label>{{header}}</ion-label>
+       </ion-item-divider> -->
+        <ion-card *virtualItem="let post">
+          <app-status [post]="post" [user]="user$" (disLikeFn)="disLike(post)" (likeFn)="like(post)"></app-status>
+        </ion-card>
+      </ion-virtual-scroll>
     </ion-row>
-    <!-- </ion-grid> -->
   </div>
-  <ion-infinite-scroll threshold="25%" [disabled]="true" position="bottom" (ionInfinite)="loadData($event)">
-    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
 </ion-content>
-<!-- <app-footer></app-footer> -->
