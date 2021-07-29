@@ -12,8 +12,8 @@
   </ion-row>
 
   <div>
-    <form>
-      <div style="margin-top: 30px;">
+    <form [formGroup]="loginForm">
+      <div style="margin-top: 15px;">
 
       <ion-row>
           <ion-row>
@@ -23,8 +23,12 @@
 
 
 
-          <ion-input type="email" style="margin: 5px;"  placeholder="Adresse email" [(ngModel)]="user.email" ngControl="email" name="email" required  >
-            <ion-icon style="color: #88ba26;" name="pencil-sharp" slot="end"></ion-icon>
+            <ion-input type="email" style="margin: 5px;"  autofocus="true" class="form-controll ion-margin-bottom" mdInput formControlName="emailControl"
+            [ngClass]="{'error':loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine}"
+            color="{{loginForm.controls['emailControl'].errors && !loginForm.controls['emailControl'].pristine ? 'warning':'dark'}}"
+            placeholder="Adresse Email" name="email" [(ngModel)]="user.email" required >
+
+            <ion-icon style="color: #88ba26;  padding: 15px;" name="pencil-sharp" slot="end"></ion-icon>
 
 
           </ion-input>
@@ -41,9 +45,10 @@
             </ion-col>
             <ion-col>
 
+              <ion-input   style="margin: 5px;" type="password" class="form-controll ion-margin-bottom" mdInput placeholder="Mot de passe"
+              formControlName="passwordControl" name="password" [(ngModel)]="user.password" required>
 
-              <ion-input style="margin: 5px;" type="password" placeholder="Accés parental" [(ngModel)]="user.password"  ngControl="password" name="password" required >
-              <ion-icon style="color: #88ba26;" name="pencil-sharp" item-right></ion-icon>
+              <ion-icon style="color: #88ba26;   padding: 15px;" name="pencil-sharp" item-right></ion-icon>
 
 
           </ion-input>
@@ -57,9 +62,12 @@
         <ion-row style="margin-bottom: 20px;  justify-content: center;">
         <ion-label style="color:#72c6ec;font-size: x-small;"  (click)="ResetPassword()" >JE N'AI PAS RECUE DE CODE</ion-label>
       </ion-row>
-        <button  id="ButtonConnect"  (click)="login()" routerLink="/accueil" class="red" type="submit">
+        <button   id="ButtonConnect"  (click)="login()"  class="red" type="submit"  [disabled]=" loginForm.invalid">
         <span style="color:white;font-weight: lighter;  font-family: MyriadPro-Regular;
         "> CONNEXION</span> </button>
+
+
+
     </form>
   </div>
   </ion-content>

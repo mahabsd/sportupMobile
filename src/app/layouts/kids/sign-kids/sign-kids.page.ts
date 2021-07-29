@@ -1,3 +1,9 @@
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable eqeqeq */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable @typescript-eslint/no-shadow */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { LoginKidsService } from './login-kids.service';
@@ -5,6 +11,10 @@ import { Storage } from '@ionic/storage';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
+import { ToastController } from '@ionic/angular';
+import { PatternValidator } from 'src/app/shared/patternValidator';
+import { AuthService } from 'src/app/shared/Auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sign-kids',
@@ -12,6 +22,7 @@ import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-nati
   styleUrls: ['./sign-kids.page.scss'],
 })
 export class SignKidsPage implements OnInit {
+  loginForm: FormGroup;
 
   fg: FormGroup;
   fileUrl: any = null;
@@ -20,30 +31,29 @@ export class SignKidsPage implements OnInit {
     email: '',
     password: ''
   };
-  logForm(form) {
-    console.log(this.user);
-    this.user.email = '';
-    this.user.password = '';
-  }
+
   constructor(
     private imagePicker: ImagePicker,
     private crop: Crop,
     private transfer: FileTransfer,
     private storage: Storage,
-    public fb: FormBuilder,
-    public LoginKidsService: LoginKidsService) { }
+    public fb: FormBuilder,    private toastCtrl: ToastController,
+    private router: Router,
+    public LoginKidsService: LoginKidsService, public loginService: AuthService) { }
   ngOnInit() {
-    this.fg = this.fb.group({
-      emailControl: new FormControl('', Validators.required),
-      passwordControl: new FormControl('', Validators.required),
-      confirmControl: new FormControl('', Validators.required),
-      mobileControl: new FormControl('', Validators.required),
-      add1Control: new FormControl(''),
-      add2COntrol: new FormControl(''),
-      postcodeControl: new FormControl(''),
-      stateControl: new FormControl('')
+    this.loginForm = new FormGroup({
+      emailControl: new FormControl('', [Validators.required,
+      // eslint-disable-next-line max-len
+      PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
+      passwordControl: new FormControl('', Validators.required)
     });
   }
+  logForm(form) {
+    console.log(this.user);
+    this.user.email = '';
+    this.user.password = '';
+  }
+
   ConnectFacebook() {
     console.log('hello facebook');
   }
@@ -53,7 +63,7 @@ export class SignKidsPage implements OnInit {
   cropUpload() {
     console.log('test');
     this.imagePicker.getPictures({ maximumImagesCount: 1, outputType: 0 }).then((results) => {
-      
+
       for (let i = 0; i < results.length; i++) {
           console.log('Image URI: ' + results[i]);
           this.crop.crop(results[i], { quality: 100 })
@@ -88,21 +98,52 @@ export class SignKidsPage implements OnInit {
     console.log('Change Image');
   }
   login() {
+/*
     this.LoginKidsService.login(this.user).subscribe((response) => {
       console.log('hello user', response);
       if (response.token)
       {
-        
+
         this.storage.set('token', response.token);
         console.log('hello user', response);
       } else {
         console.log('not user');
       }
-    });
+    });*/
+
+
+    this.loginService.login(this.user).subscribe(async (response) => {
+       console.log('hello user', response.user.role);
+      if( response.user.role=="kids"){
+        this.router.navigateByUrl('/accueil');
+
+      }
+      else {
+      this.presentToast('vous n\'avez pas le droit d\accées','warning','top');
+      }
+
+    },
+    error=>{
+      console.error(error);
+
+    }
+
+    );
+
+
+
 
   }
   ResetPassword(){
     console.log('reset password');
   }
-
+  async presentToast(message, color, position) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      color,
+      position
+    });
+    toast.present();
+  }
 }
