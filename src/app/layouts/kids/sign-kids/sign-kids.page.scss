@@ -52,6 +52,10 @@ button, input,ion-input {
 ion-input {
   padding: 15px;
 }
+
+
+
+
 ion-input{
   --placeholder-color: #8a8b8e;
   --placeholder-opacity: 1;
@@ -163,6 +167,11 @@ button {
       display: block;
       width: 100%;
       height: auto;
+    }
+
+    .form-controll {
+      color:black;
+
     }
     .overlay {
       position: absolute;
