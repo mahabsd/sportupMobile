@@ -20,7 +20,7 @@ export class LoginPage implements OnInit {
     public fb: FormBuilder,
     private toastCtrl: ToastController,
     private router: Router,
-    public loginService: AuthService) { }
+    public authService: AuthService) { }
   ngOnInit() {
     this.loginForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
@@ -36,10 +36,10 @@ export class LoginPage implements OnInit {
     console.log('hello google');
   }
 
-  async login() {
+   login() {
     // console.log(this.user);
 
-    this.loginService.login(this.user).subscribe(async (response) => {
+    this.authService.login(this.user).subscribe( (response) => {
       // console.log('hello user', response);
       location.href='/tabs/home';
     }, error => {
