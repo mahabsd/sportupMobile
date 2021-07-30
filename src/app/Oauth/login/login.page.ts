@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
 import { PatternValidator } from '../../shared/patternValidator';
 import { User } from 'src/app/shared/Model/User';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
@@ -19,6 +19,7 @@ export class LoginPage implements OnInit {
   constructor(
     public fb: FormBuilder,
     private toastCtrl: ToastController,
+    private alertController: AlertController,
     private router: Router,
     public authService: AuthService) { }
   ngOnInit() {
@@ -36,16 +37,16 @@ export class LoginPage implements OnInit {
     console.log('hello google');
   }
 
-   login() {
+  login() {
     // console.log(this.user);
 
-    this.authService.login(this.user).subscribe( (response) => {
+    this.authService.login(this.user).subscribe((response) => {
       // console.log('hello user', response);
-      location.href='/tabs/home';
+      location.href = '/tabs/home';
     }, error => {
       console.error(error);
 
-      if (error.error.message === "Vous devez activer votre compte"){this.presentToastWithOptions(error.error.message)}
+      if (error.error.message === 'Vous devez activer votre compte') { this.presentAlertConfirm(error.error.message); }
     }
 
     );
@@ -60,33 +61,32 @@ export class LoginPage implements OnInit {
     });
     toast.present();
   }
-  async presentToastWithOptions(message) {
-    const toast = await this.toastCtrl.create({
-      header: '',
-      message,
-      position: 'top',
 
+
+
+  async presentAlertConfirm(message) {
+    const alert = await this.alertController.create({
+      cssClass: 'alertCtrl',
+      header: 'Confirm!',
+      message,
       buttons: [
         {
-          side: 'start',
-
-          text: 'Confirmer',
-          handler: () => {
-
-            this.router.navigateByUrl('/confirmation');
+          text: 'Annuller',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Annuler',
-          role: 'cancel',
+          text: 'Confirmer',
           handler: () => {
-            console.log('Cancel clicked');
+            this.router.navigateByUrl('/confirmation');
+            console.log('Confirm Okay');
           }
         }
       ]
     });
-    await toast.present();
 
-    const { role } = await toast.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
+    await alert.present();
   }
 }

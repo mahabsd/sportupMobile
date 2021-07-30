@@ -230,3 +230,8 @@ input::-moz-placeholder {
 ion-label.ion-padding-top {
   text-decoration: underline;
 }
+
+.alertCtrl {
+  --background: yellow;
+  --color: #000;
+}

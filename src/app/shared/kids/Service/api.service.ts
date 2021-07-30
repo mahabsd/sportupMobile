@@ -14,13 +14,13 @@ import { StorageService } from '../../Service/storage.service';
 @Injectable({
   providedIn: 'root',
 })
-export class UtilsService {
+export class ApiService {
   public static remoteAdress = environment.apiUrl;
-  public static apiUSER = UtilsService.remoteAdress + 'users/';
-  public static apiACTION = UtilsService.remoteAdress + 'actions/';
-  public static apiCLIENT = UtilsService.remoteAdress + 'clients/';
-  public static apiOPERATION = UtilsService.remoteAdress + 'operations/';
-  public static apiPost = UtilsService.remoteAdress + 'posts/';
+  public static apiUSER = ApiService.remoteAdress + 'users/';
+  public static apiACTION = ApiService.remoteAdress + 'actions/';
+  public static apiCLIENT = ApiService.remoteAdress + 'clients/';
+  public static apiOPERATION = ApiService.remoteAdress + 'operations/';
+  public static apiPost = ApiService.remoteAdress + 'posts/';
   token: any;
   myToast: any;
   header: any;

@@ -87,8 +87,12 @@ export class AppComponent implements OnInit {
 
   async ngOnInit() {
     this.platform.ready().then(() => {
-      this.token = this.storage.get(environment.token);
-      return this.token;
+
+      this.storage.get(environment.token).subscribe(res => {
+        this.token = res;
+        console.log(this.token);
+        return this.token;
+      });
     });
 
   }
