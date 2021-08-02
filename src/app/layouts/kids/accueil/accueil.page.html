@@ -10,10 +10,10 @@
 <ion-grid>
   <ion-row>
 
-    <ion-col sizeLg="4" sizeMd="4" sizeXs="6" *ngFor="let image of [1,2,3,4,5,6,7,8,9]">
+    <ion-col sizeLg="4" sizeMd="4" sizeXs="6"*ngFor="let post of posts ">
       <div class="img-wrapper"  >
-        <div > 
-          <ion-row>
+        <div >
+          <ion-row style="    height: 40px;">
             <ion-col size="3" >
             <ion-avatar>
         <img class="myImageUser"
@@ -21,17 +21,33 @@
         </ion-avatar>
             </ion-col>
             <ion-col size="9" style="margin-left: 35px;
-    margin-top: -55px;">
-              <ion-label style="color:gray;margin-top:45px;font-size: x-small;">Nassir benali</ion-label>
+    margin-top: -70px;">
+              <ion-label style="color:gray;margin-top:45px;font-size: x-small;">{{post.user.name}}</ion-label>
+              <ion-label style="color:gray;    font-size: xx-small;
+              display: block;">{{post.createdAt| date}}</ion-label>
+
             </ion-col>
           </ion-row>
+
+
+          <ion-row>
+            <ion-col size="9"  >
+              <ion-label style="color:gray;font-size: small;font-weight: bold;">{{post.title}}</ion-label>
+              <ion-label style="color:gray;    font-size:x-small;   display: block;width: 250px;">{{post.content}}</ion-label>
+
+            </ion-col>
+          </ion-row>
+
+
+
+
         </div>
-        <img style="   border-radius: 15px;margin-top: -15px;"
-            src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png">  
+        <img style="   border-radius: 15px"
+            src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png">
             <div id="main-content">
             <ion-icon (click)="addLike(post)" slot="end" name="heart-empty"></ion-icon>
             <ion-row>
-            
+
     <ion-col size="2">
     <ion-icon name="close"></ion-icon>
 
@@ -40,7 +56,7 @@
 
     </ion-col>
     <ion-col size="2">
-     
+
 
 
     </ion-col>

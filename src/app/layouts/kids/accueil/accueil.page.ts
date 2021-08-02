@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Post } from 'src/app/shared/Model/Post';
+import { PostService } from 'src/app/shared/Service/post.service';
 
 @Component({
   selector: 'app-accueil',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AccueilPage implements OnInit {
 
-  constructor() { }
+  posts :any[] = [];
+  constructor(private postService: PostService) { }
 
   ngOnInit() {
+this.getAllPostsKids();
+  }
+
+  getAllPostsKids() {
+    this.postService.getAllPostsKids().subscribe(res => {
+  this.posts=res['data'];
+  console.log(res['data']);
+
+
+    });
   }
 
 }

@@ -28,4 +28,10 @@ export class PostService {
     return this.utilsService.get(`${UtilsService.apiPost}`).pipe(map(res => res.data));
   }
 
+  getAllPostsKids(): Observable<Post[]> {
+     console.log(`${UtilsService.apiPost}?type=kids`);
+    // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
+    return this.utilsService.get(`${UtilsService.apiPost}?type=kids`).pipe(map(res => res.data));
+  }
+
 }
