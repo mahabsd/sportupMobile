@@ -2,7 +2,7 @@ import { UtilsService } from './utils.service';
 import { Injectable } from '@angular/core';
 import { Comment } from '../Model/Comment';
 import { map } from 'rxjs/operators';
-import { Post } from '../../../../../sportUpWeb/src/app/Shared/Model/post';
+import { Post } from '../Model/Post';
 
 @Injectable({
   providedIn: 'root'

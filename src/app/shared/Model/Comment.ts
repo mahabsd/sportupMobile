@@ -1,9 +1,10 @@
-import { User } from '../../../../../sportUpWeb/src/app/component/menu/menu.component';
-import { Post } from '../../../../../sportUpWeb/src/app/Shared/Model/post';
+import { Post } from './Post';
+import { User } from "./User";
+
 export class Comment {
   id: number;
   content: string;
   commentator: string;
-  user: User;
+  user: User  ;
   post: Post;
 }

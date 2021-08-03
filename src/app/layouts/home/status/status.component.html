@@ -20,7 +20,7 @@
   <ion-col size="col-2">
     <ion-chip>
 
-      <ng-container *ngIf="post?.likedBy.indexOf(id); else dislikedTemp">
+      <ng-container *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp">
         <ion-button (dblclick)="showReactions($event)" (click)="like(post)" shape="round" fill="clear" size="large">
 
           <img src="../../../../assets/iconPost/icon_like.svg" />

@@ -43,7 +43,7 @@ export class AppComponent implements OnInit {
     {
       icon: 'settings',
       title: 'ERP',
-      url: '/erp'
+      url: '/login-erp'
     },
     {
       icon: 'heart',
