@@ -12,11 +12,17 @@
   #container a {
     text-decoration: none;
   }
+  ion-col.my-thin-col {
+    padding:0;
+    margin-left: 6px;
+    width: calc(calc(6 / var(--ion-grid-columns, 12.5)) * 100%);
+    max-width: calc(calc(6 / var(--ion-grid-columns, 12.5)) * 100%);
+  }
   #container {
     height: 800px;
     // background-color: DarkGreen; /* For browsers that do not support gradients */
     // background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
-    
+
     text-align: center;
     position: absolute;
     left: 0;
@@ -63,7 +69,7 @@
     margin-bottom: 5px;
   }
   .mygallery{
-    border-radius: 6px; 
+    border-radius: 6px;
     display:inline-flex;
   }
   ion-slides {
@@ -235,8 +241,8 @@ ion-toolbar {
 
 .slidemenu label span{
   display: block;
-  padding: 10px;   
-  color: #247238; 
+  padding: 10px;
+  color: #247238;
 }
 
 .slidemenu label .icon{
@@ -291,14 +297,14 @@ ion-toolbar {
 .HeaderFilter{
   //  background-color: #e4e4e4;
    // height: 5%;
-   
+
 }
 .BadyFilter{
 
 }
 
 
- 
+
  #cart-badge {
     position: absolute;
     top: 0px;
@@ -319,7 +325,7 @@ ion-toolbar {
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
-   
+
 
   }
   .inner-badge-OK .badgeCancel{
@@ -343,7 +349,7 @@ ion-toolbar {
     display: table-cell;
     vertical-align: middle;
     padding: 8px;
-    
+
   }
 
   .inner-badge-Tchat {
@@ -402,7 +408,7 @@ ion-toolbar {
 //     position: relative;
 //     display: inline-block;
 //   }
-  
+
 //   .images .UserPosted {
 //     position: absolute;
 //     width: 40%;
@@ -446,9 +452,9 @@ ion-slide {
     height: 30px;
 
 }
- 
 
- 
+
+
 
 h1{font-size:14px; font-weight:400; margin:10px 0 0 0; color:#888888;}
 
@@ -479,11 +485,11 @@ svg{
     #grp2{
       opacity:1; transition:.1s all .3s;
       #oval1{
-        transform:scale(0) translate(30px, -15px); 
+        transform:scale(0) translate(30px, -15px);
         transform-origin:0 0 0;
         transition:.5s transform .3s;}
       #oval2{
-        transform:scale(0) translate(60px, -15px); 
+        transform:scale(0) translate(60px, -15px);
         transform-origin:0 0 0;
         transition:1.5s transform .3s;}
     }

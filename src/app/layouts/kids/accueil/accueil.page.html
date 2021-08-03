@@ -10,7 +10,7 @@
 <ion-grid>
   <ion-row>
 
-    <ion-col sizeLg="4" sizeMd="4" sizeXs="6"*ngFor="let post of posts ">
+    <ion-col class='my-thin-col'  *ngFor="let post of posts " style="    box-shadow: rgb(0 0 0 / 8%) -2px 3px 6px ;border-radius: 10px;">
       <div class="img-wrapper"  >
         <div >
           <ion-row style="    height: 40px;">
@@ -21,7 +21,7 @@
         </ion-avatar>
             </ion-col>
             <ion-col size="9" style="margin-left: 35px;
-    margin-top: -70px;">
+    margin-top: -77px;">
               <ion-label style="color:gray;margin-top:45px;font-size: x-small;">{{post.user.name}}</ion-label>
               <ion-label style="color:gray;    font-size: xx-small;
               display: block;">{{post.createdAt| date}}</ion-label>
@@ -45,7 +45,7 @@
         <img style="   border-radius: 15px"
             src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png">
             <div id="main-content">
-            <ion-icon (click)="addLike(post)" slot="end" name="heart-empty"></ion-icon>
+            <ion-icon  slot="end" name="heart-empty"></ion-icon>
             <ion-row>
 
     <ion-col size="2">
@@ -64,7 +64,7 @@
 
     </ion-col>
     <ion-col size="2">
-    <ion-icon name="heart-outline"></ion-icon>
+    <ion-icon (click)="addLike(post)" name="heart-outline"></ion-icon>
 
     </ion-col>
   </ion-row>
