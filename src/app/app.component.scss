@@ -113,7 +113,7 @@ ion-item.selected {
   --color: var(--ion-color-primary);
 }
 
-// for style avatar 
+// for style avatar
 // Material Design Sidemenu
 
 #menu-material {
@@ -175,7 +175,7 @@ ion-item.selected {
 .menu .has-header
 {
   top: 169px;
-} 
+}
 
 
 .active-item {
@@ -194,3 +194,10 @@ ion-footer ion-toolbar , ion-footer ion-toolbar ion-item {
 }
 
 
+ion-fab {
+  margin-bottom: 5rem;
+  margin-right: .5rem;
+}
+ion-fab-button {
+  --background: transparent;
+}

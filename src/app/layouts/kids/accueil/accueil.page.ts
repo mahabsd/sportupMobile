@@ -36,5 +36,5 @@ this.getAllPostsKids();
        console.log(res);
     });
   }
-
+getAllPost(){}
 }

@@ -6,6 +6,7 @@ import { UserService } from '../../shared/Service/user.service';
 import { PostService } from '../../shared/Service/post.service';
 import { Observable } from 'rxjs';
 import { Post } from '../../shared/Model/Post';
+import { CommentService } from '../../shared/Service/comment.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -26,6 +27,7 @@ export class HomePage implements OnInit {
   constructor(
     private modalController: ModalController,
     private postService: PostService,
+    private commentService: CommentService,
     private userservice: UserService) {
   }
   async openModal() {
@@ -43,6 +45,8 @@ export class HomePage implements OnInit {
 
   getAllPostsByEvent() {
     this.postService.getAllPosts().subscribe(res => {
+      console.log(res);
+
       this.posts = res['data'].sort((a, b) => {
         // console.log(a.user.name);
         if (a.user.name < b.user.name) {
@@ -88,10 +92,10 @@ export class HomePage implements OnInit {
   }
   getMe() {
     this.userservice.getMe().subscribe(res => {
-      this.user$ = res
+      this.user$ = res;
       // console.log(this.user$);
 
-    })
+    });
   }
   // Function to call deslike API
   like(post) {
@@ -122,4 +126,7 @@ export class HomePage implements OnInit {
       event.target.disabled = true;
     }
   }
+  // Function pour ajouter commentaire par publication
+
+
 }

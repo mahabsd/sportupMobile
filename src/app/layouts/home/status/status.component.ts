@@ -1,11 +1,15 @@
 import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController } from '@ionic/angular';
+import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
 import { Post } from '../../../shared/Model/Post';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Shared/Model/user';
 import { UserService } from '../../../shared/Service/user.service';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Comment } from '../../../shared/Model/Comment';
+import { CommentService } from '../../../shared/Service/comment.service';
+import { CommentsPage } from '../comments/comments.page';
 
 @Component({
   selector: 'app-status',
@@ -17,11 +21,13 @@ export class StatusComponent implements OnInit {
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
   @Input() post: Post;
   @Input() user: User;
-
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
+  commentForm: FormGroup;
+  comment: Comment = new Comment();
   longPressActive = false;
   posts: any = [];
+  comments: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -31,8 +37,9 @@ export class StatusComponent implements OnInit {
   bookmarked = false;
   id: number;
   constructor(private navCtrl: NavController,
-    private postService: PostService,
-    private userService: UserService,
+    private commentService: CommentService,
+    private modalController: ModalController,
+
     private popoverCtrl: PopoverController) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -40,7 +47,10 @@ export class StatusComponent implements OnInit {
     // this.getMe();
   }
   ngOnInit() {
+
+    // eslint-disable-next-line no-underscore-dangle
     this.id = this.user?._id;
+    this.getCommentByPost();
   }
 
   async showReactions(ev) {
@@ -70,7 +80,7 @@ export class StatusComponent implements OnInit {
     this.disLikeFn.emit(post);
   }
 
-  comment() {
+  onComment() {
     console.log('comment');
   }
   share() {
@@ -84,11 +94,33 @@ export class StatusComponent implements OnInit {
     console.log('unbookmark');
     this.bookmarked = false;
   }
-  sendComment(post) {
+
+  async presentModal(post) {
+    const modal = await this.modalController.create({
+      component: CommentsPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        post,
+        comments: this.comments
+
+      }
+    });
+    await modal.present();
+
+    await modal.onWillDismiss().then((result) => {
+      this.getCommentByPost();
+    });
+
 
   }
+  getCommentByPost() {
+    // eslint-disable-next-line no-underscore-dangle
+    this.commentService.getCommentByService(this.post._id).subscribe(arg => {
+      console.log(arg);
+      this.comments = arg;
+    });
 
-
+  }
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
