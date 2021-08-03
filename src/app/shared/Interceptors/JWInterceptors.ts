@@ -26,6 +26,7 @@ export class JWTInterceptor implements HttpInterceptor {
     return from(promise).pipe(mergeMap(token => {
 
       let cloneReq = this.addToken(request, token);
+
       return next.handle(cloneReq).pipe(catchError(error => {
         console.log(error);
 
@@ -69,6 +70,8 @@ export class JWTInterceptor implements HttpInterceptor {
 
   }
   private addToken(request: HttpRequest<any>, token: any) {
+    console.log(token);
+
     if (token) {
       let clone: HttpRequest<any>;
       clone = request.clone({

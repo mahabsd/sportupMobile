@@ -7,8 +7,8 @@ import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 // import { DatePipe } from "@angular/common";
 import { ToastController } from '@ionic/angular';
-import { environment } from '../../../../../../sportUpWeb/src/environments/environment';
 import { StorageService } from '../../Service/storage.service';
+import { environment } from 'src/environments/environment';
 
 
 @Injectable({
