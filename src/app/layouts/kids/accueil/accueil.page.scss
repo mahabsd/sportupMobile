@@ -18,6 +18,13 @@
     width: calc(calc(6 / var(--ion-grid-columns, 12.5)) * 100%);
     max-width: calc(calc(6 / var(--ion-grid-columns, 12.5)) * 100%);
   }
+
+  .stylecards{
+    box-shadow: rgb(0 0 0 / 8%) -2px 3px 6px ;border-radius: 10px;
+  }
+  .labelnblikes{
+    font-size: smaller;
+  }
   #container {
     height: 800px;
     // background-color: DarkGreen; /* For browsers that do not support gradients */

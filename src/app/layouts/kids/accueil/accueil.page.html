@@ -7,20 +7,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid>
-    <ion-row>
+<ion-grid>
+  <ion-row>
 
-      <ion-col class='my-thin-col' *ngFor="let post of posts "
-        style="    box-shadow: rgb(0 0 0 / 8%) -2px 3px 6px ;border-radius: 10px;">
-        <div class="img-wrapper">
-          <div>
-            <ion-row style="    height: 40px;">
-              <ion-col size="3">
-                <ion-avatar>
-                  <img class="myImageUser" src="../../../assets/kidsuser.png">
-                </ion-avatar>
-              </ion-col>
-              <ion-col size="9" style="margin-left: 35px;
+    <ion-col class='my-thin-col stylecards'  *ngFor="let post of posts " >
+      <div class="img-wrapper"  >
+        <div >
+          <ion-row style="    height: 40px;">
+            <ion-col size="3" >
+            <ion-avatar>
+        <img class="myImageUser"
+            src="../../../assets/kidsuser.png">
+        </ion-avatar>
+            </ion-col>
+            <ion-col size="9" style="margin-left: 35px;
+
     margin-top: -77px;">
                 <ion-label style="color:gray;margin-top:45px;font-size: x-small;">{{post.user.name}}</ion-label>
                 <ion-label style="color:gray;    font-size: xx-small;
@@ -64,10 +65,22 @@
               <ion-col size="2">
 
               </ion-col>
-              <ion-col size="2">
-                <ion-icon (click)="addLike(post)" name="heart-outline"></ion-icon>
+              <ion-col size="4">
 
+                                <ng-container *ngIf="!post.likedBy.includes(user._id); else dislikedTemp">
+
+                  <ion-icon (click)="addLike(post)"  name="heart-outline" style="color: red;"></ion-icon>
+                  <ion-label class="labelnblikes" >{{post.likes}}</ion-label>
+
+                </ng-container>
+                <ng-template #dislikedTemp>
+                  <ion-icon (click)="disLike(post)" style="fill: red;" name="heart"></ion-icon>
+                  <ion-label class="labelnblikes" >{{post.likes}}</ion-label>
+
+                </ng-template>
               </ion-col>
+
+
             </ion-row>
 
 
