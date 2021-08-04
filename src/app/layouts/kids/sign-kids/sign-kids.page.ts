@@ -6,7 +6,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
-import { LoginKidsService } from './login-kids.service';
 import { Storage } from '@ionic/storage';
 import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
@@ -33,13 +32,10 @@ export class SignKidsPage implements OnInit {
   };
 
   constructor(
-    private imagePicker: ImagePicker,
-    private crop: Crop,
-    private transfer: FileTransfer,
-    private storage: Storage,
-    public fb: FormBuilder,    private toastCtrl: ToastController,
-    private router: Router,
-    public LoginKidsService: LoginKidsService, public loginService: AuthService) { }
+    private toastCtrl:ToastController,
+    public fb: FormBuilder,
+    private router:Router,
+    public authService: AuthService) { }
   ngOnInit() {
     this.loginForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
@@ -60,36 +56,7 @@ export class SignKidsPage implements OnInit {
   ConnectGoogle() {
     console.log('hello google');
   }
-  cropUpload() {
-    console.log('test');
-    this.imagePicker.getPictures({ maximumImagesCount: 1, outputType: 0 }).then((results) => {
 
-      for (let i = 0; i < results.length; i++) {
-          console.log('Image URI: ' + results[i]);
-          this.crop.crop(results[i], { quality: 100 })
-            .then(
-              newImage => {
-                console.log('new image path is: ' + newImage);
-                const fileTransfer: FileTransferObject = this.transfer.create();
-                const uploadOpts: FileUploadOptions = {
-                  fileKey: 'file',
-                  fileName: newImage.substr(newImage.lastIndexOf('/') + 1)
-                };
-                fileTransfer.upload(newImage, 'http://localhost:3000/users', uploadOpts)
-                .then((data) => {
-                  console.log(data);
-                  this.respData = JSON.parse(data.response);
-                  console.log(this.respData);
-                  this.fileUrl = this.respData.fileUrl;
-                }, (err) => {
-                  console.log(err);
-                });
-              },
-              error => console.error('Error cropping image', error)
-            );
-      }
-    }, (err) => { console.log(err); });
-  }
   SaveUser() {
     console.log('navigate to sign in width successfully');
   }
@@ -98,21 +65,10 @@ export class SignKidsPage implements OnInit {
     console.log('Change Image');
   }
   login() {
-/*
-    this.LoginKidsService.login(this.user).subscribe((response) => {
-      console.log('hello user', response);
-      if (response.token)
-      {
-
-        this.storage.set('token', response.token);
-        console.log('hello user', response);
-      } else {
-        console.log('not user');
-      }
-    });*/
 
 
-    this.loginService.login(this.user).subscribe(async (response) => {
+
+    this.authService.login(this.user).subscribe(async (response) => {
        console.log('hello user', response.user.role);
       if( response.user.role=="kids"){
         this.router.navigateByUrl('/accueil');

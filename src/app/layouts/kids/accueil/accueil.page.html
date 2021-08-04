@@ -21,46 +21,48 @@
         </ion-avatar>
             </ion-col>
             <ion-col size="9" style="margin-left: 35px;
+
     margin-top: -77px;">
-              <ion-label style="color:gray;margin-top:45px;font-size: x-small;">{{post.user.name}}</ion-label>
-              <ion-label style="color:gray;    font-size: xx-small;
+                <ion-label style="color:gray;margin-top:45px;font-size: x-small;">{{post.user.name}}</ion-label>
+                <ion-label style="color:gray;    font-size: xx-small;
               display: block;">{{post.createdAt| date}}</ion-label>
 
-            </ion-col>
-          </ion-row>
+              </ion-col>
+            </ion-row>
 
 
-          <ion-row>
-            <ion-col size="9"  >
-              <ion-label style="color:gray;font-size: small;font-weight: bold;">{{post.title}}</ion-label>
-              <ion-label style="color:gray;    font-size:x-small;   display: block;width: 250px;">{{post.content}}</ion-label>
+            <ion-row>
+              <ion-col size="9">
+                <ion-label style="color:gray;font-size: small;font-weight: bold;">{{post.title}}</ion-label>
+                <ion-label style="color:gray;    font-size:x-small;   display: block;width: 250px;">{{post.content}}
+                </ion-label>
 
-            </ion-col>
-          </ion-row>
+              </ion-col>
+            </ion-row>
 
 
 
 
-        </div>
-        <img style="   border-radius: 15px"
+          </div>
+          <img style="   border-radius: 15px"
             src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png">
-            <div id="main-content">
-            <ion-icon  slot="end" name="heart-empty"></ion-icon>
+          <div id="main-content">
+            <ion-icon slot="end" name="heart-empty"></ion-icon>
             <ion-row>
 
-    <ion-col size="2">
-    <ion-icon name="close"></ion-icon>
+              <ion-col size="2">
+                <ion-icon name="close"></ion-icon>
 
-    </ion-col>
-    <ion-col size="2">
+              </ion-col>
+              <ion-col size="2">
 
-    </ion-col>
-    <ion-col size="2">
+              </ion-col>
+              <ion-col size="2">
 
 
 
-    </ion-col>
-    <ion-col size="2">
+              </ion-col>
+              <ion-col size="2">
 
               </ion-col>
               <ion-col size="4">
@@ -78,17 +80,18 @@
                 </ng-template>
               </ion-col>
 
+
             </ion-row>
 
 
-</div>
           </div>
+        </div>
 
-    </ion-col>
-  </ion-row>
-</ion-grid>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-<ion-footer class="myFooter" >
+<ion-footer class="myFooter">
   <ion-row>
     <ion-col></ion-col>
     <ion-col>
@@ -115,7 +118,7 @@
       </div>
     </ion-col>
     <ion-col></ion-col>
-    <ion-col  routerLink="/profilkids">
+    <ion-col routerLink="/profilkids">
       <div>
         <img src="../../../assets/IconMenu/iconmenu.png" />
       </div>
@@ -123,5 +126,3 @@
     <ion-col></ion-col>
   </ion-row>
 </ion-footer>
-
-

@@ -12,7 +12,6 @@ import { IonicStorageModule } from '@ionic/storage';
 import { ProfilService } from './layouts/profil/profil.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
-import { LoginKidsService } from './layouts/kids/sign-kids/login-kids.service';
 import { AuthService } from './shared/Auth/auth.service';
 import { LayoutsModule } from './layouts/layouts.module';
 import { JWTInterceptor } from './shared/Interceptors/JWInterceptors';
@@ -40,7 +39,6 @@ import { ComponentModule } from './component/component.module';
   providers: [
     ImagePicker,
     Crop,
-    LoginKidsService,
     ProfilService,
     AuthService,
     StorageService,

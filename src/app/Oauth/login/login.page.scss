@@ -1,5 +1,8 @@
-#container {
-
+ body{
+  --ion-background-color:#111D12;
+ }
+.container {
+  background-color: antiquewhite;
   height: 100vh;
   margin-top: auto;
   margin-bottom: auto;
@@ -9,15 +12,20 @@
   flex-direction: column;
 }
 
+ion-toolbar {
+  --ion-background-color: linear-gradient(300deg, #8EBF25, #3b8c4f, #247238, #247238);
+  color: white;
+}
+ 
 ion-content {
   background: none;
-  // background-color: DarkGreen;
-  --ion-background-color: linear-gradient(300deg, #8EBF25, #3b8c4f, #247238, #247238);
-}
 
+  // background-color: DarkGreen;
+
+}
 $ruler: 16px;
 $color-red: #726b6b;
-$color-bg: #EBECF0;
+$color-bg: #d6d6d6;
 $color-shadow: #BABECC;
 $color-white: #FFF;
 
@@ -28,7 +36,7 @@ html {
 
 .form-controll {
   background-color: transparent;
-  color: $color-white;
+  color: black;
   box-shadow: none;
   text-shadow: none;
   font-weight: 500;
@@ -229,4 +237,25 @@ input::-moz-placeholder {
 
 ion-label.ion-padding-top {
   text-decoration: underline;
+}
+
+
+
+.titlePage{
+  display: flex;
+  justify-content: center;
+
+}
+
+.titlePage p{
+  color: rgb(121, 121, 121);
+  text-align: center;
+}
+
+ion-toolbar {
+  padding-top: 20px;
+}
+.alertCtrl {
+  --background: yellow;
+  --color: #000;
 }

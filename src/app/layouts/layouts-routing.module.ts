@@ -92,11 +92,11 @@ const routes: Routes = [
 
       {
         path: 'home-erp',
-        loadChildren: () => import('./home-erp/home-erp.module').then(m => m.HomeErpPageModule)
+        loadChildren: () => import('./erp/home-erp/home-erp.module').then(m => m.HomeErpPageModule)
       },
       {
         path: 'gestion-material',
-        loadChildren: () => import('./gestion-material/gestion-material.module').then(m => m.GestionMaterialPageModule)
+        loadChildren: () => import('./erp/gestion-material/gestion-material.module').then(m => m.GestionMaterialPageModule)
       },
       {
         path: 'insert-material-modal',
@@ -104,15 +104,15 @@ const routes: Routes = [
       },
       {
         path: 'gestion-effectif',
-        loadChildren: () => import('./gestion-effectif/gestion-effectif.module').then(m => m.GestionEffectifPageModule)
+        loadChildren: () => import('./erp/gestion-effectif/gestion-effectif.module').then(m => m.GestionEffectifPageModule)
       },
       {
         path: 'gestion-espace',
-        loadChildren: () => import('./gestion-espace/gestion-espace.module').then(m => m.GestionEspacePageModule)
+        loadChildren: () => import('./erp/gestion-espace/gestion-espace.module').then(m => m.GestionEspacePageModule)
       },
       {
         path: 'gestion-adherent',
-        loadChildren: () => import('./gestion-adherent/gestion-adherent.module').then(m => m.GestionAdherentPageModule)
+        loadChildren: () => import('./erp/gestion-adherent/gestion-adherent.module').then(m => m.GestionAdherentPageModule)
       },
       {
         path: 'insert-espace-modal',
@@ -136,15 +136,15 @@ const routes: Routes = [
       },
       {
         path: 'gestion-vente',
-        loadChildren: () => import('./gestion-vente/gestion-vente.module').then(m => m.GestionVentePageModule)
+        loadChildren: () => import('./erp/gestion-vente/gestion-vente.module').then(m => m.GestionVentePageModule)
       },
       {
         path: 'gestion-facturation',
-        loadChildren: () => import('./gestion-facturation/gestion-facturation.module').then(m => m.GestionFacturationPageModule)
+        loadChildren: () => import('./erp/gestion-facturation/gestion-facturation.module').then(m => m.GestionFacturationPageModule)
       },
       {
         path: 'gestion-last-effectif',
-        loadChildren: () => import('./gestion-last-effectif/gestion-last-effectif.module').then(m => m.GestionLastEffectifPageModule)
+        loadChildren: () => import('./erp/gestion-last-effectif/gestion-last-effectif.module').then(m => m.GestionLastEffectifPageModule)
       },
       {
         path: 'insert-vente-modal',
@@ -160,7 +160,7 @@ const routes: Routes = [
       },
       {
         path: 'erp-space',
-        loadChildren: () => import('./erp-space/erp-space.module').then(m => m.ErpSpacePageModule)
+        loadChildren: () => import('./erp/erp-space/erp-space.module').then(m => m.ErpSpacePageModule)
       },
       {
         path: 'accueil',

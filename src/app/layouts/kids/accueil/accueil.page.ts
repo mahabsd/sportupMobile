@@ -73,4 +73,6 @@ this.getMe();
 
       }
 
+  }
+getAllPost(){}
 }
