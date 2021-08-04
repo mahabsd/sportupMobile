@@ -1,16 +1,16 @@
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { from } from 'rxjs';
-import { InsertEffectifModalPage } from '../insert-effectif-modal/insert-effectif-modal.page';
+
 import { AlertController, ModalController } from '@ionic/angular';
 import { Chart } from 'chart.js';
-
-
+import { InsertLastEffectifModalPage } from '../../insert-last-effectif-modal/insert-last-effectif-modal.page';
 @Component({
-  selector: 'app-gestion-effectif',
-  templateUrl: './gestion-effectif.page.html',
-  styleUrls: ['./gestion-effectif.page.scss'],
+  selector: 'app-gestion-last-effectif',
+  templateUrl: './gestion-last-effectif.page.html',
+  styleUrls: ['./gestion-last-effectif.page.scss'],
 })
-export class GestionEffectifPage implements OnInit {
+export class GestionLastEffectifPage implements OnInit {
+
   @ViewChild('barChart') barChart;
   bars: any;
   colorArray: any;
@@ -26,31 +26,31 @@ export class GestionEffectifPage implements OnInit {
         datasets: [{
           label: 'effectif 1',
           data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-          backgroundColor: 
+          backgroundColor:
           'rgba(255, 99, 132, 0.2)'
 
-          
+
         }
         ,
           {
             label: 'effectif 2',
             data: [3.5, 4.8, 6, 7.9, 7.9, 8.5, 11, 18],
-            backgroundColor: 
+            backgroundColor:
             'rgba(54, 162, 235, 0.2)'
-          
+
             }
             ,
             {
               label: 'effectif 3',
               data: [4.5, 5.8, 7, 8.9, 8.9, 9.5, 12, 19],
-              backgroundColor: 
+              backgroundColor:
               'rgba(75, 192, 192, 0.2)'
-            
+
             }]
       },
       options: {
         scales: {
- 
+
         },
         plugins: {
           legend: {
@@ -63,7 +63,7 @@ export class GestionEffectifPage implements OnInit {
       }
     });
   }
-  @ViewChild(InsertEffectifModalPage) myCal: InsertEffectifModalPage;
+  @ViewChild(InsertLastEffectifModalPage) myCal: InsertLastEffectifModalPage;
   showAddEvent: any;
   eventSource = [];
   newEvent = {
@@ -77,7 +77,7 @@ export class GestionEffectifPage implements OnInit {
   }
   async openCalModal() {
     const modal = await this.modalCtrl.create({
-      component: InsertEffectifModalPage,
+      component: InsertLastEffectifModalPage,
       cssClass: 'cal-modal',
       backdropDismiss: false
     });
@@ -87,7 +87,7 @@ export class GestionEffectifPage implements OnInit {
       var events = [];
       let Start = result.data.event.startTime
       let newDate = new Date(Start);
-      let End = result.data.event.endTime 
+      let End = result.data.event.endTime
       let newDate1 = new Date(End);
       events.push({
         title: 'Event - ' ,
