@@ -56,7 +56,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanDeactivate<u
 
     return this.authService.isAuthenticated().pipe(map(res => {
       if (res) {
-       
+
         if (res) { this.token = true; }
         return this.token;
       } else {

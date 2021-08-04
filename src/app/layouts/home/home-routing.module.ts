@@ -10,6 +10,10 @@ const routes: Routes = [
   },  {
     path: 'reactions',
     loadChildren: () => import('./reactions/reactions.module').then( m => m.ReactionsPageModule)
+  },
+  {
+    path: 'comments',
+    loadChildren: () => import('./comments/comments.module').then( m => m.CommentsPageModule)
   }
 
 ];

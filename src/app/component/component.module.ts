@@ -8,8 +8,8 @@ import { StatusComponent } from '../layouts/home/status/status.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, StatusComponent],
-  exports: [HeaderComponent, StatusComponent],
+  declarations: [HeaderComponent],
+  exports: [HeaderComponent],
   imports: [
     CommonModule,
     ComponentRoutingModule,
