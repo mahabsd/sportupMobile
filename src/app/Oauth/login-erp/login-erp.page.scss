@@ -1,8 +1,13 @@
-
+ 
+ion-content{
+  background-color: rgb(184, 18, 18);
+}
   #container strong {
     font-size: 20px;
     line-height: 26px;
   }
+
+
   #container p {
     font-size: 16px;
     line-height: 22px;
@@ -82,14 +87,22 @@ ion-toolbar {
   --background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
 
 }
-
+ 
 .shadowbox {
  // border: 1px solid #8EBF25;
  // box-shadow: 2px 1px 1px #247238;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
 }
 
+.LogoS{
+ 
+  box-shadow: 5px 4px 15px 5px rgba(0,0,0,0.21);
+}
 
+.LogoErp{
+ 
+}
+ 
 //
 
 
@@ -476,4 +489,5 @@ ion-slide {
     margin-bottom: 10px;
     margin-left: 8px;
     margin-right: 5px;
+ 
   }

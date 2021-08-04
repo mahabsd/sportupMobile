@@ -1,13 +1,15 @@
-<ion-header [translucent]="true" style="background-color:rgb(10, 51, 10)">
-  <ion-toolbar style="background-color:#247238">
+
+<ion-header [translucent]="true" style="background-color:rgb(10, 51, 10); ">
+  <ion-toolbar style="background-color:#247238; padding-top: 20px;">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+  
     </ion-buttons>
-    <ion-title> Login</ion-title>
+    <ion-title style="color: white;"> ERP-LOGIN</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
-<ion-row style="padding-top: 30px;">
+<ion-content   >
+<ion-row style="padding-top: 30px; background-color:rgb(236, 236, 236)">
+ 
   <ion-col size="1">
   </ion-col>
   <ion-col >
@@ -18,7 +20,10 @@
   <ion-col size="1">
   </ion-col>
 </ion-row>
-<ion-row style="padding-top: 20px;">
+ 
+ 
+<ion-row style="padding-top: 20px; background-color:rgb(236, 236, 236)" >
+ 
   <ion-col size="4">
 
   </ion-col>
@@ -26,7 +31,10 @@
 
   <ion-row style="margin-top: 20px;margin-buttom: 100px;  justify-content: center;">
         <ion-avatar  >
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+ 
+   
+          <img class="LogoS"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+ 
       </ion-avatar>
       </ion-row>
   </ion-col>
@@ -34,21 +42,27 @@
 
   </ion-col>
 </ion-row>
-<ion-row style="padding-top: 50px !important; ">
+ 
+ 
+<ion-row style="padding-top: 50px !important; background-color:rgb(236, 236, 236)">
+ 
   <ion-col size="1"></ion-col>
   <ion-col text-center>
   <ion-card  no-padding style="margin: 0px 0px 0px 0px !important;background-color: #f1f1f1;">
     <ion-card-content>
+ 
+
+      <form [formGroup]="loginForm" >
     <ion-row>
-    <input style="font-size: small;"  class="MyinputUpdate" type="email"   placeholder="E-Mail" />
-    <input style="font-size: small;"  class="MyinputUpdate" type="email"   placeholder="Mot de passe" />
+    <input style="font-size: small;"  class="MyinputUpdate" type="email" [(ngModel)]="user.email" formControlName="emailControl"   placeholder="E-Mail" />
+    <input style="font-size: small;"  class="MyinputUpdate" type="email"  [(ngModel)]="user.password"  formControlName="passwordControl" placeholder="Mot de passe" />
     </ion-row>
-      <ion-row style="padding-bottom: 30px;padding-top: 30px;">
+      <ion-row style="padding-bottom: 30px;padding-top: 30px;  ">
           <ion-col size="3">
           </ion-col>
           <ion-col size="5">
-            <div routerLink="/erp-space" class="message-box">
-              <div type="submit" class="message-submit">
+            <div   class="message-box">
+              <div type="submit" (click)="login()" class="message-submit">
               <h6 style="font-size: small;color:white;     margin-top: 5px;" name="send-outline">Login</h6>
               </div>
             </div>
@@ -56,8 +70,12 @@
           <ion-col size="4">
           </ion-col>
       </ion-row>
+ 
+ 
+    </form>
     </ion-card-content>
-      <ion-row>
+      <ion-row style="background-color:rgb(236, 236, 236)">
+ 
         <ion-col size="3">
         </ion-col>
         <ion-col >
@@ -70,9 +88,12 @@
       </ion-row>
   </ion-card>
   </ion-col>
-  <ion-col size="1"></ion-col>
+  <ion-col size="1"></ion-col> 
+ 
+
 </ion-row>
 </ion-content>
-<ion-footer>
+<ion-footer style="background-color:rgb(236, 236, 236)">
+ 
 </ion-footer>
 
