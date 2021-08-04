@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'login-erp',
-    loadChildren: () => import('./Oauth/login-erp/login-erp.module').then(m => m.LoginErpPageModule)
+    loadChildren: () => import('./layouts/erp/login-erp/login-erp.module').then(m => m.LoginErpPageModule)
   },
 
   {

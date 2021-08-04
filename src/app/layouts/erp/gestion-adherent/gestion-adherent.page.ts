@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { from } from 'rxjs';
-import { InsertAdherentModalPage } from '../insert-adherent-modal/insert-adherent-modal.page';
+import { InsertAdherentModalPage } from '../../insert-adherent-modal/insert-adherent-modal.page';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Chart } from 'chart.js';
 

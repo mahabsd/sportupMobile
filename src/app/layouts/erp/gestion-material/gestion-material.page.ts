@@ -1,8 +1,8 @@
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { InsertMaterialModalPage } from '../insert-material-modal/insert-material-modal.page';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Chart, ChartType } from 'chart.js';
 import {  ChartOptions } from 'chart.js';
+import { InsertMaterialModalPage } from '../../insert-material-modal/insert-material-modal.page';
 
 @Component({
   selector: 'app-gestion-material',
@@ -16,7 +16,7 @@ export class GestionMaterialPage implements OnInit  {
     ionViewDidEnter() {
     this.createBarChart();
     }
-  
+
     createBarChart() {
       this.bars = new Chart(this.barChart.nativeElement, {
         type: 'bar',
@@ -25,34 +25,34 @@ export class GestionMaterialPage implements OnInit  {
           datasets: [{
             label: 'material  1',
             data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-            backgroundColor: 
+            backgroundColor:
               'rgba(255, 99, 132, 0.2)',
               borderColor:'rgba(255, 99, 132, 0.2)'
-  
-            
+
+
           }
           ,
             {
               label: 'material 2',
               data: [3.5, 4.8, 6, 7.9, 7.9, 8.5, 11, 18],
-              backgroundColor: 
+              backgroundColor:
                 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 0.2)'
-            
+
               }
               ,
               {
                 label: 'material 3',
                 data: [4.5, 5.8, 7, 8.9, 8.9, 9.5, 12, 19],
-                backgroundColor: 
+                backgroundColor:
                   'rgba(75, 192, 192, 0.2)',
                   borderColor: 'rgba(75, 192, 192, 0.2)',
-              
+
               }]
         },
         options: {
           scales: {
-   
+
           },
           plugins: {
             legend: {
@@ -75,7 +75,7 @@ export class GestionMaterialPage implements OnInit  {
   // @ViewChild('barChart') barChart;
   // bars: any;
   // colorArray: any;
- 
+
 
   // ionViewDidEnter() {
   //   this.createBarChart();
@@ -96,7 +96,7 @@ export class GestionMaterialPage implements OnInit  {
   //     },
   //     options: {
   //       scales: {
- 
+
   //       }
   //     }
   //   });
@@ -230,7 +230,7 @@ export class GestionMaterialPage implements OnInit  {
       var events = [];
       let Start = result.data.event.startTime
       let newDate = new Date(Start);
-      let End = result.data.event.endTime 
+      let End = result.data.event.endTime
       let newDate1 = new Date(End);
       events.push({
         title: 'Event - ' ,
