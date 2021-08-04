@@ -17,25 +17,25 @@ import { User } from 'src/app/Shared/Model/user';
   styleUrls: ['./accueil.page.scss'],
 })
 export class AccueilPage implements OnInit {
- user: any;
+  user: any;
 
- initialButtonIcon= "heart-outline";
+  initialButtonIcon = "heart-outline";
 
- buttonColor: string;
-  posts :any[] = [];
-  constructor(private postKidsService: PostKidsService,private postService: PostService,private userservice: UserService) { }
+  buttonColor: string;
+  posts: any[] = [];
+  constructor(private postKidsService: PostKidsService, private postService: PostService, private userservice: UserService) { }
 
   ngOnInit() {
-this.getAllPostsKids();
-this.getMe();
+    this.getAllPostsKids();
+    this.getMe();
   }
 
 
 
   getAllPostsKids() {
     this.postKidsService.getAllPostsKids().subscribe(res => {
-  this.posts=res['data'];
-  console.log(res['data']);
+      this.posts = res['data'];
+      console.log(res['data']);
 
 
     });
@@ -43,36 +43,36 @@ this.getMe();
   getMe() {
     this.userservice.getMe().subscribe(res => {
       this.user = res;
-       console.log(this.user);
+      console.log(this.user);
 
     });
   }
   async addLike(post) {
 
     console.log('like');
-    await  this.postKidsService.likePostKids(post).subscribe(res => {
-       console.log(res);
-       this.getAllPostsKids();
+    await this.postKidsService.likePostKids(post).subscribe(res => {
+      console.log(res);
+      this.getAllPostsKids();
 
     });
 
     post.icon = "heart";
     this.buttonColor = '#ff0000';
 
-    }
+  }
 
-    disLike(post) {
-      this.postKidsService.disLikePostKids(post).subscribe(res => {
-        console.log(res);
-        this.getAllPostsKids();
+  disLike(post) {
+    this.postKidsService.disLikePostKids(post).subscribe(res => {
+      console.log(res);
+      this.getAllPostsKids();
 
-     });
+    });
 
-      console.log('diss');
+    console.log('diss');
 
-
-      }
 
   }
-getAllPost(){}
+
+
+  getAllPost() { }
 }
