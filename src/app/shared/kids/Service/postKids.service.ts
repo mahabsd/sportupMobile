@@ -1,3 +1,4 @@
+import { ApiService } from './api.service';
 import { UtilsService } from '../../Service/utils.service';
 import { Post } from 'src/app/shared/Model/Post';
 import { Injectable } from '@angular/core';
@@ -11,7 +12,7 @@ import { StorageService } from '../../Service/storage.service';
 export class PostKidsService {
 
   constructor(
-    private utilsService: UtilsService,
+    private utilsService: ApiService,
     private storage: StorageService) { }
     getAllPostsKids(): Observable<Post[]> {
      console.log(`${UtilsService.apiPost}?type=kids`);
@@ -23,5 +24,11 @@ export class PostKidsService {
   }
   disLikePostKids(post: Post): Observable<Post> {
     return this.utilsService.patch(UtilsService.apiPost + 'dislikePost', post).pipe(map(res => res));
+  }
+  addComment(comment: Comment, post: Post) {
+    return this.utilsService.post(`${UtilsService.apiPost}${post}/comments`, comment).pipe(map((res) => res));
+  }
+  getCommentByService(post) {
+    return this.utilsService.get(`${UtilsService.apiPost}${post}/comments`).pipe(map((res) => res.data.data));
   }
 }
