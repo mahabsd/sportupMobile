@@ -30,7 +30,7 @@ export class JWTInterceptor implements HttpInterceptor {
       return next.handle(cloneReq).pipe(catchError(error => {
         console.log(error);
 
-        let msg = error.message;
+        let msg = error.error.message;
         this.presentToast(msg, 'danger', 'top');
         throw error;
       }
