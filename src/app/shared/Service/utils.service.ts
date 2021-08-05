@@ -9,6 +9,7 @@ import { environment } from './../../../environments/environment';
 // import { DatePipe } from "@angular/common";
 import { StorageService } from './storage.service';
 import { ToastController } from '@ionic/angular';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Injectable({
@@ -70,13 +71,15 @@ export class UtilsService {
 
   public get(url: string): Observable<any> {
     const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token });
-    return this.httpClient.get(url);
+    return this.httpClient.get<Object>(url, { observe: 'response' }).pipe(map(res => res.body),catchError(this.formatErrors));
   }
 
   public delete(url: string): Observable<any> {
     return this.httpClient.delete(url);
   }
-  private formatErrors(error: any) {
+  private formatErrors(error: HttpErrorResponse) {
+    console.log(error);
+
     return throwError(error.error);
 
   }

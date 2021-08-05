@@ -75,9 +75,7 @@
         </ion-refresher-content>
       </ion-refresher>
       <ion-virtual-scroll [items]="posts">
-        <!-- <ion-item-divider *virtualHeader="let header">
-         <ion-label>{{header}}</ion-label>
-       </ion-item-divider> -->
+      
         <ion-card *virtualItem="let post">
           <app-status [post]="post" [user]="user$" (disLikeFn)="disLike(post)"
             (likeFn)="like(post)"></app-status>
@@ -85,11 +83,5 @@
       </ion-virtual-scroll>
     </ion-row>
   </div>
-  <!-- <ion-fab vertical="bottom" horizontal="end"  slot="fixed" fill="clear">
-    <ion-fab-button fill="clear" >
-      <ion-button shape="rounded" fill="clear">
-        <img src="../../assets/icon/icon_scan.png" alt="">
-      </ion-button>
-    </ion-fab-button>
-  </ion-fab> -->
+
 </ion-content>
