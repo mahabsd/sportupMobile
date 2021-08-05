@@ -41,7 +41,7 @@ export class LoginErpPage implements OnInit {
         this.router.navigateByUrl('/erp');
       }
       else {
-        this.router.navigateByUrl('/tabs/home');
+        this.presentToast('vous navez pas le droit daccess', 'danger', 'top');
       }
     }, error => {
  
