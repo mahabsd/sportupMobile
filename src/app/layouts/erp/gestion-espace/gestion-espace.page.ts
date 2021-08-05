@@ -1,69 +1,57 @@
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { from } from 'rxjs';
-import { InsertLastEffectifModalPage } from '../insert-last-effectif-modal/insert-last-effectif-modal.page';
-
+import { InsertEspaceModalPage } from '../../insert-espace-modal/insert-espace-modal.page';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Chart } from 'chart.js';
-@Component({
-  selector: 'app-gestion-last-effectif',
-  templateUrl: './gestion-last-effectif.page.html',
-  styleUrls: ['./gestion-last-effectif.page.scss'],
-})
-export class GestionLastEffectifPage implements OnInit {
 
+@Component({
+  selector: 'app-gestion-espace',
+  templateUrl: './gestion-espace.page.html',
+  styleUrls: ['./gestion-espace.page.scss'],
+})
+export class GestionEspacePage implements OnInit {
   @ViewChild('barChart') barChart;
   bars: any;
   colorArray: any;
     ionViewDidEnter() {
     this.createBarChart();
-  }
+    }
 
-  createBarChart() {
-    this.bars = new Chart(this.barChart.nativeElement, {
-      type: 'bar',
-      data: {
-        labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
-        datasets: [{
-          label: 'effectif 1',
-          data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-          backgroundColor: 
-          'rgba(255, 99, 132, 0.2)'
+    createBarChart() {
+      this.bars = new Chart(this.barChart.nativeElement, {
+        type: 'doughnut',
+        data: {
+          labels: ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8'],
+          datasets: [{
+            label: 'effectif 1',
+            data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
 
-          
-        }
-        ,
-          {
-            label: 'effectif 2',
-            data: [3.5, 4.8, 6, 7.9, 7.9, 8.5, 11, 18],
-            backgroundColor: 
-            'rgba(54, 162, 235, 0.2)'
-          
-            }
-            ,
-            {
-              label: 'effectif 3',
-              data: [4.5, 5.8, 7, 8.9, 8.9, 9.5, 12, 19],
-              backgroundColor: 
+            backgroundColor: [
+              'rgba(255, 159, 64, 0.2)',
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
               'rgba(75, 192, 192, 0.2)'
-            
-            }]
-      },
-      options: {
-        scales: {
- 
+            ]
+
+          }]
         },
-        plugins: {
-          legend: {
-              display: true,
-              labels: {
-              boxHeight:15,
-              boxWidth:15      }
-          }
-      }
-      }
-    });
-  }
-  @ViewChild(InsertLastEffectifModalPage) myCal: InsertLastEffectifModalPage;
+        options: {
+          scales: {
+
+          },
+          plugins: {
+            legend: {
+                display: true,
+                labels: {
+                boxHeight:15,
+                boxWidth:15      }
+            }
+        }
+        }
+      });
+    }
+  @ViewChild(InsertEspaceModalPage) myCal: InsertEspaceModalPage;
   showAddEvent: any;
   eventSource = [];
   newEvent = {
@@ -74,10 +62,11 @@ export class GestionLastEffectifPage implements OnInit {
   };
   constructor(  private modalCtrl: ModalController) { }
   ngOnInit() {
+
   }
   async openCalModal() {
     const modal = await this.modalCtrl.create({
-      component: InsertLastEffectifModalPage,
+      component: InsertEspaceModalPage,
       cssClass: 'cal-modal',
       backdropDismiss: false
     });
@@ -87,7 +76,7 @@ export class GestionLastEffectifPage implements OnInit {
       var events = [];
       let Start = result.data.event.startTime
       let newDate = new Date(Start);
-      let End = result.data.event.endTime 
+      let End = result.data.event.endTime
       let newDate1 = new Date(End);
       events.push({
         title: 'Event - ' ,
@@ -116,4 +105,5 @@ export class GestionLastEffectifPage implements OnInit {
       endTime: new Date().toISOString()
     };
   }
+
 }

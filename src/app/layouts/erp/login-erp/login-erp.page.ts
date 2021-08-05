@@ -1,4 +1,4 @@
-import { AuthService } from './../../shared/Auth/auth.service';
+import { AuthService } from '../../../shared/Auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/Model/User';
 import { ToastController } from '@ionic/angular'; 

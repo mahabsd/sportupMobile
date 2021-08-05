@@ -25,7 +25,7 @@ const routes: Routes = [
       },
       {
         path: 'home-erp',
-        loadChildren: () => import('./../../layouts/home-erp/home-erp.module').then(m => m.HomeErpPageModule)
+        loadChildren: () => import('../../layouts/erp/home-erp/home-erp.module').then(m => m.HomeErpPageModule)
       },
     ]
   },

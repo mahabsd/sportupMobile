@@ -1,15 +1,15 @@
 import { AfterViewInit, Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { from } from 'rxjs';
- import { InsertVenteModalPage }  from '../insert-vente-modal/insert-vente-modal.page';
+import { InsertFacteurModalPage } from '../../insert-facteur-modal/insert-facteur-modal.page';
 import { AlertController, ModalController } from '@ionic/angular';
 import { Chart } from 'chart.js';
-InsertVenteModalPage
+
 @Component({
-  selector: 'app-gestion-vente',
-  templateUrl: './gestion-vente.page.html',
-  styleUrls: ['./gestion-vente.page.scss'],
+  selector: 'app-gestion-facturation',
+  templateUrl: './gestion-facturation.page.html',
+  styleUrls: ['./gestion-facturation.page.scss'],
 })
-export class GestionVentePage implements OnInit {
+export class GestionFacturationPage implements OnInit {
 
 
   @ViewChild('barChart') barChart;
@@ -27,32 +27,31 @@ export class GestionVentePage implements OnInit {
         datasets: [{
           label: 'effectif 1',
           data: [2.5, 3.8, 5, 6.9, 6.9, 7.5, 10, 17],
-          backgroundColor:'rgba(255, 99, 132, 0.2)',
-          borderWidth: 1,
+          backgroundColor:
+          'rgba(255, 99, 132, 0.2)'
 
 
-          
         }
         ,
           {
             label: 'effectif 2',
             data: [3.5, 4.8, 6, 7.9, 7.9, 8.5, 11, 18],
-            backgroundColor: 
+            backgroundColor:
             'rgba(54, 162, 235, 0.2)'
-          
+
             }
             ,
             {
               label: 'effectif 3',
               data: [4.5, 5.8, 7, 8.9, 8.9, 9.5, 12, 19],
-              backgroundColor: 
+              backgroundColor:
               'rgba(75, 192, 192, 0.2)'
-            
+
             }]
       },
       options: {
         scales: {
- 
+
         },
         plugins: {
           legend: {
@@ -65,7 +64,7 @@ export class GestionVentePage implements OnInit {
       }
     });
   }
-  @ViewChild(InsertVenteModalPage) myCal: InsertVenteModalPage;
+  @ViewChild(InsertFacteurModalPage) myCal: InsertFacteurModalPage;
   showAddEvent: any;
   eventSource = [];
   newEvent = {
@@ -79,7 +78,7 @@ export class GestionVentePage implements OnInit {
   }
   async openCalModal() {
     const modal = await this.modalCtrl.create({
-      component: InsertVenteModalPage,
+      component: InsertFacteurModalPage,
       cssClass: 'cal-modal',
       backdropDismiss: false
     });
@@ -89,7 +88,7 @@ export class GestionVentePage implements OnInit {
       var events = [];
       let Start = result.data.event.startTime
       let newDate = new Date(Start);
-      let End = result.data.event.endTime 
+      let End = result.data.event.endTime
       let newDate1 = new Date(End);
       events.push({
         title: 'Event - ' ,
