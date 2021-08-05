@@ -1,3 +1,14 @@
+/* eslint-disable quote-props */
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable @typescript-eslint/prefer-for-of */
+/* eslint-disable no-underscore-dangle */
+import { CommentsKidsPage } from './../comments-kids/comments-kids.page';
+/* eslint-disable @typescript-eslint/naming-convention */
+import { FormGroup } from '@angular/forms';
+import { CommentsPage } from './../../home/comments/comments.page';
+import { ModalController, PopoverController } from '@ionic/angular';
+import { CommentService } from './../../../shared/Service/comment.service';
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
 import { UserService } from './../../../shared/Service/user.service';
 import { Input } from '@angular/core';
@@ -17,17 +28,30 @@ import { User } from 'src/app/Shared/Model/user';
   styleUrls: ['./accueil.page.scss'],
 })
 export class AccueilPage implements OnInit {
- user: any;
+  user: any;
+  post: Post;
+  comments: any = [];
+  commentForm: FormGroup;
+  comment: Comment = new Comment();
+  initialButtonIcon = "heart-outline";
+idpostcom;
+user$: any = [];
 
- initialButtonIcon= "heart-outline";
-
- buttonColor: string;
-  posts :any[] = [];
-  constructor(private postKidsService: PostKidsService,private postService: PostService,private userservice: UserService) { }
+xxxMap = new Map();
+  dict: any[] = [];
+idwiw;
+comwiw;
+  buttonColor: string;
+  posts: any[] = [];
+  constructor(    private commentService: CommentService,
+    private modalController: ModalController,
+  private postKidsService: PostKidsService, private postService: PostService, private userservice: UserService) { }
 
   ngOnInit() {
-this.getAllPostsKids();
-this.getMe();
+
+    this.getAllPostsKids();
+    this.getMe();
+
   }
 
 
@@ -38,16 +62,18 @@ this.getMe();
   console.log(res['data']);
 
 
+
     });
   }
   getMe() {
     this.userservice.getMe().subscribe(res => {
       this.user = res;
-       console.log(this.user);
+
+      console.log(this.user);
 
     });
   }
-  async addLike(post) {
+  async like(post) {
 
     console.log('like');
     await  this.postKidsService.likePostKids(post).subscribe(res => {
@@ -61,18 +87,58 @@ this.getMe();
 
     }
 
-    disLike(post) {
-      this.postKidsService.disLikePostKids(post).subscribe(res => {
-        console.log(res);
-        this.getAllPostsKids();
+  disLike(post) {
+    console.log('diss');
+
+    this.postKidsService.disLikePostKids(post).subscribe(res => {
+      console.log(res);
+      this.getAllPostsKids();
 
      });
 
-      console.log('diss');
 
-
-      }
 
   }
-getAllPost(){}
+  async presentModal(post) {
+    const modal = await this.modalController.create({
+      component: CommentsKidsPage,
+      cssClass: 'my-custom-class',
+      componentProps: {
+        post,
+        comments: this.comments
+
+      }
+    });
+    await modal.present();
+
+    await modal.onWillDismiss().then((result) => {
+      console.log("zz")
+      console.log(post);
+      this.idpostcom=post.id;
+      this.getCommentByPost();
+
+
+    });
+
+
+  }
+  getCommentByPost() {
+    this.posts.forEach(element => {
+      console.log(element.id)
+      this.commentService.getCommentByService(element.id).subscribe(arg => {
+        this.comments = arg;
+
+
+        console.log(this.comments.length);
+        this.dict.push({"post":element.id,"comment":this.comments.length});
+        console.log(  this.dict);
+
+      });
+    });
+
+    this.dict.forEach(r => {
+  console.log(r);
+});
+  }
+
 }
