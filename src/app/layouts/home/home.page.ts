@@ -32,7 +32,12 @@ export class HomePage implements OnInit {
   }
   async openModal() {
     const modal = await this.modalController.create({
-      component: ModalShearePage
+      component: ModalShearePage,
+      componentProps: {
+
+        user: this.user$
+
+      }
     });
     this.getAllPostsByEvent();
     return await modal.present();
@@ -45,7 +50,7 @@ export class HomePage implements OnInit {
 
   getAllPostsByEvent() {
     this.postService.getAllPosts().subscribe(res => {
-      console.log(res);
+      // console.log(res);
 
       this.posts = res['data'].sort((a, b) => {
         // console.log(a.user.name);

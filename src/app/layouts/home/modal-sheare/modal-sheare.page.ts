@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { User } from '../../../shared/Model/User';
@@ -12,7 +12,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./modal-sheare.page.scss'],
 })
 export class ModalShearePage implements OnInit {
-  user: User = new User();
+  @Input() user: User;
+  // user: User = new User();
   post: Post = new Post();
   postForm: FormGroup;
   constructor(private modalController: ModalController,
@@ -31,27 +32,28 @@ export class ModalShearePage implements OnInit {
   }
   openActionSheet() {
     this.actionSheet.create({
-      // header: 'Albums',
+      header: 'Qui peut voir votre publication?',
+      animated:true,
       mode: 'md',
       cssClass: 'my-custom-class',
       buttons: [{
         text: 'Public',
         role: 'destructive',
-        icon: 'logo-facebook',
+        icon: 'world',
         cssClass: 'title-img',
         handler: () => {
           console.log('Facebook share');
         }
       }, {
         text: 'Amis',
-        icon: 'logo-twitter',
+        icon: 'people',
         cssClass: 'twitterIcon',
         handler: () => {
           console.log('Share clicked');
         }
       }, {
         text: 'Amis sauf',
-        icon: 'logo-whatsapp',
+        icon: 'person',
         cssClass: 'whatsappIcon',
         handler: () => {
           console.log('Favorite clicked');
@@ -59,7 +61,7 @@ export class ModalShearePage implements OnInit {
       },
       {
         text: 'Moi uniquement',
-        icon: 'logo-whatsapp',
+        icon: 'bag',
         cssClass: 'whatsappIcon',
         handler: () => {
           console.log('Favorite clicked');

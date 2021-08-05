@@ -116,7 +116,7 @@ export class StatusComponent implements OnInit {
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
     this.commentService.getCommentByService(this.post._id).subscribe(arg => {
-      console.log(arg);
+      // console.log(arg);
       this.comments = arg;
     });
 

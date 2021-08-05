@@ -12,11 +12,11 @@ p {
 
 ion-toolbar ion-buttons ion-button.confirmer {
   --border-radius: 50%;
-  border-radius: 50%;
-  background: #1313131f;
-  width: 36px;
-  height: 36px;
-  // fill-opacity: ;
+     --border-radius: 50%;
+     border-radius: 5px;
+     background: #13131363;
+     width: 80px;
+     height: 36px;
 }
 
 .myFooter {
