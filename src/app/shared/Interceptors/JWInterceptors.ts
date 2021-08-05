@@ -70,7 +70,7 @@ export class JWTInterceptor implements HttpInterceptor {
 
   }
   private addToken(request: HttpRequest<any>, token: any) {
-    console.log(token);
+    // console.log(token);
 
     if (token) {
       let clone: HttpRequest<any>;

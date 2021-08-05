@@ -31,7 +31,7 @@ export class UtilsService {
     private storage: StorageService,
     private toastCtrl: ToastController
   ) {
-    this.jwt().subscribe(res => this.header = res);
+    // this.jwt().subscribe(res => this.header = res);
     // this.jwt();
   }
   public async presentToast(message, color, position) {
@@ -43,39 +43,38 @@ export class UtilsService {
     });
     this.myToast.present();
   }
-  jwt() {
-    return this.storage.get(environment.token).pipe(map(res => {
-      this.token = res;
-      if (this.token) {
-        const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token });
-        //   console.log(headers);
-        return { headers };
-      }
-    }));
+  // jwt() {
+  //   return this.storage.get(environment.token).pipe(map(res => {
+  //     this.token = res;
+  //     if (this.token) {
+  //       const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token });
+  //       //   console.log(headers);
+  //       return { headers };
+  //     }
+  //   }));
 
-  }
+  // }
   public post(url: string, object: any): Observable<any> {
     // console.log(this.header);
 
     return this.httpClient
-      .post(url, object, this.header)
-      .pipe(map((res) => res), catchError(this.formatErrors));
+      .post(url, object);
   }
 
   public patch(url: string, object: any): Observable<any> {
-    return this.httpClient.patch(url, object, this.header).pipe(map((res) => res));
+    return this.httpClient.patch(url, object);
   }
   public put(url: string, object: any): Observable<any> {
-    return this.httpClient.put(url, object, this.header).pipe(map((res) => res));
+    return this.httpClient.put(url, object);
   }
 
   public get(url: string): Observable<any> {
     const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token });
-    return this.httpClient.get(url, this.header).pipe(map((res) => res));
+    return this.httpClient.get(url);
   }
 
   public delete(url: string): Observable<any> {
-    return this.httpClient.delete(url, this.header).pipe(map((res) => res));
+    return this.httpClient.delete(url);
   }
   private formatErrors(error: any) {
     return throwError(error.error);
