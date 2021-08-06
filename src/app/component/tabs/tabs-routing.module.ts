@@ -13,7 +13,7 @@ const routes: Routes = [
           {
           path: '',
             loadChildren: () => import('./../../layouts/home/home.module').then(m => m.HomePageModule),
-          resolve:{posts:PostsResolverService
+          resolve:{data:PostsResolverService
           }
         },
         ]

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { LayoutsRoutingModule } from './layouts-routing.module';
 import { ComponentModule } from '../component/component.module';
+import { LikesPipeModule } from '../shared/Pipe/likesPipe.module';
 
 
 @NgModule({
@@ -10,7 +11,8 @@ import { ComponentModule } from '../component/component.module';
   imports: [
     CommonModule,
     LayoutsRoutingModule,
-    ComponentModule
+    ComponentModule,
+LikesPipeModule
   ]
 })
 export class LayoutsModule { }
