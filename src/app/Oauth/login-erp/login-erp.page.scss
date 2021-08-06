@@ -1,8 +1,11 @@
+ 
 
   #container strong {
     font-size: 20px;
     line-height: 26px;
   }
+
+
   #container p {
     font-size: 16px;
     line-height: 22px;
@@ -82,124 +85,24 @@ ion-toolbar {
   --background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
 
 }
-
+ 
 .shadowbox {
  // border: 1px solid #8EBF25;
  // box-shadow: 2px 1px 1px #247238;
   background-image: linear-gradient(180deg, #fff, #ddd 40%, #ccc);
 }
 
+.LogoS{
+ 
+  box-shadow: 5px 4px 15px 5px rgba(0,0,0,0.21);
+  height: 100px;
+  width: 100px;
+}
 
-//
-
-
-
-// .clear{
-//   clear: both;
-// }
-
-
-// .slide-toggle{
-//   display: none;
-// }
-
-// .slidemenu{
-//   font-family: arial, sans-serif;
-//   max-width: 100%;
-//   margin: 50px auto;
-//   overflow: hidden;
-// }
-
-// .slidemenu label{
-//   width: 25%;
-//   text-align: center;
-//   display: block;
-//   float: left;
-//   color: #333;
-//   opacity: 0.2;
-
-// }
-
-
-
-
-// .slidemenu label .icon{
-//   font-size: 20px;
-//   border: solid 2px #333;
-//   text-align: center;
-//   height: 50px;
-//   width: 50px;
-//   display: block;
-//   margin: 0 auto;
-//   line-height: 50px;
-//   border-radius: 50%;
-// }
-
-// /*Bar Style*/
-
-
-
-// .slider .bar{
-//   width: 50%;
-//   height: 5px;
-//   background: rgb(1, 68, 37);
-//   border-radius: 5px;
-// }
-
-// /*Animations*/
-// .slidemenu label, .slider .bar {
-//   transition: all 500ms ease-in-out;
-//   -webkit-transition: all 500ms ease-in-out;
-//   -moz-transition: all 500ms ease-in-out;
-// }
-
-// /*Toggle*/
-
-// .slidemenu .slide-toggle:checked + label{
-//   opacity: 1;
-// }
-
-
-
-// .slidemenu #slide-item-1:checked ~ .slider .bar{ margin-left: 0; }
-// .slidemenu #slide-item-2:checked ~ .slider .bar{ margin-left: 30%; }
-// .slidemenu #slide-item-3:checked ~ .slider .bar{ margin-left: 50%; }
-// .slidemenu #slide-item-4:checked ~ .slider .bar{ margin-left: 75%; }
-
-
-
-// nav {
-//   max-width:100%;
-//   mask-image: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #ffffff 25%, #ffffff 75%, rgba(255, 255, 255, 0) 100%);
-//   margin: 0 auto;
-//   padding: 10px 0;
-// }
-
-// nav ul {
-//   text-align: center;
-//   background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.2) 25%, rgba(255, 255, 255, 0.2) 75%, rgba(255, 255, 255, 0) 100%);
-//   box-shadow: 0 0 25px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-// }
-
-// nav ul li {
-//   display: inline-block;
-// }
-
-// nav ul li a {
-//   padding:10px;
-//   font-family: "Open Sans";
-//   text-transform:uppercase;
-//   color: black;
-//   font-size: 10px;
-//   text-decoration: none;
-//   display: block;
-// }
-
-// nav ul li a:hover {
-//   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1), inset 0 0 1px rgba(255, 255, 255, 0.6);
-//   background: rgba(255, 255, 255, 0.1);
-//   color: #8EBF25;
-// }
+.LogoErp{
+ 
+}
+ 
 
 
 .clear{
@@ -216,6 +119,9 @@ ion-toolbar {
   max-width: 100%;
   margin: 10px 10px 20px 20px auto;
  // overflow: hidden;
+}
+img{
+  max-width: 100px;
 }
 
 .slidemenu label{
@@ -425,56 +331,66 @@ ion-slide {
   margin-right: -2px !important;
   }
 
+  .message-box {
+
+    position: relative;
+
+
+    & .message-input {
+        background: none;
+        border: none;
+        outline: none !important;
+        resize: none;
+        /* color: rgba(255, 255, 255, .8);*/
+        font-size: 15px;
+        height: 24px;
+        margin: 0;
+        padding-right: 25px;
+        width: 400px;
+        color: #444;
+
+    }
+
+    textarea:focus:-webkit-placeholder {
+        color: transparent;
+    }
+
+    & .message-submit {
+        background-image: linear-gradient(135deg, #247238, #247238, #8EBF25, #8EBF25);
+        position: absolute;
+        height: 25px;
+        top: 8px;
+        left: 10px;
+        right: 10px;
+        width: 100px;
+        font-size: large;
+        border-radius: 10px 10px 10px 10px;
+        text-align: center;
+    }
+}
+
+.MyinputUpdate  {
+    border: 0;
+    outline: 0;
+    font-size: $ruler;
+    border-radius: 10px;
+    padding: $ruler;
+    background-color:white;
+    text-shadow: 1px 1px 0 $color-white;
+    //box-shadow: -5px -5px 10px $color-white, 1px 1px 2px;
+    width: 94%;
+    margin-bottom: 10px;
+    margin-left: 8px;
+    margin-right: 5px;
+ 
+  }
+
+
+  ion-card{
+    box-shadow: -11px 6px 14px 0px rgba(0,0,0,0.17);
+  }
 
   ion-content{
     background:none ;
 --background:rgb(236, 236, 236);
-  }
-
-  .price{
-    
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    background-color: rgb(253, 253, 253);
-    margin-top: 20px;
-    margin-left: 90px;
-    margin-right: 90px;
-    padding: 10px;
-    box-shadow: -4px 6px 9px 5px rgba(163, 163, 163, 0.24);
-
-  }
-
-  .optionBlock{
-    background-color: #e4e3e3;
-  }
-
-
-  .priceTag{
-    display: flex;
-    align-items: baseline;
-  }
-
-  .DescriptionPayment{
-    width: 100%;
-  }
-
-  .ConnexionB{
-    background: linear-gradient(30deg, rgba(2,0,36,1) 0%, rgba(36,114,56,1) 0%, rgba(142,191,37,1) 100%);
-    border: none;
-    color: white;
-    padding: 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    width: 150px;
-    border-radius: 2px;
-    color:white;
-  }
-  
-
-  .logoC{
-    width: 100px;
   }
