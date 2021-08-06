@@ -1,11 +1,11 @@
-<ion-item lines="none">
+<ion-item lines="none" >
   <ion-avatar slot="start">
     <img src="http://placehold.it/75">
   </ion-avatar>
   <ion-label>
 
     <!-- <h3>{{user?.name}}</h3> -->
-    <h3 class="ion-text-capitalize">{{post?.user?.name}}</h3>
+    <h3 class="ion-text-capitalize"  >{{post?.user?.name}}</h3>
     <p>{{post?.createdAt | date}}</p>
   </ion-label>
 </ion-item>
@@ -14,13 +14,15 @@
 
 <ion-card-content class="ion-text-start">
   <p>{{post?.content}}</p>
+  <p>{{ post?.likedBy | json }}</p>
+  <p>{{ user?.id }}</p>
 </ion-card-content>
 
 <ion-row lines="none">
   <ion-col size="col-2">
     <ion-chip>
 
-      <ng-container *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp">
+      <ng-container *ngIf="!post?.likedBy.includes(user?.id); else dislikedTemp">
         <ion-button (dblclick)="showReactions($event)" (click)="like(post)" shape="round" fill="clear" size="large">
 
           <img src="../../../../assets/iconPost/icon_like.svg" />
@@ -31,7 +33,7 @@
       <ng-template #dislikedTemp>
         <ion-button (dblclick)="showReactions($event)" (click)="disLike(post)" shape="round" fill="clear" size="large">
           <img src="../../../../assets/iconPost/icon_liked.svg" />
-          <sub>{{post?.likes}}</sub>
+          <sub>{{post?.dislikes}}</sub>
 
         </ion-button>
 

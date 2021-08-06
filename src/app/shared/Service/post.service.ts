@@ -17,6 +17,8 @@ export class PostService {
     return this.utilsService.post(UtilsService.apiPost, post).pipe(map(res => res));
   }
   likePost(post: Post): Observable<Post> {
+    console.log(post);
+
     return this.utilsService.patch(UtilsService.apiPost + 'likePost', post).pipe(map(res => res));
   }
   disLikePost(post: Post): Observable<Post> {
@@ -25,11 +27,15 @@ export class PostService {
   getAllPosts(): Observable<Post[]> {
     // console.log(page);
     // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
-    return this.utilsService.get(`${UtilsService.apiPost}`).pipe(map(res => res.data));
+    return this.utilsService.get(`${UtilsService.apiPost}`).pipe(map(res => {
+      // console.log(res);
+
+     return res.data;
+    }));
   }
 
   getAllPostsKids(): Observable<Post[]> {
-     console.log(`${UtilsService.apiPost}?type=kids`);
+    console.log(`${UtilsService.apiPost}?type=kids`);
     // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
     return this.utilsService.get(`${UtilsService.apiPost}?type=kids`).pipe(map(res => res.data));
   }

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Comment } from '../Model/Comment';
 import { map } from 'rxjs/operators';
 import { Post } from '../Model/Post';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,10 +11,10 @@ import { Post } from '../Model/Post';
 export class CommentService {
 
   constructor(private apiService: UtilsService) { }
-  addComment(comment: Comment, post: Post) {
+  addComment(comment: Comment, post: Post):Observable<Comment> {
     return this.apiService.post(`${UtilsService.apiPost}${post}/comments`, comment).pipe(map((res) => res));
   }
-  getCommentByService(post) {
+  getCommentByService(post): Observable<Comment[]> {
     return this.apiService.get(`${UtilsService.apiPost}${post}/comments`).pipe(map((res) => res.data.data));
   }
 
