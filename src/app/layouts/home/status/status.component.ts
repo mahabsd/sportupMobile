@@ -53,6 +53,7 @@ export class StatusComponent implements OnInit {
 console.log(this.post)
     // eslint-disable-next-line no-underscore-dangle
     this.id = JSON.stringify(this.user?._id);
+
     // console.log(this.post?.likedBy.indexOf(this.id));
     console.log(typeof (this.id));
     this.getCommentByPost();

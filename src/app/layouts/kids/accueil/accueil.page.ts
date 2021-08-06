@@ -52,15 +52,14 @@ comwiw;
     this.getAllPostsKids();
     this.getMe();
 
-
   }
 
 
 
   getAllPostsKids() {
     this.postKidsService.getAllPostsKids().subscribe(res => {
-      this.posts = res['data'];
-      console.log(res['data']);
+  this.posts=res['data'];
+  console.log(res['data']);
 
 
 
@@ -68,18 +67,19 @@ comwiw;
   }
   getMe() {
     this.userservice.getMe().subscribe(res => {
-      this.user = res;
+      this.user$ = res.data.data;
 
-      console.log(this.user);
+
+      console.log(this.user$);
 
     });
   }
   async like(post) {
 
     console.log('like');
-    await this.postKidsService.likePostKids(post).subscribe(res => {
-      console.log(res);
-      this.getAllPostsKids();
+    await  this.postKidsService.likePostKids(post).subscribe(res => {
+       console.log(res);
+       this.getAllPostsKids();
 
     });
 
@@ -94,17 +94,10 @@ comwiw;
     this.postKidsService.disLikePostKids(post).subscribe(res => {
       console.log(res);
       this.getAllPostsKids();
-  }
 
-  disLike(post) {
-    this.postKidsService.disLikePostKids(post).subscribe(res => {
-      console.log(res);
-      this.getAllPostsKids();
+     });
 
 
-    });
-
-    console.log('diss');
 
   }
   async presentModal(post) {
@@ -124,7 +117,6 @@ comwiw;
       console.log(post);
       this.idpostcom=post.id;
       this.getCommentByPost();
-
 
 
     });
@@ -150,7 +142,4 @@ comwiw;
 });
   }
 
-
-
-  getAllPost() { }
 }
