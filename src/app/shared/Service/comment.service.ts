@@ -17,4 +17,13 @@ export class CommentService {
   getCommentByService(post): Observable<Comment[]> {
     return this.apiService.get(`${UtilsService.apiPost}${post}/comments`).pipe(map((res) => res.data.data));
   }
+
+
+
+
+  deleteComment(id: any) {
+    return this.apiService.delete(`${UtilsService.apiComment}`+id);
+  }
 }
+
+

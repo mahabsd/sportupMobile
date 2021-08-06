@@ -1,7 +1,10 @@
-
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable @typescript-eslint/adjacent-overload-signatures */
+import { CommentsPage } from './../../home/comments/comments.page';
+/* eslint-disable no-trailing-spaces */
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
-import { ReactionsPage } from '../reactions/reactions.page';
+
 import { PostService } from '../../../shared/Service/post.service';
 import { Post } from '../../../shared/Model/Post';
 import { Observable } from 'rxjs';
@@ -10,20 +13,20 @@ import { UserService } from '../../../shared/Service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Comment } from '../../../shared/Model/Comment';
 import { CommentService } from '../../../shared/Service/comment.service';
-import { CommentsPage } from '../comments/comments.page';
+import { PostKidsService } from 'src/app/shared/kids/Service/postKids.service';
+import { CommentsKidsPage } from '../comments-kids/comments-kids.page';
 
 @Component({
-  selector: 'app-status',
-  templateUrl: './status.component.html',
-  styleUrls: ['./status.component.scss'],
+  selector: 'app-status-kids',
+  templateUrl: './status-kids.component.html',
+  styleUrls: ['./status-kids.component.scss'],
 })
-export class StatusComponent implements OnInit {
+export class StatusKidsComponent implements OnInit {
+
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-
-  @Input() post: any;
-  @Input() index: any;
-  @Input() user: any;
+  @Input() post: Post;
+  @Input() user: User;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
   commentForm: FormGroup;
@@ -38,11 +41,11 @@ export class StatusComponent implements OnInit {
   press = 0;
   liked = false;
   bookmarked = false;
-  id;
+  id: number;
   constructor(private navCtrl: NavController,
     private commentService: CommentService,
     private modalController: ModalController,
-
+    private postKidsService: PostKidsService,
     private popoverCtrl: PopoverController) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -50,27 +53,14 @@ export class StatusComponent implements OnInit {
     // this.getMe();
   }
   ngOnInit() {
-console.log(this.post)
+console.log("zzzzzz"+ this.user?._id);
     // eslint-disable-next-line no-underscore-dangle
-    this.id = JSON.stringify(this.user?._id);
-    // console.log(this.post?.likedBy.indexOf(this.id));
-    console.log(typeof (this.id));
+    this.id = this.user?._id;
     this.getCommentByPost();
   }
 
-  async showReactions(ev) {
-    this.press++;
-    const reactions = await this.popoverCtrl.create(
-      {
-        component: ReactionsPage,
-        event: ev
-      }
-    );
 
-    await reactions.present();
-    const { role } = await reactions.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
-  }
+
 
   onTap() {
     console.log('ok');
@@ -79,14 +69,10 @@ console.log(this.post)
   }
 
   like(post) {
-    console.log(this.index);
-
-    this.likeFn.emit({ post, index: this.index });
+    this.likeFn.emit(post);
   }
   disLike(post) {
-    console.log(this.index);
-
-    this.disLikeFn.emit({ post, index: this.index });
+    this.disLikeFn.emit(post);
   }
 
   onComment() {
@@ -106,29 +92,32 @@ console.log(this.post)
 
   async presentModal(post) {
     const modal = await this.modalController.create({
-      component: CommentsPage,
+      component: CommentsKidsPage,
       cssClass: 'my-custom-class',
       componentProps: {
         post,
-        comments: this.comments
-
+        comments: this.comments,
+       userid: this.user?._id
       }
     });
     await modal.present();
 
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
-            console.log( this.post._id);
+
 
     });
 
 
   }
+
+
+
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
     this.commentService.getCommentByService(this.post._id).subscribe(arg => {
-      // console.log(arg);
       this.comments = arg;
+      console.log(this.comments)
     });
 
   }

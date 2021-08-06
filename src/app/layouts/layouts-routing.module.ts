@@ -201,6 +201,10 @@ const routes: Routes = [
     ],
   },
      {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {
+    path: 'comments-kids',
+    loadChildren: () => import('./kids/comments-kids/comments-kids.module').then( m => m.CommentsKidsPageModule)
+  },
 
 ]
 ;
