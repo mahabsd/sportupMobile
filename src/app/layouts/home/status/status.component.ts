@@ -1,4 +1,4 @@
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
@@ -19,8 +19,10 @@ import { CommentsPage } from '../comments/comments.page';
 export class StatusComponent implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  @Input() post: Post;
-  @Input() user: User;
+
+  @Input() post: any;
+  @Input() index: any;
+  @Input() user: any;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
   commentForm: FormGroup;
@@ -35,7 +37,7 @@ export class StatusComponent implements OnInit {
   press = 0;
   liked = false;
   bookmarked = false;
-  id: number;
+  id;
   constructor(private navCtrl: NavController,
     private commentService: CommentService,
     private modalController: ModalController,
@@ -49,7 +51,9 @@ export class StatusComponent implements OnInit {
   ngOnInit() {
 
     // eslint-disable-next-line no-underscore-dangle
-    this.id = this.user?._id;
+    this.id = JSON.stringify(this.user?._id);
+    // console.log(this.post?.likedBy.indexOf(this.id));
+    console.log(typeof (this.id));
     this.getCommentByPost();
   }
 
@@ -74,10 +78,14 @@ export class StatusComponent implements OnInit {
   }
 
   like(post) {
-    this.likeFn.emit(post);
+    console.log(this.index);
+
+    this.likeFn.emit({ post, index: this.index });
   }
   disLike(post) {
-    this.disLikeFn.emit(post);
+    console.log(this.index);
+
+    this.disLikeFn.emit({ post, index: this.index });
   }
 
   onComment() {
@@ -125,4 +133,5 @@ export class StatusComponent implements OnInit {
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
+
 }

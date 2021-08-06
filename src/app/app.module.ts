@@ -19,10 +19,12 @@ import { H401Interceptor } from './shared/Interceptors/H401Interceptor';
 import { AuthGuard } from './shared/Guard/auth.guard';
 import { StorageService } from './shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
+import { LikesPipeModule } from './shared/Pipe/likesPipe.module';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent,],
+  exports: [],
   entryComponents: [],
   imports: [
     IonicStorageModule.forRoot({
@@ -34,7 +36,8 @@ import { ComponentModule } from './component/component.module';
     IonicModule.forRoot(),
     HttpClientModule,
     LayoutsModule,
-    ComponentModule
+    ComponentModule,
+    LikesPipeModule
   ],
   providers: [
     ImagePicker,

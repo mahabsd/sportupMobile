@@ -10,6 +10,6 @@ export class Post {
   user: User;
   likes: number;
   dislikes: number;
-  dislidBy: [];
+  dislikedBy: [];
   likedBy: [];
 }
