@@ -34,18 +34,18 @@ export class AccueilPage implements OnInit {
   commentForm: FormGroup;
   comment: Comment = new Comment();
   initialButtonIcon = "heart-outline";
-idpostcom;
-user$: any = [];
+  idpostcom;
+  user$: any = [];
 
-xxxMap = new Map();
+  xxxMap = new Map();
   dict: any[] = [];
-idwiw;
-comwiw;
+  idwiw;
+  comwiw;
   buttonColor: string;
   posts: any[] = [];
-  constructor(    private commentService: CommentService,
+  constructor(private commentService: CommentService,
     private modalController: ModalController,
-  private postKidsService: PostKidsService, private postService: PostService, private userservice: UserService) { }
+    private postKidsService: PostKidsService, private postService: PostService, private userservice: UserService) { }
 
   ngOnInit() {
 
@@ -86,7 +86,7 @@ comwiw;
     post.icon = "heart";
     this.buttonColor = '#ff0000';
 
-    }
+  }
 
   disLike(post) {
     console.log('diss');
@@ -94,19 +94,13 @@ comwiw;
     this.postKidsService.disLikePostKids(post).subscribe(res => {
       console.log(res);
       this.getAllPostsKids();
-  }
-
-  disLike(post) {
-    this.postKidsService.disLikePostKids(post).subscribe(res => {
-      console.log(res);
-      this.getAllPostsKids();
-
-
     });
-
-    console.log('diss');
-
   }
+
+
+
+
+
   async presentModal(post) {
     const modal = await this.modalController.create({
       component: CommentsKidsPage,
@@ -122,7 +116,7 @@ comwiw;
     await modal.onWillDismiss().then((result) => {
       console.log("zz")
       console.log(post);
-      this.idpostcom=post.id;
+      this.idpostcom = post.id;
       this.getCommentByPost();
 
 
@@ -139,15 +133,15 @@ comwiw;
 
 
         console.log(this.comments.length);
-        this.dict.push({"post":element.id,"comment":this.comments.length});
-        console.log(  this.dict);
+        this.dict.push({ "post": element.id, "comment": this.comments.length });
+        console.log(this.dict);
 
       });
     });
 
     this.dict.forEach(r => {
-  console.log(r);
-});
+      console.log(r);
+    });
   }
 
 

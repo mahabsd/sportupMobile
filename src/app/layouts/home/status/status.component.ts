@@ -50,11 +50,11 @@ export class StatusComponent implements OnInit {
     // this.getMe();
   }
   ngOnInit() {
-console.log(this.post)
+// console.log(this.post)
     // eslint-disable-next-line no-underscore-dangle
     this.id = JSON.stringify(this.user?._id);
     // console.log(this.post?.likedBy.indexOf(this.id));
-    console.log(typeof (this.id));
+    // console.log(typeof (this.id));
     this.getCommentByPost();
   }
 
