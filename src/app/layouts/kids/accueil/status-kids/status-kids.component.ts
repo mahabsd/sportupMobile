@@ -1,20 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/adjacent-overload-signatures */
-import { CommentsPage } from './../../home/comments/comments.page';
+import { CommentsPage } from '../../../home/comments/comments.page';
 /* eslint-disable no-trailing-spaces */
 import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
 
-import { PostService } from '../../../shared/Service/post.service';
-import { Post } from '../../../shared/Model/Post';
+import { PostService } from '../../../../shared/Service/post.service';
+import { Post } from '../../../../shared/Model/Post';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/Shared/Model/user';
-import { UserService } from '../../../shared/Service/user.service';
+import { UserService } from '../../../../shared/Service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Comment } from '../../../shared/Model/Comment';
-import { CommentService } from '../../../shared/Service/comment.service';
+import { Comment } from '../../../../shared/Model/Comment';
+import { CommentService } from '../../../../shared/Service/comment.service';
 import { PostKidsService } from 'src/app/shared/kids/Service/postKids.service';
-import { CommentsKidsPage } from '../comments-kids/comments-kids.page';
+import { CommentsKidsPage } from '../../comments-kids/comments-kids.page';
 
 @Component({
   selector: 'app-status-kids',

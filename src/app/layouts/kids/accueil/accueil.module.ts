@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AccueilPageRoutingModule } from './accueil-routing.module';
 
 import { AccueilPage } from './accueil.page';
-import { StatusKidsComponent } from '../status-kids/status-kids.component';
+import { StatusKidsComponent } from './status-kids/status-kids.component';
 
 @NgModule({
   imports: [

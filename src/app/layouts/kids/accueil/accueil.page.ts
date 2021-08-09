@@ -96,9 +96,9 @@ export class AccueilPage implements OnInit {
       this.getAllPostsKids();
 
 
-     });
+    });
 
-
+  }
 
   async presentModal(post) {
     const modal = await this.modalController.create({
