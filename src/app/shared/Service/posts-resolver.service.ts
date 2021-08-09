@@ -20,6 +20,8 @@ export class PostsResolverService implements Resolve<Post[]>{
 
     // });
     const observable: Observable<Post[]> = Observable.create(observer => {
+      console.log(posts);
+
       observer.next(posts);
       observer.complete();
     })

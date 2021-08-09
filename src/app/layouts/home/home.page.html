@@ -1,7 +1,5 @@
 <app-header title="Home"></app-header>
 <ion-content padding>
-  ≈
-
   <div id="container">
     <ion-grid>
       <ion-row expand="full" class="row ion-align-items-center ion-justify-content-start">
@@ -70,7 +68,7 @@
       </ion-slides> -->
       </div>
     </ion-grid>
-    <ion-row class="bodyFilter" >
+    <ion-row class="bodyFilter">
       <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
         <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
           refreshingSpinner="circles" refreshingText="Refreshing...">
@@ -78,7 +76,8 @@
       </ion-refresher>
       <ion-virtual-scroll [items]="posts">
         <ion-card *virtualItem="let post;let i=index" [class.focus]="indexPub==i">
-          <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)"></app-status>
+          <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)">
+          </app-status>
         </ion-card>
       </ion-virtual-scroll>
     </ion-row>
