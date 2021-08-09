@@ -11,5 +11,8 @@ export class ErpPage implements OnInit {
 
   ngOnInit() {
   }
-
+  getItem(event){
+    console.log(event.id);
+    
+  }
 }

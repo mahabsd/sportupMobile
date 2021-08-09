@@ -93,7 +93,8 @@ ion-toolbar {
 }
 
 .LogoS{
- 
+  display: flex;
+  justify-content: center;
   box-shadow: 5px 4px 15px 5px rgba(0,0,0,0.21);
   height: 100px;
   width: 100px;

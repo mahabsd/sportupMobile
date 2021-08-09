@@ -52,15 +52,14 @@ export class AccueilPage implements OnInit {
     this.getAllPostsKids();
     this.getMe();
 
-
   }
 
 
 
   getAllPostsKids() {
     this.postKidsService.getAllPostsKids().subscribe(res => {
-      this.posts = res['data'];
-      console.log(res['data']);
+  this.posts=res['data'];
+  console.log(res['data']);
 
 
 
@@ -68,18 +67,19 @@ export class AccueilPage implements OnInit {
   }
   getMe() {
     this.userservice.getMe().subscribe(res => {
-      this.user = res;
+      this.user$ = res.data.data;
 
-      console.log(this.user);
+
+      console.log(this.user$);
 
     });
   }
   async like(post) {
 
     console.log('like');
-    await this.postKidsService.likePostKids(post).subscribe(res => {
-      console.log(res);
-      this.getAllPostsKids();
+    await  this.postKidsService.likePostKids(post).subscribe(res => {
+       console.log(res);
+       this.getAllPostsKids();
 
     });
 
@@ -94,10 +94,9 @@ export class AccueilPage implements OnInit {
     this.postKidsService.disLikePostKids(post).subscribe(res => {
       console.log(res);
       this.getAllPostsKids();
-    });
-  }
 
 
+     });
 
 
 
@@ -118,7 +117,6 @@ export class AccueilPage implements OnInit {
       console.log(post);
       this.idpostcom = post.id;
       this.getCommentByPost();
-
 
 
     });
@@ -144,7 +142,4 @@ export class AccueilPage implements OnInit {
     });
   }
 
-
-
-  getAllPost() { }
 }

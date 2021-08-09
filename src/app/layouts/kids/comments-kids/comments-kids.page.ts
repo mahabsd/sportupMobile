@@ -31,7 +31,7 @@ export class CommentsKidsPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.userid);
+    console.log("userrrr"+this.userid);
         this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
     });
