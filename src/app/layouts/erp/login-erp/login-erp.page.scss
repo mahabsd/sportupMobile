@@ -103,7 +103,13 @@ ion-toolbar {
 .LogoErp{
  
 }
- 
+ .title{
+  padding-top: 30px;
+  margin: 0 20px;
+  justify-content: center;
+  display: grid;
+  text-align: center;
+ }
 
 
 .clear{
@@ -375,7 +381,7 @@ ion-slide {
     outline: 0;
     font-size: $ruler;
     border-radius: 10px;
-    padding: $ruler;
+    padding: 5px 10px;
     background-color:white;
     text-shadow: 1px 1px 0 $color-white;
     //box-shadow: -5px -5px 10px $color-white, 1px 1px 2px;
@@ -385,7 +391,12 @@ ion-slide {
     margin-right: 5px;
  
   }
-
+ion-avatar{
+  
+  position: relative;
+  display: grid;
+  justify-content: center;
+}
 
   ion-card{
     box-shadow: -11px 6px 14px 0px rgba(0,0,0,0.17);
