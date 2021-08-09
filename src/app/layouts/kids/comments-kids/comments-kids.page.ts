@@ -1,6 +1,9 @@
+/* eslint-disable @typescript-eslint/consistent-type-assertions */
+/* eslint-disable @typescript-eslint/type-annotation-spacing */
+/* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, ViewChild } from '@angular/core';
 import { CommentService } from '../../../shared/Service/comment.service';
 import { Comment } from '../../../shared/Model/Comment';
 import { Post } from 'src/app/Shared/Model/post';
@@ -18,9 +21,13 @@ export class CommentsKidsPage implements OnInit {
   @Input() comments: any = [];
   @Input() userid: any;
 
+
+
+updateCom=false;
+selectedCom:Comment;
   comment: Comment = new Comment();
   commentForm: FormGroup;
-
+  upcom;
   apiImg: any;
   constructor(
     private commentService: CommentService,
@@ -34,12 +41,21 @@ export class CommentsKidsPage implements OnInit {
     console.log("userrrr"+this.userid);
         this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
+
     });
 console.log(this.post);
 console.log(this.comments);
 this.getCommentByPost();
 
   }
+
+  updateComment(comment){
+    this.updateCom=true;
+    this.selectedCom=comment;
+
+
+
+    }
   sendComment(post) {
     console.log(this.comment);
     this.comments = [];
@@ -49,6 +65,19 @@ this.getCommentByPost();
       this.getCommentByPost();
       console.log(res);
     });
+  }
+
+  sendCommentUpdate(){
+    this.updateCom=false;
+    this.upcom = (<HTMLInputElement>document.getElementById("contentCom")).value;
+    this.selectedCom.content=this.upcom ;
+
+    this.commentService.updateComments(this.selectedCom).subscribe(res => {
+
+
+      console.log(res);
+    });
+
   }
   async dismissModal() {
     await this.modalController.dismiss();
@@ -65,10 +94,6 @@ this.getCommentByPost();
 
   deleteComment(idcom){
     this.commentService.deleteComment(idcom).subscribe(arg => {
-
-     // console.log(arg);
-
-
     });
     this.getCommentByPost();
   }

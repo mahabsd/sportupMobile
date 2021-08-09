@@ -54,22 +54,17 @@ export class AccueilPage implements OnInit {
 
   }
 
-
-
   getAllPostsKids() {
+    console.log("heree")
     this.postKidsService.getAllPostsKids().subscribe(res => {
   this.posts=res['data'];
   console.log(res['data']);
-
-
-
     });
   }
+
   getMe() {
     this.userservice.getMe().subscribe(res => {
       this.user$ = res.data.data;
-
-
       console.log(this.user$);
 
     });
