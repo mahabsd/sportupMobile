@@ -424,3 +424,53 @@ ion-slide {
   width: 4rem !important;
   margin-right: -2px !important;
   }
+
+
+  ion-content{
+    background:none ;
+--background:rgb(236, 236, 236);
+  }
+ 
+
+  .choiceContainer{
+    margin-top: 10px;
+    margin-left: 90px;
+    margin-right: 90px;
+  }
+
+  .optionBlock{
+    background-color: #e4e3e3;
+  }
+
+
+  .priceTag{
+    flex-direction: column;
+  }
+
+  .DescriptionPayment{
+    width: 100%;
+  }
+
+  .ConnexionB{
+    background: linear-gradient(30deg, rgba(2,0,36,1) 0%, rgba(36,114,56,1) 0%, rgba(142,191,37,1) 100%);
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    width: 150px;
+    border-radius: 2px;
+    color:white;
+  }
+  
+
+  .logoC{
+    width: 100px;
+  }
+
+  .visa{
+    width: 50px;
+  }

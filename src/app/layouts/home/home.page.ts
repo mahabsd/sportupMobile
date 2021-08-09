@@ -1,7 +1,7 @@
 import { User } from './../../shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
-import { IonVirtualScroll, ModalController } from '@ionic/angular';
+import { IonVirtualScroll, ModalController, ToastController } from '@ionic/angular';
 import { UserService } from '../../shared/Service/user.service';
 import { PostService } from '../../shared/Service/post.service';
 import { Observable } from 'rxjs';
@@ -9,6 +9,7 @@ import { Post } from '../../shared/Model/Post';
 import { CommentService } from '../../shared/Service/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs/operators';
+import { Socket } from 'ngx-socket-io';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -30,22 +31,31 @@ export class HomePage implements OnInit {
     spaceBetween: 25
   };
   scrolTo = null;
+
+
+  message = '';
+  messages = [];
+  currentUser = '';
   constructor(
+
     private active: ActivatedRoute,
     private modalController: ModalController,
+    private toastCtrl: ToastController,
     private postService: PostService,
     private commentService: CommentService,
+    private socket: Socket,
     private userservice: UserService) {
   }
 
   ngOnInit() {
+    
     this.getMe();
     this.active.data.subscribe((data: { data: any }) => {
       this.loading = true;
-      console.log(this.loading);
+      // console.log(data);
       this.posts = data['data'].data.sort((a, b) => {
         this.loading = false;
-        console.log(this.loading);
+        // console.log(this.loading);
         // console.log(a.user.name);
         if (a.user.name < b.user.name) {
           return -1;
@@ -58,12 +68,21 @@ export class HomePage implements OnInit {
       // console.log(this.posts);
 
     });
-
-
-
-
-    // this.getAllPostsByEvent();
   }
+  async presentToast() {
+    const myToast = await this.toastCtrl.create({
+      message: 'ok',
+      duration: 2000,
+      color: 'success',
+      position: 'top'
+    }).then((toastData) => {
+      toastData.present();
+    });
+  }
+
+
+  // this.getAllPostsByEvent();
+
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
@@ -79,7 +98,7 @@ export class HomePage implements OnInit {
   getAllPostsByEvent() {
     this.loading = true;
     this.postService.getAllPosts().pipe(share()).subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.loading = false;
       this.posts = res['data'].sort((a, b) => {
         // console.log(a.user.name);

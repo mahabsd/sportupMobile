@@ -1,71 +1,127 @@
 <ion-header [translucent]="true" style="background-color:rgb(10, 51, 10)">
   <ion-toolbar style="background-color:#247238">
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+ 
     </ion-buttons>
-    <ion-title> ERP</ion-title>
+    <ion-title color="light" class="ion-text-center"> ERP</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
- <ion-row>
-  <ion-col size="1">
-  </ion-col>
-  <ion-col>
-  <ion-label>
-  Ajouter des fonctionalité et des avantages Exeptionelles a votre application
-  </ion-label>
-  </ion-col>
-  <ion-col size="1">
-  </ion-col>
- </ion-row>
- <ion-row>
-  <ion-col size="4">
-  </ion-col>
 
-  <ion-col size="4" class="MyLogoErp">
+  <ion-row style="margin-top: 10px; margin-bottom: 10px;">
 
-  </ion-col>
+    <ion-col class="ion-text-center">
 
-  <ion-col size="4">
-  </ion-col>
- </ion-row>
- <ion-row class="ClassPackPayment">
+      <ion-label style=" font-size: medium;  text-align: center; color: rgb(129, 129, 129); ">
+        Ajouter des fonctionalité et des avantages Exeptionelles a votre application
+      </ion-label>
+
+
+    </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <div style="display: flex; justify-content: center; width: 100%;">
+      <img class="logoC" src="assets/imgs/logo.jpg">
+    </div>
+
+
+
+  </ion-row>
+  <div class="choiceContainer">
+    <ion-row class="ion-justify-content-center">
+      <ion-button  (click)="getItem(1)" style="width: 200px; height: 40px;" [color]="getColor(1)">
+        <div style="position: relative; left: 0; ">
+  
+          <div>
+            <div style="text-align: left; font-size: 9px;">HT</div> 1.90 € /Mois
+          </div>
+        
+        </div>
+  
+      </ion-button>
+      <!-- <div class="price">
+        <div>HT</div>
+        <div>   <label  class="priceTag"><h2>1.90€</h2>/Mois</label></div>
+     
+      </div> -->
+  
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-button  (click)="getItem(2)" style="width: 200px; height: 40px;" [color]="getColor(2)">
+        <div style="position: relative; left: 0; ">
+  
+          <div>
+            <div style="text-align: left; font-size: 9px;">HT</div> 5.70 € /3Mois
+          </div>
+          <div style="font-size: 9px;  ">un mois gratuit</div>
+        </div>
+  
+      </ion-button>
+      <!-- <div class="price">
+        <div>HT</div>
+        <div>   <label  class="priceTag"><h2>1.90€</h2>/Mois</label></div>
+     
+      </div> -->
+  
+    </ion-row>
+    <ion-row class="ion-justify-content-center">
+      <ion-button (click)="getItem(3)" style="width: 200px; height: 40px;" [color]="getColor(3)">
+        <div style="position: relative; left: 0; ">
+  
+          <div>
+            <div style="text-align: left; font-size: 9px;">HT</div> 10.0 € /6Mois
+          </div>
+          <div style="font-size: 9px;">un mois gratuit</div>
+        </div>
+  
+      </ion-button>
+      <!-- <div class="price">
+        <div>HT</div>
+        <div>   <label  class="priceTag"><h2>1.90€</h2>/Mois</label></div>
+     
+      </div> -->
+  
+    </ion-row>
+
+  </div>
+
+  <ion-row class="DescriptionPayment">
+
+
+    <div
+      style="display: flex; justify-content: center; width: 100%; margin-left: 30px; margin-right: 30px; text-align: center; margin-top: 20px; color: rgb(129, 129, 129); margin-bottom: 5px;">
+      Une meilleure organisation
+      Une Optimisation des temps
+      une meilleur rentabilité
+    </div>
+
+
+
+
+    <ion-row >
+      <div style="display: flex; justify-content: center; width: 100%; margin-bottom: 10px;"  >
+        <button class="ConnexionB" [routerLink]="['/erp-space']" red >
+          C'EST PARTI !
+        </button>
+      </div>
+
+      <div style="width: 100%; display: flex; justify-content: center; ">
+        <b style="font-size: small;">Paiment 100 $ sur.transaction bancaires cryptées</b>
+      </div>
+      <div style="width: 100%; display: flex; justify-content: center;">
+        <p>
+          Nous acceptons les cartes de crédit bancaires
+        </p>
+      </div>
  
- </ion-row>
- <ion-row class="DescriptionPayment">
- <ion-col size="4">
+    </ion-row>
+  </ion-row>
+  <ion-row class="ion-justify-content-center">
+    <img class="visa" src="assets/ImgErp/mastercard.png" />
+    </ion-row>
  
- </ion-col>
- <ion-col size="4">
- <ion-label>
- Une meilleure organisation
- Une Optimisation des temps
- une meilleur rentabilité
- </ion-label>
- </ion-col>
- 
- <ion-row>
- <ion-label>
- Paiment 100 $ sur.transaction bancaires cryptées
- </ion-label>
- <p>
- Nous acceptons les cartes de crédit bancaires
- </p>
- </ion-row>
- </ion-row>
 </ion-content>
-<ion-footer>
-<ion-row>
-<ion-col size="4">
-</ion-col>
-<ion-col size="4" routerLink="/login-erp">
-<ion-button>
- C'EST PARTI !
- </ion-button> 
-</ion-col>
-<ion-col size="4">
-</ion-col>
+<div style="background-color: #247238; width: 100%; height: 5px;">
 
-</ion-row>
-
-</ion-footer>
+</div>

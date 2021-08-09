@@ -1,95 +1,91 @@
 
-<ion-header [translucent]="true" style="background-color:rgb(10, 51, 10); ">
-  <ion-toolbar style="background-color:#247238; padding-top: 20px;">
+<ion-header [translucent]="true" >
+  <ion-toolbar >
     <ion-buttons slot="start">
-      <ion-icon name="arrow-undo" color="light" style="margin-left: 10px;"  [routerLink]="['/tabs/home']" ></ion-icon>
+      <ion-back-button defaultHref="/tabs/home">       
+      </ion-back-button>
+       
+     
     </ion-buttons>
     <ion-title style="color: white;"> ERP-LOGIN</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content   >
-<ion-row style="padding-top: 30px; background-color:rgb(236, 236, 236)">
+<ion-row style="padding-top: 30px;" class="title">
  
   <ion-col >
-    <ion-header class="ion-text-center">
-      <ion-label  style="color: grey;font-weight: bold;font-size:smaller;margin-top: 5px;">
+  
+      <ion-label  style="color: grey;font-weight: bold;font-size:smaller;margin-top: 5px;margin-bottom: 5px;">
         Ajouter des fonctionnalités et des avantages exeptionnelles a votre application
         </ion-label>
-    </ion-header>
+
 
   </ion-col>
  
 </ion-row>
  
  
-<ion-row style="padding-top: 20px; background-color:rgb(236, 236, 236)" >
+<ion-row style="padding-top: 40px;  display: flex; justify-content: center;" >
  
- 
-  <ion-col size="6" class="LogoErp">
-
+  
   <!-- <ion-row style="margin-top: 20px; margin-bottom: 20px; margin-buttom: 100px;  justify-content: center;"> -->
-        <ion-avatar  >
+ 
+      <ion-avatar   >
  
    
-          <img class="LogoS"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+        <img class="LogoS"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+
+    </ion-avatar>
  
-      </ion-avatar>
+     
       <!-- </ion-row> -->
-  </ion-col>
+ 
   
 </ion-row>
  
  
-<ion-row style="padding-top: 50px !important; background-color:rgb(236, 236, 236)">
+<ion-row style="padding-top: 50px !important;" class="ion-justify-content-center">
  
-  <ion-col size="1"></ion-col>
   <ion-col text-center>
-  <ion-card  no-padding style="margin: 0px 0px 0px 0px !important;background-color: #f1f1f1;">
+  <ion-card  no-padding style="margin:5rem 20px 0 !important;background: rgb(202, 202, 202);" >
     <ion-card-content>
  
 
       <form [formGroup]="loginForm" >
     <ion-row>
     <input style="font-size: small;"  class="MyinputUpdate" type="email" [(ngModel)]="user.email" formControlName="emailControl"   placeholder="E-Mail" />
-    <input style="font-size: small;"  class="MyinputUpdate" type="email"  [(ngModel)]="user.password"  formControlName="passwordControl" placeholder="Mot de passe" />
+    <input style="font-size: small;"  class="MyinputUpdate" type="password"  [(ngModel)]="user.password"  formControlName="passwordControl" placeholder="Mot de passe" />
     </ion-row>
-      <ion-row style="padding-bottom: 30px;padding-top: 30px;  ">
-          <ion-col size="3">
-          </ion-col>
-          <ion-col size="5">
+      <ion-row style="padding-bottom: 30px;padding-top: 30px;  " class="ion-justify-content-center">
+        
+          <ion-col size="5" >
             <div   class="message-box">
               <div type="submit" (click)="login()" class="message-submit">
               <h6 style="font-size: small;color:white;     margin-top: 5px;" name="send-outline" >Connexion</h6>
               </div>
             </div>
           </ion-col>
-          <ion-col size="4">
-          </ion-col>
+         
       </ion-row>
  
  
     </form>
     </ion-card-content>
-      <ion-row >
+      <ion-row class="ion-justify-content-center" >
  
-        <ion-col size="3">
-        </ion-col>
-        <ion-col >
+     
+        <ion-col class="ion-text-center" >
           <ion-label style="color: grey;font-weight: bold;font-size:small; " [routerLink]="['/resetpass']" >
             Mot de passe oubliée
           </ion-label>
         </ion-col>
-        <ion-col size="3">
-        </ion-col>
+      
       </ion-row>
   </ion-card>
   </ion-col>
-  <ion-col size="1"></ion-col> 
  
 
 </ion-row>
 </ion-content>
-<ion-footer style="background-color:rgb(236, 236, 236)">
- 
-</ion-footer>
+
 

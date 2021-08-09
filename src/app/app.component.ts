@@ -8,6 +8,7 @@ import { Router, RouterEvent } from '@angular/router';
 import { AuthService } from './shared/Auth/auth.service';
 import { StorageService } from './shared/Service/storage.service';
 import { environment } from 'src/environments/environment';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-root',
@@ -61,6 +62,7 @@ export class AppComponent implements OnInit {
     url: '/login'
   }];
   token: any;
+  
   constructor(private router: Router,
     private storage: StorageService,
     private platform: Platform,
@@ -70,14 +72,11 @@ export class AppComponent implements OnInit {
     this.initializeApp();
     this.router.events.subscribe((event: RouterEvent) => {
       // console.log(event.url);
-
       if (event && event.url) {
         this.selectedPath = event.url;
       }
     });
   }
-
-
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
