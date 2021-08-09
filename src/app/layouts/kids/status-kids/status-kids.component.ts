@@ -41,7 +41,7 @@ export class StatusKidsComponent implements OnInit {
   press = 0;
   liked = false;
   bookmarked = false;
-  id: number;
+  id;
   constructor(private navCtrl: NavController,
     private commentService: CommentService,
     private modalController: ModalController,
@@ -53,9 +53,12 @@ export class StatusKidsComponent implements OnInit {
     // this.getMe();
   }
   ngOnInit() {
-console.log("zzzzzz"+ this.user?._id);
     // eslint-disable-next-line no-underscore-dangle
-    this.id = this.user?._id;
+    this.id = JSON.stringify(this.user?._id);
+
+    console.log("zzzzzz"+  JSON.stringify(this.user?._id));
+    console.log("zzzzzz"+ this.id);
+
     this.getCommentByPost();
   }
 
