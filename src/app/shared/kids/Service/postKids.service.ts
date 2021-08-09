@@ -31,4 +31,7 @@ export class PostKidsService {
   getCommentByService(post) {
     return this.utilsService.get(`${UtilsService.apiPost}${post}/comments`).pipe(map((res) => res.data.data));
   }
+  deletePostKids(id: any) {
+    return this.utilsService.delete(`${UtilsService.apiPost}`+id);
+  }
 }

@@ -19,7 +19,10 @@ export class CommentService {
   }
 
 
+  updateComments(comment: Comment) {
 
+    return this.apiService.patch(`${UtilsService.apiComment}${comment.id}`,comment);
+  }
 
   deleteComment(id: any) {
     return this.apiService.delete(`${UtilsService.apiComment}`+id);

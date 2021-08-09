@@ -15,6 +15,7 @@ import { Comment } from '../../../shared/Model/Comment';
 import { CommentService } from '../../../shared/Service/comment.service';
 import { PostKidsService } from 'src/app/shared/kids/Service/postKids.service';
 import { CommentsKidsPage } from '../comments-kids/comments-kids.page';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-status-kids',
@@ -29,6 +30,8 @@ export class StatusKidsComponent implements OnInit {
   @Input() user: User;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
+  @Output() refreshPosts = new EventEmitter();
+
   commentForm: FormGroup;
   comment: Comment = new Comment();
   longPressActive = false;
@@ -43,6 +46,7 @@ export class StatusKidsComponent implements OnInit {
   bookmarked = false;
   id;
   constructor(private navCtrl: NavController,
+    public alertController: AlertController,
     private commentService: CommentService,
     private modalController: ModalController,
     private postKidsService: PostKidsService,
@@ -60,10 +64,40 @@ export class StatusKidsComponent implements OnInit {
     console.log("zzzzzz"+ this.id);
 
     this.getCommentByPost();
+
   }
 
+  async presentAlertConfirm(post) {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'Confirm!',
+      message: 'Are you sure you want to delete this post ?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            console.log('Confirm Okay'+post.id);
+            this.deletePost(post._id);
+          }
+        }
+      ]
+    });
 
+    await alert.present();
+  }
 
+  deletePost(idpost){
+    this.postKidsService.deletePostKids(idpost).subscribe(arg => {
+    });
+  this.refreshPosts.emit();
+  }
 
   onTap() {
     console.log('ok');
