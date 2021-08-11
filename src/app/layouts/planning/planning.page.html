@@ -6,7 +6,13 @@
     <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Planning</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content style="    --offset-top: 0px;
+--offset-bottom: 0px;
+--padding-end: 20px;
+--margin: 50px;
+--padding-start: 20px;
+--background: #F8F8F8;">
+<div class="calContainer">
   <ion-row>
     <ion-col>
       <ion-item>
@@ -48,6 +54,9 @@
     formatDayTitle="dd MMMM yyyy" startHour="6" endHour="20" step="30" startingDayWeek="1"
     [monthviewDisplayEventTemplate]="template">
   </calendar>
+</div>
+
+
   <!-- <div class="container-timeline">
     <ul class="timeline">
       <li>
@@ -131,69 +140,181 @@
     </ul>
 
   </div> -->
-<ion-row style="margin: 0;">
-  <ion-col size="1">
-    <div  style="  text-align: center;
-    margin: 0;
-    position: relative;
-    top: 50%;
-    left: -50%;"> 
-    <ion-icon name="chevron-forward-circle" size="large"></ion-icon>
-    </div>
-  
-  </ion-col>
- 
-  <ion-col size="9">
-    <ion-card>
+  <ion-row style="margin: 0;" >
+    <ion-col size="12">
+  <ion-slides>
 
-      <ion-card-content>
-        <div class="navB">
-          dsfdsf
+      <ion-col size="1">
+        <div  style="  text-align: center;
+        margin: 0;
+        position: relative;
+        top: 50%;
+        left: -50%;"> 
+        <ion-icon name="chevron-back-circle" size="large"></ion-icon>
         </div>
-        <ion-row>
-          <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
-          border-radius: 10px;">
-            <div class="dateCol">
-              <h1 style="color: aliceblue;"> Ven 30</h1>
+      
+      </ion-col>
+    <ion-slide>
+       <ion-col size="9"  >
+        <ion-card (click)="openList()">
+    
+          <ion-card-content>
+            <div class="navB">
+              dsfdsf
             </div>
-
-          </ion-col>
-          <ion-col size="9">
             <ion-row>
-              <ion-col size="3">
-                <b>10:00</b>
+              <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+              border-radius: 10px;">
+                <div class="dateCol">
+                  <h1 style="color: aliceblue;"> Ven 30</h1>
+                </div>
+    
               </ion-col>
               <ion-col size="9">
-                <div>
-                  <ion-label><b>Cours de natation adulte</b></ion-label>
-                </div>
-                <div>
-                  Salle de sport California centre urban
-                </div>
+                <ion-row>
+                  <ion-col size="3">
+                    <b>10:00</b>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div>
+                      <ion-label><b>Cours de natation adulte</b></ion-label>
+                    </div>
+                    <div>
+                      Salle de sport California centre urban
+                    </div>
+                  </ion-col>
+    
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <b>10:00</b>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div>
+                      <ion-label><b>Cours de natation adulte</b></ion-label>
+                    </div>
+                    <div>
+                      Salle de sport California centre urban
+                    </div>
+                  </ion-col>
+    
+                </ion-row>
+    
               </ion-col>
-
+            
             </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col> 
+    </ion-slide>
+    <ion-slide>
+      <ion-col size="9"  >
+        <ion-card (click)="openList()">
+    
+          <ion-card-content>
+            <div class="navB">
+              dsfdsf
+            </div>
             <ion-row>
-              <ion-col size="3">
-                <b>10:00</b>
+              <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+              border-radius: 10px;">
+                <div class="dateCol">
+                  <h1 style="color: aliceblue;"> Ven 30</h1>
+                </div>
+    
               </ion-col>
               <ion-col size="9">
-                <div>
-                  <ion-label><b>Cours de natation adulte</b></ion-label>
-                </div>
-                <div>
-                  Salle de sport California centre urban
-                </div>
+                <ion-row>
+                  <ion-col size="3">
+                    <b>10:00</b>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div>
+                      <ion-label><b>Cours de natation adulte</b></ion-label>
+                    </div>
+                    <div>
+                      Salle de sport California centre urban
+                    </div>
+                  </ion-col>
+    
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <b>10:00</b>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div>
+                      <ion-label><b>Cours de natation adulte</b></ion-label>
+                    </div>
+                    <div>
+                      Salle de sport California centre urban
+                    </div>
+                  </ion-col>
+    
+                </ion-row>
+    
               </ion-col>
-
+            
             </ion-row>
-
-          </ion-col>
-
-        </ion-row>
-      </ion-card-content>
-    </ion-card>
-  </ion-col>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-slide>
+    <ion-slide>
+      <ion-col size="9"  >
+        <ion-card (click)="openList()">
+    
+          <ion-card-content>
+            <div class="navB">
+              dsfdsf
+            </div>
+            <ion-row>
+              <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+              border-radius: 10px;">
+                <div class="dateCol">
+                  <h1 style="color: aliceblue;"> Ven 30</h1>
+                </div>
+    
+              </ion-col>
+              <ion-col size="9">
+                <ion-row>
+                  <ion-col size="3">
+                    <b>10:00</b>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div>
+                      <ion-label><b>Cours de natation adulte</b></ion-label>
+                    </div>
+                    <div>
+                      Salle de sport California centre urban
+                    </div>
+                  </ion-col>
+    
+                </ion-row>
+                <ion-row>
+                  <ion-col size="3">
+                    <b>10:00</b>
+                  </ion-col>
+                  <ion-col size="9">
+                    <div>
+                      <ion-label><b>Cours de natation adulte</b></ion-label>
+                    </div>
+                    <div>
+                      Salle de sport California centre urban
+                    </div>
+                  </ion-col>
+    
+                </ion-row>
+    
+              </ion-col>
+            
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-slide>
+  </ion-slides>
+</ion-col>
  
 <ion-col size="1">
   <div  style="  text-align: center;
