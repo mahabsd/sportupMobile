@@ -1,40 +1,54 @@
 <ion-header [translucent]="true">
   <ion-toolbar background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
     <ion-buttons slot="start">
-      <ion-icon routerLink="/erp-space"  color="light" name="arrow-back"></ion-icon>
+      <ion-icon routerLink="/erp-space" color="light" name="arrow-back"></ion-icon>
     </ion-buttons>
     <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Planning</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div> 
-  <ion-item>
-    <ion-label>Mois</ion-label>
-    <ion-select value="mois" okText="Ok" cancelText="Annuler">
-      <ion-select-option value="janvier">janvier</ion-select-option>
-      <ion-select-option value="février">février</ion-select-option>
-      <ion-select-option value="mars">mars</ion-select-option>
-      <ion-select-option value="avril">avril</ion-select-option>
-      <ion-select-option value="mai">mai</ion-select-option>
-      <ion-select-option value="juin">juin</ion-select-option>
-      <ion-select-option value="juillet">juillet</ion-select-option>
-      <ion-select-option value="août">août </ion-select-option>
-      <ion-select-option value="août">septembre </ion-select-option>
-      <ion-select-option value="octobre">octobre</ion-select-option>
-      <ion-select-option value="novembre ">novembre </ion-select-option>
-      <ion-select-option value="décembre ">décembre </ion-select-option>
-    </ion-select>
-  </ion-item>
-  </div>
-  <ion-grid>
-    <ion-row>
- 
-        <h2>2021/01/30</h2><ion-icon size="large" name="add-circle"></ion-icon>
- 
-    </ion-row>
-  </ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-label>DDDD MMM D, YYYY</ion-label>
+        <ion-datetime displayFormat="DDDD MMM D, YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+      </ion-item>
 
- <!-- <div class="container-timeline">
+    </ion-col>
+
+
+
+
+
+
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col size="8">
+
+      <h2>2021/01/30</h2>
+
+
+
+
+    </ion-col>
+    <ion-col style="display: flex;
+    align-items: center;
+    justify-content: center;" size="2">
+      <ion-icon size="large" name="add-circle"></ion-icon>
+    </ion-col>
+
+
+  </ion-row>
+  <calendar [eventSource]="eventSource" [locale]="calendar.locale" [calendarMode]="calendar.mode"
+    [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)"
+    (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)"
+    (onCurrentDateChanged)="onCurrentDateChanged($event)" formatWeekTitle="MMMM yyyy, 'Sem.' w"
+    formatDayTitle="dd MMMM yyyy" startHour="6" endHour="20" step="30" startingDayWeek="1"
+    [monthviewDisplayEventTemplate]="template">
+  </calendar>
+  <!-- <div class="container-timeline">
     <ul class="timeline">
       <li>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAtQ6b3CzMzx39h0nLcejeO05CWJ3dRhzP4I73D7BqpD0gV1IOZLdRLnpOOcHlq4YfaUQ&usqp=CAU" alt="" class="timeline-thumb">
@@ -117,34 +131,86 @@
     </ul>
 
   </div> -->
-  <ion-card>
-   
-    <ion-card-content>
+<ion-row style="margin: 0;">
+  <ion-col size="1">
+    <div  style="  text-align: center;
+    margin: 0;
+    position: relative;
+    top: 50%;
+    left: -50%;"> 
+    <ion-icon name="chevron-forward-circle" size="large"></ion-icon>
+    </div>
+  
+  </ion-col>
+ 
+  <ion-col size="9">
+    <ion-card>
+
+      <ion-card-content>
+        <div class="navB">
+          dsfdsf
+        </div>
         <ion-row>
-          <ion-col size="3">
-            
-        Ven 30
+          <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+          border-radius: 10px;">
+            <div class="dateCol">
+              <h1 style="color: aliceblue;"> Ven 30</h1>
+            </div>
+
           </ion-col>
           <ion-col size="9">
             <ion-row>
-              <div>
-                <ion-label ><b>Cours de natation adulte</b></ion-label>
-              </div>
-              <div>
-                Salle de sport California centre urban
-              </div>
+              <ion-col size="3">
+                <b>10:00</b>
+              </ion-col>
+              <ion-col size="9">
+                <div>
+                  <ion-label><b>Cours de natation adulte</b></ion-label>
+                </div>
+                <div>
+                  Salle de sport California centre urban
+                </div>
+              </ion-col>
+
             </ion-row>
             <ion-row>
-              Cours de natation adulte
+              <ion-col size="3">
+                <b>10:00</b>
+              </ion-col>
+              <ion-col size="9">
+                <div>
+                  <ion-label><b>Cours de natation adulte</b></ion-label>
+                </div>
+                <div>
+                  Salle de sport California centre urban
+                </div>
+              </ion-col>
+
             </ion-row>
-            <ion-row>
-              Cours de natation adulte
-            </ion-row>
+
           </ion-col>
-      
+
         </ion-row>
-    </ion-card-content>
-  </ion-card>
+      </ion-card-content>
+    </ion-card>
+  </ion-col>
+ 
+<ion-col size="1">
+  <div  style="  text-align: center;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: -50%;"> 
+  <ion-icon name="chevron-forward-circle" size="large"></ion-icon>
+  </div>
+
+</ion-col>
+ 
+</ion-row>
+     
+
+
 </ion-content>
+
 <ion-footer>
 </ion-footer>
