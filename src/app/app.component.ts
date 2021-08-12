@@ -62,7 +62,7 @@ export class AppComponent implements OnInit {
     url: '/login'
   }];
   token: any;
-  
+
   constructor(private router: Router,
     private storage: StorageService,
     private platform: Platform,

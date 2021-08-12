@@ -60,8 +60,8 @@ export class StatusKidsComponent implements OnInit {
     // eslint-disable-next-line no-underscore-dangle
     this.id = JSON.stringify(this.user?._id);
 
-    console.log("zzzzzz"+  JSON.stringify(this.user?._id));
-    console.log("zzzzzz"+ this.id);
+    console.log(  JSON.stringify(this.user?._id));
+    console.log( this.id);
 
     this.getCommentByPost();
 

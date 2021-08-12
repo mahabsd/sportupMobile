@@ -20,8 +20,6 @@ import { PostKidsService } from 'src/app/shared/kids/Service/postKids.service';
 import { Post } from 'src/app/shared/Model/Post';
 import { User } from 'src/app/Shared/Model/user';
 
-
-
 @Component({
   selector: 'app-accueil',
   templateUrl: './accueil.page.html',
@@ -33,7 +31,7 @@ export class AccueilPage implements OnInit {
   comments: any = [];
   commentForm: FormGroup;
   comment: Comment = new Comment();
-  initialButtonIcon = "heart-outline";
+  initialButtonIcon = 'heart-outline';
   idpostcom;
   user$: any = [];
 
@@ -43,56 +41,50 @@ export class AccueilPage implements OnInit {
   comwiw;
   buttonColor: string;
   posts: any[] = [];
-  constructor(private commentService: CommentService,
+  constructor(
+    private commentService: CommentService,
     private modalController: ModalController,
-    private postKidsService: PostKidsService, private postService: PostService, private userservice: UserService) { }
+    private postKidsService: PostKidsService,
+    private postService: PostService,
+    private userservice: UserService
+  ) {}
 
   ngOnInit() {
-
     this.getAllPostsKids();
     this.getMe();
-
   }
 
   getAllPostsKids() {
-    console.log("heree")
-    this.postKidsService.getAllPostsKids().subscribe(res => {
-  this.posts=res['data'];
-  console.log(res['data']);
+    this.postKidsService.getAllPostsKids().subscribe((res) => {
+      this.posts = res['data'];
+      console.log(res['data']);
     });
   }
 
   getMe() {
-    this.userservice.getMe().subscribe(res => {
+    this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
       console.log(this.user$);
-
     });
   }
   async like(post) {
-
     console.log('like');
-    await  this.postKidsService.likePostKids(post).subscribe(res => {
-       console.log(res);
-       this.getAllPostsKids();
-
+    await this.postKidsService.likePostKids(post).subscribe((res) => {
+      console.log(res);
+      this.getAllPostsKids();
     });
 
-    post.icon = "heart";
+    post.icon = 'heart';
     this.buttonColor = '#ff0000';
-
   }
 
   disLike(post) {
     console.log('diss');
 
-    this.postKidsService.disLikePostKids(post).subscribe(res => {
+    this.postKidsService.disLikePostKids(post).subscribe((res) => {
       console.log(res);
       this.getAllPostsKids();
-
-
     });
-
   }
 
   async presentModal(post) {
@@ -101,40 +93,31 @@ export class AccueilPage implements OnInit {
       cssClass: 'my-custom-class',
       componentProps: {
         post,
-        comments: this.comments
-
-      }
+        comments: this.comments,
+      },
     });
     await modal.present();
 
     await modal.onWillDismiss().then((result) => {
-      console.log("zz")
       console.log(post);
       this.idpostcom = post.id;
       this.getCommentByPost();
-
-
     });
-
-
   }
   getCommentByPost() {
-    this.posts.forEach(element => {
-      console.log(element.id)
-      this.commentService.getCommentByService(element.id).subscribe(arg => {
+    this.posts.forEach((element) => {
+      console.log(element.id);
+      this.commentService.getCommentByService(element.id).subscribe((arg) => {
         this.comments = arg;
 
-
         console.log(this.comments.length);
-        this.dict.push({ "post": element.id, "comment": this.comments.length });
+        this.dict.push({ post: element.id, comment: this.comments.length });
         console.log(this.dict);
-
       });
     });
 
-    this.dict.forEach(r => {
+    this.dict.forEach((r) => {
       console.log(r);
     });
   }
-
 }

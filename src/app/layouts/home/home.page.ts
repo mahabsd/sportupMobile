@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { User } from './../../shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
@@ -48,7 +49,6 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
-    
     this.getMe();
     this.active.data.subscribe((data: { data: any }) => {
       this.loading = true;

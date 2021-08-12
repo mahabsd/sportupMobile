@@ -19,6 +19,12 @@ export class PostKidsService {
     // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
     return this.utilsService.get(`${UtilsService.apiPost}?type=kids`).pipe(map(res => res.data));
   }
+
+  getMyPostsKids(id): Observable<Post[]> {
+   return this.utilsService.get(`${UtilsService.apiPost}?user=`+id).pipe(map(res => res.data));
+ }
+
+
   likePostKids(post: Post): Observable<Post> {
     return this.utilsService.patch(UtilsService.apiPost + 'likePost', post).pipe(map(res => res));
   }
