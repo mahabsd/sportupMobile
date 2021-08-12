@@ -10,12 +10,26 @@ import { IonSlides, IonSlide, IonContent } from '@ionic/angular';
   styleUrls: ['./planning.page.scss'],
 })
 export class PlanningPage implements OnInit {
+
+  selectedDate;
   calendar = {
     mode: 'month',
     locale:  'en-GB',
     currentDate: new Date(),
   };
+  @ViewChild('slides') slides: IonSlides;
+  next() {
+    this.slides.slideNext();
+  }
+  
+  back() {
+    this.slides.slidePrev();
+  }
 
+  onTimeSelected(event){
+    // eslint-disable-next-line max-len
+    this.selectedDate = event.selectedTime;
+  }
 
   
   @ViewChild(CalendarModalPage) myCal: CalendarComponent;
@@ -30,6 +44,7 @@ export class PlanningPage implements OnInit {
     return await modal.present();
   }
   ngOnInit() {
+    this.selectedDate = new Date();
   }
 
 }

@@ -8,6 +8,7 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { PlanningPageRoutingModule } from './planning-routing.module';
 
 import { PlanningPage } from './planning.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { PlanningPage } from './planning.page';
     PlanningPageRoutingModule,
     CalendarModalPageModule,
     NgCalendarModule,
+    ComponentModule
   ],
   declarations: [PlanningPage]
 })
