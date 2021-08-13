@@ -337,6 +337,7 @@ ion-slide {
   width: 4rem !important;
   margin-right: -2px !important;
   }
+  
 
   .message-box {
 
@@ -399,10 +400,14 @@ ion-avatar{
 }
 
   ion-card{
-    box-shadow: -11px 6px 14px 0px rgba(0,0,0,0.17);
+    box-shadow: -2px 5px 15px 5px rgba(0,0,0,0.22);
   }
 
   ion-content{
     background:none ;
 --background:rgb(236, 236, 236);
+  }
+
+  .catBtn{
+    background-image: linear-gradient(135deg, #247238, #247238, #8EBF25, #8EBF25);
   }
