@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import { Injectable } from '@angular/core';
 import { UtilsService } from './utils.service';
 import { map, catchError } from 'rxjs/operators';
@@ -76,6 +77,12 @@ console.log(error);
       });
 
     return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
+  }
+
+  updateUser(user: User) {
+    return this.utilsService.patch(UtilsService.apiUSER + 'updateMe',user);
+
+
   }
 }
 

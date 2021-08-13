@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
