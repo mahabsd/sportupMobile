@@ -18,4 +18,5 @@ export class User {
   location: string;
   activite: string;
   job: string;
+  ville: string;
 }

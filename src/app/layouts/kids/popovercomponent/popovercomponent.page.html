@@ -1,6 +1,13 @@
-<ion-list>
-  <ion-item button (click)="dismissPopover('Learn Ionic')">Enregistré</ion-item>
-  <ion-item button (click)="dismissPopover('Documentation')">Paramétres</ion-item>
-  <ion-item button (click)="dismissPopover('Showcase')">Déconnexion</ion-item>
+
+<ion-list lines="none" >
+  <ion-item button (click)="dismissPopover('Learn Ionic')">
+    <ion-icon name="bookmark-outline" item-left></ion-icon>
+    Enregistré</ion-item>
+  <ion-item button (click)="dismissPopover('Documentation')">
+    <ion-icon name="settings-outline" item-left></ion-icon>
+    Paramétres</ion-item>
+  <ion-item button (click)="dismissPopover('Showcase')">
+    <ion-icon name="power-outline" item-left></ion-icon>
+    Déconnexion</ion-item>
 
 </ion-list>

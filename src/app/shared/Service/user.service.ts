@@ -79,8 +79,7 @@ console.log(error);
     return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
   }
 
-  updateUser(user: User,userid) {
-
+  updateUser(user: User) {
     return this.utilsService.patch(UtilsService.apiUSER + 'updateMe',user);
 
 

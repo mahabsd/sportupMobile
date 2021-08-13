@@ -21,7 +21,7 @@
     <ion-avatar class="image2">
       <img class="myImageUser"
         src="https://www.next.co.uk/nxtcms/resource/image/2639914/portrait_ratio1x1/305/305/7ddcbe6fc57d27c5f26a12fde323f828/lR/-0001-g69-mb-sh368442-lm-017-baby.jpg">
-      <ion-label color="light" style="    white-space: pre;">Nom prénom</ion-label>
+      <ion-label color="light" style="    white-space: pre;"> {{user?.name}}</ion-label>
 
     </ion-avatar>
   </div>
@@ -40,6 +40,8 @@
     </ion-col>
     <ion-col size="1"></ion-col>
   </ion-row>
+
+  <div style="background-color: #f8f8f8;" >
   <!-- Segment with default selection -->
   <ion-segment (ionChange)="segmentChanged($event)" value="photo">
     <ion-segment-button value="photo">
@@ -73,7 +75,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <div class="offer offer-radius offer-danger">
+        <div class="offer offer-radius offer-danger" style="height: 210px;">
           <div class="shape">
             <div class="shape-text">
               top
@@ -107,7 +109,7 @@
         </div>
       </ion-col>
       <ion-col>
-        <div class="offer offer-radius offer-danger">
+        <div class="offer offer-radius offer-danger" style="height: 210px;">
           <div class="shape">
             <div class="shape-text">
               top
@@ -126,6 +128,7 @@
       </ion-col>
     </ion-row>
   </div>
+
   <div class="content-profil" *ngIf="selected==='propos'">
     <ion-row>
       <ion-col>
@@ -146,13 +149,13 @@
           <ion-label style="font-weight: bold;">Adresse</ion-label>
         </ion-col>
         <ion-col style="    margin-top: -8px;">
-          <ion-input class="commentaire" id="contentadresse" type="text" value="{{user.adresse}} "></ion-input>
+          <ion-input class="commentaire" id="contentadresse" type="text"   [(ngModel)]="user.adresse"  ></ion-input>
         </ion-col>
         <ion-col size="4" >
           <ion-label style="font-weight: bold;">Code postal</ion-label>
         </ion-col>
         <ion-col style="    margin-top: -8px;">
-          <ion-input class="commentaire"  id="contentPostal" type="text" value="{{user.adresse}} "></ion-input>
+          <ion-input class="commentaire"  id="contentPostal" type="text" ></ion-input>
 
         </ion-col>
 
@@ -166,14 +169,14 @@
           <ion-label style="font-weight: bold;">Ville</ion-label>
         </ion-col>
         <ion-col style="    margin-top: -8px;">
-          <ion-input class="commentaire" type="text"  id="contentVille" value="{{user.ville}} "></ion-input>
+          <ion-input class="commentaire" type="text"  id="contentVille"  [(ngModel)]="user.ville"></ion-input>
 
         </ion-col>
         <ion-col size="4">
           <ion-label style="font-weight: bold;">Pays</ion-label>
         </ion-col>
         <ion-col style="    margin-top: -8px;">
-          <ion-input class="commentaire" type="text"  id="contentPays" value="{{user.pays}} "></ion-input>
+          <ion-input class="commentaire" type="text"  id="contentPays" [(ngModel)]="user.location"></ion-input>
 
         </ion-col>
       </ion-row>
@@ -183,9 +186,7 @@
           <ion-label style="font-weight: bold;">Date naissance</ion-label>
         </ion-col>
         <ion-col style="    margin-top: -8px;">
-          <ion-datetime class="commentaire" type="date"  id="datenaissance" value="
-              {{user.datedenaissance|date}}
-    "></ion-datetime>
+          <ion-datetime class="commentaire" type="date"  id="datenaissance"  [(ngModel)]="user.datedenaissance"></ion-datetime>
 
 
         </ion-col>
@@ -204,24 +205,23 @@
         </ion-col>
 
 
+
         <ion-col>
 
           <ion-item>
             <ng-container *ngIf="user.sexe==='homme';else femme">
-              <ion-select interface="action-sheet" placeholder="Select One" value="h" (ionChange)="optionsFn();" [(ngModel)]="gendre"
-              >
-                <ion-select-option value="f">Femme</ion-select-option>
-                <ion-select-option value="h">Homme</ion-select-option>
-                <ion-select-option value="a">Autres</ion-select-option>
+              <ion-select interface="action-sheet" placeholder="Select One" value="homme"  [(ngModel)]="user.sexe"             >
+                <ion-select-option value="femme">femme</ion-select-option>
+                <ion-select-option value="homme">Homme</ion-select-option>
+                <ion-select-option value="autres">Autres</ion-select-option>
               </ion-select>
             </ng-container>
 
             <ng-template #femme>
-              <ion-select placeholder="Select One" value="f" (ionChange)="optionsFn();" [(ngModel)]="gendre"
-              >
-                <ion-select-option value="f" selected>Femme</ion-select-option>
-                <ion-select-option value="h">Homme</ion-select-option>
-                <ion-select-option value="a">Autres</ion-select-option>
+              <ion-select interface="action-sheet" placeholder="Select One" value="femme" [(ngModel)]="user.sexe"  >
+                <ion-select-option value="femme">femme</ion-select-option>
+                <ion-select-option value="homme">Homme</ion-select-option>
+                <ion-select-option value="autres">Autres</ion-select-option>
               </ion-select>
             </ng-template>
 
@@ -365,5 +365,5 @@
 
 
   </div>
-
+</div>
 </ion-content>

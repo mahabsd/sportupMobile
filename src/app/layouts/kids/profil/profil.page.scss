@@ -1,5 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=MonteCarlo&display=swap');
 
-  #container strong {
+#container strong {
     font-size: 20px;
     line-height: 26px;
   }
@@ -35,9 +36,19 @@
 }
 ion-segment-button {
   border-radius: 15px;
-  box-shadow: 2px -1px 8px 0px rgb(0 0 0 / 75%);
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
   margin: 5px 4px 4px;
+  height: 38px;
+  color: #858484;
+    --background-checked: #d8d6d6ab;
+  text-transform:none;
+  min-height: unset;
+  --indicator-color:none
+
+
 }
+
+
 
   #container {
     height: 800px;
@@ -682,6 +693,10 @@ height: 5% !important;
       width: 100%;
       color: #fff;
     }
+  }
+
+  .content-profil{
+    padding:0 10px;
   }
   .myFooter{
     border-radius: $ruler/2;

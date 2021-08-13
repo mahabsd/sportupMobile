@@ -22,13 +22,8 @@ export class ProfilPage implements OnInit {
   update=false;
   gendre;
 selected;
-user:User;
+user:User=new User();
 user_id;
-adresseupdated;
-postalupdated;
-villeupdated;
-paysupdated;
-dateNaisupdated;
 
 
   constructor(private userservice: UserService,private postKidsService:PostKidsService,
@@ -64,7 +59,7 @@ dateNaisupdated;
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: PopovercomponentPage,
-      cssClass: 'my-custom-class',
+      cssClass: 'popoverProfil-custom-class',
       event: ev,
       translucent: true
     });
@@ -91,10 +86,9 @@ dateNaisupdated;
     }
 
     userUpdate(){
-      console.log(this.user._id)
-      this.adresseupdated = (<HTMLInputElement>document.getElementById("contentadresse")).value;
-      this.user.adresse=this.adresseupdated;
-      this.userService.updateUser(this.user,this.user._id).subscribe(res => {
+
+
+      this.userService.updateUser(this.user).subscribe(res => {
 
 
         console.log(res);
