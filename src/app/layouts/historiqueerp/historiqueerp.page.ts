@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-
+import { ModalController } from '@ionic/angular';
+import {TopMenuComponent} from '../erp/top-menu/top-menu.component';
 @Component({
   selector: 'app-historiqueerp',
   templateUrl: './historiqueerp.page.html',
@@ -20,8 +21,15 @@ export class HistoriqueerpPage implements OnInit {
     { titre: 'Cours de natation adulte', date: new Date(), description: 'description evenement' },
   ];
 
-constructor(private alertController:AlertController) { }
+constructor(private alertController:AlertController, private modalController: ModalController) { }
 
+async openModal() {
+  const modal = await this.modalController.create({
+    component: TopMenuComponent,
+    cssClass: 'erp-parametre-modal'
+  });
+  return await modal.present();
+}
 
   addEventChecked(event)
   {
@@ -37,28 +45,40 @@ constructor(private alertController:AlertController) { }
   }
   ngOnInit() {
   }
-async presentAlertConfirm(event) {
-  const alert = await this.alertController.create({
-    header: 'Confirm!',
-    message: 'Message <strong>text</strong>!!!',
-    buttons: [
-      {
-        text: 'Cancel',
-        role: 'cancel',
-        cssClass: 'secondary',
-        handler: () => {
-         console.log('nill');
-         
-        }
-      }, {
-        text: 'Okay',
-        handler: () => {
-          this.addEventChecked(event);
-        }
-      }
-    ]
-  });
 
-  await alert.present();
+
+
+
+
+async presentAlertConfirm(event) {
+  if(!this.checkedEvents.includes(event))
+  {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Message <strong>text</strong>!!!',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+           console.log('nill');
+           
+          }
+        }, {
+          text: 'Okay',
+          handler: () => {
+            this.addEventChecked(event);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+ 
+
+  
 }
+
 }

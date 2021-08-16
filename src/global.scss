@@ -29,3 +29,13 @@
     padding: 25px;
 }
  
+
+/* Works - pass "my-custom-class" in cssClass to increase specificity */
+.erp-parametre-modal .modal-wrapper {
+    background-color: #eee; /* Grey background color */
+    top: 7%;
+    right: 0;
+    position: absolute;
+  width: 80%;
+  height: 50%;
+  }

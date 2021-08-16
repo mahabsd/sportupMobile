@@ -1,0 +1,24 @@
+ion-content{
+    --background: #eee; /* Grey background color */
+}
+ 
+ .itemList{
+    background-color: #eee; /* Grey background color */
+    color: black; /* Black text color */
+    display: block; /* Make the links appear below each other */
+    padding: 12px; /* Add some padding */
+    text-decoration: none; /* Remove underline from links */
+ }
+
+ .itemText{
+     color: #616160;
+ }
+ .itemLi{
+ 
+    padding: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 40px;
+    vertical-align: center;
+    
+     
+ }
