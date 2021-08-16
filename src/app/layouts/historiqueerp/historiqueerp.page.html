@@ -7,22 +7,55 @@
   </ion-toolbar>
 </ion-header>
 <ion-content style=" ">
+
   <div class="container-timeline">
-    <ul class="timeline">
-      <li>
-        <img src="http://lorempixel.com/people/400/400/" alt="" class="timeline-thumb">
-        <div class="timeline-item">
-          <h4>commentaire 1</h4>
-          <p>detaille commentaire 1 .....</p>
-          <div class="timeline-stats">
-            <i class="ion-heart"></i> 2,450
-            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+    <ion-virtual-scroll [items]="events" approxItemHeight="320px">
+      <ion-row *virtualItem="let event; let i = index" (click)="addEventChecked(i+1)">
+
+
+
+
+
+        <ion-col size="1">
+          <div class="line">
+
           </div>
-        </div>
-      </li>
-     
-    </ul>
-    <div class="divider-title">25-05-2021</div>
+          <div style="height:40px; width:40px; " *ngIf="!check(i+1)">
+            <img src="assets/IconMenu/emptyCheck.png" class="imageCheck" />
+            <b style="position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%); color: aliceblue; font-size: 1rem;">{{i+1}}</b>
+          </div>
+          <div style="height:40px; width:40px; " *ngIf="check(i+1)">
+            <img src="assets/IconMenu/check.png" class="imageCheck" />
+      
+          </div>
+
+
+
+        </ion-col>
+        <ion-col size="11">
+
+          <ion-card>
+
+            <ion-item text-capitalize>
+
+              <h3> Date : {{ event.date | date: 'yyyy/MM/dd' }} </h3>
+            </ion-item>
+
+            <ion-card-content>
+              <b> {{ event.titre }} </b>
+              <h2>{{ event.description }} </h2>
+            </ion-card-content>
+
+          </ion-card>
+
+        </ion-col>
+
+
+      </ion-row>
+    </ion-virtual-scroll>
 
   </div>
 
