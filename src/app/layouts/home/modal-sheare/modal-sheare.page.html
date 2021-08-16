@@ -7,7 +7,7 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end">
-      <ion-button (click)="createPost()" class="confirmer" type="submit" [disabled]="postForm.invalid" color="light"
+      <ion-button (click)="createPost()" class="confirmer" type="submit" [disabled]="post.content===''" color="light"
         shape="round">
         Publier
       </ion-button>
@@ -26,7 +26,7 @@
       </ion-avatar>
       <ion-label>
       <h3 class="ion-text-capitalize">{{user?.name}}</h3>
-      
+
         <ion-icon name="earth-outline" (click)="openActionSheet()"> </ion-icon>
       </ion-label>
     </ion-item>
@@ -40,17 +40,39 @@
   </ion-row>-->
   <ion-row>
     <ion-col>
-      <ion-textarea placeholder="Veuillez partager quelques sentiments!" formControlName="contentControl"
+      <ion-textarea placeholder="Veuillez partager quelques sentiments!"
         [(ngModel)]="post.content"></ion-textarea>
     </ion-col>
+    <ion-button (click)="selectImageSource()">
+      <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
+      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>Photo/Vidéo
+    </ion-button>
   </ion-row>
+
+
+  <ion-row>
+    <ion-col size="6" *ngFor="let img of images;let i=index;" class="ion-text-center">
+      <ion-label>{{img.name}}
+        <p>{{img.createdAt | date:'short'}}</p>
+      </ion-label>
+      <img [src]="img.url" alt="">
+
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button color="danger" size="small" (click)="deleteImage(img,i)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
 <ion-footer class="myFooter">
   <ion-segment value="all" color="transparent" scrollable="true" mode="ios" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="media">
-      <p>
+      <ion-button  (click)="selectImageSource()">
+        <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
         <ion-icon slot="start" name="arrow-back-outline"></ion-icon>Photo/Vidéo
-      </p>
+      </ion-button>
     </ion-segment-button>
     <ion-segment-button value="endirect">
       <p>
