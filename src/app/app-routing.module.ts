@@ -19,10 +19,9 @@ const routes: Routes = [
     path: 'login-erp',
     loadChildren: () => import('./layouts/erp/login-erp/login-erp.module').then(m => m.LoginErpPageModule)
   },
-
   {
     path: '',
-    loadChildren: () => import('./layouts/layouts.module').then( m => m.LayoutsModule),canActivate:[AuthGuard]
+    loadChildren: () => import('./layouts/layouts.module').then(m => m.LayoutsModule), canActivate: [AuthGuard]
   },
   {
     path: 'tabs',
@@ -32,7 +31,6 @@ const routes: Routes = [
   //   path: 'menu',
   //   loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
   // },
-
   {
     path: 'signin',
     loadChildren: () => import('./Oauth/signin/signin.module').then(m => m.SigninPageModule)
@@ -42,22 +40,17 @@ const routes: Routes = [
     loadChildren: () => import('./Oauth/signinformation/signinformation.module').then(m => m.SigninformationPageModule),
     canActivate: [AuthGuard]
   },
-
-
   {
     path: 'confirmation',
     loadChildren: () => import('./Oauth/confirmation/confirmation.module').then(m => m.ConfirmationPageModule)
   },
-
-  {
-    path: 'footer',
-    loadChildren: () => import('./component/footer/footer.module').then(m => m.FooterPageModule)
-  },
-
-
   {
     path: '**',
     redirectTo: ''
+  },
+  {
+    path: 'popovercomponent',
+    loadChildren: () => import('./layouts/kids/popovercomponent/popovercomponent.module').then( m => m.PopovercomponentPageModule)
   },
 
 

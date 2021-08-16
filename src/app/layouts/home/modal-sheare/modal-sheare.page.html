@@ -6,32 +6,88 @@
         <ion-icon slot="icon-only" color="light" name="close"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end" >
-      <ion-button (click)="createPost()" class="confirmer" type="submit" [disabled]="postForm.invalid" color="light"
+    <ion-buttons slot="end">
+      <ion-button (click)="createPost()" class="confirmer" type="submit" [disabled]="post.content===''" color="light"
         shape="round">
-        <ion-icon size="large" name="checkmark-outline">Publier</ion-icon>
+        Publier
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content padding>
-  <div id="container">
-    <ion-grid>
-      <ion-row expand="full" class="row ion-align-items-center ion-justify-content-start">
-        <ion-col class="col" size="3" class="ion-justify-content-center">
-          <ion-avatar>
-            <img class="imgProfile" src="http://placehold.it/75">
-          </ion-avatar>
-        </ion-col>
-        <ion-col class="col" size="9">
-          <div class="ZoneShare ion-text-nowrap" [formGroup]="postForm">
-            <ion-textarea placeholder="Veuillez partager quelques sentiments!" formControlName="contentControl"
-              [(ngModel)]="post.content"></ion-textarea>
-          </div>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
+  <ion-row class="row ion-align-items-center ion-justify-content-start">
+
+    <!-- <ion-col no-padding class="col" size="10">
+      <div class="ZoneShare ion-text-nowrap"> -->
+    <!-- <ion-row> -->
+    <ion-item lines="none">
+      <ion-avatar slot="start">
+        <img src="http://placehold.it/75">
+      </ion-avatar>
+      <ion-label>
+      <h3 class="ion-text-capitalize">{{user?.name}}</h3>
+
+        <ion-icon name="earth-outline" (click)="openActionSheet()"> </ion-icon>
+      </ion-label>
+    </ion-item>
+
+
+
+
+  </ion-row>
+  <!-- </div>
+    </ion-col>
+  </ion-row>-->
+  <ion-row>
+    <ion-col>
+      <ion-textarea placeholder="Veuillez partager quelques sentiments!"
+        [(ngModel)]="post.content"></ion-textarea>
+    </ion-col>
+    <ion-button (click)="selectImageSource()">
+      <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
+      <ion-icon slot="start" name="arrow-back-outline"></ion-icon>Photo/Vidéo
+    </ion-button>
+  </ion-row>
+
+
+  <ion-row>
+    <ion-col size="6" *ngFor="let img of images;let i=index;" class="ion-text-center">
+      <ion-label>{{img.name}}
+        <p>{{img.createdAt | date:'short'}}</p>
+      </ion-label>
+      <img [src]="img.url" alt="">
+
+      <ion-fab vertical="bottom" horizontal="end">
+        <ion-fab-button color="danger" size="small" (click)="deleteImage(img,i)">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+    </ion-col>
+  </ion-row>
+
 </ion-content>
-<!-- <app-footer></app-footer> -->
+<ion-footer class="myFooter">
+  <ion-segment value="all" color="transparent" scrollable="true" mode="ios" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="media">
+      <ion-button  (click)="selectImageSource()">
+        <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>Photo/Vidéo
+      </ion-button>
+    </ion-segment-button>
+    <ion-segment-button value="endirect">
+      <p>
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon> En Direct
+      </p>
+    </ion-segment-button>
+    <ion-segment-button value="evenement">
+      <p>
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon> Evenement
+      </p>
+    </ion-segment-button>
+    <ion-segment-button value="story">
+      <p>
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon> Story
+      </p>
+    </ion-segment-button>
+  </ion-segment>
+</ion-footer>

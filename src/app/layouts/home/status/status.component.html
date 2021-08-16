@@ -3,43 +3,38 @@
     <img src="http://placehold.it/75">
   </ion-avatar>
   <ion-label>
-
     <!-- <h3>{{user?.name}}</h3> -->
     <h3 class="ion-text-capitalize">{{post?.user?.name}}</h3>
     <p>{{post?.createdAt | date}}</p>
   </ion-label>
+  <ion-button color="light" slot="end" shape="round" fill="clear" size="small" (click)="presentPopover($event)" >
+      <ion-icon color="light" style="color:#fff;" slot="icon-only"  name="ellipsis-vertical">
+      </ion-icon>
+
+  </ion-button>
 </ion-item>
 
 <img src="http://placehold.it/300x200" />
-
 <ion-card-content class="ion-text-start">
   <p>{{post?.content}}</p>
 </ion-card-content>
-
 <ion-row lines="none">
   <ion-col size="col-2">
     <ion-chip>
-
       <ng-container *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp">
-        <ion-button (dblclick)="showReactions($event)" (click)="like(post)" shape="round" fill="clear" size="large">
-
-          <img src="../../../../assets/iconPost/icon_like.svg" />
-          <sub>{{post?.likes}}</sub>
-
+        <ion-button (dblclick)="showReactions($event)"  (click)="like(post,$event.target)"  shape="round" fill="clear" size="large">
+          <img src="../../../../assets/iconPost/{{post?.iconLike}}.svg" id="icon_liked"/>
+          <sub>{{post?.likes}} </sub>
         </ion-button>
       </ng-container>
       <ng-template #dislikedTemp>
-        <ion-button (dblclick)="showReactions($event)" (click)="disLike(post)" shape="round" fill="clear" size="large">
-          <img src="../../../../assets/iconPost/icon_liked.svg" />
-          <sub>{{post?.likes}}</sub>
-
+        <ion-button (dblclick)="showReactions($event)" (click)="disLike(post,$event.target)" shape="round" fill="clear" size="large">
+          <img src="../../../../assets/iconPost/{{post?.iconLike}}.svg" id="icon_like"/>
+          <sub>{{post?.likes}} </sub>
         </ion-button>
-
       </ng-template>
-
     </ion-chip>
   </ion-col>
-
   <ion-col style="text-align:end;">
     <ion-chip>
       <ion-button (click)="presentModal(post)" shape="round" fill="clear" size="large">
@@ -48,25 +43,17 @@
       </ion-button>
       <ion-button (click)="share()" shape="round" fill="clear" size="large ">
         <img src="../../../../assets/iconPost/icon_share.svg" />
-
       </ion-button>
       <ng-container *ngIf="!bookmarked; else unbook">
         <ion-button (click)="bookmark()" shape="round" fill="clear" size="large ">
           <img src="../../../../assets/iconPost/icon_bookmark.svg" class="last" />
-
         </ion-button>
       </ng-container>
       <ng-template #unbook>
         <ion-button (click)="unBookmark()" shape="round" fill="clear" size="large ">
           <img src="../../../../assets/iconPost/icon_bookmarked.svg" class="last" />
-
         </ion-button>
-
       </ng-template>
     </ion-chip>
-
   </ion-col>
-
-
-
 </ion-row>
