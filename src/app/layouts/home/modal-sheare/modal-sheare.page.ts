@@ -1,12 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { ModalController, Platform } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { User } from '../../../shared/Model/User';
 import { AuthService } from '../../../shared/Auth/auth.service';
 import { PostService } from '../../../shared/Service/post.service';
 import { Post } from '../../../shared/Model/Post';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-@Component({
+import { ImageModel } from 'src/app/shared/Model/ImageModel';
+import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
+import { SlicePipe } from '@angular/common';
+const { Camera } = Plugins;@Component({
   selector: 'app-modal-sheare',
   templateUrl: './modal-sheare.page.html',
   styleUrls: ['./modal-sheare.page.scss'],
@@ -16,12 +19,21 @@ export class ModalShearePage implements OnInit {
   // user: User = new User();
   post: Post = new Post();
   postForm: FormGroup;
-  constructor(private modalController: ModalController,
+
+
+  images: ImageModel[] = [];
+  posts: Post[] = [];
+  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+  constructor(
+    private plt: Platform,
+    private action: ActionSheetController, private modalController: ModalController,
     private actionSheet: ActionSheetController,
     private authService: AuthService,
     private postService: PostService
   ) { }
   ngOnInit() {
+    this.loadImage();
+
     this.postForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
     });
@@ -33,7 +45,7 @@ export class ModalShearePage implements OnInit {
   openActionSheet() {
     this.actionSheet.create({
       header: 'Qui peut voir votre publication?',
-      animated:true,
+      animated: true,
       mode: 'md',
       cssClass: 'my-custom-class',
       buttons: [{
@@ -86,4 +98,98 @@ export class ModalShearePage implements OnInit {
     });
   }
 
+
+
+  loadImage() {
+    this.postService.getAllPosts().subscribe(res => {
+      this.posts = res;
+      console.log(this.posts);
+
+    })
+  }
+  deleteImage(post, index) {
+    this.postService.deletePost(post).subscribe(res => {
+      this.images.splice(index, 1);
+    });
+  }
+  async selectImageSource() {
+    const buttons = [{
+      text: 'Take Photo',
+      icon: 'camera',
+      handler: () => {
+        this.addImage(CameraSource.Camera)
+      }
+    }, {
+      text: 'Choose from photos',
+      icon: 'image',
+      handler: () => {
+        this.addImage(CameraSource.Photos)
+      }
+    }];
+    if (!this.plt.is('hybrid')) {
+      buttons.push({
+        text: 'Choose a file',
+        icon: 'attach',
+        handler: () => {
+          this.fileInput.nativeElement.click();
+        }
+      });
+    }
+
+    const actionSheet = await this.action.create({
+      header: 'Select Image Source',
+      buttons
+    });
+
+    await actionSheet.present();
+
+  }
+
+
+
+  async addImage(source: CameraSource) {
+    console.log('addimage');
+
+    const image = await Camera.getPhoto({
+      quality: 60,
+      allowEditing: true,
+      resultType: CameraResultType.Base64,
+      source
+    });
+    console.log('image', image);
+    const blobData = this.b64toBlob(image.base64String, `image/${image.format}`);
+    const imageName = 'Give me a name';
+    this.postService.uploadImage(blobData, imageName, image.format).subscribe((newImage: ImageModel) => {
+      console.log('after caoture', newImage);
+      this.images.push(newImage);
+
+    })
+  }
+  b64toBlob(b64Data, contentType = '', sliceSize = 512) {
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+
+    }
+    const blob = new Blob(byteArrays, { type: contentType });
+    return blob;
+  }
+  uploadFile(event: EventTarget) {
+    console.log('uploadfile');
+
+    const eventObj: MSInputMethodContext = event as MSInputMethodContext;
+    const target: HTMLInputElement = eventObj.target as HTMLInputElement;
+    const file: File = target.files[0];
+    this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
+      this.images.push(newImage);
+    })
+  }
 }

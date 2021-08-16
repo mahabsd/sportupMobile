@@ -1,5 +1,5 @@
 
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
@@ -11,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Comment } from '../../../shared/Model/Comment';
 import { CommentService } from '../../../shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
+import { ParametresComponent } from '../../../component/parametres/parametres.component';
 
 @Component({
   selector: 'app-status',
@@ -50,13 +51,9 @@ export class StatusComponent implements OnInit {
     // this.getMe();
   }
   ngOnInit() {
-// console.log(this.post)
-    // eslint-disable-next-line no-underscore-dangle
-    this.id = JSON.stringify(this.user?._id);
-
-    // console.log(this.post?.likedBy.indexOf(this.id));
-    // console.log(typeof (this.id));
     this.getCommentByPost();
+    // console.log(this.post);
+
   }
 
   async showReactions(ev) {
@@ -79,14 +76,15 @@ export class StatusComponent implements OnInit {
     this.tap++;
   }
 
-  like(post) {
-    console.log(this.index);
+  like(post, event) {
+    console.log(event.id);
 
+    this.post.iconLike = event.id;
     this.likeFn.emit({ post, index: this.index });
   }
-  disLike(post) {
-    console.log(this.index);
+  disLike(post, event) {
 
+    this.post.iconLike = event.id;
     this.disLikeFn.emit({ post, index: this.index });
   }
 
@@ -119,7 +117,7 @@ export class StatusComponent implements OnInit {
 
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
-            console.log( this.post._id);
+      console.log(this.post._id);
 
     });
 
@@ -137,5 +135,20 @@ export class StatusComponent implements OnInit {
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
+  async presentPopover(ev: any) {
+    const popover = await this.popoverCtrl.create({
+      component: ParametresComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+      componentProps: {
+        post: this.post
+      }
 
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    location.reload();
+  }
 }

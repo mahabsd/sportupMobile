@@ -49,6 +49,7 @@ export class HomePage implements OnInit {
   }
 
   ngOnInit() {
+
     this.getMe();
     this.active.data.subscribe((data: { data: any }) => {
       this.loading = true;
@@ -68,6 +69,10 @@ export class HomePage implements OnInit {
       // console.log(this.posts);
 
     });
+  }
+  ngOnDestroy(): void {
+   
+
   }
   async presentToast() {
     const myToast = await this.toastCtrl.create({
@@ -92,8 +97,11 @@ export class HomePage implements OnInit {
 
       }
     });
-    this.getAllPostsByEvent();
-    return await modal.present();
+    await modal.present();
+    await modal.onWillDismiss().then((result) => {
+      this.getAllPostsByEvent();
+
+    });
   }
   getAllPostsByEvent() {
     this.loading = true;
@@ -133,6 +141,7 @@ export class HomePage implements OnInit {
   // Function to call deslike API
   like(event) {
     this.indexPub = event.index;
+    console.log('like', event.post.iconLike);
 
     this.postService.likePost(event.post).subscribe(res => {
       this.getAllPostsByEvent();
@@ -142,6 +151,7 @@ export class HomePage implements OnInit {
   }
   // Function to call deslike API
   disLike(event) {
+    console.log('dislike', event.post.iconLike);
 
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {

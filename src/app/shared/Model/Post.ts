@@ -12,4 +12,5 @@ export class Post {
   dislikes: number;
   dislikedBy: [];
   likedBy: [];
+  iconLike: string;
 }
