@@ -14,7 +14,7 @@
   <ion-grid>
     <ion-row>
       <ion-col class="my-thin-col stylecards" *ngFor="let post of posts ">
-        <app-status-kids [post]="post" [user]="user$" (disLikeFn)="disLike(post)"
+        <app-status-kids [post]="post" [user]="user$" (disLikeFn)="disLike(post)" (refreshPosts)="getAllPostsKids()"
         (likeFn)="like(post)"></app-status-kids>
       </ion-col>
     </ion-row>

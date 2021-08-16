@@ -21,7 +21,6 @@ import { StorageService } from './shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
 import { LikesPipeModule } from './shared/Pipe/likesPipe.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-import { environment } from '../../../../../Web/sportUpWeb/src/environments/environment';
 const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
 @NgModule({
   declarations: [AppComponent,],

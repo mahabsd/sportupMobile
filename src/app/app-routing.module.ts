@@ -48,6 +48,10 @@ const routes: Routes = [
     path: '**',
     redirectTo: ''
   },
+  {
+    path: 'popovercomponent',
+    loadChildren: () => import('./layouts/kids/popovercomponent/popovercomponent.module').then( m => m.PopovercomponentPageModule)
+  },
 
 
 

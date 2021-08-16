@@ -623,3 +623,35 @@ ion-toolbar {
   .container-timeline {
    padding: 30px;
 }
+
+
+.dateCol{
+
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+ 
+}
+
+.navB{
+  text-align: center;
+  margin: 0;
+  position: relative;
+  top: 50%;
+  left: -70%;
+ 
+}
+
+.monthview-container{
+  height: 50%;
+}
+
+.calContainer{
+  background-color: #FFFFFF;
+  border-radius: 25px;
+  padding: 15px;
+}
