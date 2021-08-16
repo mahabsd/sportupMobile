@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   selector: 'app-historiqueerp',
@@ -19,7 +20,7 @@ export class HistoriqueerpPage implements OnInit {
     { titre: 'Cours de natation adulte', date: new Date(), description: 'description evenement' },
   ];
 
-  constructor() { }
+constructor(private alertController:AlertController) { }
 
 
   addEventChecked(event)
@@ -36,5 +37,28 @@ export class HistoriqueerpPage implements OnInit {
   }
   ngOnInit() {
   }
+async presentAlertConfirm(event) {
+  const alert = await this.alertController.create({
+    header: 'Confirm!',
+    message: 'Message <strong>text</strong>!!!',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+         console.log('nill');
+         
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+          this.addEventChecked(event);
+        }
+      }
+    ]
+  });
 
+  await alert.present();
+}
 }
