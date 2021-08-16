@@ -23,16 +23,7 @@ export class StorageService {
     return from(this.storage.get(key).then(res => res));
 
   }
-  public get2(key: string): Promise<any> {
-
-    console.log(this.storage$.getValue());
-    return new Promise((resolve) => {
-
-      this.storage.get(key).then(res => resolve(res));
-    });
-
-
-  }
+  
   public clear(): Observable<any> {
     return from(this.storage.clear());
   }

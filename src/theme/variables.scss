@@ -12,7 +12,6 @@
   --ion-color-primary-tint: #4c8dff;
   --ion-color-bg: linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);
 
-
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
   --ion-color-secondary-rgb: 61, 194, 255;
@@ -237,7 +236,7 @@
 }
 $colors: (
    blue:    #387ef5,
-   
+
    secondary:  #32db64,
    danger:     #f53d3d,
    light:      #f4f4f4,  // the light color we're using
@@ -245,3 +244,10 @@ $colors: (
    DarkGreen:  #006400,// the dark color we're using
    grey:   #d0d0d0// the dark color we're using
 );
+
+.popoverProfil-custom-class{
+
+  --width: 180px;
+
+}
+

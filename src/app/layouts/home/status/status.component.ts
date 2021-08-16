@@ -1,4 +1,5 @@
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
@@ -10,6 +11,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Comment } from '../../../shared/Model/Comment';
 import { CommentService } from '../../../shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
+import { ParametresComponent } from '../../../component/parametres/parametres.component';
 
 @Component({
   selector: 'app-status',
@@ -19,8 +21,10 @@ import { CommentsPage } from '../comments/comments.page';
 export class StatusComponent implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  @Input() post: Post;
-  @Input() user: User;
+
+  @Input() post: any;
+  @Input() index: any;
+  @Input() user: any;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
   commentForm: FormGroup;
@@ -35,7 +39,7 @@ export class StatusComponent implements OnInit {
   press = 0;
   liked = false;
   bookmarked = false;
-  id: number;
+  id;
   constructor(private navCtrl: NavController,
     private commentService: CommentService,
     private modalController: ModalController,
@@ -47,10 +51,9 @@ export class StatusComponent implements OnInit {
     // this.getMe();
   }
   ngOnInit() {
-
-    // eslint-disable-next-line no-underscore-dangle
-    this.id = this.user?._id;
     this.getCommentByPost();
+    // console.log(this.post);
+
   }
 
   async showReactions(ev) {
@@ -73,11 +76,16 @@ export class StatusComponent implements OnInit {
     this.tap++;
   }
 
-  like(post) {
-    this.likeFn.emit(post);
+  like(post, event) {
+    console.log(event.id);
+
+    this.post.iconLike = event.id;
+    this.likeFn.emit({ post, index: this.index });
   }
-  disLike(post) {
-    this.disLikeFn.emit(post);
+  disLike(post, event) {
+
+    this.post.iconLike = event.id;
+    this.disLikeFn.emit({ post, index: this.index });
   }
 
   onComment() {
@@ -109,6 +117,8 @@ export class StatusComponent implements OnInit {
 
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
+      console.log(this.post._id);
+
     });
 
 
@@ -116,7 +126,7 @@ export class StatusComponent implements OnInit {
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
     this.commentService.getCommentByService(this.post._id).subscribe(arg => {
-      console.log(arg);
+      // console.log(arg);
       this.comments = arg;
     });
 
@@ -124,5 +134,21 @@ export class StatusComponent implements OnInit {
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+  async presentPopover(ev: any) {
+    const popover = await this.popoverCtrl.create({
+      component: ParametresComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+      componentProps: {
+        post: this.post
+      }
+
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    location.reload();
   }
 }

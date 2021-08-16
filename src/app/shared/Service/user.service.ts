@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import { Injectable } from '@angular/core';
 import { UtilsService } from './utils.service';
 import { map, catchError } from 'rxjs/operators';
@@ -16,25 +17,26 @@ export class UserService {
     public toastCtrl: ToastController) { }
   getMe():Observable<User>{
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
+// console.log(res);
 
-      return res.data.data;
+      return res;
 
     }), catchError(this.handleError));
   }
-  signUp(user: User) {
+  signUp(user: User): Observable<User>{
     return this.utilsService.post(UtilsService.apiUSER + 'signup', user).pipe(map(res => res
     ), catchError(this.handleError));
   }
-  confirmInscription(code) {
+  confirmInscription(code): Observable<any> {
     return this.utilsService.post(UtilsService.apiUSER + 'confirm', code).pipe(map(res => res), catchError(this.handleError));
   }
-  forgotPassword(user: User) {
+  forgotPassword(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'forgotPassword', user).pipe(map(res => res), catchError(this.handleError));
   }
-  resetPassword(token: any) {
+  resetPassword(token: any): Observable<User> {
     return this.utilsService.patch(UtilsService.apiUSER + 'resetPassword', token).pipe(map(res => res), catchError(this.handleError));
   }
-  renvoyerToken(user: User) {
+  renvoyerToken(user: User): Observable<User>{
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
   handleError(error: HttpErrorResponse) {
@@ -75,6 +77,12 @@ console.log(error);
       });
 
     return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
+  }
+
+  updateUser(user: User) {
+    return this.utilsService.patch(UtilsService.apiUSER + 'updateMe',user);
+
+
   }
 }
 
