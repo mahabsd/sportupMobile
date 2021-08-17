@@ -1,12 +1,10 @@
+ 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { HistoriqueerpPageRoutingModule } from './historiqueerp-routing.module';
-
-import { HistoriqueerpPage } from './historiqueerp.page';
+import { NgCalendarModule  } from 'ionic2-calendar';
+import { TopMenuComponent} from './top-menu.component';
 import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
@@ -14,9 +12,9 @@ import { ComponentModule } from 'src/app/component/component.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoriqueerpPageRoutingModule,
+    NgCalendarModule,
     ComponentModule
   ],
-  declarations: [HistoriqueerpPage]
+  declarations: [TopMenuComponent]
 })
-export class HistoriqueerpPageModule {}
+export class TopMenuModule {}

@@ -3,6 +3,9 @@
     <ion-buttons slot="start">
       <ion-icon routerLink="/erp-space" color="light" name="arrow-back"></ion-icon>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-icon (click)="openModal()" color="light" name="ellipsis-vertical"></ion-icon>
+    </ion-buttons>
     <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Historique</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -10,12 +13,7 @@
 
   <div class="container-timeline">
     <ion-virtual-scroll [items]="events" approxItemHeight="320px">
-      <ion-row *virtualItem="let event; let i = index" (click)="addEventChecked(i+1)">
-
-
-
-
-
+      <ion-row *virtualItem="let event; let i = index" (click)="presentAlertConfirm(i+1)">
         <ion-col size="1">
           <div class="line">
 
@@ -38,12 +36,14 @@
         <ion-col size="11">
 
           <ion-card>
+              <ion-item-divider >
+                <ion-title  color="dark">
 
-            <ion-item text-capitalize>
-
-              <h3> Date : {{ event.date | date: 'yyyy/MM/dd' }} </h3>
-            </ion-item>
-
+                  <h3> Date : {{ event.date | date: 'yyyy/MM/dd' }} </h3>
+                </ion-title>
+    
+              </ion-item-divider>
+           
             <ion-card-content>
               <b> {{ event.titre }} </b>
               <h2>{{ event.description }} </h2>
@@ -56,7 +56,6 @@
 
       </ion-row>
     </ion-virtual-scroll>
-
   </div>
 
 </ion-content>

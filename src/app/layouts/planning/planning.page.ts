@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CalendarModalPage } from '../Planing/calendar-modal/calendar-modal.page';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { EventListModalComponent } from './event-list-modal/event-list-modal.component';
 import { IonSlides, IonSlide, IonContent } from '@ionic/angular';
@@ -33,7 +33,7 @@ export class PlanningPage implements OnInit {
 
   
   @ViewChild(CalendarModalPage) myCal: CalendarComponent;
-  constructor(public modalController: ModalController) { }
+  constructor(public modalController: ModalController,private alertController:AlertController) { }
 
 
   async openList() {
@@ -46,5 +46,28 @@ export class PlanningPage implements OnInit {
   ngOnInit() {
     this.selectedDate = new Date();
   }
+async presentAlertConfirm() {
+  const alert = await this.alertController.create({
+    header: 'Confirm!',
+    message: 'Message <strong>text</strong>!!!',
+    buttons: [
+      {
+        text: 'Cancel',
+        role: 'cancel',
+        cssClass: 'secondary',
+        handler: () => {
+          
+          console.log('Confirm Cancel: blah');
+        }
+      }, {
+        text: 'Okay',
+        handler: () => {
+          console.log('Confirm Okay');
+        }
+      }
+    ]
+  });
 
+  await alert.present();
+}
 }
