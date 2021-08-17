@@ -24,6 +24,7 @@ export class ProfilPage implements OnInit {
 selected;
 user:User=new User();
 user_id;
+title : any;
 
 
   constructor(private userservice: UserService,private postKidsService:PostKidsService,
@@ -33,6 +34,9 @@ user_id;
    this.selected='photo';
    this.getMe();
    this.getMyPostsKids();
+   this.title = "Profile";
+
+
 
   }
 
@@ -72,10 +76,17 @@ user_id;
   segmentChanged(ev: any) {
     console.log('Segment changed', ev.detail.value);
     this.selected=ev.detail.value;
+    if( this.selected==='propos'){
+      this.title="Modifier profile";
+    }
+    else {
+      this.title="Profile";
+
+    }
   }
 
   updateComment(){
-    this.update=true;
+    this.update=!this.update;
 
 
 
@@ -93,6 +104,6 @@ user_id;
 
         console.log(res);
       });
-
+      this.update=false;
     }
 }
