@@ -647,3 +647,12 @@ padding-left: 20px;
 .item, .item-divider  {
   border-color: rgb(211, 211, 211);
 }
+
+ion-buttons ion-button {
+  --border-radius: 50%;
+  border-radius: 50%;
+  background: #1313131f;
+  width: 36px;
+  height: 36px;
+  // fill-opacity: ;
+}
