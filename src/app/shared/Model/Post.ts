@@ -1,5 +1,6 @@
 import { User } from 'src/app/shared/Model/User';
 import { Comment } from 'src/app/shared/Model/Comment';
+import { ImageModel } from 'src/app/shared/Model/ImageModel';
 export class Post {
   _id: string;
   title: string;
@@ -13,4 +14,6 @@ export class Post {
   dislikedBy: [];
   likedBy: [];
   iconLike: string;
+  photo: File;
+  images: ImageModel[];
 }

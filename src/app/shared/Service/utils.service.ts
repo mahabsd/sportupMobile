@@ -59,14 +59,14 @@ export class UtilsService {
     // console.log(this.header);
 
     return this.httpClient
-      .post(url, object);
+      .post<Object>(url, object).pipe(map(res => res), catchError(this.formatErrors));
   }
 
   public patch(url: string, object: any): Observable<any> {
-    return this.httpClient.patch(url, object);
+    return this.httpClient.patch(url, object).pipe(map(res => res), catchError(this.formatErrors));
   }
   public put(url: string, object: any): Observable<any> {
-    return this.httpClient.put(url, object);
+    return this.httpClient.put(url, object).pipe(map(res => res), catchError(this.formatErrors));
   }
 
   public get(url: string): Observable<any> {
@@ -75,7 +75,7 @@ export class UtilsService {
   }
 
   public delete(url: string): Observable<any> {
-    return this.httpClient.delete(url);
+    return this.httpClient.delete(url).pipe(map(res => res), catchError(this.formatErrors));
   }
   private formatErrors(error: HttpErrorResponse) {
     console.log(error);

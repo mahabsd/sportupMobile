@@ -171,40 +171,21 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'boite-reception',
-        loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
+        path: 'kids',
+        loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
+
       {
-        path: 'planning',
-        loadChildren: () => import('./kids/planning/planning.module').then(m => m.PlanningPageModule)
+        path: 'ami',
+        loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule)
       },
-      {
-        path: 'message',
-        loadChildren: () => import('./kids/message/message.module').then(m => m.MessagePageModule)
-      },
-      {
-        path: 'maps',
-        loadChildren: () => import('./kids/maps/maps.module').then(m => m.MapsPageModule)
-      },
-      {
-        path: 'activite',
-        loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
-      },
-      {
-        path: 'sign-kids',
-        loadChildren: () => import('./kids/sign-kids/sign-kids.module').then(m => m.SignKidsPageModule)
-      },
-      {
-        path: 'profilkids',
-        loadChildren: () => import('./kids/profil/profil.module').then(m => m.ProfilPageModule)
-      }
     ],
   },
-     {path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
 
 
 ]
-;
+  ;
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

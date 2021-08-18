@@ -9,7 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ImageModel } from 'src/app/shared/Model/ImageModel';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { SlicePipe } from '@angular/common';
-const { Camera } = Plugins;@Component({
+const { Camera } = Plugins; @Component({
   selector: 'app-modal-sheare',
   templateUrl: './modal-sheare.page.html',
   styleUrls: ['./modal-sheare.page.scss'],
@@ -19,6 +19,7 @@ export class ModalShearePage implements OnInit {
   // user: User = new User();
   post: Post = new Post();
   postForm: FormGroup;
+  filesToUpload = null;
 
 
   images: ImageModel[] = [];
@@ -92,7 +93,11 @@ export class ModalShearePage implements OnInit {
     });
   }
   createPost() {
-    this.postService.createPost(this.post).subscribe(res => {
+    console.log(this.filesToUpload);
+    const fd = new FormData();
+    fd.append('photo', this.filesToUpload, this.filesToUpload?.name);
+    fd.append('content', this.post?.content);
+    this.postService.createPost(fd).subscribe(res => {
       this.closeModal();
       return res;
     });
@@ -159,11 +164,17 @@ export class ModalShearePage implements OnInit {
     console.log('image', image);
     const blobData = this.b64toBlob(image.base64String, `image/${image.format}`);
     const imageName = 'Give me a name';
-    this.postService.uploadImage(blobData, imageName, image.format).subscribe((newImage: ImageModel) => {
-      console.log('after caoture', newImage);
-      this.images.push(newImage);
+    // this.post.photo = blobData;
+    console.log(this.filesToUpload);
+    const fd = new FormData();
+    fd.append('photo', blobData, imageName);
+    fd.append('content', this.post.content);
+    this.postService.createPost(fd).subscribe(res => {
+      // this.closeModal();
+      console.log(res);
 
-    })
+      return res;
+    });
   }
   b64toBlob(b64Data, contentType = '', sliceSize = 512) {
     const byteCharacters = atob(b64Data);
@@ -188,6 +199,7 @@ export class ModalShearePage implements OnInit {
     const eventObj: MSInputMethodContext = event as MSInputMethodContext;
     const target: HTMLInputElement = eventObj.target as HTMLInputElement;
     const file: File = target.files[0];
+    this.filesToUpload = file;
     this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
       this.images.push(newImage);
     })

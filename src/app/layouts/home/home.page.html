@@ -74,6 +74,7 @@
           refreshingSpinner="circles" refreshingText="Refreshing...">
         </ion-refresher-content>
       </ion-refresher>
+
       <ion-virtual-scroll [items]="posts">
         <ion-card *virtualItem="let post;let i=index" [class.focus]="indexPub==i">
           <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)">
