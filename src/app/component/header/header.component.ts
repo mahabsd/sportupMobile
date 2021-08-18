@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { TopMenuComponent } from 'src/app/layouts/erp/top-menu/top-menu.component';
 
 @Component({
   selector: 'app-header',
@@ -13,10 +14,21 @@ export class HeaderComponent implements OnInit {
   @Input() isModal: boolean = false;
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() isDetails: boolean = false;
+  @Input() isEllipsis:boolean=false;
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() { }
   close() {
     this.modalCtrl.dismiss();
+  }
+
+  
+
+  async openModal() {
+    const modal = await this.modalCtrl.create({
+      component: TopMenuComponent,
+      cssClass: 'erp-parametre-modal'
+    });
+    return await modal.present();
   }
 }

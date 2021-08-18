@@ -21,7 +21,7 @@ export class HistoriqueerpPage implements OnInit {
     { titre: 'Cours de natation adulte', date: Date.parse('14 Aug 2021 00:00:00 GMT'), description: 'description evenement' },
     { titre: 'Cours de natation adulte', date: Date.parse('13 Aug 2021 00:00:00 GMT'), description: 'description evenement' },
     { titre: 'Cours de natation adulte', date:Date.parse('12 Aug 2021 00:00:00 GMT'), description: 'description evenement' },
-    { titre: 'Cours de natation adulte', date: Date.parse('11 Aug 2021 00:00:00 GMT'), description: 'description evenement' },
+    { titre: 'Cours de natation adulte', date: Date.parse('12 Aug 2021 00:00:00 GMT'), description: 'description evenement' },
   ];
 
   constructor(private alertController: AlertController, private modalController: ModalController) { }
