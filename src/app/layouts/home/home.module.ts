@@ -10,7 +10,6 @@ import { ReactionsPage } from './reactions/reactions.page';
 import { ComponentModule } from '../../component/component.module';
 import { CommentsPage } from './comments/comments.page';
 import { CommentsPageModule } from './comments/comments.module';
-import { LikesPipeModule } from '../../shared/Pipe/likesPipe.module';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,9 +19,7 @@ import { LikesPipeModule } from '../../shared/Pipe/likesPipe.module';
     FooterPageModule,
     ComponentModule,
     ReactiveFormsModule,
-    CommentsPageModule,
-    LikesPipeModule
-  ],
+    CommentsPageModule],
   declarations: [HomePage, StatusComponent],
   exports: [HomePage, StatusComponent]
 })

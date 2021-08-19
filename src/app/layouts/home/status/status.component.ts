@@ -129,7 +129,7 @@ export class StatusComponent implements OnInit {
   }
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
-    this.presentLoading();
+    // this.presentLoading();
     forkJoin({
 
       comments: this.commentService.getCommentByService(this.post._id),
@@ -137,7 +137,7 @@ export class StatusComponent implements OnInit {
     }).subscribe(({
       comments, images
     }) => {
-      this.loading.dismiss();
+      // this.loading.dismiss();
       console.log(images.images);
 
       this.comments = comments;

@@ -25,7 +25,7 @@
         <img src="http://placehold.it/75">
       </ion-avatar>
       <ion-label>
-      <h3 class="ion-text-capitalize">{{user?.name}}</h3>
+        <h3 class="ion-text-capitalize">{{user?.name}}</h3>
 
         <ion-icon name="earth-outline" (click)="openActionSheet()"> </ion-icon>
       </ion-label>
@@ -40,23 +40,19 @@
   </ion-row>-->
   <ion-row>
     <ion-col>
-      <ion-textarea placeholder="Veuillez partager quelques sentiments!"
-        [(ngModel)]="post.content"></ion-textarea>
+      <ion-textarea placeholder="Veuillez partager quelques sentiments!" [(ngModel)]="post.content"></ion-textarea>
     </ion-col>
     <ion-button (click)="selectImageSource()">
       <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
       <ion-icon slot="start" name="arrow-back-outline"></ion-icon>Photo/Vidéo
     </ion-button>
   </ion-row>
-
-
   <ion-row>
     <ion-col size="6" *ngFor="let img of images;let i=index;" class="ion-text-center">
       <ion-label>{{img.name}}
         <p>{{img.createdAt | date:'short'}}</p>
       </ion-label>
       <img [src]="img.url" alt="">
-
       <ion-fab vertical="bottom" horizontal="end">
         <ion-fab-button color="danger" size="small" (click)="deleteImage(img,i)">
           <ion-icon name="trash-outline"></ion-icon>
@@ -66,12 +62,12 @@
   </ion-row>
 
 </ion-content>
-<ion-footer class="myFooter">
+<!-- <ion-footer class="myFooter">
   <ion-segment value="all" color="transparent" scrollable="true" mode="ios" (ionChange)="segmentChanged($event)">
     <ion-segment-button value="media">
-      <ion-button  (click)="selectImageSource()">
+      <ion-button (click)="selectImageSource()">
         <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
-        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>Photo/Vidéo
+        <ion-img src="../../../../assets/icon/iconc_add_picture.png"></ion-img>
       </ion-button>
     </ion-segment-button>
     <ion-segment-button value="endirect">
@@ -90,4 +86,44 @@
       </p>
     </ion-segment-button>
   </ion-segment>
+</ion-footer> -->
+
+<ion-footer class="myFooter">
+  <ion-grid>
+
+    <ion-row>
+
+      <ion-col (click)="selectImageSource()">
+
+        <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
+        <ion-img src="../../../../assets/icon/iconc_add_picture.png"></ion-img>
+
+      </ion-col>
+
+      <ion-col>
+
+        <ion-img [routerLink]="['/shearch']" src="../../assets/icon/icon1.png"></ion-img>
+
+      </ion-col>
+
+      <ion-col>
+
+        <ion-img src="../../assets/icon/icon5.png"></ion-img>
+
+      </ion-col>
+
+      <ion-col>
+
+        <ion-img [routerLink]="['/boite-reception']" src="../../assets/icon/icon3.png"></ion-img>
+
+      </ion-col>
+
+      <ion-col>
+
+        <ion-img src="../../assets/icon/icon4.png"></ion-img>
+
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
 </ion-footer>

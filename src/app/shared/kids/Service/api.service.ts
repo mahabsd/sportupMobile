@@ -30,8 +30,6 @@ export class ApiService {
     private storage: StorageService,
     private toastCtrl: ToastController
   ) {
-    this.jwt().subscribe(res => this.header = res);
-    // this.jwt();
   }
   public async presentToast(message, color, position) {
     this.myToast = await this.toastCtrl.create({
@@ -42,17 +40,7 @@ export class ApiService {
     });
     this.myToast.present();
   }
-  jwt() {
-    return this.storage.get(environment.token).pipe(map(res => {
-      this.token = res;
-      if (this.token) {
-        const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token });
-        //   console.log(headers);
-        return { headers };
-      }
-    }));
 
-  }
   public post(url: string, object: any): Observable<any> {
     // console.log(this.header);
 

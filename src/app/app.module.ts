@@ -19,7 +19,6 @@ import { H401Interceptor } from './shared/Interceptors/H401Interceptor';
 import { AuthGuard } from './shared/Guard/auth.guard';
 import { StorageService } from './shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
-import { LikesPipeModule } from './shared/Pipe/likesPipe.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
 @NgModule({
@@ -37,7 +36,6 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
     HttpClientModule,
     LayoutsModule,
     ComponentModule,
-    LikesPipeModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [

@@ -130,7 +130,21 @@ export class ModalShearePage implements OnInit {
       handler: () => {
         this.addImage(CameraSource.Photos)
       }
-    }];
+    },
+    {
+      text: 'Record Video',
+      icon: 'video',
+      handler: () => {
+        // this.recordVideo();
+      }
+    },
+    {
+      text: 'Record Audio',
+      icon: 'audio',
+      handler: () => {
+        // this.recordAudio();
+      }
+    },];
     if (!this.plt.is('hybrid')) {
       buttons.push({
         text: 'Choose a file',
