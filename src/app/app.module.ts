@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { ProfilService } from './layouts/profil/profil.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
 import { AuthService } from './shared/Auth/auth.service';
@@ -21,7 +20,7 @@ import { StorageService } from './shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
 import { LikesPipeModule } from './shared/Pipe/likesPipe.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
+const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
 @NgModule({
   declarations: [AppComponent,],
   exports: [],
@@ -43,7 +42,6 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
   providers: [
     ImagePicker,
     Crop,
-    ProfilService,
     AuthService,
     StorageService,
     AuthGuard,
