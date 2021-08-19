@@ -3,31 +3,14 @@
 <ion-content>
   <div id="container">
     <ion-grid class="ion-justify-content-center" style="background-color:#f1f2f2">
-      <ion-row>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-avatar>
+      <div style="display: grid; justify-content: center;">
+       
+     
+            <ion-avatar style="width: 80px; height:80px">
               <img src="https://www.computerhope.com/jargon/g/guest-user.jpg">
             </ion-avatar>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-      </ion-row>
+       
+      </div>
       <ion-row style="background-color:#f1f2f2">
         <ion-col>
           <div class="segment">
@@ -36,9 +19,10 @@
           </div>
         </ion-col>
       </ion-row>
-      <ion-row style="background-color:#f1f2f2">
+   
+      <ion-row style="background-color:#f1f2f2; margin-bottom: 30px;">
         <ion-col></ion-col>
-        <ion-col>
+        <ion-col size="3">
           <div>
             <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">253</p>
           </div>
@@ -46,7 +30,7 @@
             <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">Publications</p>
           </div>
         </ion-col>
-        <ion-col>
+        <ion-col size="3">
           <div>
             <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">500</p>
           </div>
@@ -54,7 +38,7 @@
             <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">Abonnés</p>
           </div>
         </ion-col>
-        <ion-col>
+        <ion-col size="3">
           <div>
             <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">2K</p>
           </div>
@@ -62,26 +46,26 @@
             <p style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small;">Abonnements</p>
           </div>
         </ion-col>
-        <ion-col></ion-col>
+ <ion-col></ion-col>
       </ion-row>
       <ion-row style="background-color :white;padding-top: 5px;">
       </ion-row>
       <ion-row style="background-color :#f1f2f2;padding-top: 5px;">
-        <ion-col>
-          <button (click)="buttonPublication()" class="unit" type="button">
-            <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; ">Publications</h6>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button (click)="buttonAPropos()" routerLink="/apropos" class="unit" type="button">
-            <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; "> A propos</h6>
-          </button>
-        </ion-col>
-        <ion-col>
-          <button (click)="buttonPlus()" class="unit" type="button">
-            <h6 style="font-family: Montserrat,sans-serif; color:#898b8b;font-size: small; ">Plus</h6>
-          </button>
-        </ion-col>
+       
+          <ion-col>
+            <button (click)="buttonPublication()" id="pub" type="button">
+              <p style=" color:white;  margin: 0;">Publications</p>
+            </button>
+          </ion-col>
+     
+          <ion-col>
+            <button (click)="buttonPlus()" id="bloq" type="button">
+              <p style="font-family: Montserrat,sans-serif; color:white; margin: 0; ">Bloquer</p>
+            </button>
+          </ion-col>
+
+      
+       
       </ion-row>
       <ion-row>
       </ion-row>

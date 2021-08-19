@@ -31,18 +31,38 @@ $color-shadow: #BABECC;
 $color-white: #FFF;
  button {
   font-family: 'Montserrat', sans-serif;
-  letter-spacing: -0.2px;
+  //letter-spacing: -0.2px;
   font-size: $ruler;
 }
-button {
+#pub {
+  position: relative;
+  top: -30px;
 border: 0;
 outline: 0;
 font-size: $ruler;
-border-radius: $ruler*20;
+border-radius: $ruler;
 padding: $ruler;
-background-color:$color-bg;
-text-shadow: 1px 1px 0 $color-white;
+background: linear-gradient(
+  300deg
+  , #8EBF25, #3b8c4f, #247238, #247238);
+ 
 }
+
+#bloq{
+  position: relative;
+  top: -30px;
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler;
+  padding: $ruler;
+  background: linear-gradient(
+    300deg
+    , #d60e0ed8, #d60e0ed8, #860202, #7c0000);
+   
+  width: 150px;
+  height: 50px;
+  }
 button {
 color:#61677C;
 font-weight: bold;
@@ -62,8 +82,7 @@ font-weight: 800;
   align-items:center;
   margin: 0 $ruler/2;
   font-size: $ruler*1.2;
-  width: 90px;
-  height: 30px;
+
   .icon {
     margin-right: 0; 
   }
