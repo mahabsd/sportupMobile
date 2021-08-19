@@ -28,7 +28,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
   imports: [
     IonicStorageModule.forRoot({
       name: '__mydb',
-      driverOrder: ['sqlite', 'indexeddb', 'websql', 'localstorage']
+      driverOrder: ['localstorage', 'sqlite', 'indexeddb', 'websql']
     }),
     AppRoutingModule,
     BrowserModule,
@@ -52,7 +52,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
       useClass: IonicRouteStrategy
     },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     GoogleMaps
   ],
   bootstrap: [AppComponent]

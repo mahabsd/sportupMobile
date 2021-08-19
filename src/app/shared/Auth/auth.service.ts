@@ -24,6 +24,7 @@ export class AuthService {
   }
 
   login(user) {
+    console.log(user);
 
     return this.utilsService.post(UtilsService.apiUSER + 'login', user).pipe(map((res: any) => {
       // console.log(res);

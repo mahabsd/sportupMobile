@@ -50,7 +50,11 @@ const routes: Routes = [
   },
   {
     path: 'popovercomponent',
-    loadChildren: () => import('./layouts/kids/popovercomponent/popovercomponent.module').then( m => m.PopovercomponentPageModule)
+    loadChildren: () => import('./layouts/kids/popovercomponent/popovercomponent.module').then(m => m.PopovercomponentPageModule)
+  },
+  {
+    path: 'show-image',
+    loadChildren: () => import('./component/modal/show-image/show-image.module').then(m => m.ShowImagePageModule)
   },
 
 
