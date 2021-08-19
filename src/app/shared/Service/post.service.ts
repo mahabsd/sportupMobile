@@ -13,7 +13,7 @@ export class PostService {
   constructor(
     private utilsService: UtilsService,
     private storage: StorageService) { }
-  createPost(post: Post): Observable<Post> {
+  createPost(post): Observable<Post> {
     return this.utilsService.post(UtilsService.apiPost, post).pipe(map(res => res));
   }
   deletePost(post: Post): Observable<Post> {
@@ -35,6 +35,13 @@ export class PostService {
       // console.log(res);
 
      return res.data;
+    }));
+  }
+  getPost(id): Observable<Post> {
+
+    return this.utilsService.get(`${UtilsService.apiPost}${id}`).pipe(map(res => {
+
+     return res.data.data;
     }));
   }
 

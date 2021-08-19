@@ -2,7 +2,7 @@
 import { User } from './../../shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
-import { IonVirtualScroll, ModalController, ToastController } from '@ionic/angular';
+import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { UserService } from '../../shared/Service/user.service';
 import { PostService } from '../../shared/Service/post.service';
 import { Observable } from 'rxjs';
@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
   page = 1;
   maximumPages = 10;
   user$: any = [];
-  loading = false;
+  loading: any;
   slideOpts = {
     loop: true,
     effect: 'slide',
@@ -41,6 +41,7 @@ export class HomePage implements OnInit {
 
     private active: ActivatedRoute,
     private modalController: ModalController,
+    private loadingController: LoadingController,
     private toastCtrl: ToastController,
     private postService: PostService,
     private commentService: CommentService,
@@ -51,6 +52,7 @@ export class HomePage implements OnInit {
   ngOnInit() {
 
     this.getMe();
+
     this.active.data.subscribe((data: { data: any }) => {
       this.loading = true;
       // console.log(data);
@@ -71,7 +73,7 @@ export class HomePage implements OnInit {
     });
   }
   ngOnDestroy(): void {
-   
+
 
   }
   async presentToast() {
@@ -104,10 +106,10 @@ export class HomePage implements OnInit {
     });
   }
   getAllPostsByEvent() {
-    this.loading = true;
+    this.presentLoading();
     this.postService.getAllPosts().pipe(share()).subscribe(res => {
       // console.log(res);
-      this.loading = false;
+      this.loading.onDidDismiss();
       this.posts = res['data'].sort((a, b) => {
         // console.log(a.user.name);
         if (a.user.name < b.user.name) {
@@ -142,9 +144,10 @@ export class HomePage implements OnInit {
   like(event) {
     this.indexPub = event.index;
     console.log('like', event.post.iconLike);
-
+    this.presentLoading()
     this.postService.likePost(event.post).subscribe(res => {
       this.getAllPostsByEvent();
+      this.loading.dismiss;
       this.scrolto(this.indexPub);
 
     });
@@ -171,5 +174,16 @@ export class HomePage implements OnInit {
 
     item.scrollIntoView();
   }
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Hellooo',
+      duration: 2000,
+      spinner: "bubbles"
+    });
+    await this.loading.present();
 
+    // const { role, data } = await this.loading.onDidDismiss();
+
+    // console.log('Loading dismissed!');
+  }
 }
