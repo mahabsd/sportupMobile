@@ -171,6 +171,26 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
+        path: 'kids/boite-reception',
+        loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
+      },
+      {
+        path: 'planning',
+        loadChildren: () => import('./kids/planning/planning.module').then(m => m.PlanningPageModule)
+      },
+      {
+        path: 'message',
+        loadChildren: () => import('./kids/message/message.module').then(m => m.MessagePageModule)
+      },
+      {
+        path: 'maps',
+        loadChildren: () => import('./kids/maps/maps.module').then(m => m.MapsPageModule)
+      },
+      {
+        path: 'activite',
+        loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
+      },
+      {
         path: 'kids',
         loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
@@ -190,6 +210,15 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'coachprofile',
+    loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
+  },
+
+  {
+    path: 'chat-kids',
+    loadChildren: () => import('./kids/chat-kids/chat-kids.module').then(m => m.ChatKidsPageModule)
+  },
 
 
 
