@@ -189,15 +189,14 @@ const routes: Routes = [
       {
         path: 'activite',
         loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
+        path: 'kids',
+        loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
+
       {
-        path: 'sign-kids',
-        loadChildren: () => import('./kids/sign-kids/sign-kids.module').then(m => m.SignKidsPageModule)
+        path: 'ami',
+        loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule)
       },
-      {
-        path: 'profilkids',
-        loadChildren: () => import('./kids/profil/profil.module').then(m => m.ProfilPageModule)
-      }
     ],
   },
      {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -207,8 +206,9 @@ const routes: Routes = [
   },
 
 
+
 ]
-;
+  ;
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

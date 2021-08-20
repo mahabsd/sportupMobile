@@ -16,6 +16,12 @@
         <img src="../../assets/icon/icon_scan.png" alt="">
       </ion-button>
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="isEllipsis" >
+      <ion-button shape="rounded" (click)="openModal()">
+        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
     <ion-title color="light"> {{title}}</ion-title>
   </ion-toolbar>
 </ion-header>

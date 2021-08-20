@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { HistoriqueerpPageRoutingModule } from './historiqueerp-routing.module';
 
 import { HistoriqueerpPage } from './historiqueerp.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HistoriqueerpPageRoutingModule
+    HistoriqueerpPageRoutingModule,
+    ComponentModule
   ],
   declarations: [HistoriqueerpPage]
 })

@@ -27,5 +27,21 @@
     --height: 80%;
     --border-radius: 10px;
     padding: 25px;
+ 
 }
+ 
+
+/* Works - pass "my-custom-class" in cssClass to increase specificity */
+.erp-parametre-modal .modal-wrapper {
+    box-shadow: -3px 5px 6px -5px #000000;
+    background-color: #eee; /* Grey background color */
+    top: 7%;
+    right: 0;
+    position: absolute;
+  width: 90%;
+  height: 70%;
+  max-height: 450px;
+ 
+  }
+
  
