@@ -179,13 +179,18 @@ const routes: Routes = [
         path: 'ami',
         loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule)
       },
+      {
+        path: 'coachprofile',
+        loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
+      },
+      {
+        path: 'scan',
+        loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule)
+      }
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'coachprofile',
-    loadChildren: () => import('./coachprofile/coachprofile.module').then( m => m.CoachprofilePageModule)
-  },
+
 
 
 ]

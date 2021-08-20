@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { User } from 'src/app/shared/Model/User';
-import { PatternValidator } from 'src/app/shared/patternValidator';
-import { UserService } from '../../shared/Service/user.service';
+import { User } from 'src/app/Shared/Model/User';
+import { PatternValidator } from 'src/app/Shared/patternValidator';
+import { UserService } from '../../Shared/Service/user.service';
 import { ToastController } from '@ionic/angular';
 
 @Component({

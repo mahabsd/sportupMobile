@@ -5,8 +5,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { ModalController, IonSlides } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { Router, RouterEvent } from '@angular/router';
-import { AuthService } from './shared/Auth/auth.service';
-import { StorageService } from './shared/Service/storage.service';
+import { AuthService } from './Shared/Auth/auth.service';
+import { StorageService } from './Shared/Service/storage.service';
 import { environment } from 'src/environments/environment';
 import { Socket } from 'ngx-socket-io';
 

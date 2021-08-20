@@ -11,8 +11,8 @@ import { Crop } from '@ionic-native/crop/ngx';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { FileTransfer, FileUploadOptions, FileTransferObject } from '@ionic-native/file-transfer/ngx';
 import { ToastController } from '@ionic/angular';
-import { PatternValidator } from 'src/app/shared/patternValidator';
-import { AuthService } from 'src/app/shared/Auth/auth.service';
+import { PatternValidator } from 'src/app/Shared/patternValidator';
+import { AuthService } from 'src/app/Shared/Auth/auth.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -32,9 +32,9 @@ export class SignKidsPage implements OnInit {
   };
 
   constructor(
-    private toastCtrl:ToastController,
+    private toastCtrl: ToastController,
     public fb: FormBuilder,
-    private router:Router,
+    private router: Router,
     public authService: AuthService) { }
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -69,20 +69,20 @@ export class SignKidsPage implements OnInit {
 
 
     this.authService.login(this.user).subscribe(async (response) => {
-       console.log('hello user', response.user.role);
-      if( response.user.role=="kids"){
+      console.log('hello user', response.user.role);
+      if (response.user.role == "kids") {
         this.router.navigateByUrl('/accueil');
 
       }
       else {
-      this.presentToast('vous n\'avez pas le droit d\accées','warning','top');
+        this.presentToast('vous n\'avez pas le droit d\accées', 'warning', 'top');
       }
 
     },
-    error=>{
-      console.error(error);
+      error => {
+        console.error(error);
 
-    }
+      }
 
     );
 
@@ -90,7 +90,7 @@ export class SignKidsPage implements OnInit {
 
 
   }
-  ResetPassword(){
+  ResetPassword() {
     console.log('reset password');
   }
   async presentToast(message, color, position) {

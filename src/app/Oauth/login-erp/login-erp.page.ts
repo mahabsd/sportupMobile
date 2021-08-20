@@ -1,16 +1,16 @@
-import { AuthService } from './../../shared/Auth/auth.service';
+import { AuthService } from '../../Shared/Auth/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/Model/User';
-import { ToastController } from '@ionic/angular'; 
+import { User } from 'src/app/Shared/Model/User';
+import { ToastController } from '@ionic/angular';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { PatternValidator } from 'src/app/shared/patternValidator';
+import { PatternValidator } from 'src/app/Shared/patternValidator';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-erp',
   templateUrl: './login-erp.page.html',
   styleUrls: ['./login-erp.page.scss'],
 })
-export class LoginErpPage implements OnInit { 
+export class LoginErpPage implements OnInit {
   user: User = new User();
   loginForm: FormGroup;
   constructor(private authService: AuthService,
@@ -44,7 +44,7 @@ export class LoginErpPage implements OnInit {
         this.presentToast('vous navez pas le droit daccess', 'danger', 'top');
       }
     }, error => {
- 
+
 
     }
 

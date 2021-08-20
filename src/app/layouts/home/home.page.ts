@@ -1,13 +1,13 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import { User } from './../../shared/Model/User';
+import { User } from '../../Shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
 import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
-import { UserService } from '../../shared/Service/user.service';
-import { PostService } from '../../shared/Service/post.service';
+import { UserService } from '../../Shared/Service/user.service';
+import { PostService } from '../../Shared/Service/post.service';
 import { Observable } from 'rxjs';
-import { Post } from '../../shared/Model/Post';
-import { CommentService } from '../../shared/Service/comment.service';
+import { Post } from '../../Shared/Model/Post';
+import { CommentService } from '../../Shared/Service/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CommentService } from '../../../shared/Service/comment.service';
-import { Comment } from '../../../shared/Model/Comment';
-import { Post } from 'src/app/Shared/Model/post';
+import { CommentService } from '../../../Shared/Service/comment.service';
+import { Comment } from '../../../Shared/Model/Comment';
+import { Post } from 'src/app/Shared/Model/Post';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 import { ModalController } from '@ionic/angular';
