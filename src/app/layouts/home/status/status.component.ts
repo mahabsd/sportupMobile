@@ -57,8 +57,6 @@ export class StatusComponent implements OnInit {
   }
   async ngOnInit() {
     await this.getCommentByPost();
-    // await this.getPost();
-    // console.log(this.post);
   }
 
   async showReactions(ev) {
@@ -72,39 +70,29 @@ export class StatusComponent implements OnInit {
 
     await reactions.present();
     const { role } = await reactions.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   onTap() {
-    console.log('ok');
-
     this.tap++;
   }
 
   like(post, event) {
-    console.log(event.id);
-
     this.post.iconLike = event.id;
     this.likeFn.emit({ post, index: this.index });
   }
   disLike(post, event) {
-
     this.post.iconLike = event.id;
     this.disLikeFn.emit({ post, index: this.index });
   }
 
   onComment() {
-    console.log('comment');
   }
   share() {
-    console.log('share');
   }
   bookmark() {
-    console.log('bookmark');
     this.bookmarked = true;
   }
   unBookmark() {
-    console.log('unbookmark');
     this.bookmarked = false;
   }
 
@@ -119,47 +107,24 @@ export class StatusComponent implements OnInit {
       }
     });
     await modal.present();
-
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
-      console.log(this.post._id);
-
     });
 
 
   }
   getCommentByPost() {
-    // eslint-disable-next-line no-underscore-dangle
-    // this.presentLoading();
     forkJoin({
-
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
     }).subscribe(({
       comments, images
     }) => {
-      // this.loading.dismiss();
-      console.log(images.images);
-
       this.comments = comments;
       this.images = images.images;
 
     })
-    // console.log(arg);
-
   }
-  // getPost() {
-  //   // eslint-disable-next-line no-underscore-dangle
-  //   this.postService.getPost(this.post._id).subscribe(res => {
-  //     // console.log(res);
-  //     for (const item of res?.images) this.images.push(item)
-  //     console.log(this.images);
-
-  //   });
-
-  // }
-
-
   async presentPopover(ev: any) {
     const popover = await this.popoverCtrl.create({
       component: ParametresComponent,
@@ -169,14 +134,11 @@ export class StatusComponent implements OnInit {
       componentProps: {
         post: this.post
       }
-
     });
     await popover.present();
-
     const { role } = await popover.onDidDismiss();
     location.reload();
   }
-
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Hellooo',
@@ -185,8 +147,5 @@ export class StatusComponent implements OnInit {
     });
     await this.loading.present();
 
-    // const { role, data } = await this.loading.onDidDismiss();
-
-    // console.log('Loading dismissed!');
   }
 }

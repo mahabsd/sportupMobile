@@ -54,17 +54,10 @@ export class HomePage implements OnInit {
     this.getMe();
     await this.presentLoading();
     await this.active.data.subscribe((data: { data: any }) => {
-      this.loadingController.dismiss();
-      this.posts = data['data'].data.sort((a, b) => {
 
-        if (a.user.name < b.user.name) {
-          return -1;
-        }
-        if (a.user.name > b.user.name) {
-          return 1;
-        }
-        return 0;
-      });
+
+      this.loadingController.dismiss();
+      this.posts = this.posts.concat(data['data'].data);
     });
   }
 
@@ -92,29 +85,11 @@ export class HomePage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
-      this.getAllPostsByEvent();
+
 
     });
   }
-  getAllPostsByEvent() {
-    // this.presentLoading();
-    this.postService.getAllPosts().pipe(share()).subscribe(res => {
-      // console.log(res);
-      // this.loading.onDidDismiss();
-      this.posts = res['data'].sort((a, b) => {
-        // console.log(a.user.name);
-        if (a.user.name < b.user.name) {
-          return -1;
-        }
-        if (a.user.name > b.user.name) {
-          return 1;
-        }
-        return 0;
-      });
-      // console.log(this.posts);
 
-    });
-  }
 
   doRefresh(event) {
     console.log('Begin async operation');
@@ -127,48 +102,33 @@ export class HomePage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe(res => {
       this.user$ = res.data.data;
-      // console.log(this.user$);
-
     });
   }
   // Function to call deslike API
   like(event) {
     this.indexPub = event.index;
-    console.log('like', event.post.iconLike);
     this.presentLoading();
     this.postService.likePost(event.post).subscribe(res => {
-      this.getAllPostsByEvent();
       this.loading.dismiss;
       this.scrolto(this.indexPub);
-
     });
   }
   // Function to call deslike API
   disLike(event) {
-    console.log('dislike', event.post.iconLike);
-
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {
-      this.getAllPostsByEvent();
       this.scrolto(this.indexPub);
-
     });
-
   }
 
   scrolto(index) {
-    console.log(index);
-
     let arr = this.list.nativeElement.children;
-
     let item = arr[index];
-
     item.scrollIntoView();
   }
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Loading...',
-      // duration: 5000,
       spinner: "bubbles"
     });
     await this.loading.present();
