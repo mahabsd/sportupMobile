@@ -7,7 +7,8 @@ import { LikesPipeModule } from '../shared/Pipe/likesPipe.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     LayoutsRoutingModule,

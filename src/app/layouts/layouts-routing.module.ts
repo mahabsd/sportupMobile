@@ -171,7 +171,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'boite-reception',
+        path: 'kids/boite-reception',
         loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
       },
       {
@@ -201,6 +201,10 @@ const routes: Routes = [
     ],
   },
      {path: '', redirectTo: 'home', pathMatch: 'full'},
+  {
+    path: 'chat-kids',
+    loadChildren: () => import('./kids/chat-kids/chat-kids.module').then( m => m.ChatKidsPageModule)
+  },
 
 
 ]
