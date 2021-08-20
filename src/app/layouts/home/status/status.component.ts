@@ -12,6 +12,8 @@ import { Comment } from '../../../shared/Model/Comment';
 import { CommentService } from '../../../shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
 import { ParametresComponent } from '../../../component/parametres/parametres.component';
+import { environment } from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-status',
@@ -19,9 +21,8 @@ import { ParametresComponent } from '../../../component/parametres/parametres.co
   styleUrls: ['./status.component.scss'],
 })
 export class StatusComponent implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-
+  apiImg = `${environment.apiImg}Post/image/`;
   @Input() post: any;
   @Input() index: any;
   @Input() user: any;
@@ -129,7 +130,7 @@ export class StatusComponent implements OnInit {
   }
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
-    this.presentLoading();
+    // this.presentLoading();
     forkJoin({
 
       comments: this.commentService.getCommentByService(this.post._id),
@@ -137,7 +138,7 @@ export class StatusComponent implements OnInit {
     }).subscribe(({
       comments, images
     }) => {
-      this.loading.dismiss();
+      // this.loading.dismiss();
       console.log(images.images);
 
       this.comments = comments;
@@ -158,9 +159,7 @@ export class StatusComponent implements OnInit {
 
   // }
 
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
-  }
+
   async presentPopover(ev: any) {
     const popover = await this.popoverCtrl.create({
       component: ParametresComponent,

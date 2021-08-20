@@ -49,17 +49,14 @@ export class HomePage implements OnInit {
     private userservice: UserService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
 
     this.getMe();
-
-    this.active.data.subscribe((data: { data: any }) => {
-      this.loading = true;
-      // console.log(data);
+    await this.presentLoading();
+    await this.active.data.subscribe((data: { data: any }) => {
+      this.loadingController.dismiss();
       this.posts = data['data'].data.sort((a, b) => {
-        this.loading = false;
-        // console.log(this.loading);
-        // console.log(a.user.name);
+
         if (a.user.name < b.user.name) {
           return -1;
         }
@@ -68,14 +65,9 @@ export class HomePage implements OnInit {
         }
         return 0;
       });
-      // console.log(this.posts);
-
     });
   }
-  ngOnDestroy(): void {
 
-
-  }
   async presentToast() {
     const myToast = await this.toastCtrl.create({
       message: 'ok',
@@ -88,7 +80,6 @@ export class HomePage implements OnInit {
   }
 
 
-  // this.getAllPostsByEvent();
 
   async openModal() {
     const modal = await this.modalController.create({
@@ -106,10 +97,10 @@ export class HomePage implements OnInit {
     });
   }
   getAllPostsByEvent() {
-    this.presentLoading();
+    // this.presentLoading();
     this.postService.getAllPosts().pipe(share()).subscribe(res => {
       // console.log(res);
-      this.loading.onDidDismiss();
+      // this.loading.onDidDismiss();
       this.posts = res['data'].sort((a, b) => {
         // console.log(a.user.name);
         if (a.user.name < b.user.name) {
@@ -144,7 +135,7 @@ export class HomePage implements OnInit {
   like(event) {
     this.indexPub = event.index;
     console.log('like', event.post.iconLike);
-    this.presentLoading()
+    this.presentLoading();
     this.postService.likePost(event.post).subscribe(res => {
       this.getAllPostsByEvent();
       this.loading.dismiss;
@@ -176,14 +167,13 @@ export class HomePage implements OnInit {
   }
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Hellooo',
-      duration: 2000,
+      message: 'Loading...',
+      // duration: 5000,
       spinner: "bubbles"
     });
     await this.loading.present();
-
-    // const { role, data } = await this.loading.onDidDismiss();
-
-    // console.log('Loading dismissed!');
   }
+
+
+
 }

@@ -199,7 +199,12 @@ const routes: Routes = [
       },
     ],
   },
-     {path: '', redirectTo: 'home', pathMatch: 'full'},
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'coachprofile',
+    loadChildren: () => import('./coachprofile/coachprofile.module').then( m => m.CoachprofilePageModule)
+  },
+    
   {
     path: 'chat-kids',
     loadChildren: () => import('./kids/chat-kids/chat-kids.module').then( m => m.ChatKidsPageModule)
