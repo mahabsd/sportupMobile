@@ -621,5 +621,66 @@ padding-left: 20px;
 }
 
 .container-timeline {
- padding: 30px;
+ padding: 10px;
+}
+
+.line{
+  margin-top: 100px;
+  background: linear-gradient(
+    300deg
+    , #8EBF25, #3b8c4f, #247238, #247238);
+        height: 200%;
+        width: 5px;
+        position: fixed;
+        top: 0%;
+        left: 22px;
+        transform: translate(-50%, -50%);
+}
+
+
+.imageCheck{
+ 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+ 
+}
+.item, .item-divider  {
+  border-color: rgb(211, 211, 211);
+}
+
+ion-buttons ion-button {
+  --border-radius: 50%;
+  border-radius: 50%;
+  background: #1313131f;
+  width: 36px;
+  height: 36px;
+  // fill-opacity: ;
+}
+
+
+@media only screen and (max-width: 360px) {
+
+  .dateHeader { 
+    margin-left: 30px;
+    font-size: 12px; 
+  }
+
+}
+
+@media only screen and (min-width: 410px) {
+
+  .dateHeader { 
+    margin-left: 30px;
+    font-size: 16px; 
+    color: rgb(49, 49, 49);;
+  }
+
+}
+ 
+
+.item .item-divider {
+  border-color: #ffffff00;
 }

@@ -1,16 +1,17 @@
 
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef } from '@angular/core';
-import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
+import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController, LoadingController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../shared/Service/post.service';
 import { Post } from '../../../shared/Model/Post';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { User } from 'src/app/Shared/Model/user';
 import { UserService } from '../../../shared/Service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Comment } from '../../../shared/Model/Comment';
 import { CommentService } from '../../../shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
+import { ParametresComponent } from '../../../component/parametres/parametres.component';
 
 @Component({
   selector: 'app-status',
@@ -31,6 +32,7 @@ export class StatusComponent implements OnInit {
   longPressActive = false;
   posts: any = [];
   comments: any = [];
+  images: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -39,9 +41,12 @@ export class StatusComponent implements OnInit {
   liked = false;
   bookmarked = false;
   id;
+  loading: any;
   constructor(private navCtrl: NavController,
     private commentService: CommentService,
+    private postService: PostService,
     private modalController: ModalController,
+    private loadingController: LoadingController,
 
     private popoverCtrl: PopoverController) {
     window.addEventListener('contextmenu', (e) => {
@@ -49,14 +54,10 @@ export class StatusComponent implements OnInit {
     });
     // this.getMe();
   }
-  ngOnInit() {
-// console.log(this.post)
-    // eslint-disable-next-line no-underscore-dangle
-    this.id = JSON.stringify(this.user?._id);
-
-    // console.log(this.post?.likedBy.indexOf(this.id));
-    // console.log(typeof (this.id));
-    this.getCommentByPost();
+  async ngOnInit() {
+    await this.getCommentByPost();
+    // await this.getPost();
+    // console.log(this.post);
   }
 
   async showReactions(ev) {
@@ -79,14 +80,15 @@ export class StatusComponent implements OnInit {
     this.tap++;
   }
 
-  like(post) {
-    console.log(this.index);
+  like(post, event) {
+    console.log(event.id);
 
+    this.post.iconLike = event.id;
     this.likeFn.emit({ post, index: this.index });
   }
-  disLike(post) {
-    console.log(this.index);
+  disLike(post, event) {
 
+    this.post.iconLike = event.id;
     this.disLikeFn.emit({ post, index: this.index });
   }
 
@@ -119,7 +121,7 @@ export class StatusComponent implements OnInit {
 
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
-            console.log( this.post._id);
+      console.log(this.post._id);
 
     });
 
@@ -127,15 +129,65 @@ export class StatusComponent implements OnInit {
   }
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
-    this.commentService.getCommentByService(this.post._id).subscribe(arg => {
-      // console.log(arg);
-      this.comments = arg;
-    });
+    this.presentLoading();
+    forkJoin({
+
+      comments: this.commentService.getCommentByService(this.post._id),
+      images: this.postService.getPost(this.post._id),
+    }).subscribe(({
+      comments, images
+    }) => {
+      this.loading.dismiss();
+      console.log(images.images);
+
+      this.comments = comments;
+      this.images = images.images;
+
+    })
+    // console.log(arg);
 
   }
+  // getPost() {
+  //   // eslint-disable-next-line no-underscore-dangle
+  //   this.postService.getPost(this.post._id).subscribe(res => {
+  //     // console.log(res);
+  //     for (const item of res?.images) this.images.push(item)
+  //     console.log(this.images);
+
+  //   });
+
+  // }
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
+  async presentPopover(ev: any) {
+    const popover = await this.popoverCtrl.create({
+      component: ParametresComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+      componentProps: {
+        post: this.post
+      }
 
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    location.reload();
+  }
+
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Hellooo',
+      duration: 2000,
+      spinner: "bubbles"
+    });
+    await this.loading.present();
+
+    // const { role, data } = await this.loading.onDidDismiss();
+
+    // console.log('Loading dismissed!');
+  }
 }

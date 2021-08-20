@@ -44,25 +44,27 @@
 </ion-row>
  
  
-<ion-row style="padding-top: 50px !important;" class="ion-justify-content-center">
+<ion-row   class="ion-justify-content-center">
  
   <ion-col text-center>
-  <ion-card  no-padding style="margin:5rem 20px 0 !important;background: rgb(202, 202, 202);" >
+  <ion-card  no-padding style="margin:5rem 40px 0 !important;background: rgb(238, 238, 238);     border-radius: 15px;" >
     <ion-card-content>
  
 
-      <form [formGroup]="loginForm" >
+      <form [formGroup]="loginForm"  style="padding-left: 30px; padding-right: 30px; margin-top: 30px;">
     <ion-row>
-    <input style="font-size: small;"  class="MyinputUpdate" type="email" [(ngModel)]="user.email" formControlName="emailControl"   placeholder="E-Mail" />
-    <input style="font-size: small;"  class="MyinputUpdate" type="password"  [(ngModel)]="user.password"  formControlName="passwordControl" placeholder="Mot de passe" />
+    <input   class="MyinputUpdate" type="email" [(ngModel)]="user.email" formControlName="emailControl"   placeholder="E-Mail" />
+    <input   class="MyinputUpdate" type="password"  [(ngModel)]="user.password"  formControlName="passwordControl" placeholder="Mot de passe" />
     </ion-row>
       <ion-row style="padding-bottom: 30px;padding-top: 30px;  " class="ion-justify-content-center">
         
-          <ion-col size="5" >
+          <ion-col size="6" >
             <div   class="message-box">
-              <div type="submit" (click)="login()" class="message-submit">
-              <h6 style="font-size: small;color:white;     margin-top: 5px;" name="send-outline" >Connexion</h6>
-              </div>
+              <ion-button   (click)="login()"  disabled={{loginForm.invalid}} color="light">
+            Connexion 
+                
+              </ion-button>
+               
             </div>
           </ion-col>
          
@@ -71,12 +73,12 @@
  
     </form>
     </ion-card-content>
-      <ion-row class="ion-justify-content-center" >
+      <ion-row class="ion-justify-content-center" style=" margin-bottom: 10px;" >
  
      
-        <ion-col class="ion-text-center" >
+        <ion-col class="ion-text-center"  >
           <ion-label style="color: grey;font-weight: bold;font-size:small; " [routerLink]="['/resetpass']" >
-            Mot de passe oubliée
+            Mot de passe oubliée ?
           </ion-label>
         </ion-col>
       
