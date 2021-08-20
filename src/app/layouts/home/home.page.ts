@@ -2,7 +2,7 @@
 import { User } from '../../Shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
-import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { IonCard, IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
 import { UserService } from '../../Shared/Service/user.service';
 import { PostService } from '../../Shared/Service/post.service';
 import { Observable } from 'rxjs';
@@ -17,7 +17,7 @@ import { Socket } from 'ngx-socket-io';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  @ViewChild(IonVirtualScroll, { read: ElementRef }) list: ElementRef;
+  @ViewChild(IonCard, { read: ElementRef }) list: ElementRef;
   indexPub = null;
   posts: any = [];
   page = 1;
@@ -50,15 +50,10 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
+    this.getAllPostsByEvent();
 
     this.getMe();
-    await this.presentLoading();
-    await this.active.data.subscribe((data: { data: any }) => {
 
-
-      this.loadingController.dismiss();
-      this.posts = this.posts.concat(data['data'].data);
-    });
   }
 
   async presentToast() {
@@ -72,8 +67,20 @@ export class HomePage implements OnInit {
     });
   }
 
-
-
+  getAllPostsByEvent(event?) {
+    this.postService.getAllPosts(this.page).pipe(share()).subscribe(res => {
+      console.log(res);
+      this.posts = this.posts.concat(res['data']);
+      console.log(this.posts);
+      if (event) {
+        event.target.complete();
+      }
+    });
+  }
+  loadMore(event) {
+    this.page++;
+    this.getAllPostsByEvent(event);
+  }
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
@@ -110,22 +117,16 @@ export class HomePage implements OnInit {
     this.presentLoading();
     this.postService.likePost(event.post).subscribe(res => {
       this.loading.dismiss;
-      this.scrolto(this.indexPub);
     });
   }
   // Function to call deslike API
   disLike(event) {
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {
-      this.scrolto(this.indexPub);
     });
   }
 
-  scrolto(index) {
-    let arr = this.list.nativeElement.children;
-    let item = arr[index];
-    item.scrollIntoView();
-  }
+
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Loading...',

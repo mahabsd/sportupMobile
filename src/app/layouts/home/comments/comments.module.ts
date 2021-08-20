@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommentsPageRoutingModule } from './comments-routing.module';
 
 import { CommentsPage } from './comments.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
@@ -14,8 +15,9 @@ import { CommentsPage } from './comments.page';
     FormsModule,
     IonicModule,
     CommentsPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ComponentModule
   ],
   declarations: [CommentsPage]
 })
-export class CommentsPageModule {}
+export class CommentsPageModule { }
