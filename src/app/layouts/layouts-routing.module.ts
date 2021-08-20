@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'profil',
+        path: 'profil/:id',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
 
       },
@@ -171,7 +171,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'kids/boite-reception',
+        path: 'boite-reception',
         loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
       },
       {
@@ -215,10 +215,7 @@ const routes: Routes = [
     loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
   },
 
-  {
-    path: 'chat-kids',
-    loadChildren: () => import('./kids/chat-kids/chat-kids.module').then(m => m.ChatKidsPageModule)
-  },
+
 
 
 
