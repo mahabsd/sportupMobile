@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { ProfilService } from './profil.service';
+
+
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.page.html',
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
-  myInformation: any = {};
+
+  myInformation: any = { userLastName: 'Nom', userFirstName: 'Prénom' };
   user: any = [];
   items = [
     { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRcDQbdfQepfnqBSeJKxbFKRrS6G_YJxu0vhw&usqp=CAU', name: 'item1', },
@@ -54,11 +56,8 @@ export class ProfilPage implements OnInit {
         'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg', description: 'Image 9'
     }
   ];
-  constructor(private activatedRoute: ActivatedRoute, private profilService: ProfilService) {
-    this.profilService.GetProfile().subscribe((response) => {
-      console.log('my user', response);
-      this.myInformation = response;
-    });
+  constructor(private activatedRoute: ActivatedRoute) {
+  
   }
 
   ngOnInit() {
@@ -67,13 +66,11 @@ export class ProfilPage implements OnInit {
   itemSelected(data) {
     console.log(data);
   }
-  buttonPublication() {
-    console.log('Action Button Publication ');
+  buttonSuivre() {
+    console.log('Action Button Suivre ');
   }
-  buttonAPropos() {
-    console.log('Action Button A Propos ');
+  buttonBlock() {
+    console.log('Action Button Block ');
   }
-  buttonPlus() {
-    console.log('Action Button Plus ');
-  }
+ 
 }

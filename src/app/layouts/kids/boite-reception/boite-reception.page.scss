@@ -1,0 +1,27 @@
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image2 {
+  position: absolute;
+  top: 67px;
+  left: 64px;
+}
+.box {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  position: absolute;
+    left: 25px;
+}
+
+
+ion-row{
+  margin-top: 15px;
+  padding: 22px;}

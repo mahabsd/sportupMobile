@@ -7,7 +7,8 @@ import { KidsModule } from './kids/kids.module';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+  ],
   imports: [
     CommonModule,
     LayoutsRoutingModule,

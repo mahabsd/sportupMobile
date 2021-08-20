@@ -4,6 +4,7 @@ import { AlertController, ModalController } from '@ionic/angular';
 import { CalendarComponent } from 'ionic2-calendar/calendar';
 import { EventListModalComponent } from './event-list-modal/event-list-modal.component';
 import { IonSlides, IonSlide, IonContent } from '@ionic/angular';
+import {TopMenuComponent} from '../erp/top-menu/top-menu.component';
 @Component({
   selector: 'app-planning',
   templateUrl: './planning.page.html',
@@ -70,4 +71,13 @@ async presentAlertConfirm() {
 
   await alert.present();
 }
+
+async openModal() {
+  const modal = await this.modalController.create({
+    component: TopMenuComponent,
+    cssClass: 'erp-parametre-modal'
+  });
+  return await modal.present();
+}
+
 }
