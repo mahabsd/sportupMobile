@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button (click)="close()" *ngIf="isModal">
+      <ion-button (click)="close()" *ngIf="isModal" color="light">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
       <ion-menu-button color="light" *ngIf="!isModal && !isDetails"></ion-menu-button>

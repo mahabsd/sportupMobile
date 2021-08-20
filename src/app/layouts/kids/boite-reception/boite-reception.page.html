@@ -5,29 +5,39 @@
   <div style="background-color: whitesmoke;padding: 5px;">
     <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
       <ion-fab-button style="--background	:#ddd">
-        <ion-icon name="add"></ion-icon>
+        <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="" >
       </ion-fab-button>
     </ion-fab>
-    <ion-searchbar placeholder=""></ion-searchbar>
-  </div>
+
+  <ion-searchbar  placeholder=""></ion-searchbar>
+</div>
 
 
-  <ion-row>
-    <ion-col size="3" *ngFor="let item of [].constructor(100);">
+  <ion-row >
+    <ion-col size="4"  *ngFor="let item of [].constructor(10); let i = index">
       <div class="parent">
-        <img class="image1" src="../../../../assets/imgs/150.png" style="height: 100px;" />
+        <img class="image1" src="../../../../assets/ImgKids/iconboy.png" style="height: 100px;" />
 
-        <ion-button shape="round" (click)="click()" expand="block">
-          <ion-icon name="call-outline"></ion-icon>
-        </ion-button>
+        <button  (click)="click()" block>
+          <img class="image2" src="  https://images.vexels.com/media/users/3/140965/isolated/preview/a945eef28564ae85fff5ac18adf637d9-phone-round-icon.png    " style="height: 37px;" />
+
+     </button>
+      </div>
+
+      <div class="box">
+        <div>
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Red_Circle%28small%29.svg/768px-Red_Circle%28small%29.svg.png" style="height: 22px;" />
+     </div>
+        <div style="font-weight: bold;">
+          BAYA
+           </div>
+
+
       </div>
     </ion-col>
+
+
   </ion-row>
-
-
-
-
-
 
 
 
