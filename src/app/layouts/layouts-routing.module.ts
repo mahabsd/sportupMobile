@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'profil',
+        path: 'profil/:id',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
 
       },
@@ -171,7 +171,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'kids/boite-reception',
+        path: 'boite-reception',
         loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
       },
       {
@@ -189,6 +189,8 @@ const routes: Routes = [
       {
         path: 'activite',
         loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
+      },
+      {
         path: 'kids',
         loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
@@ -197,18 +199,23 @@ const routes: Routes = [
         path: 'ami',
         loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule)
       },
+      {
+        path: 'coachprofile',
+        loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
+      },
+      {
+        path: 'scan',
+        loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule)
+      }
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'coachprofile',
-    loadChildren: () => import('./coachprofile/coachprofile.module').then( m => m.CoachprofilePageModule)
+    loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
   },
-    
-  {
-    path: 'chat-kids',
-    loadChildren: () => import('./kids/chat-kids/chat-kids.module').then( m => m.ChatKidsPageModule)
-  },
+
+
 
 
 

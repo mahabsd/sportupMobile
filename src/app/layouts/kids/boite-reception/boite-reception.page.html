@@ -1,23 +1,14 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home" style="color: white;"></ion-back-button>
-    </ion-buttons>
-    <ion-title color="light" style="text-align: center; margin-left: 20xp">
-      boite réception</ion-title>
-
-  </ion-toolbar>
-</ion-header>
-
+<app-header [title]="Boite reception" [isDetails]="true"></app-header>
 <ion-content>
 
 
   <div style="background-color: whitesmoke;padding: 5px;">
-    <ion-fab vertical="top" horizontal="end"  slot="fixed" style="margin-top: 20px;" >
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
       <ion-fab-button style="--background	:#ddd">
         <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="" >
       </ion-fab-button>
     </ion-fab>
+
   <ion-searchbar  placeholder=""></ion-searchbar>
 </div>
 

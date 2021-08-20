@@ -3,11 +3,11 @@
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable eol-last */
 /* eslint-disable no-trailing-spaces */
-import { Component, OnInit,Input, ViewChild } from '@angular/core';
-import { CommentService } from '../../../shared/Service/comment.service';
-import { Comment } from '../../../shared/Model/Comment';
-import { Post } from 'src/app/Shared/Model/post';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { CommentService } from '../../../Shared/Service/comment.service';
+import { Comment } from '../../../Shared/Model/Comment';
+import { Post } from 'src/app/Shared/Model/Post';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 import { ModalController } from '@ionic/angular';
 
@@ -23,8 +23,8 @@ export class CommentsKidsPage implements OnInit {
 
 
 
-updateCom=false;
-selectedCom:Comment;
+  updateCom = false;
+  selectedCom: Comment;
   comment: Comment = new Comment();
   commentForm: FormGroup;
   upcom;
@@ -38,24 +38,24 @@ selectedCom:Comment;
   }
 
   ngOnInit() {
-    console.log("userrrr"+this.userid);
-        this.commentForm = new FormGroup({
+    console.log("userrrr" + this.userid);
+    this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
 
     });
-console.log(this.post);
-console.log(this.comments);
-this.getCommentByPost();
+    console.log(this.post);
+    console.log(this.comments);
+    this.getCommentByPost();
 
   }
 
-  updateComment(comment){
-    this.updateCom=true;
-    this.selectedCom=comment;
+  updateComment(comment) {
+    this.updateCom = true;
+    this.selectedCom = comment;
 
 
 
-    }
+  }
   sendComment(post) {
     console.log(this.comment);
     this.comments = [];
@@ -67,10 +67,10 @@ this.getCommentByPost();
     });
   }
 
-  sendCommentUpdate(){
-    this.updateCom=false;
+  sendCommentUpdate() {
+    this.updateCom = false;
     this.upcom = (<HTMLInputElement>document.getElementById("contentCom")).value;
-    this.selectedCom.content=this.upcom ;
+    this.selectedCom.content = this.upcom;
 
     this.commentService.updateComments(this.selectedCom).subscribe(res => {
 
@@ -92,7 +92,7 @@ this.getCommentByPost();
 
   }
 
-  deleteComment(idcom){
+  deleteComment(idcom) {
     this.commentService.deleteComment(idcom).subscribe(arg => {
     });
     this.getCommentByPost();

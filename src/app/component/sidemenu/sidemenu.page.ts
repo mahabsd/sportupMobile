@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterEvent } from '@angular/router';
-import { AuthService } from '../../shared/Auth/auth.service';
+import { AuthService } from '../../Shared/Auth/auth.service';
 
 @Component({
   selector: 'app-sidemenu',
@@ -10,7 +10,7 @@ import { AuthService } from '../../shared/Auth/auth.service';
 export class SidemenuPage implements OnInit {
   selectedPath: any = '';
   public appPages = [
-    
+
     {
       title: 'Accueil',
       url: '/menu/home',

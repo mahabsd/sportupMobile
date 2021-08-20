@@ -1,6 +1,6 @@
 import { ApiService } from './api.service';
 import { UtilsService } from '../../Service/utils.service';
-import { Post } from 'src/app/shared/Model/Post';
+import { Post } from 'src/app/Shared/Model/Post';
 import { Injectable } from '@angular/core';
 import { map, catchError } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -14,15 +14,15 @@ export class PostKidsService {
   constructor(
     private utilsService: ApiService,
     private storage: StorageService) { }
-    getAllPostsKids(): Observable<Post[]> {
-     console.log(`${UtilsService.apiPost}?type=kids`);
+  getAllPostsKids(): Observable<Post[]> {
+    console.log(`${UtilsService.apiPost}?type=kids`);
     // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
     return this.utilsService.get(`${UtilsService.apiPost}?type=kids`).pipe(map(res => res.data));
   }
 
   getMyPostsKids(id): Observable<Post[]> {
-   return this.utilsService.get(`${UtilsService.apiPost}?user=`+id).pipe(map(res => res.data));
- }
+    return this.utilsService.get(`${UtilsService.apiPost}?user=` + id).pipe(map(res => res.data));
+  }
 
 
   likePostKids(post: Post): Observable<Post> {
@@ -38,6 +38,6 @@ export class PostKidsService {
     return this.utilsService.get(`${UtilsService.apiPost}${post}/comments`).pipe(map((res) => res.data.data));
   }
   deletePostKids(id: any) {
-    return this.utilsService.delete(`${UtilsService.apiPost}`+id);
+    return this.utilsService.delete(`${UtilsService.apiPost}` + id);
   }
 }

@@ -7,18 +7,18 @@ import { CommentsKidsPage } from './../comments-kids/comments-kids.page';
 import { FormGroup } from '@angular/forms';
 import { CommentsPage } from './../../home/comments/comments.page';
 import { ModalController, PopoverController } from '@ionic/angular';
-import { CommentService } from './../../../shared/Service/comment.service';
+import { CommentService } from '../../../Shared/Service/comment.service';
 /* eslint-disable @typescript-eslint/quotes */
 /* eslint-disable @typescript-eslint/no-inferrable-types */
-import { UserService } from './../../../shared/Service/user.service';
+import { UserService } from '../../../Shared/Service/user.service';
 import { Input } from '@angular/core';
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
-import { PostService } from 'src/app/shared/Service/post.service';
+import { PostService } from 'src/app/Shared/Service/post.service';
 /* eslint-disable @typescript-eslint/dot-notation */
 import { Component, OnInit } from '@angular/core';
-import { PostKidsService } from 'src/app/shared/kids/Service/postKids.service';
-import { Post } from 'src/app/shared/Model/Post';
-import { User } from 'src/app/Shared/Model/user';
+import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
+import { Post } from 'src/app/Shared/Model/Post';
+import { User } from 'src/app/Shared/Model/User';
 
 @Component({
   selector: 'app-accueil',
@@ -47,7 +47,7 @@ export class AccueilPage implements OnInit {
     private postKidsService: PostKidsService,
     private postService: PostService,
     private userservice: UserService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getAllPostsKids();

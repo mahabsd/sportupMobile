@@ -11,7 +11,7 @@ import {
   UrlSegment, CanDeactivate
 } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { AuthService } from './../Auth/auth.service';
+import { AuthService } from '../Auth/auth.service';
 import { Observable, from } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 

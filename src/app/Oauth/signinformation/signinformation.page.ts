@@ -1,4 +1,4 @@
-import { User } from 'src/app/shared/Model/User';
+import { User } from 'src/app/Shared/Model/User';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
