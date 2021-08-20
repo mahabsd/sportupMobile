@@ -7,13 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ChatKidsPageRoutingModule } from './chat-kids-routing.module';
 
 import { ChatKidsPage } from './chat-kids.page';
+import { ComponentModule } from 'src/app/component/component.module';
+
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatKidsPageRoutingModule
+    ChatKidsPageRoutingModule,
+    ComponentModule
   ],
   declarations: [ChatKidsPage]
 })

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./chat-kids.page.scss'],
 })
 export class ChatKidsPage implements OnInit {
-
+  Message='Message';
   constructor() { }
 
   ngOnInit() {
