@@ -1,6 +1,6 @@
-import { User } from 'src/app/shared/Model/User';
-import { Comment } from 'src/app/shared/Model/Comment';
-import { ImageModel } from 'src/app/shared/Model/ImageModel';
+import { User } from 'src/app/Shared/Model/User';
+import { Comment } from 'src/app/Shared/Model/Comment';
+import { ImageModel } from 'src/app/Shared/Model/ImageModel';
 export class Post {
   _id: string;
   title: string;

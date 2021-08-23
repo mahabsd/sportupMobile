@@ -5,7 +5,7 @@ import {
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
 // import { DatePipe } from "@angular/common";
 import { StorageService } from './storage.service';
 import { ToastController } from '@ionic/angular';
@@ -71,7 +71,7 @@ export class UtilsService {
 
   public get(url: string): Observable<any> {
     const headers = new HttpHeaders({ authorization: 'Bearer ' + this.token });
-    return this.httpClient.get<Object>(url, { observe: 'response' }).pipe(map(res => res.body),catchError(this.formatErrors));
+    return this.httpClient.get<Object>(url, { observe: 'response' }).pipe(map(res => res.body), catchError(this.formatErrors));
   }
 
   public delete(url: string): Observable<any> {

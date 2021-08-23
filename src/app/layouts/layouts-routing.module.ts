@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'profil',
+        path: 'profil/:id',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
 
       },
@@ -89,31 +89,11 @@ const routes: Routes = [
         path: 'erp',
         loadChildren: () => import('./erp/erp.module').then(m => m.ErpPageModule)
       },
-
-      {
-        path: 'home-erp',
-        loadChildren: () => import('./erp/home-erp/home-erp.module').then(m => m.HomeErpPageModule)
-      },
-      {
-        path: 'gestion-material',
-        loadChildren: () => import('./erp/gestion-material/gestion-material.module').then(m => m.GestionMaterialPageModule)
-      },
       {
         path: 'insert-material-modal',
         loadChildren: () => import('./insert-material-modal/insert-material-modal.module').then(m => m.InsertMaterialModalPageModule)
       },
-      {
-        path: 'gestion-effectif',
-        loadChildren: () => import('./erp/gestion-effectif/gestion-effectif.module').then(m => m.GestionEffectifPageModule)
-      },
-      {
-        path: 'gestion-espace',
-        loadChildren: () => import('./erp/gestion-espace/gestion-espace.module').then(m => m.GestionEspacePageModule)
-      },
-      {
-        path: 'gestion-adherent',
-        loadChildren: () => import('./erp/gestion-adherent/gestion-adherent.module').then(m => m.GestionAdherentPageModule)
-      },
+
       {
         path: 'insert-espace-modal',
         loadChildren: () => import('./insert-espace-modal/insert-espace-modal.module').then(m => m.InsertEspaceModalPageModule)
@@ -134,18 +114,7 @@ const routes: Routes = [
         path: 'historiqueerp',
         loadChildren: () => import('./historiqueerp/historiqueerp.module').then(m => m.HistoriqueerpPageModule)
       },
-      {
-        path: 'gestion-vente',
-        loadChildren: () => import('./erp/gestion-vente/gestion-vente.module').then(m => m.GestionVentePageModule)
-      },
-      {
-        path: 'gestion-facturation',
-        loadChildren: () => import('./erp/gestion-facturation/gestion-facturation.module').then(m => m.GestionFacturationPageModule)
-      },
-      {
-        path: 'gestion-last-effectif',
-        loadChildren: () => import('./erp/gestion-last-effectif/gestion-last-effectif.module').then(m => m.GestionLastEffectifPageModule)
-      },
+
       {
         path: 'insert-vente-modal',
         loadChildren: () => import('./insert-vente-modal/insert-vente-modal.module').then(m => m.InsertVenteModalPageModule)
@@ -158,10 +127,7 @@ const routes: Routes = [
         path: 'insert-last-effectif-modal',
         loadChildren: () => import('./insert-last-effectif-modal/insert-last-effectif-modal.module').then(m => m.InsertLastEffectifModalPageModule)
       },
-      {
-        path: 'erp-space',
-        loadChildren: () => import('./erp/erp-space/erp-space.module').then(m => m.ErpSpacePageModule)
-      },
+
       {
         path: 'accueil',
         loadChildren: () => import('./kids/accueil/accueil.module').then(m => m.AccueilPageModule)
@@ -171,7 +137,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
       {
-        path: 'kids/boite-reception',
+        path: 'boite-reception',
         loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
       },
       {
@@ -189,6 +155,8 @@ const routes: Routes = [
       {
         path: 'activite',
         loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
+      },
+      {
         path: 'kids',
         loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
@@ -197,18 +165,23 @@ const routes: Routes = [
         path: 'ami',
         loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule)
       },
+      {
+        path: 'coachprofile',
+        loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
+      },
+      {
+        path: 'scan',
+        loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule)
+      }
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'coachprofile',
-    loadChildren: () => import('./coachprofile/coachprofile.module').then( m => m.CoachprofilePageModule)
+    loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
   },
-    
-  {
-    path: 'chat-kids',
-    loadChildren: () => import('./kids/chat-kids/chat-kids.module').then( m => m.ChatKidsPageModule)
-  },
+
+
 
 
 

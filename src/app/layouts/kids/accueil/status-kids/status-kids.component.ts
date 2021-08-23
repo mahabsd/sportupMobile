@@ -5,15 +5,15 @@ import { CommentsPage } from '../../../home/comments/comments.page';
 import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController } from '@ionic/angular';
 
-import { PostService } from '../../../../shared/Service/post.service';
-import { Post } from '../../../../shared/Model/Post';
+import { PostService } from '../../../../Shared/Service/post.service';
+import { Post } from '../../../../Shared/Model/Post';
 import { Observable } from 'rxjs';
-import { User } from 'src/app/Shared/Model/user';
-import { UserService } from '../../../../shared/Service/user.service';
+import { User } from 'src/app/Shared/Model/User';
+import { UserService } from '../../../../Shared/Service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Comment } from '../../../../shared/Model/Comment';
-import { CommentService } from '../../../../shared/Service/comment.service';
-import { PostKidsService } from 'src/app/shared/kids/Service/postKids.service';
+import { Comment } from '../../../../Shared/Model/Comment';
+import { CommentService } from '../../../../Shared/Service/comment.service';
+import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { AlertController } from '@ionic/angular';
 import { CommentsKidsPage } from '../../comments-kids/comments-kids.page';
 
@@ -60,8 +60,8 @@ export class StatusKidsComponent implements OnInit {
     // eslint-disable-next-line no-underscore-dangle
     this.id = JSON.stringify(this.user?._id);
 
-    console.log(  JSON.stringify(this.user?._id));
-    console.log( this.id);
+    console.log(JSON.stringify(this.user?._id));
+    console.log(this.id);
 
     this.getCommentByPost();
 
@@ -83,7 +83,7 @@ export class StatusKidsComponent implements OnInit {
         }, {
           text: 'Okay',
           handler: () => {
-            console.log('Confirm Okay'+post.id);
+            console.log('Confirm Okay' + post.id);
             this.deletePost(post._id);
           }
         }
@@ -93,10 +93,10 @@ export class StatusKidsComponent implements OnInit {
     await alert.present();
   }
 
-  deletePost(idpost){
+  deletePost(idpost) {
     this.postKidsService.deletePostKids(idpost).subscribe(arg => {
     });
-  this.refreshPosts.emit();
+    this.refreshPosts.emit();
   }
 
   onTap() {
@@ -134,7 +134,7 @@ export class StatusKidsComponent implements OnInit {
       componentProps: {
         post,
         comments: this.comments,
-       userid: this.user?._id
+        userid: this.user?._id
       }
     });
     await modal.present();

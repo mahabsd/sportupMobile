@@ -8,7 +8,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 
 import { LoginPage } from './login.page';
 import { FileTransfer, FileTransferObject } from '@ionic-native/file-transfer/ngx';
-import { AuthService } from '../../shared/Auth/auth.service';
+import { AuthService } from '../../Shared/Auth/auth.service';
 
 @NgModule({
   imports: [

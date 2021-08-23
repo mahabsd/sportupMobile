@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { BoiteReceptionPageRoutingModule } from './boite-reception-routing.module';
 
 import { BoiteReceptionPage } from './boite-reception.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    BoiteReceptionPageRoutingModule
+    BoiteReceptionPageRoutingModule,
+    ComponentModule
   ],
   declarations: [BoiteReceptionPage]
 })
-export class BoiteReceptionPageModule {}
+export class BoiteReceptionPageModule { }

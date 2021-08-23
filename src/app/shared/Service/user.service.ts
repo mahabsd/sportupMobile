@@ -15,15 +15,14 @@ export class UserService {
 
   constructor(private utilsService: UtilsService,
     public toastCtrl: ToastController) { }
-  getMe():Observable<User>{
+  getMe(): Observable<User> {
+
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
-// console.log(res);
-
+      console.log(res);
       return res;
-
     }), catchError(this.handleError));
   }
-  signUp(user: User): Observable<User>{
+  signUp(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'signup', user).pipe(map(res => res
     ), catchError(this.handleError));
   }
@@ -36,11 +35,12 @@ export class UserService {
   resetPassword(token: any): Observable<User> {
     return this.utilsService.patch(UtilsService.apiUSER + 'resetPassword', token).pipe(map(res => res), catchError(this.handleError));
   }
-  renvoyerToken(user: User): Observable<User>{
+  renvoyerToken(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
+ 
   handleError(error: HttpErrorResponse) {
-console.log(error);
+    console.log(error);
 
     if (error?.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -80,9 +80,16 @@ console.log(error);
   }
 
   updateUser(user: User) {
-    return this.utilsService.patch(UtilsService.apiUSER + 'updateMe',user);
+    return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
 
 
+  }
+  getUser(id): Observable<User> {
+    console.log(UtilsService.apiUSER + id);
+    return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {
+
+      return res;
+    }), catchError(this.handleError));
   }
 }
 

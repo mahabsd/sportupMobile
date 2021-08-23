@@ -1,12 +1,12 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalController, Platform } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
-import { User } from '../../../shared/Model/User';
-import { AuthService } from '../../../shared/Auth/auth.service';
-import { PostService } from '../../../shared/Service/post.service';
-import { Post } from '../../../shared/Model/Post';
+import { User } from '../../../Shared/Model/User';
+import { AuthService } from '../../../Shared/Auth/auth.service';
+import { PostService } from '../../../Shared/Service/post.service';
+import { Post } from '../../../Shared/Model/Post';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { ImageModel } from 'src/app/shared/Model/ImageModel';
+import { ImageModel } from 'src/app/Shared/Model/ImageModel';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { SlicePipe } from '@angular/common';
 const { Camera } = Plugins; @Component({

@@ -1,8 +1,8 @@
-import { AuthService } from './../../shared/Auth/auth.service';
+import { AuthService } from '../../Shared/Auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { PatternValidator } from '../../shared/patternValidator';
-import { User } from 'src/app/shared/Model/User';
+import { PatternValidator } from '../../Shared/patternValidator';
+import { User } from 'src/app/Shared/Model/User';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 @Component({
@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
 
     this.authService.login(this.loginForm.value).subscribe((response) => {
       // console.log('hello user', response);
-      location.href = '/tabs/home';
+    //  location.href = '/tabs/home';
     }, error => {
       console.error(error);
 
