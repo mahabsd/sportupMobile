@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
+
 
 
 @Component({
@@ -9,24 +8,10 @@ import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.pag
   styleUrls: ['./coachprofile.page.scss'],
 })
 export class CoachprofilePage implements OnInit {
-  sliderOpts = {
-    zoom: false,
-    slidesPreview: 1.5,
-    centeredSlides: true,
-    spaceBetween: 20
-  }
-  constructor(private modalController: ModalController) { }
+
+  constructor() { }
 
   ngOnInit() {
   }
-  async openPreview(img) {
-    const modal = await this.modalController.create({
-      component: ShowImagePage,
-      componentProps: { img }
-    });
 
-    await modal.present();
-
-
-  }
 }

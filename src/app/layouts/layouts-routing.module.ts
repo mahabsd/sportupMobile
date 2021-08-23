@@ -176,10 +176,7 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'coachprofile',
-    loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
-  },
+
 
 
 
