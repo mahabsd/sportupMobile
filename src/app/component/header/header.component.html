@@ -8,7 +8,7 @@
       <ion-back-button color="light" *ngIf="!isModal && isDetails" defaultHref="/tabs/home"></ion-back-button>
     </ion-buttons>
 
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="isOption">
       <ion-button shape="rounded">
         <img src="../../assets/icon/icon_position.png" alt="">
       </ion-button>
@@ -16,7 +16,7 @@
         <img src="../../assets/icon/icon_scan.png" alt="">
       </ion-button>
     </ion-buttons>
-    <ion-buttons slot="end" *ngIf="isEllipsis" >
+    <ion-buttons slot="end" *ngIf="isEllipsis">
       <ion-button shape="rounded" (click)="openModal()">
         <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
       </ion-button>
