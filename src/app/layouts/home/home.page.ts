@@ -45,7 +45,6 @@ export class HomePage implements OnInit {
     this.getAllPostsByEvent();
 
     this.getMe();
-
   }
 
   async presentToast() {
@@ -121,10 +120,19 @@ export class HomePage implements OnInit {
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {
       this.posts[event.index].likes--;
+
+
+
+
+      this.scrolto(this.indexPub);
     });
   }
 
-
+  scrolto(index) {
+    let arr = this.list.nativeElement.children;
+    let item = arr[index];
+    item.scrollIntoView();
+  }
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Loading...',

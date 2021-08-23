@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-profil',
@@ -56,13 +56,27 @@ export class ProfilPage implements OnInit {
         'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg', description: 'Image 9'
     }
   ];
-  constructor(private activatedRoute: ActivatedRoute) {
-
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
   }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.getUser(this.folder);
   }
+
+  getUser(id) {
+    this.userService.getUser(id).subscribe((response) => {
+      console.log(response);
+      this.myInformation.userLastName = response.data.data.name;
+    }, error => {
+      console.error(error);
+    }
+
+    );
+
+  }
+
   itemSelected(data) {
     console.log(data);
   }

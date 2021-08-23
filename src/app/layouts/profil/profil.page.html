@@ -1,78 +1,100 @@
 <app-header [title]="myInformation.User_Last_Name" [isDetails]="true"></app-header>
 
 <ion-content>
- 
-    <ion-grid class="ion-justify-content-center avatarGrid">
-      <ion-row class=" ion-justify-content-center">
+
+  <ion-grid class="ion-justify-content-center avatarGrid">
+    <ion-row class=" ion-justify-content-center">
 
 
-        <ion-avatar style="width: 100px; height:100px">
-          <img src="https://www.computerhope.com/jargon/g/guest-user.jpg">
-        </ion-avatar>
+      <ion-avatar style="width: 100px; height:100px">
+        <img src="https://www.computerhope.com/jargon/g/guest-user.jpg">
+      </ion-avatar>
 
-      </ion-row>
-      <ion-row style="background-color:#f1f2f2" class="ion-justify-content-center infoName">
-
-
-        <ion-label style="font-family:Montserrat, sans-serif; color:#898b8b; font-size: small;">
-          <h1>{{myInformation.userLastName}} {{myInformation.userFirstName}}</h1>
-        </ion-label>
+    </ion-row>
+    <ion-row style="background-color:#f1f2f2" class="ion-justify-content-center infoName">
 
 
-      </ion-row>
+      <ion-label style="font-family:Montserrat, sans-serif; color:#898b8b; font-size: small;">
+        <h1>{{myInformation.userLastName}} {{myInformation.userFirstName}}</h1>
+      </ion-label>
 
-      <ion-row color="light" class="infoContainer">
 
-        <ion-col size="4" class="infoItem">
+    </ion-row>
 
-          <p class="info">253</p>
+    <ion-row color="light" class="infoContainer">
 
-          <p class="info">Publications</p>
+      <ion-col size="4" class="infoItem">
 
-        </ion-col>
-        <ion-col size="4" class="infoItem">
-        
-            <p class="info">500</p>
-        
-        
-            <p class="info">Abonnés</p>
-          
-        </ion-col>
-        <ion-col size="4" class="infoItem">
-        
-            <p class="info">2K</p>
-        
-            <p class="info">Abonnements</p>
-    
-        </ion-col>
+        <p class="info">253</p>
 
-      </ion-row>
-      <ion-row style="background-color :white;padding-top: 5px;">
-      </ion-row>
-      <ion-row style="background-color :#f1f2f2; padding-top: 5px;" class="ion-justify-content-center">
+        <p class="info">Publications</p>
 
-        <button (click)="buttonSuivre()" id="suiv" type="button">
-          Suivre
-        </button>
+      </ion-col>
+      <ion-col size="4" class="infoItem">
 
-        <button (click)="buttonBlock()" id="bloq" type="button">
-          Bloquer
-        </button>
+        <p class="info">500</p>
 
-      </ion-row>
 
-    </ion-grid>
-    <ion-grid class="activityGrid">
-      <ion-row class="ion-no-padding">
-        <ion-col size="3" class="imageFrame" *ngFor="let item of imagesBasic">
-          <img width="100%" height="100%" class="mygallery"
-            src="https://medias.lequipe.fr/img-photo-jpg/en-stand-by-depuis-le-debut-de-l-epidemie-de-coronavirus-les-sports-de-combat-notamment-la-boxe-s/1500000001355628/181:248,1803:1329-624-416-75/a50b7.jpg"
+        <p class="info">Abonnés</p>
+
+      </ion-col>
+      <ion-col size="4" class="infoItem">
+
+        <p class="info">2K</p>
+
+        <p class="info">Abonnements</p>
+
+      </ion-col>
+
+    </ion-row>
+    <ion-row style="background-color :white;padding-top: 5px;">
+    </ion-row>
+    <ion-row style="background-color :#f1f2f2; padding-top: 5px;" class="ion-justify-content-center">
+
+      <button (click)="buttonSuivre()" id="suiv" type="button">
+        Suivre
+      </button>
+
+      <button (click)="buttonBlock()" id="bloq" type="button">
+        Bloquer
+      </button>
+
+    </ion-row>
+
+  </ion-grid>
+  <ion-grid class="activityGrid" *ngIf="imagesBasic.length>3">
+    <ion-row class="ion-no-padding">
+      <ion-col size="8" class="ion-no-padding">
+        <img width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
+          src="{{imagesBasic[0].img}}" alt="">
+      </ion-col>
+      <!-- <ion-col size="4" class="ion-no-padding"> -->
+      <ion-col size="4" class="ion-no-padding">
+        <ion-row class="ion-no-padding" style="height: 50%;">
+          <img width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
+            src="{{imagesBasic[1].img}}" alt="">
+        </ion-row>
+        <ion-row class="ion-no-padding" style="height: 40%;">
+          <img width="100%" height="120%" class="mygallery" style="padding-right: 2px;" src="{{imagesBasic[2].img}}"
             alt="">
-        </ion-col>
-        <!-- <ion-col size="4" class="ion-no-padding"> -->
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-no-padding">
+      <ion-col size="4" class="imageFrame" *ngFor="let item of imagesBasic | slice:3;">
+        <img width="100%" height="100%" class="mygallery" src="{{item.img}}" alt="">
+      </ion-col>
+      <!-- <ion-col size="4" class="ion-no-padding"> -->
 
-      </ion-row>
+    </ion-row>
+  </ion-grid>
+  <ion-grid class="activityGrid" *ngIf="imagesBasic.length<3">
+    <ion-row class="ion-no-padding">
+      <ion-col size="4" class="imageFrame" *ngFor="let item of imagesBasic | slice:3;">
+        <img width="100%" height="100%" class="mygallery" src="{{item.img}}" alt="">
+      </ion-col>
+      <!-- <ion-col size="4" class="ion-no-padding"> -->
 
-    </ion-grid>
-  
+    </ion-row>
+  </ion-grid>
 </ion-content>

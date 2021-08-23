@@ -16,7 +16,9 @@ export class UserService {
   constructor(private utilsService: UtilsService,
     public toastCtrl: ToastController) { }
   getMe(): Observable<User> {
+
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
+      console.log(res);
       return res;
     }), catchError(this.handleError));
   }
@@ -36,6 +38,7 @@ export class UserService {
   renvoyerToken(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
+
   handleError(error: HttpErrorResponse) {
     console.log(error);
 
@@ -80,6 +83,13 @@ export class UserService {
     return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
 
 
+  }
+  getUser(id): Observable<User> {
+    console.log(UtilsService.apiUSER + id);
+    return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {
+
+      return res;
+    }), catchError(this.handleError));
   }
 }
 
