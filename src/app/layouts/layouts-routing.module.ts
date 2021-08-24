@@ -27,7 +27,7 @@ const routes: Routes = [
 
       },
       {
-        path: 'boite-reception',
+        path: 'boitereception',
         loadChildren: () => import('./boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule),
 
       },

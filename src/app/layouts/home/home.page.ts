@@ -28,8 +28,6 @@ export class HomePage implements OnInit {
     spaceBetween: 25
   };
   scrolTo = null;
-
-
   message = '';
   messages = [];
   currentUser = '';
@@ -83,36 +81,29 @@ export class HomePage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
-
-
     });
   }
 
-
   doRefresh(event) {
     this.posts = [];
-
     setTimeout(() => {
       this.getAllPostsByEvent();
       event.target.complete();
     }, 1000);
   }
+
   getMe() {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
     });
   }
-  // Function to call deslike API
+
+  // Function to call like API
   like(event) {
     console.log(event);
-
     this.indexPub = event.index;
-
     this.postService.likePost(event.post).subscribe(res => {
-
       this.posts[event.index].likes++;
-      console.log(this.posts);
-
     });
   }
   // Function to call deslike API
@@ -120,19 +111,9 @@ export class HomePage implements OnInit {
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {
       this.posts[event.index].likes--;
-
-
-
-
-      this.scrolto(this.indexPub);
     });
   }
 
-  scrolto(index) {
-    let arr = this.list.nativeElement.children;
-    let item = arr[index];
-    item.scrollIntoView();
-  }
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Loading...',
@@ -140,7 +121,5 @@ export class HomePage implements OnInit {
     });
     await this.loading.present();
   }
-
-
 
 }
