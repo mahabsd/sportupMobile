@@ -9,6 +9,7 @@ import { KidsModule } from './kids/kids.module';
 
 @NgModule({
   declarations: [
+  
   ],
   imports: [
     CommonModule,

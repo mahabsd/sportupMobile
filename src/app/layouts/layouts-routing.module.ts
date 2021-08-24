@@ -188,8 +188,8 @@ const routes: Routes = [
       },
       {
         path: 'activite',
-        loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
-        path: 'kids',
+        loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)},
+     {   path: 'kids',
         loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
 
@@ -204,6 +204,10 @@ const routes: Routes = [
     path: 'chat-kids',
     loadChildren: () => import('./kids/chat-kids/chat-kids.module').then( m => m.ChatKidsPageModule)
   },
+  {
+    path: 'hobbies',
+    loadChildren: () => import('./hobbies/hobbies.module').then( m => m.HobbiesPageModule)
+  }
 
 
 
