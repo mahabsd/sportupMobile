@@ -14,7 +14,8 @@ export class ProfilPage implements OnInit {
   // en utilisant lapi
 
 
-  myInformation: any = { userLastName: '', userFirstName: '' };
+  myInformation: any = { userLastName: 'Nom', userFirstName: 'Prénom' };
+
   user: any = [];
 
   public folder: string;
@@ -57,7 +58,8 @@ export class ProfilPage implements OnInit {
     }
   ];
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
-    this.userService.getUser(this.folder);
+
+
   }
 
   ngOnInit() {
