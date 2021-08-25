@@ -2,7 +2,8 @@
 import { User } from '../../Shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
-import { IonCard, IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
+
 import { UserService } from '../../Shared/Service/user.service';
 import { PostService } from '../../Shared/Service/post.service';
 import { Observable } from 'rxjs';
@@ -113,9 +114,9 @@ export class HomePage implements OnInit {
   // Function to call deslike API
   like(event) {
     this.indexPub = event.index;
-    this.presentLoading();
+   
     this.postService.likePost(event.post).subscribe(res => {
-      this.loading.dismiss;
+     
     });
   }
   // Function to call deslike API
@@ -129,7 +130,7 @@ export class HomePage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Loading...',
-      spinner: "bubbles"
+      spinner: 'bubbles'
     });
     await this.loading.present();
   }

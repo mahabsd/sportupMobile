@@ -32,10 +32,8 @@ export class ProfilPage implements OnInit {
       img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', thumb:
         'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', description: 'Image 3'
     },
-     
   ];
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
-
 
   }
 
