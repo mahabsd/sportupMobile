@@ -1,4 +1,4 @@
-<app-header [title]="title" [isDetails]="true"></app-header>
+<app-header [title]="title" [isDetails]="true" [isOption]="true"></app-header>
 
 
 <ion-content>
@@ -16,20 +16,25 @@
       </ion-col>
       <ion-col size="10">
 
-        <ion-slides pager="true" autoplay="3000" loop="true" [options]="slideOptsTwo" #slideWithNav2          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 200px;" >
-     
+        <ion-slides pager="true" autoplay="3000" loop="true" [options]="slideOptsTwo" #slideWithNav2
+          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 200px;">
+
           <ion-slide>
-            <img src="https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80">
+            <img
+              src="https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80">
           </ion-slide>
           <ion-slide>
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            <img
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
           </ion-slide>
-        
+
           <ion-slide>
-            <img src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
+            <img
+              src="https://images.unsplash.com/photo-1624880357913-a8539238245b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80">
           </ion-slide>
           <ion-slide>
-            <img src="https://images.unsplash.com/photo-1526839009875-a357d201dad2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=964&q=80">
+            <img
+              src="https://images.unsplash.com/photo-1526839009875-a357d201dad2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=964&q=80">
           </ion-slide>
           <ion-slide>
             <img src="        https://images.unsplash.com/photo-1530915534664-4ac6423816b7?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80
@@ -46,40 +51,40 @@
   </ion-grid>
 
 
-  <ion-searchbar  placeholder="" ></ion-searchbar>
+  <ion-searchbar placeholder=""></ion-searchbar>
 
- <div  style="text-align: center;margin: 20px auto">
-<ng-container *ngIf="selectedIndex===3; else fitness" >
-  <ion-label >Sport</ion-label><br>
-  <ion-label >Description</ion-label>
+  <div style="text-align: center;margin: 20px auto">
+    <ng-container *ngIf="selectedIndex===3; else fitness">
+      <ion-label>Sport</ion-label><br>
+      <ion-label>Description</ion-label>
 
-</ng-container>
-<ng-template #fitness>
-  <ng-container *ngIf="selectedIndex===4; else nutrition">
-    <ion-label >Fitness</ion-label><br>
-    <ion-label >Description</ion-label>
-  
-  </ng-container>
+    </ng-container>
+    <ng-template #fitness>
+      <ng-container *ngIf="selectedIndex===4; else nutrition">
+        <ion-label>Fitness</ion-label><br>
+        <ion-label>Description</ion-label>
 
-</ng-template>
-<ng-template #nutrition>
-  <ng-container *ngIf="selectedIndex===5;else Tennis">
-    
-    <ion-label  >Nutrition</ion-label><br>
-    <ion-label >Description</ion-label>
-  </ng-container>
+      </ng-container>
 
-</ng-template>
+    </ng-template>
+    <ng-template #nutrition>
+      <ng-container *ngIf="selectedIndex===5;else Tennis">
 
-<ng-template #Tennis>
-  <ng-container *ngIf="selectedIndex===6">
-    
-    <ion-label  >Tennis</ion-label><br>
-    <ion-label >Description</ion-label>
-  </ng-container>
+        <ion-label>Nutrition</ion-label><br>
+        <ion-label>Description</ion-label>
+      </ng-container>
 
-</ng-template>
- </div>
- <ion-button expand="block" >S'abonner</ion-button>
+    </ng-template>
+
+    <ng-template #Tennis>
+      <ng-container *ngIf="selectedIndex===6">
+
+        <ion-label>Tennis</ion-label><br>
+        <ion-label>Description</ion-label>
+      </ng-container>
+
+    </ng-template>
+  </div>
+  <ion-button expand="block">S'abonner</ion-button>
 
 </ion-content>

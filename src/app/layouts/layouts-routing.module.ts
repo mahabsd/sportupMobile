@@ -154,8 +154,10 @@ const routes: Routes = [
       },
       {
         path: 'activite',
-        loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)},
-     {   path: 'kids',
+        loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule)
+      },
+      {
+        path: 'kids',
 
         loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule)
       },
@@ -179,10 +181,7 @@ const routes: Routes = [
     path: 'coachprofile',
     loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
   },
-  {
-    path: 'hobbies',
-    loadChildren: () => import('./hobbies/hobbies.module').then( m => m.HobbiesPageModule)
-  }
+
 
 
 
