@@ -1,13 +1,14 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import { User } from './../../shared/Model/User';
+import { User } from '../../Shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
 import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
-import { UserService } from '../../shared/Service/user.service';
-import { PostService } from '../../shared/Service/post.service';
+
+import { UserService } from '../../Shared/Service/user.service';
+import { PostService } from '../../Shared/Service/post.service';
 import { Observable } from 'rxjs';
-import { Post } from '../../shared/Model/Post';
-import { CommentService } from '../../shared/Service/comment.service';
+import { Post } from '../../Shared/Model/Post';
+import { CommentService } from '../../Shared/Service/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
@@ -17,7 +18,7 @@ import { Socket } from 'ngx-socket-io';
   styleUrls: ['./home.page.scss'],
 })
 export class HomePage implements OnInit {
-  @ViewChild(IonVirtualScroll, { read: ElementRef }) list: ElementRef;
+  @ViewChild(IonCard, { read: ElementRef }) list: ElementRef;
   indexPub = null;
   posts: any = [];
   page = 1;
@@ -49,33 +50,20 @@ export class HomePage implements OnInit {
     private userservice: UserService) {
   }
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.getAllPostsByEvent();
 
     this.getMe();
+    await this.presentLoading();
+    await this.active.data.subscribe((data: { data: any }) => {
 
-    this.active.data.subscribe((data: { data: any }) => {
-      this.loading = true;
-      // console.log(data);
-      this.posts = data['data'].data.sort((a, b) => {
-        this.loading = false;
-        // console.log(this.loading);
-        // console.log(a.user.name);
-        if (a.user.name < b.user.name) {
-          return -1;
-        }
-        if (a.user.name > b.user.name) {
-          return 1;
-        }
-        return 0;
-      });
-      // console.log(this.posts);
 
+      this.loadingController.dismiss();
+      this.posts = this.posts.concat(data['data'].data);
     });
-  }
-  ngOnDestroy(): void {
-
 
   }
+
   async presentToast() {
     const myToast = await this.toastCtrl.create({
       message: 'ok',
@@ -87,9 +75,20 @@ export class HomePage implements OnInit {
     });
   }
 
-
-  // this.getAllPostsByEvent();
-
+  getAllPostsByEvent(event?) {
+    this.postService.getAllPosts(this.page).pipe(share()).subscribe(res => {
+      console.log(res);
+      this.posts = this.posts.concat(res['data']);
+      console.log(this.posts);
+      if (event) {
+        event.target.complete();
+      }
+    });
+  }
+  loadMore(event) {
+    this.page++;
+    this.getAllPostsByEvent(event);
+  }
   async openModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
@@ -101,29 +100,11 @@ export class HomePage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
-      this.getAllPostsByEvent();
+
 
     });
   }
-  getAllPostsByEvent() {
-    this.presentLoading();
-    this.postService.getAllPosts().pipe(share()).subscribe(res => {
-      // console.log(res);
-      this.loading.onDidDismiss();
-      this.posts = res['data'].sort((a, b) => {
-        // console.log(a.user.name);
-        if (a.user.name < b.user.name) {
-          return -1;
-        }
-        if (a.user.name > b.user.name) {
-          return 1;
-        }
-        return 0;
-      });
-      // console.log(this.posts);
 
-    });
-  }
 
   doRefresh(event) {
     console.log('Begin async operation');
@@ -136,17 +117,13 @@ export class HomePage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe(res => {
       this.user$ = res.data.data;
-      // console.log(this.user$);
-
     });
   }
   // Function to call deslike API
   like(event) {
     this.indexPub = event.index;
-    console.log('like', event.post.iconLike);
-    this.presentLoading()
+    this.presentLoading();
     this.postService.likePost(event.post).subscribe(res => {
-      this.getAllPostsByEvent();
       this.loading.dismiss;
       this.scrolto(this.indexPub);
 
@@ -154,36 +131,26 @@ export class HomePage implements OnInit {
   }
   // Function to call deslike API
   disLike(event) {
-    console.log('dislike', event.post.iconLike);
-
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {
-      this.getAllPostsByEvent();
       this.scrolto(this.indexPub);
-
     });
-
   }
 
   scrolto(index) {
-    console.log(index);
-
     let arr = this.list.nativeElement.children;
-
     let item = arr[index];
-
     item.scrollIntoView();
   }
+
   async presentLoading() {
     this.loading = await this.loadingController.create({
-      message: 'Hellooo',
-      duration: 2000,
+      message: 'Loading...',
       spinner: "bubbles"
     });
     await this.loading.present();
-
-    // const { role, data } = await this.loading.onDidDismiss();
-
-    // console.log('Loading dismissed!');
   }
+
+
+
 }

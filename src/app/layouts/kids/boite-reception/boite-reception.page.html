@@ -1,45 +1,40 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="home" style="color: white;"></ion-back-button>
-    </ion-buttons>
-    <ion-title color="light" style="text-align: center; margin-left: 20xp">
-      boite réception</ion-title>
-
-  </ion-toolbar>
-</ion-header>
-
+<app-header title="Boite reception" [isDetails]="true"></app-header>
 <ion-content>
 
 
   <div style="background-color: whitesmoke;padding: 5px;">
-    <ion-fab vertical="top" horizontal="end"  slot="fixed" style="margin-top: 20px;" >
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
       <ion-fab-button style="--background	:#ddd">
-        <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="" >
+        <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
       </ion-fab-button>
     </ion-fab>
-  <ion-searchbar  placeholder=""></ion-searchbar>
-</div>
+
+    <ion-searchbar placeholder=""></ion-searchbar>
+  </div>
 
 
-  <ion-row >
-    <ion-col size="4"  *ngFor="let item of [].constructor(10); let i = index">
+  <ion-row>
+    <ion-col size="4" *ngFor="let item of [].constructor(10); let i = index">
       <div class="parent">
         <img class="image1" src="../../../../assets/ImgKids/iconboy.png" style="height: 100px;" />
 
-        <button  (click)="click()" block>
-          <img class="image2" src="  https://images.vexels.com/media/users/3/140965/isolated/preview/a945eef28564ae85fff5ac18adf637d9-phone-round-icon.png    " style="height: 37px;" />
+        <button (click)="click()" slot="icon-only" fill="clear" size="small">
+          <img class="image2"
+            src="  https://images.vexels.com/media/users/3/140965/isolated/preview/a945eef28564ae85fff5ac18adf637d9-phone-round-icon.png    "
+            style="height: 37px;" />
 
-     </button>
+        </button>
       </div>
 
       <div class="box">
         <div>
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Red_Circle%28small%29.svg/768px-Red_Circle%28small%29.svg.png" style="height: 22px;" />
-     </div>
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Red_Circle%28small%29.svg/768px-Red_Circle%28small%29.svg.png"
+            style="width:10px;height: 10px;" />
+        </div>
         <div style="font-weight: bold;">
           BAYA
-           </div>
+        </div>
 
 
       </div>

@@ -7,7 +7,8 @@ const routes: Routes = [
   {
     path: '',
     component: HomePage
-  },  {
+  },
+  {
     path: 'reactions',
     loadChildren: () => import('./reactions/reactions.module').then( m => m.ReactionsPageModule)
   },

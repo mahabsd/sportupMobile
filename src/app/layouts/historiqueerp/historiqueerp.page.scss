@@ -660,25 +660,13 @@ ion-buttons ion-button {
   // fill-opacity: ;
 }
 
-
-@media only screen and (max-width: 360px) {
-
+ 
   .dateHeader { 
     margin-left: 30px;
     font-size: 12px; 
-  }
-
-}
-
-@media only screen and (min-width: 410px) {
-
-  .dateHeader { 
-    margin-left: 30px;
-    font-size: 16px; 
     color: rgb(49, 49, 49);;
   }
-
-}
+ 
  
 
 .item .item-divider {

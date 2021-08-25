@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
+import { Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ToastController } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { FooterPageModule } from '../../component/footer/footer.module';
@@ -10,7 +10,31 @@ import { ReactionsPage } from './reactions/reactions.page';
 import { ComponentModule } from '../../component/component.module';
 import { CommentsPage } from './comments/comments.page';
 import { CommentsPageModule } from './comments/comments.module';
-import { LikesPipeModule } from '../../shared/Pipe/likesPipe.module';
+import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
+import { from } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+@Injectable()
+export class LazyLoadImageHooks extends IntersectionObserverHooks {
+  toast: any;
+  constructor(private toastController: ToastController) {
+    super();
+  };
+  setup(attributes: Attributes) {
+    attributes.offset = 10;
+    attributes.defaultImagePath = '../../../assets/imgs/150.png';
+    attributes.errorImagePath = '../../../assets/imgs/150.png';
+    return super.setup(attributes);
+  }
+  loadImage(attributes: Attributes) {
+    return from(this.toastController.create({
+      message: 'start loading.',
+      duration: 2000
+    })).pipe(switchMap(toast => toast.present()),
+      switchMap(_ => super.loadImage(attributes))
+    );
+
+  }
+}
 @NgModule({
   imports: [
     CommonModule,
@@ -20,10 +44,11 @@ import { LikesPipeModule } from '../../shared/Pipe/likesPipe.module';
     FooterPageModule,
     ComponentModule,
     ReactiveFormsModule,
-    CommentsPageModule,
-    LikesPipeModule
-  ],
+    LazyLoadImageModule,
+    CommentsPageModule],
   declarations: [HomePage, StatusComponent],
-  exports: [HomePage, StatusComponent]
+  exports: [HomePage, StatusComponent],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],
+
 })
 export class HomePageModule { }

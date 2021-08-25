@@ -1,50 +1,30 @@
 <ion-grid>
   <ion-row lines="none">
-    <ion-avatar slot="start">
+    <ion-avatar slot="" class="ion-padding">
       <img src="http://placehold.it/75">
     </ion-avatar>
-    <ion-label>
-      <h3 class="ion-text-capitalize">{{post?.user?.name}}</h3>
-      <p>{{post?.createdAt | date}}</p>
+    <ion-label [routerLink]="['/profil/',post?.user?._id]">
+      <h3 class="ion-text-capitalize" routerLinkActive="router-link-active">
 
+        {{post?.user?.name}}</h3>
+      <p>{{post?.createdAt | date}}</p>
     </ion-label>
     <ion-button color="light" slot="end" shape="round" fill="clear" size="small" (click)="presentPopover($event)">
       <ion-icon color="light" style="color:#fff;" slot="icon-only" name="ellipsis-vertical">
       </ion-icon>
-
     </ion-button>
   </ion-row>
-  <ion-row lines="" class="ion-justify-content-center">
-
-    <!-- {{item?.url}} -->
-    <h1 [ngStyle]="{'background-image':'url('+images[0]?.url+')'}" style="
-    text-indent: 100%;
-    background-repeat: no-repeat;
-    background-position: center center;
-    background-size: contain;
-    width: 100px;
-    height: 100px;">
-    </h1>
-    <!-- <ion-avatar style="width:40%;height:41%;"> -->
-
-    <!-- <img src="http://localhost:4112/img/Post/image/Post-1629146696935.png" /> -->
-    <!-- </ion-avatar> -->
-
+  <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length>0">
+    <img [lazyLoad]="apiImg+images[0]?.name" />
   </ion-row>
-  <ion-item>
+  <ion-row>
     <ion-card-content>
       {{post?.content}}
     </ion-card-content>
-  </ion-item>
-
-
-
+  </ion-row>
   <ion-row lines="none">
     <ion-col size="col-2">
       <ion-chip>
-
-
-
         <ng-container *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp">
           <ion-button (dblclick)="showReactions($event)" (click)="like(post,$event.target)" shape="round" fill="clear"
             size="large">

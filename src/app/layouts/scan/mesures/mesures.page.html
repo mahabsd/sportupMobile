@@ -1,0 +1,33 @@
+<!--<ion-content>
+<ion-item color="primary">
+  <ion-label  class="ion-text-uppercase"> measures </ion-label>
+  <ion-button (click)="CloseModal()" size="small" slot="end">
+    close
+  </ion-button>
+</ion-item>
+
+
+<ul>
+  <li *ngFor="let item of model_title">
+      <h3> <a>{{item.name}}:</a>  <b>{{item.size}} </b> </h3>
+  </li>
+</ul>
+
+
+<ion-item>
+  <ion-label>  </ion-label>
+  <ion-button (click)="CloseModal()" size="small" slot="end">
+    close
+  </ion-button>
+</ion-item>
+
+</ion-content> -->
+
+<ion-list>
+  <ion-label> kg | cm </ion-label>
+  <ion-item *ngFor="let item of model_title">
+    <h3> <a>{{item.name}}:</a> <b>{{item.size}} </b> </h3>
+
+  </ion-item>
+
+</ion-list>

@@ -1,20 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { ProfilService } from './profil.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
+
 @Component({
   selector: 'app-profil',
   templateUrl: './profil.page.html',
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
-  myInformation: any = {};
+
+  // activatedroute importer luser selon leur id
+  // en utilisant lapi
+
+
+  myInformation: any = { userLastName: '', userFirstName: '' };
+
   user: any = [];
-  items = [
-    { image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRcDQbdfQepfnqBSeJKxbFKRrS6G_YJxu0vhw&usqp=CAU', name: 'item1', },
-    { image: 'https://img.aws.la-croix.com/2019/08/02/1201038998/Cinq-sports-redecouvrir_0_729_413.jpg', name: 'item2', },
-    { image: 'http://ionic.io/img/2.png', name: 'item3', },
-    { image: 'https://www.ce-ildys.fr/wp-content/uploads/2019/06/differents-sports.jpg', name: 'item4', }];
+
   public folder: string;
   imagesBasic = [
     {
@@ -54,26 +57,37 @@ export class ProfilPage implements OnInit {
         'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(133).jpg', description: 'Image 9'
     }
   ];
-  constructor(private activatedRoute: ActivatedRoute, private profilService: ProfilService) {
-    this.profilService.GetProfile().subscribe((response) => {
-      console.log('my user', response);
-      this.myInformation = response;
-    });
+  constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
+    this.userService.getUser(this.folder);
+
   }
 
   ngOnInit() {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+
+    this.getUser(this.folder);
   }
+
+  getUser(id) {
+    this.userService.getUser(id).subscribe((response) => {
+      console.log(response);
+      this.myInformation.userLastName = response.data.data.name;
+    }, error => {
+      console.error(error);
+    }
+
+    );
+
+  }
+
   itemSelected(data) {
     console.log(data);
   }
-  buttonPublication() {
-    console.log('Action Button Publication ');
+  buttonSuivre() {
+    console.log('Action Button Suivre ');
   }
-  buttonAPropos() {
-    console.log('Action Button A Propos ');
+  buttonBlock() {
+    console.log('Action Button Block ');
   }
-  buttonPlus() {
-    console.log('Action Button Plus ');
-  }
+
 }

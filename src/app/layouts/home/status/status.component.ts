@@ -2,16 +2,18 @@
 import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController, LoadingController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
-import { PostService } from '../../../shared/Service/post.service';
-import { Post } from '../../../shared/Model/Post';
+import { PostService } from '../../../Shared/Service/post.service';
+import { Post } from '../../../Shared/Model/Post';
 import { forkJoin, Observable } from 'rxjs';
-import { User } from 'src/app/Shared/Model/user';
-import { UserService } from '../../../shared/Service/user.service';
+import { User } from 'src/app/Shared/Model/User';
+import { UserService } from '../../../Shared/Service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Comment } from '../../../shared/Model/Comment';
-import { CommentService } from '../../../shared/Service/comment.service';
+import { Comment } from '../../../Shared/Model/Comment';
+import { CommentService } from '../../../Shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
 import { ParametresComponent } from '../../../component/parametres/parametres.component';
+import { environment } from '../../../../environments/environment';
+
 
 @Component({
   selector: 'app-status',
@@ -19,9 +21,8 @@ import { ParametresComponent } from '../../../component/parametres/parametres.co
   styleUrls: ['./status.component.scss'],
 })
 export class StatusComponent implements OnInit {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-
+  apiImg = `${environment.apiImg}Post/image/`;
   @Input() post: any;
   @Input() index: any;
   @Input() user: any;
@@ -56,8 +57,6 @@ export class StatusComponent implements OnInit {
   }
   async ngOnInit() {
     await this.getCommentByPost();
-    // await this.getPost();
-    // console.log(this.post);
   }
 
   async showReactions(ev) {
@@ -71,39 +70,29 @@ export class StatusComponent implements OnInit {
 
     await reactions.present();
     const { role } = await reactions.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   onTap() {
-    console.log('ok');
-
     this.tap++;
   }
 
   like(post, event) {
-    console.log(event.id);
-
     this.post.iconLike = event.id;
     this.likeFn.emit({ post, index: this.index });
   }
   disLike(post, event) {
-
     this.post.iconLike = event.id;
     this.disLikeFn.emit({ post, index: this.index });
   }
 
   onComment() {
-    console.log('comment');
   }
   share() {
-    console.log('share');
   }
   bookmark() {
-    console.log('bookmark');
     this.bookmarked = true;
   }
   unBookmark() {
-    console.log('unbookmark');
     this.bookmarked = false;
   }
 
@@ -118,48 +107,23 @@ export class StatusComponent implements OnInit {
       }
     });
     await modal.present();
-
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
-      console.log(this.post._id);
-
     });
 
 
   }
   getCommentByPost() {
-    // eslint-disable-next-line no-underscore-dangle
-    this.presentLoading();
     forkJoin({
-
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
     }).subscribe(({
       comments, images
     }) => {
-      this.loading.dismiss();
-      console.log(images.images);
-
       this.comments = comments;
       this.images = images.images;
 
     })
-    // console.log(arg);
-
-  }
-  // getPost() {
-  //   // eslint-disable-next-line no-underscore-dangle
-  //   this.postService.getPost(this.post._id).subscribe(res => {
-  //     // console.log(res);
-  //     for (const item of res?.images) this.images.push(item)
-  //     console.log(this.images);
-
-  //   });
-
-  // }
-
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
   async presentPopover(ev: any) {
     const popover = await this.popoverCtrl.create({
@@ -170,14 +134,11 @@ export class StatusComponent implements OnInit {
       componentProps: {
         post: this.post
       }
-
     });
     await popover.present();
-
     const { role } = await popover.onDidDismiss();
     location.reload();
   }
-
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Hellooo',
@@ -186,8 +147,5 @@ export class StatusComponent implements OnInit {
     });
     await this.loading.present();
 
-    // const { role, data } = await this.loading.onDidDismiss();
-
-    // console.log('Loading dismissed!');
   }
 }

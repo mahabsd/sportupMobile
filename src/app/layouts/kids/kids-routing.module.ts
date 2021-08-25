@@ -4,11 +4,15 @@ import { RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    children: [
 
+    children: [
+      {
+        path: 'chat-kids',
+        loadChildren: () => import('./chat-kids/chat-kids.module').then(m => m.ChatKidsPageModule)
+      },
 
       {
-        path: 'boiteReceptionKids',
+        path: 'boitereceptionkids',
         loadChildren: () => import('./boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
       },
       {

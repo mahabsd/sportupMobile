@@ -9,19 +9,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { GoogleMaps } from '@ionic-native/google-maps';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { IonicStorageModule } from '@ionic/storage';
-import { ProfilService } from './layouts/profil/profil.service';
 import { ImagePicker } from '@ionic-native/image-picker/ngx';
 import { Crop } from '@ionic-native/crop/ngx';
-import { AuthService } from './shared/Auth/auth.service';
+import { AuthService } from './Shared/Auth/auth.service';
 import { LayoutsModule } from './layouts/layouts.module';
-import { JWTInterceptor } from './shared/Interceptors/JWInterceptors';
-import { H401Interceptor } from './shared/Interceptors/H401Interceptor';
-import { AuthGuard } from './shared/Guard/auth.guard';
-import { StorageService } from './shared/Service/storage.service';
+import { JWTInterceptor } from './Shared/Interceptors/JWInterceptors';
+import { H401Interceptor } from './Shared/Interceptors/H401Interceptor';
+import { AuthGuard } from './Shared/Guard/auth.guard';
+import { StorageService } from './Shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
-import { LikesPipeModule } from './shared/Pipe/likesPipe.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
-const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
+const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
 @NgModule({
   declarations: [AppComponent,],
   exports: [],
@@ -29,7 +27,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
   imports: [
     IonicStorageModule.forRoot({
       name: '__mydb',
-      driverOrder: ['sqlite', 'indexeddb', 'websql', 'localstorage']
+      driverOrder: ['localstorage', 'sqlite', 'indexeddb', 'websql']
     }),
     AppRoutingModule,
     BrowserModule,
@@ -37,13 +35,11 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
     HttpClientModule,
     LayoutsModule,
     ComponentModule,
-    LikesPipeModule,
     SocketIoModule.forRoot(config)
   ],
   providers: [
     ImagePicker,
     Crop,
-    ProfilService,
     AuthService,
     StorageService,
     AuthGuard,
@@ -54,7 +50,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} }
       useClass: IonicRouteStrategy
     },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
     GoogleMaps
   ],
   bootstrap: [AppComponent]

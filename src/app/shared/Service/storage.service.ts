@@ -1,4 +1,4 @@
-import { environment } from './../../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 
 import { Storage } from '@ionic/storage';
@@ -23,7 +23,7 @@ export class StorageService {
     return from(this.storage.get(key).then(res => res));
 
   }
-  
+
   public clear(): Observable<any> {
     return from(this.storage.clear());
   }

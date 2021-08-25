@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '../../shared/Service/user.service';
+import { UserService } from '../../Shared/Service/user.service';
 import { ToastController } from '@ionic/angular';
-import { User } from 'src/app/shared/Model/User';
+import { User } from 'src/app/Shared/Model/User';
 
 @Component({
   selector: 'app-confirmation',
@@ -12,10 +12,10 @@ import { User } from 'src/app/shared/Model/User';
 export class ConfirmationPage implements OnInit {
   code: string = '';
   user: User = new User()
-  renvoi:boolean=false
+  renvoi: boolean = false
   constructor(
     private active: ActivatedRoute,
-    private router:Router,
+    private router: Router,
     private toastCtrl: ToastController,
     public userService: UserService) { }
   ngOnInit() {
@@ -46,10 +46,10 @@ export class ConfirmationPage implements OnInit {
     toast.present();
   }
   renvoyer() {
-    this.renvoi=true
+    this.renvoi = true
     this.userService.renvoyerToken(this.user).subscribe((response) => {
       console.log('hello user', response);
-      this.renvoi=false
+      this.renvoi = false
     }, err => {
       console.log(err);
       this.presentToast(err, 'danger', 'middle')

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { PostService } from '../../shared/Service/post.service';
+import { PostService } from '../../Shared/Service/post.service';
 import { AlertController, PopoverController } from '@ionic/angular';
 
 @Component({
@@ -12,7 +12,7 @@ export class ParametresComponent implements OnInit {
   constructor(
     private postService: PostService,
     private alertController: AlertController,
-    private popoverController:PopoverController
+    private popoverController: PopoverController
   ) { }
 
   ngOnInit() {
@@ -37,7 +37,7 @@ export class ParametresComponent implements OnInit {
           role: 'cancel',
           cssClass: 'danger',
           handler: () => {
-console.log('ok');
+            console.log('ok');
 
           }
         }, {

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './shared/Guard/auth.guard';
+import { AuthGuard } from './Shared/Guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
@@ -45,19 +45,17 @@ const routes: Routes = [
     loadChildren: () => import('./Oauth/confirmation/confirmation.module').then(m => m.ConfirmationPageModule)
   },
   {
+    path: 'popovercomponent',
+    loadChildren: () => import('./layouts/kids/popovercomponent/popovercomponent.module').then(m => m.PopovercomponentPageModule)
+  },
+  {
+    path: 'show-image',
+    loadChildren: () => import('./component/modal/show-image/show-image.module').then(m => m.ShowImagePageModule)
+  },
+  {
     path: '**',
     redirectTo: ''
   },
-  {
-    path: 'popovercomponent',
-    loadChildren: () => import('./layouts/kids/popovercomponent/popovercomponent.module').then( m => m.PopovercomponentPageModule)
-  },
-
-
-
-
-
-
 ];
 
 @NgModule({
