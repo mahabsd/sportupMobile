@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
 import { IonCard, LoadingController, ModalController, ToastController } from '@ionic/angular';
+
 import { UserService } from '../../Shared/Service/user.service';
 import { PostService } from '../../Shared/Service/post.service';
 import { CommentService } from '../../Shared/Service/comment.service';
@@ -43,6 +44,7 @@ export class HomePage implements OnInit {
     this.getAllPostsByEvent();
 
     this.getMe();
+
   }
 
   async presentToast() {
@@ -104,6 +106,7 @@ export class HomePage implements OnInit {
     this.indexPub = event.index;
     this.postService.likePost(event.post).subscribe(res => {
       this.posts[event.index].likes++;
+
     });
   }
   // Function to call deslike API
@@ -113,6 +116,7 @@ export class HomePage implements OnInit {
       this.posts[event.index].likes--;
     });
   }
+
 
   async presentLoading() {
     this.loading = await this.loadingController.create({
