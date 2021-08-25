@@ -19,7 +19,6 @@ export class UserService {
 
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
       console.log(res);
-
       return res;
     }), catchError(this.handleError));
   }
