@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/dot-notation */
-import { User } from '../../Shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
-import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { IonCard, LoadingController, ModalController, ToastController } from '@ionic/angular';
 
 import { UserService } from '../../Shared/Service/user.service';
 import { PostService } from '../../Shared/Service/post.service';
-import { Observable } from 'rxjs';
-import { Post } from '../../Shared/Model/Post';
 import { CommentService } from '../../Shared/Service/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs/operators';
@@ -33,21 +29,15 @@ export class HomePage implements OnInit {
     spaceBetween: 25
   };
   scrolTo = null;
-
-
   message = '';
   messages = [];
   currentUser = '';
   constructor(
-
-    private active: ActivatedRoute,
     private modalController: ModalController,
     private loadingController: LoadingController,
     private toastCtrl: ToastController,
     private postService: PostService,
-    private commentService: CommentService,
-    private socket: Socket,
-    private userservice: UserService) {
+    private userService: UserService) {
   }
 
   async ngOnInit() {
@@ -92,32 +82,29 @@ export class HomePage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
-
-
     });
   }
 
-
   doRefresh(event) {
-    console.log('Begin async operation');
-
+    this.posts = [];
     setTimeout(() => {
-      console.log('Async operation has ended');
+      this.getAllPostsByEvent();
       event.target.complete();
-    }, 2000);
+    }, 1000);
   }
+
   getMe() {
-    this.userservice.getMe().subscribe(res => {
+    this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
     });
   }
-  // Function to call deslike API
+
+  // Function to call like API
   like(event) {
+    console.log(event);
     this.indexPub = event.index;
-   
-    this.postService.likePost(event.post).subscribe(res => {
-     
-    });
+       this.postService.likePost(event.post).subscribe(res => {
+        });
   }
   // Function to call deslike API
   disLike(event) {
@@ -134,7 +121,5 @@ export class HomePage implements OnInit {
     });
     await this.loading.present();
   }
-
-
 
 }

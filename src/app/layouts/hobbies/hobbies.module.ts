@@ -4,10 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { MapsPageRoutingModule } from './maps-routing.module';
+import { HobbiesPageRoutingModule } from './hobbies-routing.module';
 
-import { MapsPage } from './maps.page';
-import { HeaderComponent } from '../../component/header/header.component';
+import { HobbiesPage } from './hobbies.page';
 import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
@@ -15,9 +14,9 @@ import { ComponentModule } from 'src/app/component/component.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    MapsPageRoutingModule,
+    HobbiesPageRoutingModule,
     ComponentModule
   ],
-  declarations: [MapsPage]
+  declarations: [HobbiesPage]
 })
-export class MapsPageModule { }
+export class HobbiesPageModule {}

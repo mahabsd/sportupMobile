@@ -34,6 +34,8 @@ export class AuthService {
     }));
   }
   public isLoggedIn() {
+    console.log(this.storage.get(environment.token));
+
     return this.storage.get(environment.token);
   }
   isLoggedOut() {
@@ -62,7 +64,7 @@ export class AuthService {
   }
 
   async setSession(authResult) {
-    console.log(authResult);
+    console.log(authResult.data?.user?._id);
     await this.storage.set(environment.idUser, authResult.data?.user?._id);
     await this.storage.set(environment.token, authResult.token);
     await this.storage.set(environment.currentUser, authResult.data.user);

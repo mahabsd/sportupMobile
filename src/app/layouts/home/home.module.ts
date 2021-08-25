@@ -25,15 +25,16 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     attributes.errorImagePath = '../../../assets/imgs/150.png';
     return super.setup(attributes);
   }
-  loadImage(attributes: Attributes) {
-    return from(this.toastController.create({
-      message: 'start loading.',
-      duration: 2000
-    })).pipe(switchMap(toast => toast.present()),
-      switchMap(_ => super.loadImage(attributes))
-    );
+  // loadImage(attributes: Attributes) {
+  //   return from(this.toastController.create({
+  //     message: '',
+  //     color: 'light',
+  //     duration: 1
+  //   })).pipe(switchMap(toast => toast.present()),
+  //     switchMap(_ => super.loadImage(attributes))
+  //   );
 
-  }
+  // }
 }
 @NgModule({
   imports: [

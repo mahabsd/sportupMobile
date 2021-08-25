@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
+
 
 
 @Component({
@@ -69,8 +68,5 @@ export class CoachprofilePage implements OnInit {
       componentProps: { img }
     });
 
-    await modal.present();
 
-
-  }
 }

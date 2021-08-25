@@ -38,7 +38,7 @@ export class UserService {
   renvoyerToken(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
- 
+
   handleError(error: HttpErrorResponse) {
     console.log(error);
 
