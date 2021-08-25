@@ -76,12 +76,15 @@
       </ion-refresher>
 
       <!-- <ion-virtual-scroll [items]="posts"> -->
-      <ion-card *ngFor="let post of posts;let i=index" [class.focus]="indexPub==i">
+      <ion-card *ngFor="let post of posts;let i=index" [class.focus]="indexPub==i" scrollY="true">
         <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)">
         </app-status>
       </ion-card>
       <!-- </ion-virtual-scroll> -->
     </ion-row>
   </div>
-
+  <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

@@ -14,7 +14,8 @@ export class HeaderComponent implements OnInit {
   @Input() isModal: boolean = false;
   // eslint-disable-next-line @typescript-eslint/no-inferrable-types
   @Input() isDetails: boolean = false;
-  @Input() isEllipsis:boolean=false;
+  @Input() isEllipsis: boolean = false;
+  @Input() isOption: boolean = false;
   constructor(private modalCtrl: ModalController) { }
 
   ngOnInit() { }
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  
+
 
   async openModal() {
     const modal = await this.modalCtrl.create({

@@ -15,6 +15,7 @@ export class ProfilPage implements OnInit {
 
 
   myInformation: any = { userLastName: '', userFirstName: '' };
+
   user: any = [];
 
   public folder: string;
@@ -58,6 +59,7 @@ export class ProfilPage implements OnInit {
   ];
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
     this.userService.getUser(this.folder);
+
   }
 
   ngOnInit() {
