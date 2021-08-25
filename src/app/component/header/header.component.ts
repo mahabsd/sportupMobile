@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TopMenuComponent } from 'src/app/layouts/erp/top-menu/top-menu.component';
-
+import { PopoverController } from '@ionic/angular';
+import { CoachMenuPopOverComponent } from  'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -16,16 +17,32 @@ export class HeaderComponent implements OnInit {
   @Input() isDetails: boolean = false;
   @Input() isEllipsis: boolean = false;
   @Input() isOption: boolean = false;
-  constructor(private modalCtrl: ModalController) { }
+  @Input() isCoach: boolean = false;
+  @Input() isPalmares: boolean = false;
+  
+  constructor(private modalCtrl: ModalController,public popoverController: PopoverController) { }
 
   ngOnInit() { }
   close() {
     this.modalCtrl.dismiss();
   }
 
+ 
+  async openCoachMenu(ev: any) {
+    const popover = await this.popoverController.create({
+      component: CoachMenuPopOverComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+      mode:'ios'
+    });
+    await popover.present();
 
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
 
-  async openModal() {
+  async openERPModal() {
     const modal = await this.modalCtrl.create({
       component: TopMenuComponent,
       cssClass: 'erp-parametre-modal'

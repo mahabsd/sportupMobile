@@ -1,13 +1,99 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>coachprofile</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="COACH" [isCoach]="true" [isEllipsis]="true"></app-header>
 
-<ion-content>
-  <ion-slides [options]="sliderOpts">
-    <ion-slide *ngFor="let item of [1,2,3]">
-      <img src="../../../assets/imgs/color-violet.png" tappable (click)="openPreview(item)" alt="">
-    </ion-slide>
-  </ion-slides>
+
+
+
+  <ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer">
+    <div class="profileID">
+      <ion-avatar style="width:70px; height:70px; margin: 0 auto;">
+        <img [src]="coachInfo.profileImage">
+      </ion-avatar>
+
+      <h4>{{coachInfo.name}} {{coachInfo.lastname}}</h4>
+    </div>
+  </ion-row>
+  <ion-content >
+  <!-- Segment with anchors -->
+  <ion-segment (ionChange)="setPage($event)">
+    <ion-segment-button value="photo"  >
+      <ion-label>Photo</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="publications"  >
+      <ion-label>Publications</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="calendrier" >
+      <ion-label>Calendrier</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+ 
+  <div *ngIf="pageIndex==='photo'">
+
+  
+  <div class="container" *ngIf="imagesBasic.length>=7">
+    <div class="Big"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[0].img}}" alt=""></div>
+    <div class="a"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[1].img}}" alt=""></div>
+    <div class="b"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[2].img}}" alt=""></div>
+    <div class="c"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[3].img}}"   alt=""></div>
+    <div class="d"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[4].img}}"   alt=""></div>
+    <div class="e"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[5].img}}"  alt=""></div>
+    <div class="f"> <img width="100%" height="100%" class="mygallery"
+      src="{{imagesBasic[6].img}}"  alt=""></div>
+  </div>
+  <ion-grid  >
+    <ion-row class="ion-no-padding"  *ngIf="imagesBasic.length>=7">
+      <ion-col size="3" class="imageFrame" *ngFor="let item of imagesBasic | slice:6">
+        <img width="100%" height="100%" class="mygallery" src="{{item.img}}" alt="">
+      </ion-col>
+      <!-- <ion-col size="4" class="ion-no-padding"> -->
+
+    </ion-row>
+    <ion-row class="ion-no-padding"  *ngIf="imagesBasic.length<7">
+      <ion-col size="4" class="imageFrame" *ngFor="let item of imagesBasic  ">
+        <img width="100%" height="100%" class="mygallery" src="{{item.img}}" alt="">
+      </ion-col>
+      <!-- <ion-col size="4" class="ion-no-padding"> -->
+
+    </ion-row>
+  </ion-grid>
+
+</div>
+<div *ngIf="pageIndex==='publications'" >
+  <ion-row style="height: 100px; align-items:center;">
+    
+    <ion-avatar id='avatarPub'>
+      <img [src]="coachInfo.profileImage">
+</ion-avatar>
+
+  <div id='identText'>
+    <h4>Nom prenom</h4>
+    <h5>Coach Sportif </h5>
+   
+  </div>
+
+
+</ion-row>
+<ion-row>
+  <ion-item style="width: 100%;">
+    <ion-textarea placeholder="Enter more information here..."></ion-textarea>
+  </ion-item>
+</ion-row> 
+
+<ion-row>
+<ion-col size="3">
+  <img src="/assets/iconPost/icon_like.svg"  class="postButton" /> 
+</ion-col>
+<ion-col size="9" id="rightPostMenu">
+  <img src="/assets/iconPost/icon_comment.svg"  class="postButton"/> 
+  <img src="/assets/iconPost/icon_share.svg"  class="postButton" /> 
+  <img src="/assets/iconPost/icon_bookmark.svg"  class="postButton" /> 
+</ion-col>
+</ion-row>
+</div>
 </ion-content>
