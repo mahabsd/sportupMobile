@@ -16,7 +16,7 @@ export class CoachprofilePage implements OnInit {
     spaceBetween: 20
   };
 
-  
+
   // eslint-disable-next-line max-len
   coachInfo = { name: 'Nom', lastname: 'Prenom', backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg', profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg' };
   pageIndex = 'photo';
@@ -49,10 +49,6 @@ export class CoachprofilePage implements OnInit {
       img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', thumb:
         'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', description: 'Image 3'
     },
-   
-
-
-
   ];
 
 
