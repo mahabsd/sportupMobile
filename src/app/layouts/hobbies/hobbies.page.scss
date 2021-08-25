@@ -1,6 +1,19 @@
 
 
+.container {
+  position: relative;
+  text-align: center;
+  color: white;
+}
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 22px;
+
+}
  // Slider Style START 
 .custon-nav{
    height: 48px;
@@ -13,14 +26,14 @@
    transform: translateY(-50%);
  }
  .prev-icon-custom{
-   background: url(https://freakyjolly.com/demo/jquery/OwlCarousel2/nav-icon.png) no-repeat scroll 0px 0px;
+   background: url(https://i.imgur.com/JpEpYLZ.png  ) no-repeat scroll 0px 0px;
  }
  .prev-icon-custom.disabled{
    opacity: 0.4;
    cursor: default;
  }
  .next-icon-custom{
-   background: url(https://freakyjolly.com/demo/jquery/OwlCarousel2/nav-icon.png) no-repeat scroll -32px 0px;
+   background: url(https://i.imgur.com/JpEpYLZ.png  ) no-repeat scroll -32px 0px;
  }
  .next-icon-custom.disabled{
    opacity: 0.4;
@@ -53,14 +66,13 @@
  }
 
  .swiper-slide{
- // border: 10px solid blue;
 
   img {
-    border-radius: 50%;
-    opacity:0.5;
+    border-radius: 63px;    opacity:0.5;
     min-height: 63%;
     object-fit: cover;
-  }
+    height: 109px;
+    }
  }// Slider Style STOP
 
  //eli fel west
@@ -79,7 +91,7 @@
  ion-searchbar{
   width: 329px;
   text-align: center;
-  margin: 0 auto;
+  margin: 36px auto;
  }
 
  ion-label{
@@ -101,3 +113,8 @@
   --bullet-background-active: linear-gradient(135deg, #8EBF25,#8EBF25,#247238, #247238);
 }
 
+h5{
+  text-align:center;margin: 0 auto;   color: #cccccc;
+  margin: 40px;
+  font-size: 20px;
+}

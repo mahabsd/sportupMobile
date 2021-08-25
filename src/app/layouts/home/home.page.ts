@@ -2,7 +2,7 @@
 import { User } from '../../Shared/Model/User';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalShearePage } from './modal-sheare/modal-sheare.page';
-import { IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
+import { IonCard, IonVirtualScroll, LoadingController, ModalController, ToastController } from '@ionic/angular';
 
 import { UserService } from '../../Shared/Service/user.service';
 import { PostService } from '../../Shared/Service/post.service';
