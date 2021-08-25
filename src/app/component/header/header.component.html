@@ -1,11 +1,16 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" >
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-button (click)="close()" *ngIf="isModal" color="light">
         <ion-icon slot="icon-only" name="close"></ion-icon>
       </ion-button>
-      <ion-menu-button color="light" *ngIf="!isModal && !isDetails"></ion-menu-button>
+      <ion-menu-button color="light" *ngIf="!isModal && !isDetails && !isCoach"></ion-menu-button>
       <ion-back-button color="light" *ngIf="!isModal && isDetails" defaultHref="/tabs/home"></ion-back-button>
+      <ion-buttons slot="end" *ngIf="isCoach">
+        <ion-button shape="rounded" (click)="openCoachMenu($event)">
+         <ion-icon color="light" name="menu"></ion-icon>
+        </ion-button>
+      </ion-buttons>
     </ion-buttons>
 
     <ion-buttons slot="end" *ngIf="isOption">
@@ -17,11 +22,12 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="isEllipsis">
-      <ion-button shape="rounded" (click)="openModal()">
+      <ion-button shape="rounded" (click)="openERPModal()">
         <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
       </ion-button>
-
     </ion-buttons>
-    <ion-title color="light"> {{title}}</ion-title>
+ 
+ 
+    <ion-title color="light" class="ion-text-center title-font"> {{title}}</ion-title>
   </ion-toolbar>
 </ion-header>

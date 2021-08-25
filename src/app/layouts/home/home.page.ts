@@ -44,7 +44,6 @@ export class HomePage implements OnInit {
     this.getAllPostsByEvent();
 
     this.getMe();
-
   }
 
   async presentToast() {
@@ -104,16 +103,13 @@ export class HomePage implements OnInit {
   like(event) {
     console.log(event);
     this.indexPub = event.index;
-    this.postService.likePost(event.post).subscribe(res => {
-      this.posts[event.index].likes++;
-
-    });
+       this.postService.likePost(event.post).subscribe(res => {
+        });
   }
   // Function to call deslike API
   disLike(event) {
     this.indexPub = event.index;
     this.postService.disLikePost(event.post).subscribe(res => {
-      this.posts[event.index].likes--;
     });
   }
 
@@ -121,7 +117,7 @@ export class HomePage implements OnInit {
   async presentLoading() {
     this.loading = await this.loadingController.create({
       message: 'Loading...',
-      spinner: "bubbles"
+      spinner: 'bubbles'
     });
     await this.loading.present();
   }
