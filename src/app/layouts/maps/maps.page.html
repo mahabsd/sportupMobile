@@ -1,17 +1,13 @@
-<ion-header [translucent]="true">
-  <ion-toolbar background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
-    <ion-buttons slot="start">
-      <ion-menu-button color="light"></ion-menu-button>
-    </ion-buttons>
-    <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Map</ion-title>
-  </ion-toolbar>
-</ion-header>
-<ion-content >
-<div color="red" style=" border-radius: 10px;   background-color: grey; hight : 100% !important;width : 100% !important;">
-<div id="map" style="height:100%;"></div>
-</div>
+<app-header title="Map" [isDetails]="true"></app-header>
+<ion-content [fullscreen]="true">
+  <ion-searchbar [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Search for a place">
+  </ion-searchbar>
+  <ion-button expand="full" (click)="tryGeolocation()">My position</ion-button>
+  <ion-button expand="full" (click)="addMarkers()">Add Markres</ion-button>
+  <ion-list [hidden]="autocompleteItems.length == 0">
+    <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
+      {{ item.description }}
+    </ion-item>
+  </ion-list>
+  <div #map id="map"></div>
 </ion-content>
-<ion-footer style="height: 5px !important;">
-<ion-toolbar  background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
-</ion-toolbar>
-</ion-footer>

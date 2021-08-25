@@ -9,10 +9,10 @@
     </ion-buttons>
 
     <ion-buttons slot="end" *ngIf="isOption">
-      <ion-button shape="rounded">
+      <ion-button shape="rounded" [routerLink]="['/maps']" routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_position.png" alt="">
       </ion-button>
-      <ion-button shape="rounded">
+      <ion-button shape="rounded" [routerLink]="['/scan']" routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" alt="">
       </ion-button>
     </ion-buttons>

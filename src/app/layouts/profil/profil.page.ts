@@ -58,7 +58,6 @@ export class ProfilPage implements OnInit {
     }
   ];
   constructor(private activatedRoute: ActivatedRoute, private userService: UserService) {
-    this.userService.getUser(this.folder);
 
   }
 
