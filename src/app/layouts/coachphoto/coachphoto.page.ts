@@ -1,26 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
-
-
-
 
 @Component({
-  selector: 'app-coachprofile',
-  templateUrl: './coachprofile.page.html',
-  styleUrls: ['./coachprofile.page.scss'],
+  selector: 'app-coachphoto',
+  templateUrl: './coachphoto.page.html',
+  styleUrls: ['./coachphoto.page.scss'],
 })
-export class CoachprofilePage implements OnInit {
-  sliderOpts = {
-    zoom: false,
-    slidesPreview: 1.5,
-    centeredSlides: true,
-    spaceBetween: 20
-  };
-
-
-  // eslint-disable-next-line max-len
-  coachInfo = { name: 'Nom', lastname: 'Prenom', backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg', profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg' };
-  pageIndex = 'photo';
+export class CoachphotoPage implements OnInit {
   imagesBasic = [
     {
       img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg', thumb:
@@ -52,19 +37,9 @@ export class CoachprofilePage implements OnInit {
     },
   ];
 
-
-  constructor(private modalController: ModalController) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
-
-  setPage(event) {
-    this.pageIndex = event.detail.value;
-  }
-
- 
-
-
-  }
 }
