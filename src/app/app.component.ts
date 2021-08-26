@@ -2,13 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ModalController, IonSlides } from '@ionic/angular';
-import { Storage } from '@ionic/storage';
 import { Router, RouterEvent } from '@angular/router';
 import { AuthService } from './Shared/Auth/auth.service';
 import { StorageService } from './Shared/Service/storage.service';
 import { environment } from 'src/environments/environment';
-import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-root',
@@ -16,11 +13,8 @@ import { Socket } from 'ngx-socket-io';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-
-
   selectedPath: any = '';
   public appPages = [
-
     {
       title: 'Accueil',
       url: '/tabs/home',
@@ -28,7 +22,7 @@ export class AppComponent implements OnInit {
     },
     {
       title: 'Messagerie ',
-      url: '/menu/boite-reception',
+      url: '/boitereception',
       icon: 'heart'
     },
     {

@@ -43,6 +43,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((response) => {
       // console.log('hello user', response);
      location.href = '/tabs/home';
+
     }, error => {
       console.error(error);
 

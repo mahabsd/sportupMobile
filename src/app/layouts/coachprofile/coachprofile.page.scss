@@ -7,3 +7,130 @@ ion-slides {
     padding-bottom: 20px;
   }
 }
+
+ion-content{
+--padding-start:20px;
+--padding-end:20px;
+--background:var( --ion-color-light-tint);
+ 
+}
+
+ion-textarea{
+  background: none;
+}
+
+ion-item{
+  --background: none;
+}
+
+.profileID{
+ 
+  width:  200px;
+  
+}
+
+.profileID h4{
+  text-align: center;
+  color: white;
+}
+
+
+.profileContainer{
+  flex-direction: column;
+  justify-content: flex-end;
+      height: 200px;
+      background-size: cover;
+}
+ion-segment-button{
+  background-color: rgb(245, 245, 245);
+ 
+  box-shadow: -4px 3px 7px 2px rgba(0,0,0,0.21);
+  border-radius: 10px;
+  margin: 15px;
+  width: 110px;
+  min-height: 10px;
+  text-transform: none;
+  --indicator-color:none;
+}
+ion-segment-button ion-label{
+  font-size: 14px;
+}
+
+.segment-button-checked{
+  color: var(--color);
+  background-color: rgb(230, 230, 230);
+  
+}
+
+.mygallery{
+  border-radius: 6px; 
+
+ 
+
+}
+
+.imageContainer{
+padding: 5px;
+}
+
+.container {
+
+  display: grid;
+  margin: 10px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 10px 10px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Big Big Big a b"
+    "Big Big Big c d"
+    "Big Big Big e f";
+ 
+}
+
+.Big { grid-area: Big; }
+
+.a { grid-area: a; }
+
+.b { grid-area: b; }
+
+.c { grid-area: c; }
+
+.d { grid-area: d; }
+
+.e { grid-area: e; }
+
+.f { grid-area: f; }
+
+
+#avatarPub{
+  width: 50px; height:50px;justify-content: center; align-items: baseline;
+}
+
+#identText{
+  color: #616160;
+  margin-left: 20px;
+}
+
+#rightPostMenu
+{
+  display: flex;
+  justify-content: flex-end;
+
+}
+
+.postButton{
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+}
+
+#identText h5{
+  font-weight: 100;
+  margin: 0px;
+}
+
+#identText h4{
+ 
+  margin: 0px;
+}

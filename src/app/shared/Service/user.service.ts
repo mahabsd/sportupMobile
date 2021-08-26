@@ -19,7 +19,6 @@ export class UserService {
 
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
       console.log(res);
-
       return res;
     }), catchError(this.handleError));
   }
@@ -39,7 +38,7 @@ export class UserService {
   renvoyerToken(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
- 
+
   handleError(error: HttpErrorResponse) {
     console.log(error);
 

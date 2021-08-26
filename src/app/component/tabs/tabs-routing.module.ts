@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'profilkids',
         loadChildren: () => import('../../layouts/kids/profil/profil.module').then(m => m.ProfilPageModule)
+      },
+      {
+        path: 'hobbies',
+        loadChildren: () => import('../../layouts/hobbies/hobbies.module').then(m => m.HobbiesPageModule)
       }
     ]
   },
