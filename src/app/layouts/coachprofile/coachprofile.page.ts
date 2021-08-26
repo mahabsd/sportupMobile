@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 
 
 
+
 @Component({
   selector: 'app-coachprofile',
   templateUrl: './coachprofile.page.html',
@@ -58,12 +59,12 @@ export class CoachprofilePage implements OnInit {
   }
 
 
-  setPage(event)
-  {
-      this.pageIndex = event.detail.value;
+  setPage(event) {
+    this.pageIndex = event.detail.value;
   }
 
  
 
 
+  }
 }
