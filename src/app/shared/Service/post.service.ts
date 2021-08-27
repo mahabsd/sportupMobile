@@ -33,6 +33,16 @@ export class PostService {
       return res.data;
     }));
   }
+
+  getAllPostsById(page?, id?): Observable<Post[]> {
+    // console.log(page);
+    // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
+    return this.utilsService.get(`${UtilsService.apiPost}?page=${page}&limit=5&user=${id}`).pipe(map(res => {
+      // console.log(res);
+
+      return res.data;
+    }));
+  }
   getPost(id): Observable<Post> {
     return this.utilsService.get(`${UtilsService.apiPost}${id}`).pipe(map(res => {
       return res.data.data;
