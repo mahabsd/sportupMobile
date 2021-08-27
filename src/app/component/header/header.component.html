@@ -26,6 +26,11 @@
         <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="isPalmares">
+      <ion-button shape="rounded" (click)="openCoachPalmares($event)">
+        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
  
  
     <ion-title color="light" class="ion-text-center title-font"> {{title}}</ion-title>

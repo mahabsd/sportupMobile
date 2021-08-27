@@ -1,13 +1,21 @@
-ion-slides {
-  margin-top: 30%;
-  background: #e6e6e6;
-
-  img {
-    padding-top: 20px;
-    padding-bottom: 20px;
-  }
+ion-tab-button{
+  margin: 10px;
+  background: rgb(218, 218, 218);
+  border-radius: 10px;
+  width: 70px;
+  height: 40px;
 }
 
+ion-tab-bar .tab-selected{
+  color: rgb(102, 102, 102);
+}
+
+ion-tab-bar{
+    color: rgb(133, 133, 133);
+  background: none;
+  margin: 10px;
+  border-bottom: none;
+}
 ion-content{
 --padding-start:20px;
 --padding-end:20px;
@@ -73,35 +81,8 @@ ion-segment-button ion-label{
 padding: 5px;
 }
 
-.container {
-
-  display: grid;
-  margin: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px 10px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "Big Big Big a b"
-    "Big Big Big c d"
-    "Big Big Big e f";
  
-}
-
-.Big { grid-area: Big; }
-
-.a { grid-area: a; }
-
-.b { grid-area: b; }
-
-.c { grid-area: c; }
-
-.d { grid-area: d; }
-
-.e { grid-area: e; }
-
-.f { grid-area: f; }
-
+ 
 
 #avatarPub{
   width: 50px; height:50px;justify-content: center; align-items: baseline;
@@ -118,12 +99,7 @@ padding: 5px;
   justify-content: flex-end;
 
 }
-
-.postButton{
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-}
+ 
 
 #identText h5{
   font-weight: 100;

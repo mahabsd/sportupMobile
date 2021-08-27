@@ -63,8 +63,8 @@ export class CoachprofilePage implements OnInit {
     this.pageIndex = event.detail.value;
   }
 
- 
 
 
-  }
+
 }
+
