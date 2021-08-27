@@ -15,6 +15,6 @@ import { CoachphotoPage } from './coachphoto.page';
     IonicModule,
     CoachphotoPageRoutingModule
   ],
-  declarations: [CoachphotoPage]
+  declarations: []
 })
-export class CoachphotoPageModule {}
+export class CoachphotoPageModule { }
