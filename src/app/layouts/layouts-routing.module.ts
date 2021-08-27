@@ -136,10 +136,7 @@ const routes: Routes = [
         path: 'home',
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
       },
-      {
-        path: 'boite-reception',
-        loadChildren: () => import('./kids/boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
-      },
+
       {
         path: 'planning',
         loadChildren: () => import('./kids/planning/planning.module').then(m => m.PlanningPageModule)
@@ -177,10 +174,7 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'coachprofile',
-    loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
-  },
+
 
 
 
