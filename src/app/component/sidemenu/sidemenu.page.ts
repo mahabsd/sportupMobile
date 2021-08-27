@@ -37,6 +37,11 @@ export class SidemenuPage implements OnInit {
       url: '/erp'
     },
     {
+      icon: 'person',
+      title: 'Coach',
+      url: '/coachprofile/coachphoto'
+    },
+    {
       icon: 'heart',
       title: 'Kids',
       url: '/sign-kids'
