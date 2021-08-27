@@ -27,39 +27,31 @@ export class AuthService {
     console.log(user);
 
     return this.utilsService.post(UtilsService.apiUSER + 'login', user).pipe(map((res: any) => {
-      // console.log(res);
       this.setSession(res);
       // this.addUser(res.id);
       return res.data;
     }));
   }
   public isLoggedIn() {
-    console.log(this.storage.get(environment.token));
-
     return this.storage.get(environment.token);
   }
   isLoggedOut() {
     return !this.isLoggedIn();
   }
   isAuthenticated() {
-
     return this.isLoggedIn().pipe(map(res => res));
   }
   public getUser() {
-    // console.log(this.storage.get(environment.currentUser))
     const user = this.storage.get(environment.currentUser);
     return user;
   }
   public logout() {
-    // localStorage.clear();
     this.storage.clear();
     this.router.navigateByUrl('/login');
   }
   public getRole() {
-
     this.role = this.storage.get(environment.currentUser);
     if (this.role) { this.role = this.role.role; };
-    // console.log(this.role)
     return this.role;
   }
 
@@ -68,25 +60,19 @@ export class AuthService {
     await this.storage.set(environment.idUser, authResult.data?.user?._id);
     await this.storage.set(environment.token, authResult.token);
     await this.storage.set(environment.currentUser, authResult.data.user);
-
   }
 
 
 
   private handleError(error: HttpErrorResponse) {
     console.log(error);
-
     if (error?.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-
       console.error('An error occurred:', error?.error?.message);
-
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       if (error?.status === 50) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
       console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
-
     }
     // return an observable with a user-facing error message
     return throwError(error?.error?.message);
@@ -102,15 +88,4 @@ export class AuthService {
     });
     this.myToast.present();
   }
-
-  // public addUser(id) {
-  //   return this.utilsSer.get(UtilsService.API_USER + 'Me').subscribe((res: any) => {
-
-  //     // this.storage.set(environment.currentUser, res.data.data);
-  //     return res;
-  //   })
-  // }
-
-
-
 }

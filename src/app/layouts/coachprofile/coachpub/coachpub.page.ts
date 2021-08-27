@@ -1,3 +1,4 @@
+import { mergeMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -8,10 +9,11 @@ import { Component, OnInit } from '@angular/core';
 export class CoachpubPage implements OnInit {
   // eslint-disable-next-line max-len
   coachInfo = { name: 'Nom', lastname: 'Prenom', backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg', profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg' };
-  
+
   constructor() { }
 
   ngOnInit() {
   }
-
+  // get post by mergeMap
+  // posts
 }

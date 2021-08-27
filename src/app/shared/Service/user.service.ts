@@ -16,9 +16,28 @@ export class UserService {
   constructor(private utilsService: UtilsService,
     public toastCtrl: ToastController) { }
   getMe(): Observable<User> {
-
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
-      console.log(res);
+      return res;
+    }), catchError(this.handleError));
+  }
+  searchUser(config: User): Observable<{ user: User[] }> {
+    // Convert any filters over to Angular's URLSearchParams
+    const params = {};
+    Object.keys(config)
+      .forEach((key) => {
+        params[key] = config[key];
+      });
+
+    return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
+  }
+
+  updateUser(user: User) {
+    return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
+
+
+  }
+  getUser(id): Observable<User> {
+    return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {
       return res;
     }), catchError(this.handleError));
   }
@@ -41,18 +60,14 @@ export class UserService {
 
   handleError(error: HttpErrorResponse) {
     console.log(error);
-
     if (error?.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
-
       console.error('An error occurred:', error?.error?.message);
-
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong,
       if (error?.status === 500) { this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle'); }
       console.error(`Backend returned code ${error?.status}, ` + `body was: ${error?.error?.message}`);
-
     }
     // return an observable with a user-facing error message
     return throwError(error?.error?.message);
@@ -67,29 +82,6 @@ export class UserService {
     });
     this.myToast.present();
   }
-  searchUser(config: User): Observable<{ user: User[] }> {
-    // Convert any filters over to Angular's URLSearchParams
-    const params = {};
 
-    Object.keys(config)
-      .forEach((key) => {
-        params[key] = config[key];
-      });
-
-    return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
-  }
-
-  updateUser(user: User) {
-    return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
-
-
-  }
-  getUser(id): Observable<User> {
-    console.log(UtilsService.apiUSER + id);
-    return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {
-
-      return res;
-    }), catchError(this.handleError));
-  }
 }
 
