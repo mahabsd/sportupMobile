@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
 
 
 
@@ -66,5 +67,6 @@ export class CoachprofilePage implements OnInit {
 
 
 
+  }
 }
 
