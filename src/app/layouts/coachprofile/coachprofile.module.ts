@@ -16,11 +16,11 @@ const routes: Routes = [
     children: [
       {
         path: 'coachphoto',
-        loadChildren: () => import('../coachphoto/coachphoto.module').then(m => m.CoachphotoPageModule)
+        loadChildren: () => import('./coachphoto/coachphoto.module').then(m => m.CoachphotoPageModule)
       },
       {
         path: 'coachpub',
-        loadChildren: () => import('../coachpub/coachpub.module').then(m => m.CoachpubPageModule)
+        loadChildren: () => import('./coachpub/coachpub.module').then(m => m.CoachpubPageModule)
       }
     ]
   },
@@ -43,4 +43,4 @@ const routes: Routes = [
   ],
   declarations: [CoachprofilePage]
 })
-export class CoachprofilePageModule {}
+export class CoachprofilePageModule { }

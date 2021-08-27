@@ -30,58 +30,34 @@
         </ion-col>
       </ion-row>
       <div style="background-color: grey !important; height: 0.25px !important;"></div>
-      <ion-row class="row">
+      <ion-row class="row ion-margin-top ion-margin-bottom">
+        <div class=" myStory " style=" width:300px;    margin:0 auto;">
+          <ion-slides pager="false" autoplay="3000" loop="true">
+            <ion-slide *ngFor="let item of [].constructor(30)">
+              <ion-avatar style="width: 40px !important;height: 40px !important;">
+                <img class="imgStory" style="width: 100%;height: auto ;" src="http://placehold.it/75">
+              </ion-avatar>
+            </ion-slide>
+          </ion-slides>
+        </div>
       </ion-row>
       <div style="background-color: grey !important; height: 2px !important;"></div>
-      <div class=" myStory cion-padding" style=" width:160px;    margin-left:110px">
-        <!-- <ion-slides pager="false">
-        <ion-slide>
-          <ion-avatar>
-            <img style="width: 110px !important;hight: 150px !important;" [src]="imgSrc">
-          </ion-avatar>
-        </ion-slide>
-        <ion-slide>
-          <ion-avatar>
-            <img style="width: 110px !important;hight: 150px !important" [src]="imgSrc">
-          </ion-avatar>
-        </ion-slide>
-        <ion-slide>
-          <ion-avatar>
-            <img style="width: 110px !important;hight: 150px !important" [src]="imgSrc">
-          </ion-avatar>
-        </ion-slide>
-        <ion-slide>
-          <ion-avatar>
-            <img style="width: 110px !important;hight: 150px !important" [src]="imgSrc">
-          </ion-avatar>
-        </ion-slide>
-        <ion-slide>
-          <ion-avatar>
-            <img style="width: 110px !important;hight: 150px !important" [src]="imgSrc">
-          </ion-avatar>
-        </ion-slide>
-        <ion-slide>
-          <ion-avatar>
-            <img style="width: 110px !important;hight: 150px !important" [src]="imgSrc">
-          </ion-avatar>
-        </ion-slide>
-      </ion-slides> -->
-      </div>
-    </ion-grid>
-    <ion-row class="bodyFilter">
-      <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
-          refreshingSpinner="circles" refreshingText="Refreshing...">
-        </ion-refresher-content>
-      </ion-refresher>
 
-      <!-- <ion-virtual-scroll [items]="posts"> -->
-      <ion-card *ngFor="let post of posts;let i=index;" [class.focus]="indexPub==i" scrollY="true">
-        <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)">
-        </app-status>
-      </ion-card>
-      <!-- </ion-virtual-scroll> -->
-    </ion-row>
+      <ion-row class="bodyFilter">
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+            refreshingSpinner="circles" refreshingText="Refreshing...">
+          </ion-refresher-content>
+        </ion-refresher>
+
+        <!-- <ion-virtual-scroll [items]="posts"> -->
+        <ion-card *ngFor="let post of posts;let i=index;" [class.focus]="indexPub==i" scrollY="true">
+          <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)">
+          </app-status>
+        </ion-card>
+        <!-- </ion-virtual-scroll> -->
+      </ion-row>
+    </ion-grid>
   </div>
   <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">

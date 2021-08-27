@@ -1,3 +1,4 @@
+import { mergeMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/Shared/Model/User';
 import { Post } from 'src/app/Shared/Model/Post';
@@ -44,5 +45,6 @@ export class CoachpubPage implements OnInit {
     );
 
   }
-
+  // get post by mergeMap
+  // posts
 }

@@ -10,6 +10,10 @@ const routes: Routes = [
     component: SidemenuPage,
     children: [
       {
+        path: 'tabs',
+        loadChildren: () => import('../tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [AuthGuard]
+      },
+      {
         path: 'home',
         loadChildren: () => import('../../layouts/home/home.module').then(m => m.HomePageModule), canActivate: [AuthGuard]
       },
@@ -20,7 +24,7 @@ const routes: Routes = [
     ]
   }, {
     path: '',
-    redirectTo: 'menu/home'
+    redirectTo: 'menu/tabs/home'
   }
 
 ];
