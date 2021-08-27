@@ -24,6 +24,10 @@ const routes: Routes = [
         loadChildren: () => import('./../../layouts/kids/accueil/accueil.module').then(m => m.AccueilPageModule)
       },
       {
+        path: 'layouts',
+        loadChildren: () => import('./../../layouts/layouts.module').then(m => m.LayoutsModule)
+      },
+      {
         path: 'profil',
         loadChildren: () => import('./../../layouts/profil/profil.module').then(m => m.ProfilPageModule),
 

@@ -38,7 +38,8 @@ const routes: Routes = [
       {
         path: 'profilkids',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule)
-      }
+      },
+
     ]
   }
 ];
