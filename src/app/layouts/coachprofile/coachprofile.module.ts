@@ -7,28 +7,12 @@ import { CoachprofilePageRoutingModule } from './coachprofile-routing.module';
 import { CoachprofilePage } from './coachprofile.page';
 import { ComponentModule } from '../../component/component.module';
 import { RouterModule, Routes } from '@angular/router';
+import { HomePageModule } from '../home/home.module';
+import { CoachphotoPage } from './coachphoto/coachphoto.page';
+import { CoachpubPage } from './coachpub/coachpub.page';
 
 
-const routes: Routes = [
-  {
-    path: '',
-    component: CoachprofilePage,
-    children: [
-      {
-        path: 'coachphoto',
-        loadChildren: () => import('../coachphoto/coachphoto.module').then(m => m.CoachphotoPageModule)
-      },
-      {
-        path: 'coachpub',
-        loadChildren: () => import('../coachpub/coachpub.module').then(m => m.CoachpubPageModule)
-      }
-    ]
-  },
-  {
-    path: '',
-    redirectTo: '/coachphoto'
-  }
-];
+
 
 
 
@@ -39,8 +23,9 @@ const routes: Routes = [
     IonicModule,
     CoachprofilePageRoutingModule,
     ComponentModule,
-    RouterModule.forChild(routes)
+    HomePageModule
   ],
-  declarations: [CoachprofilePage]
+  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage],
+  exports: [CoachprofilePage, CoachphotoPage, CoachpubPage]
 })
-export class CoachprofilePageModule {}
+export class CoachprofilePageModule { }
