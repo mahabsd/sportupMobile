@@ -20,7 +20,6 @@ export class HeaderComponent implements OnInit {
   @Input() isOption: boolean = false;
   @Input() isCoach: boolean = false;
   @Input() isPalmares: boolean = false;
-  
   constructor(private modalCtrl: ModalController,public popoverController: PopoverController) { }
 
   ngOnInit() { }

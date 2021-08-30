@@ -10,8 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageModule } from '../home/home.module';
 import { CoachphotoPage } from './coachphoto/coachphoto.page';
 import { CoachpubPage } from './coachpub/coachpub.page';
-
-
+ 
 
 
 
@@ -25,7 +24,7 @@ import { CoachpubPage } from './coachpub/coachpub.page';
     ComponentModule,
     HomePageModule
   ],
-  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage],
+  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage ],
   exports: [CoachprofilePage, CoachphotoPage, CoachpubPage]
 })
 export class CoachprofilePageModule { }

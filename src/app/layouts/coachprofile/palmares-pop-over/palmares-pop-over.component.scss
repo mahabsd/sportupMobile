@@ -1,12 +1,50 @@
+ 
 ion-content{
-    --padding-start:20px;
-    --padding-end:20px;
-    --padding-top:20px;
-    --padding-bottom:20px;
+    --padding-start:10px;
+}
+  
+h5.details {
+    color: #616160 ;
+    font-weight: 100;
+    margin: 0px;
+    text-align: start;
+    font-size: 16px;
+}
+h5.title {
+    color: #616160 ;
+    font-weight: 100;
+    margin: 0px;
+    text-align: center;
+    font-size: 16px;
+}
+ 
+ 
+  b {
+    text-align: center;
+    font-size: 23px;
 }
 
+ 
 
-#upper {
-    justify-content: center;
-    flex-direction: row;
+  h4{
+    color: #247238 ;
+    font-size: 20px;
+    text-align: center;
+    text-transform:uppercase;
+    font-weight: 500;
+    margin: 0px;
+}
+
+.upper{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.lower{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+a {
+    color:#616160 ;
 }
