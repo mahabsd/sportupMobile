@@ -7,6 +7,7 @@
     "ng": "ng",
     "serve": "ionic serve ",
     "start": "ng serve",
+    "ip": "ionic serve --address=192.168.1.11",
     "tel": "ionic cordova run android --no-native-run  -l -d --external",
     "build": "ng build",
     "test": "ng test",
