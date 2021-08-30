@@ -15,18 +15,18 @@
       </ion-fab-button>
     </ion-fab>
 
-    <ion-searchbar style="    width: 318px; height: 41px;margin: 11px;" placeholder=""></ion-searchbar>
+    <ion-searchbar placeholder=""></ion-searchbar>
   </div>
 
   <div id="container">
 
     <ion-row class="BadyFilter">
       <ion-row class="myItem" style="width:95% ; border: 20px !important">
-        <ion-col style="    margin-top: 20px;">
-          <ion-item-sliding class="item-background-color" *ngFor="let item of [].constructor(5); let i = index"
-            (ionDrag)="logDrag(i)">
-            <ion-item class="item-background-color2">
-
+        <ion-col style="    margin-top: 20px;"
+        size="13" size-lg>
+          <ion-item-sliding class="item-background-color" *ngFor="let item of [].constructor(5); let i = index"  (ionDrag)="logDrag(i)">
+            <ion-item class="item-background-color2" >
+              
               <ion-label routerLink="/chat">
                 <p>
                   <ion-icon style="padding-right:10px" slot="start" name="person"
