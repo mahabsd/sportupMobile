@@ -14,6 +14,7 @@ export class CoachpubPage implements OnInit {
   user$: any = [];
   posts: any = [];
   page = 1;
+  selectedDate;
   constructor(private postService: PostService, private userService: UserService) { }
 
   async ngOnInit() {
@@ -24,6 +25,7 @@ export class CoachpubPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async res => {
       this.user$ = await res.data.data;
+   
       await this.getPosts();
     });
   }
