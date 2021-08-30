@@ -14,7 +14,7 @@ export class ProfilPage implements OnInit {
   // en utilisant lapi
 
 
-  myInformation: any = { userLastName: 'Nom', userFirstName: 'Prénom' };
+  myInformation: any = { userLastName: '', userFirstName: '' };
 
   user: any = [];
 
@@ -38,13 +38,16 @@ export class ProfilPage implements OnInit {
   }
 
   ngOnInit() {
-    this.folder = this.activatedRoute.snapshot.paramMap.get('id');
+    this.activatedRoute.data.subscribe(id => {
+      console.log(id);
 
-    this.getUser(this.folder);
+    });
+
+    this.getUser();
   }
 
-  getUser(id) {
-    this.userService.getUser(id).subscribe((response) => {
+  getUser() {
+    this.userService.getMe().subscribe((response) => {
       console.log(response);
       this.myInformation.userLastName = response.data.data.name;
     }, error => {

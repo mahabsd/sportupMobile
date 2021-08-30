@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PostsResolverService } from 'src/app/Shared/Service/posts-resolver.service';
 import { TabsPage } from './tabs.page';
+import { ProfileResolverService } from '../../Shared/Resolvers/ProfileResolverService';
+
 const routes: Routes = [
   {
     path: '',
@@ -13,9 +15,9 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('./../../layouts/home/home.module').then(m => m.HomePageModule),
-            // resolve: {
-            //   data: PostsResolverService
-            // }
+            resolve: {
+              data: ProfileResolverService
+            }
           },
         ]
       },
