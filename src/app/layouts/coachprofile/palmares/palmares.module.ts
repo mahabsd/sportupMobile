@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
-import { ComponentModule } from '../../component/component.module';
+import { ComponentModule } from '../../../component/component.module';
 import { PalmaresPageRoutingModule } from './palmares-routing.module';
 
 import { PalmaresPage } from './palmares.page';
@@ -18,4 +18,4 @@ import { PalmaresPage } from './palmares.page';
   ],
   declarations: [PalmaresPage]
 })
-export class PalmaresPageModule {}
+export class PalmaresPageModule { }

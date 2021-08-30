@@ -35,8 +35,6 @@ export class UserService {
 
   updateUser(user: User) {
     return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
-
-
   }
   getUser(id): Observable<User> {
     return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {
