@@ -97,7 +97,7 @@
       <ion-fab-button style="--background	:#ddd">
         <ion-icon name="add-outline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-list side="end">
+      <ion-fab-list side="top">
         <ion-fab-button>
           <ion-icon name="camera-outline"></ion-icon>
         </ion-fab-button>
@@ -110,16 +110,21 @@
       </ion-fab-list>
     </ion-fab>
 
-    <div class="footer">
-      <ion-list class="au-form" inset padding>
-        <ion-item>
-          <div style="display:flex">
+
+    <ion-footer class="ion-no-border">
+        <ion-row>
+          <ion-col  size="auto" size-lg="8">
             <ion-input type="text" [(ngModel)]="message"></ion-input>
-            <ion-button    (click)="sendMessage()">ENVOYER</ion-button>
-     </div>
-        </ion-item>
-      </ion-list>
-    </div>
+
+          </ion-col>
+          <ion-col  size="auto" >
+            <ion-button [disabled]="message===''"   (click)="sendMessage()">ENVOYER</ion-button>
+
+          </ion-col>
+        </ion-row>
+    </ion-footer>
+
+
 
 
 </ion-content>
