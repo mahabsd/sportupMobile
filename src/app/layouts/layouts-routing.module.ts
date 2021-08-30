@@ -168,6 +168,10 @@ const routes: Routes = [
         loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
       },
       {
+        path: 'palmares',
+        loadChildren: () => import('./palmares/palmares.module').then( m => m.PalmaresPageModule)
+      },
+      {
         path: 'scan',
         loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule)
       }
