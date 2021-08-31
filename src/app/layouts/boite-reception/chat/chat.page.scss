@@ -5,7 +5,13 @@ ion-menu-button {
 .example-spacer {
     flex: 1 1 auto;
   }
-  
+  ion-searchbar {
+    .searchbar-input-container {
+      .searchbar-input {
+        box-shadow: none;
+      }
+    }
+  }
   .example-form {
     min-width: 100px;
     max-width: 200px;
@@ -1554,8 +1560,9 @@ ion-menu-button {
     --border-radius: 0 30px 30px 0px;
     --background:  linear-gradient(135deg, #8EBF25,#8EBF25,#247238, #247238);
     z-index: 2;
-    height: 39px;
-    margin: 0px;
+    height: 40px;
+    margin-left: -10px;
+    margin-top: 0px;
     width: auto;
   }
   
@@ -1568,16 +1575,15 @@ ion-menu-button {
     outline: 0;
     border-radius: 20px 0 0 20px;
     background-color:#ddd;
-    width: 240px;
+    width: auto;
     height: 41px;
 }
 
 
-.footer {
+ion-footer {
     position:fixed;
     bottom: 0px;
-    left: 62px;
-    height: 87px;
+    left: 64px;
     }
 
 
