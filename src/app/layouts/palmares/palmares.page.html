@@ -60,7 +60,7 @@
         </ion-col>
         <ion-col size="3" (click)="readOnlyAproposToggle()">
 
-          modifier
+         <h5 [ngClass]="{'modifiable' : !readOnlyAproposB}">modifier</h5> 
         </ion-col>
     </ion-row>
     <ion-row>
@@ -73,21 +73,21 @@
             <ion-input placeholder="Entrer"  #adresseinput [readonly]="readOnlyAproposB" [(ngModel)]="user$.adresse" ></ion-input>
           </ion-col>
         </ion-item>
-        <ion-item>
+        <ion-item >
           <ion-col>
             <ion-label>Ville :</ion-label>
           </ion-col>
           <ion-col>
-            <ion-input placeholder="Enter Input"   [readonly]="readOnlyAproposB" [(ngModel)]="user$.ville"></ion-input>
+            <ion-input placeholder="Entrer"   [readonly]="readOnlyAproposB" [(ngModel)]="user$.ville"></ion-input>
           </ion-col>
-
+  
         </ion-item>
         <ion-item>
           <ion-col>
             <ion-label>Code Postal : </ion-label>
           </ion-col>
           <ion-col>
-            <ion-input placeholder="Entrer" [readonly]="readOnlyAproposB"  ></ion-input>
+            <ion-input placeholder="Entrer"   [readonly]="readOnlyAproposB"></ion-input>
           </ion-col>
           </ion-item>
         <ion-item>
@@ -96,7 +96,7 @@
             <ion-label>Pays :</ion-label>
           </ion-col>
           <ion-col>
-            <ion-input placeholder="Enter Input"  [readonly]="readOnlyAproposB" [(ngModel)]="user$.pays" ></ion-input>
+            <ion-input placeholder="Entrer"  [readonly]="readOnlyAproposB" [(ngModel)]="user$.pays" ></ion-input>
           </ion-col>
 
         </ion-item>
@@ -108,7 +108,7 @@
            
           </ion-col>
           <ion-col>
-            <ion-input placeholder="Enter Input"   [readonly]="readOnlyAproposB"   [(ngModel)]="user$.location" ></ion-input>
+            <ion-input placeholder="Entrer"   [readonly]="readOnlyAproposB"   [(ngModel)]="user$.location" ></ion-input>
           </ion-col>
 
     
@@ -138,7 +138,7 @@
             <ion-label>Etablissement Scolaire : </ion-label>
           </ion-col>
           <ion-col>
-            <ion-input placeholder="Enter Input" ></ion-input>
+            <ion-input placeholder="Enter Input" [readonly]="readOnlyAproposB"></ion-input>
           </ion-col>
         </ion-item>
         <ion-item>

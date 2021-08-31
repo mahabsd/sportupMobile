@@ -11,6 +11,7 @@ export class PalmaresPage implements OnInit {
   // eslint-disable-next-line max-len
   coachInfo = { backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg', profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg' };
   pageIndex = 'photo';
+  readOnlyPalmares = true;
   readOnlyAproposB = true;
   user$: any = [];
   showMore = false;
@@ -33,7 +34,7 @@ export class PalmaresPage implements OnInit {
   }
 
   readOnlyPalmaresToggle() {
-    this.readOnlyAproposB = !this.readOnlyAproposB;
+    this.readOnlyPalmares = !this.readOnlyPalmares;
   }
   readOnlyAproposToggle() {
 

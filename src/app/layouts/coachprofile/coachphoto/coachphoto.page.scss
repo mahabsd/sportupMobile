@@ -1,3 +1,21 @@
 ion-col:first-child {
   width: 150px;
 }
+
+.rowCustomBig{
+  flex: 0 0 calc(calc(8 / var(--ion-grid-columns, 12)) * 100%);
+    width: calc(calc(8 / var(--ion-grid-columns, 12)) * 100%);
+    max-width: calc(calc(8 / var(--ion-grid-columns, 12)) * 100%);
+}
+.rowCustomSmall{
+  flex: 0 0 calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+    width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+    max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+    height: 50%;
+}
+
+.rowCustom{
+  flex: 0 0 calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+    width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+    max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+}

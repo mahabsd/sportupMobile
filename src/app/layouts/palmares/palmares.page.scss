@@ -39,8 +39,12 @@ ion-tab-button{
   
   .profileID{
    
-    width:  180px;
+    width: 130px;
     
+  }
+
+  .modifiable{
+    color: #bbbbbb;
   }
   
   .profileID h4{
@@ -119,3 +123,9 @@ ion-tab-button{
    
     margin: 0px;
   }
+
+ 
+
+ion-item  .item-interactive.ion-valid {
+    --highlight-background: #247238;
+}
