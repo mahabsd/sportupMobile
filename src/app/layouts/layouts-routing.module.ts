@@ -169,7 +169,7 @@ const routes: Routes = [
       },
       {
         path: 'palmares',
-        loadChildren: () => import('./palmares/palmares.module').then( m => m.PalmaresPageModule)
+        loadChildren: () => import('./coachprofile/palmares/palmares.module').then(m => m.PalmaresPageModule)
       },
       {
         path: 'scan',

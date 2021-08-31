@@ -17,6 +17,8 @@ export class UserService {
     public toastCtrl: ToastController) { }
   getMe(): Observable<User> {
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
+      console.log(res);
+
       return res;
     }), catchError(this.handleError));
   }
@@ -33,8 +35,6 @@ export class UserService {
 
   updateUser(user: User) {
     return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
-
-
   }
   getUser(id): Observable<User> {
     return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {

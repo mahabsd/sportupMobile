@@ -39,8 +39,8 @@
         </ion-col>
         <ion-col size="3" (click)="readOnlyPalmaresToggle()">
 
-          modifier
-        </ion-col>
+            modifier
+          </ion-col>
 
     </ion-row>
     <ion-row>
@@ -57,8 +57,12 @@
         <ion-title class="title">
           À PROPOS
         </ion-title>
-        </ion-col>
-        <ion-col size="3" (click)="readOnlyAproposToggle()">
+        <<<<<<< HEAD:src/app/layouts/coachprofile/palmares/palmares.page.html </ion-col>
+          <ion-col size="3">
+            =======
+          </ion-col>
+          <ion-col size="3" (click)="readOnlyAproposToggle()">
+            >>>>>>> d193b7fba9f2a0801c0a999dee3678409bdc87f5:src/app/layouts/palmares/palmares.page.html
 
          <h5 [ngClass]="{'modifiable' : !readOnlyAproposB}">modifier</h5> 
         </ion-col>
@@ -68,7 +72,6 @@
         
         <ion-item>
           <ion-icon name="location" slot="start"></ion-icon>
-          <ion-col><ion-label>Adresse : </ion-label></ion-col>
           <ion-col>
             <ion-input placeholder="Entrer"  #adresseinput [readonly]="readOnlyAproposB" [(ngModel)]="user$.adresse" ></ion-input>
           </ion-col>
@@ -89,7 +92,7 @@
           <ion-col>
             <ion-input placeholder="Entrer"   [readonly]="readOnlyAproposB"></ion-input>
           </ion-col>
-          </ion-item>
+        </ion-item>
         <ion-item>
 
           <ion-col>
@@ -100,18 +103,18 @@
           </ion-col>
 
         </ion-item>
-         
+
         <ion-item>
           <ion-icon name="briefcase" slot="start"></ion-icon>
           <ion-col>
             <ion-label>Lieu de travaille: </ion-label>
-           
+
           </ion-col>
           <ion-col>
             <ion-input placeholder="Entrer"   [readonly]="readOnlyAproposB"   [(ngModel)]="user$.location" ></ion-input>
           </ion-col>
 
-    
+
         </ion-item>
         <ion-item>
           <ion-icon name="calendar" slot="start"></ion-icon>
@@ -119,7 +122,7 @@
             <ion-label>Date de naissance : </ion-label>
           </ion-col>
           <ion-col>
-            <ion-datetime displayFormat="MMM D, YYYY" min="1900" [(ngModel)]="user$.datedenaissance" ></ion-datetime>
+            <ion-datetime displayFormat="MMM D, YYYY" min="1900" [(ngModel)]="user$.datedenaissance"></ion-datetime>
           </ion-col>
         </ion-item>
         <ion-item>
@@ -142,8 +145,9 @@
           </ion-col>
         </ion-item>
         <ion-item>
-          <ion-icon name="transgender-outline"  slot="start"></ion-icon>
-          <ion-select placeholder="Genre" name="model" [interfaceOptions]="{cssClass: 'selectCustom'}" [(ngModel)]="user$.sexe" >
+          <ion-icon name="transgender-outline" slot="start"></ion-icon>
+          <ion-select placeholder="Genre" name="model" [interfaceOptions]="{cssClass: 'selectCustom'}"
+            [(ngModel)]="user$.sexe">
             <ion-select-option value="homme">homme</ion-select-option>
             <ion-select-option value="femme">femme</ion-select-option>
             <ion-select-option value="autre">autre</ion-select-option>
