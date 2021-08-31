@@ -1,0 +1,19 @@
+.centerDiv{
+  text-align: center;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+ion-button{
+  --border-radius:20px;
+}
+ion-row{
+  padding: 10px;
+}
+@font-face {
+  font-family: 'IntroScriptR-H2Base';
+  src: url(../../../../assets/ImgKids/IntroScriptR-H2Base.otf);
+}

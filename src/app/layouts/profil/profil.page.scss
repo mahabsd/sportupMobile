@@ -1,0 +1,146 @@
+ion-content{
+  
+  --background:#f1f2f2
+}
+
+ion-menu-button {
+  color: var(--ion-color-primary);
+}
+ 
+
+// css button
+$ruler: 16px;
+$color-red: #726b6b;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+ button {
+  font-family: 'Montserrat', sans-serif;
+  //letter-spacing: -0.2px;
+  font-size: $ruler;
+}
+#suiv {
+  position: relative;
+  top: -20px;
+border: 0;
+outline: 0;
+font-size: $ruler;
+border-radius: $ruler/2;
+
+width: 130px;
+height: 40px;
+margin-right: 10px;
+background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(68,74,56,1) 0%, rgba(36,114,56,1) 14%, rgba(142,191,37,1) 100%);
+font-family: Montserrat,sans-serif; color:white;  font-weight: 100; 
+}
+
+
+
+
+#bloq{
+  position: relative;
+  top: -20px;
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler/2;
+  margin-left: 10px;
+  background: linear-gradient(
+    300deg
+    , #d60e0ed8, #d60e0ed8, #860202, #7c0000);
+   
+width: 130px;
+height: 40px;
+font-family: Montserrat,sans-serif; color:white;  font-weight: 100; 
+  }
+button {
+color:#61677C;
+font-weight: bold;
+box-shadow: -5px -5px 20px $color-white,  1px 1px 5px #247238;
+transition: all 0.2s ease-in-out;
+cursor: pointer;
+font-weight: 800;
+&:active {
+  box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+}
+&.unit {
+  border-radius: $ruler/2;
+  line-height: 0;
+  //box-shadow: inset 1px 1px 2px 1px;
+  display:inline-flex;
+  justify-content: center;
+  align-items:center;
+  margin: 0 $ruler/2;
+  font-size: $ruler*1.2;
+
+  .icon {
+    margin-right: 0; 
+  }
+}
+}
+
+.myFooter {
+  border-radius: $ruler/2;
+  padding-bottom: 05px;
+  line-height: 0;
+  box-shadow: inset 1px 1px 1px 1px #247238;
+  display: inline-flex;
+  justify-content: center;
+  margin: 0 $ruler*2;
+  font-size: $ruler*3.2;
+  width: 340px;
+}
+
+
+.card-background-page {
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+  .card-title {
+    position: absolute;
+    top: 36%;
+    font-size: 2.0em;
+    width: 100%;
+    font-weight: bold;
+    color: #fff;
+  }
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+}
+ .imageFrame{
+   padding: 2px;
+ }
+.mygallery{
+  border-radius: 6px; 
+
+
+}
+
+.avatarGrid{
+  margin-top: 5px;
+}
+
+.infoContainer{
+  margin-bottom: 30px; margin-left: 30px; margin-right: 30px;
+}
+.activityGrid{
+  background-color :#f1f2f2;margin-top: 8px; margin-left: 5px; margin-right: 5px; 
+}
+
+.info {
+  font-family: Montserrat,sans-serif; color:#464646;font-size: 11px;
+}
+
+.infoItem{
+  text-align: center;
+}
+
+.infoName{
+  margin-top: 10px;
+}

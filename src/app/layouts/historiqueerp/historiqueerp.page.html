@@ -1,0 +1,63 @@
+<app-header title="Historique" [isEllipsis]="true"></app-header>
+<ion-content style=" ">
+
+  <div class="container-timeline">
+    <ion-row>
+      <ion-col size="1">
+        <div class="line">
+  
+        </div>
+      </ion-col>
+      <ion-col size="11">
+       </ion-col> 
+    </ion-row>
+    <ion-virtual-scroll [items]="events" approxItemHeight="320px" [headerFn]="separateDate">
+      <ion-item-divider *virtualHeader="let header; " style="--background:none;border-bottom: none;" lines="none">
+    
+
+        <div class="dateHeader"><b>{{header |date: 'yyyy-MM-dd'}}</b></div>
+
+      </ion-item-divider>
+      <ion-row *virtualItem="let event; let i = index;" (click)="presentAlertConfirm(i+1)">
+        <ion-row>
+          <ion-col size="1">
+
+            <div style="height:80px; width:80px; " *ngIf="!check(i+1)">
+              <img src="assets/IconMenu/emptyCheck.png" class="imageCheck" />
+              <b style="position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%); color: aliceblue; font-size: 1rem;">{{i+1}}</b>
+            </div>
+            <div style="height:80px; width:80px; " *ngIf="check(i+1)">
+              <img src="assets/IconMenu/check.png" class="imageCheck" />
+
+            </div>
+
+
+
+          </ion-col>
+          <ion-col size="11">
+
+            <ion-card>
+
+
+              <ion-card-content>
+                <b> {{ event.titre }} </b>
+                <h2>{{ event.description }} </h2>
+              </ion-card-content>
+
+            </ion-card>
+
+          </ion-col>
+        </ion-row>
+
+
+
+      </ion-row>
+    </ion-virtual-scroll>
+  </div>
+
+</ion-content>
+<ion-footer>
+</ion-footer>

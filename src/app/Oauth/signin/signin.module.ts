@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { SigninPageRoutingModule } from './signin-routing.module';
 import { SigninPage } from './signin.page';
-import { SigninService } from './signin.service';
 import { HttpClientModule  } from '@angular/common/http';
 @NgModule({
   imports: [
@@ -18,7 +17,6 @@ import { HttpClientModule  } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    SigninService
   ],
   declarations: [SigninPage]
 })

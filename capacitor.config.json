@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "myApp",
+  "appId": "com.example.app",
+  "appName": "sportUpIo",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
@@ -15,7 +15,6 @@
       "BackupWebStorage": "none",
       "SplashMaintainAspectRatio": "true",
       "FadeSplashScreenDuration": "300",
-      "GOOGLE_MAPS_BROWSER_API_KEY": "AIzaSyBWzqoDqPPGZU3ACoIzrVwqQSVYN5EVpFU",
       "SplashShowOnlyFirstTime": "false",
       "SplashScreen": "screen",
       "SplashScreenDelay": "3000"

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ModalController, IonSlides } from '@ionic/angular';
+import { Router, RouterEvent } from '@angular/router';
+import { AuthService } from './Shared/Auth/auth.service';
+import { StorageService } from './Shared/Service/storage.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -10,26 +13,26 @@ import { ModalController, IonSlides } from '@ionic/angular';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  public selectedIndex = 0;
+  selectedPath: any = '';
   public appPages = [
     {
-      title: 'Login',
-      url: '/login',
-      icon: 'settings'
-    },
-    {
       title: 'Accueil',
-      url: '/home',
+      url: '/tabs/home',
       icon: 'paper-plane'
     },
     {
       title: 'Messagerie ',
-      url: '/boite-reception',
+      url: '/boitereception',
       icon: 'heart'
     },
     {
       title: 'Maps',
       url: '/maps',
+      icon: 'archive'
+    },
+    {
+      title: 'Hobbies',
+      url: '/tabs/hobbies',
       icon: 'archive'
     },
     {
@@ -40,7 +43,7 @@ export class AppComponent implements OnInit {
     {
       icon: 'settings',
       title: 'ERP',
-      url: '/erp'
+      url: '/login-erp'
     },
     {
       icon: 'heart',
@@ -48,7 +51,7 @@ export class AppComponent implements OnInit {
       url: '/sign-kids'
     }
   ];
-  public Parametre = [    {
+  public parametre = [{
     icon: 'settings',
     title: 'Paramétre',
     url: '/parametre'
@@ -56,27 +59,45 @@ export class AppComponent implements OnInit {
     icon: 'log-out',
     title: 'déconnexion',
     url: '/login'
-  } ];
-    constructor(
+  }];
+  token: any;
+
+  constructor(private router: Router,
+    private storage: StorageService,
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
-  ) {
+    private statusBar: StatusBar,
+    private authService: AuthService) {
     this.initializeApp();
+    this.router.events.subscribe((event: RouterEvent) => {
+      // console.log(event.url);
+      if (event && event.url) {
+        this.selectedPath = event.url;
+      }
+    });
   }
-
   initializeApp() {
-      this.platform.ready().then(() => {
+    this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
   }
 
-  ngOnInit() {
-    const path = window.location.pathname.split('folder/')[1];
-    if (path !== undefined) {
-      this.selectedIndex = this.appPages.findIndex(page => page.title.toLowerCase() === path.toLowerCase());
-    }
+  async ngOnInit() {
+    this.platform.ready().then(() => {
+
+      this.storage.get(environment.token).subscribe(res => {
+        this.token = res;
+        // console.log(this.token);
+        return this.token;
+      });
+    });
+
   }
 
+
+
+  logout() {
+    this.authService.logout();
+  }
 }

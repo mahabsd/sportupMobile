@@ -1,0 +1,116 @@
+$ruler: 16px;
+$color-red: #726b6b;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+
+p {
+  font-size: x-small !important;
+}
+
+
+
+ion-toolbar ion-buttons ion-button.confirmer {
+  --border-radius: 50%;
+  --border-radius: 50%;
+  border-radius: 5px;
+  background: #13131363;
+  width: 80px;
+  height: 36px;
+}
+
+.myFooter {
+  border-radius: $ruler*2;
+  margin-bottom: 10px;
+  box-shadow: 0.25px 0.25px 0.25px 0.25px;
+  display: inline-flex;
+  justify-content: center;
+  font-size: $ruler*3.2;
+}
+
+.text-input {
+  height: auto;
+
+  div.input-wrapper {
+    background-color: rgb(109, 12, 12);
+    border-radius: 20px;
+
+    textarea.text-input {
+      margin-left: 8px;
+      //overflow-y: auto;
+      //max-height: 100px;
+    }
+  }
+}
+
+ion-button.confirmPost {
+
+  bottom: 0;
+  right: 0;
+  position: absolute;
+}
+
+ion-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+ion-row {
+  display: fixed;
+  bottom: 0;
+  left: 0;
+  background: #EEEFEF;
+}
+
+
+.myFooter ion-grid ion-row {
+  margin-left: auto;
+  margin-right: auto;
+  /* margin-bottom: 10px; */
+  /* border-radius: 50px; */
+  box-shadow: -1px 1px 2px 1px #6d6969;
+  position: fixed;
+  bottom: 0px;
+  width: 100%;
+  /* height: 6%; */
+  /* left: 0; */
+  /* right: 0; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8c8c8c;
+  background-color: #EEE;
+}
+
+.myFooter>ion-img {
+  width: 40px;
+  height: 40px
+}
+
+ion-footer {
+  --background: transparent;
+}
+
+ion-col {
+  --background-hover: red;
+
+}
+
+ion-col:hover {
+
+  --ripple-color: #247238 !important;
+}
+
+.userItem {
+  --background: transparent
+}
+
+ion-img {
+  height: 30px;
+
+}

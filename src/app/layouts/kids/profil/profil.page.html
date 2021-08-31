@@ -1,0 +1,377 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+
+    <ion-buttons slot="primary">
+      <ion-button color="secondary" (click)="presentPopover($event)">
+        <ion-icon style="    color: white;" slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical">
+        </ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title color="light" style="text-align: center; margin-left: 20xp">
+      {{title}}</ion-title>
+  </ion-toolbar>
+
+</ion-header>
+<ion-content class="parent">
+  <div class="image1">
+    <ion-img class="imgUser"
+      src="https://www.heysigmund.com/wp-content/uploads/Breaking-Up-With-Kids-The-New-Normal.jpg"></ion-img>
+
+    <ion-avatar class="image2">
+      <img class="myImageUser"
+        src="https://www.next.co.uk/nxtcms/resource/image/2639914/portrait_ratio1x1/305/305/7ddcbe6fc57d27c5f26a12fde323f828/lR/-0001-g69-mb-sh368442-lm-017-baby.jpg">
+      <ion-label color="light" style="    white-space: pre;"> {{user?.name}}</ion-label>
+
+    </ion-avatar>
+  </div>
+  <ion-row>
+    <ion-col size="1"></ion-col>
+    <ion-col size="3">
+      <ion-label class="mylabelabonnement">
+        2k Abonnes
+      </ion-label>
+    </ion-col>
+    <ion-col size="2"></ion-col>
+    <ion-col size="4">
+      <ion-label class="mylabelabonnement">
+        500 abonnements
+      </ion-label>
+    </ion-col>
+    <ion-col size="1"></ion-col>
+  </ion-row>
+
+  <div style="background-color: #f8f8f8;" >
+  <!-- Segment with default selection -->
+  <ion-segment (ionChange)="segmentChanged($event)" value="photo">
+    <ion-segment-button value="photo">
+      <ion-label>Photo</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Publications">
+      <ion-label>Publications</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="Planning">
+      <ion-label>Planning</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="propos">
+      <ion-label>à propos</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <div class="content-profil" *ngIf="selected==='photo'">
+    <ion-row>
+      <ion-col>
+        <div class="offer offer-warning">
+          <div class="shape">
+            <div class="shape-text">
+              top
+            </div>
+          </div>
+          <div class="offer-content">
+            <img
+              src="https://resize-gulli.jnsmedia.fr/r/890,__ym__/img//var/jeunesse/storage/images/gulli/chaine-tv/dessins-animes/pokemon/pokemon/pikachu/26571681-1-fre-FR/Pikachu.jpg"
+              alt="">
+          </div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="offer offer-radius offer-danger" style="height: 210px;">
+          <div class="shape">
+            <div class="shape-text">
+              top
+            </div>
+          </div>
+          <div class="offer-content">
+            <h3 class="lead">
+              A danger-radius
+            </h3>
+            <p>
+              And a little description.
+              <br> and so one
+            </p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="offer offer-warning">
+          <div class="shape">
+            <div class="shape-text">
+              top
+            </div>
+          </div>
+          <div class="offer-content">
+            <img
+              src="https://resize-gulli.jnsmedia.fr/r/890,__ym__/img//var/jeunesse/storage/images/gulli/chaine-tv/dessins-animes/pokemon/pokemon/pikachu/26571681-1-fre-FR/Pikachu.jpg"
+              alt="">
+          </div>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div class="offer offer-radius offer-danger" style="height: 210px;">
+          <div class="shape">
+            <div class="shape-text">
+              top
+            </div>
+          </div>
+          <div class="offer-content">
+            <h3 class="lead">
+              A danger-radius
+            </h3>
+            <p>
+              And a little description.
+              <br> and so one
+            </p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div class="content-profil" *ngIf="selected==='propos'">
+    <ion-row>
+      <ion-col>
+        <h4>A propos</h4>
+
+      </ion-col>
+      <ion-col>
+        <ng-container *ngIf="!update">
+
+        <ion-icon (click)="updateComment()" name="create-outline" style="float: right;margin-top: 20px;"></ion-icon>
+        </ng-container>
+        <ng-container *ngIf="update">
+          <ion-icon style="font-size: 25px;    color: red;float: right;margin-top: 20px;" (click)="updateComment()"  name="close-circle-outline"></ion-icon>
+
+          <ion-icon style="font-size: 25px;    color: green;float: right;margin-top: 20px;" (click)="userUpdate()" name="checkmark-circle-outline"></ion-icon>
+
+        </ng-container>
+      </ion-col>
+    </ion-row>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt consequuntur mollitia cum soluta dolorem
+      omnis quam totam. Ipsa, </p>
+    <ng-container *ngIf="update;else noupdate">
+
+      <ion-row>
+        <ion-col size="4">
+          <ion-icon name="location-sharp"></ion-icon>
+          <ion-label style="font-weight: bold;">Adresse</ion-label>
+        </ion-col>
+        <ion-col style="    margin-top: -8px;">
+          <ion-input class="commentaire" id="contentadresse" type="text"   [(ngModel)]="user.adresse"  ></ion-input>
+        </ion-col>
+        <ion-col size="4" >
+          <ion-label style="font-weight: bold;">Code postal</ion-label>
+        </ion-col>
+        <ion-col style="    margin-top: -8px;">
+          <ion-input class="commentaire"  id="contentPostal" type="text" ></ion-input>
+
+        </ion-col>
+
+
+      </ion-row>
+
+      <ion-row>
+
+
+        <ion-col size="4">
+          <ion-label style="font-weight: bold;">Ville</ion-label>
+        </ion-col>
+        <ion-col style="    margin-top: -8px;">
+          <ion-input class="commentaire" type="text"  id="contentVille"  [(ngModel)]="user.ville"></ion-input>
+
+        </ion-col>
+        <ion-col size="4">
+          <ion-label style="font-weight: bold;">Pays</ion-label>
+        </ion-col>
+        <ion-col style="    margin-top: -8px;">
+          <ion-input class="commentaire" type="text"  id="contentPays" [(ngModel)]="user.location"></ion-input>
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="3.5">
+          <ion-label style="font-weight: bold;">Date naissance</ion-label>
+        </ion-col>
+        <ion-col style="    margin-top: -8px;">
+          <ion-datetime class="commentaire" type="date"  id="datenaissance"  [(ngModel)]="user.datedenaissance"></ion-datetime>
+
+
+        </ion-col>
+
+
+
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col size="3.5" style="margin-top: 15px;">
+
+          <ion-label style="font-weight: bold;">Genre</ion-label>
+        </ion-col>
+
+
+
+        <ion-col>
+
+          <ion-item>
+            <ng-container *ngIf="user.sexe==='homme';else femme">
+              <ion-select interface="popover" placeholder="Select One" value="homme"  [(ngModel)]="user.sexe"             >
+                <ion-select-option value="femme">femme</ion-select-option>
+                <ion-select-option value="homme">Homme</ion-select-option>
+                <ion-select-option value="autres">Autres</ion-select-option>
+              </ion-select>
+            </ng-container>
+
+            <ng-template #femme>
+              <ion-select interface="popover" placeholder="Select One" value="femme" [(ngModel)]="user.sexe"  >
+                <ion-select-option value="femme">femme</ion-select-option>
+                <ion-select-option value="homme">Homme</ion-select-option>
+                <ion-select-option value="autres">Autres</ion-select-option>
+              </ion-select>
+            </ng-template>
+
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ng-container>
+
+    <ng-template #noupdate>
+
+      <ion-row>
+        <ion-col size="4">
+          <ion-icon name="location-sharp"></ion-icon>
+          <ion-label style="font-weight: bold;">Adresse</ion-label>
+        </ion-col>
+        <ion-col>
+          {{user.adresse}}
+        </ion-col>
+        <ion-col size="4">
+          <ion-label style="font-weight: bold;">Code postal</ion-label>
+        </ion-col>
+        <ion-col>
+          2083
+        </ion-col>
+
+
+      </ion-row>
+
+      <ion-row>
+
+
+        <ion-col size="4">
+          <ion-label style="font-weight: bold;">Ville</ion-label>
+        </ion-col>
+        <ion-col>
+          {{user.ville}}
+
+        </ion-col>
+        <ion-col size="3.5">
+          <ion-label style="font-weight: bold;">Pays</ion-label>
+        </ion-col>
+        <ion-col>
+          {{user.pays}}
+
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="4">
+          <ion-label style="font-weight: bold;">Date naissance</ion-label>
+        </ion-col>
+        <ion-col>
+
+          <ion-datetime class="commentaire" type="date"  id="datenaissance"  [(ngModel)]="user.datedenaissance"></ion-datetime>
+
+        </ion-col>
+
+
+      </ion-row>
+
+      <ion-row>
+
+        <ion-col size="3.5" style="margin-top: 15px;">
+
+          <ion-label style="font-weight: bold;">Genre</ion-label>
+        </ion-col>
+
+
+        <ion-col>
+
+          <ion-item>
+            <ng-container *ngIf="user.sexe==='homme';else femme">
+              <ion-select interface="popover" placeholder="Select One" value="h">
+                <ion-select-option value="f">Femme</ion-select-option>
+                <ion-select-option value="h">Homme</ion-select-option>
+                <ion-select-option value="a">Autres</ion-select-option>
+              </ion-select>
+            </ng-container>
+
+            <ng-template #femme>
+              <ion-select interface="popover" placeholder="Select One" value="f">
+                <ion-select-option value="f" selected>Femme</ion-select-option>
+                <ion-select-option value="h">Homme</ion-select-option>
+                <ion-select-option value="a">Autres</ion-select-option>
+              </ion-select>
+            </ng-template>
+
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    </ng-template>
+
+
+
+  </div>
+
+
+
+  <div class="content-profil" *ngIf="selected==='Publications'">
+    <div class="img-wrapper" *ngFor="let post of posts">
+      <div>
+        <ion-row style="height: 40px">
+          <ion-col size="3">
+            <ion-avatar>
+              <img class="myImageUser" src="../../../assets/kidsuser.png" />
+            </ion-avatar>
+          </ion-col>
+          <ion-col size="9" style="
+            margin-left: 35px;
+            margin-top: -77px;
+          ">
+            <ion-label style="color: gray; margin-top: 45px;">{{post.user.name}}</ion-label>
+            <ion-label style="color: gray; font-size: small; display: block">{{post.createdAt| date}}</ion-label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="9">
+            <ion-label style="color: gray; font-size: small; font-weight: bold">{{post.title}}</ion-label>
+            <ion-label style="
+              color: gray;
+              font-size: x-small;
+              display: block;
+              width: 250px;
+            ">{{post.content}}
+            </ion-label>
+          </ion-col>
+        </ion-row>
+      </div>
+
+
+      <img style="border-radius: 15px"
+        src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png" />
+      <div id="main-content">
+        <ion-icon slot="end" name="heart-empty"></ion-icon>
+
+
+      </div>
+    </div>
+
+
+  </div>
+</div>
+</ion-content>
+

@@ -1,0 +1,29 @@
+<app-header title="Ajouter un commentaire" [isModal]="true"></app-header>
+<ion-content fullscreen>
+  <ion-list *ngFor="let item of comments">
+    <ion-item>
+      <ion-avatar slot="start">
+        <ion-img [src]="apiImg+item?.user?.photo"></ion-img>
+      </ion-avatar>
+      <ion-label>
+        <h2>{{item?.user?.name}}</h2>
+        <p>{{item?.content}}</p>
+      </ion-label>
+    </ion-item>
+
+  </ion-list>
+  <ion-item class="commentaire" [formGroup]="commentForm">
+    <ion-col size="8" style="text-align:start;">
+      <ion-input class="commentaire" type="text" [(ngModel)]="comment.content" formControlName="contentControl"
+        placeholder="Ecrire un commentaire"></ion-input>
+    </ion-col>
+    <ion-col size="4" style="text-align:end;">
+
+      <ion-button class="commentaire" [hidden]="commentForm.invalid" (click)="sendComment(post)" shape="round"
+        fill="clear" size="small ">
+        <ion-icon name="send"></ion-icon>
+      </ion-button>
+    </ion-col>
+  </ion-item>
+
+</ion-content>

@@ -1,0 +1,114 @@
+ion-tab-button{
+  margin: 10px;
+  box-shadow: -2px 2px 15px -7px rgba(0,0,0,0.41);
+  background: rgb(218, 218, 218);
+  border-radius: 10px;
+  width: 70px;
+  height: 40px;
+}
+
+ion-tab-bar .tab-selected{
+  background: #bbbbbb;
+  color: rgb(102, 102, 102);
+}
+
+ion-tab-bar{
+    color: rgb(133, 133, 133);
+  background: none;
+  margin: 10px;
+  border-bottom: none;
+}
+ion-content{
+--padding-start:20px;
+--padding-end:20px;
+--background:var( --ion-color-light-tint);
+ 
+}
+
+ion-textarea{
+  background: none;
+}
+
+ion-item{
+  --background: none;
+}
+
+.profileID{
+ 
+  width:  200px;
+  
+}
+
+.profileID h4{
+  text-align: center;
+  color: white;
+}
+
+
+.profileContainer{
+  flex-direction: column;
+  justify-content: flex-end;
+      height: 200px;
+      background-size: cover;
+}
+ion-segment-button{
+  background-color: rgb(245, 245, 245);
+ 
+  box-shadow: -4px 3px 7px 2px rgba(0,0,0,0.21);
+  border-radius: 10px;
+  margin: 15px;
+  width: 110px;
+  min-height: 10px;
+  text-transform: none;
+  --indicator-color:none;
+}
+ion-segment-button ion-label{
+  font-size: 14px;
+}
+
+.segment-button-checked{
+  color: var(--color);
+  background-color: rgb(230, 230, 230);
+  
+}
+
+.mygallery{
+  border-radius: 6px; 
+
+ 
+
+}
+
+.imageContainer{
+padding: 5px;
+}
+
+ 
+ 
+
+#avatarPub{
+  width: 50px; height:50px;justify-content: center; align-items: baseline;
+}
+
+#identText{
+  color: #616160;
+  margin-left: 20px;
+}
+
+#rightPostMenu
+{
+  display: flex;
+  justify-content: flex-end;
+
+}
+ 
+
+#identText h5{
+  font-weight: 100;
+  margin: 0px;
+}
+
+#identText h4{
+ 
+  margin: 0px;
+}

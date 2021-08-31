@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar
+    background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)"
+  >
+    <ion-buttons slot="start">
+      <ion-menu-button color="light"></ion-menu-button>
+    </ion-buttons>
+    <ion-title color="light" style="text-align: center; margin-left: 20xp">
+      Accueil</ion-title
+    >
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col class="my-thin-col stylecards" *ngFor="let post of posts ">
+        <app-status-kids [post]="post" [user]="user$" (disLikeFn)="disLike(post)" (refreshPosts)="getAllPostsKids()"
+        (likeFn)="like(post)"></app-status-kids>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+<ion-footer class="myFooter">
+  <ion-row>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img routerLink="/profil" src="../../../assets/IconMenu/iconhome.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img
+          routerLink="/shearch"
+          src="../../../assets/IconMenu/iconmessage.png"
+        />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img src="../../../assets/IconMenu/iconplus.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col>
+      <div>
+        <img
+          routerLink="/boite-reception"
+          src="../../../assets/IconMenu/iconnotif.png"
+        />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+    <ion-col routerLink="/profilkids">
+      <div>
+        <img src="../../../assets/IconMenu/iconmenu.png" />
+      </div>
+    </ion-col>
+    <ion-col></ion-col>
+  </ion-row>
+</ion-footer>

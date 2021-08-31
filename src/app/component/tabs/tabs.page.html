@@ -1,0 +1,28 @@
+<ion-tabs>
+  <!-- Tab bar -->
+  <ion-tab-bar slot="bottom" translucent="true">
+    <ion-tab-button tab="home" title="accueil">
+      <img [routerLink]="['/tabs/home']" src="../../assets/icon/icon_home.png" />
+
+    </ion-tab-button>
+
+    <ion-tab-button tab="speakers">
+      <img [routerLink]="['/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
+
+    </ion-tab-button>
+
+    <ion-tab-button tab="map">
+      <img src="../../assets/icon/icon_nvposte.png" />
+
+    </ion-tab-button>
+
+    <ion-tab-button tab="about">
+      <img [routerLink]="['/boite-reception']" src="../../assets/icon/icon_notification.png" />
+
+    </ion-tab-button>
+    <ion-tab-button tab="about">
+      <img [routerLink]="['/tabs/profile']" src="../../assets/icon/icon_profile.png" />
+
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

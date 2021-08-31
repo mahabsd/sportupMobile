@@ -1,0 +1,350 @@
+<ion-header [translucent]="true">
+  <ion-toolbar background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
+    <ion-buttons slot="start">
+      <ion-icon routerLink="/erp-space" color="light" name="arrow-back"></ion-icon>
+    </ion-buttons>
+    <ion-buttons slot="end"  >
+      <ion-button shape="rounded" (click)="openModal()">
+              <ion-icon  color="light" name="ellipsis-vertical"></ion-icon>
+        </ion-button>
+
+    </ion-buttons>
+    <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Historique</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content style="    --offset-top: 0px;
+--offset-bottom: 0px;
+--padding-end: 20px;
+--margin: 50px;
+--padding-start: 20px;
+--background: #F8F8F8;">
+  <div class="calContainer">
+
+    <ion-row>
+      <ion-col>
+        <ion-item>
+
+          <ion-label>DDDD MMM D, YYYY</ion-label>
+          <ion-datetime displayFormat="DDDD MMM D, YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
+        </ion-item>
+
+      </ion-col>
+
+
+
+
+
+
+    </ion-row>
+
+
+    <ion-row>
+      <ion-col size="10">
+
+        <h2>{{selectedDate | date: 'yyyy/MM/dd'}}</h2>
+
+
+
+
+      </ion-col>
+      <ion-col style="display: flex;
+    align-items: center;
+    justify-content: center;" size="2">
+        <ion-icon size="large" name="add-circle"></ion-icon>
+      </ion-col>
+
+
+    </ion-row>
+    <calendar [eventSource]="eventSource" [locale]="calendar.locale" [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)"
+      (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)"
+      (onCurrentDateChanged)="onCurrentDateChanged($event)" formatWeekTitle="MMMM yyyy, 'Sem.' w"
+      formatDayTitle="dd MMMM yyyy" startHour="6" endHour="20" step="30" startingDayWeek="1"
+      [monthviewDisplayEventTemplate]="template">
+    </calendar>
+  </div>
+
+
+  <!-- <div class="container-timeline">
+    <ul class="timeline">
+      <li>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAtQ6b3CzMzx39h0nLcejeO05CWJ3dRhzP4I73D7BqpD0gV1IOZLdRLnpOOcHlq4YfaUQ&usqp=CAU" alt="" class="timeline-thumb">
+        <div class="timeline-item">
+          <h6>title Planning 1</h6>
+          <p>commentaire planning 1.....</p>
+          <div class="timeline-stats">
+            <i class="ion-heart"></i> 2,450
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFsnseeISAaEw/profile-displayphoto-shrink_200_200/0/1574762798941?e=1622073600&v=beta&t=reyaABiQdV_7YEeN2d2fQHMs3lI-z3pu22LOME4EsmU" alt="" class="timeline-thumb">
+        <div class="timeline-item">
+          <h6>title Planning 2</h6>
+          <p>commentaire planning 2.....</p>
+          <div class="timeline-stats">
+            <i class="ion-heart"></i> 2,450
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFsnseeISAaEw/profile-displayphoto-shrink_200_200/0/1574762798941?e=1622073600&v=beta&t=reyaABiQdV_7YEeN2d2fQHMs3lI-z3pu22LOME4EsmU" alt="" class="timeline-thumb">
+        <div class="timeline-item">
+          <h6>title Planning 3</h6>
+          <p>commentaire planning 3.....</p>
+          <div class="timeline-stats">
+            <i class="ion-heart"></i> 2,450
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+    <div class="divider-title">25-06-2016</div>
+    <ul class="timeline">
+      <li>
+        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFsnseeISAaEw/profile-displayphoto-shrink_200_200/0/1574762798941?e=1622073600&v=beta&t=reyaABiQdV_7YEeN2d2fQHMs3lI-z3pu22LOME4EsmU" alt="" class="timeline-thumb">
+        <div class="timeline-item">
+          <h6>title Planning 4</h6>
+          <p>commentaire planning 4.....</p>
+          <div class="timeline-stats">
+            <i class="ion-heart"></i> 2,450
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFsnseeISAaEw/profile-displayphoto-shrink_200_200/0/1574762798941?e=1622073600&v=beta&t=reyaABiQdV_7YEeN2d2fQHMs3lI-z3pu22LOME4EsmU" alt="" class="timeline-thumb">
+        <div class="timeline-item">
+          <h6>title Planning  5</h6>
+          <p>
+            <i class="ion-ios-circle-filled icon-size-lg color-red"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-yellow"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-orange"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-blue"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-lightblue"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-bluegray"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-black"></i>
+            <i class="ion-ios-circle-filled icon-size-lg color-green"></i>
+          </p>
+          <div class="timeline-stats">
+            <i class="ion-heart"></i> 2,450
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+          </div>
+        </div>
+      </li>
+      <li>
+        <img src="https://media-exp1.licdn.com/dms/image/C4D03AQFsnseeISAaEw/profile-displayphoto-shrink_200_200/0/1574762798941?e=1622073600&v=beta&t=reyaABiQdV_7YEeN2d2fQHMs3lI-z3pu22LOME4EsmU" alt="" class="timeline-thumb">
+        <div class="timeline-item">
+          <h6>title Planning 6</h6>
+          <p>commentaire plannig 6.....</p>
+          <div class="timeline-stats">
+            <i class="ion-heart"></i> 2,450
+            <span class="pos-absolute-right"><i class="ion-ios-clock"></i> 2 mins </span>
+          </div>
+        </div>
+      </li>
+    </ul>
+
+  </div> -->
+
+
+  <ion-row style="margin: 0;">
+
+
+    <ion-col size="12" style="width: 100%;">
+      <div style="  text-align: center;
+   
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: -15px;">
+        <ion-icon (click)="back()" name="chevron-back-circle" size="large"></ion-icon>
+      </div>
+
+      <div style="  text-align: center;
+   
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      right: -15px;">
+        <ion-icon (click)="next()" name="chevron-forward-circle" size="large"></ion-icon>
+      </div>
+      <ion-slides #slides>
+
+
+        <ion-slide>
+          <ion-col size="12">
+            <ion-card (click)="openList()" style="box-shadow: -3px 5px 18px 5px rgba(0,0,0,0.06);">
+
+              <ion-card-content>
+
+                <ion-row>
+                  <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+             border-radius: 10px;">
+                    <div class="dateCol">
+                      <h1 style="color: aliceblue; font-size: 14px"> VEN 30</h1>
+                    </div>
+
+                  </ion-col>
+                  <ion-col size="9">
+                    <ion-row>
+                      <ion-col size="3">
+                     
+                          <b>10:00</b> 
+                      
+                   
+
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <b>Cours de natation adulte</b>
+                        </div>
+                        <div style="text-align: left;">
+                          Salle de sport California centre urban
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="3">
+                        <b>10:00</b>
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <ion-label><b>Cours de natation adulte</b></ion-label>
+                        </div>
+                        <div style="text-align: left;">
+                          Salle de sport California centre urban
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+
+                  </ion-col>
+
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-slide>
+        <ion-slide>
+          <ion-col size="12">
+            <ion-card (click)="openList()">
+
+              <ion-card-content>
+
+                <ion-row>
+                  <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+             border-radius: 10px;">
+                    <div class="dateCol">
+                      <h1 style="color: aliceblue;"> Ven 30</h1>
+                    </div>
+
+                  </ion-col>
+                  <ion-col size="9">
+                    <ion-row>
+                      <ion-col size="3"  >
+                        <b>10:00</b>
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <ion-label><b>Cours de natation adulte</b></ion-label>
+                        </div>
+                        <div style="text-align: left;">
+                          Salle de sport California centre urban
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="3">
+                        <b>10:00</b>
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <ion-label><b>Cours de natation adulte</b></ion-label>
+                        </div>
+                        <div style="text-align: left;">
+                          Salle de sport California centre urban
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+
+                  </ion-col>
+
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-slide>
+        <ion-slide>
+          <ion-col size="12">
+            <ion-card (click)="openList()">
+
+              <ion-card-content>
+
+                <ion-row>
+                  <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+             border-radius: 10px;">
+                    <div class="dateCol">
+                      <h1 style="color: aliceblue;"> Ven 30</h1>
+                    </div>
+
+                  </ion-col>
+                  <ion-col size="9">
+                    <ion-row>
+                      <ion-col size="3">
+                        <b>10:00</b>
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <ion-label><b>Cours de natation adulte</b></ion-label>
+                        </div>
+                        <div style="text-align: left;">
+                          Salle de sport California centre urban
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+                    <ion-row>
+                      <ion-col size="3">
+                        <b>10:00</b>
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <ion-label><b>Cours de natation adulte</b></ion-label>
+                        </div>
+                        <div style="text-align: left;">
+                          Salle de sport California centre urban
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+
+                  </ion-col>
+
+                </ion-row>
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-slide>
+
+
+      </ion-slides>
+    </ion-col>
+    <div>
+
+
+    </div>
+
+  </ion-row>
+
+
+
+</ion-content>
+
+<ion-footer>
+</ion-footer>

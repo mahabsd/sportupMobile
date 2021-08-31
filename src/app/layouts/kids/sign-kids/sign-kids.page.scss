@@ -1,0 +1,199 @@
+
+
+
+#container {
+    height: 800px;
+    background-color: DarkGreen; /* For browsers that do not support gradients */
+    background-image: linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238);
+  }
+
+  $ruler: 16px;
+$color-red: #726b6b;
+$color-bg: #EBECF0;
+$color-shadow: #BABECC;
+$color-white: #FFF;
+
+body, html {
+  background-color:$color-bg;
+}
+
+ input,ion-input, select, textarea, button {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.2px;
+    font-size: $ruler;
+}
+
+div, p {
+  color: $color-shadow;
+  text-shadow: 1px 1px 1px $color-white;
+}
+
+
+form {
+  padding: $ruler;
+  width: $ruler*20;
+  margin: 0 auto;
+}
+
+.segment {
+  padding: $ruler*2 0;
+  text-align: center;
+}
+
+button, input,ion-input {
+  border: 0;
+  outline: 0;
+  font-size: $ruler;
+  border-radius: $ruler*20;
+  padding: $ruler;
+  background-color:$color-bg;
+  height:50px;
+}
+ion-input {
+  padding: 15px;
+}
+
+
+
+
+ion-input{
+  --placeholder-color: #8a8b8e;
+  --placeholder-opacity: 1;
+}
+label {
+  display: block;
+  margin-bottom: $ruler*1.5;
+  width: 100%;
+}
+
+input,ion-input {
+  margin-right: $ruler/2;
+  box-shadow:  inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
+  width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+  -webkit-appearance: none;
+
+  &:focus {
+    box-shadow:  inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
+}
+
+button {
+  color:#61677C;
+  font-weight: bold;
+  box-shadow: -5px -5px 20px $color-white,  5px 5px 20px $color-shadow;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  font-weight: 600;
+
+  &:hover {
+    box-shadow: -2px -2px 5px $color-white, 2px 2px 5px $color-shadow;
+  }
+
+  &:active {
+    box-shadow: inset 1px 1px 2px $color-shadow, inset -1px -1px 2px $color-white;
+  }
+
+  .icon {
+    margin-right: $ruler/2;
+  }
+
+  &.unit {
+    border-radius: $ruler/2;
+    line-height: 0;
+    width: $ruler*3;
+    height: $ruler*3;
+    display:inline-flex;
+    justify-content: center;
+    align-items:center;
+    margin: 0 $ruler/2;
+    font-size: $ruler*1.2;
+
+    .icon {
+      margin-right: 0;
+    }
+  }
+
+  &.red {
+    display: block;
+    width: 100%;
+    color:$color-red;
+  }
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  label {
+    margin: 0;
+    flex: 1;
+  }
+}
+#ButtonConnect {
+    background-image: linear-gradient(135deg, #247238, #247238 ,#8EBF25,#8EBF25);
+    width:60%;
+    margin-left: 20%;
+    border-radius:25px;
+
+}
+.fishes
+    {
+      position: relative;
+
+    }
+    .fish
+    {
+      position: absolute;
+      height:30vh;
+      width: auto;
+      margin: auto;
+      display: block;
+    }
+    .logosignin{
+      width: 80px; height: 80px;   display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 50%;
+    }
+
+    .container {
+      position: relative;
+    }
+    .image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .form-controll {
+      color:black;
+
+    }
+    .overlay {
+      position: absolute;
+      bottom: 0px;
+      color: #f1f1f1;
+      width: 100%;
+      transition: 0.5s ease;
+      opacity: 0;
+      color: white;
+      font-size: 20px;
+      padding: 20px 0 0 0;
+      text-align: center;
+      opacity: 1;
+      left: 32%;
+      top: 15%;
+    }
+
+    .img2 {
+      width: auto;
+      height: auto;
+
+      img {
+        width: 36%;
+      }
+    }

@@ -1,0 +1,41 @@
+<app-header title="COACH" [isCoach]="true"   ></app-header>
+
+
+
+
+  <ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer">
+    <div class="profileID">
+      <ion-avatar style="width:70px; height:70px; margin: 0 auto;">
+        <img [src]="coachInfo.profileImage">
+      </ion-avatar>
+
+      <h4>{{coachInfo.name}} {{coachInfo.lastname}}</h4>
+    </div>
+  </ion-row>
+  <ion-content >
+  
+
+  <ion-tabs>
+    <ion-tab-bar slot="top">
+      
+      <ion-tab-button tab="coachphoto">
+      
+        <ion-label>Photo</ion-label>
+      </ion-tab-button>
+  
+      <ion-tab-button tab="coachpub">
+ 
+        <ion-label>Publications</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button  >
+ 
+        <ion-label>Calendrier</ion-label>
+      </ion-tab-button>
+   
+   
+    </ion-tab-bar>
+  </ion-tabs>
+ 
+ 
+</ion-content>

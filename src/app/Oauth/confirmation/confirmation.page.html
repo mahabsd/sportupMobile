@@ -1,0 +1,46 @@
+<ion-content>
+  <div id="container">
+
+
+    <ion-row class="ion-padding-top" style=" justify-content: center;">
+      <ion-avatar>
+        <img src="../../../assets/imgs/logo.jpg">
+      </ion-avatar>
+    </ion-row>
+    <div class="segment">
+      <h1>Ajouter le code de confirmation</h1>
+      <p>Tu trouve le code de confirmation dans l'email</p>
+    </div>
+    <form *ngIf="!renvoi" >
+
+      <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Code de confirmation" name="code"
+        [(ngModel)]="code" required></ion-input>
+
+      <ion-button (click)="confirmer()" color="transparent" shape="round"  class="red "
+        type=" submit">
+        Confirmer
+      </ion-button>
+
+
+
+    </form>
+    <form *ngIf="renvoi" >
+
+      <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Votre email" name="code"
+        [(ngModel)]="user.email" required></ion-input>
+
+      <ion-button (click)="renvoyer()" color="transparent" shape="round"  class="red "
+        type=" submit">
+        Confirmer
+      </ion-button>
+
+
+
+    </form>
+    <ion-row style="  justify-content: center;">
+
+      <ion-label class="ion-padding-top" (click)="activeRenvoi()" >Renvoyer le code de confirmation ?</ion-label>
+    </ion-row>
+
+  </div>
+</ion-content>

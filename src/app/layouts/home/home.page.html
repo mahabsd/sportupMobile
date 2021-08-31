@@ -1,0 +1,66 @@
+<app-header title="Home" [isOption]="true"></app-header>
+<ion-content padding>
+  <div id="container">
+    <ion-grid>
+      <ion-row expand="full" class="row ion-align-items-center ion-justify-content-start">
+        <ion-col class="col" size="3" class="ion-justify-content-center">
+          <ion-avatar>
+            <img class="imgProfile" src="http://placehold.it/75">
+          </ion-avatar>
+        </ion-col>
+        <ion-col class="col" size="9" (click)="openModal()">
+          <div class="ZoneShare ion-text-nowrap">
+            <p> Que voulez-vous dire ?</p>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row id="rowTabFiltre">
+        <ion-col>
+          <ion-button class="unit" type="button" (click)="getAllPostsByEvent()">
+            Tout </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button routerLink="/apropos" class="unit" type="button">
+            Favoris </ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button class="unit" type="button">
+            Abonnement
+          </ion-button>
+        </ion-col>
+      </ion-row>
+      <div style="background-color: grey !important; height: 0.25px !important;"></div>
+      <ion-row class="row ion-margin-top ion-margin-bottom">
+        <div class=" myStory " style=" width:300px;    margin:0 auto;">
+          <ion-slides pager="false" autoplay="3000" loop="true">
+            <ion-slide *ngFor="let item of [].constructor(30)">
+              <ion-avatar style="width: 40px !important;height: 40px !important;">
+                <img class="imgStory" style="width: 100%;height: auto ;" src="http://placehold.it/75">
+              </ion-avatar>
+            </ion-slide>
+          </ion-slides>
+        </div>
+      </ion-row>
+      <div style="background-color: grey !important; height: 2px !important;"></div>
+
+      <ion-row class="bodyFilter">
+        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+          <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"
+            refreshingSpinner="circles" refreshingText="Refreshing...">
+          </ion-refresher-content>
+        </ion-refresher>
+
+        <!-- <ion-virtual-scroll [items]="posts"> -->
+        <ion-card *ngFor="let post of posts;let i=index;" [class.focus]="indexPub==i" scrollY="true">
+          <app-status [post]="post" [index]="i" [user]="user$" (disLikeFn)="disLike($event)" (likeFn)="like($event)">
+          </app-status>
+        </ion-card>
+        <!-- </ion-virtual-scroll> -->
+      </ion-row>
+    </ion-grid>
+  </div>
+  <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { NavigationExtras, Router } from '@angular/router';
-import { SigninService } from './signin.service';
-import { User } from './user';
+
+import { User } from 'src/app/Shared/Model/User';
+import { PatternValidator } from 'src/app/Shared/patternValidator';
+import { UserService } from '../../Shared/Service/user.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-signin',
@@ -10,75 +13,82 @@ import { User } from './user';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-  data: User;
-
-  fg: FormGroup;
-  user = {
-    name: '',
-    mail: '',
-    password: '',
-    confirmepassword: ''
-  };
-  logForm(form) {
-    console.log(this.user);
-    this.user.name = '';
-    this.user.mail = '';
-    this.user.password = '';
-    this.user.confirmepassword = '';
-  }
+  section = '1';
+  role = '';
+  registerForm: FormGroup;
+  particulierForm: FormGroup;
+  proForm: FormGroup;
+  user: User = new User();
+  myToast: any;
   constructor(
     public fb: FormBuilder,
-    public signinService: SigninService,
+    private toastCtrl: ToastController,
+    public signinService: UserService,
     public router: Router) {
-      this.data = new User();
+
   }
 
   ngOnInit() {
-    this.fg = this.fb.group({
-      emailControl: new FormControl('', Validators.required),
+    this.registerForm = new FormGroup({
+      emailControl: new FormControl('', [Validators.required,
+      // eslint-disable-next-line max-len
+      PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       passwordControl: new FormControl('', Validators.required),
-      confirmControl: new FormControl('', Validators.required),
-      mobileControl: new FormControl('', Validators.required),
-      add1Control: new FormControl(''),
-      add2COntrol: new FormControl(''),
-      postcodeControl: new FormControl(''),
-      stateControl: new FormControl('')
+      confirmPasswordControl: new FormControl('', Validators.required),
+
+      nameControl: new FormControl('', Validators.required),
+      roleControl: new FormControl('', Validators.required),
+
+    });
+    this.particulierForm = new FormGroup({
+      dateNaissanceControl: new FormControl('', Validators.required),
+      heightControl: new FormControl('', Validators.required),
+      weightControl: new FormControl('', Validators.required),
+      sexeControl: new FormControl('', Validators.required),
+
+    });
+    this.proForm = new FormGroup({
+      phoneControl: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      adresseControl: new FormControl('', Validators.required),
+      activiteControl: new FormControl('', Validators.required)
+
     });
   }
-  ConnectFacebook() {
+  connectFacebook() {
     console.log('hello facebook');
   }
-  ConnectGoogle() {
+  connectGoogle() {
     console.log('hello google');
 
   }
-  SaveUser() {
-    console.log('user information saved succefull');
-    // console.log(this.user)
-    this.data.User_Email = this.user.name;
-    this.data.User_Password = this.user.password;
-    this.data.User_First_Name = this.user.name;
+  enableSection(event) {
+    console.log(event.target);
+    console.log('section', this.section);
+    console.log(this.user.role);
 
-    this.signinService.createItem(this.data).subscribe((response) => {
-      const navigationExtras: NavigationExtras = {
-        queryParams: {
-          data: JSON.stringify(response)
-        }
-      };
-      this.router.navigate(['/signinformation'], navigationExtras);
-      console.log(response);
-      this.user.name = '';
-      this.user.mail = '';
-      this.user.password = '';
-      this.user.confirmepassword = '';
+    // this.section = '';
+    this.section = event.target.id;
+    this.role = this.user.role;
+  }
+  saveUser() {
+    console.log(this.user);
+    this.signinService.signUp(this.user).subscribe(res => {
+      console.log(res);
+
+      this.presentToast('Bienvenue ' + this.user.name, 'success', 'middle');
+      this.router.navigateByUrl('/confirmation');
+    }, err => {
+      this.presentToast(err, 'danger', 'top');
     });
   }
-  login(){
-    console.log('back to user');
-    // this.user.mail='';
-    // this.user.password='';
-  }
-  ResetPassword(){
-    console.log('reset Password');
+
+  async presentToast(message, color, position) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 5000,
+      color,
+      position
+    });
+    toast.present();
   }
 }
