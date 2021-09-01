@@ -126,6 +126,15 @@ ion-tab-button{
 
  
 
-ion-item  .item-interactive.ion-valid {
+ion-item .item-interactive.ion-valid {
     --highlight-background: #247238;
+    --inner-border-width: 0 0 0px 0;
+}
+
+.mod{
+  --inner-border-width: 0 0 0px 0;
+}
+
+ion-label.afficher{
+  font-size: large ;
 }
