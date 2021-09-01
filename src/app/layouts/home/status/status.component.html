@@ -52,13 +52,15 @@
           <img src="../../../../assets/iconPost/icon_share.svg" />
         </ion-button>
         <ng-container *ngIf="!bookmarked; else unbook">
-          <ion-button (click)="bookmark()" shape="round" fill="clear" size="large ">
+          <ion-button (click)="bookmark(post)" shape="round" fill="clear" size="large ">
+            <sub>{{post?.nbFavoris}}</sub>
             <img src="../../../../assets/iconPost/icon_bookmark.svg" class="last" />
           </ion-button>
         </ng-container>
         <ng-template #unbook>
-          <ion-button (click)="unBookmark()" shape="round" fill="clear" size="large ">
+          <ion-button (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
             <img src="../../../../assets/iconPost/icon_bookmarked.svg" class="last" />
+            <sub>{{post?.nbFavoris}}</sub>
           </ion-button>
         </ng-template>
       </ion-chip>

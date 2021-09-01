@@ -23,6 +23,7 @@ export class UtilsService {
   public static apiOPERATION = UtilsService.remoteAdress + 'operations/';
   public static apiPost = UtilsService.remoteAdress + 'posts/';
   public static apiComment = UtilsService.remoteAdress + 'comments/';
+  public static apiFavoris = UtilsService.remoteAdress + 'favoris/';
   token: any;
   myToast: any;
   header: any;
