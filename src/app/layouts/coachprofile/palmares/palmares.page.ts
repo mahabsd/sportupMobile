@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/Shared/Model/User';
 import { CoachService } from 'src/app/Shared/Service/coach.service';
@@ -14,6 +14,7 @@ export class PalmaresPage implements OnInit {
     backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg',
     profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg'
   };
+
   pageIndex = 'photo';
   readOnlyPalmares = true;
   readOnlyAproposB = true;
@@ -38,6 +39,7 @@ export class PalmaresPage implements OnInit {
 
 
 
+
   constructor(
     private alertCtrl: AlertController,
     private userService: UserService,
@@ -56,7 +58,6 @@ export class PalmaresPage implements OnInit {
   readOnlyAproposToggle() {
 
     this.readOnlyAproposB = !this.readOnlyAproposB;
-    this.myInputField.nativeElement.focus();
   }
   async situationAm() {
     const alert = await this.alertCtrl.create({
@@ -108,6 +109,7 @@ export class PalmaresPage implements OnInit {
   getCoachByIdUser(user) {
     this.coachService.getCoach(user).subscribe(async res => {
       console.log(res);
+
     });
   }
 }
