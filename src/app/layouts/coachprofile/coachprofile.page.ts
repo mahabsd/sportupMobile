@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 
 
@@ -18,7 +19,7 @@ export class CoachprofilePage implements OnInit {
     spaceBetween: 20
   };
 
-
+  user$: any = [];
   // eslint-disable-next-line max-len
   coachInfo = { name: 'Nom', lastname: 'Prenom', backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg', profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg' };
   pageIndex = 'photo';
@@ -54,12 +55,21 @@ export class CoachprofilePage implements OnInit {
   ];
 
 
-  constructor(private modalController: ModalController) { }
+  constructor(private modalController: ModalController, private userService: UserService) { }
 
   ngOnInit() {
   }
 
+  getMe() {
+    this.userService.getMe().subscribe(async res => {
+      console.log(res.data.data);
+      this.user$ = res.data.data;
 
+
+    });
+
+
+  }
   setPage(event) {
     this.pageIndex = event.detail.value;
   }

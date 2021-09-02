@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-updateprofil',
@@ -6,10 +7,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./updateprofil.page.scss'],
 })
 export class UpdateprofilPage implements OnInit {
+  user$: any = [];
+  constructor(private userService: UserService) { }
 
-  constructor() { }
-
-  ngOnInit() {
+  async ngOnInit() {
+    this.getMe();
   }
 
+  modifierPhotoProfile() {
+    console.log('modifierPhotoProfile');
+
+  }
+  envoyer() {
+    console.log('envoyer');
+  }
+
+
+  getMe() {
+    this.userService.getMe().subscribe(async res => {
+      this.user$ = await res.data.data;
+
+    });
+  }
 }
