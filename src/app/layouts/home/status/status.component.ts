@@ -55,6 +55,8 @@ export class StatusComponent implements OnInit {
 
   }
   async ngOnInit() {
+    console.log(this.post);
+
     await this.getCommentByPost();
   }
 

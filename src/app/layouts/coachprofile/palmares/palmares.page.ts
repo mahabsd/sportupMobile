@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/Shared/Model/User';
 import { CoachService } from 'src/app/Shared/Service/coach.service';
@@ -14,16 +14,13 @@ export class PalmaresPage implements OnInit {
     backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg',
     profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg'
   };
-
   pageIndex = 'photo';
   readOnlyPalmares = true;
   readOnlyAproposB = true;
   user$: any = [];
   showMore = false;
-
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('adresseinput') myInputField: ElementRef;
-
   // eslint-disable-next-line max-len
   info = {
     palmares: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et' +
@@ -35,34 +32,25 @@ export class PalmaresPage implements OnInit {
     lieuTravaille: 'La Marsa',
     dateN: new Date('01 / 01 / 1990')
   };
-
-
-
-
-
   constructor(
     private alertCtrl: AlertController,
     private userService: UserService,
     private coachService: CoachService
   ) {
-
   }
 
   async ngOnInit() {
     await this.getMe();
   }
-
   readOnlyPalmaresToggle() {
     this.readOnlyPalmares = !this.readOnlyPalmares;
   }
   readOnlyAproposToggle() {
-
     this.readOnlyAproposB = !this.readOnlyAproposB;
   }
   async situationAm() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
-
       buttons: [
         {
           text: 'Destructive',
@@ -86,13 +74,11 @@ export class PalmaresPage implements OnInit {
     });
     await alert.present();
   }
-
   trimString(string, length) {
     return string.length > length ?
       string.substring(0, length) + '...' :
       string;
   }
-
   getMe() {
     this.userService.getMe().subscribe(async res => {
       console.log(res.data.data);
@@ -100,7 +86,6 @@ export class PalmaresPage implements OnInit {
       this.getCoachByIdUser(this.user$?._id);
     });
   }
-
   updateCoach() {
     this.userService.updateUser(this.user$).subscribe(async res => {
       console.log(res);

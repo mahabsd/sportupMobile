@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-updateprofil',
@@ -8,6 +9,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 })
 export class UpdateprofilPage implements OnInit {
   user$: any = [];
+  apiImg = environment.apiImg + 'User/'
   constructor(private userService: UserService) { }
 
   async ngOnInit() {
@@ -25,6 +27,14 @@ export class UpdateprofilPage implements OnInit {
 
   getMe() {
     this.userService.getMe().subscribe(async res => {
+      this.user$ = await res.data.data;
+
+    });
+  }
+  updateMe() {
+    let fd = new FormData();
+
+    this.userService.updateMe(fd).subscribe(async res => {
       this.user$ = await res.data.data;
 
     });
