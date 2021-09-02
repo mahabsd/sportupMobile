@@ -1,19 +1,17 @@
 
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
-import { IonInfiniteScroll, IonVirtualScroll, NavController, PopoverController, ModalController, LoadingController } from '@ionic/angular';
+import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { IonVirtualScroll, NavController, PopoverController, ModalController, LoadingController } from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../Shared/Service/post.service';
 import { Post } from '../../../Shared/Model/Post';
 import { forkJoin, Observable } from 'rxjs';
-import { User } from 'src/app/Shared/Model/User';
-import { UserService } from '../../../Shared/Service/user.service';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { Comment } from '../../../Shared/Model/Comment';
 import { CommentService } from '../../../Shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
 import { ParametresComponent } from '../../../component/parametres/parametres.component';
 import { environment } from '../../../../environments/environment';
-
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 
 @Component({
   selector: 'app-status',
@@ -43,9 +41,10 @@ export class StatusComponent implements OnInit {
   bookmarked = false;
   id;
   loading: any;
-  constructor(private navCtrl: NavController,
+  constructor(
     private commentService: CommentService,
     private postService: PostService,
+    private favorisService: FavorisService,
     private modalController: ModalController,
     private loadingController: LoadingController,
 
@@ -53,7 +52,7 @@ export class StatusComponent implements OnInit {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
-    // this.getMe();
+
   }
   async ngOnInit() {
     await this.getCommentByPost();
@@ -89,11 +88,18 @@ export class StatusComponent implements OnInit {
   }
   share() {
   }
-  bookmark() {
-    this.bookmarked = true;
+  bookmark(post) {
+    this.favorisService.addFavoris(post?._id).subscribe(res => {
+      console.log(res);
+      this.bookmarked = true;
+    })
+
   }
-  unBookmark() {
-    this.bookmarked = false;
+  unBookmark(post) {
+    this.favorisService.addFavoris(post?._id).subscribe(res => {
+      console.log(res);
+      this.bookmarked = false;
+    });
   }
 
   async presentModal(post) {
