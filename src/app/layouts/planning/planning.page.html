@@ -3,11 +3,10 @@
     <ion-buttons slot="start">
       <ion-icon routerLink="/erp-space" color="light" name="arrow-back"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end"  >
+    <ion-buttons slot="end">
       <ion-button shape="rounded" (click)="openModal()">
-              <ion-icon  color="light" name="ellipsis-vertical"></ion-icon>
-        </ion-button>
-
+        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
+      </ion-button>
     </ion-buttons>
     <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Historique</ion-title>
   </ion-toolbar>
@@ -19,41 +18,23 @@
 --padding-start: 20px;
 --background: #F8F8F8;">
   <div class="calContainer">
-
     <ion-row>
       <ion-col>
         <ion-item>
-
           <ion-label>DDDD MMM D, YYYY</ion-label>
           <ion-datetime displayFormat="DDDD MMM D, YYYY" min="2005" max="2016" value="2008-09-02"></ion-datetime>
         </ion-item>
-
       </ion-col>
-
-
-
-
-
-
     </ion-row>
-
-
     <ion-row>
       <ion-col size="10">
-
         <h2>{{selectedDate | date: 'yyyy/MM/dd'}}</h2>
-
-
-
-
       </ion-col>
       <ion-col style="display: flex;
     align-items: center;
     justify-content: center;" size="2">
         <ion-icon size="large" name="add-circle"></ion-icon>
       </ion-col>
-
-
     </ion-row>
     <calendar [eventSource]="eventSource" [locale]="calendar.locale" [calendarMode]="calendar.mode"
       [currentDate]="calendar.currentDate" (onEventSelected)="onEventSelected($event)"
@@ -155,7 +136,7 @@
 
     <ion-col size="12" style="width: 100%;">
       <div style="  text-align: center;
-   
+
       z-index: 2;
       position: absolute;
       top: 50%;
@@ -164,7 +145,7 @@
       </div>
 
       <div style="  text-align: center;
-   
+
       z-index: 2;
       position: absolute;
       top: 50%;
@@ -191,10 +172,10 @@
                   <ion-col size="9">
                     <ion-row>
                       <ion-col size="3">
-                     
-                          <b>10:00</b> 
-                      
-                   
+
+                        <b>10:00</b>
+
+
 
                       </ion-col>
                       <ion-col size="9">
@@ -245,7 +226,7 @@
                   </ion-col>
                   <ion-col size="9">
                     <ion-row>
-                      <ion-col size="3"  >
+                      <ion-col size="3">
                         <b>10:00</b>
                       </ion-col>
                       <ion-col size="9">

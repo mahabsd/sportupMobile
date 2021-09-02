@@ -29,7 +29,10 @@ export class JWTInterceptor implements HttpInterceptor {
 
       return next.handle(cloneReq).pipe(catchError(error => {
         console.log(error);
-
+        if (error.status === 401) {
+          this.handleAuthError();
+          return of(error);
+        }
         let msg = error.error.message;
         this.presentToast(msg, 'danger', 'top');
         throw error;
@@ -57,10 +60,7 @@ export class JWTInterceptor implements HttpInterceptor {
     //     if (error.status === 400) {
     //       this.presentToast(error?.error?.message, 'danger', 'middle');
     //     }
-    //     // if (error.status === 401) {
-    //     //   this.handleAuthError();
-    //     //   return of(error);
-    //     // }
+
     //     if (error.status === 500) {
     //       this.handleServer();
     //       return of(error);
@@ -95,13 +95,13 @@ export class JWTInterceptor implements HttpInterceptor {
   //   return ({ headers });
   // }
 
-  // private typeError() {
-  //   return this.presentToast('Votre session est expiré', 'danger', 'top');
-  // }
-  // private handleAuthError() {
-  //   this.authService.logout();
-  //   this.typeError();
-  // }
+  private typeError() {
+    return this.presentToast('Votre session est expiré', 'danger', 'top');
+  }
+  private handleAuthError() {
+    this.authService.logout();
+    this.typeError();
+  }
   // private handleServer() {
   //   this.presentToast('Probléme Serveur veuillez patienter Svp...', 'danger', 'middle');
   // }

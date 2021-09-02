@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/Shared/Model/User';
+import { CoachService } from 'src/app/Shared/Service/coach.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 @Component({
   selector: 'app-palmares',
@@ -9,7 +10,10 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 })
 export class PalmaresPage implements OnInit {
   // eslint-disable-next-line max-len
-  coachInfo = { backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg', profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg' };
+  coachInfo = {
+    backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg',
+    profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg'
+  };
   pageIndex = 'photo';
   readOnlyPalmares = true;
   readOnlyAproposB = true;
@@ -18,14 +22,27 @@ export class PalmaresPage implements OnInit {
 
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('adresseinput') myInputField: ElementRef;
-  
+
   // eslint-disable-next-line max-len
-  info = { palmares: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', pays: 'Tunis', ville: 'Ariana', codePostal: 2000, school: 'ESPRIT', lieuTravaille: 'La Marsa', dateN: new Date('01/01/1990') };
+  info = {
+    palmares: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et' +
+      'dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+    pays: 'Tunis',
+    ville: 'Ariana',
+    codePostal: 2000,
+    school: 'ESPRIT',
+    lieuTravaille: 'La Marsa',
+    dateN: new Date('01 / 01 / 1990')
+  };
 
 
 
 
-  constructor(private alertCtrl: AlertController, private userService: UserService) {
+  constructor(
+    private alertCtrl: AlertController,
+    private userService: UserService,
+    private coachService: CoachService
+  ) {
 
   }
 
@@ -66,32 +83,31 @@ export class PalmaresPage implements OnInit {
         }
       ]
     });
-
     await alert.present();
   }
 
   trimString(string, length) {
-    return string.length > length ? 
-           string.substring(0, length) + '...' :
-           string;
-}
+    return string.length > length ?
+      string.substring(0, length) + '...' :
+      string;
+  }
 
   getMe() {
     this.userService.getMe().subscribe(async res => {
       console.log(res.data.data);
       this.user$ = res.data.data;
- 
-
+      this.getCoachByIdUser(this.user$?._id);
     });
-
-
   }
 
-  updateCoach(){
+  updateCoach() {
     this.userService.updateUser(this.user$).subscribe(async res => {
       console.log(res);
- 
-
+    });
+  }
+  getCoachByIdUser(user) {
+    this.coachService.getCoach(user).subscribe(async res => {
+      console.log(res);
     });
   }
 }
