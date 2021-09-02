@@ -43,17 +43,18 @@
       </ion-col>
 
     </ion-row>
-    <ion-row  *ngIf="!readOnlyPalmares">
-      <ion-textarea value="{{coachInfo.palmares}}" placeholder="entrer" rows="6"></ion-textarea>
+    <ion-row *ngIf="!readOnlyPalmares">
+      <ion-textarea value="{{coachInfo?.palmares}}" placeholder="entrer" rows="6"></ion-textarea>
 
     </ion-row>
     <ion-row *ngIf="readOnlyPalmares">
       <p style="padding: 8px;" *ngIf="!showMore">{{trimString(coachInfo.palmares,100)}}</p>
-      <p  style="padding: 8px;" *ngIf="showMore" rows="6">{{coachInfo.palmares}}</p>
+      <p style="padding: 8px;" *ngIf="showMore" rows="6">{{coachInfo.palmares}}</p>
 
     </ion-row>
     <ion-row>
-      <a class="showMore" *ngIf="readOnlyPalmares" (click)="showMore = !showMore">voir <span [innerHtml]="showMore ? 'moins' : 'plus'"> </span>
+      <a class="showMore" *ngIf="readOnlyPalmares" (click)="showMore = !showMore">voir <span
+          [innerHtml]="showMore ? 'moins' : 'plus'"> </span>
       </a>
     </ion-row>
     <ion-row>
@@ -64,7 +65,7 @@
 
       </ion-col>
 
-    
+
 
     </ion-row>
     <ion-row>
