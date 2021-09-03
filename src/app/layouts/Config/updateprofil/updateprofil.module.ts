@@ -5,7 +5,7 @@ import { ComponentModule } from '../../../component/component.module';
 import { IonicModule } from '@ionic/angular';
 
 import { UpdateprofilPageRoutingModule } from './updateprofil-routing.module';
-
+import { ModalShearePageModule } from '../../home/modal-sheare/modal-sheare.module';
 import { UpdateprofilPage } from './updateprofil.page';
 
 @NgModule({
@@ -14,7 +14,8 @@ import { UpdateprofilPage } from './updateprofil.page';
     FormsModule,
     IonicModule,
     UpdateprofilPageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    ModalShearePageModule
   ],
   declarations: [UpdateprofilPage]
 })
