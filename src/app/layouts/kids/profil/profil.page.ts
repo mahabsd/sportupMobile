@@ -99,7 +99,7 @@ export class ProfilPage implements OnInit {
   userUpdate() {
 
 
-    this.userService.updateUser(this.user).subscribe(res => {
+    this.userService.updateMe(this.user).subscribe(res => {
 
 
       console.log(res);

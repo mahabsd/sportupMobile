@@ -32,7 +32,6 @@ export class UpdateprofilPage implements OnInit {
     });
   }
 
-
   async addImage(source: CameraSource) {
     console.log('addimage');
 
@@ -111,4 +110,5 @@ export class UpdateprofilPage implements OnInit {
     });
 
   }
+
 }
