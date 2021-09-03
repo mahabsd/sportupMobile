@@ -18,7 +18,7 @@ export class CoachService {
   }
 
 
-  updateCoachs(coach: Coach) {
+  updateCoach(coach: Coach) {
 
     return this.apiService.patch(`${UtilsService.apiCoach}${coach.id}`, coach);
   }

@@ -14,8 +14,9 @@ import { UpdateprofilPage } from './updateprofil.page';
     FormsModule,
     IonicModule,
     UpdateprofilPageRoutingModule,
-    ComponentModule
+    ComponentModule,
+
   ],
   declarations: [UpdateprofilPage]
 })
-export class UpdateprofilPageModule {}
+export class UpdateprofilPageModule { }

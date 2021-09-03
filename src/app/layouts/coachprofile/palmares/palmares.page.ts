@@ -3,21 +3,21 @@ import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/Shared/Model/User';
 import { CoachService } from 'src/app/Shared/Service/coach.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { environment } from 'src/environments/environment';
+import { Coach } from '../../../Shared/Model/coach';
 @Component({
   selector: 'app-palmares',
   templateUrl: './palmares.page.html',
   styleUrls: ['./palmares.page.scss'],
 })
 export class PalmaresPage implements OnInit {
-  // eslint-disable-next-line max-len
-  coachInfo = {
-    backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg',
-    profileImage: 'https://www.computerhope.com/jargon/g/guest-user.jpg'
-  };
+  apiImg = environment.apiImg + 'User/';
+  coach: Coach = new Coach();
+  backgroundImage = 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg';
+
   pageIndex = 'photo';
   readOnlyPalmares = true;
   readOnlyAproposB = true;
-  user$: any = [];
   showMore = false;
   // eslint-disable-next-line @typescript-eslint/member-ordering
   @ViewChild('adresseinput') myInputField: ElementRef;
@@ -75,26 +75,29 @@ export class PalmaresPage implements OnInit {
     await alert.present();
   }
   trimString(string, length) {
-    return string.length > length ?
+    return string?.length > length ?
       string.substring(0, length) + '...' :
       string;
   }
   getMe() {
     this.userService.getMe().subscribe(async res => {
-      console.log(res.data.data);
-      this.user$ = res.data.data;
-      this.getCoachByIdUser(this.user$?._id);
+      console.log(res);
+
+      this.getCoachByIdUser(res?.data?.data?._id);
     });
   }
   updateCoach() {
-    this.userService.updateUser(this.user$).subscribe(async res => {
+    console.log(this.coach);
+
+    this.coachService.updateCoach(this.coach).subscribe(async res => {
+      this.readOnlyPalmares = !this.readOnlyPalmares;
       console.log(res);
     });
   }
   getCoachByIdUser(user) {
-    this.coachService.getCoach(user).subscribe(async res => {
+    this.coachService.getCoach(user).subscribe(async (res: any) => {
       console.log(res);
-
+      this.coach = res;
     });
   }
 }

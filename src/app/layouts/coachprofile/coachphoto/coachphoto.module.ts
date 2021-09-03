@@ -1,13 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
 import { CoachphotoPageRoutingModule } from './coachphoto-routing.module';
-
-import { CoachphotoPage } from './coachphoto.page';
-
 @NgModule({
   imports: [
     CommonModule,
@@ -15,6 +10,7 @@ import { CoachphotoPage } from './coachphoto.page';
     IonicModule,
     CoachphotoPageRoutingModule
   ],
-  declarations: []
+  declarations: [],
+
 })
 export class CoachphotoPageModule { }

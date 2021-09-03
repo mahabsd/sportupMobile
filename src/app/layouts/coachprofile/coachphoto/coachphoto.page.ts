@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { ImageService } from '../../../Shared/Service/image.service';
+import { UserService } from '../../../Shared/Service/user.service';
 
 @Component({
   selector: 'app-coachphoto',
@@ -6,40 +9,26 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./coachphoto.page.scss'],
 })
 export class CoachphotoPage implements OnInit {
-  imagesBasic = [
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg', description: 'Image 1'
-    },
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', description: 'Image 2'
-    },
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', description: 'Image 2'
-    },
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', description: 'Image 2'
-    },
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(98).jpg', description: 'Image 2'
-    },
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', description: 'Image 3'
-    },
-    {
-      img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', thumb:
-        'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(131).jpg', description: 'Image 3'
-    },
-  ];
-
-  constructor() { }
-
+  images: any = [];
+  apImg = environment.apiImg + 'Post/image/'
+  constructor(
+    private imageService: ImageService,
+    private userService: UserService
+  ) { }
   ngOnInit() {
+    this.getMe();
   }
 
+  getImageByIdUser(id) {
+    this.imageService.getImageByUserId(id).subscribe(res => {
+      console.log(res);
+      this.images = res;
+    })
+  }
+  getMe() {
+    this.userService.getMe().subscribe(async res => {
+      console.log(res.data.data);
+      this.getImageByIdUser(res?.data?.data?._id);
+    });
+  }
 }
