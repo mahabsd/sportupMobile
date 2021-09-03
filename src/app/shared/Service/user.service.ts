@@ -32,8 +32,11 @@ export class UserService {
     return this.utilsService.get('users' + ((config.name === 'feed') ? '/feed' : ''));
   }
 
-  updateUser(user: User) {
+  updateMe(user) {
     return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
+  }
+  updateUser(user) {
+    return this.utilsService.patch(UtilsService.apiUSER, user);
   }
   getUser(id): Observable<User> {
     return this.utilsService.get(UtilsService.apiUSER + id).pipe(map(res => {

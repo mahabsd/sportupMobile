@@ -25,6 +25,7 @@ export class UtilsService {
   public static apiComment = UtilsService.remoteAdress + 'comments/';
   public static apiFavoris = UtilsService.remoteAdress + 'favoris/';
   public static apiCoach = UtilsService.remoteAdress + 'coachs/';
+  public static apiImage = UtilsService.remoteAdress + 'images/';
   token: any;
   myToast: any;
   header: any;
