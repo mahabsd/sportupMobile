@@ -1,72 +1,68 @@
 <app-header title="MODIFIER PROFILE" [isModProfile]="true"></app-header>
 <ion-content>
-  <ion-grid style="margin-bottom:30px;">
+  <ion-row style="margin-bottom: 10px;">
+    <ion-col size="3">
+      <ion-avatar>
+        <img [src]="apiImg+user$?.photo">
+         </ion-avatar>
+    </ion-col>
+    <ion-col size="9">
+      <h5>{{user$.name}} {{user$.lastname}}</h5>
+      <h6 (click)="selectImageSource()">modifier la photo de profil</h6>
+    </ion-col>
+  </ion-row>
+  <ion-item class="textInput">
+    <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION"  [(ngModel)]="user$.name"></ion-input>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <p style="font-size: small;">
+        Aidez les gens a trouver votre compte a l'aide de votre nom le plus connu,
+        que ce soit votre nom complet ,votre surnom ou votre nom d'entreprise
 
-    <ion-row style="margin-bottom: 10px;">
-      <ion-col size="3">
-        <ion-avatar>
-          <img [src]="apiImg+user$?.photo">
-        </ion-avatar>
-      </ion-col>
-      <ion-col size="9">
-        <h5>{{user$.name}} {{user$.lastname}}</h5>
-        <h6 (click)="modifierPhotoProfile()">modifier la photo de profil</h6>
-      </ion-col>
+      </p>
     </ion-row>
-    <ion-item class="textInput">
-      <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION"></ion-input>
+    <ion-item class="textInput palmares">
+      <ion-textarea type="text" placeholder="PALMARES" rows="6" [(ngModel)]="user$.palmares"></ion-textarea>
     </ion-item>
-    <ion-grid>
-      <ion-row>
-        <p style="font-size: small;">
-          Aidez les gens a trouver votre compte a l'aide de votre nom le plus connu,
-          que ce soit votre nom complet ,votre surnom ou votre nom d'entreprise
-
-        </p>
-      </ion-row>
-      <ion-item class="textInput palmares">
-        <ion-textarea type="text" placeholder="PALMARES" rows="6"></ion-textarea>
-      </ion-item>
-      <ion-item class="textInput">
-        <ion-label>Adresse e-mail</ion-label>
-        <ion-input type="email" placeholder="ADRESSE E-MAIL" [(ngModel)]="user$.email"></ion-input>
-      </ion-item>
-      <ion-item class="textInput">
-        <ion-label>Numero de telephone</ion-label>
-        <ion-input type="number" placeholder="NUMERO DE TELEPHONE" [(ngModel)]="user$.phone"></ion-input>
-      </ion-item>
-      <ion-item class="textInput">
-        <ion-label>Date de naissance</ion-label>
-        <ion-datetime displayFormat="MMM D, YYYY" min="1900" [(ngModel)]="user$.datedenaissance"></ion-datetime>
-      </ion-item>
-    </ion-grid>
-    <ion-row>
-      <ion-col>
-        <ion-item>
-          <ion-select placeholder="Genre" okText="Okay" cancelText="Dismiss" [(ngModel)]="user$.sexe">
-            <ion-select-option value="homme">Homme</ion-select-option>
-            <ion-select-option value="femme">Femme</ion-select-option>
-            <ion-select-option value="autre">Autre</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item lines="none">
-          <ion-input style="font-size: small;" type="text" placeholder="POIDS" [(ngModel)]="user$.weight"></ion-input>
-        </ion-item>
-      </ion-col>
-      <ion-col>
-        <ion-item lines="none">
-          <ion-input style="font-size: small;" type="text" placeholder="TAILLE" [(ngModel)]="user$.height"></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-item class="footer">
-        <ion-button (click)="envoyer()">Envoyer</ion-button>
-        <ion-label class="desac">Desactivez mon compte</ion-label>
-      </ion-item>
-    </ion-row>
+    <ion-item class="textInput">
+      <ion-label>Adresse e-mail</ion-label>
+      <ion-input type="email" placeholder="ADRESSE E-MAIL" [(ngModel)]="user$.email"></ion-input>
+    </ion-item>
+    <ion-item class="textInput">
+      <ion-label>Numero de telephone</ion-label>
+      <ion-input type="number" placeholder="NUMERO DE TELEPHONE" [(ngModel)]="user$.phone"></ion-input>
+    </ion-item>
+    <ion-item class="textInput">
+      <ion-label>Date de naissance</ion-label>
+      <ion-datetime displayFormat="MMM D, YYYY" min="1900" [(ngModel)]="user$.datedenaissance"></ion-datetime>
+    </ion-item>
   </ion-grid>
-
+  <ion-row>
+    <ion-col>
+      <ion-item>
+        <ion-select placeholder="Genre" okText="Okay" cancelText="Dismiss" [(ngModel)]="user$.sexe">
+          <ion-select-option value="homme">Homme</ion-select-option>
+          <ion-select-option value="femme">Femme</ion-select-option>
+          <ion-select-option value="autre">Autre</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-input style="font-size: small;" type="text" placeholder="POIDS" [(ngModel)]="user$.weight"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item lines="none">
+        <ion-input style="font-size: small;" type="text" placeholder="TAILLE" [(ngModel)]="user$.height"></ion-input>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-item class="footer">
+      <ion-button (click)="updateMe()">Envoyer</ion-button>
+      <ion-label class="desac">Desactivez mon compte</ion-label>
+    </ion-item>
+  </ion-row>
 </ion-content>

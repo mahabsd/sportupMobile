@@ -19,3 +19,9 @@ ion-col:first-child {
     width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
     max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
 }
+
+.container {
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+  flex-wrap: wrap;
+}

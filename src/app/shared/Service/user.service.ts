@@ -35,6 +35,7 @@ export class UserService {
   updateMe(user) {
     return this.utilsService.patch(UtilsService.apiUSER + 'updateMe', user);
   }
+
   updateUser(user) {
     return this.utilsService.patch(UtilsService.apiUSER, user);
   }
@@ -86,4 +87,3 @@ export class UserService {
   }
 
 }
-
