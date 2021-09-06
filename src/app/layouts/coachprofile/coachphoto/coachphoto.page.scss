@@ -1,27 +1,28 @@
-ion-col:first-child {
-  width: 150px;
-}
-
-.rowCustomBig{
-  flex: 0 0 calc(calc(8 / var(--ion-grid-columns, 12)) * 100%);
-    width: calc(calc(8 / var(--ion-grid-columns, 12)) * 100%);
-    max-width: calc(calc(8 / var(--ion-grid-columns, 12)) * 100%);
-}
-.rowCustomSmall{
-  flex: 0 0 calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
-    width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
-    max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
-    height: 50%;
-}
-
-.rowCustom{
-  flex: 0 0 calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
-    width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
-    max-width: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
-}
-
 .container {
-  display: flex; /* or inline-flex */
-  flex-direction: row;
-  flex-wrap: wrap;
+  display: grid;
+  margin: 10px;
+  grid-template-columns: calc(calc(4 / var(--ion-grid-columns, 12)) * 100%) calc(calc(4 / var(--ion-grid-columns, 12)) * 100%) calc(calc(4 / var(--ion-grid-columns, 12)) * 100%);
+ 
+  font-family: 'Lato';
+  text-align: center;
+  font-size: 1.4em;
+ 
+}
+
+.item {
+  margin: 3px;
+  font-size: 1.5em;
+  border-radius: 20px;
+  background-size: cover;
+}
+
+.a {
+  background-size: cover;
+  padding: 50px 0;
+}
+
+.b {
+  background-size: cover;
+  padding: 10px 0;
+  grid-area: 1 / 1 / 3 / 3;
 }

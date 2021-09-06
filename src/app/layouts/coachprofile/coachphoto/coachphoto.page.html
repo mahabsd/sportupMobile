@@ -1,17 +1,16 @@
-<ion-grid>
+<ion-content>
+  <ion-grid>
 
-  <ion-row class="ion-no-padding">
-    <ion-row>
-      <ion-col *ngFor="let item of images ; let i = index; " [attr.size]="i===0 ? '8' : '4'" >
-         <img width="100%" height="100%" class="mygallery" [lazyLoad]="apImg+images[i].img?.name"
-        errorImage="../../../assets/imgs/150.png" alt="">
-          <img width="100%" width="100%" class="mygallery" [lazyLoad]="apImg+images[i+1].img?.name" *ngIf="i===1" alt="">
-
-      </ion-col>
-
-    </ion-row>
+    <div class="container">
+      <div *ngFor="let item of images ; let i = index; " [ngClass]="[i === 0 ? 'item b' : 'item a']"
+        [style.background-size]="'cover'" [style.background-image]="'url('+ apImg+item?.name + ')'"
+        [lazyLoad]="apImg+item?.name" errorImage="../../../assets/imgs/150.png">
 
 
-  </ion-row>
-</ion-grid>
+      </div>
 
+
+
+    </div>
+  </ion-grid>
+</ion-content>
