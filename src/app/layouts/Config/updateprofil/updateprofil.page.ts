@@ -28,13 +28,14 @@ export class UpdateprofilPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async res => {
       this.user$ = await res.data.data;
+      console.log(res.data.data);
 
     });
   }
 
   async addImage(source: CameraSource) {
     console.log('addimage');
-
+ 
     const image = await Camera.getPhoto({
       quality: 60,
       allowEditing: true,
@@ -48,10 +49,9 @@ export class UpdateprofilPage implements OnInit {
     console.log(this.filesToUpload);
     const fd = new FormData();
     fd.append('photo', blobData, imageName);
-    fd.append('content', this.user$);
-
+    this.getFormData(this.user$,fd);
+   
     this.userService.updateMe(fd).subscribe(async res => {
-      this.user$ = await res.data.data;
       console.log(res);
 
     });
@@ -101,11 +101,17 @@ export class UpdateprofilPage implements OnInit {
     await actionSheet.present();
 
   }
+  getFormData(object, formdata: FormData) {
 
+    Object.keys(object).forEach(key => formdata.append(key, object[key]));
+
+}
   updateMe() {
-    this.userService.updateMe(this.user$).subscribe(async res => {
-      this.user$ = await res.data.data;
-      console.log(res);
+    const fd = new FormData();
+    this.getFormData(this.user$,fd);
+
+    this.userService.updateMe(fd).subscribe(async res => {
+        console.log(res);
 
     });
 

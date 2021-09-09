@@ -10,5 +10,6 @@ export class Coach {
   situation: string;
   school: string;
   genre: string;
+  palmares: string;
   user: User;
 }
