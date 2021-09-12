@@ -87,7 +87,7 @@ export class PalmaresPage implements OnInit {
     });
   }
   updateCoach() {
-    console.log(this.coach);
+    console.log(this.coach.user.palmares);
 
     this.coachService.updateCoach(this.coach).subscribe(async res => {
       this.readOnlyPalmares = !this.readOnlyPalmares;

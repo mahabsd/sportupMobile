@@ -20,7 +20,8 @@ import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 })
 export class StatusComponent implements OnInit {
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  apiImg = `${environment.apiImg}Post/image/`;
+  apiImgUser = `${environment.apiImg}User/`;
+  apiImg = `${environment.apiImg}Post/`;
   @Input() post: any;
   @Input() index: any;
   @Input() user: any;

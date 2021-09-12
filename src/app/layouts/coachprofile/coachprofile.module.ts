@@ -10,6 +10,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomePageModule } from '../home/home.module';
 import { CoachphotoPage } from './coachphoto/coachphoto.page';
 import { CoachpubPage } from './coachpub/coachpub.page';
+import { ImageProfileComponent } from './image-profile/image-profile.component';
 import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
 @Injectable()
 export class LazyLoadImageHooks extends IntersectionObserverHooks {
@@ -48,8 +49,8 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     HomePageModule,
     LazyLoadImageModule,
   ],
-  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage],
-  exports: [CoachprofilePage, CoachphotoPage, CoachpubPage],
+  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent],
+  exports: [CoachprofilePage, CoachphotoPage, CoachpubPage,ImageProfileComponent],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],
 
 })

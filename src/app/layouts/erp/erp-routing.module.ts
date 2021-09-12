@@ -7,10 +7,7 @@ const routes: Routes = [
   {
     path: '',
     children: [
-      {
-        path: 'home-erp',
-        loadChildren: () => import('./home-erp/home-erp.module').then(m => m.HomeErpPageModule)
-      },
+    
       {
         path: 'gestion-material',
         loadChildren: () => import('./gestion-material/gestion-material.module').then(m => m.GestionMaterialPageModule)
@@ -43,6 +40,7 @@ const routes: Routes = [
         path: 'erp-space',
         loadChildren: () => import('./erp-space/erp-space.module').then(m => m.ErpSpacePageModule)
       },
+    
     ]
   }
 ];

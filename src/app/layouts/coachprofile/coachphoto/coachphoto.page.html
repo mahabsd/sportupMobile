@@ -1,16 +1,16 @@
 <ion-content>
   <ion-grid>
-
+    
+        <ion-button (click)="selectImageSource()" large><ion-icon name="add-circle-outline" size="large" color="medium"></ion-icon></ion-button>
+ 
+ 
     <div class="container">
-      <div *ngFor="let item of images ; let i = index; " [ngClass]="[i === 0 ? 'item b' : 'item a']"
-        [style.background-size]="'cover'" [style.background-image]="'url('+ apImg+item?.name + ')'"
-        [lazyLoad]="apImg+item?.name" errorImage="../../../assets/imgs/150.png">
-
-
+      <div *ngFor="let item of images ; let i = index; "   [ngClass]="[i === 0 ? 'item b' : 'item a']"
+        [style.background-size]="'cover'" [style.background-image]="'url('+ apImg+item?.image_name + ')'"
+        [lazyLoad]="apImg+item?.image_name" errorImage="../../../assets/imgs/150.png" (click)="presentModal(item)" >
+    
+    
       </div>
-
-
-
-    </div>
+      </div>
   </ion-grid>
 </ion-content>

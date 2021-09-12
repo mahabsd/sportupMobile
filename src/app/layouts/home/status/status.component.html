@@ -1,7 +1,7 @@
 <ion-grid>
   <ion-row lines="none">
     <ion-avatar slot="" class="ion-padding">
-      <img src="http://placehold.it/75">
+      <img [src]="apiImgUser+post?.user?.photo">
     </ion-avatar>
     <ion-label [routerLink]="['/profil/',post?.user?._id]" class="ion-justify-content-center "
       style="display: grid;align-self: center;">
@@ -16,7 +16,7 @@
     </ion-button>
   </ion-row>
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length>0">
-    <img [lazyLoad]="apiImg+images[0]?.name" />
+    <img [lazyLoad]="apiImg+images[0]?.image_name" />
   </ion-row>
   <ion-row>
     <ion-card-content>

@@ -95,12 +95,16 @@ export class ModalShearePage implements OnInit {
   createPost() {
     console.log(this.filesToUpload);
     const fd = new FormData();
-    fd.append('photo', this.filesToUpload, this.filesToUpload?.name);
-    fd.append('content', this.post?.content);
-    this.postService.createPost(fd).subscribe(res => {
-      this.closeModal();
-      return res;
-    });
+    if(this.filesToUpload){fd.append('photo', this.filesToUpload, this.filesToUpload?.name);}
+    if(this.post?.content)
+    {
+      fd.append('content', this.post?.content);
+      this.postService.createPost(fd).subscribe(res => {
+        this.closeModal();
+        return res;
+      });
+    }
+    
   }
 
 
@@ -179,16 +183,9 @@ export class ModalShearePage implements OnInit {
     const blobData = this.b64toBlob(image.base64String, `image/${image.format}`);
     const imageName = 'Give me a name';
     // this.post.photo = blobData;
+    this.filesToUpload = blobData;
     console.log(this.filesToUpload);
-    const fd = new FormData();
-    fd.append('photo', blobData, imageName);
-    fd.append('content', this.post.content);
-    this.postService.createPost(fd).subscribe(res => {
-      // this.closeModal();
-      console.log(res);
-
-      return res;
-    });
+   
   }
   b64toBlob(b64Data, contentType = '', sliceSize = 512) {
     const byteCharacters = atob(b64Data);
