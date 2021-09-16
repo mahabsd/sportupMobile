@@ -12,4 +12,8 @@ export class TabsPage implements OnInit {
   ngOnInit() {
   }
 
+
+  add(event: any){
+      console.log(event);
+  }
 }
