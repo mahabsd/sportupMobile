@@ -1,0 +1,38 @@
+ 
+  <ion-content>
+    <div slot="fixed" class="menu">
+      <ion-row   >
+        <ion-col size="10">
+          <ion-button (click)="selectImageSource()" large><ion-icon name="create-outline" size="large"></ion-icon></ion-button>
+          <ion-button (click)="supprimer(image)" large><ion-icon name="trash-outline" size="large"></ion-icon></ion-button>
+        </ion-col>
+        <ion-col size="2" class="ion-text-center">
+          <ion-button (click)="dismiss()" large><ion-icon name="close-circle-outline" size="large"></ion-icon></ion-button>
+          </ion-col>
+      </ion-row>
+    </div>
+    <ion-row class="ion-justify-content-center">
+  
+    
+   
+ 
+      <ion-col size="12">
+      
+          
+        
+        <img src="{{apImg+image?.image_name}}">
+      </ion-col>
+     
+      <ion-col  size="12">
+        <ion-title>
+          <h5 style="color: white;">{{image?.createdAt | date}}</h5> 
+        </ion-title>
+      
+      </ion-col>
+     
+    </ion-row>
+    
+  </ion-content>
+  
+ 
+ 

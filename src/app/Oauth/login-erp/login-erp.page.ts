@@ -38,7 +38,7 @@ export class LoginErpPage implements OnInit {
       // navigate to /tabs/home
 
       if (response.user.role === 'admin') {
-        this.router.navigateByUrl('/erp');
+        this.router.navigateByUrl('/erp-space');
       }
       else {
         this.presentToast('vous navez pas le droit daccess', 'danger', 'top');

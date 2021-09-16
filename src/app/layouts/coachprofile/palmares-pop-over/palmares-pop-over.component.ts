@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-palmares-pop-over',
@@ -7,8 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PalmaresPopOverComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router, private modalCtrl: ModalController) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+   palamares() {
+    this.modalCtrl.dismiss();
+    this.router.navigateByUrl('tabs/layouts/palmares');
+
+  }
+  // closemodal
 }

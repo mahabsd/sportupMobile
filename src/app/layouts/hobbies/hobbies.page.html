@@ -14,17 +14,18 @@
       </ion-col>
       <ion-col size="10">
 
-        <ion-slides pager="true" autoplay="3000" loop="true" [options]="slideOptsTwo" #slideWithNav2          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 200px;" >
-     
-          <ion-slide  *ngFor="let item of HobbiesData">
+        <ion-slides pager="true" autoplay="3000" loop="true" [options]="slideOptsTwo" #slideWithNav2
+          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 200px;">
+
+          <ion-slide *ngFor="let item of HobbiesData">
             <div class="container">
               <img src={{item.imgsrc}}>
-            
+
               <div class="centered">{{item.hobbiename}}</div>
             </div>
-                    </ion-slide>
-  
-  
+          </ion-slide>
+
+
 
         </ion-slides>
       </ion-col>
@@ -37,15 +38,15 @@
   </ion-grid>
 
 
-  <ion-searchbar  placeholder="" ></ion-searchbar>
+  <ion-searchbar placeholder=""></ion-searchbar>
 
- <div  style="text-align: center;margin: 20px auto">
+  <div style="text-align: center;margin: 20px auto">
 
- 
-  <ion-label > {{sportname}}</ion-label><br>
-  <ion-label >Description</ion-label>
- </div>
- <ion-button expand="block" >S'abonner</ion-button>
+
+    <ion-label> {{sportname}}</ion-label><br>
+    <ion-label>Description</ion-label>
+  </div>
+  <ion-button expand="block">S'abonner</ion-button>
 
 
 </ion-content>

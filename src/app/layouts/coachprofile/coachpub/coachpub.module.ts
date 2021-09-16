@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-
 import { CoachpubPageRoutingModule } from './coachpub-routing.module';
 
 import { CoachpubPage } from './coachpub.page';
@@ -14,8 +13,9 @@ import { CoachpubPage } from './coachpub.page';
     FormsModule,
     IonicModule,
     CoachpubPageRoutingModule,
- 
+
+
   ],
-  declarations: [CoachpubPage]
+  declarations: []
 })
-export class CoachpubPageModule {}
+export class CoachpubPageModule { }

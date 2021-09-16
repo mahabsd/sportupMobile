@@ -6,7 +6,21 @@ import { CoachprofilePage } from './coachprofile.page';
 const routes: Routes = [
   {
     path: '',
-    component: CoachprofilePage
+    component: CoachprofilePage,
+    children: [
+      {
+        path: 'coachphoto',
+        loadChildren: () => import('./coachphoto/coachphoto.module').then(m => m.CoachphotoPageModule)
+      },
+      {
+        path: 'coachpub',
+        loadChildren: () => import('./coachpub/coachpub.module').then(m => m.CoachpubPageModule)
+      }
+    ]
+  },
+  {
+    path: '',
+    redirectTo: '/coachprofile/coachphoto'
   }
 ];
 
@@ -14,4 +28,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class CoachprofilePageRoutingModule {}
+export class CoachprofilePageRoutingModule { }

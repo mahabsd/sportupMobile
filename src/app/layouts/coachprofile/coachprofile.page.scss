@@ -1,136 +1,134 @@
-ion-slides {
-  margin-top: 30%;
-  background: #e6e6e6;
-
-  img {
-    padding-top: 20px;
-    padding-bottom: 20px;
+@media (min-width: 414px) {
+  ion-tab-button {
+    margin: 20px;
+    box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.39);
+    background: #ffffff;
+    border-radius: 10px;
+    width: 50px;
+    height: 35px;
+    color: #616160;
+    max-width: 110px;
+    min-width: 50px;
   }
 }
 
-ion-content{
---padding-start:20px;
---padding-end:20px;
---background:var( --ion-color-light-tint);
- 
+@media (max-width: 414px) {
+  ion-tab-button {
+    margin: 10px;
+    box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.39);
+    background: #ffffff;
+    border-radius: 10px;
+    width: 50px;
+    height: 35px;
+    color: #616160;
+    max-width: 110px;
+    min-width: 50px;
+  }
+}
+@media (max-width: 320px) {
+  ion-tab-button {
+    margin: 5px;
+  }
 }
 
-ion-textarea{
+ion-tab-button #middle {
+  margin: 20px;
+}
+
+ion-tab-button ion-label {
+  font-weight: 400;
+  font-size: small;
+}
+
+ion-tab-bar .tab-selected {
+  background: #f1f2f2;
+  color: #616160;
+}
+
+ion-tab-bar {
+  background: none;
+  margin: 10px 20px 10px 20px;
+  border-bottom: none;
+}
+ion-content {
+  --padding-start: 20px;
+  --padding-end: 20px;
+  --background: #f8f8f8;
+}
+
+ion-textarea {
   background: none;
 }
 
-ion-item{
+ion-item {
   --background: none;
 }
 
-.profileID{
- 
-  width:  200px;
-  
+.profileID {
+  width: 150px;
 }
 
-.profileID h4{
+.profileID h4 {
   text-align: center;
   color: white;
 }
 
-
-.profileContainer{
+.profileContainer {
   flex-direction: column;
   justify-content: flex-end;
-      height: 200px;
-      background-size: cover;
+  height: 200px;
+  background-size: cover;
 }
-ion-segment-button{
+ion-segment-button {
   background-color: rgb(245, 245, 245);
- 
-  box-shadow: -4px 3px 7px 2px rgba(0,0,0,0.21);
+
+  box-shadow: -4px 3px 7px 2px rgba(0, 0, 0, 0.21);
   border-radius: 10px;
   margin: 15px;
   width: 110px;
   min-height: 10px;
   text-transform: none;
-  --indicator-color:none;
+  --indicator-color: none;
 }
-ion-segment-button ion-label{
+ion-segment-button ion-label {
   font-size: 14px;
 }
 
-.segment-button-checked{
+.segment-button-checked {
   color: var(--color);
   background-color: rgb(230, 230, 230);
-  
 }
 
-.mygallery{
-  border-radius: 6px; 
-
- 
-
+.mygallery {
+  border-radius: 6px;
 }
 
-.imageContainer{
-padding: 5px;
+.imageContainer {
+  padding: 5px;
 }
 
-.container {
-
-  display: grid;
-  margin: 10px;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  gap: 10px 10px;
-  grid-auto-flow: row;
-  grid-template-areas:
-    "Big Big Big a b"
-    "Big Big Big c d"
-    "Big Big Big e f";
- 
+#avatarPub {
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: baseline;
 }
 
-.Big { grid-area: Big; }
-
-.a { grid-area: a; }
-
-.b { grid-area: b; }
-
-.c { grid-area: c; }
-
-.d { grid-area: d; }
-
-.e { grid-area: e; }
-
-.f { grid-area: f; }
-
-
-#avatarPub{
-  width: 50px; height:50px;justify-content: center; align-items: baseline;
-}
-
-#identText{
+#identText {
   color: #616160;
   margin-left: 20px;
 }
 
-#rightPostMenu
-{
+#rightPostMenu {
   display: flex;
   justify-content: flex-end;
-
 }
 
-.postButton{
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-}
-
-#identText h5{
+#identText h5 {
   font-weight: 100;
   margin: 0px;
 }
 
-#identText h4{
- 
+#identText h4 {
   margin: 0px;
 }

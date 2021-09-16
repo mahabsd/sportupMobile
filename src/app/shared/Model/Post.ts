@@ -16,4 +16,5 @@ export class Post {
   iconLike: string;
   photo: File;
   images: ImageModel[];
+  nbFavoris: number;
 }

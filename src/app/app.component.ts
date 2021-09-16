@@ -31,6 +31,11 @@ export class AppComponent implements OnInit {
       icon: 'archive'
     },
     {
+      title: 'Hobbies',
+      url: '/tabs/hobbies',
+      icon: 'archive'
+    },
+    {
       title: 'Calendar',
       url: '/calendar',
       icon: 'Close'

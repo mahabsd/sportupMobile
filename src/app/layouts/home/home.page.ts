@@ -43,32 +43,23 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     this.getAllPostsByEvent();
+    console.log(this.page);
 
     this.getMe();
   }
 
-  async presentToast() {
-    const myToast = await this.toastCtrl.create({
-      message: 'ok',
-      duration: 2000,
-      color: 'success',
-      position: 'top'
-    }).then((toastData) => {
-      toastData.present();
-    });
-  }
+
 
   getAllPostsByEvent(event?) {
     this.postService.getAllPosts(this.page).pipe(share()).subscribe(res => {
-      console.log(res);
       this.posts = this.posts.concat(res['data']);
-      console.log(this.posts);
       if (event) {
         event.target.complete();
       }
     });
   }
   loadMore(event) {
+    console.log(this.page);
     this.page++;
     this.getAllPostsByEvent(event);
   }
@@ -76,9 +67,7 @@ export class HomePage implements OnInit {
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
-
         user: this.user$
-
       }
     });
     await modal.present();
@@ -102,10 +91,9 @@ export class HomePage implements OnInit {
 
   // Function to call like API
   like(event) {
-    console.log(event);
     this.indexPub = event.index;
-       this.postService.likePost(event.post).subscribe(res => {
-        });
+    this.postService.likePost(event.post).subscribe(res => {
+    });
   }
   // Function to call deslike API
   disLike(event) {
@@ -122,5 +110,14 @@ export class HomePage implements OnInit {
     });
     await this.loading.present();
   }
-
+  async presentToast() {
+    const myToast = await this.toastCtrl.create({
+      message: 'ok',
+      duration: 2000,
+      color: 'success',
+      position: 'top'
+    }).then((toastData) => {
+      toastData.present();
+    });
+  }
 }

@@ -1,0 +1,197 @@
+<app-header title="PALMARES" [isPalmares]="true"></app-header>
+<ion-content>
+  <ion-grid>
+    <ion-row [style.background-image]="'url(' + backgroundImage + ')'" class="profileContainer">
+      <div class="profileID">
+        <ion-avatar style="width:70px; height:70px; margin: 0 auto;">
+          <img [src]="apiImg +coach?.user?.photo">
+        </ion-avatar>
+        <h4>{{coach?.user?.name}} </h4>
+      </div>
+      <ion-row class="details">
+        <ion-col>
+          <h4>2 k</h4>
+        </ion-col>
+        <ion-col>
+          <h4>Abonnés</h4>
+        </ion-col>
+        <ion-col>
+          <h4>500</h4>
+        </ion-col>
+        <ion-col>
+          <h4>Abonnements</h4>
+        </ion-col>
+      </ion-row>
+    </ion-row>
+    <ion-row>
+      <ion-col size="9">
+        <ion-title class="title">
+          PALMARÉS
+        </ion-title>
+      </ion-col>
+      <ion-col size="3" (click)="readOnlyPalmaresToggle()">
+        <h5 style="color:#247238" *ngIf="readOnlyPalmares">modifier</h5>
+        <h5 style="color:#247238" *ngIf="!readOnlyPalmares">afficher</h5>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="!readOnlyPalmares">
+      <ion-textarea placeholder="entrer" rows="6" [(ngModel)]="coach.user.palmares"></ion-textarea>
+    </ion-row>
+    <ion-row *ngIf="readOnlyPalmares">
+      <p style="padding: 8px;" *ngIf="!showMore">{{trimString(coach?.user?.palmares,100)}}</p>
+      <p style="padding: 8px;" *ngIf="showMore" rows="6">{{coach?.user?.palmares}}</p>
+    </ion-row>
+    <ion-row>
+      <a class="showMore" *ngIf="readOnlyPalmares" (click)="showMore = !showMore">voir <span
+          [innerHtml]="showMore ? 'moins' : 'plus'"> </span>
+      </a>
+    </ion-row>
+    <ion-row>
+      <ion-col size="9">
+        <ion-title class="title">
+          À PROPOS
+        </ion-title>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-list *ngIf="readOnlyPalmares" class="mod">
+        <ion-item class="mod">
+          <ion-icon name="location" slot="start"></ion-icon>
+          <ion-label class="afficher">{{coach?.adresse}} {{coach?.ville}} {{coach?.codePostal}}
+          </ion-label>
+        </ion-item>
+        <ion-item class="mod">
+          <ion-icon name="calendar" slot="start"></ion-icon>
+          <ion-label class="afficher">
+            {{coach?.user?.datedenaissance | date: 'dd/MM/yyyy'}} </ion-label>
+        </ion-item>
+        <ion-item class="mod">
+          <ion-icon name="heart" slot="start"></ion-icon>
+          <ion-label class="afficher">{{coach?.situation}}
+          </ion-label>
+        </ion-item>
+
+        <ion-item class="mod">
+          <ion-icon name="school" slot="start"></ion-icon>
+          <ion-label class="afficher">{{coach?.school}}
+          </ion-label>
+        </ion-item>
+        <ion-item class="mod">
+          <ion-icon name="briefcase" slot="start"></ion-icon>
+          <ion-label class="afficher">{{coach?.lieuTravail}}
+          </ion-label>
+        </ion-item>
+        <ion-item class="mod">
+          <ion-icon name="transgender-outline" slot="start"></ion-icon>
+          <ion-col>
+            <ion-label class="afficher">{{coach?.user?.sexe}} </ion-label>
+          </ion-col>
+        </ion-item>
+      </ion-list>
+
+
+
+
+
+      <ion-list *ngIf="!readOnlyPalmares">
+        <ion-item>
+          <ion-icon name="location" slot="start"></ion-icon>
+          <ion-col>
+            <ion-label>Adresse :</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input #adresseinput [readonly]="readOnlyPalmares" [(ngModel)]="coach.adresse">
+            </ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-col>
+            <ion-label>Ville :</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input  [(ngModel)]="coach.ville"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-col>
+            <ion-label>Code Postal : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input ></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-col>
+            <ion-label>Pays :</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input  [(ngModel)]="coach.pays"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="briefcase" slot="start"></ion-icon>
+          <ion-col>
+            <ion-label>Lieu de travaille: </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input   [(ngModel)]="coach.lieuTravail"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="calendar" slot="start"></ion-icon>
+          <ion-col>
+            <ion-label>Date de naissance : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-datetime displayFormat="MMM D, YYYY" min="1900" [(ngModel)]="coach.user.datedenaissance">
+            </ion-datetime>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="school" slot="start"></ion-icon>
+          <ion-col>
+            <ion-label>Etablissement Scolaire : </ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-input   [(ngModel)]="coach.school"></ion-input>
+          </ion-col>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="heart" slot="start"></ion-icon>
+          <ion-select placeholder="Situation Amoureuse" [interfaceOptions]="{cssClass: 'selectCustom'}" [(ngModel)]="coach.user.situation">
+            <ion-select-option value="célibataire">Célibataire</ion-select-option>
+            <ion-select-option value="en couple">En couple</ion-select-option>
+            <ion-select-option value="fiancé">Fiancé(e)</ion-select-option>
+            <ion-select-option value="marié">Marié(e)</ion-select-option>
+            <ion-select-option value="en union civile">En union civile</ion-select-option>
+            <ion-select-option value="en concubinage">En concubinage</ion-select-option>
+            <ion-select-option value="en union libre">En union libre</ion-select-option>
+            <ion-select-option value="compliqué">C'est compliqué</ion-select-option>
+            <ion-select-option value="separé">separé(e)</ion-select-option>
+            <ion-select-option value="divorcé">divorcé(e)</ion-select-option>
+            <ion-select-option value="veuf">Veuf/Veuve</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-icon name="transgender-outline" slot="start"></ion-icon>
+          <ion-select placeholder="Genre" name="model" [interfaceOptions]="{cssClass: 'selectCustom'}"
+            [(ngModel)]="coach.user.sexe">
+            <ion-select-option value="homme">homme</ion-select-option>
+            <ion-select-option value="femme">femme</ion-select-option>
+            <ion-select-option value="autre">autre</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+    </ion-row>
+    <ion-row class="ion-justify-content-end">
+      <ion-col size="6">
+        <ion-button shape="round" id="buttonEnre" type="submit" (click)="updateCoach()">Enregister</ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-justify-content-end">
+      <ion-col size="6">
+        <ion-button shape="round" id="buttonAnnu">Annuler</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

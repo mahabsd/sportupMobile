@@ -1,93 +1,94 @@
-
-<ion-header [translucent]="true" >
-  <ion-toolbar >
+<ion-header [translucent]="true">
+  <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="/tabs/home">       
+      <ion-back-button defaultHref="/tabs/home">
       </ion-back-button>
-       
-     
+
+
     </ion-buttons>
     <ion-title style="color: white;"> ERP-LOGIN</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content   >
-<ion-row style="padding-top: 30px;" class="title">
- 
-  <ion-col >
-  
-      <ion-label  style="color: grey;font-weight: bold;font-size:smaller;margin-top: 5px;margin-bottom: 5px;">
+<ion-content>
+  <ion-row style="padding-top: 30px;" class="title">
+
+    <ion-col>
+
+      <ion-label style="color: grey;font-weight: bold;font-size:smaller;margin-top: 5px;margin-bottom: 5px;">
         Ajouter des fonctionnalités et des avantages exeptionnelles a votre application
-        </ion-label>
+      </ion-label>
 
 
-  </ion-col>
- 
-</ion-row>
- 
- 
-<ion-row style="padding-top: 40px;  display: flex; justify-content: center;" >
- 
-  
-  <!-- <ion-row style="margin-top: 20px; margin-bottom: 20px; margin-buttom: 100px;  justify-content: center;"> -->
- 
-      <ion-avatar   >
- 
-   
-        <img class="LogoS"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
+    </ion-col>
+
+  </ion-row>
+
+
+  <ion-row style="padding-top: 40px;  display: flex; justify-content: center;">
+
+
+    <!-- <ion-row style="margin-top: 20px; margin-bottom: 20px; margin-buttom: 100px;  justify-content: center;"> -->
+
+    <ion-avatar>
+
+
+      <img class="LogoS"
+        src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSOn9Vd__ZtxxYqjbAn2HSBFotatAMCMlTeHA&usqp=CAU">
 
     </ion-avatar>
- 
+
+
+    <!-- </ion-row> -->
+
+
+  </ion-row>
+
+
+  <ion-row class="ion-justify-content-center">
+
+    <ion-col text-center>
+      <ion-card no-padding
+        style="margin:5rem 40px 0 !important;background: rgb(238, 238, 238);     border-radius: 15px;">
+        <ion-card-content>
+
+
+          <form [formGroup]="loginForm" class="formStyle">
+            <ion-row class="ion-justify-content-center">
+              <ion-col size="12">
+                <input class="MyinputUpdate" type="email" [(ngModel)]="user.email" formControlName="emailControl"
+                placeholder="E-Mail" />
+              </ion-col>
+             <ion-col size="12">
+              <input class="MyinputUpdate" type="password" [(ngModel)]="user.password" formControlName="passwordControl"
+              placeholder="Mot de passe" />
+             </ion-col>
      
-      <!-- </ion-row> -->
- 
+              <ion-button (click)="login()" disabled={{loginForm.invalid}} class="catBtn">
+                Connexion
   
-</ion-row>
- 
- 
-<ion-row   class="ion-justify-content-center">
- 
-  <ion-col text-center>
-  <ion-card  no-padding style="margin:5rem 40px 0 !important;background: rgb(238, 238, 238);     border-radius: 15px;" >
-    <ion-card-content>
- 
-
-      <form [formGroup]="loginForm"  style="padding-left: 30px; padding-right: 30px; margin-top: 30px;">
-    <ion-row>
-    <input   class="MyinputUpdate" type="email" [(ngModel)]="user.email" formControlName="emailControl"   placeholder="E-Mail" />
-    <input   class="MyinputUpdate" type="password"  [(ngModel)]="user.password"  formControlName="passwordControl" placeholder="Mot de passe" />
-    </ion-row>
-      <ion-row style="padding-bottom: 30px;padding-top: 30px;  " class="ion-justify-content-center">
-        
-          <ion-col size="6" >
-            <div   class="message-box">
-              <ion-button   (click)="login()"  disabled={{loginForm.invalid}} color="light">
-            Connexion 
-                
               </ion-button>
-               
-            </div>
+          
+             
+            </ion-row>
+           
+    
+
+
+          </form>
+        </ion-card-content>
+        <ion-row class="ion-justify-content-center" style=" margin-bottom: 10px;">
+
+
+          <ion-col class="ion-text-center">
+            <ion-label style="color: grey;font-weight: bold;font-size:small; " [routerLink]="['/resetpass']">
+              Mot de passe oubliée ?
+            </ion-label>
           </ion-col>
-         
-      </ion-row>
- 
- 
-    </form>
-    </ion-card-content>
-      <ion-row class="ion-justify-content-center" style=" margin-bottom: 10px;" >
- 
-     
-        <ion-col class="ion-text-center"  >
-          <ion-label style="color: grey;font-weight: bold;font-size:small; " [routerLink]="['/resetpass']" >
-            Mot de passe oubliée ?
-          </ion-label>
-        </ion-col>
-      
-      </ion-row>
-  </ion-card>
-  </ion-col>
- 
 
-</ion-row>
+        </ion-row>
+      </ion-card>
+    </ion-col>
+
+
+  </ion-row>
 </ion-content>
-
-

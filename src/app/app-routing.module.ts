@@ -4,7 +4,7 @@ import { AuthGuard } from './Shared/Guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tabs/home',
+    redirectTo: 'menu/tabs/home',
     pathMatch: 'full'
   },
   {
@@ -27,10 +27,10 @@ const routes: Routes = [
     path: 'tabs',
     loadChildren: () => import('./component/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [AuthGuard]
   },
-  // {
-  //   path: 'menu',
-  //   loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
-  // },
+  {
+    path: 'menu',
+    loadChildren: () => import('./component/sidemenu/sidemenu.module').then(m => m.SidemenuPageModule)
+  },
   {
     path: 'signin',
     loadChildren: () => import('./Oauth/signin/signin.module').then(m => m.SigninPageModule)
@@ -56,6 +56,7 @@ const routes: Routes = [
     path: '**',
     redirectTo: ''
   },
+
 ];
 
 @NgModule({

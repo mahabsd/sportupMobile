@@ -7,12 +7,12 @@
     </ion-tab-button>
 
     <ion-tab-button tab="speakers">
-      <img [routerLink]="['/search']" src="../../assets/icon/icon_boite.png" />
+      <img [routerLink]="['/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
 
     </ion-tab-button>
 
     <ion-tab-button tab="map">
-      <img src="../../assets/icon/icon_nvposte.png" />
+      <img src="../../assets/icon/icon_nvposte.png" (click)="add($event)" />
 
     </ion-tab-button>
 
@@ -20,8 +20,8 @@
       <img [routerLink]="['/boite-reception']" src="../../assets/icon/icon_notification.png" />
 
     </ion-tab-button>
-    <ion-tab-button tab="about">
-      <img [routerLink]="['/tabs/profile']" src="../../assets/icon/icon_profile.png" />
+    <ion-tab-button tab="about" [routerLink]="['/tabs/layouts/updateprofil']">
+      <img src="../../assets/icon/icon_profile.png" />
 
     </ion-tab-button>
   </ion-tab-bar>

@@ -7,78 +7,57 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+
+  <div style="background-color: whitesmoke;padding: 5px;">
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
+      <ion-fab-button style="--background	:#ddd">
+        <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-searchbar placeholder=""></ion-searchbar>
+  </div>
+
   <div id="container">
-    <ion-row class="HeaderFilter">
-      <ion-searchbar placeholder=""></ion-searchbar>
-    </ion-row>
+
     <ion-row class="BadyFilter">
-      <ion-row  class="myItem" style="width:95% ; border: 20px !important">
-      <ion-col>
-      <ion-item-sliding  >
-    <ion-item  >
-      <ion-label routerLink="/chat" >
-        <p>
-        <ion-icon style="padding-right:10px"  slot="start" name="person"></ion-icon>  
-        Ben Ali Nassir</p>
-      </ion-label>
-      <img  style="width:15px ; height :15px" routerLink="/profil" src="../../assets/icon/connect2.png" />
-    </ion-item>
-    <ion-item-options side="start" >
-      <ion-item-option style="background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25) !important">
-        <div >
-        <ion-icon style="padding-right:10px" slot="icon-only" name="pencil-outline"></ion-icon>
-        <ion-icon style="padding-right:10px"  slot="icon-only" name="heart"></ion-icon>
-        <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
-        </div>
-      </ion-item-option>
-    </ion-item-options>
-    
-  </ion-item-sliding>
+      <ion-row class="myItem" style="width:95% ; border: 20px !important">
+        <ion-col style="    margin-top: 20px;"
+        size="13" size-lg>
+          <ion-item-sliding class="item-background-color" *ngFor="let item of [].constructor(5); let i = index"  (ionDrag)="logDrag(i)">
+            <ion-item class="item-background-color2" >
+              
+              <ion-label routerLink="/chat">
+                <p>
+                  <ion-icon style="padding-right:10px" slot="start" name="person"
+                    [hidden]="selecteditemIndex===i&&hideicon === true"></ion-icon>
+                  Ben Ali Nassir
+                </p>
+              </ion-label>
+              <img style="width:15px ; height :15px" routerLink="/profil" src="../../assets/icon/connect2.png" />
+            </ion-item>
+            <ion-item-options side="start">
+              <ion-item-option
+                style="background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25) !important">
+                <div>
+                  <ion-icon style="padding-right:10px" slot="icon-only" name="pencil-outline"></ion-icon>
+                  <ion-icon style="padding-right:10px" slot="icon-only" name="heart"></ion-icon>
+                  <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+                </div>
+              </ion-item-option>
+            </ion-item-options>
 
-      </ion-col>
-    
-<ion-col   size="1">
-<ion-row  style="background-color:red">
+          </ion-item-sliding>
 
-</ion-row>
-</ion-col>
+        </ion-col>
+
+        <ion-col size="1">
+          <ion-row style="background-color:red">
+
+          </ion-row>
+        </ion-col>
       </ion-row>
 
     </ion-row>
   </div>
 </ion-content>
-<ion-footer class="myFooter" style=" margin-left: 10px;margin-right: 10px;margin-top: 7px;margin-bottom: 7px;">
-  <ion-row>
-    <ion-col></ion-col>
-    <ion-col>
-      <div>
-        <img routerLink="/profil" src="../../assets/icon/icon2.png" />
-      </div>
-    </ion-col>
-    <ion-col></ion-col>
-    <ion-col>
-      <div>
-        <img routerLink="/shearch" src="../../assets/icon/icon1.png" />
-      </div>
-    </ion-col>
-    <ion-col></ion-col>
-    <ion-col>
-      <div>
-        <img src="../../assets/icon/icon5.png" />
-      </div>
-    </ion-col>
-    <ion-col></ion-col>
-    <ion-col>
-      <div>
-        <img routerLink="/boite-reception" src="../../assets/icon/icon3.png" />
-      </div>
-    </ion-col>
-    <ion-col></ion-col>
-    <ion-col>
-      <div>
-        <img src="../../assets/icon/icon4.png" />
-      </div>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
-</ion-footer>
