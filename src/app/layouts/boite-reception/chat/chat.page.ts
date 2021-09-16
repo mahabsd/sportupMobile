@@ -12,6 +12,7 @@ export class ChatPage implements OnInit {
   message = '';
   messages = [];
   currentUser;
+  filterchat:string;
   constructor(private socket: Socket,
 
     private toastCtrl: ToastController) { }

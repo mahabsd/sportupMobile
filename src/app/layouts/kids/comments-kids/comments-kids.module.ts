@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { CommentsKidsPageRoutingModule } from './comments-kids-routing.module';
 
 import { CommentsKidsPage } from './comments-kids.page';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { CommentsKidsPage } from './comments-kids.page';
     FormsModule,
     IonicModule,
     CommentsKidsPageRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserModule
   ],
   declarations: [CommentsKidsPage]
 })

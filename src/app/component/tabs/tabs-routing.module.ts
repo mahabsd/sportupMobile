@@ -26,11 +26,15 @@ const routes: Routes = [
         loadChildren: () => import('./../../layouts/kids/accueil/accueil.module').then(m => m.AccueilPageModule)
       },
       {
+        path: 'commentskids',
+        loadChildren: () => import('./../../layouts/kids/comments-kids/comments-kids.module').then(m => m.CommentsKidsPageModule)
+      },
+      {
         path: 'layouts',
         loadChildren: () => import('./../../layouts/layouts.module').then(m => m.LayoutsModule)
       },
       {
-        path: 'profil',
+        path: 'profil/:id',
         loadChildren: () => import('./../../layouts/profil/profil.module').then(m => m.ProfilPageModule),
 
       },
