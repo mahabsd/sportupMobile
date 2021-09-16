@@ -14,7 +14,6 @@
     <div class="row justify-content-center h-100">
       <div class="col-md-8 col-xl-6 chat">
         <div class="card">
-
           <div class="card-body msg_card_body">
             <div class="d-flex justify-content-start mb-4">
               <div class="img_cont_msg">
@@ -23,19 +22,14 @@
               </div>
               <i class="icono-arrow5-right"></i>
               <div class="msg_cotainer ">
-
                 <p style="font-size: small">
                   Hi, how are you samim?
                 </p>
                 <span class="msg_time">8:40 AM, Today</span>
-
-
               </div>
             </div>
             <div class="d-flex justify-content-end mb-4">
-
               <div class="msg_cotainer_send">
-
                 <p style="font-size: small">Hi Khalid i am good tnx how about you?</p>
                 <span class="msg_time_send">8:55 AM, Today</span>
               </div>
@@ -48,9 +42,15 @@
   </div>
 </ion-content> -->
 <ion-content>
-<div style="background-color: #80808033;    padding: 1px;">
-  <ion-searchbar placeholder=""></ion-searchbar>
 
+<div style="background-color: whitesmoke;padding: 5px;">
+  <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
+    <ion-fab-button style="--background	:#ddd;   height: 50px;      width: 50px;">
+      <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
+    </ion-fab-button>
+  </ion-fab>
+
+  <ion-searchbar placeholder="" [(ngModel)]="filterchat"></ion-searchbar>
 </div>
 
   
@@ -62,8 +62,7 @@
 
   </ion-grid>
 
-  <div class="parttwo"  *ngFor="let message of messages">
-
+  <div class="parttwo"  *ngFor="let message of messages |filterChat:filterchat">
 
     <div class="friend" *ngIf="message.user!==currentUser">
       <div>
@@ -93,8 +92,9 @@
     </div>
 
 
-    <ion-fab vertical="bottom" horizontal="start" slot="fixed">
-      <ion-fab-button style="--background	:#ddd">
+    <ion-fab vertical="bottom" horizontal="start" slot="fixed" style="height: 44px;">
+      <ion-fab-button style="--background	:#ddd;height: 45px;
+      width: 45px;">
         <ion-icon name="add-outline"></ion-icon>
       </ion-fab-button>
       <ion-fab-list side="top">
@@ -153,8 +153,6 @@
                 </ion-col>
                 <ion-col  size="10">
                 <div class="message-box">
-
-
                                   <textarea type="text" class="message-input" ></textarea>
                                   <div type="submit" class="message-submit">
                                   <ion-icon style="color:white; top:20px;    margin-top: 5px;" name="send-outline"></ion-icon>
@@ -163,12 +161,7 @@
                   </ion-col>
               </ion-row>
 </ion-footer>
-
-
-
-
 <script>
-
 $(document).ready(function(){
 $('#action_menu_btn').click(function(){
 	$('.action_menu').toggle();
