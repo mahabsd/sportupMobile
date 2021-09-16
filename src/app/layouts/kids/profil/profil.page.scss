@@ -27,12 +27,12 @@
 
 }
 .image2 {
-  position: absolute;
-  top: 90px;
-  left: 20px;
+
   width: 80px;
-  height: 80px;
-  margin-top: 100px;
+
+  position: absolute;
+    bottom: 1px;
+    left: 14px;
 }
 ion-segment-button {
   border-radius: 15px;
@@ -43,8 +43,8 @@ ion-segment-button {
     --background-checked: #d8d6d6ab;
   text-transform:none;
   min-height: unset;
-  --indicator-color:none
-
+  --indicator-color:none;
+  min-width: 80px;
 
 }
 
@@ -1219,4 +1219,3 @@ svg{
   0%{transform:scale(1.4);}
   100%{transform:scale(1);}
 }
-

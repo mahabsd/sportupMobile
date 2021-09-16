@@ -51,9 +51,21 @@
     </ion-row>
     <ion-row style="background-color :#f1f2f2; padding-top: 5px;" class="ion-justify-content-center">
 
-      <button (click)="buttonSuivre()" id="suiv" type="button">
-        Suivre
-      </button>
+      <ng-container *ngIf="EtatSuivre;else suiviEnable">
+        <button  type="button" id="dejasuiv" style="background-color: grey;">
+            déja suivi
+         </button>
+        </ng-container>
+        <ng-template #suiviEnable>
+          <button (click)="buttonSuivre()" id="suiv" type="button">
+            Suivre
+          </button>
+    
+          </ng-template>
+
+   
+      
+
 
       <button (click)="buttonBlock()" id="bloq" type="button">
         Bloquer
