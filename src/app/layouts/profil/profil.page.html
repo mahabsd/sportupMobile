@@ -15,7 +15,7 @@
 
 
       <ion-label style="font-family:Montserrat, sans-serif; color:#898b8b; font-size: small;">
-        <h1>{{myInformation.userLastName | uppercase}} {{myInformation.userFirstName}}</h1>
+        <h1>{{profileClickedName | uppercase}} </h1>
       </ion-label>
 
 
@@ -52,7 +52,7 @@
     <ion-row style="background-color :#f1f2f2; padding-top: 5px;" class="ion-justify-content-center">
 
       <ng-container *ngIf="EtatSuivre;else suiviEnable">
-        <button  type="button" id="dejasuiv" style="background-color: grey;">
+        <button  type="button" id="dejasuiv" style="background-color: #808080c4;">
             déja suivi
          </button>
         </ng-container>

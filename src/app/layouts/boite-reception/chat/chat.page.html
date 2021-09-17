@@ -44,12 +44,7 @@
 <ion-content>
 
 <div style="background-color: whitesmoke;padding: 5px;">
-  <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
-    <ion-fab-button style="--background	:#ddd;   height: 50px;      width: 50px;">
-      <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
-    </ion-fab-button>
-  </ion-fab>
-
+ 
   <ion-searchbar placeholder="" [(ngModel)]="filterchat"></ion-searchbar>
 </div>
 
@@ -113,11 +108,11 @@
 
     <ion-footer class="ion-no-border">
         <ion-row>
-          <ion-col  size="auto" size-lg="8">
+          <ion-col   size="auto" size-xs="7" size-md="9" size-lg="9" >
             <ion-input type="text" [(ngModel)]="message"></ion-input>
 
           </ion-col>
-          <ion-col  size="auto" >
+          <ion-col  size="auto" size-xs="3">
             <ion-button [disabled]="message===''"   (click)="sendMessage()">ENVOYER</ion-button>
 
           </ion-col>
