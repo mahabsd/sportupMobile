@@ -17,6 +17,7 @@ export class ProfilPage implements OnInit {
   EtatSuivre=false;
   follow: Follow = new Follow();
 idfollow;
+profileClickedName;
   myInformation: any = { userLastName: '', userFirstName: '' };
   iduser;  iduser1;
 idprofilePassed;
@@ -57,6 +58,7 @@ idFollowtoDelete;
  
     this.getUser();
    this.getfollow()
+   this.getUserByid()
   }
 
 
@@ -100,6 +102,18 @@ idFollowtoDelete;
     );
   }
 
+  getUserByid() {
+    this.userService.getUser( this.idprofilePassed).subscribe(
+      (response) => {
+        console.log("user clicked"+response.data.data.name);
+       this.profileClickedName=response.data.data.name
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
   itemSelected(data) {
     console.log(data);
   }
@@ -118,8 +132,6 @@ idFollowtoDelete;
   
   buttonBlock() {
 
-console.log(     this.idFollowtoDelete
-  )
        this.followerService.deleteFollow(this.idFollowtoDelete).subscribe((res) => {
       console.log(res);
    
