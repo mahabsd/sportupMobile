@@ -1,97 +1,61 @@
-<ion-toolbar color="white">
-<ion-row>
-    <ion-col size="5"  >
-     <p style="font-size: small;" color="grey">28 Janvier 2021</p>
-    </ion-col>
-    <ion-col >
-    </ion-col>
-    <ion-row>
-    <ion-col style="font-size: small;">
-     <p style="font-size: small;" color="grey">
-     Productivité
-     </p>
-
-    </ion-col>
-    <ion-col class="rating" style="padding-top: 15px;">
-         <img *ngIf='!evaluation.une' style="height: 10px;"
-          src="../../../assets/icon/etoile_gris.png"/>
-          <img *ngIf='evaluation.une' style="height: 10px;"
-          src="../../../assets/icon/etoile_vert.png"/>
-
-          <img *ngIf='!evaluation.deux'style="height: 10px;"
-          src="../../../assets/icon/etoile_gris.png"/>
-          <img *ngIf='evaluation.deux' style="height: 10px;"
-          src="../../../assets/icon/etoile_vert.png"/>
-
-          <img *ngIf='!evaluation.troix' style="height: 10px;"
-          src="../../../assets/icon/etoile_gris.png"/>
-          <img *ngIf='evaluation.troix' style="height: 10px;"
-          src="../../../assets/icon/etoile_vert.png"/>
-
-          <img *ngIf='!evaluation.quatre' style="height: 10px;"
-          src="../../../assets/icon/etoile_gris.png"/>
-          <img *ngIf='evaluation.quatre' style="height: 10px;"
-          src="../../../assets/icon/etoile_vert.png"/>
-
-          <img *ngIf='!evaluation.cinq' style="height: 10px;"
-          src="../../../assets/icon/etoile_gris.png"/>
-          <img *ngIf='evaluation.cinq' style="height: 10px;"
-          src="../../../assets/icon/etoile_vert.png"/>
-  </ion-col>
-    </ion-row>
-
-  </ion-row>
-</ion-toolbar>
+ 
 <ion-content>
-<ion-card class="MyCard" >
-<ion-card-header>
-<ion-icon name="notifications-off-circle-outline"></ion-icon><ion-label style="font-size: small; color:#006400;">1h </ion-label>
-</ion-card-header>
-  <ion-card-content >
-    <ion-row  class="MyinputDate">
-      <ion-col size="6" style="margin-left:-10px">
-          <ion-datetime style="font-size: small;"displayFormat="h:mm A" pickerFormat="h:mm A" value="1997-08-04T08:30Z" placeholder="Date Debut" [(ngModel)]="event.startTime"></ion-datetime>
-      </ion-col>
-      <ion-col  >
-        <ion-datetime  style="font-size: small;" displayFormat="h:mm A" pickerFormat="h:mm A" value="1997-08-04T08:30Z" [(ngModel)]="event.endTime" placeholder="Date Fin"></ion-datetime>
-      </ion-col>
-    </ion-row>
-      <input  class="MyinputUpdate"style="font-size: small;"  type="email"   placeholder="Activité" [(ngModel)]="event.Activite" />
-      <input  class="MyinputUpdate" style="font-size: small;"  type="email"   placeholder="Lieu" [(ngModel)]="event.Lieu" />
-      <ion-textarea style="font-size: small;" class="MyinputUpdate" placeholder="Notes:" [(ngModel)]="event.Notes" ></ion-textarea>
-    </ion-card-content>
-    </ion-card>
-    <ion-row>
-      <ion-col size="5"></ion-col>
-      <ion-col size="2">
-        <img style="height: 30px;"
-          src="../../../assets/icon/icon-ajouter.png"/>
-      </ion-col>
+  <ion-row style="height: 30px;">
+    <ion-col size="8">
+        <h5>{{today | date:'MM/d/YYYY'}}</h5>
+    </ion-col>
+    <ion-col size="4"> 
+      <h5>Productivité</h5>
+    </ion-col>
+  </ion-row>
+<ion-card>
+  <ion-card-content>
 
-      <ion-col size="5"></ion-col>
-    </ion-row>
+      <ion-item class="Item" lines="none">
+        <ion-datetime class="formLabel" style="width: 100%;"
+          displayFormat="MM/DD/YYYY"
+          placeholder="Date Début"
+          display-timezone="utc"
+          [(ngModel)]="event.startTime"
+        ></ion-datetime>
+    
+        <ion-datetime class="formLabel" style="width: 100%;" 
+          displayFormat="MM/DD/YYYY"
+          placeholder="Date Fin"
+          display-timezone="utc"
+          [(ngModel)]="event.endTime"
+        ></ion-datetime>
+      </ion-item>
+      <ion-item class="Item" lines="none">
+        <ion-label class="formLabel"   >Activité:</ion-label>
+        <ion-input tpye="text" size="0.8em" [(ngModel)]="event.activity"></ion-input>
+      </ion-item>
+      <ion-item   class="Item" lines="none">
+        <ion-label  class="formLabel" >Lieu:</ion-label>
+        <ion-input tpye="text"  size="0.8em"  [(ngModel)]="event.lieu"></ion-input>
+      </ion-item>
+      <ion-item   class="Item" lines="none">
+        <ion-label [attr.postition]="event.notes==='' ? 'stacked' : 'floating'"    class="formLabel">Notes:</ion-label>
+        <ion-textarea size="0.8em"  [(ngModel)]="event.notes"></ion-textarea>
+      </ion-item>
+    
+    
+
+    
+  </ion-card-content>
+</ion-card>
+<div class="buttonAddContainer">
+  <ion-icon name="add-circle" size="large"></ion-icon>
+</div>
+<ion-row class="ion-justify-content-center">
+  <ion-item>
+    <ion-button class="Annuler" (click)="close()">
+      Annuler
+    </ion-button>
+    <ion-button class="Enregistrer" (click)="save()">
+      Enregistrer
+    </ion-button>
+  </ion-item>
+</ion-row>
+
 </ion-content>
-<ion-footer >
-<ion-toolbar color="white">
-<ion-row style="    padding-bottom: 30px; ">
-    <ion-col size="3">
-    </ion-col>
-    <ion-col  size="3">
-    <div (click)="close()" class="message-box">
-      <div type="submit" class="message-annule">
-      <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Annuler</h6>
-    </div>
-    </div>
-    </ion-col>
-    <ion-col  size="3">
-    <div (click)="save()" class="message-box">
-      <div type="submit" class="message-submit">
-      <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Enregitrer</h6>
-    </div>
-    </div>
-    </ion-col>
-    <ion-col size="3">
-    </ion-col>
-    </ion-row>
-</ion-toolbar>
-</ion-footer>
