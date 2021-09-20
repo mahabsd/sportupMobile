@@ -19,6 +19,8 @@ import { Component, OnInit } from '@angular/core';
 import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { Post } from 'src/app/Shared/Model/Post';
 import { User } from 'src/app/Shared/Model/User';
+import { ModalShearePage } from '../../home/modal-sheare/modal-sheare.page';
+
 
 @Component({
   selector: 'app-accueil',
@@ -104,6 +106,22 @@ export class AccueilPage implements OnInit {
       this.getCommentByPost();
     });
   }
+
+  async openModal() {
+    const modal = await this.modalController.create({
+      component: ModalShearePage,
+      componentProps: {
+        user: this.user$
+      }
+    });
+    await modal.present();
+    await modal.onWillDismiss().then((result) => {
+      this.getAllPostsKids();
+
+    });
+  }
+
+
   getCommentByPost() {
     this.posts.forEach((element) => {
       console.log(element.id);
