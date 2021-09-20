@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ModalShearePage } from 'src/app/layouts/home/modal-sheare/modal-sheare.page';
+import { UserService } from 'src/app/Shared/Service/user.service';
 import { CameraSource } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
 import { ImageService } from 'src/app/Shared/Service/image.service';
-import { ModalController } from '@ionic/angular';
-import { ModalShearePage } from '../../layouts/home/modal-sheare/modal-sheare.page';
 
 @Component({
   selector: 'app-tabs',
@@ -13,20 +14,19 @@ import { ModalShearePage } from '../../layouts/home/modal-sheare/modal-sheare.pa
 export class TabsPage implements OnInit {
   user$: any = [];
 
-  constructor(
-    private imageService: ImageService,
+  constructor(private imageService: ImageService,
     private modalController: ModalController,
+    private userservice: UserService) { }
 
-  ) { }
-
-  ngOnInit() { }
-  sendMessage(message) {
-    // send message to subscribers via observable subject
-    this.imageService.sendMessage(message);
+  ngOnInit() {
+    this.getMe();
   }
 
-  add(event: any) {
-    console.log(event);
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      console.log(this.user$);
+    });
   }
 
   async openModal() {
@@ -38,6 +38,17 @@ export class TabsPage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
+
     });
   }
+
+  sendMessage(message) {
+    // send message to subscribers via observable subject
+    this.imageService.sendMessage(message);
+  }
+
+  add(event: any) {
+    console.log(event);
+  }
+
 }
