@@ -53,7 +53,7 @@ const routes: Routes = [
       {
         path: 'hobbies',
         loadChildren: () => import('../../layouts/hobbies/hobbies.module').then(m => m.HobbiesPageModule)
-      }
+      },
     ]
   },
   {

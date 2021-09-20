@@ -1,22 +1,21 @@
 import { Injectable } from '@angular/core';
 import { UtilsService } from './utils.service';
 import { ImageModel } from '../Model/ImageModel';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ImageService {
-
-  constructor(private apiService: UtilsService) { }
-
- 
+  private subject = new Subject<any>();
+  private images: any = [];
+  constructor(private apiService: UtilsService) {}
 
   // add image and save it in formdata
-  async readyImage(source: CameraSource, fd: FormData){
+  async readyImage(source: CameraSource, fd: FormData) {
     const image = await Camera.getPhoto({
       quality: 60,
       allowEditing: true,
@@ -48,23 +47,36 @@ export class ImageService {
     return blob;
   }
 
-  
+  sendMessage(message: string) {
+    this.subject.next({ event: message });
+  }
+
+  getMessage(): Observable<any> {
+    return this.subject.asObservable();
+  }
+
   addImage(image): Observable<ImageModel> {
-    return this.apiService.post(`${UtilsService.apiImage}`, image).pipe(map((res) => res));
+    return this.apiService
+      .post(`${UtilsService.apiImage}`, image)
+      .pipe(map((res) => res));
   }
   getAllImages(): Observable<ImageModel[]> {
-    return this.apiService.get(`${UtilsService.apiImage}`).pipe(map((res) => res.data.data));
+    return this.apiService
+      .get(`${UtilsService.apiImage}`)
+      .pipe(map((res) => res.data.data));
   }
   getImage(id): Observable<ImageModel[]> {
-    return this.apiService.get(`${UtilsService.apiImage}${id}`).pipe(map((res) => res.data.data));
+    return this.apiService
+      .get(`${UtilsService.apiImage}${id}`)
+      .pipe(map((res) => res.data.data));
   }
   getImageByUserId(id): Observable<ImageModel[]> {
-    return this.apiService.get(`${UtilsService.apiImage}?createdBy=${id}`).pipe(map((res) => res.data.data));
+    return this.apiService
+      .get(`${UtilsService.apiImage}?createdBy=${id}`)
+      .pipe(map((res) => res.data.data));
   }
 
-
   updateImage(image: ImageModel) {
-
     return this.apiService.patch(`${UtilsService.apiImage}${image._id}`, image);
   }
 
