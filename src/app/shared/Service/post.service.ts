@@ -12,6 +12,7 @@ export class PostService {
     private utilsService: UtilsService,
     private storage: StorageService) { }
   createPost(post): Observable<Post> {
+    console.log(post)
     return this.utilsService.post(UtilsService.apiPost, post).pipe(map(res => res));
   }
   deletePost(post: Post): Observable<Post> {

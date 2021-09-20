@@ -99,6 +99,9 @@ export class ModalShearePage implements OnInit {
     if(this.post?.content)
     {
       fd.append('content', this.post?.content);
+      fd.append('type', 'kids');
+
+      console.log(fd);
       this.postService.createPost(fd).subscribe(res => {
         this.closeModal();
         return res;
