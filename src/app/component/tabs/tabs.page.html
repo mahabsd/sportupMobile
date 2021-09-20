@@ -7,20 +7,22 @@
     </ion-tab-button>
 
     <ion-tab-button tab="speakers">
-      <img [routerLink]="['/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
 
     </ion-tab-button>
 
     <ion-tab-button tab="map">
-      <img src="../../assets/icon/icon_nvposte.png" (click)="sendMessage('addphoto')" />
+      <img src="../../assets/icon/icon_nvposte.png" (click)="openModal()" />
 
     </ion-tab-button>
 
     <ion-tab-button tab="about">
-      <img [routerLink]="['/boite-reception']" src="../../assets/icon/icon_notification.png" />
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/notifications']" src="../../assets/icon/icon_notification.png" />
 
     </ion-tab-button>
-    <ion-tab-button tab="about" [routerLink]="['/tabs/layouts/updateprofil']">
+    <ion-tab-button tab="about" [routerLink]="['/tabs/layouts/coachprofile']">
       <img src="../../assets/icon/icon_profile.png" />
 
     </ion-tab-button>
