@@ -5,6 +5,9 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 import { CameraSource } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
 import { ImageService } from 'src/app/Shared/Service/image.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tabs',
@@ -14,12 +17,16 @@ import { ImageService } from 'src/app/Shared/Service/image.service';
 export class TabsPage implements OnInit {
   user$: any = [];
 
-  constructor(private imageService: ImageService,
+  constructor(
+    private imageService: ImageService,
     private modalController: ModalController,
-    private userservice: UserService) { }
+    private router: Router,
+    private userservice: UserService,
+  ) {}
 
   ngOnInit() {
     this.getMe();
+ 
   }
 
   getMe() {
@@ -28,18 +35,23 @@ export class TabsPage implements OnInit {
       console.log(this.user$);
     });
   }
+  openModal(){
+    const url = this.router.url.split('/',6);
+    if(url[3] === 'home')
+    {this.openShareModal();}
+    if (url[4] === 'coachprofile')
+    {this.sendMessage('addphoto');}
+  }
 
-  async openModal() {
+  async openShareModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
-        user: this.user$
-      }
+        user: this.user$,
+      },
     });
     await modal.present();
-    await modal.onWillDismiss().then((result) => {
-
-    });
+    await modal.onWillDismiss().then((result) => {});
   }
 
   sendMessage(message) {
@@ -50,5 +62,4 @@ export class TabsPage implements OnInit {
   add(event: any) {
     console.log(event);
   }
-
 }
