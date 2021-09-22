@@ -22,11 +22,11 @@ export class TabsPage implements OnInit {
     private modalController: ModalController,
     private router: Router,
     private userservice: UserService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getMe();
- 
+
   }
 
   getMe() {
@@ -35,12 +35,19 @@ export class TabsPage implements OnInit {
       console.log(this.user$);
     });
   }
-  openModal(){
-    const url = this.router.url.split('/',6);
-    if(url[3] === 'home')
-    {this.openShareModal();}
-    if (url[4] === 'coachprofile')
-    {this.sendMessage('addphoto');}
+  openModal() {
+    const url = this.router.url.split('/', 6);
+    console.log(url);
+
+    if (url[3] === 'home') {
+      this.openShareModal();
+      console.log(url[3]);
+    }
+    if (url[4] === 'coachprofile') {
+      this.sendMessage('addphoto');
+      console.log(url[4]);
+
+    }
   }
 
   async openShareModal() {
@@ -51,7 +58,7 @@ export class TabsPage implements OnInit {
       },
     });
     await modal.present();
-    await modal.onWillDismiss().then((result) => {});
+    await modal.onWillDismiss().then((result) => { });
   }
 
   sendMessage(message) {
