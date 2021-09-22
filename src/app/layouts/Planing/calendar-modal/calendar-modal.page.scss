@@ -13,8 +13,8 @@ $font-size: 0.9em;
 }
 
 ion-content {
-  --padding-start: 10px;
-  --padding-end: 10px;
+  --padding-start: 5px;
+  --padding-end: 5px;
 }
 
 .formLabel {
@@ -47,7 +47,21 @@ h5 {
       rgb(181, 247, 227) 100%
     );
 }
+.dateItem{
 
+  --padding-start: 0px;
+  --padding-end: 0px;
+}
+
+
+ion-datetime .left{
+      --padding-start: 0px;
+      margin-right: 10px;
+}
+ion-card-content{
+  --padding-inline-start: 10px;
+  --padding-inline-end: 10px;
+}
 .buttonAddContainer{
     display: grid;
     justify-content: center;
