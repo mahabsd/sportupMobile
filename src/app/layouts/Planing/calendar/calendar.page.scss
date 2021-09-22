@@ -1,57 +1,118 @@
 ion-menu-button {
-    color: var(--ion-color-primary);
+  color: var(--ion-color-primary);
 }
- 
 
-.dateTitle{
-    color: white;
-    margin: auto;
-    text-align: center;
+.dateTitle {
+  color: white;
+  margin: auto;
+  text-align: center;
 }
- 
+
 ::ng-deep {
+  .table {
+    border: none !important;
+  }
 
-    .table{
-        border: none  !important;
-    }
-    .monthview-container {
-        height: auto !important;
-        color: rgb(202, 202, 202) !important;
-    }
+  ion-list .list-md {
+    --background: none;
+  }
+  ion-list .list-ios {
+    --background: none;
+  }
+
   
+  .monthview-container {
+    height: auto !important;
+    color: rgb(146, 146, 146) !important;
+  }
+
+  .monthview-datetable td,
+  .monthview-datetable th {
+    border: none !important;
+  }
+
+  .cal {
+    padding-top: 0;
+    border-radius: 30px;
+    background: linear-gradient(13deg, rgba(28,117,55,1) 0%, rgba(36,114,56,1) 9%, rgba(142,191,37,1) 100%);
+  }
  
-    .monthview-datetable td, .monthview-datetable th{
-        border: none !important;
-      }
 
-        .cal   {
-        padding-top: 0;
-        background: linear-gradient(300deg,  #8EBF25,#8EBF25,#247238, #247238);
-    }
-
-    .item-native{
-        background: #ebebeb18;
-    }
+.monthview-primary-with-event, .calendar-event-inner{
+  color: #247238;
 }
-.item-native{
+  .monthview-primary-with-event  {
+    margin: 3px !important;
+    background-color: white !important;
+    color: #247238 !important;
+    border-radius: 10px;
+  }
+
+ 
+  .item-native {
     background: #ebebeb18;
+  }
+}
+ 
+
+.item-native {
+  background: #ebebeb18;
 }
 .event-indicator {
-    background: var(--ion-color-success);
-    width: 5px;
-    height: 5px;
-    border-radius: 5px;
-    display: table-cell;
-  }
-  .with-event  {
-    background-color: none;
-    border-radius: 15px;
+  background: white;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  display: table-cell;
 }
-  .ion-color-primary {
-    --ion-color-base: #247238 !important;
-    --ion-color-base-rgb: var(--ion-color-primary-rgb, 56, 128, 255) !important;
-    --ion-color-contrast: var(--ion-color-primary-contrast, #fff) !important;
-    --ion-color-contrast-rgb: var(--ion-color-primary-contrast-rgb, 255, 255, 255) !important;
-    --ion-color-shade: var(--ion-color-primary-shade, #247238) !important;
-    --ion-color-tint: var(--ion-color-primary-tint, #247238) !important;
+.with-event {
+  background-color: none;
+  border-radius: 15px;
+}
+
+.ion-color-primary {
+  --ion-color-base: #247238 !important;
+  --ion-color-base-rgb: var(--ion-color-primary-rgb, 56, 128, 255) !important;
+  --ion-color-contrast: var(--ion-color-primary-contrast, #fff) !important;
+  --ion-color-contrast-rgb: var(
+    --ion-color-primary-contrast-rgb,
+    255,
+    255,
+    255
+  ) !important;
+  --ion-color-shade: var(--ion-color-primary-shade, #247238) !important;
+  --ion-color-tint: var(--ion-color-primary-tint, #247238) !important;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+ 
+  grid-auto-rows: minmax(100px, auto);
+}
+
+
+ion-content{
+  --padding-start: 5px;
+  --padding-end: 5px;
+}
+
+.stat{
+  margin-left: 10px;
+  border-radius: 10px;
+  background: #fff;
+  font-size: small;
+  max-width: 120px;
+}
+
+ion-card{
+  margin: 5px;
+}
+ 
+
+.dateCol{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
