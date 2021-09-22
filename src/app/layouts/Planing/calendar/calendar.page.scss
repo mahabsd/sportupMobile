@@ -12,9 +12,18 @@ ion-menu-button {
   .table {
     border: none !important;
   }
+
+  ion-list .list-md {
+    --background: none;
+  }
+  ion-list .list-ios {
+    --background: none;
+  }
+
+  
   .monthview-container {
     height: auto !important;
-    color: rgb(100, 41, 41) !important;
+    color: rgb(146, 146, 146) !important;
   }
 
   .monthview-datetable td,
@@ -29,16 +38,28 @@ ion-menu-button {
   }
  
 
+.monthview-primary-with-event, .calendar-event-inner{
+  color: #247238;
+}
+  .monthview-primary-with-event  {
+    margin: 3px !important;
+    background-color: white !important;
+    color: #247238 !important;
+    border-radius: 10px;
+  }
+
  
   .item-native {
     background: #ebebeb18;
   }
 }
+ 
+
 .item-native {
   background: #ebebeb18;
 }
 .event-indicator {
-  background: var(--ion-color-success);
+  background: white;
   width: 5px;
   height: 5px;
   border-radius: 5px;
@@ -48,6 +69,7 @@ ion-menu-button {
   background-color: none;
   border-radius: 15px;
 }
+
 .ion-color-primary {
   --ion-color-base: #247238 !important;
   --ion-color-base-rgb: var(--ion-color-primary-rgb, 56, 128, 255) !important;
@@ -60,4 +82,37 @@ ion-menu-button {
   ) !important;
   --ion-color-shade: var(--ion-color-primary-shade, #247238) !important;
   --ion-color-tint: var(--ion-color-primary-tint, #247238) !important;
+}
+
+.container{
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+ 
+  grid-auto-rows: minmax(100px, auto);
+}
+
+
+ion-content{
+  --padding-start: 5px;
+  --padding-end: 5px;
+}
+
+.stat{
+  margin-left: 10px;
+  border-radius: 10px;
+  background: #fff;
+  font-size: small;
+  max-width: 120px;
+}
+
+ion-card{
+  margin: 5px;
+}
+ 
+
+.dateCol{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
 }
