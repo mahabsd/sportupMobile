@@ -8,5 +8,10 @@
 </ion-header>
 
 <ion-content>
+  <ion-card *ngFor="let notif of notifications;let i=index; " scrollY="true"
+    style="font-size:20px; width : 100%;display:flex;align-items: center; justify-content:space-between">
+    <h4 style="margin-left:40px;">{{user.name}}</h4>
+    <ion-button expand="block">S'abonner</ion-button>
 
+  </ion-card>
 </ion-content>
