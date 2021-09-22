@@ -24,10 +24,10 @@ export class CalendarModalPage implements OnInit {
     startTime: null,
     endTime: '',
   };
-
+  selectedTime: Date;
+  formatedTime: string;
   modalReady = false;
   user$: any;
-
   constructor(private modalCtrl: ModalController) {}
 
   ngAfterViewInit() {
@@ -36,7 +36,9 @@ export class CalendarModalPage implements OnInit {
     }, 0);
   }
   ngOnInit() {
-    this.today = new Date();
+    this.formatedTime = this.selectedTime.toISOString();
+    console.log(this.formatedTime);
+this.event.startTime = this.formatedTime;
   }
 
   save() {

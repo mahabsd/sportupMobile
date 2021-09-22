@@ -5,7 +5,8 @@ import { formatDate } from '@angular/common';
 import { CalendarModalPage } from '../calendar-modal/calendar-modal.page';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
-
+import { Moment } from 'moment';
+import * as moment from 'moment';
 @Component({
   selector: 'app-home',
   templateUrl: 'calendar.page.html',
@@ -19,11 +20,8 @@ export class CalendarPage implements OnInit {
     mode: 'month',
     locale: 'en-GB',
     currentDate: new Date(),
+    autoSelect: false
   };
-
- 
-
-  selectedDate: Date;
 
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
@@ -38,8 +36,6 @@ export class CalendarPage implements OnInit {
   ngOnInit() {
     this.getMe();
   }
-
- 
 
   // Change current month/week/day
   next() {
@@ -74,11 +70,14 @@ export class CalendarPage implements OnInit {
     this.viewTitle = title;
   }
 
-  async openCalModal() {
+  async openCalModal(time) {
     const modal = await this.modalCtrl.create({
       component: CalendarModalPage,
       cssClass: 'cal-modal',
       backdropDismiss: false,
+      componentProps: {
+        selectedTime: time,
+      }
     });
 
     await modal.present();
@@ -86,42 +85,48 @@ export class CalendarPage implements OnInit {
     modal.onDidDismiss().then((result) => {
       if (result.data && result.data.event && result.data.event.startTime) {
         const event = result.data.event;
-        console.log(event);
-
-        const dateFormatedStart = this.formateEventDates(event.startTime);
+      
+        const dateParsedStart: Date = moment(event.startTime,'YYYY-MM-DD').toDate();
+        const dateFormtedStart = dateParsedStart;
         const dateFormatedEnd = this.formateEventDates(event.endTime);
- 
-          event.startTime = new Date(
-            Date.UTC(
-              dateFormatedStart.getUTCFullYear(),
-              dateFormatedStart.getUTCMonth(),
-              dateFormatedStart.getUTCDate(),
-            )
-          );
-          event.endTime = new Date(
-            Date.UTC(
-              dateFormatedEnd.getUTCFullYear(),
-              dateFormatedEnd.getUTCMonth(),
-              dateFormatedEnd.getUTCDate(),
-            )
-          );
-      
 
+        event.startTime = new Date(
+          Date.UTC(
+            dateParsedStart.getUTCFullYear(),
+            dateFormtedStart.getUTCMonth(),
+            dateFormtedStart.getUTCDate()
+          )
+        );
+        event.endTime = new Date(
+          Date.UTC(
+            dateFormatedEnd.getUTCFullYear(),
+            dateFormatedEnd.getUTCMonth(),
+            dateFormatedEnd.getUTCDate()
+          )
+        );
 
-      
+        console.log(event.startTime);
+        
+
         this.eventSource.push(event);
-        this.calendarService
-          .addActivity(event)
-          .subscribe(async (res) => console.log(res));
+       // this.calendarService
+         // .addActivity(event)
+        //  .subscribe(async (res) => console.log(res));
 
-        console.log(this.eventSource);
+    
 
         this.myCal.loadEvents();
       }
     });
   }
 
- 
+  onTimeSelected(ev) {
+    // eslint-disable-next-line max-len
+    //console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
+
+    this.openCalModal(ev.selectedTime);
+  }
+
   formateEventDates(eventTime) {
     const dateFormatString = eventTime.split('-');
     const dateFormate = new Date(
@@ -135,12 +140,11 @@ export class CalendarPage implements OnInit {
   }
   // Calendar event was clicked
   async onEventSelected(event) {
-  
     const alert = await this.alertCtrl.create({
       header: event.activity,
       subHeader: event.lieu,
       // eslint-disable-next-line max-len
-      message: 'Activité: ' +  event.notes ,
+      message: 'Activité: ' + event.notes,
       buttons: ['OK'],
     });
     alert.present();
