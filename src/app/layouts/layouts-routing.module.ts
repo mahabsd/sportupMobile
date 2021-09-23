@@ -32,7 +32,7 @@ const routes: Routes = [
 
       },
       {
-        path: 'chat',
+        path: 'chat/:id',
         loadChildren: () => import('./boite-reception/chat/chat.module').then(m => m.ChatPageModule),
 
       },

@@ -5,6 +5,7 @@ import { ModalController } from '@ionic/angular';
 import { ChatKidsPage } from '../chat-kids/chat-kids.page';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
+import { UserService } from 'src/app/Shared/Service/user.service';
 @Component({
   selector: 'app-boite-reception',
   templateUrl: './boite-reception.page.html',
@@ -12,34 +13,14 @@ import { ToastController } from '@ionic/angular';
 })
 export class BoiteReceptionPage implements OnInit {
   message = '';
-  messages = [];
+  kids = [];
   currentUser;
-  constructor( private modalController: ModalController,private socket: Socket,
+  constructor( private modalController: ModalController,private socket: Socket,  private userservice: UserService,
 
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
-    this.socket.connect();
-
-    let name = ` User-${new Date().getTime()}`;
-
-    this.currentUser = name;
-    this.socket.emit('set-name', name);
-    this.socket.fromEvent('users-changed').subscribe(data => {
-      console.log('getdata', data);
-      let user = data['user'];
-      if (data['event'] == 'left') {
-        this.presentToast(`User left:${user}`)
-      } else {
-
-        this.presentToast(`User joined:${user}`)
-      }
-    });
-    this.socket.fromEvent('message').subscribe(message => {
-      console.log('New:', message);
-      this.messages.push(message);
-
-    })
+  this.getkids()
   }
   async click() {
     const modal = await this.modalController.create({
@@ -49,6 +30,7 @@ export class BoiteReceptionPage implements OnInit {
 
       }
     });
+
     await modal.present();
 
     await modal.onWillDismiss().then((result) => {
@@ -60,23 +42,12 @@ export class BoiteReceptionPage implements OnInit {
 
   }
 
-  
-  sendMessage() {
-    this.socket.emit('send-message', { text: this.message });
-    this.message = '';
-  }
-
-  ionViewWillLeave() {
-    this.socket.disconnect();
-  }
-  async presentToast(message) {
-    const myToast = await this.toastCtrl.create({
-      message,
-      duration: 2000,
-      color: 'success',
-      position: 'top'
-    }).then((toastData) => {
-      toastData.present();
+   getkids() {
+    this.userservice.getUsersKids().subscribe((res) => {
+      this.kids=res
+     console.log(res)
     });
   }
+
+
 }
