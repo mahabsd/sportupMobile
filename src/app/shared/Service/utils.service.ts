@@ -29,6 +29,7 @@ export class UtilsService {
   public static apiFollower = UtilsService.remoteAdress + 'follower/';
   public static apiCalendar = UtilsService.remoteAdress + 'calendar/';
   public static apiHobbies = UtilsService.remoteAdress + 'hobbies/';
+  public static apiacitivteKids = UtilsService.remoteAdress + 'activiteKids/';
 
   token: any;
   myToast: any;

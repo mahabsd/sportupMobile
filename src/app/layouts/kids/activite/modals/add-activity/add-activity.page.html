@@ -1,0 +1,43 @@
+<app-header [title]="Activity" [isDetails]="true">
+  <ion-buttons slot="start">
+    <ion-icon routerLink="/menu/tabs/home" color="light" name="arrow-back"></ion-icon>
+  </ion-buttons>
+</app-header>
+
+
+<ion-content class="ion-padding">
+
+  <ion-grid style="height: 100%; display: flex;flex-direction:column; justify-content:space-between">
+    <form [formGroup]="activityKid">
+      <ion-row>
+        <ion-col text-center>
+          <ion-item>
+            <ion-select placeholder="choisis une activité préférée" formControlName="activite" mdInput required>
+              <ion-select-option value="cours">cours en ligne</ion-select-option>
+              <ion-select-option value="jeux">jeux en ligne</ion-select-option>
+              <ion-select-option value="recompense">récompenses</ion-select-option>
+              <ion-select-option value="suivi">suivi</ion-select-option>
+              <ion-select-option value="devoirs">devoirs et activités</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+        <ion-col text-center>
+          <h1 text-center>Ajoutez :</h1>
+          <h5>une activité, des liens de jeux préférés ou bien vos avancements estudiantine...</h5>
+          <input type="text" placeholder="Ajoutez ici" formControlName="content">
+
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-self-end">
+        <ion-col text-center>
+          <ion-button shape="round" color="success" (click)="confirm()">confirmer</ion-button>
+        </ion-col>
+        <ion-col text-center>
+          <ion-button shape="round" color="warning" (click)="closeModal()">retour</ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+
+  </ion-grid>
+
+</ion-content>

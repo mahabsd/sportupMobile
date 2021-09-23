@@ -1,0 +1,27 @@
+<app-header [title]="Activity" [isDetails]="true">
+  <ion-buttons slot="start">
+    <ion-icon routerLink="/menu/tabs/home" color="light" name="arrow-back"></ion-icon>
+  </ion-buttons>
+</app-header>
+
+
+<ion-content class="ion-padding">
+
+  <ion-grid style="height: 100%; display: flex;flex-direction:column; justify-content:space-between">
+    <div *ngFor="let activity of activities">
+      <ion-item>
+        <ion-label>{{activity.content}}</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-button shape="round" color="danger" (click)="delete(activity._id)">Supprimer mon activité </ion-button>
+      </ion-item>
+    </div>
+
+    <ion-row class="ion-align-self-end">
+      <ion-col text-center>
+        <ion-button shape="round" color="warning" (click)="closeModal()">retour</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

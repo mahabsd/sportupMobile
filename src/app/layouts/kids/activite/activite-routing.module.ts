@@ -7,6 +7,14 @@ const routes: Routes = [
   {
     path: '',
     component: ActivitePage
+  },
+  {
+    path: 'add-activity',
+    loadChildren: () => import('./modals/add-activity/add-activity.module').then( m => m.AddActivityPageModule)
+  },
+  {
+    path: 'show-activity',
+    loadChildren: () => import('./modals/show-activity/show-activity.module').then( m => m.ShowActivityPageModule)
   }
 ];
 
