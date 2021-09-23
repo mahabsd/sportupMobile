@@ -4,6 +4,8 @@
 <ion-content>
 
   <h5>Bienvenue sur votre onglet des hobbies</h5>
+  <h6>rechercher des personnes selon votre activité préférée</h6>
+
 
   <ion-grid>
     <ion-row>
@@ -38,15 +40,16 @@
   </ion-grid>
 
 
-  <ion-searchbar placeholder=""></ion-searchbar>
+  <ion-searchbar placeholder="rechercher" [(ngModel)]="recherche"></ion-searchbar>
 
   <div style="text-align: center;margin: 20px auto">
+    <ion-card *ngFor="let user of userlist | filter : recherche;let i=index; " scrollY="true"
+      style="font-size:20px; width : 100%;display:flex;align-items: center; justify-content:space-between">
+      <h4 style="margin-left:40px;">{{user.name}}</h4>
+      <ion-button expand="block">S'abonner</ion-button>
 
-
-    <ion-label> {{sportname}}</ion-label><br>
-    <ion-label>Description</ion-label>
+    </ion-card>
   </div>
-  <ion-button expand="block">S'abonner</ion-button>
 
 
 </ion-content>

@@ -4,21 +4,20 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HobbiesPageRoutingModule } from './hobbies-routing.module';
+import { AddActivityPageRoutingModule } from './add-activity-routing.module';
 
-import { HobbiesPage } from './hobbies.page';
+import { AddActivityPage } from './add-activity.page';
 import { ComponentModule } from 'src/app/component/component.module';
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
-
+import { ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HobbiesPageRoutingModule,
+    AddActivityPageRoutingModule,
     ComponentModule,
-    Ng2SearchPipeModule
+    ReactiveFormsModule
   ],
-  declarations: [HobbiesPage]
+  declarations: [AddActivityPage]
 })
-export class HobbiesPageModule { }
+export class AddActivityPageModule { }

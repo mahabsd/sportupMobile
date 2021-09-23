@@ -16,7 +16,7 @@ export class User {
   cut: string;
   datedenaissance: string;
   location: string;
-  activite: string;
+  activity: string;
   job: string;
   ville: string;
   palmares: string;

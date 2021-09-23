@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
   @Input() isNotifications: boolean = false;
+  @Input() isKid: boolean = false;
 
   constructor(private modalCtrl: ModalController, public popoverController: PopoverController) { }
 

@@ -6,6 +6,7 @@ import { User } from 'src/app/Shared/Model/User';
 import { PatternValidator } from 'src/app/Shared/patternValidator';
 import { UserService } from '../../Shared/Service/user.service';
 import { ToastController } from '@ionic/angular';
+import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
 
 @Component({
   selector: 'app-signin',
@@ -20,11 +21,13 @@ export class SigninPage implements OnInit {
   proForm: FormGroup;
   user: User = new User();
   myToast: any;
+  hobbies: any;
   constructor(
     public fb: FormBuilder,
     private toastCtrl: ToastController,
     public signinService: UserService,
-    public router: Router) {
+    public router: Router,
+    public hobbiesService: HobbiesService) {
 
   }
 
@@ -38,7 +41,7 @@ export class SigninPage implements OnInit {
 
       nameControl: new FormControl('', Validators.required),
       roleControl: new FormControl('', Validators.required),
-
+      hobby: new FormControl(''),
     });
     this.particulierForm = new FormGroup({
       dateNaissanceControl: new FormControl('', Validators.required),
@@ -53,6 +56,7 @@ export class SigninPage implements OnInit {
       activiteControl: new FormControl('', Validators.required)
 
     });
+    this.hobbiesService.getHobbies().subscribe(res => console.log(res));
   }
   connectFacebook() {
     console.log('hello facebook');
@@ -71,7 +75,6 @@ export class SigninPage implements OnInit {
     this.role = this.user.role;
   }
   saveUser() {
-    console.log(this.user);
     this.signinService.signUp(this.user).subscribe(res => {
       console.log(res);
 
@@ -80,6 +83,10 @@ export class SigninPage implements OnInit {
     }, err => {
       this.presentToast(err, 'danger', 'top');
     });
+
+    //add hobby to the registered user
+    //    console.log(this.hobbies);
+    // this.hobbiesService.addHobby(this.hobbies)
   }
 
   async presentToast(message, color, position) {

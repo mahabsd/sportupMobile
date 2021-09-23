@@ -8,14 +8,15 @@ import { AccueilPageRoutingModule } from './accueil-routing.module';
 
 import { AccueilPage } from './accueil.page';
 import { StatusKidsComponent } from './status-kids/status-kids.component';
-
+import { ComponentModule } from '../../../component/component.module';
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    AccueilPageRoutingModule
+    AccueilPageRoutingModule,
+    ComponentModule
   ],
-  declarations: [AccueilPage,StatusKidsComponent]
+  declarations: [AccueilPage, StatusKidsComponent]
 })
-export class AccueilPageModule {}
+export class AccueilPageModule { }
