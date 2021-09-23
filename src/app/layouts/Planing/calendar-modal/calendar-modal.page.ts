@@ -1,5 +1,8 @@
-import { Component, OnInit ,  AfterViewInit} from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { Activity } from 'src/app/shared/Model/Activity';
+import { User } from 'src/app/Shared/Model/User';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-calendar-modal',
@@ -9,48 +12,41 @@ import { ModalController } from '@ionic/angular';
 export class CalendarModalPage implements OnInit {
   calendar = {
     mode: 'month',
-    currentDate: new Date()
+    currentDate: new Date(),
   };
   viewTitle: string;
-  evaluation = {
-    une : true,
-    deux : true,
-    troix : false,
-    quatre : false,
-    cinq : false
-  }
+  activity: Activity = new Activity();
+  today: Date;
   event = {
-    Heures: '',
-    Activite: '',
-    Lieu: '',
-    Notes: '',
-    title: '',
-    startTime: '',
+    activity: '',
+    notes: '',
+    lieu: '',
+    startTime: null,
     endTime: '',
-    allDay: true
   };
 
   modalReady = false;
+  user$: any;
 
-  constructor(private modalCtrl: ModalController) { }
+  constructor(private modalCtrl: ModalController) {}
 
-  ngOnInit() {
-  }
   ngAfterViewInit() {
     setTimeout(() => {
       this.modalReady = true;
     }, 0);
   }
-  save() {    
-    this.modalCtrl.dismiss({event: this.event})
+  ngOnInit() {
+    this.today = new Date();
+  }
+
+  save() {
+    this.modalCtrl.dismiss({ event: this.event });
   }
 
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
-  // onTimeSelected(ev) {    
-  //   this.event.startTime = new Date(ev.selectedTime);
-  // }
+
   close() {
     this.modalCtrl.dismiss();
   }

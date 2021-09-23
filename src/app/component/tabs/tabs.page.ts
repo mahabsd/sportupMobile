@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalShearePage } from 'src/app/layouts/home/modal-sheare/modal-sheare.page';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { CameraSource } from '@capacitor/core';
+import { ActionSheetController } from '@ionic/angular';
+import { ImageService } from 'src/app/Shared/Service/image.service';
 
 @Component({
   selector: 'app-tabs',
@@ -11,7 +14,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 export class TabsPage implements OnInit {
   user$: any = [];
 
-  constructor( private modalController: ModalController, private userservice: UserService) { }
+  constructor(     private imageService: ImageService,private modalController: ModalController, private userservice: UserService) { }
 
   ngOnInit() {
     this.getMe()
@@ -33,9 +36,17 @@ export class TabsPage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
-     
 
     });
+
+  sendMessage(message) {
+    // send message to subscribers via observable subject
+    this.imageService.sendMessage(message);
   }
 
+  
+
+  add(event: any) {
+    console.log(event);
+  }
 }

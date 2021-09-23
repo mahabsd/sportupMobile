@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/core';
-import { ActionSheetController, ModalController, ToastController } from '@ionic/angular';
+import {
+  ActionSheetController,
+  ModalController,
+  ToastController,
+} from '@ionic/angular';
+import { Subscription } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ImageService } from '../../../Shared/Service/image.service';
 import { UserService } from '../../../Shared/Service/user.service';
@@ -13,15 +18,27 @@ import { ImageProfileComponent } from '../image-profile/image-profile.component'
 export class CoachphotoPage implements OnInit {
   images: any = [];
   apImg = environment.apiImg + 'image/';
+  subscription: Subscription;
   filesToUpload: any;
   user$: any;
+  messages: any[] = [];
   constructor(
     private imageService: ImageService,
     private userService: UserService,
     private modalController: ModalController,
     private action: ActionSheetController,
     private toastCtrl: ToastController
-  ) {}
+  ) {
+    this.subscription = this.imageService.getMessage().subscribe((message) => {
+      if (message.event === 'addphoto') {
+        this.selectImageSource();
+        console.log(message);
+      } else {
+        // clear messages when empty message received
+        this.messages = [];
+      }
+    });
+  }
   ngOnInit() {
     this.getMe();
   }
@@ -78,14 +95,16 @@ export class CoachphotoPage implements OnInit {
   }
 
   async presentToast(message) {
-    const myToast = await this.toastCtrl.create({
-      message,
-      duration: 2000,
-      color: 'success',
-      position: 'top'
-    }).then((toastData) => {
-      toastData.present();
-    });
+    const myToast = await this.toastCtrl
+      .create({
+        message,
+        duration: 2000,
+        color: 'success',
+        position: 'top',
+      })
+      .then((toastData) => {
+        toastData.present();
+      });
   }
 
   getImageByIdUser(id) {

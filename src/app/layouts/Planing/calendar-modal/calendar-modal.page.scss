@@ -1,131 +1,54 @@
 $ruler: 16px;
 $color-red: #726b6b;
-$color-bg: #EBECF0;
-$color-shadow: #BABECC;
-$color-white: #FFF;
-:host ::ng-deep {
-    .monthview-container {
-        height: auto !important;
-    }
- 
-    .event-detail-container {
-        display: none;
-    }
+$color-bg: #ebecf0;
+$color-shadow: #babecc;
+$color-white: #fff;
+$font-size: 0.9em;
+
+.Item {
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 3px 1px 10px -4px #00000094;
+  padding: 10px;
 }
-.MyEventCalendar{
-    background-color: #d7d7d7 !important;
-    color: black !important;
-    border-radius: 10px;
+
+ion-content {
+  --padding-start: 10px;
+  --padding-end: 10px;
 }
-.MyinputUpdate  {
-    border: 0;
-    outline: 0;
-    font-size: $ruler;
-    border-radius: 10px;
-    padding: $ruler;
-    background-color:white;
-    text-shadow: 1px 1px 0 $color-white;
-    box-shadow: -5px -5px 20px $color-white, 1px 1px 5px;
-    width: 94%;
-    margin-bottom: 10px;
-    margin-left: 8px;
-    margin-right: 5px;
-  }
 
-  .MyinputUpdate1  {
-    border: 0;
-    outline: 0;
-    font-size: $ruler;
-    border-radius: $ruler*10;
-    padding: $ruler;
-    background-color:white;
-    text-shadow: 1px 1px 0 $color-white;
-    box-shadow: -5px -5px 20px $color-white, 1px 1px 5px;
-    width: 27%;
-    height: 10PX;
-    margin-top: 8px;
-    margin-bottom: 8px;
+.formLabel {
+  color: #616160;
+  font-size: $font-size;
+}
 
-    margin-left: 11px;
-    margin-right: 5px;
-  }
-  .ion-textarea{
-    border: 0;
-    outline: 0;
-    border-radius: 10px;
-    background-color:white;
-    text-shadow: 1px 1px 0 $color-white;
-    box-shadow: 5px 5px 5px 5px gray, 5px 5px 5px 5px;
-    width: 94%;
-    height: 40%;
-    margin-bottom: 10px;
-    margin-left: 8px;
-    margin-right: 5px;
+h5 {
+  color: #726b6b;
+}
 
-  }
-  .MyinputDate  {
-    border: 0;
-    outline: 0;
-    font-size: $ruler;
-    border-radius: 10px;
+.Annuler {
+  width: 100px;
+  margin: 5px;
  
-    background-color:white;
-    text-shadow: 1px 1px 0 $color-white;
-    box-shadow: -5px -5px 20px $color-white, 1px 1px 5px;
-    width: 94%;
-    margin-bottom: 10px;
-    margin-left: 8px;
-    margin-right: 5px;
-  }
-  
+  --background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(210, 38, 0, 1) 0%,
+    rgba(247, 193, 181, 1) 100%
+  );
+}
+.Enregistrer {
+    margin: 5px;
+    width: 100px;
+    --background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgb(3, 143, 50) 0%,
+      rgb(181, 247, 227) 100%
+    );
+}
 
-.message-box {
-
-    position: relative;
-
-
-    & .message-input {
-        background: none;
-        border: none;
-        outline: none !important;
-        resize: none;
-        /* color: rgba(255, 255, 255, .8);*/
-        font-size: 15px;
-        height: 24px;
-        margin: 0;
-        padding-right: 25px;
-        width: 400px;
-        color: #444;
-
-    }
-
-    textarea:focus:-webkit-placeholder {
-        color: transparent;
-    }
-
-    & .message-submit {
-        background-image: linear-gradient(135deg, #247238, #247238, #8EBF25, #8EBF25);
-        position: absolute;
-        height: 25px;
-        top: 8px;
-        left: 10px;
-        right: 10px;
-        width: 80px;
-        font-size: large;
-        border-radius: 10px 10px 10px 10px;
-        text-align: center;
-    }
-
-    & .message-annule {
-        background-image: linear-gradient(135deg, #88181f, #88181f, #e6213c, #e6213c);
-        position: absolute;
-        height: 25px;
-        top: 8px;
-        left: 10px;
-        right: 10px;
-        width: 80px;
-        font-size: large;
-        border-radius: 10px 10px 10px 10px;
-        text-align: center;
-    }
+.buttonAddContainer{
+    display: grid;
+    justify-content: center;
 }
