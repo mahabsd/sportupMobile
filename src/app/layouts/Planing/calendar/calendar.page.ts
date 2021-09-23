@@ -3,11 +3,13 @@ import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 import { CalendarModalPage } from '../calendar-modal/calendar-modal.page';
+import { EventmodalComponent } from '../eventmodal/eventmodal.component';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { Moment } from 'moment';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-home',
   templateUrl: 'calendar.page.html',
@@ -16,6 +18,7 @@ import { environment } from 'src/environments/environment';
 export class CalendarPage implements OnInit {
   eventSource = [];
   eventDays = [];
+  method: string;
   viewTitle: string;
   apiImg = environment.apiImg + 'User/';
   user$: any;
@@ -25,7 +28,7 @@ export class CalendarPage implements OnInit {
     currentDate: new Date(),
     autoSelect: false,
   };
-
+  subscription: Subscription;
   @ViewChild(CalendarComponent) myCal: CalendarComponent;
 
   constructor(
@@ -37,7 +40,15 @@ export class CalendarPage implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.method = 'post';
     this.getMe();
+
+    this.subscription = this.calendarService.getEvent().subscribe((event) => {
+      this.openCalModal(event);
+      this.method = 'update';
+      console.log(event);
+      
+    });
   }
 
   // Change current month/week/day
@@ -61,7 +72,7 @@ export class CalendarPage implements OnInit {
   loadEvents() {
     this.calendarService.getActivitiesbyID(this.user$._id).subscribe((res) => {
       this.eventSource = res;
-      console.log(res);
+      
       this.eventSource.forEach((event) => {
         event.startTime = this.formateEventDates(event.startTime);
         event.endTime = this.formateEventDates(event.endTime);
@@ -71,8 +82,8 @@ export class CalendarPage implements OnInit {
     });
   }
   getDayName(day, month, year) {
-    const newDate = new Date(year,month,day);
-    console.log(day);
+    const newDate = new Date(year, month, day);
+   
     const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
     return days[newDate.getDay()];
   }
@@ -80,20 +91,36 @@ export class CalendarPage implements OnInit {
     this.eventSource.forEach((event) => {
       this.eventDays.push(event.startTime.getDate());
     });
-    this.eventDays = [...new Set(this.eventDays)].sort((a,b) => a - b);
+    this.eventDays = [...new Set(this.eventDays)].sort((a, b) => a - b);
   }
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
 
-  async openCalModal(time) {
+  async openDetailModal(evt) {
+    const modal = await this.modalCtrl.create({
+      component: EventmodalComponent,
+      cssClass: 'cal-modal',
+      backdropDismiss: false,
+      componentProps: {
+        eventSelected: evt
+      },
+    });
+    await modal.present();
+  }
+
+  async openCalModal(sTime) {
+    console.log(sTime);
+    
     const modal = await this.modalCtrl.create({
       component: CalendarModalPage,
       cssClass: 'cal-modal',
       backdropDismiss: false,
       componentProps: {
-        selectedTime: time,
+        selectedTime: sTime,
+        method: this.method,
+  
       },
     });
 
@@ -120,17 +147,22 @@ export class CalendarPage implements OnInit {
           dateFormatedEnd.getMonth(),
           dateFormatedEnd.getDate()
         );
-
-        console.log(event.startTime);
+ 
 
         this.eventSource.push(event);
-        this.calendarService
-          .addActivity(event)
-          .subscribe(async (res) => console.log(res));
 
-          this.extractEventDays();
+        if (this.method === 'post') {
+          this.calendarService
+            .addActivity(event)
+            .subscribe(async (res) => console.log(res));
+        } else if (this.method === 'update') {
+          console.log( sTime);
+          
+          
+        }
+
+        this.extractEventDays();
         this.myCal.loadEvents();
-        
       }
     });
   }

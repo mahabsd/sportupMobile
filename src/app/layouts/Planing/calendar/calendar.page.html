@@ -104,7 +104,7 @@
           </ion-col>
           <ion-col size="10">
             <ng-container *ngFor="let event of eventSource">
-              <ion-row  *ngIf="event.startTime.getDate() === day">
+              <ion-row  *ngIf="event.startTime.getDate() === day" (click)="openDetailModal(event)">
                 <ion-item>
                   <h2 >{{event.startTime.getHours()<10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()<10?'0':''}}{{event.startTime.getMinutes()}} </h2>
                   <ion-row style="margin-left: 20px;">
