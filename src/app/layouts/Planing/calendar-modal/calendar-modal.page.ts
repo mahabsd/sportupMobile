@@ -32,7 +32,7 @@ export class CalendarModalPage implements OnInit {
   modalReady = false;
   user$: any;
   constructor(private modalCtrl: ModalController,
-  ) {}
+  ) { }
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -42,20 +42,15 @@ export class CalendarModalPage implements OnInit {
   ngOnInit() {
     console.log(this.selectedEvent.method);
     this.method = this.selectedEvent.method;
-    if(this.method==='update')
-    {
+    if (this.method === 'update') {
       this.event.activity = this.selectedEvent.event.activity;
       this.event.notes = this.selectedEvent.event.notes;
       this.selectedTime = this.selectedEvent.event.startTime;
     }
-
-
     this.event.startTime = this.selectedEvent.event.startTime;
-      
-  
     this.formatedTime = this.event.startTime.toISOString();
     console.log(this.formatedTime);
-this.event.startTime = this.formatedTime;
+    this.event.startTime = this.formatedTime;
   }
 
   save() {
