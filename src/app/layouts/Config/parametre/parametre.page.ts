@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Shared/Auth/auth.service';
 
 @Component({
   selector: 'app-parametre',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ParametrePage implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
-
+  logout() {
+    this.authService.logout();
+  }
 }

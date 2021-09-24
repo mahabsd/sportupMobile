@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/Shared/Auth/auth.service';
 
 @Component({
   selector: 'app-coach-menu-pop-over',
@@ -7,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoachMenuPopOverComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
+
+  logout() {
+    this.authService.logout();
+  }
 
 }
