@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import * as moment from 'moment';
 import { Activity } from 'src/app/shared/Model/Activity';
 import { User } from 'src/app/Shared/Model/User';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
@@ -19,20 +20,13 @@ export class CalendarModalPage implements OnInit {
   activity: Activity = new Activity();
   method;
   today: Date;
-  event = {
-    activity: '',
-    notes: '',
-    lieu: '',
-    startTime: null,
-    endTime: '',
-  };
+  event: Activity = new Activity();
   selectedEvent;
-  selectedTime: Date;
+  selectedTime: any;
   formatedTime: string;
   modalReady = false;
   user$: any;
-  constructor(private modalCtrl: ModalController,
-  ) {}
+  constructor(private modalCtrl: ModalController) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -40,22 +34,42 @@ export class CalendarModalPage implements OnInit {
     }, 0);
   }
   ngOnInit() {
-    console.log(this.selectedEvent.method);
-    this.method = this.selectedEvent.method;
-    if(this.method==='update')
-    {
-      this.event.activity = this.selectedEvent.event.activity;
-      this.event.notes = this.selectedEvent.event.notes;
-      this.selectedTime = this.selectedEvent.event.startTime;
-    }
-
-
-    this.event.startTime = this.selectedEvent.event.startTime;
       
-  
-    this.formatedTime = this.event.startTime.toISOString();
-    console.log(this.formatedTime);
-this.event.startTime = this.formatedTime;
+    
+    if (this.selectedEvent) {
+      this.event._id = this.selectedEvent.event._id;
+      this.event.activity = this.selectedEvent.event.activity;
+      this.event.lieu = this.selectedEvent.event.lieu;
+      this.event.notes = this.selectedEvent.event.notes;
+            // eslint-disable-next-line max-len
+            
+            const fStart = new Date( Date.UTC(this.selectedEvent.event.startTime.getUTCFullYear(), this.selectedEvent.event.startTime.getUTCMonth(), this.selectedEvent.event.startTime.getUTCDate()+1));
+            // eslint-disable-next-line max-len
+            const fEnd = new Date( Date.UTC(this.selectedEvent.event.endTime.getUTCFullYear(),this.selectedEvent.event.endTime.getUTCMonth(), this.selectedEvent.event.endTime.getUTCDate()+1));
+        
+
+       
+      this.event.startTime = moment(fStart).format(
+        'YYYY/MM/DD'
+      );
+      this.event.endTime = moment(fEnd).format(
+        'YYYY/MM/DD'
+      );
+    } else {
+                // eslint-disable-next-line max-len
+                const fStart = new Date( Date.UTC(this.selectedTime.selectedTime.getUTCFullYear(), this.selectedTime.selectedTime.getUTCMonth(), this.selectedTime.selectedTime.getUTCDate()+1));
+                // eslint-disable-next-line max-len
+                const fEnd = new Date( Date.UTC(this.selectedTime.selectedTime.getUTCFullYear(),this.selectedTime.selectedTime.getUTCMonth(), this.selectedTime.selectedTime.getUTCDate()+1));
+            
+      // this.formatedTime = this.event.startTime.toISOString();
+      this.event.startTime = moment(fStart).format(
+        'YYYY/MM/DD'
+      );
+      this.event.endTime = moment(fEnd).format(
+        'YYYY/MM/DD'
+      );
+      console.log(this.selectedTime.selectedTime);
+    }
   }
 
   save() {
