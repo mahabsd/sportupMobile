@@ -6,10 +6,6 @@ const routes: Routes = [
     path: '',
 
     children: [
-      {
-        path: 'chat-kids',
-        loadChildren: () => import('./chat-kids/chat-kids.module').then(m => m.ChatKidsPageModule)
-      },
 
       {
         path: 'boitereceptionkids',
@@ -19,10 +15,7 @@ const routes: Routes = [
         path: 'planning',
         loadChildren: () => import('./planning/planning.module').then(m => m.PlanningPageModule)
       },
-      {
-        path: 'message',
-        loadChildren: () => import('./message/message.module').then(m => m.MessagePageModule)
-      },
+
       {
         path: 'maps',
         loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule)
@@ -39,9 +32,14 @@ const routes: Routes = [
         path: 'profilkids',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule)
       },
+      {
+        path: 'notificationsKids',
+        loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsPageModule)
+      }
 
     ]
-  }
+  },
+
 ];
 
 @NgModule({

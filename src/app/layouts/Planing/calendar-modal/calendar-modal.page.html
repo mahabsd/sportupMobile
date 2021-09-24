@@ -1,61 +1,84 @@
- 
 <ion-content>
-  <ion-row style="height: 30px;">
+  <ion-row style="height: 30px">
     <ion-col size="8">
-        <h5>{{today | date:'MM/d/YYYY'}}</h5>
+      <h5>{{today | date:'MM/d/YYYY'}}</h5>
     </ion-col>
-    <ion-col size="4"> 
+    <ion-col size="4">
       <h5>Productivité</h5>
     </ion-col>
   </ion-row>
-<ion-card>
-  <ion-card-content>
-
-      <ion-item class="Item" lines="none">
-        <ion-datetime class="formLabel" style="width: 100%;"
-          displayFormat="MM/DD/YYYY"
-          placeholder="Date Début"
-          display-timezone="utc"
-          [(ngModel)]="event.startTime"
-        ></ion-datetime>
-    
-        <ion-datetime class="formLabel" style="width: 100%;" 
-          displayFormat="MM/DD/YYYY"
-          placeholder="Date Fin"
-          display-timezone="utc"
-          [(ngModel)]="event.endTime"
-        ></ion-datetime>
+  <ion-card>
+    <ion-card-content>
+      <ion-item class="Item dateItem" lines="none">
+        <ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <ion-row>
+                <ion-label class="formLabel" position="stacked">
+                  Date Début:</ion-label
+                >
+              </ion-row>
+              <ion-row>
+                <ion-datetime
+                  class="formLabel left"
+                  style="min-width: 120px"
+                  displayFormat="MM/DD/YYYY"
+                  display-timezone="utc"
+                  [(ngModel)]="event.startTime"
+                ></ion-datetime>
+              </ion-row>
+            </ion-col>
+            <ion-col size="6">
+              <ion-row>
+                <ion-label class="formLabel" position="stacked">
+                  Date Fin:</ion-label
+                >
+              </ion-row>
+              <ion-datetime
+                class="formLabel"
+                style="min-width: 120px"
+                displayFormat="MM/DD/YYYY"
+                placeholder="Date Fin"
+                display-timezone="utc"
+                [(ngModel)]="event.endTime"
+              ></ion-datetime>
+            </ion-col>
+          </ion-row>
+        </ion-row>
       </ion-item>
       <ion-item class="Item" lines="none">
-        <ion-label class="formLabel"   >Activité:</ion-label>
-        <ion-input tpye="text" size="0.8em" [(ngModel)]="event.activity"></ion-input>
+        <ion-label class="formLabel">Activité:</ion-label>
+        <ion-input
+          tpye="text"
+          size="0.8em"
+          [(ngModel)]="event.activity"
+        ></ion-input>
       </ion-item>
-      <ion-item   class="Item" lines="none">
-        <ion-label  class="formLabel" >Lieu:</ion-label>
-        <ion-input tpye="text"  size="0.8em"  [(ngModel)]="event.lieu"></ion-input>
+      <ion-item class="Item" lines="none">
+        <ion-label class="formLabel">Lieu:</ion-label>
+        <ion-input
+          tpye="text"
+          size="0.8em"
+          [(ngModel)]="event.lieu"
+        ></ion-input>
       </ion-item>
-      <ion-item   class="Item" lines="none">
-        <ion-label [attr.postition]="event.notes==='' ? 'stacked' : 'floating'"    class="formLabel">Notes:</ion-label>
-        <ion-textarea size="0.8em"  [(ngModel)]="event.notes"></ion-textarea>
+      <ion-item class="Item" lines="none">
+        <ion-label
+          [attr.postition]="event.notes==='' ? 'stacked' : 'floating'"
+          class="formLabel"
+          >Notes:</ion-label
+        >
+        <ion-textarea size="0.8em" [(ngModel)]="event.notes"></ion-textarea>
       </ion-item>
-    
-    
-
-    
-  </ion-card-content>
-</ion-card>
-<div class="buttonAddContainer">
-  <ion-icon name="add-circle" size="large"></ion-icon>
-</div>
-<ion-row class="ion-justify-content-center">
-  <ion-item>
-    <ion-button class="Annuler" (click)="close()">
-      Annuler
-    </ion-button>
-    <ion-button class="Enregistrer" (click)="save()">
-      Enregistrer
-    </ion-button>
-  </ion-item>
-</ion-row>
-
+    </ion-card-content>
+  </ion-card>
+   
+  <ion-row class="ion-justify-content-center">
+    <ion-item>
+      <ion-button class="Annuler" (click)="close()"> Annuler </ion-button>
+      <ion-button class="Enregistrer" (click)="save()">
+        Enregistrer
+      </ion-button>
+    </ion-item>
+  </ion-row>
 </ion-content>

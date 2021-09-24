@@ -8,6 +8,7 @@ import { ActivitePageRoutingModule } from './activite-routing.module';
 
 import { ActivitePage } from './activite.page';
 import { ComponentModule } from 'src/app/component/component.module';
+import { AddActivityPageModule } from './modals/add-activity/add-activity.module';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { ComponentModule } from 'src/app/component/component.module';
     FormsModule,
     IonicModule,
     ActivitePageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    AddActivityPageModule
   ],
   declarations: [ActivitePage]
 })
-export class ActivitePageModule {}
+export class ActivitePageModule { }

@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { TopMenuComponent } from 'src/app/layouts/erp/top-menu/top-menu.component';
 import { PopoverController } from '@ionic/angular';
-import { CoachMenuPopOverComponent } from  'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
-import { PalmaresPopOverComponent } from  'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
+import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
+import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -21,21 +21,24 @@ export class HeaderComponent implements OnInit {
   @Input() isCoach: boolean = false;
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
-  constructor(private modalCtrl: ModalController,public popoverController: PopoverController) { }
+  @Input() isNotifications: boolean = false;
+  @Input() isKid: boolean = false;
+
+  constructor(private modalCtrl: ModalController, public popoverController: PopoverController) { }
 
   ngOnInit() { }
   close() {
     this.modalCtrl.dismiss();
   }
 
- 
+
   async openCoachMenu(ev: any) {
     const popover = await this.popoverController.create({
       component: CoachMenuPopOverComponent,
       cssClass: 'my-custom-class',
       event: ev,
       translucent: true,
-      mode:'ios'
+      mode: 'ios'
     });
     await popover.present();
 
@@ -49,7 +52,7 @@ export class HeaderComponent implements OnInit {
       cssClass: 'my-custom-class',
       event: ev,
       translucent: true,
-      mode:'ios'
+      mode: 'ios'
     });
     await popover.present();
 

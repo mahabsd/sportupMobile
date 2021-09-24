@@ -1,62 +1,63 @@
-<app-header [title]="Activite" [isDetails]="true"></app-header>
+<app-header [title]="Activite" [isDetails]="true">
+
+</app-header>
 
 <ion-content>-
   <div class="centerDiv">
-  <ion-row class="ion-align-items-center" >
-    <ion-col>
-    </ion-col>
-    <ion-col>
-      <ion-button   style="width: 150px; height: 150px; --background:#147B34;" >
-        <img src="../../../../assets/ImgKids/ajouter.svg" alt="">
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="openModal()" style="width: 150px; height: 150px; --background:#147B34;">
+          <img src="../../../../assets/ImgKids/ajouter.svg" alt="">
 
-      </ion-button>
-    </ion-col>
+        </ion-button>
+      </ion-col>
 
-    <ion-col>
-         <ion-button   style="width: 150px; height: 150px; --background:#46B2E6;" >
+      <ion-col>
+        <ion-button (click)="openShowModal('cours')" style="width: 150px; height: 150px; --background:#46B2E6;">
           <img src="../../../../assets/ImgKids/coursenligne.svg" alt="" style="    margin-top: 30px;">
+        </ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="openShowModal('jeux')" style="width: 150px; height: 150px; --background:#e30954;">
+          <img src="../../../../assets/ImgKids/jeux.svg" alt="">
 
-      </ion-button>
-    </ion-col>
-    <ion-col>
-    </ion-col>
-  </ion-row>
-  <ion-row class="ion-align-items-center">
-    <ion-col>
-    </ion-col>
-    <ion-col>
-      <ion-button   style="width: 150px; height: 150px; --background:#e30954;" >
-        <img src="../../../../assets/ImgKids/jeux.svg" alt="">
-
-      </ion-button>
-    </ion-col>
-    <ion-col>
-         <ion-button   style="width: 150px; height: 150px; --background:#10aea2;" >
+        </ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="openShowModal('recompense')" style="width: 150px; height: 150px; --background:#10aea2;">
           <img src="../../../../assets/ImgKids/récompense.svg" alt="">
 
-      </ion-button>
-    </ion-col>
-    <ion-col>
-    </ion-col>
-  </ion-row>
+        </ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
 
-  <ion-row class="ion-align-items-center">
-    <ion-col>
-    </ion-col>
-    <ion-col>
-         <ion-button   style="width: 150px; height: 150px; --background:#f59a1c;" >
+    <ion-row class="ion-align-items-center">
+      <ion-col>
+      </ion-col>
+      <ion-col>
+        <ion-button (click)="openShowModal('suivi')" style="width: 150px; height: 150px; --background:#f59a1c;">
           <img src="../../../../assets/ImgKids/suivi.svg" alt="">
 
-      </ion-button>
-    </ion-col>
-    <ion-col>
-      <ion-button   style="width: 150px; height: 150px; --background:#147B34;" >
-        <img src="../../../../assets/ImgKids/dvr.svg" alt="">
-
-      </ion-button>
+        </ion-button>
       </ion-col>
-    <ion-col>
-    </ion-col>
-  </ion-row>
-</div>
+      <ion-col>
+        <ion-button (click)="openShowModal('devoirs')" style="width: 150px; height: 150px; --background:#147B34;">
+          <img src="../../../../assets/ImgKids/dvr.svg" alt="">
+
+        </ion-button>
+      </ion-col>
+      <ion-col>
+      </ion-col>
+    </ion-row>
+  </div>
 </ion-content>

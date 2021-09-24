@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
 
 @Component({
   selector: 'app-hobbies',
@@ -13,8 +14,10 @@ export class HobbiesPage implements OnInit {
   sportname;
   sliderTwo: any;
   HobbiesData: any = [];
-
-  slideOptsTwo = {    initialSlide: 1,
+  userlist: any = [];
+  recherche: any;
+  slideOptsTwo = {
+    initialSlide: 1,
 
     speed: 400,
     spaceBetween: -8,
@@ -97,16 +100,14 @@ export class HobbiesPage implements OnInit {
               : $slideEl.find('.swiper-slide-shadow-bottom');
             if ($shadowBeforeEl.length === 0) {
               $shadowBeforeEl = swiper.$(
-                `<div class="swiper-slide-shadow-${
-                  isHorizontal ? 'left' : 'top'
+                `<div class="swiper-slide-shadow-${isHorizontal ? 'left' : 'top'
                 }"></div>`
               );
               $slideEl.append($shadowBeforeEl);
             }
             if ($shadowAfterEl.length === 0) {
               $shadowAfterEl = swiper.$(
-                `<div class="swiper-slide-shadow-${
-                  isHorizontal ? 'right' : 'bottom'
+                `<div class="swiper-slide-shadow-${isHorizontal ? 'right' : 'bottom'
                 }"></div>`
               );
               $slideEl.append($shadowAfterEl);
@@ -141,27 +142,27 @@ export class HobbiesPage implements OnInit {
     },
   };
 
-  constructor() {
-      this.HobbiesData = [
+  constructor(public hobbiesService: HobbiesService) {
+    this.HobbiesData = [
       {
         imgsrc: "https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
         hobbiename: 'Tennis ',
-        id:3
+        id: 3
       },
       {
         imgsrc: "https://images.unsplash.com/photo-1544698310-74ea9d1c8258?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1490&q=80",
         hobbiename: 'Foot ',
-        id:4
+        id: 4
       },
       {
         imgsrc: "https://images.unsplash.com/photo-1624880357913-a8539238245b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
         hobbiename: 'Hand ',
-        id:1
+        id: 1
       },
       {
         imgsrc: "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1067&q=80",
         hobbiename: 'Basket ',
-        id:2
+        id: 2
       },
     ];
 
@@ -190,15 +191,22 @@ export class HobbiesPage implements OnInit {
     this.checkIfNavDisabled(object, slideView);
 
     this.slideWithNav2.getActiveIndex().then((index) => {
-      this.selectedIndex = index-3;
+      this.selectedIndex = index - 3;
       console.log(this.selectedIndex);
-      
       this.HobbiesData.forEach(e => {
-        if(e.id==this.selectedIndex){
-          this.sportname=e.hobbiename;
+        if (e.id === this.selectedIndex) {
+          this.sportname = e.hobbiename;
+          this.hobbiesService.findbyactivity(this.sportname).subscribe((res: any) => {
+            this.userlist = res.data.data;
+            console.log(res);
+
+          }
+          );
         }
       });
     });
+
+
 
   }
 
@@ -220,6 +228,6 @@ export class HobbiesPage implements OnInit {
   }
 
   ngOnInit() {
-  console.log(  this.HobbiesData[0].hobbiename)
+    console.log(this.HobbiesData[0].hobbiename)
   }
 }

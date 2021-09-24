@@ -25,6 +25,6 @@ export class FavorisService {
   }
 
   deleteFavoris(id: any) {
-    return this.apiService.delete(`${UtilsService.apiFavoris}` + id);
+    return this.apiService.delete(`${UtilsService.apiFavoris}`);
   }
 }

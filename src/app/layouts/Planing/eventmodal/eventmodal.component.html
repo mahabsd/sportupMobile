@@ -1,0 +1,30 @@
+<ion-content>
+  <ion-toolbar color="dark">
+    <ion-buttons slot="start">
+      <ion-button (click)="update(eventSelected)" large><ion-icon name="create-outline" size="large"></ion-icon></ion-button>
+      <ion-button (click)="supprimer(eventSelected)" large><ion-icon name="trash-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" large><ion-icon name="close-circle-outline" size="large"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+ 
+  <ion-item>
+    <ion-title>
+      {{eventSelected.activity}}
+      
+        </ion-title>
+  </ion-item>
+
+
+  <ion-item>
+    <p>Lieu: {{eventSelected.lieu}}</p>
+  </ion-item>
+  <ion-item>
+    <p>Notes: {{eventSelected.notes}}</p>
+  </ion-item>
+
+
+
+  </ion-content>

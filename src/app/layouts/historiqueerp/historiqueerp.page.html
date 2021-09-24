@@ -1,19 +1,19 @@
 <app-header title="Historique" [isEllipsis]="true"></app-header>
-<ion-content style=" ">
+<ion-content>
 
   <div class="container-timeline">
     <ion-row>
       <ion-col size="1">
         <div class="line">
-  
+
         </div>
       </ion-col>
       <ion-col size="11">
-       </ion-col> 
+      </ion-col>
     </ion-row>
     <ion-virtual-scroll [items]="events" approxItemHeight="320px" [headerFn]="separateDate">
       <ion-item-divider *virtualHeader="let header; " style="--background:none;border-bottom: none;" lines="none">
-    
+
 
         <div class="dateHeader"><b>{{header |date: 'yyyy-MM-dd'}}</b></div>
 
