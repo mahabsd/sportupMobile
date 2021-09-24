@@ -49,14 +49,16 @@
   </div>
 
 
+<div scrollY="true" id="scroll-list">
   <ion-grid>
     <ion-text color="medium" class="ion-text-center">
       <p>You joined the chat as {{currentUser}}</p>
     </ion-text>
 
 
-  </ion-grid>
+  <div class="parttwo"  *ngFor="let message of messages2['messages'] ">
 
+    <div class="friend" *ngIf="message.userSender!==user$">
   <div class="parttwo" *ngFor="let message of messages |filterChat:filterchat">
 
     <div class="friend" *ngIf="message.user!==currentUser">
@@ -67,23 +69,24 @@
           {{message.createdAt | date:'shortTime'}}
         </div>
         <div id="blockMessagenumbertwo">
-          <strong>{{message.user}}</strong><br>
-          <span class="sent">{{message.msg}}</span>
+          <span class="sent">{{message.content}}</span>
           <div class="time2">
-            {{message.createdAt | date:'shortTime'}}
+            {{message.createdDate | date:'shortTime'}}
           </div>
         </div>
       </div>
     </div>
 
 
-    <div class="memessage" *ngIf="message.user===currentUser">
-      <strong>{{message.user}}</strong><br>
-      <span class="sent">{{message.msg}}</span>
+    <div class="memessage" *ngIf="message.userSender===user$">
+      <span class="sent">{{message.content}}</span>
       <div class="timemoi">
-        {{message.createdAt | date:'shortTime'}}
+        {{message.createdDate | date:'shortTime'}}
       </div>
     </div>
+    </div>
+ </div>
+
   </div>
 
 
@@ -120,6 +123,7 @@
   </ion-footer>
 
 
+ 
 
 
 </ion-content>
