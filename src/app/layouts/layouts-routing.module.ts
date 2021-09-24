@@ -32,7 +32,7 @@ const routes: Routes = [
 
       },
       {
-        path: 'chat',
+        path: 'chat/:id',
         loadChildren: () => import('./boite-reception/chat/chat.module').then(m => m.ChatPageModule),
 
       },
@@ -174,10 +174,15 @@ const routes: Routes = [
       {
         path: 'scan',
         loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule)
-      }
+      },
+      {
+        path: 'notifications',
+        loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
 
 
 

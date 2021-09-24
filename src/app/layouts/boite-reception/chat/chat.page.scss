@@ -798,15 +798,14 @@ ion-searchbar {
 
   height: 16px;
   position: relative;
-  top: 25px;
+  top: 18px;
   transform:             rotate( 29deg ) skew( -35deg );
       -moz-transform:    rotate( 29deg ) skew( -35deg );
       -ms-transform:     rotate( 29deg ) skew( -35deg );
       -o-transform:      rotate( 29deg ) skew( -35deg );
       -webkit-transform: rotate( 29deg ) skew( -35deg );
-  width:  15px;
-  left: -18px;
-
+      width: 14px;
+      left: -18px;
 
 }
 
@@ -1248,8 +1247,8 @@ li {
   background-color: #f1f1f1;
   border-radius: 10px;
   padding: 15px 15px 13px 10px;
-  margin-left: 52px;
-  margin-right: 71px;
+  margin-left: 88px;
+  margin-right: 11px;
   border-radius: 15px;
   width: auto;
 }
@@ -1281,9 +1280,9 @@ li {
     display: block;
     z-index: 99999;
     float: right;
-    height: 16px;
+    height: 12px;
     position: relative;
-    top: 11px;
+    top: 5px;
     transform: rotate(
 33deg
 ) skew(
@@ -1334,6 +1333,7 @@ li {
 .sent {
   text-overflow: ellipsis;
   overflow: hidden;
+  margin-left: 3px;
 }
 
 .othermessages img {
@@ -1565,7 +1565,7 @@ ion-button {
   height: 40px;
   margin-left: -10px;
   margin-top: 0px;
-  width: auto;
+  width: 88px;
 }
 
 
@@ -2282,8 +2282,23 @@ background: #ccc;
 
 
 ion-searchbar{
-width: auto;
-height: 41px;
+  max-width: 95%;
+  height: 41px;
 margin: 11px;
-margin-right: 80px;
+
+}
+
+div[scrollx=true],div[scrolly=true] {
+  position: relative;
+  overflow: hidden;
+}
+
+div[scrollx=true] {
+  overflow-x: auto;
+}
+
+div[scrolly=true] {
+  overflow-y: auto;
+  height: -webkit-fill-available;
+  margin-bottom: 120px;
 }

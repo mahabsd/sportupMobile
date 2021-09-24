@@ -2,6 +2,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
+import { UserService } from 'src/app/Shared/Service/user.service';
+import { ActivatedRoute } from '@angular/router';
+import { ChatService } from 'src/app/shared/Service/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -11,13 +14,21 @@ import { ToastController } from '@ionic/angular';
 export class ChatPage implements OnInit {
   message = '';
   messages = [];
+  messages2 = [];
+  userSenderId;
   currentUser;
+  user$;
+  idprofilePassed;
   filterchat:string;
   constructor(private socket: Socket,
-
+    private activatedRoute: ActivatedRoute,
+    private userservice: UserService, private chatService: ChatService,
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
+    this.getMe();
+    this.getchat();
+    this.idprofilePassed= this.activatedRoute.snapshot.params.id
     this.socket.connect();
 
     let name = ` User-${new Date().getTime()}`;
@@ -36,13 +47,16 @@ export class ChatPage implements OnInit {
     });
     this.socket.fromEvent('message').subscribe(message => {
       console.log('New:', message);
-      this.messages.push(message);
+      this.getchat();
 
+      
     })
   }
   sendMessage() {
-    this.socket.emit('send-message', { text: this.message });
+    this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed});
     this.message = '';
+    this.getchat();
+
   }
 
   ionViewWillLeave() {
@@ -58,4 +72,32 @@ export class ChatPage implements OnInit {
       toastData.present();
     });
   }
+
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.user$ = res.data.data._id;
+      console.log(this.user$);
+    });
+  }
+
+
+  getchat(){
+   
+
+    this.userservice.getMe().subscribe((res) => {
+
+      this.chatService.getChat( res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
+      console.log(res1)
+      this.messages2=res1;
+      //  this.userSenderId=res1.userSender;
+      });
+
+
+    });
+
+  }
 }
+
+
+
+

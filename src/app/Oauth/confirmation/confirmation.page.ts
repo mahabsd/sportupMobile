@@ -33,7 +33,7 @@ export class ConfirmationPage implements OnInit {
       this.router.navigateByUrl('/login');
     }, err => {
       console.log(err);
-      this.presentToast(err?.error?.error?.message, 'danger', 'middle')
+      this.presentToast(err?.error?.error?.message, 'danger', 'middle');
     });
   }
   async presentToast(message, color, position) {
@@ -46,16 +46,16 @@ export class ConfirmationPage implements OnInit {
     toast.present();
   }
   renvoyer() {
-    this.renvoi = true
+    this.renvoi = true;
     this.userService.renvoyerToken(this.user).subscribe((response) => {
       console.log('hello user', response);
-      this.renvoi = false
+      this.renvoi = false;
     }, err => {
       console.log(err);
-      this.presentToast(err, 'danger', 'middle')
+      this.presentToast(err, 'danger', 'middle');
     });
   }
   activeRenvoi() {
-    this.renvoi = true
+    this.renvoi = true;
   }
 }

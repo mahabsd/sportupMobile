@@ -12,6 +12,7 @@ export class PostService {
     private utilsService: UtilsService,
     private storage: StorageService) { }
   createPost(post): Observable<Post> {
+    console.log(post)
     return this.utilsService.post(UtilsService.apiPost, post).pipe(map(res => res));
   }
   deletePost(post: Post): Observable<Post> {
@@ -56,18 +57,14 @@ export class PostService {
 
   uploadImage(blobData, name, ext) {
     const formData = new FormData();
-    formData.append('photo', blobData, `myImage.${ext}`);
+    formData.append('files', blobData, `myImage.${ext}`);
     formData.append('name', name);
     return this.utilsService.post(`${UtilsService.apiPost}`, formData);
   }
-  uploadImageFile(file: File) {
-    console.log(file.name);
-
-    const ext = file.name.split('.').pop();
-    const formData = new FormData();
-    formData.append('photo', file, `myImage.${ext}`);
-    formData.append('name', file.name);
-    return this.utilsService.post(`${UtilsService.apiPost}`, formData);
+  uploadImageFile(formData) {
+ 
+ 
+    return this.utilsService.post(`${UtilsService.apiPost}`+'multiple', formData);
   }
 
 }

@@ -1,9 +1,9 @@
 <div class="img-wrapper">
   <div>
-    <ion-row style="height: 40px">
+    <ion-row style="height: 40px;text-align: initial;" routerLink="/tabs/profil/{{post.user.id}}" >
       <ion-col size="3">
         <ion-avatar>
-          <img class="myImageUser" src="../../../assets/kidsuser.png" routerLink="/tabs/profil/{{post.user.id}}" />
+          <img class="myImageUser" src="../../../assets/kidsuser.png" />
           
 
         </ion-avatar>
@@ -38,6 +38,7 @@
             font-size: x-small;
             display: block;
             width: 250px;
+            text-align: left;
           "
           >{{post.content}}
         </ion-label>

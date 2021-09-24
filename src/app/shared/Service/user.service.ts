@@ -86,4 +86,14 @@ export class UserService {
     this.myToast.present();
   }
 
+
+  getAllusers() {
+    return this.utilsService.get(`${UtilsService.apiUSER}`).pipe(map((res) => res.data.data));
+
+  }
+  getUsersKids(): Observable<any> {
+
+    return this.utilsService.get(`${UtilsService.apiUSER}?role=kids`).pipe(map(res => res.data));
+  }
+
 }

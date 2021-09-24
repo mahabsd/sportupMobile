@@ -1,11 +1,11 @@
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 <ion-header [translucent]="true">
   <ion-toolbar background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
-    <ion-icon slot="start" name="mic-outline"></ion-icon>
-    <ion-icon routerLink="/boite-reception" color="light" name="arrow-back"></ion-icon>
+    <ion-buttons slot="start">
+      <ion-icon routerLink="/menu/tabs/home" color="light" name="arrow-back"></ion-icon>
+    </ion-buttons>
     <ion-title color="light" style="text-align:center; margin-left: 20xp;"> Message</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -43,26 +43,23 @@
 </ion-content> -->
 <ion-content>
 
-<div style="background-color: whitesmoke;padding: 5px;">
-  <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
-    <ion-fab-button style="--background	:#ddd;   height: 50px;      width: 50px;">
-      <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
-    </ion-fab-button>
-  </ion-fab>
+  <div style="background-color: whitesmoke;padding: 5px;">
 
-  <ion-searchbar placeholder="" [(ngModel)]="filterchat"></ion-searchbar>
-</div>
+    <ion-searchbar placeholder="" [(ngModel)]="filterchat"></ion-searchbar>
+  </div>
 
-  
-  <ion-grid >
+
+<div scrollY="true" id="scroll-list">
+  <ion-grid>
     <ion-text color="medium" class="ion-text-center">
       <p>You joined the chat as {{currentUser}}</p>
     </ion-text>
 
 
-  </ion-grid>
+  <div class="parttwo"  *ngFor="let message of messages2['messages'] ">
 
-  <div class="parttwo"  *ngFor="let message of messages |filterChat:filterchat">
+    <div class="friend" *ngIf="message.userSender!==user$">
+  <div class="parttwo" *ngFor="let message of messages |filterChat:filterchat">
 
     <div class="friend" *ngIf="message.user!==currentUser">
       <div>
@@ -72,59 +69,61 @@
           {{message.createdAt | date:'shortTime'}}
         </div>
         <div id="blockMessagenumbertwo">
-          <strong>{{message.user}}</strong><br>
-          <span class="sent">{{message.msg}}</span>
+          <span class="sent">{{message.content}}</span>
           <div class="time2">
-            {{message.createdAt | date:'shortTime'}}
+            {{message.createdDate | date:'shortTime'}}
           </div>
         </div>
       </div>
     </div>
 
 
-    <div class="memessage" *ngIf="message.user===currentUser">
-      <strong>{{message.user}}</strong><br>
-      <span class="sent">{{message.msg}}</span>
+    <div class="memessage" *ngIf="message.userSender===user$">
+      <span class="sent">{{message.content}}</span>
       <div class="timemoi">
-        {{message.createdAt | date:'shortTime'}}
+        {{message.createdDate | date:'shortTime'}}
       </div>
     </div>
     </div>
+ </div>
+
+  </div>
 
 
-    <ion-fab vertical="bottom" horizontal="start" slot="fixed" style="height: 44px;">
-      <ion-fab-button style="--background	:#ddd;height: 45px;
+  <ion-fab vertical="bottom" horizontal="start" slot="fixed" style="height: 44px;">
+    <ion-fab-button style="--background	:#ddd;height: 45px;
       width: 45px;">
-        <ion-icon name="add-outline"></ion-icon>
+      <ion-icon name="add-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button>
+        <ion-icon name="camera-outline"></ion-icon>
       </ion-fab-button>
-      <ion-fab-list side="top">
-        <ion-fab-button>
-          <ion-icon name="camera-outline"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon name="images-outline"></ion-icon>
-        </ion-fab-button>
-        <ion-fab-button>
-          <ion-icon name="folder-outline"></ion-icon>
-        </ion-fab-button>
-      </ion-fab-list>
-    </ion-fab>
+      <ion-fab-button>
+        <ion-icon name="images-outline"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button>
+        <ion-icon name="folder-outline"></ion-icon>
+      </ion-fab-button>
+    </ion-fab-list>
+  </ion-fab>
 
 
-    <ion-footer class="ion-no-border">
-        <ion-row>
-          <ion-col  size="auto" size-lg="8">
-            <ion-input type="text" [(ngModel)]="message"></ion-input>
+  <ion-footer class="ion-no-border">
+    <ion-row>
+      <ion-col size="auto" size-xs="7" size-md="9" size-lg="9">
+        <ion-input type="text" [(ngModel)]="message"></ion-input>
 
-          </ion-col>
-          <ion-col  size="auto" >
-            <ion-button [disabled]="message===''"   (click)="sendMessage()">ENVOYER</ion-button>
+      </ion-col>
+      <ion-col size="auto" size-xs="3">
+        <ion-button [disabled]="message===''" (click)="sendMessage()">ENVOYER</ion-button>
 
-          </ion-col>
-        </ion-row>
-    </ion-footer>
+      </ion-col>
+    </ion-row>
+  </ion-footer>
 
 
+ 
 
 
 </ion-content>
