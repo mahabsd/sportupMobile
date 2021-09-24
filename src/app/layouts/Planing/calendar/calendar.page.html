@@ -25,17 +25,10 @@
             <img [src]="apiImg+user$?.photo" />
           </ion-avatar>
         </ion-col>
-        <ion-col size="4" style="margin: auto">
+        <ion-col size="9" style="margin: auto">
           <h2 style="color: white">{{user$?.name}}</h2>
         </ion-col>
-        <ion-col size="5">
-          <ion-item class="stat">
-            <ion-select placeholder="Statistique">
-              <ion-select-option value="a">Female</ion-select-option>
-              <ion-select-option value="m">Male</ion-select-option>
-            </ion-select>
-          </ion-item>
-        </ion-col>
+       
       </ion-row>
 
       <ion-row>
@@ -70,6 +63,7 @@
         (onTimeSelected)="onTimeSelected($event)"
         [currentDate]="calendar.currentDate"
         (onTitleChanged)="onViewTitleChanged($event)"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)"
         [showEventDetail] = "false"
       >
       </calendar>
