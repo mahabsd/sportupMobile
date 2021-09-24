@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import * as moment from 'moment';
 import { Activity } from 'src/app/shared/Model/Activity';
 import { User } from 'src/app/Shared/Model/User';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
@@ -19,15 +20,9 @@ export class CalendarModalPage implements OnInit {
   activity: Activity = new Activity();
   method;
   today: Date;
-  event = {
-    activity: '',
-    notes: '',
-    lieu: '',
-    startTime: null,
-    endTime: '',
-  };
+  event: Activity = new Activity();
   selectedEvent;
-  selectedTime: Date;
+  selectedTime: any;
   formatedTime: string;
   modalReady = false;
   user$: any;
@@ -44,11 +39,12 @@ export class CalendarModalPage implements OnInit {
     this.method = this.selectedEvent.method;
     if (this.method === 'update') {
       this.event.activity = this.selectedEvent.event.activity;
+      this.event.lieu = this.selectedEvent.event.lieu;
       this.event.notes = this.selectedEvent.event.notes;
       this.selectedTime = this.selectedEvent.event.startTime;
     }
     this.event.startTime = this.selectedEvent.event.startTime;
-    this.formatedTime = this.event.startTime.toISOString();
+    this.formatedTime = this.event.startTime.toString();
     console.log(this.formatedTime);
     this.event.startTime = this.formatedTime;
   }

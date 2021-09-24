@@ -10,6 +10,7 @@ import { Moment } from 'moment';
 import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: 'calendar.page.html',
@@ -36,7 +37,8 @@ export class CalendarPage implements OnInit {
     @Inject(LOCALE_ID) private locale: string,
     private modalCtrl: ModalController,
     private calendarService: CalendarService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -44,7 +46,7 @@ export class CalendarPage implements OnInit {
     this.getMe();
 
     this.subscription = this.calendarService.getEvent().subscribe((event) => {
-      this.openCalModal(event);
+      this.openCalModal(null,event);
       this.method = 'update';
       console.log(event);
       
@@ -72,7 +74,7 @@ export class CalendarPage implements OnInit {
   loadEvents() {
     this.calendarService.getActivitiesbyID(this.user$._id).subscribe((res) => {
       this.eventSource = res;
-      
+      console.log(res);
       this.eventSource.forEach((event) => {
         event.startTime = this.formateEventDates(event.startTime);
         event.endTime = this.formateEventDates(event.endTime);
@@ -83,11 +85,12 @@ export class CalendarPage implements OnInit {
   }
   getDayName(day, month, year) {
     const newDate = new Date(year, month, day);
-   
+ 
     const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
     return days[newDate.getDay()];
   }
   extractEventDays() {
+    this.eventDays = [];
     this.eventSource.forEach((event) => {
       this.eventDays.push(event.startTime.getDate());
     });
@@ -98,29 +101,40 @@ export class CalendarPage implements OnInit {
     this.viewTitle = title;
   }
 
+  onCurrentDateChanged(event){
+console.log(event);
+
+  }
   async openDetailModal(evt) {
+ 
     const modal = await this.modalCtrl.create({
       component: EventmodalComponent,
       cssClass: 'cal-modal',
       backdropDismiss: false,
       componentProps: {
-        eventSelected: evt
+        eventSelected: evt,
       },
     });
     await modal.present();
+    
+
+    modal.onDidDismiss().then((result) => {
+      this.loadEvents();
+
+    });
   }
 
-  async openCalModal(sTime) {
-    console.log(sTime);
-    
+  async openCalModal(sTime, evnt) {
+   
     const modal = await this.modalCtrl.create({
       component: CalendarModalPage,
       cssClass: 'cal-modal',
       backdropDismiss: false,
       componentProps: {
         selectedTime: sTime,
+        selectedEvent: evnt,
+ 
         method: this.method,
-  
       },
     });
 
@@ -129,40 +143,47 @@ export class CalendarPage implements OnInit {
     modal.onDidDismiss().then((result) => {
       if (result.data && result.data.event && result.data.event.startTime) {
         const event = result.data.event;
-
+     
         const dateParsedStart: Date = moment(
           event.startTime,
           'YYYY-MM-DD'
         ).toDate();
         const dateFormtedStart = dateParsedStart;
-        const dateFormatedEnd = this.formateEventDates(event.endTime);
+        const dateFormatedEnd: Date = moment(
+          event.endTime,
+          'YYYY-MM-DD'
+        ).toDate();  
 
         event.startTime = new Date(
-          dateParsedStart.getFullYear(),
-          dateFormtedStart.getMonth(),
-          dateFormtedStart.getDate()
-        );
-        event.endTime = new Date(
-          dateFormatedEnd.getFullYear(),
-          dateFormatedEnd.getMonth(),
-          dateFormatedEnd.getDate()
-        );
- 
+          Date.UTC(dateParsedStart.getUTCFullYear(), dateParsedStart.getUTCMonth(), dateParsedStart.getUTCDate()));
+       
+        event.endTime = new Date(Date.UTC(dateFormatedEnd.getUTCFullYear(), dateFormatedEnd.getUTCMonth(), dateFormatedEnd.getUTCDate()));
+  
 
-        this.eventSource.push(event);
+  
 
-        if (this.method === 'post') {
+        
+
+        if (evnt===null) {
+          console.log('add');
           this.calendarService
             .addActivity(event)
-            .subscribe(async (res) => console.log(res));
-        } else if (this.method === 'update') {
-          console.log( sTime);
-          
-          
+            .subscribe(async (res) => {console.log(res); this.eventSource.push(res); this.loadEvents(); });
+   
+    
+        } else   {
+          console.log('update');
+          console.log( event);
+          this.calendarService.updateEvent(event).subscribe((res) => {
+            console.log(res);
+            this.modalCtrl.dismiss();
+            this.loadEvents();
+          });
         }
 
         this.extractEventDays();
         this.myCal.loadEvents();
+ 
       }
     });
   }
@@ -170,18 +191,18 @@ export class CalendarPage implements OnInit {
   onTimeSelected(ev) {
     // eslint-disable-next-line max-len
     //console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-    this.openCalModal(ev.selectedTime);
-  }
+  this.openCalModal(ev,null);
+
+    
+}
 
   formateEventDates(eventTime) {
-    const dateFormatString = eventTime.split('-');
-    const dateFormate = new Date(
-      dateFormatString[0] +
-        '-' +
-        dateFormatString[1] +
-        '-' +
-        dateFormatString[2]
-    );
+    console.log(eventTime);
+ 
+    const dateFormate: Date = moment(
+      eventTime,
+      'YYYY-MM-DD'
+    ).toDate();
     return dateFormate;
   }
   // Calendar event was clicked
