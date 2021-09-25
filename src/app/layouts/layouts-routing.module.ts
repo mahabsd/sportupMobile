@@ -174,10 +174,15 @@ const routes: Routes = [
       {
         path: 'scan',
         loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule)
-      }
+      },
+      {
+        path: 'notifications',
+        loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
 
 
 

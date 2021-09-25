@@ -8,6 +8,7 @@ import { HobbiesPageRoutingModule } from './hobbies-routing.module';
 
 import { HobbiesPage } from './hobbies.page';
 import { ComponentModule } from 'src/app/component/component.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -15,8 +16,9 @@ import { ComponentModule } from 'src/app/component/component.module';
     FormsModule,
     IonicModule,
     HobbiesPageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    Ng2SearchPipeModule
   ],
   declarations: [HobbiesPage]
 })
-export class HobbiesPageModule {}
+export class HobbiesPageModule { }

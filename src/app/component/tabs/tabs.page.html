@@ -1,9 +1,8 @@
 <ion-tabs>
   <!-- Tab bar -->
   <ion-tab-bar slot="bottom" translucent="true">
-    <ion-tab-button tab="home" title="accueil">
-      <img [routerLink]="['/tabs/home']" src="../../assets/icon/icon_home.png" />
-
+    <ion-tab-button title="accueil">
+      <img [routerLink]="['/menu/tabs/home']" src="../../assets/icon/icon_home.png" />
     </ion-tab-button>
 
       <ion-tab-button tab="speakers" *ngIf="user$.role==='kids'">
@@ -20,16 +19,18 @@
     
 
     <ion-tab-button tab="map">
+    <ion-tab-button>
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
+    </ion-tab-button>
+    <ion-tab-button>
       <img src="../../assets/icon/icon_nvposte.png" (click)="openModal()" />
-
-
     </ion-tab-button>
-
-    <ion-tab-button tab="about">
-      <img [routerLink]="['/boite-reception']" src="../../assets/icon/icon_notification.png" />
-
+    <ion-tab-button>
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/notifications']" src="../../assets/icon/icon_notification.png" />
     </ion-tab-button>
-    <ion-tab-button tab="about" [routerLink]="['/tabs/layouts/updateprofil']">
+    <ion-tab-button [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']">
       <img src="../../assets/icon/icon_profile.png" />
 
     </ion-tab-button>

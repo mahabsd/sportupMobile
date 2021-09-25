@@ -13,9 +13,9 @@ export class PalmaresPopOverComponent implements OnInit {
 
   ngOnInit() { }
 
-   palamares() {
+  palamares() {
     this.modalCtrl.dismiss();
-    this.router.navigateByUrl('tabs/layouts/palmares');
+    this.router.navigateByUrl('/palmares');
 
   }
   // closemodal

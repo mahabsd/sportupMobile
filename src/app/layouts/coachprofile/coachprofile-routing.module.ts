@@ -18,10 +18,7 @@ const routes: Routes = [
       }
     ]
   },
-  {
-    path: '',
-    redirectTo: '/coachprofile/coachphoto'
-  }
+
 ];
 
 @NgModule({
