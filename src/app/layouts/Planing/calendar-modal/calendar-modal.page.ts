@@ -26,8 +26,7 @@ export class CalendarModalPage implements OnInit {
   formatedTime: string;
   modalReady = false;
   user$: any;
-  constructor(private modalCtrl: ModalController,
-  ) { }
+  constructor(private modalCtrl: ModalController) {}
 
   ngAfterViewInit() {
     setTimeout(() => {
@@ -42,6 +41,56 @@ export class CalendarModalPage implements OnInit {
       this.event.lieu = this.selectedEvent.event.lieu;
       this.event.notes = this.selectedEvent.event.notes;
       this.selectedTime = this.selectedEvent.event.startTime;
+
+      // eslint-disable-next-line max-len
+      const fStart = new Date(
+        Date.UTC(
+          this.selectedEvent.event.startTime.getUTCFullYear(),
+          this.selectedEvent.event.startTime.getUTCMonth(),
+          this.selectedEvent.event.startTime.getDate(),
+          this.selectedEvent.event.startTime.getUTCHours() + 1,
+          this.selectedEvent.event.startTime.getUTCMinutes()
+        )
+      );
+      // eslint-disable-next-line max-len
+      const fEnd = new Date(
+        Date.UTC(
+          this.selectedEvent.event.endTime.getUTCFullYear(),
+          this.selectedEvent.event.endTime.getUTCMonth(),
+          this.selectedEvent.event.endTime.getDate(),
+          this.selectedEvent.event.endTime.getUTCHours() + 1,
+          this.selectedEvent.event.endTime.getUTCMinutes()
+        )
+      );
+
+      this.event.startTime = moment(fStart).format('YYYY/MM/DD HH:mm');
+      this.event.endTime = moment(fEnd).format('YYYY/MM/DD HH:mm');
+    } else {
+      // eslint-disable-next-line max-len
+      const fStart = new Date(
+        Date.UTC(
+          this.selectedTime.selectedTime.getUTCFullYear(),
+          this.selectedTime.selectedTime.getUTCMonth(),
+          this.selectedTime.selectedTime.getDate(),
+          this.selectedTime.selectedTime.getUTCHours() + 1,
+          this.selectedTime.selectedTime.getUTCMinutes()
+        )
+      );
+      // eslint-disable-next-line max-len
+      const fEnd = new Date(
+        Date.UTC(
+          this.selectedTime.selectedTime.getUTCFullYear(),
+          this.selectedTime.selectedTime.getUTCMonth(),
+          this.selectedTime.selectedTime.getDate(),
+          this.selectedTime.selectedTime.getUTCHours() + 1,
+          this.selectedTime.selectedTime.getUTCMinutes()
+        )
+      );
+
+      // this.formatedTime = this.event.startTime.toISOString();
+      this.event.startTime = moment(fStart).format('YYYY/MM/DD HH:mm');
+      this.event.endTime = moment(fEnd).format('YYYY/MM/DD HH:mm');
+      console.log(this.selectedTime.selectedTime);
     }
     this.event.startTime = this.selectedEvent.event.startTime;
     this.formatedTime = this.event.startTime.toString();
