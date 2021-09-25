@@ -8,6 +8,11 @@
       <ion-back-button color="light" *ngIf="!isModal && isDetails" defaultHref="/tabs/home"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && isPalmares" defaultHref="/coachprofile/coachphoto"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && isModProfile" defaultHref="/profil"></ion-back-button>
+      <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetionKids" defaultHref="/accueil"></ion-back-button>
+      <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetion" defaultHref="/tabs/home"></ion-back-button>
+      <ion-back-button color="light" *ngIf="!isModal && ChatAdulte" defaultHref="/boitereception"></ion-back-button>
+
+
       <ion-buttons slot="end" *ngIf="isCoach">
         <ion-button shape="rounded" (click)="openCoachMenu($event)">
          <ion-icon color="light" name="menu"></ion-icon>

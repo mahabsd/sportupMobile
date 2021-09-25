@@ -20,6 +20,12 @@ export class FollowerService {
     return this.apiService.get(`${UtilsService.apiFollower}${followed}/${following}`).pipe(map((res) => res.data.data));
 
   }
+
+  getFollowForFriends(following) {
+    return this.apiService.get(`${UtilsService.apiFollower}${following}`).pipe(map((res) => res.data.data));
+
+  }
+
    /* getCommentByService(post): Observable<Comment[]> {
     return this.apiService.get(`${UtilsService.apiPost}${post}/comments`).pipe(map((res) => res.data.data));
   }

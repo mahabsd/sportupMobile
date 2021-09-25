@@ -6,10 +6,18 @@
 
     </ion-tab-button>
 
-    <ion-tab-button tab="speakers">
-      <img [routerLink]="['/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
-
-    </ion-tab-button>
+      <ion-tab-button tab="speakers" *ngIf="user$.role==='kids'">
+        <img [routerLink]="['/boitereception']" src="../../assets/icon/icon_boite.png" />
+  
+      </ion-tab-button>
+  
+  
+      <ion-tab-button tab="speakers" *ngIf="user$.role==='user'"  >
+        <img [routerLink]="['/boitereceptionkids']" src="../../assets/icon/icon_boite.png" />
+  
+      </ion-tab-button>
+  
+    
 
     <ion-tab-button tab="map">
       <img src="../../assets/icon/icon_nvposte.png" (click)="openModal()" />

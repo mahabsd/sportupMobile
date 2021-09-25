@@ -45,8 +45,9 @@ export class StatusKidsComponent implements OnInit {
   liked = false;
   bookmarked = false;
   id;
+  isUserConnected: any;
   constructor(private navCtrl: NavController,
-    public alertController: AlertController,
+    public alertController: AlertController, private userservice: UserService,
     private commentService: CommentService,
     private modalController: ModalController,
     private postKidsService: PostKidsService,
@@ -59,11 +60,11 @@ export class StatusKidsComponent implements OnInit {
   ngOnInit() {
     // eslint-disable-next-line no-underscore-dangle
     this.id = JSON.stringify(this.user?._id);
-
+    this.getMe();
     console.log(JSON.stringify(this.user?._id));
-    console.log(this.id);
 
     this.getCommentByPost();
+
 
   }
 
@@ -161,6 +162,11 @@ export class StatusKidsComponent implements OnInit {
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  }
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.isUserConnected = res.data.data._id;
+    });
   }
 
 }

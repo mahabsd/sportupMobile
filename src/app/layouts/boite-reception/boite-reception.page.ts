@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { FollowerService } from 'src/app/Shared/Service/follower.service';
+
 @Component({
   selector: 'app-boite-reception',
   templateUrl: './boite-reception.page.html',
@@ -11,10 +13,12 @@ selecteditemIndex;
 users = [];
 
 userid='60f983fb06d9b3846c3d1030';
-  constructor( private userservice: UserService) { }
+  constructor( private userservice: UserService,private followerService:FollowerService) { }
 
   ngOnInit() {
     this.getAllusers()
+    this.getfollow();
+    this.getfollow()
   }
   logDrag(i){
   let a=0;
@@ -32,10 +36,26 @@ userid='60f983fb06d9b3846c3d1030';
 
   
   getAllusers() {
-    this.userservice.getAllusers().subscribe((res) => {
-      console.log(res);
-      this.users=res
+    this.userservice.getRoleUsers().subscribe((res) => {
+     //console.log(res)
     });
   }
+
+
+  getfollow(){
+    this.userservice.getMe().subscribe(
+      (response) => {
+        this.followerService.getFollowForFriends( response.data.data.id).subscribe((res) => {
+          this.users=res
+
+      console.log(res)
+        }); 
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
 
 }
