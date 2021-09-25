@@ -5,21 +5,14 @@
       <img [routerLink]="['/menu/tabs/home']" src="../../assets/icon/icon_home.png" />
     </ion-tab-button>
 
-      <ion-tab-button tab="speakers" *ngIf="user$.role==='kids'">
-        <img [routerLink]="['/boitereception']" src="../../assets/icon/icon_boite.png" />
-  
-      </ion-tab-button>
-  
-  
-      <ion-tab-button tab="speakers" *ngIf="user$.role==='user'"  >
-        <img [routerLink]="['/boitereceptionkids']" src="../../assets/icon/icon_boite.png" />
-  
-      </ion-tab-button>
   
     
 
-    <ion-tab-button tab="map">
-    <ion-tab-button>
+    <ion-tab-button tab="map" *ngIf="user$.role==='kids'" >
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
+    </ion-tab-button>
+    <ion-tab-button tab="map" *ngIf="user$.role==='user'" >
       <ion-badge id="notifications-badge" color="danger">5</ion-badge>
       <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
     </ion-tab-button>
@@ -36,3 +29,6 @@
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+
+
+

@@ -61,7 +61,7 @@ export class TabsPage implements OnInit {
     await modal.onWillDismiss().then((result) => { });
   }
 
-}
+
 
 
 sendMessage(message) {

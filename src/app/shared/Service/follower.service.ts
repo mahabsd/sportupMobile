@@ -21,8 +21,8 @@ export class FollowerService {
 
   }
 
-  getFollowForFriends(following) {
-    return this.apiService.get(`${UtilsService.apiFollower}${following}`).pipe(map((res) => res.data.data));
+  getFollowForFriends(following,page) {
+    return this.apiService.get(`${UtilsService.apiFollower}${following}/${page}/1`).pipe(map((res) => res.data.data));
 
   }
 

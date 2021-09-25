@@ -21,19 +21,15 @@ export class HeaderComponent implements OnInit {
   @Input() isCoach: boolean = false;
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
-<<<<<<< HEAD
   @Input() BoiteRecepetionKids: boolean = false;
   
   @Input() BoiteRecepetion: boolean = false;
   @Input() ChatAdulte: boolean = false;
 
-  constructor(private modalCtrl: ModalController,public popoverController: PopoverController) { }
-=======
   @Input() isNotifications: boolean = false;
   @Input() isKid: boolean = false;
 
   constructor(private modalCtrl: ModalController, public popoverController: PopoverController) { }
->>>>>>> c71ea689ad56fae326af8699faa6bc32c3b591f8
 
   ngOnInit() { }
   close() {
