@@ -16,7 +16,7 @@ export class ImageProfileComponent implements OnInit {
     private modalController: ModalController,
     private imageService: ImageService,
     private action: ActionSheetController
-  ) {}
+  ) { }
 
   ngOnInit() {
     console.log(this.image);
@@ -36,7 +36,6 @@ export class ImageProfileComponent implements OnInit {
     fd.append('createdBy', this.image.createdBy);
     this.imageService.addImage(fd).subscribe(async (res) => {
       console.log(res);
-    
     });
   }
 

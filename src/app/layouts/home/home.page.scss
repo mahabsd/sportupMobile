@@ -102,9 +102,16 @@ ion-slides {
 
 
 #rowTabFiltre {
-  font-family: Montserrat, sans-serif;
+  font-family: Montserrat;
   color: #898b8b;
-  font-size: small;
+  margin: 20px !important;
+  margin-left: -25px !important;
+}
+
+.unit {
+  width: fit-content;
+  font-size: 11px !important;
+
 }
 
 ion-grid {
@@ -335,6 +342,7 @@ ion-row.bodyFilter {
   display: grid;
   grid-gap: 2px;
   justify-content: normal;
+  margin-top: 10px;
 }
 
 ion-fab {
