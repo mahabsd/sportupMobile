@@ -4,9 +4,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon routerLink="/accueil" color="light" name="arrow-back"></ion-icon>
+      <ion-button color="secondary" (click)="presentPopover($event)">
+        <ion-icon style="    color: white;" slot="icon-only" ios="menu" md="menu">
+        </ion-icon>
+      </ion-button>
+
     </ion-buttons>
-    <ion-buttons slot="primary">
+    <ion-buttons slot="end">
       <ion-button color="secondary" (click)="presentPopover($event)">
         <ion-icon style="    color: white;" slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical">
         </ion-icon>
@@ -26,7 +30,7 @@
     <ion-avatar class="image2">
       <img class="myImageUser"
         src="https://www.next.co.uk/nxtcms/resource/image/2639914/portrait_ratio1x1/305/305/7ddcbe6fc57d27c5f26a12fde323f828/lR/-0001-g69-mb-sh368442-lm-017-baby.jpg">
-      <ion-label color="light" style="    white-space: pre;"> {{profileClickedName}}</ion-label>
+      <ion-label color="light" style="    white-space: pre;"> {{user?.name}}</ion-label>
 
     </ion-avatar>
   </div>

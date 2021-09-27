@@ -47,8 +47,9 @@ export class ProfilPage implements OnInit {
   getUserByid() {
     this.userService.getUser(this.idprofilePassed).subscribe(
       (response) => {
-        console.log('user clicked' + response.data.data.name);
-        this.profileClickedName = response.data.data.name;
+        console.log('user clicked' + response.data.data);
+        this.user = response.data.data;
+       // this.profileClickedName = response.data.data.name;
       },
       (error) => {
         console.error(error);

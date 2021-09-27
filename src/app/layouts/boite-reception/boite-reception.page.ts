@@ -70,7 +70,7 @@ userid='60f983fb06d9b3846c3d1030';
       this.getfollow();
       this.numTimesLeft -= 1;
       event.target.complete();
-    }, 2000);
+    }, 500);
   }
 
   addMoreItems() {
