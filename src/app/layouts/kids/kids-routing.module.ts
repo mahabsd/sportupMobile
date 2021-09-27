@@ -29,7 +29,7 @@ const routes: Routes = [
         loadChildren: () => import('./sign-kids/sign-kids.module').then(m => m.SignKidsPageModule)
       },
       {
-        path: 'profilkids',
+        path: 'profilkids/:id',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule)
       },
       {

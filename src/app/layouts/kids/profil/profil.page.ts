@@ -11,6 +11,7 @@ import { UserService } from '../../../Shared/Service/user.service';
 import { PopoverController } from '@ionic/angular';
 import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page';
 import { User } from 'src/app/Shared/Model/User';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profil',
@@ -25,22 +26,35 @@ export class ProfilPage implements OnInit {
   user: User = new User();
   user_id;
   title: any;
-
-
+  idprofilePassed
+  profileClickedName
   constructor(private userservice: UserService, private postKidsService: PostKidsService,
-    public popoverController: PopoverController, public userService: UserService) { }
+    public popoverController: PopoverController, public userService: UserService,  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.selected = 'photo';
     this.getMe();
     this.getMyPostsKids();
     this.title = "Profile";
+    this.idprofilePassed = this.activatedRoute.snapshot.params.id;
 
+
+    this.getUserByid();
 
 
   }
 
-
+  getUserByid() {
+    this.userService.getUser(this.idprofilePassed).subscribe(
+      (response) => {
+        console.log('user clicked' + response.data.data.name);
+        this.profileClickedName = response.data.data.name;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
   async getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user = res.data.data;

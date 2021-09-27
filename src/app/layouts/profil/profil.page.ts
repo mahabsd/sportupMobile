@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Follow } from 'src/app/shared/Model/Follow';
@@ -14,17 +14,19 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 export class ProfilPage implements OnInit {
   // activatedroute importer luser selon leur id
   // en utilisant lapi
-  EtatSuivre=false;
+  EtatSuivre = false;
   follow: Follow = new Follow();
-idfollow;
-profileClickedName;
+  idfollow;
+  profileClickedName;
   myInformation: any = { userLastName: '', userFirstName: '' };
-  iduser;  iduser1;
-idprofilePassed;
-idFollowtoDelete;
+  iduser;
+  iduser1;
+  idprofilePassed;
+  idFollowtoDelete;
   user: any = [];
   posts: any[] = [];
-
+  follower = false;
+  ahla;
   public folder: string;
   imagesBasic = [
     {
@@ -50,44 +52,43 @@ idFollowtoDelete;
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private followerService: FollowerService,
-    private modalController: ModalController
-  ) {}
-
-  ngOnInit() {
-    this.idprofilePassed= this.activatedRoute.snapshot.params.id
- 
+    private modalController: ModalController,
+    public router: Router
+  ) {
     this.getUser();
-   this.getfollow()
-   this.getUserByid()
+    this.getfollow();
   }
 
+  ngOnInit() {
+    this.idprofilePassed = this.activatedRoute.snapshot.params.id;
 
-  getfollow(){
+
+    this.getUserByid();
+  }
+
+  getfollow() {
     this.userService.getMe().subscribe(
       (response) => {
         this.iduser1 = response.data.data.id;
-        this.followerService.getFollow( this.idprofilePassed, this.iduser1).subscribe((res) => {
-        if(res==null){
-          console.log("nope")
-        }
-        else
-        {
-         this.idFollowtoDelete=res._id;
-          console.log(res)
-             this.EtatSuivre=true;
+        this.followerService
+          .getFollow(this.idprofilePassed, this.iduser1)
+          .subscribe((res) => {
+            if (res == null) {
+              console.log('nope');
+              this.follower = false;
+            } else {
+              this.follower = true;
 
-        }
-        }); 
+              this.idFollowtoDelete = res._id;
+              console.log(res);
+              this.EtatSuivre = true;
+            }
+          });
       },
       (error) => {
         console.error(error);
       }
     );
-
-
-
-   
-
   }
   getUser() {
     this.userService.getMe().subscribe(
@@ -103,10 +104,10 @@ idFollowtoDelete;
   }
 
   getUserByid() {
-    this.userService.getUser( this.idprofilePassed).subscribe(
+    this.userService.getUser(this.idprofilePassed).subscribe(
       (response) => {
-        console.log("user clicked"+response.data.data.name);
-       this.profileClickedName=response.data.data.name
+        console.log('user clicked' + response.data.data.name);
+        this.profileClickedName = response.data.data.name;
       },
       (error) => {
         console.error(error);
@@ -122,23 +123,18 @@ idFollowtoDelete;
     this.follow.userFollowing = this.iduser;
     this.followerService.createFollow(this.follow).subscribe((res) => {
       console.log(res);
-   
-    }); 
+    });
 
-    this.getfollow()
-
+    this.getfollow();
   }
 
-  
   buttonBlock() {
-
-       this.followerService.deleteFollow(this.idFollowtoDelete).subscribe((res) => {
-      console.log(res);
-   
-    }); 
-    this.EtatSuivre=false;
+    this.followerService
+      .deleteFollow(this.idFollowtoDelete)
+      .subscribe((res) => {
+        console.log(res);
+      });
+    this.EtatSuivre = false;
     //this.getfollow()
-
-  
   }
 }
