@@ -108,7 +108,7 @@ const routes: Routes = [
       },
       {
         path: 'planning',
-        loadChildren: () => import('./planning/planning.module').then(m => m.PlanningPageModule)
+        loadChildren: () => import('./Planing/calendar/calendar.module').then(m => m.CalendarPageModule)
       },
       {
         path: 'historiqueerp',
