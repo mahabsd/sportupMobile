@@ -11,7 +11,9 @@ import { ImageService } from '../../../shared/Service/image.service';
 })
 export class ImageProfileComponent implements OnInit {
   @Input() image: any;
+  @Input() video: any;
   apImg = environment.apiImg + 'image/';
+  apiPost= environment.apiImg + 'Post/';
   constructor(
     private modalController: ModalController,
     private imageService: ImageService,

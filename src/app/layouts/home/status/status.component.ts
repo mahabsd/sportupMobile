@@ -1,6 +1,18 @@
-
-import { EventEmitter, Component, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { IonVirtualScroll, NavController, PopoverController, ModalController, LoadingController } from '@ionic/angular';
+import {
+  EventEmitter,
+  Component,
+  Input,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import {
+  IonVirtualScroll,
+  NavController,
+  PopoverController,
+  ModalController,
+  LoadingController,
+} from '@ionic/angular';
 import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../Shared/Service/post.service';
 import { Post } from '../../../Shared/Model/Post';
@@ -12,7 +24,8 @@ import { CommentsPage } from '../comments/comments.page';
 import { ParametresComponent } from '../../../component/parametres/parametres.component';
 import { environment } from '../../../../environments/environment';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
-
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -33,6 +46,7 @@ export class StatusComponent implements OnInit {
   posts: any = [];
   comments: any = [];
   images: any = [];
+  mediafiles: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -48,12 +62,12 @@ export class StatusComponent implements OnInit {
     private favorisService: FavorisService,
     private modalController: ModalController,
     private loadingController: LoadingController,
-
-    private popoverCtrl: PopoverController) {
+    private popoverCtrl: PopoverController,
+    private videoPlayer: VideoPlayer
+  ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
-
   }
   async ngOnInit() {
     console.log(this.post);
@@ -63,12 +77,10 @@ export class StatusComponent implements OnInit {
 
   async showReactions(ev) {
     this.press++;
-    const reactions = await this.popoverCtrl.create(
-      {
-        component: ReactionsPage,
-        event: ev
-      }
-    );
+    const reactions = await this.popoverCtrl.create({
+      component: ReactionsPage,
+      event: ev,
+    });
 
     await reactions.present();
     const { role } = await reactions.onDidDismiss();
@@ -87,19 +99,16 @@ export class StatusComponent implements OnInit {
     this.disLikeFn.emit({ post, index: this.index });
   }
 
-  onComment() {
-  }
-  share() {
-  }
+  onComment() {}
+  share() {}
   bookmark(post) {
-    this.favorisService.addFavoris(post?._id).subscribe(res => {
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
       console.log(res);
       this.bookmarked = true;
-    })
-
+    });
   }
   unBookmark(post) {
-    this.favorisService.addFavoris(post?._id).subscribe(res => {
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
       console.log(res);
       this.bookmarked = false;
     });
@@ -111,28 +120,65 @@ export class StatusComponent implements OnInit {
       cssClass: 'my-custom-class',
       componentProps: {
         post,
-        comments: this.comments
-
-      }
+        comments: this.comments,
+      },
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
       this.getCommentByPost();
     });
+  }
 
+  getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    console.log(ext);
+    return ext;
+  }
 
+  async displayImage(url: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    console.log(url);
+    
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        image: url,
+      },
+    });
+    return await modal.present();
+  }
+
+  async displayVideo(url: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    console.log(url);
+    
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        video: url,
+      },
+    });
+    return await modal.present();
+  }
+  playvid(url){
+    this.videoPlayer.play(url).then(() => {
+console.log('video completed');
+}).catch(err => {
+console.log(err);
+});
   }
   getCommentByPost() {
     forkJoin({
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
-    }).subscribe(({
-      comments, images
-    }) => {
+      mediafiles: this.postService.getPost(this.post._id),
+    }).subscribe(({ comments, images, mediafiles }) => {
       this.comments = comments;
       this.images = images.images;
-
-    })
+      this.mediafiles = mediafiles.mediafiles;
+    });
   }
   async presentPopover(ev: any) {
     const popover = await this.popoverCtrl.create({
@@ -141,8 +187,8 @@ export class StatusComponent implements OnInit {
       event: ev,
       translucent: true,
       componentProps: {
-        post: this.post
-      }
+        post: this.post,
+      },
     });
     await popover.present();
     const { role } = await popover.onDidDismiss();
@@ -152,9 +198,8 @@ export class StatusComponent implements OnInit {
     this.loading = await this.loadingController.create({
       message: 'Hellooo',
       duration: 2000,
-      spinner: "bubbles"
+      spinner: 'bubbles',
     });
     await this.loading.present();
-
   }
 }
