@@ -18,13 +18,13 @@
 </ion-header>
 <ion-content> 
   <ion-card class="MyCard">
-    <ion-card-content class="cal">
+    <ion-card-content class="cal-green" >
       <ion-row style="margin-bottom: 10px">
         <ion-col size="3">
-          <ion-avatar>
+          <ion-avatar [ngClass]="slider? '' : ''">
             <img [src]="apiImg+user$?.photo" />
           </ion-avatar>
-        </ion-col>
+        </ion-col >
         <ion-col size="9" style="margin: auto">
           <h2 style="color: white">{{user$?.name}}</h2>
         </ion-col>
@@ -65,13 +65,14 @@
         (onTitleChanged)="onViewTitleChanged($event)"
         (onCurrentDateChanged)="onCurrentDateChanged($event)"
         [showEventDetail] = "false"
+         
       >
       </calendar>
    
       
     </ion-card-content>
   </ion-card>
-  <div class="container">
+  <div class="container" *ngIf="!slider">
  
     <ion-card
       *ngFor="let day of eventDays"
@@ -93,9 +94,12 @@
             "
           >
             <div class="dateCol">
-              <h1 style="color: aliceblue; text-align: center;">{{getDayName(day-1,8,2021)}} {{day}}</h1>
+              <h1 style="color: aliceblue; text-align: center;">{{getDayName(day-1,selectedMonth+1,selectedYear)}} {{day}}</h1>
             </div>
           </ion-col>
+          <ng-container >
+
+          
           <ion-col size="10">
             <ng-container *ngFor="let event of eventSource">
               <ion-row  *ngIf="event.startTime.getDate() === day" (click)="openDetailModal(event)">
@@ -123,11 +127,94 @@
            
          
           </ion-col>
+        </ng-container>
+ 
         </ion-row>
       </ion-card-content>
     </ion-card>
              
   </div>
+
+  <ion-row style="margin: 0px;" *ngIf="slider" >
+
+
+    <ion-col size="12" >
+      <div style="  text-align: center;
+
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      left: -15px;">
+        <ion-icon (click)="slideBack()" name="chevron-back-circle" size="large"></ion-icon>
+      </div>
+
+      <div style="  text-align: center;
+
+      z-index: 2;
+      position: absolute;
+      top: 50%;
+      right: -15px;">
+        <ion-icon (click)="sliedNext()" name="chevron-forward-circle" size="large"></ion-icon>
+      </div>
+      <ion-slides #slides style="width: 90%;">
+
+        <ng-container >
+        <ion-slide *ngFor="let day of eventDays">
+          <ion-col size="12">
+            <ion-card (click)="openList()" style="box-shadow: -3px 5px 18px 5px rgba(0,0,0,0.06); margin: 0px;  ">
+
+              <ion-card-content >
+
+                <ion-row >
+                  <ion-col size="3" style="background: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25);
+             border-radius: 10px;">
+                     <div class="dateCol">
+                      <h1 style="color: aliceblue; text-align: center;">{{getDayName(day-1,selectedMonth+1,selectedYear)}} {{day}}</h1>
+                    </div>
+
+                  </ion-col>
+                  <ion-col size="9" >
+                    <ng-container *ngFor="let event of eventSource" >
+                    <ion-row   *ngIf="event.startTime.getDate() === day" (click)="openDetailModal(event)">
+                      <ion-col size="3" >
+
+                        <b>{{event.startTime.getHours()<10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()<10?'0':''}}{{event.startTime.getMinutes()}}</b>
+
+
+
+                      </ion-col>
+                      <ion-col size="9">
+                        <div style="text-align: left;">
+                          <b>{{event.activity}}</b>
+                        </div>
+                        <div style="text-align: left;">
+                          {{event.notes}}
+                        </div>
+                      </ion-col>
+
+                    </ion-row>
+                  </ng-container>
+
+                  </ion-col>
+
+                </ion-row>
+                
+              </ion-card-content>
+            </ion-card>
+          </ion-col>
+        </ion-slide>
+       </ng-container>
+        
+
+
+      </ion-slides>
+    </ion-col>
+    <div>
+
+
+    </div>
+
+  </ion-row>
 </ion-content>
  
 

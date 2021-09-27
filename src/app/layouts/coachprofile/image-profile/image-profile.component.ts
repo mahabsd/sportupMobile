@@ -11,12 +11,14 @@ import { ImageService } from '../../../shared/Service/image.service';
 })
 export class ImageProfileComponent implements OnInit {
   @Input() image: any;
+  @Input() video: any;
   apImg = environment.apiImg + 'image/';
+  apiPost= environment.apiImg + 'Post/';
   constructor(
     private modalController: ModalController,
     private imageService: ImageService,
     private action: ActionSheetController
-  ) {}
+  ) { }
 
   ngOnInit() {
     console.log(this.image);
@@ -36,7 +38,6 @@ export class ImageProfileComponent implements OnInit {
     fd.append('createdBy', this.image.createdBy);
     this.imageService.addImage(fd).subscribe(async (res) => {
       console.log(res);
-    
     });
   }
 

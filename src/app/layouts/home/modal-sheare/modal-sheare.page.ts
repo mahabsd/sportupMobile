@@ -25,6 +25,9 @@ export class ModalShearePage implements OnInit {
   images: ImageModel[] = [];
   posts: Post[] = [];
   @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+  selectedFiles: any[];
+  progressInfos: any[];
+  message: string;
   constructor(
     private plt: Platform,
     private action: ActionSheetController,
@@ -109,17 +112,25 @@ export class ModalShearePage implements OnInit {
     if (this.post?.content) {
       fd.append('content', this.post?.content);
       fd.append('type', 'kids');
+    }
 
+    if(this.selectedFiles)
+    {
+     
+      this.uploadFiles(fd);
+    }else{
       console.log(fd);
-      this.postService.createPost(fd).subscribe(res => {
+      this.postService.createPost(fd).subscribe((res) => {
         this.closeModal();
         return res;
       });
     }
-    this.postService.createPost(fd).subscribe((res) => {
+    
+
+  /*  this.postService.createPost(fd).subscribe((res) => {
       this.closeModal();
       return res;
-    });
+    });*/
   }
 
   loadImage() {
@@ -216,6 +227,22 @@ export class ModalShearePage implements OnInit {
     const blob = new Blob(byteArrays, { type: contentType });
     return blob;
   }
+  uploadFiles(formData: FormData) {
+    this.message = '';
+ 
+    for (const file of this.selectedFiles) {
+      formData.append('files', file);
+    }
+    this.postService.uploadImageFile(formData).subscribe((res) => {
+      console.log(res);
+    });
+  }
+  selectFiles(event) {
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
+ 
+  }
+
   uploadFile(event: EventTarget) {
     console.log('uploadfile');
 

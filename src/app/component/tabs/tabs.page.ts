@@ -26,7 +26,6 @@ export class TabsPage implements OnInit {
 
   ngOnInit() {
     this.getMe();
-
   }
 
   getMe() {

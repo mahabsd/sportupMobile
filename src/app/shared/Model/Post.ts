@@ -16,5 +16,6 @@ export class Post {
   iconLike: string;
   photo: File;
   images: ImageModel[];
+  mediafiles: [];
   nbFavoris: number;
 }
