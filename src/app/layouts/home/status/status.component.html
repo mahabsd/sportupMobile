@@ -18,6 +18,28 @@
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length>0">
     <img [lazyLoad]="apiImg+images[0]?.image_name" />
   </ion-row>
+  <div class="container"  *ngIf="mediafiles.length>0">
+    <div *ngFor="let file of mediafiles">
+      <ng-container 
+      *ngIf="getExt(file.file_name) ==='png'">
+      <div    class="item a"
+      [style.background-size]="'cover'" [style.background-image]="'url('+ apiImg+file?.file_name + ')'"
+      [lazyLoad]="apiImg+file?.file_name" errorImage="../../../assets/imgs/150.png" (click)="displayImage(file?.file_name)"  >
+      <ion-icon></ion-icon>
+    </div>
+    </ng-container>
+    <ng-container 
+    *ngIf="getExt(file.file_name) ==='mp4'">
+    <div    class="item a"
+    [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+     errorImage="../../../assets/imgs/150.png"  (click)="displayVideo(file?.file_name)">
+     <ion-icon name="videocam"></ion-icon>
+  </div>
+  </ng-container>
+ 
+    </div>
+  </div>
+ 
   <ion-row>
     <ion-card-content>
       {{post?.content}}

@@ -17,8 +17,8 @@ export class CalendarModalPage implements OnInit {
     currentDate: new Date(),
   };
   viewTitle: string;
-  activity: Activity = new Activity();
-  method;
+ 
+ 
   today: Date;
   event: Activity = new Activity();
   selectedEvent;
@@ -34,9 +34,11 @@ export class CalendarModalPage implements OnInit {
     }, 0);
   }
   ngOnInit() {
-    console.log(this.selectedEvent.method);
-    this.method = this.selectedEvent.method;
-    if (this.method === 'update') {
+ console.log(this.selectedEvent);
+ 
+ 
+    if (this.selectedEvent) {
+      this.event._id = this.selectedEvent.event._id;
       this.event.activity = this.selectedEvent.event.activity;
       this.event.lieu = this.selectedEvent.event.lieu;
       this.event.notes = this.selectedEvent.event.notes;
@@ -48,8 +50,8 @@ export class CalendarModalPage implements OnInit {
           this.selectedEvent.event.startTime.getUTCFullYear(),
           this.selectedEvent.event.startTime.getUTCMonth(),
           this.selectedEvent.event.startTime.getDate(),
-          this.selectedEvent.event.startTime.getUTCHours() + 1,
-          this.selectedEvent.event.startTime.getUTCMinutes()
+          this.selectedEvent.event.startTime.getHours() + 1,
+          this.selectedEvent.event.startTime.getMinutes()
         )
       );
       // eslint-disable-next-line max-len
@@ -58,8 +60,8 @@ export class CalendarModalPage implements OnInit {
           this.selectedEvent.event.endTime.getUTCFullYear(),
           this.selectedEvent.event.endTime.getUTCMonth(),
           this.selectedEvent.event.endTime.getDate(),
-          this.selectedEvent.event.endTime.getUTCHours() + 1,
-          this.selectedEvent.event.endTime.getUTCMinutes()
+          this.selectedEvent.event.endTime.getHours() + 1,
+          this.selectedEvent.event.endTime.getMinutes()
         )
       );
 
@@ -72,8 +74,8 @@ export class CalendarModalPage implements OnInit {
           this.selectedTime.selectedTime.getUTCFullYear(),
           this.selectedTime.selectedTime.getUTCMonth(),
           this.selectedTime.selectedTime.getDate(),
-          this.selectedTime.selectedTime.getUTCHours() + 1,
-          this.selectedTime.selectedTime.getUTCMinutes()
+          this.selectedTime.selectedTime.getHours() + 1,
+          this.selectedTime.selectedTime.getHours()
         )
       );
       // eslint-disable-next-line max-len
@@ -82,8 +84,8 @@ export class CalendarModalPage implements OnInit {
           this.selectedTime.selectedTime.getUTCFullYear(),
           this.selectedTime.selectedTime.getUTCMonth(),
           this.selectedTime.selectedTime.getDate(),
-          this.selectedTime.selectedTime.getUTCHours() + 1,
-          this.selectedTime.selectedTime.getUTCMinutes()
+          this.selectedTime.selectedTime.getHours() + 1,
+          this.selectedTime.selectedTime.getMinutes()
         )
       );
 
@@ -92,10 +94,7 @@ export class CalendarModalPage implements OnInit {
       this.event.endTime = moment(fEnd).format('YYYY/MM/DD HH:mm');
       console.log(this.selectedTime.selectedTime);
     }
-    this.event.startTime = this.selectedEvent.event.startTime;
-    this.formatedTime = this.event.startTime.toString();
-    console.log(this.formatedTime);
-    this.event.startTime = this.formatedTime;
+ 
   }
 
   save() {

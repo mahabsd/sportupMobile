@@ -2,8 +2,8 @@
   <ion-content>
     <ion-toolbar color="dark">
       <ion-buttons slot="start">
-        <ion-button (click)="selectImageSource()" large><ion-icon name="create-outline" size="large"></ion-icon></ion-button>
-        <ion-button (click)="supprimer(image)" large><ion-icon name="trash-outline" size="large"></ion-icon></ion-button>
+      <!--  <ion-button (click)="selectImageSource()" large><ion-icon name="create-outline" size="large"></ion-icon></ion-button>
+        <ion-button (click)="supprimer(image)" large><ion-icon name="trash-outline" size="large"></ion-icon></ion-button>-->
       </ion-buttons>
  
       <ion-buttons slot="end">
@@ -20,7 +20,9 @@
       
           
         
-        <img src="{{apImg+image?.image_name}}">
+        <img *ngIf="image" src="{{apiPost+image}}">
+        <video *ngIf="video" controls width="250" ><source src="{{apiPost+video}}" type="video/mp4"></video>
+  
       </ion-col>
      
       <ion-col  size="12">
