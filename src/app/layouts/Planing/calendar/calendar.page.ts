@@ -1,6 +1,6 @@
 import { CalendarComponent } from 'ionic2-calendar';
-import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import { Component, ViewChild, OnInit, Inject, LOCALE_ID, Input } from '@angular/core';
+import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 import { CalendarModalPage } from '../calendar-modal/calendar-modal.page';
 import { EventmodalComponent } from '../eventmodal/eventmodal.component';
@@ -17,9 +17,12 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
+  @ViewChild(CalendarComponent) myCal: CalendarComponent;
+  @ViewChild('slides') slides: IonSlides;
+  @Input() slider = false;
   eventSource = [];
   eventDays = [];
-  method: string;
+  selectedMonth;
   viewTitle: string;
   apiImg = environment.apiImg + 'User/';
   user$: any;
@@ -30,7 +33,8 @@ export class CalendarPage implements OnInit {
     autoSelect: false,
   };
   subscription: Subscription;
-  @ViewChild(CalendarComponent) myCal: CalendarComponent;
+
+  selectedYear: any;
 
   constructor(
     private alertCtrl: AlertController,
@@ -42,17 +46,35 @@ export class CalendarPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.method = 'post';
+    const url = this.router.url.split('/', 6);
+    console.log(url);
+
+    if (url[1] === 'calendar') {
+      
+     this.slider = false;
+    }
+    if (url[1] === 'planning') {
+      
+      this.slider = true;
+
+    }
     this.getMe();
 
     this.subscription = this.calendarService.getEvent().subscribe((event) => {
       this.openCalModal(null,event);
-      this.method = 'update';
+ 
       console.log(event);
       
     });
   }
 
+  sliedNext() {
+    this.slides.slideNext();
+  }
+  
+  slideBack() {
+    this.slides.slidePrev();
+  }
   // Change current month/week/day
   next() {
     this.myCal.slideNext();
@@ -90,11 +112,10 @@ export class CalendarPage implements OnInit {
     return days[newDate.getDay()];
   }
   extractEventDays() {
-    this.eventDays = [];
-    this.eventSource.forEach((event) => {
-      this.eventDays.push(event.startTime.getDate());
-    });
-    this.eventDays = [...new Set(this.eventDays)].sort((a, b) => a - b);
+    //Get event days by selected month
+
+    // eslint-disable-next-line max-len
+    this.eventDays = [...new Set(this.eventSource.filter((event) => event.startTime.getMonth() === this.selectedMonth).map((event) => event.startTime.getDate() ).sort((a, b) => a - b))];
   }
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
@@ -102,7 +123,11 @@ export class CalendarPage implements OnInit {
   }
 
   onCurrentDateChanged(event){
-console.log(event);
+    console.log(event.getMonth());
+    
+        this.selectedMonth= event.getMonth();
+        this.selectedYear= event.getYear();
+        this.extractEventDays();
 
   }
   async openDetailModal(evt) {
@@ -133,8 +158,6 @@ console.log(event);
       componentProps: {
         selectedTime: sTime,
         selectedEvent: evnt,
- 
-        method: this.method,
       },
     });
 
@@ -146,21 +169,22 @@ console.log(event);
      
         const dateParsedStart: Date = moment(
           event.startTime,
-          'YYYY-MM-DD'
+          'YYYY-MM-DD HH:mm'
         ).toDate();
-        const dateFormtedStart = dateParsedStart;
-        const dateFormatedEnd: Date = moment(
+        const dateParsedEnd: Date = moment(
           event.endTime,
-          'YYYY-MM-DD'
+          'YYYY-MM-DD HH:mm'
         ).toDate();  
 
-        event.startTime = new Date(
-          Date.UTC(dateParsedStart.getUTCFullYear(), dateParsedStart.getUTCMonth(), dateParsedStart.getUTCDate()));
-       
-        event.endTime = new Date(Date.UTC(dateFormatedEnd.getUTCFullYear(), dateFormatedEnd.getUTCMonth(), dateFormatedEnd.getUTCDate()));
   
 
+        event.startTime =dateParsedStart;
+       
+        event.endTime = dateParsedEnd;
   
+
+        console.log(event.startTime);
+        console.log(event.endTime);
 
         
 
@@ -201,7 +225,7 @@ console.log(event);
  
     const dateFormate: Date = moment(
       eventTime,
-      'YYYY-MM-DD'
+      'YYYY-MM-DD HH:mm'
     ).toDate();
     return dateFormate;
   }

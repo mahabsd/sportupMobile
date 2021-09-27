@@ -19,7 +19,9 @@ ion-menu-button {
   ion-list .list-ios {
     --background: none;
   }
-
+  .swiper-wrapper{
+    align-items: center;
+  }
   
   .monthview-container {
     height: auto !important;
@@ -31,12 +33,17 @@ ion-menu-button {
     border: none !important;
   }
 
-  .cal {
+  .cal-green {
     padding-top: 0;
     border-radius: 30px;
     background: linear-gradient(13deg, rgba(28,117,55,1) 0%, rgba(36,114,56,1) 9%, rgba(142,191,37,1) 100%);
   }
- 
+  .cal-white
+  {
+    padding-top: 0;
+    border-radius: 30px;
+    background-color: rgb(243, 243, 243);
+  }
 
 .monthview-primary-with-event, .calendar-event-inner{
   color: #247238;
@@ -93,8 +100,8 @@ ion-menu-button {
 
 
 ion-content{
-  --padding-start: 5px;
-  --padding-end: 5px;
+  --padding-start: 10px;
+  --padding-end: 10px;
 }
 
 .stat{
@@ -115,4 +122,5 @@ ion-card{
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+  padding: 5px;
 }
