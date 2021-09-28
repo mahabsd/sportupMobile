@@ -47,7 +47,7 @@ const routes: Routes = [
         loadChildren: () => import('../../layouts/erp/home-erp/home-erp.module').then(m => m.HomeErpPageModule)
       },
       {
-        path: 'profilkids',
+        path: 'profilkids/:id',
         loadChildren: () => import('../../layouts/kids/profil/profil.module').then(m => m.ProfilPageModule)
       },
       {
