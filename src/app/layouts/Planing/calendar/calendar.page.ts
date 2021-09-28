@@ -1,6 +1,13 @@
 import { CalendarComponent } from 'ionic2-calendar';
-import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
+import {
+  Component,
+  ViewChild,
+  OnInit,
+  Inject,
+  LOCALE_ID,
+  Input,
+} from '@angular/core';
+import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 import { CalendarModalPage } from '../calendar-modal/calendar-modal.page';
 import { EventmodalComponent } from '../eventmodal/eventmodal.component';
@@ -17,9 +24,12 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['calendar.page.scss'],
 })
 export class CalendarPage implements OnInit {
+  @ViewChild(CalendarComponent) myCal: CalendarComponent;
+  @ViewChild('slides') slides: IonSlides;
+  @Input() slider = false;
   eventSource = [];
   eventDays = [];
-  method: string;
+  selectedMonth;
   viewTitle: string;
   apiImg = environment.apiImg + 'User/';
   user$: any;
@@ -30,7 +40,8 @@ export class CalendarPage implements OnInit {
     autoSelect: false,
   };
   subscription: Subscription;
-  @ViewChild(CalendarComponent) myCal: CalendarComponent;
+
+  selectedYear: any;
 
   constructor(
     private alertCtrl: AlertController,
@@ -42,17 +53,31 @@ export class CalendarPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.method = 'post';
+    const url = this.router.url.split('/', 6);
+    console.log(url);
+
+    if (url[1] === 'calendar') {
+      this.slider = false;
+    }
+    if (url[1] === 'planning') {
+      this.slider = true;
+    }
     this.getMe();
 
     this.subscription = this.calendarService.getEvent().subscribe((event) => {
-      this.openCalModal(null,event);
-      this.method = 'update';
+      this.openCalModal(null, event);
+
       console.log(event);
-      
     });
   }
 
+  sliedNext() {
+    this.slides.slideNext();
+  }
+
+  slideBack() {
+    this.slides.slidePrev();
+  }
   // Change current month/week/day
   next() {
     this.myCal.slideNext();
@@ -85,28 +110,36 @@ export class CalendarPage implements OnInit {
   }
   getDayName(day, month, year) {
     const newDate = new Date(year, month, day);
- 
+
     const days = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
     return days[newDate.getDay()];
   }
   extractEventDays() {
-    this.eventDays = [];
-    this.eventSource.forEach((event) => {
-      this.eventDays.push(event.startTime.getDate());
-    });
-    this.eventDays = [...new Set(this.eventDays)].sort((a, b) => a - b);
+    //Get event days by selected month
+
+    // eslint-disable-next-line max-len
+    this.eventDays = [
+      ...new Set(
+        this.eventSource
+          .filter((event) => event.startTime.getMonth() === this.selectedMonth)
+          .map((event) => event.startTime.getDate())
+          .sort((a, b) => a - b)
+      ),
+    ];
   }
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
   }
 
-  onCurrentDateChanged(event){
-console.log(event);
+  onCurrentDateChanged(event) {
+    console.log(event.getMonth());
 
+    this.selectedMonth = event.getMonth();
+    this.selectedYear = event.getYear();
+    this.extractEventDays();
   }
   async openDetailModal(evt) {
- 
     const modal = await this.modalCtrl.create({
       component: EventmodalComponent,
       cssClass: 'cal-modal',
@@ -116,16 +149,13 @@ console.log(event);
       },
     });
     await modal.present();
-    
 
     modal.onDidDismiss().then((result) => {
       this.loadEvents();
-
     });
   }
 
   async openCalModal(sTime, evnt) {
-   
     const modal = await this.modalCtrl.create({
       component: CalendarModalPage,
       cssClass: 'cal-modal',
@@ -133,8 +163,6 @@ console.log(event);
       componentProps: {
         selectedTime: sTime,
         selectedEvent: evnt,
- 
-        method: this.method,
       },
     });
 
@@ -143,37 +171,33 @@ console.log(event);
     modal.onDidDismiss().then((result) => {
       if (result.data && result.data.event && result.data.event.startTime) {
         const event = result.data.event;
-     
+
         const dateParsedStart: Date = moment(
           event.startTime,
-          'YYYY-MM-DD'
+          'YYYY-MM-DD HH:mm'
         ).toDate();
-        const dateFormtedStart = dateParsedStart;
-        const dateFormatedEnd: Date = moment(
+        const dateParsedEnd: Date = moment(
           event.endTime,
-          'YYYY-MM-DD'
-        ).toDate();  
+          'YYYY-MM-DD HH:mm'
+        ).toDate();
 
-        event.startTime = new Date(
-          Date.UTC(dateParsedStart.getUTCFullYear(), dateParsedStart.getUTCMonth(), dateParsedStart.getUTCDate()));
-       
-        event.endTime = new Date(Date.UTC(dateFormatedEnd.getUTCFullYear(), dateFormatedEnd.getUTCMonth(), dateFormatedEnd.getUTCDate()));
-  
+        event.startTime = dateParsedStart;
 
-  
+        event.endTime = dateParsedEnd;
 
-        
+        console.log(event.startTime);
+        console.log(event.endTime);
 
-        if (evnt===null) {
+        if (evnt === null) {
           console.log('add');
-          this.calendarService
-            .addActivity(event)
-            .subscribe(async (res) => {console.log(res); this.eventSource.push(res); this.loadEvents(); });
-   
-    
-        } else   {
+          this.calendarService.addActivity(event).subscribe(async (res) => {
+            console.log(res);
+            this.eventSource.push(res);
+            this.loadEvents();
+          });
+        } else {
           console.log('update');
-          console.log( event);
+          console.log(event);
           this.calendarService.updateEvent(event).subscribe((res) => {
             console.log(res);
             this.modalCtrl.dismiss();
@@ -183,7 +207,6 @@ console.log(event);
 
         this.extractEventDays();
         this.myCal.loadEvents();
- 
       }
     });
   }
@@ -191,18 +214,13 @@ console.log(event);
   onTimeSelected(ev) {
     // eslint-disable-next-line max-len
     //console.log('Selected time: ' + ev.selectedTime + ', hasEvents: ' + (ev.events !== undefined && ev.events.length !== 0) + ', disabled: ' + ev.disabled);
-  this.openCalModal(ev,null);
-
-    
-}
+    this.openCalModal(ev, null);
+  }
 
   formateEventDates(eventTime) {
     console.log(eventTime);
- 
-    const dateFormate: Date = moment(
-      eventTime,
-      'YYYY-MM-DD'
-    ).toDate();
+
+    const dateFormate: Date = moment(eventTime, 'YYYY-MM-DD HH:mm').toDate();
     return dateFormate;
   }
   // Calendar event was clicked

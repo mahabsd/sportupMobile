@@ -10,7 +10,8 @@
   <ion-grid style="height: 100%; display: flex;flex-direction:column; justify-content:space-between">
     <div *ngFor="let activity of activities">
       <ion-item>
-        <ion-label>{{activity.content}}</ion-label>
+        <ion-label *ngIf="activity.content.indexOf('http') === 1">{{activity.content}}</ion-label>
+        <a href={{activity.content}} *ngIf="activity.content.indexOf('https') === 1">{{activity.content}}</a>
       </ion-item>
       <ion-item>
         <ion-button shape="round" color="danger" (click)="delete(activity._id)">Supprimer mon activité </ion-button>
