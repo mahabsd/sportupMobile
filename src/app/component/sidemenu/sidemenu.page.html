@@ -2,19 +2,39 @@
 
 <!-- <ion-split-pane> -->
 <ion-menu contentId="main-content" auto-hide="true" type="overlay">
-
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-title
+        style="
+          background-image: linear-gradient(
+            119deg,
+            rgba(92, 99, 91, 1) 0%,
+            rgba(36, 114, 56, 1) 35%,
+            rgb(122, 113, 172) 100%
+          );
+        "
+        >Menu</ion-title
+      >
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list id="inbox-list">
-      <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages; let i = index">
-        <ion-item [class.active-item]="selectedPath.startsWith(p.url)" routerDirection="root" [routerLink]="[p.url]"
-          lines="none">
-          <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+      <ion-menu-toggle
+        auto-hide="false"
+        *ngFor="let p of appPages; let i = index"
+      >
+        <ion-item
+          [class.active-item]="selectedPath.startsWith(p.url)"
+          routerDirection="root"
+          [routerLink]="[p.url]"
+          lines="none"
+        >
+          <ion-icon
+            slot="start"
+            [ios]="p.icon + '-outline'"
+            [md]="p.icon + '-sharp'"
+          ></ion-icon>
           <ion-label>{{ p.title }}</ion-label>
         </ion-item>
       </ion-menu-toggle>
@@ -29,7 +49,6 @@
     </ion-toolbar>
   </ion-footer>
 </ion-menu>
-
 
 <ion-router-outlet id="main-content"></ion-router-outlet>
 <!-- <ion-fab vertical="bottom" horizontal="end" slot="fixed" fill="clear">
