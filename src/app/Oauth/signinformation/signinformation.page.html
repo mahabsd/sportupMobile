@@ -1,44 +1,82 @@
 <ion-header>
-    <ion-toolbar>
-        <ion-title>Sign in</ion-title>
-    </ion-toolbar>
+  <ion-toolbar>
+    <ion-title
+      style="
+        background-image: linear-gradient(
+          119deg,
+          rgba(92, 99, 91, 1) 0%,
+          rgba(36, 114, 56, 1) 35%,
+          rgb(122, 113, 172) 100%
+        );
+      "
+      >Sign in</ion-title
+    >
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-    <div id="container">
-
-        <ion-row style=" justify-content: center;">
-            <ion-avatar>
-                <img src="{{userImg}}" alt="" (click)="openGallery()">
-            </ion-avatar>
-        </ion-row>
-        <div class="segment">
-            <h1>Créer un compte</h1>
-        </div>
-        <form>
-            <label>
-                <input type="text" placeholder="Quel est votre age" [(ngModel)]="user.age" ngControl="age" name="age"
-                    required />
-            </label>
-            <label>
-                <input type="text" placeholder="Quel est votre taille" [(ngModel)]="user.taille" ngControl="taille"
-                    name="taille" required />
-            </label>
-            <label>
-                <input type="text" placeholder="Quel est votre poids" [(ngModel)]="user.poids" ngControl="poids"
-                    name="poids" required />
-            </label>
-            <label>
-                <input type="text" placeholder="Quel est votre sexe" [(ngModel)]="user.sexe" ngControl="sexe"
-                    name="sexe" required />
-            </label>
-            <div class="segment">
-                <button (click)="login()" class="unit" type="button">
-                    <ion-icon name="arrow-back-outline"></ion-icon>
-                </button>
-                <ion-button (click)="SaveUser()" [disabled]="registerForm.invalid" class="unit" type="button">
-                    <ion-icon name="bookmark-outline"></ion-icon>
-                </ion-button>
-            </div>
-        </form>
+  <div id="container">
+    <ion-row style="justify-content: center">
+      <ion-avatar>
+        <img src="{{userImg}}" alt="" (click)="openGallery()" />
+      </ion-avatar>
+    </ion-row>
+    <div class="segment">
+      <h1>Créer un compte</h1>
     </div>
+    <form>
+      <label>
+        <input
+          type="text"
+          placeholder="Quel est votre age"
+          [(ngModel)]="user.age"
+          ngControl="age"
+          name="age"
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Quel est votre taille"
+          [(ngModel)]="user.taille"
+          ngControl="taille"
+          name="taille"
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Quel est votre poids"
+          [(ngModel)]="user.poids"
+          ngControl="poids"
+          name="poids"
+          required
+        />
+      </label>
+      <label>
+        <input
+          type="text"
+          placeholder="Quel est votre sexe"
+          [(ngModel)]="user.sexe"
+          ngControl="sexe"
+          name="sexe"
+          required
+        />
+      </label>
+      <div class="segment">
+        <button (click)="login()" class="unit" type="button">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </button>
+        <ion-button
+          (click)="SaveUser()"
+          [disabled]="registerForm.invalid"
+          class="unit"
+          type="button"
+        >
+          <ion-icon name="bookmark-outline"></ion-icon>
+        </ion-button>
+      </div>
+    </form>
+  </div>
 </ion-content>

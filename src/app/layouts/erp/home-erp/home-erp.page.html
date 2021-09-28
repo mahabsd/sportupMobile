@@ -1,111 +1,153 @@
-<ion-header [translucent]="true" >
-  <ion-toolbar  >
+<ion-header [translucent]="true">
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title> ERP</ion-title>
+    <ion-title
+      style="
+        background-image: linear-gradient(
+          119deg,
+          rgba(92, 99, 91, 1) 0%,
+          rgba(36, 114, 56, 1) 35%,
+          rgb(122, 113, 172) 100%
+        );
+      "
+    >
+      ERP</ion-title
+    >
   </ion-toolbar>
 </ion-header>
-<ion-content id="container" style="background-color:white ! important">
+<ion-content id="container" style="background-color: white !important">
+  <ion-grid class="ion-justify-content-center">
+    <ion-row>
+      <ion-col>
+        <div></div>
+      </ion-col>
+      <ion-col>
+        <div></div>
+      </ion-col>
+      <ion-col>
+        <div>
+          <ion-avatar>
+            <img
+              style="
+                box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+              "
+              src="https://www.computerhope.com/jargon/g/guest-user.jpg"
+            />
+          </ion-avatar>
+        </div>
+      </ion-col>
+      <ion-col>
+        <div></div>
+      </ion-col>
+      <ion-col>
+        <div></div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <div class="segment">
+          <ion-label
+            style="
+              font-family: Montserrat, sans-serif;
+              color: #898b8b;
+              font-size: small;
+            "
+            >{{MyInformation.User_Last_Name}}
+            {{MyInformation.User_First_Name}}</ion-label
+          >
+        </div>
+      </ion-col>
+    </ion-row>
 
-    <ion-grid class="ion-justify-content-center"  >
-      <ion-row>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-            <ion-avatar>
-              <img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; " src="https://www.computerhope.com/jargon/g/guest-user.jpg">
-            </ion-avatar>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-        <ion-col>
-          <div>
-          </div>
-        </ion-col>
-      </ion-row>
-      <ion-row >
-        <ion-col>
-          <div class="segment">
-            <ion-label style="font-family:Montserrat,sans-serif; color:#898b8b;font-size: small;">{{MyInformation.User_Last_Name}}         {{MyInformation.User_First_Name}}</ion-label>
-          </div>
-        </ion-col>
-      </ion-row>
- 
-   
-
-      <ion-row>
+    <ion-row>
       <div class="wrapper">
-  <div class="box a"  >
-  
-  <img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; " src="../../assets/ImgErp/gestion-espace-final.png" alt="" routerLink="/gestion-espace"> 
-</div>
-  <div class="box b"  >
-<img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; "  src="../../assets/ImgErp/gestion-adherent-final.png" alt="" routerLink="/gestion-adherent" >  
-
-</div>
-  <div class="box c"  >
-<img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; "  src="../../assets/ImgErp/historique-final.png" alt="" routerLink="/historiqueerp">    
-</div>
-  <div class="box d" >
-<img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; "  src="../../assets/ImgErp/gestion-materiel-finalpng.png" alt="" routerLink="/gestion-material">      
-</div>
-    <div class="box e"  >
-<img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; "  src="../../assets/ImgErp/planning-final.png" alt="" routerLink="/planning">    
-</div>
-  <div class="box f"  >
-<img  style="box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important; "  src="../../assets/ImgErp/resource-humaines-final.png" alt="" routerLink="/gestion-effectif">    
-  
-</div>
-</div>
-      </ion-row>
-    </ion-grid>
-
-
-
-  
+        <div class="box a">
+          <img
+            style="
+              box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+            "
+            src="../../assets/ImgErp/gestion-espace-final.png"
+            alt=""
+            routerLink="/gestion-espace"
+          />
+        </div>
+        <div class="box b">
+          <img
+            style="
+              box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+            "
+            src="../../assets/ImgErp/gestion-adherent-final.png"
+            alt=""
+            routerLink="/gestion-adherent"
+          />
+        </div>
+        <div class="box c">
+          <img
+            style="
+              box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+            "
+            src="../../assets/ImgErp/historique-final.png"
+            alt=""
+            routerLink="/historiqueerp"
+          />
+        </div>
+        <div class="box d">
+          <img
+            style="
+              box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+            "
+            src="../../assets/ImgErp/gestion-materiel-finalpng.png"
+            alt=""
+            routerLink="/gestion-material"
+          />
+        </div>
+        <div class="box e">
+          <img
+            style="
+              box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+            "
+            src="../../assets/ImgErp/planning-final.png"
+            alt=""
+            routerLink="/planning"
+          />
+        </div>
+        <div class="box f">
+          <img
+            style="
+              box-shadow: rgb(130 125 125 / 56%) 0px 22px 70px 4px !important;
+            "
+            src="../../assets/ImgErp/resource-humaines-final.png"
+            alt=""
+            routerLink="/gestion-effectif"
+          />
+        </div>
+      </div>
+    </ion-row>
+  </ion-grid>
 </ion-content>
-<ion-footer >
+<ion-footer>
   <ion-row>
     <ion-col></ion-col>
     <ion-col>
-      <div>
-        
-      </div>
+      <div></div>
     </ion-col>
     <ion-col></ion-col>
     <ion-col>
-      <div>
-       
-      </div>
+      <div></div>
     </ion-col>
     <ion-col></ion-col>
     <ion-col>
-      <div>
-        
-      </div>
+      <div></div>
     </ion-col>
     <ion-col></ion-col>
     <ion-col>
-      <div>
-     
-      </div>
+      <div></div>
     </ion-col>
     <ion-col></ion-col>
     <ion-col>
-      <div>
-    
-      </div>
+      <div></div>
     </ion-col>
     <ion-col></ion-col>
   </ion-row>
