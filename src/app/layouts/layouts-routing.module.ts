@@ -36,6 +36,12 @@ const routes: Routes = [
         loadChildren: () => import('./boite-reception/chat/chat.module').then(m => m.ChatPageModule),
 
       },
+      
+      {
+        path: 'chatkids/:id',
+        loadChildren: () => import('./kids/boite-reception/chatkids/chatkids.module').then(m => m.ChatkidsPageModule),
+
+      },
       {
         path: 'maps',
         loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule),

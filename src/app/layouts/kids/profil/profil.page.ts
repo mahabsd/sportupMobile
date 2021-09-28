@@ -26,6 +26,7 @@ export class ProfilPage implements OnInit {
   user: User = new User();
   user_id;
   title: any;
+  checkSelf=false;
   idprofilePassed
   profileClickedName
   constructor(private userservice: UserService, private postKidsService: PostKidsService,
@@ -58,8 +59,11 @@ export class ProfilPage implements OnInit {
   }
   async getMe() {
     this.userservice.getMe().subscribe((res) => {
-      this.user = res.data.data;
-      console.log(this.user);
+    //  this.user = res.data.data;
+      if(this.idprofilePassed==res.data.data._id){
+        this.checkSelf=true;
+        console.log('nafsoussssssss')
+      }
     });
   }
 

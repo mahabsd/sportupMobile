@@ -18,6 +18,8 @@ export class HeaderComponent implements OnInit {
   @Input() isDetails: boolean = false;
   @Input() isEllipsis: boolean = false;
   @Input() isOption: boolean = false;
+  @Input() isOptionPageSuivre: boolean = false;
+
   @Input() isCoach: boolean = false;
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
@@ -29,6 +31,7 @@ export class HeaderComponent implements OnInit {
   @Input() isNotifications: boolean = false;
   @Input() isKid: boolean = false;
   @Input() KidsProfile: boolean = false;
+  @Input() SuivrePage: boolean = false;
 
   constructor(private modalCtrl: ModalController, public popoverController: PopoverController) { }
 
