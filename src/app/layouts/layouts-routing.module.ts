@@ -181,7 +181,11 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },  {
+    path: 'line-chart',
+    loadChildren: () => import('./line-chart/line-chart.module').then( m => m.LineChartPageModule)
+  },
+
 
 
 
