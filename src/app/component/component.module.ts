@@ -9,8 +9,8 @@ import { ParametresComponent } from './parametres/parametres.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent,ParametresComponent],
-  exports: [HeaderComponent,ParametresComponent],
+  declarations: [HeaderComponent, ParametresComponent],
+  exports: [HeaderComponent, ParametresComponent],
   imports: [
     CommonModule,
     ComponentRoutingModule,
