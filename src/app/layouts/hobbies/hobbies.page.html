@@ -1,7 +1,7 @@
 <app-header [title]="title" [isDetails]="true" [isOption]="true"></app-header>
 
 
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
 
   <h5>Bienvenue sur votre onglet des hobbies</h5>
   <h6>rechercher des personnes selon votre activité préférée</h6>

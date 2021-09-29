@@ -13,8 +13,8 @@ ion-tab-bar {
   align-items: flex-end;
   justify-content: center;
   color: #8c8c8c;
-  background-color: transparent;
-
+  background-color: #EEE;
+  box-shadow: -1px 1px 2px 1px #6d6969;
 }
 
 ion-tabs {
@@ -26,32 +26,23 @@ ion-tab-button {
 
 }
 
-ion-tab-button:hover {
-
-  background-color: #EEE;
-}
-
-ion-tab-bar:hover {
-
-  background-color: #EEE;
-  box-shadow: -1px 1px 2px 1px #6d6969;
-
-}
 
 
 
-ion-tab-bar{
+ion-tab-bar {
   transition: all 1s;
 }
-.showTabs{
+
+.showTabs {
   position: absolute;
   transition: all 1s;
   transform: translateY(0px);
- 
+
 }
-.hideTabs{
+
+.hideTabs {
   position: absolute;
   transition: all 1s;
   transform: translateY(100px);
- 
+
 }
