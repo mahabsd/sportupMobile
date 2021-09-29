@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./layouts/layouts.module').then(m => m.LayoutsModule), canActivate: [AuthGuard]
   },
   {
+    path: 'signin-kids',
+    loadChildren: () => import('./layouts/kids/sign-kids/sign-kids.module').then(m => m.SignKidsPageModule)
+  },
+  {
     path: 'tabs',
     loadChildren: () => import('./component/tabs/tabs.module').then(m => m.TabsPageModule), canActivate: [AuthGuard]
   },

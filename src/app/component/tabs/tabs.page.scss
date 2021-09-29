@@ -30,3 +30,21 @@ ion-tab-button:hover {
 
   --ripple-color: #247238 !important;
 }
+
+
+
+ion-tab-bar{
+  transition: all 1s;
+}
+.showTabs{
+  position: absolute;
+  transition: all 1s;
+  transform: translateY(0px);
+ 
+}
+.hideTabs{
+  position: absolute;
+  transition: all 1s;
+  transform: translateY(100px);
+ 
+}

@@ -1,6 +1,6 @@
-<ion-tabs>
+<ion-tabs >
   <!-- Tab bar -->
-  <ion-tab-bar slot="bottom" translucent="true">
+  <ion-tab-bar slot="bottom" translucent="true" [ngClass]="menuOpened? 'hideTabs' : 'showTabs'">
     <ion-tab-button title="accueil">
       <img [routerLink]="['/menu/tabs/home']" src="../../assets/icon/icon_home.png" />
     </ion-tab-button>

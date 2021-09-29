@@ -25,10 +25,6 @@ const routes: Routes = [
         loadChildren: () => import('./activite/activite.module').then(m => m.ActivitePageModule)
       },
       {
-        path: 'sign-kids',
-        loadChildren: () => import('./sign-kids/sign-kids.module').then(m => m.SignKidsPageModule)
-      },
-      {
         path: 'profilkids',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule)
       },

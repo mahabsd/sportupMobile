@@ -131,7 +131,7 @@ export class StatusComponent implements OnInit {
 
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
-    console.log(ext);
+ 
     return ext;
   }
 
