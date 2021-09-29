@@ -7,13 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { StatistiqueuserPageRoutingModule } from './statistiqueuser-routing.module';
 
 import { StatistiqueuserPage } from './statistiqueuser.page';
+import {LineChartPageModule} from '../line-chart/line-chart.module'
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    StatistiqueuserPageRoutingModule
+    StatistiqueuserPageRoutingModule,LineChartPageModule
   ],
   declarations: [StatistiqueuserPage]
 })
