@@ -50,7 +50,7 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     LazyLoadImageModule,
   ],
   declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent],
-  exports: [CoachprofilePage, CoachphotoPage, CoachpubPage,ImageProfileComponent],
+  exports: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],
 
 })

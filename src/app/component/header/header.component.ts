@@ -4,6 +4,8 @@ import { TopMenuComponent } from 'src/app/layouts/erp/top-menu/top-menu.componen
 import { PopoverController } from '@ionic/angular';
 import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
+
+
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -22,7 +24,7 @@ export class HeaderComponent implements OnInit {
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
   @Input() BoiteRecepetionKids: boolean = false;
-  
+
   @Input() BoiteRecepetion: boolean = false;
   @Input() ChatAdulte: boolean = false;
 
@@ -30,7 +32,9 @@ export class HeaderComponent implements OnInit {
   @Input() isKid: boolean = false;
   @Input() KidsProfile: boolean = false;
 
-  constructor(private modalCtrl: ModalController, public popoverController: PopoverController) { }
+  constructor(private modalCtrl: ModalController,
+    public popoverController: PopoverController,
+  ) { }
 
   ngOnInit() { }
   close() {

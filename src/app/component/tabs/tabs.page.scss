@@ -3,7 +3,6 @@ ion-tab-bar {
   margin-right: auto;
   margin-bottom: 10px;
   border-radius: 50px;
-  box-shadow: -1px 1px 2px 1px #6d6969;
   position: absolute;
   bottom: 0px;
   width: 90%;
@@ -14,19 +13,27 @@ ion-tab-bar {
   align-items: flex-end;
   justify-content: center;
   color: #8c8c8c;
-  background-color: #EEE;
+  background-color: transparent;
+
 }
 
 ion-tabs {
-  --background: transparent;
+  --background: transparent !important;
 }
 
 ion-tab-button {
-  --background-hover: red;
+  background-color: transparent;
 
 }
 
 ion-tab-button:hover {
 
-  --ripple-color: #247238 !important;
+  background-color: #EEE;
+}
+
+ion-tab-bar:hover {
+
+  background-color: #EEE;
+  box-shadow: -1px 1px 2px 1px #6d6969;
+
 }

@@ -22,26 +22,25 @@ export class CoachprofilePage implements OnInit {
 
   user$: any = [];
   // eslint-disable-next-line max-len
-  coachInfo = {  backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg' };
+  coachInfo = { backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg' };
   apiImg = environment.apiImg + 'User/';
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.getMe();
+
   }
 
   getMe() {
     this.userService.getMe().subscribe(async res => {
       console.log(res.data.data);
       this.user$ = res.data.data;
-
-
     });
 
 
   }
- 
+
 
 
 

@@ -59,7 +59,7 @@ export class HomePage implements OnInit {
     });
   }
   loadMore(event) {
-    //console.log(this.page);
+    // console.log(this.page);
     this.page++;
     this.getAllPostsByEvent(event);
   }
@@ -120,4 +120,5 @@ export class HomePage implements OnInit {
       toastData.present();
     });
   }
+
 }
