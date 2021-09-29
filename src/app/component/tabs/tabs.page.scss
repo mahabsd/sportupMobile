@@ -37,3 +37,21 @@ ion-tab-bar:hover {
   box-shadow: -1px 1px 2px 1px #6d6969;
 
 }
+
+
+
+ion-tab-bar{
+  transition: all 1s;
+}
+.showTabs{
+  position: absolute;
+  transition: all 1s;
+  transform: translateY(0px);
+ 
+}
+.hideTabs{
+  position: absolute;
+  transition: all 1s;
+  transform: translateY(100px);
+ 
+}

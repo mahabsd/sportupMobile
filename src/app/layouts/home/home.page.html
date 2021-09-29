@@ -1,5 +1,8 @@
 <app-header title="Home" [isOption]="true"></app-header>
-<ion-content padding scrollEvents="true">
+<ion-content  padding
+  [scrollEvents]="true"
+ 
+  (ionScroll)="logScrolling($event)">
   <div id="container">
     <ion-grid>
       <ion-row id="rowTabFiltre">

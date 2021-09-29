@@ -14,7 +14,7 @@ import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-  section = '1';
+  section = '2';
   role = '';
   registerForm: FormGroup;
   particulierForm: FormGroup;
@@ -32,6 +32,8 @@ export class SigninPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.user.role='user';
     this.registerForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
       // eslint-disable-next-line max-len
