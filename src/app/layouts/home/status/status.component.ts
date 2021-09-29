@@ -70,7 +70,7 @@ export class StatusComponent implements OnInit {
     });
   }
   async ngOnInit() {
-    console.log(this.post);
+    //console.log(this.post);
 
     await this.getCommentByPost();
   }
@@ -99,17 +99,17 @@ export class StatusComponent implements OnInit {
     this.disLikeFn.emit({ post, index: this.index });
   }
 
-  onComment() {}
-  share() {}
+  onComment() { }
+  share() { }
   bookmark(post) {
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
-      console.log(res);
+      //console.log(res);
       this.bookmarked = true;
     });
   }
   unBookmark(post) {
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
-      console.log(res);
+      //console.log(res);
       this.bookmarked = false;
     });
   }
@@ -131,14 +131,14 @@ export class StatusComponent implements OnInit {
 
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
- 
+    //console.log(ext);
     return ext;
   }
 
   async displayImage(url: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    console.log(url);
-    
+    //console.log(url);
+
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
       cssClass: 'imageModal',
@@ -151,8 +151,8 @@ export class StatusComponent implements OnInit {
 
   async displayVideo(url: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    console.log(url);
-    
+    // console.log(url);
+
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
       cssClass: 'imageModal',
@@ -162,12 +162,12 @@ export class StatusComponent implements OnInit {
     });
     return await modal.present();
   }
-  playvid(url){
+  playvid(url) {
     this.videoPlayer.play(url).then(() => {
-console.log('video completed');
-}).catch(err => {
-console.log(err);
-});
+      //console.log('video completed');
+    }).catch(err => {
+      console.log(err);
+    });
   }
   getCommentByPost() {
     forkJoin({

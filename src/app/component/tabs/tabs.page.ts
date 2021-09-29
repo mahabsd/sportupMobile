@@ -75,12 +75,17 @@ openMenu(){
     await modal.onWillDismiss().then((result) => { });
   }
 
-  sendMessage(message) {
-    // send message to subscribers via observable subject
-    this.imageService.sendMessage(message);
-  }
 
-  add(event: any) {
-    console.log(event);
-  }
+
+
+sendMessage(message) {
+  // send message to subscribers via observable subject
+  this.imageService.sendMessage(message);
+}
+
+
+
+add(event: any) {
+  console.log(event);
+}
 }

@@ -123,10 +123,6 @@ const routes: Routes = [
         path: 'insert-facteur-modal',
         loadChildren: () => import('./insert-facteur-modal/insert-facteur-modal.module').then(m => m.InsertFacteurModalPageModule)
       },
-      {
-        path: 'insert-last-effectif-modal',
-        loadChildren: () => import('./insert-last-effectif-modal/insert-last-effectif-modal.module').then(m => m.InsertLastEffectifModalPageModule)
-      },
 
       {
         path: 'accueil',
@@ -182,6 +178,8 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+
 
 
 

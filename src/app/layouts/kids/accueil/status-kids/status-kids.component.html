@@ -1,5 +1,9 @@
 <div class="img-wrapper">
   <div>
+    
+    
+    <div *ngIf="isUserConnected!=post.user.id&&follower===false">
+      {{follower}}
     <ion-row style="height: 40px;text-align: initial;" routerLink="/tabs/profil/{{post.user.id}}" >
       <ion-col size="3">
         <ion-avatar>
@@ -10,8 +14,7 @@
       </ion-col>
       <ion-col
         size="9"
-        style="
-          margin-left: 35px;
+        style="margin-left: 35px;
           margin-top: -77px;
         "
       >
@@ -25,6 +28,78 @@
         >
       </ion-col>
     </ion-row>
+  </div>
+
+  <div *ngIf="isUserConnected===post.user.id">
+    
+    <ion-row style="height: 40px;text-align: initial;" routerLink="/profilkids/{{post.user.id}}"  >
+      <ion-col size="3">
+        <ion-avatar>
+          <img class="myImageUser" src="../../../assets/kidsuser.png" />
+          
+
+        </ion-avatar>
+      </ion-col>
+      <ion-col
+        size="9"
+        style="margin-left: 35px;
+          margin-top: -77px;
+        "
+      >
+        <ion-label
+          style="color: gray; margin-top: 45px; font-size: x-small"
+          >{{post.user.name}}</ion-label
+        >
+        <ion-label
+          style="color: gray; font-size: xx-small; display: block"
+          >{{post.createdAt| date}}</ion-label
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="follower===true&&isUserConnected!=post.user.id">
+
+          {{follower}}
+
+    <ion-row style="height: 40px;text-align: initial;" routerLink="/profilkids/{{post.user.id}}" >
+      <ion-col size="3">
+        <ion-avatar>
+          <img class="myImageUser" src="../../../assets/kidsuser.png" />
+          
+
+        </ion-avatar>
+      </ion-col>
+      <ion-col
+        size="9"
+        style="margin-left: 35px;
+          margin-top: -77px;
+        "
+      >
+        <ion-label
+          style="color: gray; margin-top: 45px; font-size: x-small"
+          >{{post.user.name}}</ion-label
+        >
+        <ion-label
+          style="color: gray; font-size: xx-small; display: block"
+          >{{post.createdAt| date}}</ion-label
+        >
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <ion-row>
       <ion-col size="9">

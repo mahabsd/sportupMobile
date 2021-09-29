@@ -45,7 +45,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     this.getAllPostsByEvent();
-    console.log(this.page);
+    // console.log(this.page);
 
     this.getMe();
   }
@@ -78,7 +78,7 @@ export class HomePage implements OnInit {
     });
   }
   loadMore(event) {
-    console.log(this.page);
+    // console.log(this.page);
     this.page++;
     this.getAllPostsByEvent(event);
   }
@@ -139,4 +139,5 @@ export class HomePage implements OnInit {
       toastData.present();
     });
   }
+
 }

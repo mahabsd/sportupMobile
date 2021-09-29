@@ -17,7 +17,7 @@ export class UserService {
     public toastCtrl: ToastController) { }
   getMe(): Observable<User> {
     return this.utilsService.get(UtilsService.apiUSER + 'Me').pipe(map(res => {
-      // console.log(res);
+      console.log(res);
       return res;
     }), catchError(this.handleError));
   }
@@ -94,6 +94,13 @@ export class UserService {
   getUsersKids(): Observable<any> {
 
     return this.utilsService.get(`${UtilsService.apiUSER}?role=kids`).pipe(map(res => res.data));
+  }
+
+  getRoleUsers(): Observable<any> {
+
+    return this.utilsService.get(`${UtilsService.apiUSER}?role=user`).pipe(map(res => res.data
+
+    ));
   }
 
 }

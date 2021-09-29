@@ -1,23 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 import { IonicModule } from '@ionic/angular';
-
-import { ChatPageRoutingModule } from './chat-routing.module';
-
-import { ChatPage } from './chat.page';
-import { FilterChatPipe } from './filter-chat.pipe';
+import { RouterModule } from '@angular/router';
 import { ComponentModule } from 'src/app/component/component.module';
+import { DeletePostPopoverPage } from './delete-post-popover.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ChatPageRoutingModule,
+    RouterModule,
     ComponentModule
   ],
-  declarations: [ChatPage, FilterChatPipe]
+  declarations: [DeletePostPopoverPage]
 })
-export class ChatPageModule {}
+export class CoachprofilePageModule { }
