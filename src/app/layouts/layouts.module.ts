@@ -8,13 +8,12 @@ import { KidsModule } from './kids/kids.module';
 
 @NgModule({
   declarations: [
-  
   ],
   imports: [
     CommonModule,
     LayoutsRoutingModule,
     ComponentModule,
-    KidsModule
+    KidsModule,
   ]
 })
 export class LayoutsModule { }

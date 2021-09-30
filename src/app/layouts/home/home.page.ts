@@ -9,6 +9,7 @@ import { CommentService } from '../../Shared/Service/comment.service';
 import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
+import { EventService } from 'src/app/shared/Service/event.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -30,7 +31,7 @@ export class HomePage implements OnInit {
     spaceBetween: 25
   };
   scrolTo = null;
-  message = '';
+  isScrollTop = false;
   messages = [];
   currentUser = '';
   constructor(
@@ -38,17 +39,35 @@ export class HomePage implements OnInit {
     private loadingController: LoadingController,
     private toastCtrl: ToastController,
     private postService: PostService,
+    private eventService: EventService,
     private userService: UserService) {
   }
 
   async ngOnInit() {
     this.getAllPostsByEvent();
-    console.log(this.page);
+    // console.log(this.page);
 
     this.getMe();
   }
 
 
+  logScrolling(event){
+    if(event.detail.deltaY<0)
+    {
+      this.isScrollTop = false;
+
+    }else{
+      this.isScrollTop = true;;
+    }
+
+
+    this.eventService.sendMessage(this.isScrollTop);
+    
+    console.log(event.detail.deltaY);
+    
+  }
+
+ 
 
   getAllPostsByEvent(event?) {
     this.postService.getAllPosts(this.page).pipe(share()).subscribe(res => {
@@ -59,7 +78,7 @@ export class HomePage implements OnInit {
     });
   }
   loadMore(event) {
-    console.log(this.page);
+    // console.log(this.page);
     this.page++;
     this.getAllPostsByEvent(event);
   }
@@ -120,4 +139,5 @@ export class HomePage implements OnInit {
       toastData.present();
     });
   }
+
 }

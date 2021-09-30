@@ -4,6 +4,8 @@ import { User } from 'src/app/Shared/Model/User';
 import { Post } from 'src/app/Shared/Model/Post';
 import { PostService } from 'src/app/Shared/Service/post.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { DeletePostPopoverPage } from '../delete-post-popover/delete-post-popover.page';
+import { PopoverController } from '@ionic/angular';
 @Component({
   selector: 'app-coachpub',
   templateUrl: './coachpub.page.html',
@@ -15,7 +17,9 @@ export class CoachpubPage implements OnInit {
   posts: any = [];
   page = 1;
   selectedDate;
-  constructor(private postService: PostService, private userService: UserService) { }
+  constructor(private postService: PostService, private userService: UserService,
+    public popoverController: PopoverController,
+  ) { }
 
   async ngOnInit() {
     await this.getMe();
@@ -25,7 +29,7 @@ export class CoachpubPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async res => {
       this.user$ = await res.data.data;
-   
+
       await this.getPosts();
     });
   }
@@ -45,4 +49,21 @@ export class CoachpubPage implements OnInit {
     this.page++;
     this.getPosts(event);
   }
+  async openPostMenu(ev: any) {
+    const popover = await this.popoverController.create({
+      component: DeletePostPopoverPage,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+      mode: 'ios',
+      componentProps: {
+        paramID: ev,
+      }
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+
 }

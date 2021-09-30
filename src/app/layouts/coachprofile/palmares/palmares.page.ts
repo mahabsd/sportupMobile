@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/Shared/Model/User';
 import { CoachService } from 'src/app/Shared/Service/coach.service';
+import { StorageService } from 'src/app/Shared/Service/storage.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
 import { Coach } from '../../../Shared/Model/coach';
@@ -32,15 +33,19 @@ export class PalmaresPage implements OnInit {
     lieuTravaille: 'La Marsa',
     dateN: new Date('01 / 01 / 1990')
   };
+  user$: User;
+  isconnected: boolean = false;
   constructor(
     private alertCtrl: AlertController,
     private userService: UserService,
-    private coachService: CoachService
+    private coachService: CoachService,
+    private storageService: StorageService
   ) {
   }
 
   async ngOnInit() {
     await this.getMe();
+
   }
   readOnlyPalmaresToggle() {
     this.readOnlyPalmares = !this.readOnlyPalmares;
@@ -81,9 +86,13 @@ export class PalmaresPage implements OnInit {
   }
   getMe() {
     this.userService.getMe().subscribe(async res => {
-      console.log(res);
-
+      this.user$ = res?.data?.data?._id
       this.getCoachByIdUser(res?.data?.data?._id);
+      this.storageService.get('currentUser').subscribe((res) => {
+
+        res._id === this.user$ ? this.isconnected = true : this.isconnected = false
+        console.log(this.isconnected);
+      });
     });
   }
   updateCoach() {
@@ -99,5 +108,8 @@ export class PalmaresPage implements OnInit {
       console.log(res);
       this.coach = res;
     });
+  }
+  annuler() {
+    this.readOnlyPalmares = !this.readOnlyPalmares;
   }
 }

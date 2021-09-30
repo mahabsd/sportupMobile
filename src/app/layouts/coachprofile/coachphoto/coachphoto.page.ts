@@ -41,6 +41,7 @@ export class CoachphotoPage implements OnInit {
   }
   ngOnInit() {
     this.getMe();
+
   }
 
   async presentModal(img: any) {
