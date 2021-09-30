@@ -187,31 +187,15 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'recherche-friends',
-    loadChildren: () => import('./recherche-friends/recherche-friends.module').then( m => m.RechercheFriendsPageModule)
-  },
-
-
-
-
-
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 
 
 
 ]
   ;
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class LayoutsRoutingModule { }
-) => import('./home/modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class LayoutsRoutingModule { }
+  @NgModule({
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule]
+  })
+  export class LayoutsRoutingModule { }
+  
