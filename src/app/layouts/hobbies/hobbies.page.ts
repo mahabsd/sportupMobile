@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
+import { EventService } from 'src/app/shared/Service/event.service';
 import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
 
 @Component({
@@ -141,8 +142,10 @@ export class HobbiesPage implements OnInit {
       },
     },
   };
+  isScrollTop: boolean;
 
-  constructor(public hobbiesService: HobbiesService) {
+  constructor(public hobbiesService: HobbiesService, private eventService: EventService,
+  ) {
     this.HobbiesData = [
       {
         imgsrc: "https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
@@ -229,5 +232,15 @@ export class HobbiesPage implements OnInit {
 
   ngOnInit() {
     console.log(this.HobbiesData[0].hobbiename)
+  }
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
+      this.isScrollTop = false;
+
+    } else {
+      this.isScrollTop = true;;
+    }
+    this.eventService.sendMessage(this.isScrollTop);
+
   }
 }

@@ -6,6 +6,7 @@ import {
   ToastController,
 } from '@ionic/angular';
 import { Subscription } from 'rxjs';
+import { EventService } from 'src/app/shared/Service/event.service';
 import { environment } from 'src/environments/environment';
 import { ImageService } from '../../../Shared/Service/image.service';
 import { UserService } from '../../../Shared/Service/user.service';
@@ -22,12 +23,14 @@ export class CoachphotoPage implements OnInit {
   filesToUpload: any;
   user$: any;
   messages: any[] = [];
+  isScrollTop: boolean;
   constructor(
     private imageService: ImageService,
     private userService: UserService,
     private modalController: ModalController,
     private action: ActionSheetController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private eventService: EventService,
   ) {
     this.subscription = this.imageService.getMessage().subscribe((message) => {
       if (message.event === 'addphoto') {
@@ -120,5 +123,14 @@ export class CoachphotoPage implements OnInit {
       this.user$ = res.data.data;
       this.getImageByIdUser(res?.data?.data?._id);
     });
+  }
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
+      this.isScrollTop = false;
+
+    } else {
+      this.isScrollTop = true;;
+    }
+    this.eventService.sendMessage(this.isScrollTop);
   }
 }

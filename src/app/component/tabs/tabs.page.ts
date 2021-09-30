@@ -30,23 +30,20 @@ export class TabsPage implements OnInit {
   ngOnInit() {
     this.getMe();
     this.subscription = this.eventService.getMessage().subscribe((message) => {
-      
-        console.log('event? : '+message.event);
-        this.menuOpened = message.event;
+      this.menuOpened = message.event;
     });
   }
 
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      console.log(this.user$);
     });
   }
 
 
-openMenu(){
-  this.menuOpened = true;
-}
+  openMenu() {
+    this.menuOpened = true;
+  }
 
   openModal() {
     const url = this.router.url.split('/', 6);
@@ -78,14 +75,14 @@ openMenu(){
 
 
 
-sendMessage(message) {
-  // send message to subscribers via observable subject
-  this.imageService.sendMessage(message);
-}
+  sendMessage(message) {
+    // send message to subscribers via observable subject
+    this.imageService.sendMessage(message);
+  }
 
 
 
-add(event: any) {
-  console.log(event);
-}
+  add(event: any) {
+    console.log(event);
+  }
 }
