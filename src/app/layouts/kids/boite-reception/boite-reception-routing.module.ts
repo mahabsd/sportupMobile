@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: BoiteReceptionPage
+  },
+  {
+    path: 'chatkids',
+    loadChildren: () => import('./chatkids/chatkids.module').then( m => m.ChatkidsPageModule)
   }
 ];
 
