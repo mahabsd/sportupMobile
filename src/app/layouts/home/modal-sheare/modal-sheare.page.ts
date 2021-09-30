@@ -149,8 +149,10 @@ export class ModalShearePage implements OnInit {
       {
         text: 'Take Photo',
         icon: 'camera',
+        
         handler: () => {
           this.addImage(CameraSource.Camera);
+     
         },
       },
       {
@@ -158,6 +160,7 @@ export class ModalShearePage implements OnInit {
         icon: 'image',
         handler: () => {
           this.addImage(CameraSource.Photos);
+          
         },
       },
       {
@@ -181,6 +184,7 @@ export class ModalShearePage implements OnInit {
         icon: 'attach',
         handler: () => {
           this.fileInput.nativeElement.click();
+    
         },
       });
     }

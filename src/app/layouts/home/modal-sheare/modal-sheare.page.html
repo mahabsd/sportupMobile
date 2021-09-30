@@ -89,7 +89,7 @@
   <ion-grid>
     <ion-row>
       <ion-col (click)="selectImageSource()">
-        <input type="file" multiple #fileInput (change)="selectFiles($event)" hidden="true" accept="image/*">
+        <input type="file" multiple #fileInput (change)="selectFiles($event)" hidden="true" accept="image/jpg, image/png, application/pdf, video/mp4">
         <ion-img src="../../../../assets/icon/iconc_add_picture.png"></ion-img>
       </ion-col>
     </ion-row>

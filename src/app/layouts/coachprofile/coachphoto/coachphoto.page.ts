@@ -50,6 +50,7 @@ export class CoachphotoPage implements OnInit {
       cssClass: 'imageModal',
       componentProps: {
         image: img,
+        isImages: true
       },
     });
     return await modal.present();
