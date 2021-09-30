@@ -11,6 +11,11 @@ const routes: Routes = [
 
       },
       {
+        path: 'profil-kid/:id',
+        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
+
+      },
+      {
         path: 'apropos',
         loadChildren: () => import('./apropos/apropos.module').then(m => m.AproposPageModule),
 
@@ -36,7 +41,7 @@ const routes: Routes = [
         loadChildren: () => import('./boite-reception/chat/chat.module').then(m => m.ChatPageModule),
 
       },
-      
+
       {
         path: 'chatkids/:id',
         loadChildren: () => import('./kids/boite-reception/chatkids/chatkids.module').then(m => m.ChatkidsPageModule),
@@ -131,7 +136,8 @@ const routes: Routes = [
       },
       {
         path: 'insert-last-effectif-modal',
-        loadChildren: () => import('./insert-last-effectif-modal/insert-last-effectif-modal.module').then(m => m.InsertLastEffectifModalPageModule)
+        loadChildren: () => import('./insert-last-effectif-modal/insert-last-effectif-modal.module')
+          .then(m => m.InsertLastEffectifModalPageModule)
       },
 
       {
@@ -185,9 +191,15 @@ const routes: Routes = [
         path: 'notifications',
         loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsPageModule)
       },
+      {
+        path: 'politiques-utilisation',
+        loadChildren: () => import('./Config/politiques-utilisation/politiques-utilisation.module').
+          then(m => m.PolitiquesUtilisationPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
 
 
 
@@ -204,10 +216,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class LayoutsRoutingModule { }
-) => import('./home/modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
 
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class LayoutsRoutingModule { }
