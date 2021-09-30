@@ -24,6 +24,7 @@ export class CoachprofilePage implements OnInit {
   // eslint-disable-next-line max-len
   coachInfo = { backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg' };
   apiImg = environment.apiImg + 'User/';
+  isScrollTop: boolean;
 
   constructor(private userService: UserService) { }
 
@@ -40,8 +41,6 @@ export class CoachprofilePage implements OnInit {
 
 
   }
-
-
 
 
 

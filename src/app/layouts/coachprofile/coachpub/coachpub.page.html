@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <ion-row class="bodyFilter">
     <ion-refresher slot="fixed">
       <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh"

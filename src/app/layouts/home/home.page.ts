@@ -51,23 +51,15 @@ export class HomePage implements OnInit {
   }
 
 
-  logScrolling(event){
-    if(event.detail.deltaY<0)
-    {
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
       this.isScrollTop = false;
 
-    }else{
+    } else {
       this.isScrollTop = true;;
     }
-
-
     this.eventService.sendMessage(this.isScrollTop);
-    
-    console.log(event.detail.deltaY);
-    
   }
-
- 
 
   getAllPostsByEvent(event?) {
     this.postService.getAllPosts(this.page).pipe(share()).subscribe(res => {
