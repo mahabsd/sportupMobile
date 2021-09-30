@@ -37,7 +37,6 @@ export class TabsPage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      console.log(this.user$);
     });
   }
 

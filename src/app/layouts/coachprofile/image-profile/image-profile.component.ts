@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { CameraSource } from '@capacitor/core';
 import { ActionSheetController, ModalController } from '@ionic/angular';
 import { ZipSubscriber } from 'rxjs/internal/observable/zip';
+import { EventService } from 'src/app/shared/Service/event.service';
 import { environment } from 'src/environments/environment';
 import { ImageService } from '../../../shared/Service/image.service';
 @Component({
@@ -13,11 +14,11 @@ export class ImageProfileComponent implements OnInit {
   @Input() image: any;
   @Input() video: any;
   apImg = environment.apiImg + 'image/';
-  apiPost= environment.apiImg + 'Post/';
+  apiPost = environment.apiImg + 'Post/';
   constructor(
     private modalController: ModalController,
     private imageService: ImageService,
-    private action: ActionSheetController
+    private action: ActionSheetController,
   ) { }
 
   ngOnInit() {
@@ -78,4 +79,7 @@ export class ImageProfileComponent implements OnInit {
       this.dismiss();
     });
   }
+
+
+
 }

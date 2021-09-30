@@ -240,11 +240,7 @@ export class HobbiesPage implements OnInit {
     } else {
       this.isScrollTop = true;;
     }
-
-
     this.eventService.sendMessage(this.isScrollTop);
-
-    console.log(event.detail.deltaY);
 
   }
 }

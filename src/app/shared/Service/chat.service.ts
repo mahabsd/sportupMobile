@@ -11,10 +11,13 @@ import { Observable } from 'rxjs';
 export class ChatService {
 
   constructor(private apiService: UtilsService) { }
- 
 
-  getChat(idsender,idreceiver) {
+  getChat(idsender, idreceiver) {
     return this.apiService.get(`${UtilsService.apiChat}${idsender}/${idreceiver}`).pipe(map((res) => res.data.data));
+
+  }
+  getAllChatsByuser(idConnectedUser) {
+    return this.apiService.get(`${UtilsService.apiChat}${idConnectedUser}}`).pipe(map((res) => res.data.data));
 
   }
 
