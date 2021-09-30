@@ -36,6 +36,12 @@ const routes: Routes = [
         loadChildren: () => import('./boite-reception/chat/chat.module').then(m => m.ChatPageModule),
 
       },
+      
+      {
+        path: 'chatkids/:id',
+        loadChildren: () => import('./kids/boite-reception/chatkids/chatkids.module').then(m => m.ChatkidsPageModule),
+
+      },
       {
         path: 'maps',
         loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule),
@@ -123,6 +129,10 @@ const routes: Routes = [
         path: 'insert-facteur-modal',
         loadChildren: () => import('./insert-facteur-modal/insert-facteur-modal.module').then(m => m.InsertFacteurModalPageModule)
       },
+      {
+        path: 'insert-last-effectif-modal',
+        loadChildren: () => import('./insert-last-effectif-modal/insert-last-effectif-modal.module').then(m => m.InsertLastEffectifModalPageModule)
+      },
 
       {
         path: 'accueil',
@@ -186,10 +196,15 @@ const routes: Routes = [
 
 
 
-
-
 ]
   ;
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class LayoutsRoutingModule { }
+) => import('./home/modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

@@ -1,16 +1,11 @@
-<!-- MEZLT TAFSI5 FOLLOWER // KI NOD5EL PROFIL WE7ED . NEKTEB SES INFO W NAHI EL MENU MANGHIR LA UPDATE LA CHAY//KI NOD5EL LLPROFILE TE3I NVERIFI EL ID ELI PASSED BEL ID GET ME
- -->
+
 
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button color="secondary" (click)="presentPopover($event)">
-        <ion-icon style="    color: white;" slot="icon-only" ios="menu" md="menu">
-        </ion-icon>
-      </ion-button>
-
+      <ion-icon routerLink="/accueil" color="light" name="arrow-back"></ion-icon>
     </ion-buttons>
-    <ion-buttons slot="end">
+    <ion-buttons slot="end" *ngIf="checkSelf===true">
       <ion-button color="secondary" (click)="presentPopover($event)">
         <ion-icon style="    color: white;" slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical">
         </ion-icon>
@@ -147,7 +142,7 @@
         <ion-col>
           <ng-container *ngIf="!update">
 
-            <ion-icon (click)="updateComment()" name="create-outline" style="float: right;margin-top: 20px;"></ion-icon>
+            <ion-icon (click)="updateComment()" name="create-outline" style="float: right;margin-top: 20px;" *ngIf="checkSelf===true"></ion-icon>
           </ng-container>
           <ng-container *ngIf="update">
             <ion-icon style="font-size: 25px;    color: red;float: right;margin-top: 20px;" (click)="updateComment()"

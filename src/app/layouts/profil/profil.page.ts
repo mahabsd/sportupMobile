@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Follow } from 'src/app/shared/Model/Follow';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { CoachMenuPopOverComponent } from '../coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
+import { PopOverSuivrePageComponent } from './pop-over-suivre-page/pop-over-suivre-page.component';
 
 @Component({
   selector: 'app-profil',
@@ -53,7 +55,7 @@ export class ProfilPage implements OnInit {
     private userService: UserService,
     private followerService: FollowerService,
     private modalController: ModalController,
-    public router: Router
+    public router: Router,public popoverController: PopoverController
   ) {
     this.getUser();
     this.getfollow();
@@ -115,6 +117,21 @@ export class ProfilPage implements OnInit {
     );
   }
 
+  async presentPopover(ev: any) {
+    const popover = await this.popoverController.create({
+      component: PopOverSuivrePageComponent,
+     // cssClass: 'popoverProfil-custom-class',
+      event: ev,
+      translucent: true
+    });
+    popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
+    
+
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
   itemSelected(data) {
     console.log(data);
   }
