@@ -208,3 +208,10 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class LayoutsRoutingModule { }
+) => import('./home/modal-sheare/modal-sheare.module').then(m => m.ModalShearePageModule),
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class LayoutsRoutingModule { }
