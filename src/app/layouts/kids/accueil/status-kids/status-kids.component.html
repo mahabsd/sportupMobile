@@ -3,7 +3,6 @@
     
     
     <div *ngIf="isUserConnected!=post.user.id&&follower===false">
-      {{follower}}
     <ion-row style="height: 40px;text-align: initial;" routerLink="/tabs/profil/{{post.user.id}}" >
       <ion-col size="3">
         <ion-avatar>
@@ -60,7 +59,6 @@
 
   <div *ngIf="follower===true&&isUserConnected!=post.user.id">
 
-          {{follower}}
 
     <ion-row style="height: 40px;text-align: initial;" routerLink="/profilkids/{{post.user.id}}" >
       <ion-col size="3">

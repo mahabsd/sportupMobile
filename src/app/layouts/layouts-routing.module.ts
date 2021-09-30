@@ -188,6 +188,10 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'recherche-friends',
+    loadChildren: () => import('./recherche-friends/recherche-friends.module').then( m => m.RechercheFriendsPageModule)
+  },
 
 
 

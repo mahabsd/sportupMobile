@@ -117,13 +117,16 @@ export class ProfilPage implements OnInit {
     );
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover(ev: any,idprofilePassed) {
     const popover = await this.popoverController.create({
       component: PopOverSuivrePageComponent,
      // cssClass: 'popoverProfil-custom-class',
       event: ev,
+      componentProps: {idpassed: idprofilePassed},
+
       translucent: true
     });
+   // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
     
 
