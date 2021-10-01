@@ -15,9 +15,14 @@
           <ion-icon color="light" name="menu"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-button shape="rounded" [routerLink]="['/menu/tabs/layouts/scan']" routerLinkActive="router-link-active">
+      <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
+        routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
+      <ion-buttons slot="start">
+        <ion-icon routerLink="/menu/tabs/layouts/coachprofile/coachphoto" color="light" name="arrow-back"
+          *ngIf="isParam"></ion-icon>
+      </ion-buttons>
     </ion-buttons>
 
 

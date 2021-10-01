@@ -7,14 +7,17 @@ import { IonicModule } from '@ionic/angular';
 import { DesactivermoncomptePageRoutingModule } from './desactivermoncompte-routing.module';
 
 import { DesactivermoncomptePage } from './desactivermoncompte.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    DesactivermoncomptePageRoutingModule
+    DesactivermoncomptePageRoutingModule,
+    ComponentModule,
+
   ],
   declarations: [DesactivermoncomptePage]
 })
-export class DesactivermoncomptePageModule {}
+export class DesactivermoncomptePageModule { }
