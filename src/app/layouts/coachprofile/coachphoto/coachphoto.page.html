@@ -1,16 +1,16 @@
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <ion-grid>
-    
-      <!-- --> 
- 
- 
+
+    <!-- -->
+
+
     <div class="container">
-      <div *ngFor="let item of images ; let i = index; "   [ngClass]="[i === 0 ? 'item b' : 'item a']"
+      <div *ngFor="let item of images ; let i = index; " [ngClass]="[i === 0 ? 'item b' : 'item a']"
         [style.background-size]="'cover'" [style.background-image]="'url('+ apImg+item?.image_name + ')'"
-        [lazyLoad]="apImg+item?.image_name" errorImage="../../../assets/imgs/150.png" (click)="presentModal(item)" >
-    
-    
+        [lazyLoad]="apImg+item?.image_name" errorImage="../../../assets/imgs/150.png" (click)="presentModal(item)">
+
+
       </div>
-      </div>
+    </div>
   </ion-grid>
 </ion-content>

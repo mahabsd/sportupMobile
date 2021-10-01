@@ -22,15 +22,36 @@ export class ConfirmationPage implements OnInit {
 
   }
 
+ 
 
+    getAge(dateString) {
+      const today = new Date();
+    const birthDate = new Date(dateString);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+    }
+    return age;
+}
   confirmer() {
     console.log(this.code);
     let body = {
       token: this.code
     }
     this.userService.confirmInscription(body).subscribe((response) => {
-      console.log('hello user', response);
-      this.router.navigateByUrl('/login');
+      console.log('user age', response.data);
+      if(this.getAge(response.data)>13)
+      {
+        console.log('>13');
+        
+        this.router.navigateByUrl('/login');
+      }else{
+        console.log('<13');
+        
+        this.router.navigateByUrl('/kids/sign-kids');
+      }
+    
     }, err => {
       console.log(err);
       this.presentToast(err?.error?.error?.message, 'danger', 'middle');

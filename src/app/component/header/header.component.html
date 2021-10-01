@@ -7,6 +7,7 @@
       <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetion" defaultHref="/tabs/home"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && ChatAdulte" defaultHref="/boitereception"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && KidsProfile" defaultHref="/accueil"></ion-back-button>
+      <ion-back-button color="light" *ngIf="!isModal && SuivrePage" defaultHref="/accueil"></ion-back-button>
 
 
       <ion-buttons slot="end" *ngIf="isCoach">
@@ -15,9 +16,25 @@
         </ion-button>
       </ion-buttons>
       <ion-button shape="rounded" [routerLink]="['/menu/tabs/layouts/scan']" routerLinkActive="router-link-active">
-        <img src="../../assets/icon/icon_scan.png" alt="">
+        <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
+
+
     </ion-buttons>
+
+    <ion-buttons slot="end" *ngIf="isOptionPageSuivre">
+
+      <ion-button shape="rounded" (click)="openCoachMenu($event)">
+        <ion-icon color="light" name="menu"></ion-icon>
+      </ion-button>
+
+      <ion-button shape="rounded" [routerLink]="['/menu/tabs/layouts/maps']" routerLinkActive="router-link-active">
+        <img src="../../assets/icon/icon_position.png" alt="">
+      </ion-button>
+
+
+    </ion-buttons>
+
     <ion-buttons slot="end" *ngIf="isOption">
 
       <ion-button shape="rounded" [routerLink]="['/menu/tabs/layouts/maps']" routerLinkActive="router-link-active">
@@ -37,6 +54,8 @@
     </ion-buttons>
     <ion-title color="light" *ngIf="isKid" slot="start" style="text-align: center; margin-left: 20xp">
       Accueil</ion-title>
+
+
     <ion-buttons>
       <ion-button shape="rounded" *ngIf="isKid" slot="end" [routerLink]="['/activite']"
         routerLinkActive="router-link-active">
@@ -44,7 +63,9 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-title color="light" class="ion-text-center title-font"> {{title}}</ion-title>
+    <ion-title color="light" class="ion-text-center title-font">
+      {{title}}</ion-title>
+
   </ion-toolbar>
 
 </ion-header>

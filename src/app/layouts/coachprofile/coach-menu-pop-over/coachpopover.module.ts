@@ -3,10 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
- 
 import { CoachMenuPopOverComponent } from '././coach-menu-pop-over.component';
 import { ComponentModule } from 'src/app/component/component.module';
- 
 
 @NgModule({
   imports: [
@@ -18,4 +16,4 @@ import { ComponentModule } from 'src/app/component/component.module';
   ],
   declarations: [CoachMenuPopOverComponent]
 })
-export class CoachprofilePageModule {}
+export class CoachprofilePageModule { }

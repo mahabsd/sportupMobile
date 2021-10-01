@@ -6,8 +6,9 @@ import { CameraSource } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
 import { ImageService } from 'src/app/Shared/Service/image.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { EventService } from 'src/app/shared/Service/event.service';
 
 @Component({
   selector: 'app-tabs',
@@ -16,24 +17,34 @@ import { map } from 'rxjs/operators';
 })
 export class TabsPage implements OnInit {
   user$: any = [];
-
+  menuOpened = false;
+  subscription: Subscription;
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
     private router: Router,
     private userservice: UserService,
+    private eventService: EventService,
   ) { }
 
   ngOnInit() {
     this.getMe();
+    this.subscription = this.eventService.getMessage().subscribe((message) => {
+      this.menuOpened = message.event;
+    });
   }
 
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      console.log(this.user$);
     });
   }
+
+
+  openMenu() {
+    this.menuOpened = true;
+  }
+
   openModal() {
     const url = this.router.url.split('/', 6);
     console.log(url);
@@ -49,6 +60,7 @@ export class TabsPage implements OnInit {
     }
   }
 
+
   async openShareModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
@@ -63,14 +75,14 @@ export class TabsPage implements OnInit {
 
 
 
-sendMessage(message) {
-  // send message to subscribers via observable subject
-  this.imageService.sendMessage(message);
-}
+  sendMessage(message) {
+    // send message to subscribers via observable subject
+    this.imageService.sendMessage(message);
+  }
 
 
 
-add(event: any) {
-  console.log(event);
-}
+  add(event: any) {
+    console.log(event);
+  }
 }

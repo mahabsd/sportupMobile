@@ -32,6 +32,8 @@ export class SigninPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.user.role='user';
     this.registerForm = new FormGroup({
       emailControl: new FormControl('', [Validators.required,
       // eslint-disable-next-line max-len

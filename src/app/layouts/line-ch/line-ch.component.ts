@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-line-chart',
-  templateUrl: './line-chart.page.html',
-  styleUrls: ['./line-chart.page.scss'],
+  selector: 'app-line-ch',
+  templateUrl: './line-ch.component.html',
+  styleUrls: ['./line-ch.component.scss'],
 })
-export class LineChartComponent {
+export class LineChComponent {
+
   public chartType: string = 'line';
 
   public chartDatasets: Array<any> = [
