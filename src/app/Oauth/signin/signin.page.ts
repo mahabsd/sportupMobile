@@ -14,7 +14,7 @@ import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
   styleUrls: ['./signin.page.scss'],
 })
 export class SigninPage implements OnInit {
-  section = '2';
+  section = '1';
   role = '';
   registerForm: FormGroup;
   particulierForm: FormGroup;
