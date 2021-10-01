@@ -106,7 +106,7 @@ ion-label {
   font-size: 25px;
 }
 
-ion-button {
+#dejasuivi {
 
   --background: linear-gradient(135deg, #8EBF25, #8EBF25, #247238, #247238);
 
@@ -116,6 +116,16 @@ ion-button {
   width: 130px;
 }
 
+
+#bloquer {
+
+  --background: rgb(240, 110, 110);
+
+  z-index: 2;
+  height: 32px;
+  margin: 50px auto;
+  width: 130px;
+}
 .slides-md {
   --bullet-background-active: linear-gradient(135deg, #8EBF25, #8EBF25, #247238, #247238);
 }

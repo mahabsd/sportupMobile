@@ -17,7 +17,7 @@ export class ChatService {
 
   }
   getAllChatsByuser(idConnectedUser) {
-    return this.apiService.get(`${UtilsService.apiChat}${idConnectedUser}}`).pipe(map((res) => res.data.data));
+    return this.apiService.get(`${UtilsService.apiChat}${idConnectedUser}`).pipe(map((res) => res.data.data));
 
   }
 

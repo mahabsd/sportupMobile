@@ -5,7 +5,7 @@
       <ion-back-button color="light" *ngIf="!isModal && isModProfile" defaultHref="/profil"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetionKids" defaultHref="/accueil"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetion" defaultHref="/tabs/home"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && ChatAdulte" defaultHref="/boitereception"></ion-back-button>
+      <ion-back-button color="light" *ngIf="!isModal && ChatAdulte" defaultHref="/acceuil"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && KidsProfile" defaultHref="/accueil"></ion-back-button>
       <ion-back-button color="light" *ngIf="!isModal && SuivrePage" defaultHref="/accueil"></ion-back-button>
 
@@ -18,9 +18,9 @@
       <ion-button shape="rounded" [routerLink]="['/menu/tabs/layouts/scan']" routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
-
-
     </ion-buttons>
+
+
 
     <ion-buttons slot="end" *ngIf="isOptionPageSuivre">
 

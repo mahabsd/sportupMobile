@@ -46,7 +46,20 @@
     <ion-card *ngFor="let user of userlist | filter : recherche;let i=index; " scrollY="true"
       style="font-size:20px; width : 100%;display:flex;align-items: center; justify-content:space-between">
       <h4 style="margin-left:40px;">{{user.name}}</h4>
-      <ion-button expand="block">S'abonner</ion-button>
+
+      <ng-container *ngIf="EtatSuivre;else suiviEnable">
+   
+         <ion-button expand="block"   type="button" id="bloquer" style="background-color: #e64646c4;" (click)="buttonBlock()" >
+          Bloquer
+        </ion-button>
+        </ng-container>
+        <ng-template #suiviEnable>
+          <ion-button expand="block"  id="dejasuivi"  (click)="buttonSuivre(user._id)" >S'abonner</ion-button>
+          
+    
+          </ng-template>
+
+   
 
     </ion-card>
   </div>
