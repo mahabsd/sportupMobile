@@ -40,11 +40,15 @@ export class ConfirmationPage implements OnInit {
       token: this.code
     }
     this.userService.confirmInscription(body).subscribe((response) => {
-      console.log('hello user', response);
-      if(this.getAge(response.data.datedenaissence)>18)
+      console.log('user age', response.data);
+      if(this.getAge(response.data)>13)
       {
+        console.log('>13');
+        
         this.router.navigateByUrl('/login');
       }else{
+        console.log('<13');
+        
         this.router.navigateByUrl('/kids/sign-kids');
       }
     

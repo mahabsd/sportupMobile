@@ -135,7 +135,7 @@ export class StatusComponent implements OnInit {
     return ext;
   }
 
-  async displayImage(url: any) {
+  async displayImage(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     //console.log(url);
 
@@ -143,13 +143,13 @@ export class StatusComponent implements OnInit {
       component: ImageProfileComponent,
       cssClass: 'imageModal',
       componentProps: {
-        image: url,
+        image: file,
       },
     });
     return await modal.present();
   }
 
-  async displayVideo(url: any) {
+  async displayVideo(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // console.log(url);
 
@@ -157,7 +157,7 @@ export class StatusComponent implements OnInit {
       component: ImageProfileComponent,
       cssClass: 'imageModal',
       componentProps: {
-        video: url,
+        video: file,
       },
     });
     return await modal.present();

@@ -1,5 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { ModalController, Platform } from '@ionic/angular';
+import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
 import { User } from '../../../Shared/Model/User';
 import { AuthService } from '../../../Shared/Auth/auth.service';
@@ -34,7 +34,8 @@ export class ModalShearePage implements OnInit {
     private modalController: ModalController,
     private actionSheet: ActionSheetController,
     private authService: AuthService,
-    private postService: PostService
+    private postService: PostService,
+    private toastCtrl: ToastController,
   ) {}
   ngOnInit() {
     this.loadImage();
@@ -103,6 +104,18 @@ export class ModalShearePage implements OnInit {
       return this.user;
     });
   }
+
+ 
+  async presentToast(message) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      color: 'success',
+      position: 'top'
+    });
+    toast.present();
+  }
+  
   createPost() {
     console.log(this.filesToUpload);
     const fd = new FormData();
@@ -120,8 +133,11 @@ export class ModalShearePage implements OnInit {
       this.uploadFiles(fd);
     }else{
       console.log(fd);
+     
       this.postService.createPost(fd).subscribe((res) => {
+        this.presentToast('Fichiers Ajoutées');
         this.closeModal();
+        
         return res;
       });
     }
@@ -149,8 +165,10 @@ export class ModalShearePage implements OnInit {
       {
         text: 'Take Photo',
         icon: 'camera',
+        
         handler: () => {
           this.addImage(CameraSource.Camera);
+     
         },
       },
       {
@@ -158,6 +176,7 @@ export class ModalShearePage implements OnInit {
         icon: 'image',
         handler: () => {
           this.addImage(CameraSource.Photos);
+          
         },
       },
       {
@@ -180,7 +199,10 @@ export class ModalShearePage implements OnInit {
         text: 'Choose a file',
         icon: 'attach',
         handler: () => {
-          this.fileInput.nativeElement.click();
+          
+        this.fileInput.nativeElement.click();
+        
+    
         },
       });
     }
@@ -235,12 +257,15 @@ export class ModalShearePage implements OnInit {
     }
     this.postService.uploadImageFile(formData).subscribe((res) => {
       console.log(res);
+      this.presentToast('Fichiers Ajoutées');
+      this.closeModal();
+      window.location.reload();
     });
   }
   selectFiles(event) {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
- 
+    this.actionSheet.dismiss();
   }
 
   uploadFile(event: EventTarget) {
@@ -253,6 +278,7 @@ export class ModalShearePage implements OnInit {
     console.log(file);
     this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
       this.images.push(newImage);
+
     });
   }
 }
