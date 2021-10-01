@@ -6,7 +6,7 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: 'profil/:id',
+        path: 'profil/:id/:typepage',
         loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
 
       },
@@ -198,7 +198,11 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'profiladulte/:id',
+    loadChildren: () => import('./profil-adulte/profil-adulte.module').then( m => m.ProfilAdultePageModule)
+  }
 
 
 
