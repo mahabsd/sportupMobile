@@ -172,3 +172,15 @@ font-weight: 800;
 .infoName{
   margin-top: 10px;
 }
+
+.myFooter{
+  border-radius: $ruler/2;
+  padding-bottom: 05px;
+  line-height: 0;
+  box-shadow: inset 1px 1px 1px 1px #cecece;
+  justify-content: center;
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 5px;
+}
