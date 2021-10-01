@@ -3,12 +3,12 @@
     <ion-back-button color="light" slot="start"  defaultHref="/accueil"></ion-back-button>
 
     
-    <ion-title color="light"   style="text-align: center; margin-left: 20xp">
-      Accueil</ion-title>
+    <ion-title color="light"   style="text-align: center; margin-left: 20xp">{{profileClickedName | uppercase}} 
+      </ion-title>
 
          <ion-buttons slot="end" >
   
-      <ion-button shape="rounded" (click)="presentPopover($event)">
+      <ion-button shape="rounded" (click)="presentPopover($event,idprofilePassed)">
         <ion-icon  color="light" name="chevron-down-outline"></ion-icon>
             </ion-button>
 
@@ -87,7 +87,7 @@
          </button>
         </ng-container>
         <ng-template #suiviEnable>
-          <button (click)="buttonSuivre()" id="suiv" type="button">
+          <button (click)="buttonSuivre()" id="suiv" type="button" >
             Suivre
           </button>
     
@@ -104,39 +104,5 @@
     </ion-row>
 
   </ion-grid>
-  <ion-grid class="activityGrid" *ngIf="imagesBasic.length>=3">
-    <ion-row class="ion-no-padding">
-      <ion-col size="8" class="ion-no-padding">
-        <img width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
-          src="{{imagesBasic[0].img}}" alt="">
-      </ion-col>
-      <!-- <ion-col size="4" class="ion-no-padding"> -->
-      <ion-col size="4" class="ion-no-padding">
-        <ion-row class="ion-no-padding" style="height: 50%;">
-          <img width="100%" height="100%" class="mygallery" style="padding-bottom: 2px;padding-right: 2px;"
-            src="{{imagesBasic[1].img}}" alt="">
-        </ion-row>
-        <ion-row class="ion-no-padding" style="height: 40%;">
-          <img width="100%" height="120%" class="mygallery" style="padding-right: 2px;" src="{{imagesBasic[2].img}}"
-            alt="">
-        </ion-row>
-      </ion-col>
-    </ion-row>
-    <ion-row class="ion-no-padding">
-      <ion-col size="4" class="imageFrame" *ngFor="let item of imagesBasic | slice:3;">
-        <img width="100%" height="100%" class="mygallery" src="{{item.img}}" alt="">
-      </ion-col>
-      <!-- <ion-col size="4" class="ion-no-padding"> -->
 
-    </ion-row>
-  </ion-grid>
-  <ion-grid class="activityGrid" *ngIf="imagesBasic.length<3">
-    <ion-row class="ion-no-padding">
-      <ion-col size="4" class="imageFrame" *ngFor="let item of imagesBasic">
-        <img width="100%" height="100%" class="mygallery" src="{{item.img}}" alt="">
-      </ion-col>
-      <!-- <ion-col size="4" class="ion-no-padding"> -->
-
-    </ion-row>
-  </ion-grid>
 </ion-content>

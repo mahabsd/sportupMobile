@@ -1,7 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
+import { Follow } from 'src/app/shared/Model/Follow';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-hobbies',
@@ -17,6 +20,11 @@ export class HobbiesPage implements OnInit {
   HobbiesData: any = [];
   userlist: any = [];
   recherche: any;
+  follower = false;
+  idFollowtoDelete 
+  EtatSuivre = false;
+  follow: Follow = new Follow();
+  iduser;iduser1
   slideOptsTwo = {
     initialSlide: 1,
 
@@ -144,7 +152,7 @@ export class HobbiesPage implements OnInit {
   };
   isScrollTop: boolean;
 
-  constructor(public hobbiesService: HobbiesService, private eventService: EventService,
+  constructor(public hobbiesService: HobbiesService, private eventService: EventService,private followerService:FollowerService,private userservice:UserService
   ) {
     this.HobbiesData = [
       {
@@ -202,7 +210,7 @@ export class HobbiesPage implements OnInit {
           this.hobbiesService.findbyactivity(this.sportname).subscribe((res: any) => {
             this.userlist = res.data.data;
             console.log(res);
-
+              this.getfollow()
           }
           );
         }
@@ -232,6 +240,8 @@ export class HobbiesPage implements OnInit {
 
   ngOnInit() {
     console.log(this.HobbiesData[0].hobbiename)
+    this. getMe()
+    this.getfollow()
   }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
@@ -241,6 +251,75 @@ export class HobbiesPage implements OnInit {
       this.isScrollTop = true;;
     }
     this.eventService.sendMessage(this.isScrollTop);
+
+  }
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.iduser = res.data.data._id;
+    });
+  }
+
+
+  getfollow() {
+    this.userservice.getMe().subscribe(
+      (response) => {
+        this.iduser1 = response.data.data.id;
+        this.userlist.forEach(element => {
+          this.followerService.getFollow(element._id, this.iduser1)
+          .subscribe((res) => {
+            if (res == null) {
+              console.log('nope');
+              this.EtatSuivre = false;
+              this.follower = false;
+            } else {
+              this.follower = true;
+              console.log('yesssss');
+
+              this.idFollowtoDelete = res._id;
+              console.log(res);
+              this.EtatSuivre = true;
+            }
+          });
+        });
+     
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+
+  }
+
+  buttonBlock() {
+    if(  this.EtatSuivre){
+    this.followerService
+      .deleteFollow(this.idFollowtoDelete)
+      .subscribe((res) => {
+        console.log(res);
+      });
+    }
+    
+    this.EtatSuivre = false;
+    //this.getfollow()
+  }
+
+
+  buttonSuivre(idprofilePassed) {
+    console.log(this.iduser)
+    this.userservice.getMe().subscribe((res) => {
+      this.iduser = res.data.data._id;
+
+      this.follow.userFollowed = idprofilePassed;
+      this.follow.userFollowing = this.iduser;
+      this.followerService.createFollow(this.follow).subscribe((res) => {
+  
+        
+      }); 
+    });
+    
+            
+  this.getfollow()
+    //this.router.navigate(["profilkids",this.idprofilePassed]);
 
   }
 }

@@ -19,6 +19,7 @@ export class ProfilPage implements OnInit {
   EtatSuivre = false;
   follow: Follow = new Follow();
   idfollow;
+  user$
   profileClickedName;
   myInformation: any = { userLastName: '', userFirstName: '' };
   iduser;
@@ -92,6 +93,14 @@ export class ProfilPage implements OnInit {
       }
     );
   }
+
+  getMe() {
+    this.userService.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      console.log(this.user$);
+    });
+  }
+
   getUser() {
     this.userService.getMe().subscribe(
       (response) => {
@@ -117,13 +126,16 @@ export class ProfilPage implements OnInit {
     );
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover(ev: any,idprofilePassed) {
     const popover = await this.popoverController.create({
       component: PopOverSuivrePageComponent,
      // cssClass: 'popoverProfil-custom-class',
       event: ev,
+      componentProps: {idpassed: idprofilePassed},
+
       translucent: true
     });
+   // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
     
 
@@ -139,10 +151,14 @@ export class ProfilPage implements OnInit {
     this.follow.userFollowed = this.idprofilePassed;
     this.follow.userFollowing = this.iduser;
     this.followerService.createFollow(this.follow).subscribe((res) => {
-      console.log(res);
+      
+      
+      
     });
-
+      
     this.getfollow();
+    //this.router.navigate(["profilkids",this.idprofilePassed]);
+
   }
 
   buttonBlock() {

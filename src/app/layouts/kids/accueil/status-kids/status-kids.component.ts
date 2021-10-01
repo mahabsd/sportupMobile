@@ -87,11 +87,9 @@ export class StatusKidsComponent implements OnInit {
         if (res == null) {
           _this.follower = false;
         
-          console.log('mouch follower' + _this.follower);
         } else {
           _this.follower = true;
 
-          console.log(' follower' +_this.follower);
         }
       });
   },

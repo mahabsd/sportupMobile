@@ -198,12 +198,7 @@ const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-
-
-
-
-
+  { path: '', redirectTo: 'home', pathMatch: 'full' }
 
 
 
