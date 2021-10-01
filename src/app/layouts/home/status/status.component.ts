@@ -26,6 +26,7 @@ import { environment } from '../../../../environments/environment';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
+import { UserService } from 'src/app/Shared/Service/user.service';
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -55,10 +56,11 @@ export class StatusComponent implements OnInit {
   liked = false;
   bookmarked = false;
   id;
+  isUserConnected
   loading: any;
   constructor(
     private commentService: CommentService,
-    private postService: PostService,
+    private postService: PostService, private userervice: UserService,
     private favorisService: FavorisService,
     private modalController: ModalController,
     private loadingController: LoadingController,
@@ -73,6 +75,12 @@ export class StatusComponent implements OnInit {
     //console.log(this.post);
 
     await this.getCommentByPost();
+  }
+
+  getMe() {
+    this.userervice.getMe().subscribe((res) => {
+      this.isUserConnected = res.data.data._id;
+    });
   }
 
   async showReactions(ev) {

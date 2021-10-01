@@ -71,10 +71,6 @@ export class BoiteReceptionPage implements OnInit {
                   }
                 ); 
               });
-
-         
-
-
           if (event) {
             event.target.complete()
           }
@@ -91,12 +87,15 @@ export class BoiteReceptionPage implements OnInit {
   
 
   loadData(event) {
+
     setTimeout(() => {
       console.log('Done');
       this.page = this.page * 2
       this.getfollow();
       this.numTimesLeft -= 1;
       event.target.complete();
+      this.users2=[]
+
     }, 500);
   }
 

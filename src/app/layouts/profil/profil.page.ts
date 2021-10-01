@@ -25,6 +25,7 @@ export class ProfilPage implements OnInit {
   iduser;
   iduser1;
   idprofilePassed;
+  typepage;
   idFollowtoDelete;
   user: any = [];
   posts: any[] = [];
@@ -64,6 +65,7 @@ export class ProfilPage implements OnInit {
 
   ngOnInit() {
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
+    this.typepage = this.activatedRoute.snapshot.params.typepage;
 
 
     this.getUserByid();
@@ -85,6 +87,11 @@ export class ProfilPage implements OnInit {
               this.idFollowtoDelete = res._id;
               console.log(res);
               this.EtatSuivre = true;
+              if( this.typepage==='kids'){
+              this.router.navigate(["profilkids",this.idprofilePassed]);}
+                else  if( this.typepage==='adulte'){
+                  this.router.navigate(["profiladulte",this.idprofilePassed]);}
+
             }
           });
       },
@@ -151,13 +158,18 @@ export class ProfilPage implements OnInit {
     this.follow.userFollowed = this.idprofilePassed;
     this.follow.userFollowing = this.iduser;
     this.followerService.createFollow(this.follow).subscribe((res) => {
-      
-      
+      if(res['status']==='successs'){
+        if( this.typepage==='kids'){
+          this.router.navigate(["profilkids",this.idprofilePassed]);}
+            else  if( this.typepage==='adulte'){
+              this.router.navigate(["profiladulte",this.idprofilePassed]);}
+
+      }
+
       
     });
       
     this.getfollow();
-    //this.router.navigate(["profilkids",this.idprofilePassed]);
 
   }
 
