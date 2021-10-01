@@ -45,7 +45,7 @@
       *ngIf="getExt(file.file_name) ==='png'">
       <div    class="item a"
       [style.background-size]="'cover'" [style.background-image]="'url('+ apiImg+file?.file_name + ')'"
-      [lazyLoad]="apiImg+file?.file_name" errorImage="../../../assets/imgs/150.png" (click)="displayImage(file?.file_name)"  >
+      [lazyLoad]="apiImg+file?.file_name" errorImage="../../../assets/imgs/150.png" (click)="displayImage(file)"  >
       <ion-icon></ion-icon>
     </div>
     </ng-container>
@@ -53,7 +53,7 @@
     *ngIf="getExt(file.file_name) ==='mp4'">
     <div    class="item a"
     [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-     errorImage="../../../assets/imgs/150.png"  (click)="displayVideo(file?.file_name)">
+     errorImage="../../../assets/imgs/150.png"  (click)="displayVideo(file)">
      <ion-icon name="videocam"></ion-icon>
   </div>
   </ng-container>
