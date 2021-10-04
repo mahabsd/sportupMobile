@@ -3,15 +3,7 @@ ion-item {
 
 }
 
-.item-inner .icon-inner,
-.ionicon,
-svg {
-  display: none;
-  height: 100%;
-  width: 100%;
-}
-
-h3 {
+h6 {
   font-weight: bold;
   color: #616160;
 }
@@ -26,5 +18,5 @@ ion-item {
 }
 
 .ionPopOver {
-  width: 50px;
+  width: 35px;
 }
