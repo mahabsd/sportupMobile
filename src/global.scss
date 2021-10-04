@@ -14,7 +14,7 @@
 /* Basic CSS for apps built with Ionic */
 @import "~@ionic/angular/css/normalize.css";
 @import "~@ionic/angular/css/structure.css";
-@import "~@ionic/angular/css/typography.css";                                                                                                                                                               
+@import "~@ionic/angular/css/typography.css";
 @import '~@ionic/angular/css/display.css';
 
 /* Optional CSS utils that can be commented out */
@@ -23,33 +23,43 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
 .cal-modal {
-    --height: 80%;
-    --border-radius: 10px;
-    padding: 25px;
- 
+  --height: 80%;
+  --border-radius: 10px;
+  padding: 25px;
+
 }
- 
+
 
 /* Works - pass "my-custom-class" in cssClass to increase specificity */
 .erp-parametre-modal .modal-wrapper {
-    box-shadow: -3px 5px 6px -5px #000000;
-    background-color: #eee; /* Grey background color */
-    top: 7%;
-    right: 0;
-    position: absolute;
+  box-shadow: -3px 5px 6px -5px #000000;
+  background-color: #eee;
+  /* Grey background color */
+  top: 7%;
+  right: 0;
+  position: absolute;
   width: 90%;
   height: 70%;
   max-height: 450px;
- 
-  }
+
+}
 
 
-  .selectCustom .alert-wrapper {
-    border-radius: 20px;
-  }
+.selectCustom .alert-wrapper {
+  border-radius: 20px;
+}
 
-  
-  .imageModal .modal-wrapper ion-content {
-    --background: #000000;
-  }
+
+.imageModal .modal-wrapper ion-content {
+  --background: #000000;
+}
+
+.popover-viewport.sc-ion-popover-ios {
+  height: 200px;
+}
+
+.popover-content.sc-ion-popover-ios {
+  width: 180px;
+}

@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { PolitiquesUtilisationPageRoutingModule } from './politiques-utilisation-routing.module';
 
 import { PolitiquesUtilisationPage } from './politiques-utilisation.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PolitiquesUtilisationPageRoutingModule
+    PolitiquesUtilisationPageRoutingModule,
+    ComponentModule
   ],
   declarations: [PolitiquesUtilisationPage]
 })
-export class PolitiquesUtilisationPageModule {}
+export class PolitiquesUtilisationPageModule { }

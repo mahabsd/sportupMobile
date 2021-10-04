@@ -2,43 +2,32 @@
   <ion-item>
     <img src="./assets/iconPost/bookmark.svg" class="ionPopOver">
     <ion-label>
-      <h3>Enregistré</h3>
-
+      <h6>Enregistré</h6>
     </ion-label>
-
   </ion-item>
   <ion-item>
     <img src="./assets/iconPost/icon_megaphone.svg" class="ionPopOver">
     <ion-label>
-      <h3>Espace Publicité</h3>
+      <h6>Espace Publicité</h6>
     </ion-label>
-
   </ion-item>
   <ion-item href="/login-erp" detail="false">
     <img src="./assets/iconPost/icon_erp.svg" class="ionPopOver">
-
-
-
     <ion-label>
-      <h3 id='erp'>ERP</h3>
-
+      <h6 id='erp'>ERP</h6>
     </ion-label>
-
   </ion-item>
-  <ion-item href="/parametre">
+  <ion-item href="/parametre" detail="false">
     <img src="./assets/iconPost/icon_parametre.svg" class="ionPopOver">
     <ion-label>
-      <h3>Paramètres</h3>
-
+      <h6>Paramètres</h6>
     </ion-label>
-
   </ion-item>
-  <ion-item (click)="logout()">
-
+  <ion-item (click)="palamares()" detail="false">
+    <img src="./assets/iconPost/icon_parametre.svg" class="ionPopOver">
     <ion-label>
-      <h3 id="dec">Déconnexion</h3>
-
+      <h6>Palmarés</h6>
     </ion-label>
-
   </ion-item>
+
 </ion-list>
