@@ -1,25 +1,22 @@
-/* eslint-disable @typescript-eslint/quotes */
-/* eslint-disable @typescript-eslint/consistent-type-assertions */
-/* eslint-disable @typescript-eslint/dot-notation */
-/* eslint-disable @typescript-eslint/naming-convention */
-/* eslint-disable no-underscore-dangle */
-/* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSegment } from '@ionic/angular';
 import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
-import { UserService } from '../../../Shared/Service/user.service';
 import { PopoverController } from '@ionic/angular';
-import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page';
 import { User } from 'src/app/Shared/Model/User';
 import { ActivatedRoute } from '@angular/router';
-import { PopOverSuivrePageComponent } from '../../profil/pop-over-suivre-page/pop-over-suivre-page.component';
+import { PopovercomponentPage } from '../kids/popovercomponent/popovercomponent.page';
+import { UserService } from 'src/app/Shared/Service/user.service';
+import { PopOverSuivrePageComponent } from '../profil/pop-over-suivre-page/pop-over-suivre-page.component';
 
 @Component({
-  selector: 'app-profil',
-  templateUrl: './profil.page.html',
-  styleUrls: ['./profil.page.scss'],
+  selector: 'app-profil-adulte',
+  templateUrl: './profil-adulte.page.html',
+  styleUrls: ['./profil-adulte.page.scss'],
 })
-export class ProfilPage implements OnInit {
+export class ProfilAdultePage implements OnInit {
+
+
+ 
   posts: any = [];
   update = false;
   gendre;
@@ -63,6 +60,7 @@ export class ProfilPage implements OnInit {
     //  this.user = res.data.data;
       if(this.idprofilePassed==res.data.data._id){
         this.checkSelf=true;
+        console.log('nafsoussssssss')
       }
     });
   }
@@ -146,4 +144,5 @@ export class ProfilPage implements OnInit {
     });
     this.update = false;
   }
+
 }

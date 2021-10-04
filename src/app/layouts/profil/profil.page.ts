@@ -19,11 +19,13 @@ export class ProfilPage implements OnInit {
   EtatSuivre = false;
   follow: Follow = new Follow();
   idfollow;
+  user$
   profileClickedName;
   myInformation: any = { userLastName: '', userFirstName: '' };
   iduser;
   iduser1;
   idprofilePassed;
+  typepage;
   idFollowtoDelete;
   user: any = [];
   posts: any[] = [];
@@ -63,6 +65,7 @@ export class ProfilPage implements OnInit {
 
   ngOnInit() {
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
+    this.typepage = this.activatedRoute.snapshot.params.typepage;
 
 
     this.getUserByid();
@@ -84,6 +87,11 @@ export class ProfilPage implements OnInit {
               this.idFollowtoDelete = res._id;
               console.log(res);
               this.EtatSuivre = true;
+              if( this.typepage==='kids'){
+              this.router.navigate(["profilkids",this.idprofilePassed]);}
+                else  if( this.typepage==='adulte'){
+                  this.router.navigate(["profiladulte",this.idprofilePassed]);}
+
             }
           });
       },
@@ -92,6 +100,14 @@ export class ProfilPage implements OnInit {
       }
     );
   }
+
+  getMe() {
+    this.userService.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      console.log(this.user$);
+    });
+  }
+
   getUser() {
     this.userService.getMe().subscribe(
       (response) => {
@@ -117,13 +133,16 @@ export class ProfilPage implements OnInit {
     );
   }
 
-  async presentPopover(ev: any) {
+  async presentPopover(ev: any,idprofilePassed) {
     const popover = await this.popoverController.create({
       component: PopOverSuivrePageComponent,
      // cssClass: 'popoverProfil-custom-class',
       event: ev,
+      componentProps: {idpassed: idprofilePassed},
+
       translucent: true
     });
+   // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
     
 
@@ -139,10 +158,19 @@ export class ProfilPage implements OnInit {
     this.follow.userFollowed = this.idprofilePassed;
     this.follow.userFollowing = this.iduser;
     this.followerService.createFollow(this.follow).subscribe((res) => {
-      console.log(res);
-    });
+      if(res['status']==='successs'){
+        if( this.typepage==='kids'){
+          this.router.navigate(["profilkids",this.idprofilePassed]);}
+            else  if( this.typepage==='adulte'){
+              this.router.navigate(["profiladulte",this.idprofilePassed]);}
 
+      }
+
+      
+    });
+      
     this.getfollow();
+
   }
 
   buttonBlock() {

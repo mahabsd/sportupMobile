@@ -1,11 +1,20 @@
 <ion-grid>
   <ion-row lines="none">
-    <ion-avatar slot="" class="ion-padding">
-      <img [src]="apiImgUser + post?.user?.photo" />
+    <ion-avatar
+      slot=""
+      class="ion-padding"
+      *ngIf="isUserConnected != post?.user?._id"
+    >
+      <img
+        [src]="apiImgUser + post?.user?.photo"
+        routerLink="/profil/{{ post.user.id }}/adulte"
+      />
     </ion-avatar>
+
     <ion-label
       [routerLink]="['/profil/', post?.user?._id]"
       class="ion-justify-content-center"
+      *ngIf="isUserConnected != post?.user?._id"
       style="display: grid; align-self: center"
     >
       <h3
@@ -21,6 +30,38 @@
       </h3>
       <p>{{ post?.createdAt | date }}</p>
     </ion-label>
+
+    <ion-avatar
+      slot=""
+      class="ion-padding"
+      *ngIf="isUserConnected === post?.user?._id"
+    >
+      <img
+        [src]="apiImgUser + post?.user?.photo"
+        [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']"
+      />
+    </ion-avatar>
+
+    <ion-label
+      [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']"
+      class="ion-justify-content-center"
+      *ngIf="isUserConnected === post?.user?._id"
+      style="display: grid; align-self: center"
+    >
+      <h3
+        class="
+          ion-text-capitalize
+          ion-align-self-start
+          ion-justify-content-start
+          ion-text-start
+        "
+        routerLinkActive="router-link-active"
+      >
+        {{ post?.user?.name }}
+      </h3>
+      <p>{{ post?.createdAt | date }}</p>
+    </ion-label>
+
     <ion-button
       color="light"
       slot="end"
