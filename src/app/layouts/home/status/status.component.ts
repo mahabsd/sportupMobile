@@ -192,6 +192,7 @@ export class StatusComponent implements OnInit {
       if (this.mediafiles.length){
         this.newMediaFiles= this.mediafiles.splice(0,1);
       }
+
     });
   }
   async presentPopover(ev: any) {
