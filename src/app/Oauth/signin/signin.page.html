@@ -20,7 +20,7 @@
         <ion-input type="email" class="form-controll ion-margin-bottom" placeholder="Adresse email"
           [(ngModel)]="user.email" mdInput formControlName="emailControl" name="email" required></ion-input>
 
-
+     
         <ion-input type="password" class="form-controll ion-margin-bottom" placeholder="Mot de passe"
           [(ngModel)]="user.password" mdInput formControlName="passwordControl" name="password" required>
         </ion-input>
@@ -33,7 +33,7 @@
           formControlName="roleControl" class="form-controll ion-margin-bottom" okText="Okay" cancelText="Dismiss">
 
           <ion-select-option value="user">Particulier</ion-select-option>
-          <ion-select-option value="coach">Professionnel</ion-select-option>
+          <ion-select-option value="pro">Professionnel</ion-select-option>
 
         </ion-select>
         <div class="segment">
@@ -85,7 +85,7 @@
         </div>
       </form>
     </ng-template>
-    <ng-template [ngIf]="section  === '2' && user.role==='coach'">
+    <ng-template [ngIf]="section  === '2' && user.role==='pro'">
       <form [formGroup]="proForm">
         <div class="segment">
           <h1>Professionnel</h1>
@@ -100,7 +100,9 @@
         <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Adresse" [(ngModel)]="user.adresse"
           mdInput formControlName="adresseControl" name="adresse" required>
         </ion-input>
-
+        <div>
+          <h5 *ngIf="registerForm.invalid">eurr</h5>
+        </div>
         <ion-input type="number" class="form-controll ion-margin-bottom" placeholder="Téléphone"
           [(ngModel)]="user.phone" mdInput formControlName="phoneControl" name="phone" minlength="8" maxlength="12"
           required></ion-input>

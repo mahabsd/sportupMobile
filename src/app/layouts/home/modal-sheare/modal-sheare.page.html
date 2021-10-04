@@ -17,6 +17,9 @@
 <ion-content padding>
   <ion-row class="row ion-align-items-center ion-justify-content-start">
 
+
+
+
     <!-- <ion-col no-padding class="col" size="10">
       <div class="ZoneShare ion-text-nowrap"> -->
     <!-- <ion-row> -->
@@ -57,46 +60,30 @@
       </ion-fab>
     </ion-col>
   </ion-row>
-
+  <ion-row>
+    <ion-scroll scrollY="true">
+      <ng-container  *ngFor="let file of selectedPreviews">
+        <img width="50px"  [src]="file"/>
+      </ng-container>
+      
+    
+    </ion-scroll>
+  
+  </ion-row>
 </ion-content>
-<!-- <ion-footer class="myFooter">
-  <ion-segment value="all" color="transparent" scrollable="true" mode="ios" (ionChange)="segmentChanged($event)">
-    <ion-segment-button value="media">
-      <ion-button (click)="selectImageSource()">
-        <input type="file" #fileInput (change)="uploadFile($event)" hidden="true" accept="image/*">
-        <ion-img src="../../../../assets/icon/iconc_add_picture.png"></ion-img>
-      </ion-button>
-    </ion-segment-button>
-    <ion-segment-button value="endirect">
-      <p>
-        <ion-icon slot="start" name="arrow-back-outline"></ion-icon> En Direct
-      </p>
-    </ion-segment-button>
-    <ion-segment-button value="evenement">
-      <p>
-        <ion-icon slot="start" name="arrow-back-outline"></ion-icon> Evenement
-      </p>
-    </ion-segment-button>
-    <ion-segment-button value="story">
-      <p>
-        <ion-icon slot="start" name="arrow-back-outline"></ion-icon> Story
-      </p>
-    </ion-segment-button>
-  </ion-segment>
-</ion-footer> -->
+ 
+
 
 <ion-footer class="myFooter">
   <ion-grid>
     <ion-row>
       <ion-col (click)="selectImageSource()">
+        
         <input type="file" multiple #fileInput (change)="selectFiles($event)" hidden="true" accept="image/jpg, image/png, application/pdf, video/mp4">
         <ion-img src="../../../../assets/icon/iconc_add_picture.png"></ion-img>
       </ion-col>
     </ion-row>
-    <ion-row>
-      <ion-col>
-     
-      </ion-col>
-    </ion-row>
+
+ 
   </ion-grid>
 </ion-footer>
