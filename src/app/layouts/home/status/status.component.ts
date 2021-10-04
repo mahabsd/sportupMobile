@@ -47,9 +47,11 @@ export class StatusComponent implements OnInit {
   comments: any = [];
   images: any = [];
   mediafiles: any = [];
+  newMediaFiles: any= [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
+  // newMediaFiles: any= mediafiles.splice(1,1);
   tap = 0;
   press = 0;
   liked = false;
@@ -74,6 +76,7 @@ export class StatusComponent implements OnInit {
 
     await this.getCommentByPost();
   }
+
 
   async showReactions(ev) {
     this.press++;
@@ -174,10 +177,14 @@ export class StatusComponent implements OnInit {
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
       mediafiles: this.postService.getPost(this.post._id),
+      // newMediaFiles: this.mediafiles.splice(0,1),
     }).subscribe(({ comments, images, mediafiles }) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
+      if (this.mediafiles.length){
+        this.newMediaFiles= this.mediafiles.splice(0,1);
+      }
     });
   }
   async presentPopover(ev: any) {
