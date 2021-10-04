@@ -3,7 +3,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon routerLink="/accueil" color="light" name="arrow-back"></ion-icon>
+      <ion-icon routerLink="/tabs/home" color="light" name="arrow-back"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="checkSelf===true">
       <ion-button color="secondary" (click)="presentPopover($event)">
@@ -30,6 +30,8 @@
   </ion-toolbar>
 
 </ion-header>
+
+
 <ion-content class="parent">
   <div class="image1">
     <ion-img class="imgUser"

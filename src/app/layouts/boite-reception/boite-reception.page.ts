@@ -57,23 +57,12 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
-              this.users=res;
-              this.users.forEach(element => {
-                console.log(element.userReceiver)
-                this.userservice.getUser( element.userReceiver).subscribe(
-                  (response) => {
-                    this.users2.push(response.data.data)
-                    console.log(   response.data.data.role);
-
-                  },
-                  (error) => {
-                    console.error(error);
-                  }
-                ); 
-              });
+              this.users=res;          
           if (event) {
             event.target.complete()
           }
+          console.log("foloow")
+
           console.log(res)
         });
       },

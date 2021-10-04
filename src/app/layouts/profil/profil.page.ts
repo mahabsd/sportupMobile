@@ -64,6 +64,8 @@ export class ProfilPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getfollow();
+
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.typepage = this.activatedRoute.snapshot.params.typepage;
 
