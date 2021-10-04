@@ -11,14 +11,15 @@
       <ion-back-button color="light" *ngIf="!isModal && AdulteProfile" defaultHref="/tabs/home"></ion-back-button>
 
 
-      <ion-buttons slot="end" *ngIf="isCoach">
-        <ion-button shape="rounded" (click)="openCoachMenu($event)">
-          <ion-icon color="light" name="menu"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-      <ion-button shape="rounded" [routerLink]="['/menu/tabs/layouts/scan']" routerLinkActive="router-link-active">
+
+      <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
+        routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
+      <ion-buttons slot="start">
+        <ion-icon routerLink="/menu/tabs/layouts/coachprofile/coachphoto" color="light" name="arrow-back"
+          *ngIf="isParam"></ion-icon>
+      </ion-buttons>
     </ion-buttons>
 
 
@@ -49,10 +50,11 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="isCoach">
-      <ion-button shape="rounded" (click)="openCoachPalmares($event)">
-        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
+      <ion-button shape="rounded" (click)="openCoachMenu($event)">
+        <ion-icon color="light" name="menu"></ion-icon>
       </ion-button>
     </ion-buttons>
+
     <ion-title color="light" *ngIf="isKid" slot="start" style="text-align: center; margin-left: 20xp">
       Accueil</ion-title>
 

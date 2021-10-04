@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/Shared/Auth/auth.service';
 
 @Component({
@@ -9,10 +10,14 @@ import { AuthService } from 'src/app/Shared/Auth/auth.service';
 })
 export class CoachMenuPopOverComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router, private modalCtrl: ModalController) { }
 
   ngOnInit() { }
+  palamares() {
+    this.modalCtrl.dismiss();
+    this.router.navigateByUrl('/palmares');
 
+  }
   logout() {
     this.authService.logout();
   }

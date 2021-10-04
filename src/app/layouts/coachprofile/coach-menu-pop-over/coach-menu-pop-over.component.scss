@@ -1,29 +1,22 @@
-ion-item{
-    --inner-border-width: 0px;
+ion-item {
+  --inner-border-width: 0px;
+
 }
-.item-inner .icon-inner, .ionicon, svg {
-    display: none;
-    height: 100%;
-    width: 100%;
-}
-h3{
-    font-weight: bold;
-    color: #616160;
+
+h6 {
+  font-weight: bold;
+  color: #616160;
 }
 
 h3#erp {
-   
-    color: #ffca22;
-}
-h3#dec{
-    color: #3b8c4f;
-    text-align: center;
+
+  color: #ffca22;
 }
 
-ion-item{
-    --inner-border-width: 0px;
+ion-item {
+  --inner-border-width: 0px;
 }
 
-.ionPopOver{
-    width: 50px;
+.ionPopOver {
+  width: 35px;
 }

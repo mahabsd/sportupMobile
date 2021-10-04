@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/Shared/Auth/auth.service';
   styleUrls: ['./parametre.page.scss'],
 })
 export class ParametrePage implements OnInit {
-
+  isParam: boolean;
   constructor(private authService: AuthService) { }
 
   ngOnInit() {

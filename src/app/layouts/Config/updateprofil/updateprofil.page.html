@@ -1,10 +1,10 @@
-<app-header title="MODIFIER PROFILE" [isModProfile]="true"></app-header>
+<app-header title="MODIFIER PROFILE" [isParam]="true"></app-header>
 <ion-content>
   <ion-row style="margin-bottom: 10px;">
     <ion-col size="3">
       <ion-avatar>
         <img [src]="apiImg+user$?.photo">
-         </ion-avatar>
+      </ion-avatar>
     </ion-col>
     <ion-col size="9">
       <h5>{{user$.name}} {{user$.lastname}}</h5>
@@ -12,7 +12,8 @@
     </ion-col>
   </ion-row>
   <ion-item class="textInput">
-    <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION"  [(ngModel)]="user$.name"></ion-input>
+    <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION" [(ngModel)]="user$.name">
+    </ion-input>
   </ion-item>
   <ion-grid>
     <ion-row>

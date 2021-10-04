@@ -7,14 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { SecuriteconnexionPageRoutingModule } from './securiteconnexion-routing.module';
 
 import { SecuriteconnexionPage } from './securiteconnexion.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    SecuriteconnexionPageRoutingModule
+    SecuriteconnexionPageRoutingModule,
+    ComponentModule
   ],
   declarations: [SecuriteconnexionPage]
 })
-export class SecuriteconnexionPageModule {}
+export class SecuriteconnexionPageModule { }

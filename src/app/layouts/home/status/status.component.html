@@ -1,112 +1,230 @@
 <ion-grid>
   <ion-row lines="none">
-
-
-    <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected!=post?.user?._id">
-      <img [src]="apiImgUser+post?.user?.photo" routerLink="/profil/{{post.user.id}}/adulte" >
+    <ion-avatar
+      slot=""
+      class="ion-padding"
+      *ngIf="isUserConnected != post?.user?._id"
+    >
+      <img
+        [src]="apiImgUser + post?.user?.photo"
+        routerLink="/profil/{{ post.user.id }}/adulte"
+      />
     </ion-avatar>
 
-    
-    <ion-label routerLink="/profil/{{post.user.id}}/adulte" class="ion-justify-content-center " *ngIf="isUserConnected!=post?.user?._id"
-      style="display: grid;align-self: center;">
-      <h3 class="ion-text-capitalize ion-align-self-start ion-justify-content-start ion-text-start"
-        >
-        {{post?.user?.name}}</h3>
-      <p>{{post?.createdAt | date}}</p>
+    <ion-label
+    routerLink="/profil/{{post.user.id}}/adulte"
+      class="ion-justify-content-center"
+      *ngIf="isUserConnected != post?.user?._id"
+      style="display: grid; align-self: center"
+    >
+      <h3
+        class="
+          ion-text-capitalize
+          ion-align-self-start
+          ion-justify-content-start
+          ion-text-start
+        "
+        routerLinkActive="router-link-active"
+      >
+        {{ post?.user?.name }}
+      </h3>
+      <p>{{ post?.createdAt | date }}</p>
     </ion-label>
 
-
-    <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected===post?.user?._id">
-      <img [src]="apiImgUser+post?.user?.photo" [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']">
+    <ion-avatar
+      slot=""
+      class="ion-padding"
+      *ngIf="isUserConnected === post?.user?._id"
+    >
+      <img
+        [src]="apiImgUser + post?.user?.photo"
+        [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']"
+      />
     </ion-avatar>
 
-    
-    <ion-label [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']" class="ion-justify-content-center " *ngIf="isUserConnected===post?.user?._id"
-      style="display: grid;align-self: center;">
-      <h3 class="ion-text-capitalize ion-align-self-start ion-justify-content-start ion-text-start"
-        routerLinkActive="router-link-active">
-        {{post?.user?.name}}</h3>
-      <p>{{post?.createdAt | date}}</p>
+    <ion-label
+      [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']"
+      class="ion-justify-content-center"
+      *ngIf="isUserConnected === post?.user?._id"
+      style="display: grid; align-self: center"
+    >
+      <h3
+        class="
+          ion-text-capitalize
+          ion-align-self-start
+          ion-justify-content-start
+          ion-text-start
+        "
+        routerLinkActive="router-link-active"
+      >
+        {{ post?.user?.name }}
+      </h3>
+      <p>{{ post?.createdAt | date }}</p>
     </ion-label>
 
-
-
-    <ion-button color="light" slot="end" shape="round" fill="clear" size="small" (click)="presentPopover($event)">
-      <ion-icon color="light" style="color:#fff;" slot="icon-only" name="ellipsis-vertical">
+    <ion-button
+      color="light"
+      slot="end"
+      shape="round"
+      fill="clear"
+      size="small"
+      (click)="presentPopover($event)"
+    >
+      <ion-icon
+        color="light"
+        style="color: #fff"
+        slot="icon-only"
+        name="ellipsis-vertical"
+      >
       </ion-icon>
     </ion-button>
   </ion-row>
-  <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length>0">
-    <img [lazyLoad]="apiImg+images[0]?.image_name" />
+  <ion-row
+    lines="none"
+    class="ion-justify-content-center ion-margin"
+    *ngIf="images.length > 0"
+  >
+    <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div class="container"  *ngIf="mediafiles.length>0">
-    <div *ngFor="let file of mediafiles">
-      <ng-container 
-      *ngIf="getExt(file.file_name) ==='png'">
-      <div    class="item a"
-      [style.background-size]="'cover'" [style.background-image]="'url('+ apiImg+file?.file_name + ')'"
-      [lazyLoad]="apiImg+file?.file_name" errorImage="../../../assets/imgs/150.png" (click)="displayImage(file)"  >
-      <ion-icon></ion-icon>
+  <div *ngIf="newMediaFiles.length > 0">
+    <div style="display: flex">
+      <div *ngFor="let file of newMediaFiles">
+        <ng-container *ngIf="getExt(file.file_name) === 'png'">
+          <div
+            id="first"
+            [style.background-size]="'cover'"
+            [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+            [lazyLoad]="apiImg + file?.file_name"
+            errorImage="../../../assets/imgs/150.png"
+            (click)="displayImage(file)"
+          >
+            <ion-icon></ion-icon>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+          <div
+            [style.background-size]="'cover'"
+            [style.background-image]="'url(../../../assets/imgs/150.png)'"
+            errorImage="../../../assets/imgs/150.png"
+            (click)="displayVideo(file)"
+          >
+            <ion-icon name="videocam"></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+      <div class="nextContainer">
+        <div *ngFor="let file of mediafiles">
+          <ng-container *ngIf="getExt(file.file_name) === 'png'">
+            <div
+              id="next"
+              [style.background-size]="'cover'"
+              [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+              [lazyLoad]="apiImg + file?.file_name"
+              errorImage="../../../assets/imgs/150.png"
+              (click)="displayImage(file)"
+            >
+              <ion-icon></ion-icon>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+            <div
+              [style.background-size]="'cover'"
+              [style.background-image]="'url(../../../assets/imgs/150.png)'"
+              errorImage="../../../assets/imgs/150.png"
+              (click)="displayVideo(file)"
+            >
+              <ion-icon name="videocam"></ion-icon>
+            </div>
+          </ng-container>
+        </div>
+      </div>
     </div>
-    </ng-container>
-    <ng-container 
-    *ngIf="getExt(file.file_name) ==='mp4'">
-    <div    class="item a"
-    [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-     errorImage="../../../assets/imgs/150.png"  (click)="displayVideo(file)">
-     <ion-icon name="videocam"></ion-icon>
   </div>
-  </ng-container>
- 
-    </div>
-  </div>
- 
+
   <ion-row>
     <ion-card-content>
-      {{post?.content}}
+      {{ post?.content }}
     </ion-card-content>
   </ion-row>
   <ion-row lines="none">
     <ion-col size="col-2">
       <ion-chip>
-        <ng-container *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp">
-          <ion-button (dblclick)="showReactions($event)" (click)="like(post,$event.target)" shape="round" fill="clear"
-            size="large">
-            <img src="../../../../assets/iconPost/{{post?.iconLike}}.svg" id="icon_liked" />
-            <sub>{{post?.likes}} </sub>
+        <ng-container
+          *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp"
+        >
+          <ion-button
+            (dblclick)="showReactions($event)"
+            (click)="like(post, $event.target)"
+            shape="round"
+            fill="clear"
+            size="large"
+          >
+            <img
+              src="../../../../assets/iconPost/{{ post?.iconLike }}.svg"
+              id="icon_liked"
+            />
+            <sub>{{ post?.likes }} </sub>
           </ion-button>
         </ng-container>
         <ng-template #dislikedTemp>
-          <ion-button (dblclick)="showReactions($event)" (click)="disLike(post,$event.target)" shape="round"
-            fill="clear" size="large">
-            <img src="../../../../assets/iconPost/{{post?.iconLike}}.svg" id="icon_like" />
-            <sub>{{post?.likes}} </sub>
+          <ion-button
+            (dblclick)="showReactions($event)"
+            (click)="disLike(post, $event.target)"
+            shape="round"
+            fill="clear"
+            size="large"
+          >
+            <img
+              src="../../../../assets/iconPost/{{ post?.iconLike }}.svg"
+              id="icon_like"
+            />
+            <sub>{{ post?.likes }} </sub>
           </ion-button>
         </ng-template>
       </ion-chip>
     </ion-col>
-    <ion-col style="text-align:end;">
+    <ion-col style="text-align: end">
       <ion-chip>
-        <ion-button (click)="presentModal(post)" shape="round" fill="clear" size="large">
+        <ion-button
+          (click)="presentModal(post)"
+          shape="round"
+          fill="clear"
+          size="large"
+        >
           <img src="../../../../assets/iconPost/icon_comment.svg" />
-          <sub>{{comments?.length}}</sub>
+          <sub>{{ comments?.length }}</sub>
         </ion-button>
         <ng-container *ngIf="!bookmarked; else unbook">
-          <ion-button (click)="bookmark(post)" shape="round" fill="clear" size="large ">
-            <img src="../../../../assets/iconPost/icon_bookmark.svg" class="last" />
-            <sub>{{post?.favorisNb}}</sub>
+          <ion-button
+            (click)="bookmark(post)"
+            shape="round"
+            fill="clear"
+            size="large "
+          >
+            <img
+              src="../../../../assets/iconPost/icon_bookmark.svg"
+              class="last"
+            />
+            <sub>{{ post?.favorisNb }}</sub>
           </ion-button>
         </ng-container>
         <ng-template #unbook>
-          <ion-button (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
-            <img src="../../../../assets/iconPost/icon_bookmarked.svg" class="last" />
-            <sub>{{post?.favorisNb}}</sub>
+          <ion-button
+            (click)="unBookmark(post)"
+            shape="round"
+            fill="clear"
+            size="large "
+          >
+            <img
+              src="../../../../assets/iconPost/icon_bookmarked.svg"
+              class="last"
+            />
+            <sub>{{ post?.favorisNb }}</sub>
           </ion-button>
         </ng-template>
         <ion-button (click)="share()" shape="round" fill="clear" size="large ">
           <img src="../../../../assets/iconPost/icon_share.svg" />
         </ion-button>
-
       </ion-chip>
     </ion-col>
   </ion-row>
