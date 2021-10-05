@@ -74,7 +74,7 @@ export class BoiteReceptionPage implements OnInit {
           if (event) {
             event.target.complete()
           }
-          console.log("foloow")
+          console.log("foloowwwwwwwwwwwwwwww")
 
           console.log(res)
         });
@@ -91,7 +91,7 @@ export class BoiteReceptionPage implements OnInit {
   loadData(event) {
 
     setTimeout(() => {
-      console.log('Done');
+      console.log('Doneeeeeeeeeeeeeee');
       this.page = this.page * 2
       this.getfollow();
       this.numTimesLeft -= 1;
