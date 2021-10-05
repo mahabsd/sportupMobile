@@ -57,6 +57,7 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
+                      
           this.users = res;
           this.users.forEach(element => {
             console.log(element.userReceiver)
@@ -73,6 +74,8 @@ export class BoiteReceptionPage implements OnInit {
           if (event) {
             event.target.complete()
           }
+          console.log("foloow")
+
           console.log(res)
         });
       },
