@@ -12,7 +12,7 @@ import { StorageService } from '../../../shared/Service/storage.service';
 })
 export class CoachMenuPopOverComponent implements OnInit {
   user$: any;
-  isconnected: boolean = false;
+  // isconnected: boolean = false;
 
   constructor(private authService: AuthService,
     private userService: UserService,
@@ -23,22 +23,11 @@ export class CoachMenuPopOverComponent implements OnInit {
   ngOnInit() {
     this.getMe();
   }
-  palamares() {
-    this.modalCtrl.dismiss();
-    this.router.navigateByUrl('/palmares');
 
-  }
   getMe() {
     this.userService.getMe().subscribe(async res => {
       console.log(res.data.data);
       this.user$ = res.data.data;
-    });
-  }
-  getLoggedUser() {
-    this.storageService.get('currentUser').subscribe((res) => {
-      // res._id === this.user$ ? this.isconnected = true : this.isconnected = false
-      console.log(res);
-      //  this.user$ === this.getLoggedUser() ? this.isconnected = true : this.isconnected = false
     });
   }
   logout() {

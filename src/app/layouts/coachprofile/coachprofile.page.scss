@@ -4,26 +4,43 @@
     box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.39);
     background: #ffffff;
     border-radius: 10px;
-    width: 50px;
-    height: 35px;
     color: #616160;
     max-width: 110px;
     min-width: 50px;
+  }
+
+  .details {
+    margin-right: 10px;
+    color: white;
+    position: absolute;
+    align-self: flex-end;
+    height: 50px;
+    font-size: 20px !important;
   }
 }
 
 @media (max-width: 414px) {
   ion-tab-button {
-    margin: 10px;
+    margin: 5px;
     box-shadow: -2px 2px 3px 1px rgba(0, 0, 0, 0.39);
     background: #ffffff;
     border-radius: 10px;
-    width: 50px;
-    height: 35px;
+    width: 80px;
+    height: 30px;
     color: #616160;
     max-width: 110px;
-    min-width: 50px;
+    min-width: 80px;
   }
+
+  .details {
+    margin-right: 10px;
+    color: white;
+    position: absolute;
+    align-self: flex-end;
+    height: 50px;
+    font-size: 20px !important;
+  }
+
 }
 
 @media (max-width: 320px) {
@@ -38,7 +55,7 @@ ion-tab-button #middle {
 
 ion-tab-button ion-label {
   font-weight: 400;
-  font-size: 10px;
+  font-size: 9.5px;
 }
 
 ion-tab-bar .tab-selected {
@@ -53,8 +70,8 @@ ion-tab-bar {
 }
 
 ion-content {
-  --padding-start: 20px;
-  --padding-end: 20px;
+  --padding-start: 10px;
+  --padding-end: 10px;
   --background: #f8f8f8;
 }
 
@@ -68,12 +85,18 @@ ion-item {
 
 .profileID {
   width: 150px;
+  text-align: start;
+  color: white;
 }
 
 .profileID h4 {
-  text-align: center;
-  color: white;
+  margin-left: 10px;
 }
+
+.profileID ion-avatar {
+  margin-left: 30px;
+}
+
 
 .profileContainer {
   flex-direction: column;
@@ -82,57 +105,11 @@ ion-item {
   background-size: cover;
 }
 
-ion-segment-button {
-  background-color: rgb(245, 245, 245);
-
-  box-shadow: -4px 3px 7px 2px rgba(0, 0, 0, 0.21);
-  border-radius: 10px;
-  margin: 15px;
-  width: 110px;
-  min-height: 10px;
-  text-transform: none;
-  --indicator-color: none;
-}
-
-ion-segment-button ion-label {
-  font-size: 14px;
-}
-
-.segment-button-checked {
-  color: var(--color);
-  background-color: rgb(230, 230, 230);
-}
-
-.mygallery {
-  border-radius: 6px;
-}
-
-.imageContainer {
-  padding: 5px;
-}
-
-#avatarPub {
-  width: 50px;
+.details {
+  margin-right: 10px;
+  color: white;
+  position: absolute;
+  align-self: flex-end;
   height: 50px;
-  justify-content: center;
-  align-items: baseline;
-}
-
-#identText {
-  color: #616160;
-  margin-left: 20px;
-}
-
-#rightPostMenu {
-  display: flex;
-  justify-content: flex-end;
-}
-
-#identText h5 {
-  font-weight: 100;
-  margin: 0px;
-}
-
-#identText h4 {
-  margin: 0px;
+  font-size: 10px !important;
 }

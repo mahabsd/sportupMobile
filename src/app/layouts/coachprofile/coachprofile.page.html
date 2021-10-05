@@ -1,46 +1,42 @@
 <app-header title="COACH" [isCoach]="true"></app-header>
-
-
-
-
 <ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer"
   routerLink="/updateprofil">
   <div class="profileID">
-    <ion-avatar style="width:70px; height:70px; margin: 0 auto;">
+    <ion-avatar style="">
       <img [src]="apiImg+user$?.photo">
     </ion-avatar>
-
-    <h4>{{user$.name}} {{user$.lastname}}</h4>
+    <h4>{{user$.name}} {{user$.lastname}} ben said</h4>
   </div>
+  <ion-row class="details">
+    <ion-col>
+      <p>2 k</p>
+    </ion-col>
+    <ion-col>
+      <p>Abonnés</p>
+    </ion-col>
+    <ion-col>
+      <p>500</p>
+    </ion-col>
+    <ion-col>
+      <p>Abonnements</p>
+    </ion-col>
+  </ion-row>
 </ion-row>
 <ion-content>
-
-
   <ion-tabs>
     <ion-tab-bar slot="top">
-
       <ion-tab-button [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']">
-
         <ion-label>Photo</ion-label>
       </ion-tab-button>
-
       <ion-tab-button tab="coachpub" id="middle">
-
         <ion-label>Publications</ion-label>
       </ion-tab-button>
-
       <ion-tab-button [routerLink]="['/calendar']">
-
         <ion-label>Calendrier</ion-label>
       </ion-tab-button>
-
       <ion-tab-button [routerLink]="['/palmares']">
-
         <ion-label>Palmarés</ion-label>
       </ion-tab-button>
-
     </ion-tab-bar>
   </ion-tabs>
-
-
 </ion-content>
