@@ -19,12 +19,15 @@ export class HobbiesPage implements OnInit {
   sliderTwo: any;
   HobbiesData: any = [];
   userlist: any = [];
+  buttonColor: any = [];
+
   recherche: any;
   follower = false;
   idFollowtoDelete 
   EtatSuivre = false;
   follow: Follow = new Follow();
   iduser;iduser1
+  idyoooo;selectedRow
   slideOptsTwo = {
     initialSlide: 1,
 
@@ -261,6 +264,7 @@ export class HobbiesPage implements OnInit {
 
 
   getfollow() {
+    this.buttonColor=[]
     this.userservice.getMe().subscribe(
       (response) => {
         this.iduser1 = response.data.data.id;
@@ -268,18 +272,28 @@ export class HobbiesPage implements OnInit {
           this.followerService.getFollow(element._id, this.iduser1)
           .subscribe((res) => {
             if (res == null) {
-              console.log('nope');
+           
+              this.buttonColor.push({"etat":"no","iduser":element._id});
+              console.log(this.buttonColor)
+
+              console.log('nope'+element._id);
+              
               this.EtatSuivre = false;
               this.follower = false;
             } else {
+              this.buttonColor.push({"etat":"yes","iduser":element._id});
+
               this.follower = true;
-              console.log('yesssss');
+              console.log('yessss'+element._id);
 
               this.idFollowtoDelete = res._id;
               console.log(res);
               this.EtatSuivre = true;
             }
+            console.log(this.buttonColor)
+
           });
+
         });
      
       },
@@ -287,6 +301,7 @@ export class HobbiesPage implements OnInit {
         console.error(error);
       }
     );
+
 
   }
 
@@ -300,11 +315,13 @@ export class HobbiesPage implements OnInit {
     }
     
     this.EtatSuivre = false;
-    //this.getfollow()
+    this.getfollow()
   }
 
 
   buttonSuivre(idprofilePassed) {
+
+    this.selectedRow = idprofilePassed; 
     console.log(this.iduser)
     this.userservice.getMe().subscribe((res) => {
       this.iduser = res.data.data._id;
