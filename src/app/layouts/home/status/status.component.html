@@ -12,7 +12,7 @@
     </ion-avatar>
 
     <ion-label
-      [routerLink]="['/profil/', post?.user?._id]"
+    routerLink="/profil/{{post.user.id}}/adulte"
       class="ion-justify-content-center"
       *ngIf="isUserConnected !== post?.user?._id"
       style="display: grid; align-self: center"

@@ -1,0 +1,18 @@
+<ion-content>
+<ion-title ngIf="invitebyEmail">
+    <h5>Email de votre ami(e):</h5>
+</ion-title>
+<ion-item ngIf="invitebyEmail">
+  <ion-input type="email" aria-placeholder="Email" ngModal='email'>
+      
+  </ion-input>
+</ion-item>
+<ion-title ngIf="invitebyEmail">
+  <h5>TEl de votre ami(e):</h5>
+</ion-title>
+<ion-item ngIf="invitebyText">
+  <ion-input type="num" aria-placeholder="Tel" ngModal='email' ngIf="invitebyText">
+      
+  </ion-input>
+</ion-item>
+</ion-content>
