@@ -35,6 +35,7 @@ export class HeaderComponent implements OnInit {
   @Input() KidsProfile: boolean = false;
   @Input() SuivrePage: boolean = false;
   @Input() isParam: boolean = false;
+  @Input() AdulteProfile: boolean = false;
 
   constructor(private modalCtrl: ModalController,
     public popoverController: PopoverController,
