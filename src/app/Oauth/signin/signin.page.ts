@@ -43,6 +43,7 @@ export class SigninPage implements OnInit {
 
       nameControl: new FormControl('', Validators.required),
       roleControl: new FormControl('', Validators.required),
+      activiteControl: new FormControl('', Validators.required),
       hobby: new FormControl(''),
     });
     this.particulierForm = new FormGroup({
@@ -55,7 +56,7 @@ export class SigninPage implements OnInit {
     this.proForm = new FormGroup({
       phoneControl: new FormControl('', [Validators.required, Validators.minLength(8)]),
       adresseControl: new FormControl('', Validators.required),
-      activiteControl: new FormControl('', Validators.required)
+
 
     });
     this.hobbiesService.getHobbies().subscribe(res => console.log(res));
@@ -76,7 +77,20 @@ export class SigninPage implements OnInit {
     this.section = event.target.id;
     this.role = this.user.role;
   }
+  getAge(dateString) {
+    const today = new Date();
+    const birthDate = new Date(dateString);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
+  }
   saveUser() {
+    const age = this.getAge(this.user.datedenaissance);
+    if(age<13)
+    this.user.role='kids';
     this.signinService.signUp(this.user).subscribe(res => {
       console.log(res);
 

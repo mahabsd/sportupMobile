@@ -26,11 +26,20 @@ export class CoachprofilePage implements OnInit {
   apiImg = environment.apiImg + 'User/';
   isScrollTop: boolean;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private modalController: ModalController) { }
 
   ngOnInit() {
     this.getMe();
 
+  }
+
+
+  dismiss() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      dismissed: true,
+    });
   }
 
   getMe() {
