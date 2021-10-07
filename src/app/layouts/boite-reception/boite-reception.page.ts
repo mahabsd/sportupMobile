@@ -57,24 +57,11 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
-                      
           this.users = res;
-          this.users.forEach(element => {
-            console.log(element.userReceiver)
-            this.userservice.getUser(element.userReceiver).subscribe(
-              (response) => {
-                this.users2.push(response.data.data)
-                console.log(response.data.data.role);
-              },
-              (error) => {
-                console.error(error);
-              }
-            );
-          });
           if (event) {
             event.target.complete()
           }
-          console.log("foloowwwwwwwwwwwwwwww")
+          console.log("foloow")
 
           console.log(res)
         });
@@ -91,7 +78,7 @@ export class BoiteReceptionPage implements OnInit {
   loadData(event) {
 
     setTimeout(() => {
-      console.log('Doneeeeeeeeeeeeeee');
+      console.log('Done');
       this.page = this.page * 2
       this.getfollow();
       this.numTimesLeft -= 1;

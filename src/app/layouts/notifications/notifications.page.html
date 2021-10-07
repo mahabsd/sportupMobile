@@ -1,16 +1,9 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon
-        routerLink="/menu/tabs/home"
-        color="light"
-        name="arrow-back"
-      ></ion-icon>
+      <ion-icon routerLink="/menu/tabs/home" color="light" name="chevron-back-outline"></ion-icon>
     </ion-buttons>
-    <ion-title
-      color="light"
-      style="text-align: center; width: 100%; margin-left: 20xp"
-    >
+    <ion-title color="light" style="text-align: center; width: 100%; margin-left: 20xp">
       <div style="display: flex; align-items: center; justify-content: center">
         <ion-icon color="light" name="notifications"></ion-icon>
         <p style="margin-left: 5px">Notifications</p>
@@ -20,33 +13,23 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <ion-card
-    *ngFor="let notif of notifications;let i=index; "
-    scrollY="true"
-    style="
+  <ion-card *ngFor="let notif of notifications;let i=index; " scrollY="true" style="
       font-size: 15px;
       width: 100%;
       display: flex;
       align-items: center;
       margin: 4px 0;
       box-shadow: unset;
-    "
-  >
-    <img
-      src="../../../assets/icon/person-green.png"
-      style="width: 55px; margin: 2px 7px 0 10px"
-      alt=""
-    />
-    <p
-      style="
+    ">
+    <img src="../../../assets/icon/person-green.png" style="width: 55px; margin: 2px 7px 0 10px" alt="" />
+    <p style="
         width: 60%;
         height: 40px;
         margin-right: 10px;
         font-size: smaller;
         display: flex;
         align-items: center;
-      "
-    >
+      ">
       {{notif.message}}
     </p>
     <p>
@@ -54,20 +37,16 @@
         <p style="margin-right: 20px"></p>
       </ng-container>
       <ng-template #second>
-        <p
-          *ngIf="notif.button === 'image';else third"
-          style="
+        <p *ngIf="notif.button === 'image';else third" style="
             margin-right: 30px;
             background-color: rgba(142, 191, 37, 0.623);
             width: 50px;
             height: 50px;
             margin: -6px 0 -6px 0;
-          "
-        ></p>
+          "></p>
       </ng-template>
       <ng-template #third>
-        <button
-          style="
+        <button style="
             margin-right: 25px;
             background-image: linear-gradient(
               40deg,
@@ -79,8 +58,7 @@
             border-radius: 10px;
             color: white;
             font-size: 10px;
-          "
-        >
+          ">
           CONFIRMER
         </button>
       </ng-template>

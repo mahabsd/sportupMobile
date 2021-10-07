@@ -1,56 +1,62 @@
-<app-header title="paramétres" [isParam]="true"></app-header>
+<app-header title="PARAMETRES" [isParam]="true"></app-header>
 
 <ion-content>
-
-  <div>
-    <main class="leaderboard__profiles">
-      <article routerLink="/abonnerinviteramis" class="leaderboard__profile">
-        <span class="leaderboard__name">S'ABONNER ET INVITER DES AMIS</span>
-      </article>
-
-      <article class="leaderboard__profile">
-        <span class="leaderboard__name">CONFIDENTIALITE ET SECURITE</span>
-      </article>
-
-      <article routerLink="/politiques-utilisation" class="leaderboard__profile">
-        <span class="leaderboard__name">POLITIQUE D'UTILISATION DES DONNEES</span>
-      </article>
-
-      <article routerLink="/updateprofil" class="leaderboard__profile">
-        <span class="leaderboard__name">MODIFIER PROFIL</span>
-      </article>
-
-
-      <article routerLink="/securiteconnexion" class="leaderboard__profile">
-        <span class="leaderboard__name">SECURITE ET CONNEXION</span>
-      </article>
-
-      <article routerLink="/langue" class="leaderboard__profile">
-        <span class="leaderboard__name">LANGUE</span>
-      </article>
-
-      <article routerLink="/historiquepersonnel" class="leaderboard__profile">
-        <span class="leaderboard__name">HISTORIQUE PERSONNEL</span>
-      </article>
-
-      <article routerLink="/contact" class="leaderboard__profile">
-        <span class="leaderboard__name">CONTACT</span>
-      </article>
-
-
-      <article class="leaderboard__profile">
-        <span class="leaderboard__name">AJOUTER UN COMPTE</span>
-      </article>
-
-      <article routerLink="/desactivermoncompte" class="leaderboard__profile">
-        <span class="leaderboard__name">DESACTIVER MON COMPTE</span>
-      </article>
-
-      <article class="leaderboard__profile" (click)="logout()">
-        <span class="leaderboard__name">DECONNEXION</span>
-      </article>
-    </main>
+  <div class="profileID">
+    <ion-avatar>
+      <img [src]="apiImg+user?.photo">
+    </ion-avatar>
+    <h4>{{name}}</h4>
   </div>
+  <main class="leaderboard">
+    <article class="article" routerLink="/abonnerinviteramis">
+      <span class="item">S'ABONNER ET INVITER DES AMIS</span>
+    </article>
+
+    <article class="article">
+      <span class="item">CONFIDENTIALITE ET SECURITE</span>
+    </article>
+
+    <article class="article" routerLink="/politiques-utilisation">
+      <span class="item">POLITIQUE D'UTILISATION DES DONNEES</span>
+    </article>
+
+    <article class="article" routerLink="/updateprofil">
+      <span class="item">MODIFIER PROFIL</span>
+    </article>
+
+
+    <article class="article" routerLink="/securiteconnexion">
+      <span class="item">SECURITE ET CONNEXION</span>
+    </article>
+
+    <article class="article" routerLink="/langue">
+      <span class="item">LANGUE</span>
+    </article>
+
+    <article class="article" routerLink="/historiquepersonnel">
+      <span class="item">HISTORIQUE PERSONNEL</span>
+    </article>
+
+    <article class="article" routerLink="/contact">
+      <span class="item">CONTACT</span>
+    </article>
+
+    <article class="article" routerLink="/contact">
+      <span class="item">AIDE</span>
+    </article>
+
+    <article class="article">
+      <span class="item">AJOUTER UN COMPTE</span>
+    </article>
+
+    <article class="article1" routerLink="/desactivermoncompte">
+      <span class="item">DESACTIVER MON COMPTE</span>
+    </article>
+
+    <article class="article1" (click)="logout()">
+      <span class="deconnexion">DECONNEXION</span>
+    </article>
+  </main>
 </ion-content>
 <ion-footer>
 </ion-footer>

@@ -1,8 +1,12 @@
 <ion-content>
   <ion-toolbar color="dark">
     <ion-buttons slot="start" *ngIf="isImages">
-       <ion-button (click)="selectImageSource()" large><ion-icon name="create-outline" size="large"></ion-icon></ion-button>
-        <ion-button (click)="supprimer(image)" large><ion-icon name="trash-outline" size="large"></ion-icon></ion-button> 
+      <ion-button (click)="selectImageSource()" large>
+        <ion-icon name="create-outline" size="large"></ion-icon>
+      </ion-button>
+      <ion-button (click)="supprimer(image)" large>
+        <ion-icon name="trash-outline" size="large"></ion-icon>
+      </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end">
@@ -13,9 +17,9 @@
   </ion-toolbar>
 
   <ion-row class="ion-justify-content-center">
-    <ion-col size="12">
-      <img *ngIf="image && !isImages" src="{{ apiPost + image?.file_name }}" />
-      <img *ngIf="image && isImages" src="{{ apImg + image?.image_name }}" />
+    <ion-col size="12" *ngFor="let img of image">
+      <img *ngIf="img && !isImages" src="{{ apiPost + img?.file_name }}" />
+      <img *ngIf="img && isImages" src="{{ apImg + img?.image_name }}" />
       <video *ngIf="video" controls width="100%">
         <source src="{{ apiPost + video?.file_name }}" type="video/mp4" />
       </video>
@@ -33,7 +37,7 @@
         <h5 style="color: white" *ngIf="image">{{ image?.createdAt | date }}</h5>
         <h5 style="color: white" *ngIf="video">{{ video?.createdAt | date }}</h5>
 
- 
+
       </ion-title>
     </ion-col>
   </ion-row>

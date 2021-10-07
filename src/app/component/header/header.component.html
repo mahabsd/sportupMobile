@@ -2,24 +2,36 @@
   <ion-toolbar>
     <ion-buttons slot="start">
 
-      <ion-back-button color="light" *ngIf="!isModal && isModProfile" defaultHref="/profil"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetionKids" defaultHref="/accueil"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && BoiteRecepetion" defaultHref="/tabs/home"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && ChatAdulte" defaultHref="/acceuil"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && KidsProfile" defaultHref="/accueil"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && SuivrePage" defaultHref="/accueil"></ion-back-button>
-      <ion-back-button color="light" *ngIf="!isModal && AdulteProfile" defaultHref="/tabs/home"></ion-back-button>
-
-
+      <ion-icon *ngIf="!isModal && isModProfile" color="light" routerLink="/profil" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="!isModal && BoiteRecepetionKids" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/menu/tabs/home"
+        name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="!isModal && KidsProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="!isModal && SuivrePage" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
+      <!--
+<ion-icon *ngIf="isDetails" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
+    -->
+      <ion-icon *ngIf="!isModal  && AdulteProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
 
       <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
         routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
       <ion-buttons slot="start">
-        <ion-icon routerLink="/menu/tabs/layouts/coachprofile/coachphoto" color="light" name="arrow-back"
-          *ngIf="isParam"></ion-icon>
+        <ion-icon *ngIf="isParam" color="light" routerLink="/menu/tabs/layouts/coachprofile/coachphoto"
+          name="chevron-back-outline">
+        </ion-icon>
       </ion-buttons>
+
     </ion-buttons>
 
 
@@ -51,7 +63,7 @@
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="isCoach">
       <ion-button shape="rounded" (click)="openCoachMenu($event)">
-        <ion-icon color="light" name="menu"></ion-icon>
+        <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>
 
