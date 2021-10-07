@@ -24,7 +24,7 @@
       </p>
     </ion-row>
     <ion-item class="textInput palmares">
-      <ion-textarea type="text" placeholder="PALMARES" rows="6" [(ngModel)]="user$.palmares"></ion-textarea>
+      <ion-textarea type="text" placeholder="PALMARES" rows="3" [(ngModel)]="user$.palmares"></ion-textarea>
     </ion-item>
     <ion-item class="textInput">
       <ion-label>Adresse e-mail</ion-label>
@@ -60,10 +60,21 @@
       </ion-item>
     </ion-col>
   </ion-row>
-  <ion-row>
-    <ion-item class="footer">
-      <ion-button (click)="updateMe()">Envoyer</ion-button>
-      <ion-label class="desac">Desactivez mon compte</ion-label>
-    </ion-item>
+  <ion-row style="padding:20px;">
+    <button style="
+                          margin-right: 25px;
+                          background-image: linear-gradient(
+                            40deg,
+                            rgba(92, 99, 91, 1) 0%,
+                            rgba(36, 114, 56, 1) 35%,
+                            rgb(142, 191, 37, 1) 100%
+                          );
+                          padding: 11px 15px;
+                          border-radius: 10px;
+                          color: white;
+                          font-size: 10px;
+                        " (click)="updateMe()">Envoyer
+    </button>
+    <ion-label class="desac">Desactivez mon compte</ion-label>
   </ion-row>
 </ion-content>

@@ -1,6 +1,9 @@
 ion-item {
   --inner-border-width: 0px;
+}
 
+ion-label {
+  padding: 0%;
 }
 
 h6 {
@@ -18,14 +21,14 @@ h6#erp {
   width: 35px;
 }
 
-ion-item {
-  padding-inline-start: 0 !important;
-}
-
 .item-native {
   padding-inline-start: 0 !important;
 }
 
 ion-content {
   background-color: transparent;
+}
+
+.disconnect {
+  color: #3b8c4f;
 }
