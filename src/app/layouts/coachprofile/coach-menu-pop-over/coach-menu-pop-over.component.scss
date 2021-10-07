@@ -6,17 +6,26 @@ ion-item {
 h6 {
   font-weight: bold;
   color: #616160;
+  font-size: 12px;
 }
 
-h3#erp {
+h6#erp {
 
   color: #ffca22;
 }
 
-ion-item {
-  --inner-border-width: 0px;
-}
-
 .ionPopOver {
   width: 35px;
+}
+
+ion-item {
+  padding-inline-start: 0 !important;
+}
+
+.item-native {
+  padding-inline-start: 0 !important;
+}
+
+ion-content {
+  background-color: transparent;
 }

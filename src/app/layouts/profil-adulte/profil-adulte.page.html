@@ -1,9 +1,7 @@
-
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon routerLink="/tabs/home" color="light" name="arrow-back"></ion-icon>
+      <ion-icon routerLink="/tabs/home" color="light" name="chevron-back-outline"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="checkSelf===true">
       <ion-button color="secondary" (click)="presentPopover($event)">
@@ -13,15 +11,15 @@
 
     </ion-buttons>
 
-    
-    <ion-buttons slot="end" >
-  
-      <ion-button shape="rounded" (click)="presentPopoverNewMsg($event,idprofilePassed)">
-        <ion-icon  color="light" name="chevron-down-outline"></ion-icon>
-            </ion-button>
 
-      
-      
+    <ion-buttons slot="end">
+
+      <ion-button shape="rounded" (click)="presentPopoverNewMsg($event,idprofilePassed)">
+        <ion-icon color="light" name="chevron-down-outline"></ion-icon>
+      </ion-button>
+
+
+
     </ion-buttons>
 
 
@@ -157,7 +155,8 @@
         <ion-col>
           <ng-container *ngIf="!update">
 
-            <ion-icon (click)="updateComment()" name="create-outline" style="float: right;margin-top: 20px;" *ngIf="checkSelf===true"></ion-icon>
+            <ion-icon (click)="updateComment()" name="create-outline" style="float: right;margin-top: 20px;"
+              *ngIf="checkSelf===true"></ion-icon>
           </ng-container>
           <ng-container *ngIf="update">
             <ion-icon style="font-size: 25px;    color: red;float: right;margin-top: 20px;" (click)="updateComment()"

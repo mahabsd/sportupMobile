@@ -1,18 +1,11 @@
 <ion-header [translucent]="true">
   <ion-header [translucent]="true">
-    <ion-toolbar
-      background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)"
-    >
+    <ion-toolbar background-image=" linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238)">
       <ion-buttons slot="start">
-        <ion-icon
-          routerLink="/menu/tabs/layouts/coachprofile"
-          color="light"
-          name="arrow-back"
-        ></ion-icon>
+        <ion-icon routerLink="/menu/tabs/layouts/coachprofile" color="light" name="chevron-back-outline"></ion-icon>
       </ion-buttons>
       <ion-title color="light" style="text-align: center; margin-left: 20xp">
-        Calendrier</ion-title
-      >
+        Calendrier</ion-title>
     </ion-toolbar>
   </ion-header>
 </ion-header>
@@ -36,36 +29,20 @@
       <ion-row>
         <!-- Move back one screen of the slides -->
         <ion-col size="2" class="ion-text-center">
-          <ion-icon
-            color="light"
-            name="chevron-back-outline"
-            size="large"
-            (click)="back()"
-          ></ion-icon>
+          <ion-icon color="light" name="chevron-back-outline" size="large" (click)="back()"></ion-icon>
         </ion-col>
         <ion-col size="8" class="dateTitle">
           <h2>{{ viewTitle }}</h2>
         </ion-col>
         <!-- Move forward one screen of the slides -->
         <ion-col size="2" class="ion-text-center">
-          <ion-icon
-            color="light"
-            name="chevron-forward-outline"
-            size="large"
-            (click)="next()"
-          ></ion-icon>
+          <ion-icon color="light" name="chevron-forward-outline" size="large" (click)="next()"></ion-icon>
         </ion-col>
       </ion-row>
 
-      <calendar
-        [eventSource]="eventSource"
-        [autoSelect]="false"
-        (onTimeSelected)="onTimeSelected($event)"
-        [currentDate]="calendar.currentDate"
-        (onTitleChanged)="onViewTitleChanged($event)"
-        (onCurrentDateChanged)="onCurrentDateChanged($event)"
-        [showEventDetail]="false"
-      >
+      <calendar [eventSource]="eventSource" [autoSelect]="false" (onTimeSelected)="onTimeSelected($event)"
+        [currentDate]="calendar.currentDate" (onTitleChanged)="onViewTitleChanged($event)"
+        (onCurrentDateChanged)="onCurrentDateChanged($event)" [showEventDetail]="false">
       </calendar>
     </ion-card-content>
   </ion-card>
@@ -73,9 +50,7 @@
     <ion-card *ngFor="let day of eventDays">
       <ion-card-content>
         <ion-row>
-          <ion-col
-            size="2"
-            style="
+          <ion-col size="2" style="
               background: linear-gradient(
                 135deg,
                 #247238,
@@ -84,8 +59,7 @@
                 #8ebf25
               );
               border-radius: 10px;
-            "
-          >
+            ">
             <div class="dateCol">
               <h1 style="color: aliceblue; text-align: center">
                 {{getDayName(day-1,selectedMonth+1,selectedYear)}} {{day}}
@@ -95,22 +69,20 @@
           <ng-container>
             <ion-col size="10">
               <ng-container *ngFor="let event of eventSource">
-                <ion-row
-                  *ngIf="event.startTime.getDate() === day"
-                  (click)="openDetailModal(event)"
-                >
+                <ion-row *ngIf="event.startTime.getDate() === day" (click)="openDetailModal(event)">
                   <ion-item>
                     <h2>
-                      {{event.startTime.getHours()<10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()<10?'0':''}}{{event.startTime.getMinutes()}}
-                    </h2>
-                    <ion-row style="margin-left: 20px">
-                      <ion-col size="12" style="height: 20px">
-                        <h2><b> {{event.activity}} </b></h2>
-                      </ion-col>
-                      <ion-col size="12">
-                        <p>{{event.notes}}</p>
-                      </ion-col>
-                    </ion-row>
+                      {{event.startTime.getHours()
+                      <10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()<10?'0':''}}{{event.startTime.getMinutes()}}
+                        </h2>
+                        <ion-row style="margin-left: 20px">
+                          <ion-col size="12" style="height: 20px">
+                            <h2><b> {{event.activity}} </b></h2>
+                          </ion-col>
+                          <ion-col size="12">
+                            <p>{{event.notes}}</p>
+                          </ion-col>
+                        </ion-row>
                   </ion-item>
                 </ion-row>
               </ng-container>
@@ -123,55 +95,38 @@
 
   <ion-row style="margin: 0px" *ngIf="slider">
     <ion-col size="12">
-      <div
-        style="
+      <div style="
           text-align: center;
 
           z-index: 2;
           position: absolute;
           top: 50%;
           left: -15px;
-        "
-      >
-        <ion-icon
-          (click)="slideBack()"
-          name="chevron-back-circle"
-          size="large"
-        ></ion-icon>
+        ">
+        <ion-icon (click)="slideBack()" name="chevron-back-circle" size="large"></ion-icon>
       </div>
 
-      <div
-        style="
+      <div style="
           text-align: center;
 
           z-index: 2;
           position: absolute;
           top: 50%;
           right: -15px;
-        "
-      >
-        <ion-icon
-          (click)="sliedNext()"
-          name="chevron-forward-circle"
-          size="large"
-        ></ion-icon>
+        ">
+        <ion-icon (click)="sliedNext()" name="chevron-forward-circle" size="large"></ion-icon>
       </div>
       <ion-slides #slides style="width: 90%">
         <ng-container>
           <ion-slide *ngFor="let day of eventDays">
             <ion-col size="12">
-              <ion-card
-                (click)="openList()"
-                style="
+              <ion-card (click)="openList()" style="
                   box-shadow: -3px 5px 18px 5px rgba(0, 0, 0, 0.06);
                   margin: 0px;
-                "
-              >
+                ">
                 <ion-card-content>
                   <ion-row>
-                    <ion-col
-                      size="3"
-                      style="
+                    <ion-col size="3" style="
                         background: linear-gradient(
                           135deg,
                           #247238,
@@ -180,8 +135,7 @@
                           #8ebf25
                         );
                         border-radius: 10px;
-                      "
-                    >
+                      ">
                       <div class="dateCol">
                         <h1 style="color: aliceblue; text-align: center">
                           {{getDayName(day-1,selectedMonth+1,selectedYear)}}
@@ -191,14 +145,11 @@
                     </ion-col>
                     <ion-col size="9">
                       <ng-container *ngFor="let event of eventSource">
-                        <ion-row
-                          *ngIf="event.startTime.getDate() === day"
-                          (click)="openDetailModal(event)"
-                        >
+                        <ion-row *ngIf="event.startTime.getDate() === day" (click)="openDetailModal(event)">
                           <ion-col size="3">
-                            <b
-                              >{{event.startTime.getHours()<10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()<10?'0':''}}{{event.startTime.getMinutes()}}</b
-                            >
+                            <b>{{event.startTime.getHours()
+                              <10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()<10?'0':''}}{{event.startTime.getMinutes()}}<
+                                /b>
                           </ion-col>
                           <ion-col size="9">
                             <div style="text-align: left">
