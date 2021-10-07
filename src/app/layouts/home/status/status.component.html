@@ -41,11 +41,11 @@
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length > 0">
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="newMediaFiles.length > 0 && secondNewMediaFiles.length === 0">
-    <div style="display: flex">
+  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0">
+    <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
-          <div id="first" [style.background-size]="'cover'"
+          <div style="width: 250px" id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
             errorImage="../../../assets/imgs/150.png" (click)="displayImage(file)">
             <ion-icon></ion-icon>
@@ -111,7 +111,7 @@
         </ng-container>
       </div>
       <div class="nextContainer" style="position: relative">
-        <div *ngFor="let file of secondNewMediaFiles">
+        <div *ngFor="let file of thirdNewMediaFiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
@@ -143,7 +143,7 @@
             align-items: center;
             font-size: 40px;
           ">
-          + {{ this.mediafiles.length - this.secondNewMediaFiles.length }}
+          + {{ this.secondNewMediaFiles.length }}
         </div>
       </div>
     </div>
