@@ -16,10 +16,11 @@
       <ion-icon *ngIf="!isModal && SuivrePage" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
       <!--
-<ion-icon *ngIf="isDetails " color="light" routerLink="/accueil" name="chevron-back-outline">
-    </ion-icon>
+<ion-icon *ngIf="isDetails" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
     -->
-
+      <ion-icon *ngIf="!isModal  && AdulteProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
+      </ion-icon>
 
       <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
         routerLinkActive="router-link-active">

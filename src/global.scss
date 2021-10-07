@@ -61,3 +61,10 @@
   width: 150px;
   height: 150px;
 }
+
+.item-native {
+  padding-left: unset;
+  padding-right: unset;
+  padding-inline-start: calc(var(--padding-start) + var(--ion-safe-area-left, 0px));
+  padding-inline-end: var(--padding-end);
+}

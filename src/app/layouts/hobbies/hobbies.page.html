@@ -47,18 +47,20 @@
       style="font-size:20px; width : 100%;display:flex;align-items: center; justify-content:space-between">
       <h4 style="margin-left:40px;">{{user.name}}</h4>
 
-              
-        <ng-container *ngFor="let item2 of buttonColor">
-          <ng-container *ngIf="item2.iduser===user._id">
-              <ion-button *ngIf="item2.etat==='no'" expand="block"  id="dejasuivi"  (click)="buttonSuivre(user._id)" >S'abonner</ion-button>
-              <ion-button expand="block" *ngIf="item2.etat==='yes'"  type="button" id="bloquer" style="background-color: #e64646c4;" (click)="buttonBlock()" >
-                Désabonner
-              </ion-button>
 
-            </ng-container>
-            
+      <ng-container *ngFor="let item2 of buttonColor">
+        <ng-container *ngIf="item2.iduser===user._id">
+          <ion-button *ngIf="item2.etat==='no'" expand="block" id="dejasuivi" (click)="buttonSuivre(user._id)">S'abonner
+          </ion-button>
+          <ion-button expand="block" *ngIf="item2.etat==='yes'" type="button" id="bloquer"
+            style="background-color: #e64646c4;" (click)="buttonBlock()">
+            Désabonner
+          </ion-button>
 
         </ng-container>
+
+
+      </ng-container>
 
 
 
