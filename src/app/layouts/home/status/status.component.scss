@@ -80,10 +80,9 @@ img.ng-lazyloaded {
 }
 .nextContainer {
   display: flex;
-  flex-direction: column;
-  width: 200px;
-  height: 240px;
   flex-wrap: wrap;
+  width: auto;
+  height: auto;
   margin-right: 20px;
 }
 

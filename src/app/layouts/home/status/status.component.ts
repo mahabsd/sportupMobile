@@ -49,6 +49,7 @@ export class StatusComponent implements OnInit {
   images: any = [];
   mediafiles: any = [];
   newMediaFiles: any= [];
+  secondNewMediaFiles: any= [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -189,10 +190,17 @@ export class StatusComponent implements OnInit {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      if (this.mediafiles.length){
+      if (this.mediafiles.length<4){
         this.newMediaFiles= this.mediafiles.splice(0,1);
       }
-
+      if (this.mediafiles.length>3){
+        this.newMediaFiles=this.mediafiles.splice(0,1);
+        this.secondNewMediaFiles=this.mediafiles.slice(3,this.mediafiles.length);
+      }
+      const array=[0,1,2,3,4,5];
+      console.log(array.slice(0,1));
+      console.log(array.slice(1,3));
+      console.log(array.splice(3,array.length-1));
     });
   }
   async presentPopover(ev: any) {
