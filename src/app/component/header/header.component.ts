@@ -4,6 +4,7 @@ import { TopMenuComponent } from 'src/app/layouts/erp/top-menu/top-menu.componen
 import { PopoverController } from '@ionic/angular';
 import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class HeaderComponent implements OnInit {
   @Input() isOptionPageSuivre: boolean = false;
 
   @Input() isCoach: boolean = false;
+  @Input() isCoachNotSameUser: boolean = false;
+
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
   @Input() BoiteRecepetionKids: boolean = false;
@@ -37,7 +40,7 @@ export class HeaderComponent implements OnInit {
   @Input() isParam: boolean = false;
 
   constructor(private modalCtrl: ModalController,
-    public popoverController: PopoverController,
+    public popoverController: PopoverController,  private followerService: FollowerService
   ) { }
 
   ngOnInit() { }
@@ -81,4 +84,7 @@ export class HeaderComponent implements OnInit {
     });
     return await modal.present();
   }
+
+
+  
 }

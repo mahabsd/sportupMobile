@@ -455,7 +455,7 @@ ion-toolbar {
   .item-background-color{
     --ion-item-background:#eee;
     margin: 10px auto;
-    --min-height:63px;
+    --min-height:73px;
     border-radius: 10px;
     border-left: 4px solid green
 }
@@ -463,12 +463,16 @@ ion-toolbar {
 
 .item-background-color2{
 
-  --min-height:63px;
+  --min-height:73px;
 }
 
 ion-searchbar{
-  width: auto;
-  height: 41px;
-  margin: 11px;
-  margin-right: 80px;
+  height: 1px;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  padding-right: 63px;
+
+}
+.searchbar-input.sc-ion-searchbar-md {
+  background-color: #eee;
 }

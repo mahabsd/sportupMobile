@@ -27,6 +27,9 @@ import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -46,6 +49,12 @@ export class StatusComponent implements OnInit {
   longPressActive = false;
   posts: any = [];
   comments: any = [];
+  iduser;
+  iduser1;
+  EtatSuivre = false;
+  follower = false;
+  idFollowtoDelete
+  idprofilePassed;
   images: any = [];
   mediafiles: any = [];
   newMediaFiles: any= [];
@@ -57,6 +66,8 @@ export class StatusComponent implements OnInit {
   press = 0;
   liked = false;
   bookmarked = false;
+  typepage;
+
   id;
   isUserConnected
   loading: any;
@@ -67,7 +78,9 @@ export class StatusComponent implements OnInit {
     private modalController: ModalController,
     private loadingController: LoadingController,
     private popoverCtrl: PopoverController,
-    private videoPlayer: VideoPlayer
+    private videoPlayer: VideoPlayer,
+    private followerService: FollowerService,
+    public router: Router
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -75,14 +88,36 @@ export class StatusComponent implements OnInit {
   }
   async ngOnInit() {
     //console.log(this.post);
-
+this.getMe()
     await this.getCommentByPost();
   }
 
+ 
   getMe() {
     this.userervice.getMe().subscribe((res) => {
       this.isUserConnected = res.data.data._id;
     });
+  }
+
+  getfollow(iduserpassed) {
+    this.userervice.getMe().subscribe(
+      (response) => {
+        this.iduser1 = response.data.data.id;
+        this.followerService.getFollow(iduserpassed, this.iduser1)
+          .subscribe((res) => {
+            if (res == null) {
+              this.router.navigate(["profil",iduserpassed,'adulte']);
+              console.log('nope');
+            } else {
+              console.log(res);
+              this.router.navigate(["menu/tabs/layouts/coachprofile",iduserpassed,"followed"]);
+            }
+          });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 
   async showReactions(ev) {

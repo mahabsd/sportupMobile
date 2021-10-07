@@ -12,17 +12,24 @@
 
 
 
-      <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
-        routerLinkActive="router-link-active">
-        <img src="../../assets/icon/icon_scan.png" class="image" alt="">
+    
+    
+      <ion-button  slot="start" shape="rounded" *ngIf="isCoach || isOption" (click)="openCoachMenu($event)">
+        <ion-icon color="light" name="menu"></ion-icon>
       </ion-button>
-      <ion-buttons slot="start">
-        <ion-icon routerLink="/menu/tabs/layouts/coachprofile/coachphoto" color="light" name="arrow-back"
-          *ngIf="isParam"></ion-icon>
-      </ion-buttons>
+
+        
+      
+      
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="isCoachNotSameUser">
 
+    <ion-button  slot="end" shape="rounded"  (click)="openCoachPalmares($event)">
+      <ion-icon color="light" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 
+    
 
     <ion-buttons slot="end" *ngIf="isOptionPageSuivre">
 
@@ -50,8 +57,8 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="isCoach">
-      <ion-button shape="rounded" (click)="openCoachMenu($event)">
-        <ion-icon color="light" name="menu"></ion-icon>
+      <ion-button shape="rounded" (click)="openCoachPalmares($event)">
+        <ion-icon color="light" name="ellipsis-vertical-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 

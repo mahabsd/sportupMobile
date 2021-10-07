@@ -11,6 +11,24 @@
     min-width: 50px;
   }
 }
+.myImageUser{
+  border-radius: 15px;
+  width: 50px;
+    height: 50px;
+}
+ion-segment-button {
+  background-color: whitesmoke;
+  box-shadow: -4px 3px 7px 2px rgb(0 0 0 / 21%);
+  border-radius: 10px;
+  margin: 10px;
+   width: 110px; 
+  min-width: 88px;
+  min-height: 10px;
+  text-transform: none;
+  --indicator-color: none;
+  height: 28px;
+
+}
 
 @media (max-width: 414px) {
   ion-tab-button {
@@ -79,17 +97,7 @@ ion-item {
   height: 200px;
   background-size: cover;
 }
-ion-segment-button {
-  background-color: rgb(245, 245, 245);
 
-  box-shadow: -4px 3px 7px 2px rgba(0, 0, 0, 0.21);
-  border-radius: 10px;
-  margin: 15px;
-  width: 110px;
-  min-height: 10px;
-  text-transform: none;
-  --indicator-color: none;
-}
 ion-segment-button ion-label {
   font-size: 14px;
 }

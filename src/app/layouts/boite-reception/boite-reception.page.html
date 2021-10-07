@@ -25,7 +25,7 @@
             (ionDrag)="logDrag(i)">
             <ion-item class="item-background-color2">
 
-              <ion-label routerLink="/chat/{{item.id}}">
+              <ion-label routerLink="/chat/{{item.userReceiver._id}}">
                 <p>
                   <ion-icon style="padding-right:10px" slot="start" name="person"
                     [hidden]="selecteditemIndex===i&&hideicon === true"></ion-icon>
