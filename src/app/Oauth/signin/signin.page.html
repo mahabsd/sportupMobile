@@ -36,6 +36,13 @@
           <ion-select-option value="pro">Professionnel</ion-select-option>
 
         </ion-select>
+        <ion-select placeholder="choisis une activité préférée" [(ngModel)]="user.activity" mdInput
+        formControlName="activiteControl">
+        <ion-select-option value="Hand">Hand</ion-select-option>
+        <ion-select-option value="Tennis">Tennis</ion-select-option>
+        <ion-select-option value="Foot">Foot</ion-select-option>
+        <ion-select-option value="Basket">Basket</ion-select-option>
+      </ion-select>
         <div class="segment">
           <button [routerLink]="['/login']" class="unit" type="button">
             <ion-icon name="arrow-back-outline"></ion-icon>
@@ -90,13 +97,7 @@
         <div class="segment">
           <h1>Professionnel</h1>
         </div>
-        <ion-select placeholder="choisis une activité préférée" [(ngModel)]="user.activity" mdInput
-          formControlName="activiteControl">
-          <ion-select-option value="Hand">Hand</ion-select-option>
-          <ion-select-option value="Tennis">Tennis</ion-select-option>
-          <ion-select-option value="Foot">Foot</ion-select-option>
-          <ion-select-option value="Basket">Basket</ion-select-option>
-        </ion-select>
+
         <ion-input type="text" class="form-controll ion-margin-bottom" placeholder="Adresse" [(ngModel)]="user.adresse"
           mdInput formControlName="adresseControl" name="adresse" required>
         </ion-input>

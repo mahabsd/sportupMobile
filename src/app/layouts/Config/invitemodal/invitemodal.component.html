@@ -1,18 +1,35 @@
-<ion-content>
-<ion-title ngIf="invitebyEmail">
-    <h5>Email de votre ami(e):</h5>
-</ion-title>
-<ion-item ngIf="invitebyEmail">
-  <ion-input type="email" aria-placeholder="Email" ngModal='email'>
-      
-  </ion-input>
-</ion-item>
-<ion-title ngIf="invitebyEmail">
-  <h5>TEl de votre ami(e):</h5>
-</ion-title>
-<ion-item ngIf="invitebyText">
-  <ion-input type="num" aria-placeholder="Tel" ngModal='email' ngIf="invitebyText">
-      
-  </ion-input>
-</ion-item>
+<ion-toolbar color="dark">
+
+
+  <ion-buttons slot="end">
+    <ion-button (click)="dismiss()" large>
+      <ion-icon name="close-circle-outline" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
+
+<ion-content *ngIf="!inviteByText">
+  <ion-item>
+    <ion-title>Email de votre ami(e)</ion-title>
+    <ion-input type="email" placeholder="Email" [(ngModel)]="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="sendMail()" expand="block" fill="clear" shape="round">
+      Send Mail
+    </ion-button>
+  </ion-item>
+</ion-content>
+<ion-content *ngIf="inviteByText">
+
+  <ion-item>
+    <ion-title>Tel de votre ami(e)</ion-title>
+    <ion-input type="text" placeholder="Tel" [(ngModel)]="tel"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-button (click)="sendText()" expand="block" fill="clear" shape="round">
+      Send Mail
+      </ion-button>
+  </ion-item>
+
+
 </ion-content>

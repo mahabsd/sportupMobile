@@ -31,7 +31,8 @@ export class UtilsService {
   public static apiCalendar = UtilsService.remoteAdress + 'calendar/';
   public static apiHobbies = UtilsService.remoteAdress + 'hobbies/';
   public static apiacitivteKids = UtilsService.remoteAdress + 'activiteKids/';
-
+  public static apiInvite = UtilsService.remoteAdress + 'invi/';
+  
   token: any;
   myToast: any;
   header: any;
