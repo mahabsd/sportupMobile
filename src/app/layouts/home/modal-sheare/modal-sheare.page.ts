@@ -9,6 +9,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ImageModel } from 'src/app/Shared/Model/ImageModel';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { SlicePipe } from '@angular/common';
+import { Renderer2 } from '@angular/core';
 const { Camera } = Plugins;
 @Component({
   selector: 'app-modal-sheare',
@@ -24,10 +25,13 @@ export class ModalShearePage implements OnInit {
 
   images: ImageModel[] = [];
   posts: Post[] = [];
-  @ViewChild('fileInput', { static: false }) fileInput: ElementRef;
+  @ViewChild('fileInput', { static: false }) multiFileInput: ElementRef;
+  //@ViewChild('fileInput', { static: false }) choosePhotosInput: ElementRef;
   selectedFiles: any[];
   progressInfos: any[];
   message: string;
+  selectedPreviews: any = [];
+  imageSrc: string | ArrayBuffer;
   constructor(
     private plt: Platform,
     private action: ActionSheetController,
@@ -36,7 +40,8 @@ export class ModalShearePage implements OnInit {
     private authService: AuthService,
     private postService: PostService,
     private toastCtrl: ToastController,
-  ) {}
+    private Renderer: Renderer2,
+  ) { }
   ngOnInit() {
     this.loadImage();
 
@@ -105,7 +110,7 @@ export class ModalShearePage implements OnInit {
     });
   }
 
- 
+
   async presentToast(message) {
     const toast = await this.toastCtrl.create({
       message,
@@ -115,11 +120,15 @@ export class ModalShearePage implements OnInit {
     });
     toast.present();
   }
-  
+
   createPost() {
     console.log(this.filesToUpload);
     const fd = new FormData();
     if (this.filesToUpload) {
+
+      if (fd.has('photo'))
+        fd.delete('photo');
+
       fd.append('photo', this.filesToUpload, this.filesToUpload?.name);
     }
     if (this.post?.content) {
@@ -127,26 +136,31 @@ export class ModalShearePage implements OnInit {
       fd.append('type', 'kids');
     }
 
-    if(this.selectedFiles)
-    {
-     
+    if (this.selectedFiles) {
+      if (fd.has('photo')) {
+        const photo = fd.get('photo');
+        fd.delete('photo');
+        fd.append('files', photo);
+
+      }
+
       this.uploadFiles(fd);
-    }else{
+    } else {
       console.log(fd);
-     
+
       this.postService.createPost(fd).subscribe((res) => {
         this.presentToast('Fichiers Ajoutées');
         this.closeModal();
-        
+
         return res;
       });
     }
-    
 
-  /*  this.postService.createPost(fd).subscribe((res) => {
-      this.closeModal();
-      return res;
-    });*/
+
+    /*  this.postService.createPost(fd).subscribe((res) => {
+        this.closeModal();
+        return res;
+      });*/
   }
 
   loadImage() {
@@ -165,18 +179,21 @@ export class ModalShearePage implements OnInit {
       {
         text: 'Take Photo',
         icon: 'camera',
-        
+
         handler: () => {
           this.addImage(CameraSource.Camera);
-     
+
         },
       },
       {
         text: 'Choose from photos',
         icon: 'image',
         handler: () => {
-          this.addImage(CameraSource.Photos);
-          
+
+
+          this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/gif, image/png");
+          this.multiFileInput.nativeElement.click();
+
         },
       },
       {
@@ -199,10 +216,10 @@ export class ModalShearePage implements OnInit {
         text: 'Choose a file',
         icon: 'attach',
         handler: () => {
-          
-        this.fileInput.nativeElement.click();
-        
-    
+          this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/png, application/pdf, video/mp4");
+          this.multiFileInput.nativeElement.click();
+
+
         },
       });
     }
@@ -251,7 +268,7 @@ export class ModalShearePage implements OnInit {
   }
   uploadFiles(formData: FormData) {
     this.message = '';
- 
+
     for (const file of this.selectedFiles) {
       formData.append('files', file);
     }
@@ -265,20 +282,43 @@ export class ModalShearePage implements OnInit {
   selectFiles(event) {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
+    this.selectedPreviews = [];
+    for (const file of this.selectedFiles) {
+      console.log('tpye' + file.type);
+
+      if (file.type === 'image/jpeg') {
+        const reader = new FileReader();
+        reader.onload = e => this.selectedPreviews.push(reader.result);
+
+        reader.readAsDataURL(file);
+      }
+      else if (file.type === "video/mp4") {
+        this.selectedPreviews.push('../../../assets/imgs/150.png');
+
+      }
+
+
+
+    }
+
     this.actionSheet.dismiss();
   }
 
-  uploadFile(event: EventTarget) {
-    console.log('uploadfile');
-
-    const eventObj: MSInputMethodContext = event as MSInputMethodContext;
-    const target: HTMLInputElement = eventObj.target as HTMLInputElement;
-    const file: File = target.files[0];
-    this.filesToUpload = file;
-    console.log(file);
-    this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
-      this.images.push(newImage);
-
-    });
+  getType(file) {
+    return file.type;
   }
+
+  /* uploadFile(event: EventTarget) {
+     console.log('uploadfile');
+ 
+     const eventObj: MSInputMethodContext = event as MSInputMethodContext;
+     const target: HTMLInputElement = eventObj.target as HTMLInputElement;
+     const file: File = target.files[0];
+     this.filesToUpload = file;
+     console.log(file);
+     this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
+       this.images.push(newImage);
+ 
+     });
+   }*/
 }

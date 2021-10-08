@@ -20,6 +20,7 @@ import { StorageService } from './Shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
+
 const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
 @NgModule({
   declarations: [AppComponent,],
@@ -36,7 +37,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
     HttpClientModule,
     LayoutsModule,
     ComponentModule,
-    SocketIoModule.forRoot(config)
+    SocketIoModule.forRoot(config),
   ],
   providers: [
     ImagePicker,

@@ -1,4 +1,4 @@
-<app-header title="COACH" [isCoach]="true"  [isParam]="true" *ngIf="type==='me'"    ></app-header>
+<app-header title="COACH" [isCoach]="true"  *ngIf="type==='me'"    ></app-header>
 
 <app-header title="COACH" [isCoachNotSameUser]="true"    *ngIf="type==='followed'"  ></app-header>
 
@@ -6,12 +6,26 @@
 <ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer"
   routerLink="/updateprofil">
   <div class="profileID">
-    <ion-avatar style="width:70px; height:70px; margin: 0 auto;">
+    <ion-avatar style="">
       <img [src]="apiImg+user$?.photo">
     </ion-avatar>
 
     <h4>{{profileName}} </h4>
   </div>
+  <ion-row class="details">
+    <ion-col>
+      <p>2 k</p>
+    </ion-col>
+    <ion-col>
+      <p>Abonnés</p>
+    </ion-col>
+    <ion-col>
+      <p>500</p>
+    </ion-col>
+    <ion-col>
+      <p>Abonnements</p>
+    </ion-col>
+  </ion-row>
 </ion-row>
 <ion-content>
 

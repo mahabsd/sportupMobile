@@ -1,73 +1,90 @@
- h5{
-     margin: 0px;
+ ion-content {
+   --background: #f8f8f8;
  }
- h6{
-    margin: 0px;
-     color: #29c467;
+
+ ion-item {
+   --background: #f8f8f8;
  }
- p{
-     margin-bottom: 20px;
+
+ h5 {
+   margin: 0px;
  }
-ion-select::part(placeholder) {
-    text-align: center;
-  }
 
-ion-select::part(icon) {
-    opacity: 0;
-  }
+ h6 {
+   margin: 0px;
+   color: #29c467;
+ }
 
-ion-select{
-    --padding-start: 16px;
-  }
+ p {
+   margin-bottom: 20px;
+ }
 
-ion-item {
-    box-shadow: 0px 0px 18px 5px rgba(0,0,0,0.20);
-    border-radius: 30px !important;
-    font-size: 0.9em;
-    margin-bottom: 10px;
-    border: 1px solid #ffffff;
-    border-bottom: 0px !important;
-    text-align: center;
-    
-}
-ion-item.footer {
-    box-shadow: 0px 0px 0px rgba(0,0,0,0.20);
-    border-radius: 0px !important;
-    font-size: 0.9em;
-    margin-bottom: 90px;
-    border: 1px solid #ffffff;
-    border-bottom: 0px !important;
-    text-align: center;
-    
-}
-ion-item.textInput{
+ ion-select::part(placeholder) {
+   text-align: center;
+ }
 
-    text-align: start;
-    
-}
-ion-item.textInput.palmares{
-    border-radius: 20px !important;
-    text-align: start;
-    
-}
+ ion-select::part(icon) {
+   opacity: 0;
+ }
 
+ ion-select {
+   --padding-start: 16px;
+ }
 
-ion-content{
-    --padding-top:10px;
-    --padding-start: 20px;
-    --padding-end: 20px;
-}
+ ion-item {
+   box-shadow: 0px 0px 18px 5px rgba(0, 0, 0, 0.20);
+   border-radius: 30px !important;
+   font-size: 0.9em;
+   margin-bottom: 10px;
+   border: 1px solid #ffffff;
+   border-bottom: 0px !important;
+   text-align: center;
 
-ion-button{
-     width: 100px;
-     height: 40px;
-    --background:  linear-gradient(300deg,  #8EBF25,#3b8c4f,#247238, #247238);
-}
- 
-ion-label.desac{
-    font-weight: bold;
-  color: #3b8c4f;
-  margin-left: 20px;
-}
+ }
+
+ ion-item.footer {
+   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.20);
+   border-radius: 0px !important;
+   font-size: 0.9em;
+   margin-bottom: 90px;
+   border: 1px solid #ffffff;
+   border-bottom: 0px !important;
+   text-align: center;
+
+ }
+
+ ion-item.textInput {
+
+   text-align: start;
+
+ }
+
+ ion-item.textInput.palmares {
+   border-radius: 20px !important;
+   text-align: start;
+
+ }
 
 
+ ion-content {
+   --padding-top: 10px;
+   --padding-start: 20px;
+   --padding-end: 20px;
+ }
+
+ ion-button {
+   width: 100px;
+   height: 40px;
+   --background: linear-gradient(300deg, #8EBF25, #3b8c4f, #247238, #247238);
+ }
+
+ ion-label.desac {
+   font-weight: bold;
+   color: #3b8c4f;
+   margin-left: 20px;
+ }
+
+ .sendButton {
+
+   border-radius: 20px;
+ }

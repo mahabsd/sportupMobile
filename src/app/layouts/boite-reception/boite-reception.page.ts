@@ -58,6 +58,7 @@ export class BoiteReceptionPage implements OnInit {
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
               this.users=res;          
+         
           if (event) {
             event.target.complete()
           }

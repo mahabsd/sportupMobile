@@ -38,7 +38,7 @@ export class CoachprofilePage implements OnInit {
   isScrollTop: boolean;
   pub=false;
   type;
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private savepostsService: FavorisService,  private followerService: FollowerService) { }
+  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private savepostsService: FavorisService,  private followerService: FollowerService,private modalController: ModalController) { }
 
   ngOnInit() {
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
@@ -48,6 +48,15 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getAllsaveposts()
     this.getfollow()
+  }
+
+
+  dismiss() {
+    // using the injected ModalController this page
+    // can "dismiss" itself and optionally pass back data
+    this.modalController.dismiss({
+      dismissed: true,
+    });
   }
 
   getMe() {
