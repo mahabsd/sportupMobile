@@ -1,6 +1,6 @@
-<app-header title="COACH" [isCoach]="true"  *ngIf="type==='me'"    ></app-header>
+<app-header title="COACH" [isCoach]="true" *ngIf="type==='me'"></app-header>
 
-<app-header title="COACH" [isCoachNotSameUser]="true"    *ngIf="type==='followed'"  ></app-header>
+<app-header title="COACH" [isCoachNotSameUser]="true" *ngIf="type==='followed'"></app-header>
 
 
 <ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer"
@@ -37,7 +37,7 @@
     <ion-segment-button value="Publications">
       <ion-label>Publications</ion-label>
     </ion-segment-button>
-  
+
     <ion-segment-button value="propos" style="width: 30px;">
       <ion-label>Calendrier</ion-label>
     </ion-segment-button>
@@ -59,16 +59,16 @@
             <ion-label style="color: gray; font-size: small; display: block">{{post.createdAt| date}}</ion-label>
           </ion-col>
           <ion-col size="7">
-            
+
           </ion-col>
           <ion-col size="3">
             <ng-container *ngIf="post.booked">
-              <ion-button  shape="round" fill="clear" size="large ">
-                <img src="../../../../assets/iconPost/icon_bookmark.svg"   class="last" />
-                
+              <ion-button shape="round" fill="clear" size="large ">
+                <img src="../../../../assets/iconPost/icon_bookmark.svg" class="last" />
+
               </ion-button>
             </ng-container>
-        </ion-col>
+          </ion-col>
         </ion-row>
 
         <ion-row>
@@ -88,7 +88,14 @@
 
       <img style="border-radius: 15px"
         src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png" />
-      <div id="main-content">
+     
+     
+     
+     
+     
+     
+     
+        <div id="main-content">
         <ion-icon slot="end" name="heart-empty"></ion-icon>
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { LoadingController, ModalController, PopoverController } from '@ionic/angular';
 import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
@@ -7,6 +7,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { ParametresComponent } from 'src/app/component/parametres/parametres.component';
+import { ImageProfileComponent } from './image-profile/image-profile.component';
 
 
 
@@ -25,12 +28,17 @@ export class CoachprofilePage implements OnInit {
 
   user$: any = [];
   posts$: any = [];
-
+  images: any = [];
+  mediafiles: any = [];
+  newMediaFiles: any= [];
+  secondNewMediaFiles: any= [];
+  thirdNewMediaFiles: any= [];
   selected
   profileName;
   idprofilePassed;
   iduser1;
   follower = false;
+  loading: any;
 
   // eslint-disable-next-line max-len
   coachInfo = { backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg' };
@@ -38,7 +46,10 @@ export class CoachprofilePage implements OnInit {
   isScrollTop: boolean;
   pub=false;
   type;
-  constructor(private userService: UserService, private activatedRoute: ActivatedRoute,private savepostsService: FavorisService,  private followerService: FollowerService,private modalController: ModalController) { }
+  constructor(        private popoverCtrl: PopoverController,    private loadingController: LoadingController,
+
+   private videoPlayer: VideoPlayer,
+   private userService: UserService, private activatedRoute: ActivatedRoute,private savepostsService: FavorisService,  private followerService: FollowerService,private modalController: ModalController) { }
 
   ngOnInit() {
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
@@ -89,7 +100,7 @@ export class CoachprofilePage implements OnInit {
 
   
   getAllsaveposts() {
-    this.savepostsService.getSavedPosts().subscribe(res => {
+    this.savepostsService.getSavedPosts(this.idprofilePassed,'type').subscribe(res => {
       console.log(res['data']['data']);
      this.posts$ = res['data']['data']
     });
@@ -121,6 +132,73 @@ export class CoachprofilePage implements OnInit {
         console.error(error);
       }
     );
+  }
+
+
+  
+  getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    //console.log(ext);
+    return ext;
+  }
+
+  async displayImage(file: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    //console.log(url);
+
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        image: file,
+      },
+    });
+    return await modal.present();
+  }
+
+  async displayVideo(file: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    // console.log(url);
+
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        video: file,
+      },
+    });
+    return await modal.present();
+  }
+  playvid(url) {
+    this.videoPlayer.play(url).then(() => {
+      //console.log('video completed');
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+  
+  
+  async presentPopover(ev: any) {
+    const popover = await this.popoverCtrl.create({
+      component: ParametresComponent,
+      cssClass: 'my-custom-class',
+      event: ev,
+      translucent: true,
+      componentProps: {
+       // post: this.post,
+      },
+    });
+    await popover.present();
+    const { role } = await popover.onDidDismiss();
+    location.reload();
+  }
+  async presentLoading() {
+    this.loading = await this.loadingController.create({
+      message: 'Hellooo',
+      duration: 2000,
+      spinner: 'bubbles',
+    });
+    await this.loading.present();
   }
 }
 
