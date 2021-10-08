@@ -44,9 +44,17 @@
             <ion-label style="color: gray; margin-top: 45px;">{{post.post.user.name}}</ion-label>
             <ion-label style="color: gray; font-size: small; display: block">{{post.createdAt| date}}</ion-label>
           </ion-col>
-          <ion-col size="3">
-
+          <ion-col size="7">
+            
           </ion-col>
+          <ion-col size="3">
+            <ng-container *ngIf="post.booked">
+              <ion-button  shape="round" fill="clear" size="large ">
+                <img src="../../../../assets/iconPost/icon_bookmark.svg"   class="last" />
+                
+              </ion-button>
+            </ng-container>
+        </ion-col>
         </ion-row>
 
         <ion-row>
