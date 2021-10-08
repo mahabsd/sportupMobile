@@ -181,7 +181,7 @@ export class ProfilPage implements OnInit {
       
     });
       
-    this.getfollow();
+    //this.getfollow();
 
   }
 
