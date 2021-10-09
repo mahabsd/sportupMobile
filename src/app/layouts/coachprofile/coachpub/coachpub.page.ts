@@ -55,7 +55,7 @@ export class CoachpubPage implements OnInit {
   async openPostMenu(ev: any) {
     const popover = await this.popoverController.create({
       component: DeletePostPopoverPage,
-      cssClass: 'my-custom-class',
+      cssClass: '$popover-md-max-height: fit-content',
       event: ev,
       translucent: true,
       mode: 'ios',

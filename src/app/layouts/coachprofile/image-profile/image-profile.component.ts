@@ -24,6 +24,8 @@ export class ImageProfileComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.image);
+    console.log(this.video);
+
   }
   dismiss() {
     // using the injected ModalController this page
