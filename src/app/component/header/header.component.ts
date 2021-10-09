@@ -4,6 +4,8 @@ import { TopMenuComponent } from 'src/app/layouts/erp/top-menu/top-menu.componen
 import { PopoverController } from '@ionic/angular';
 import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
+import { Location } from "@angular/common";
+
 
 
 @Component({
@@ -36,9 +38,10 @@ export class HeaderComponent implements OnInit {
   @Input() SuivrePage: boolean = false;
   @Input() isParam: boolean = false;
   @Input() AdulteProfile: boolean = false;
+  @Input() CoachProfileNotConnectedUser: boolean = false;
 
   constructor(private modalCtrl: ModalController,
-    public popoverController: PopoverController,
+    public popoverController: PopoverController,private location: Location
   ) { }
 
   ngOnInit() { }
@@ -46,7 +49,9 @@ export class HeaderComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-
+  BackButtonPalmares(){
+    this.location.back();
+  }
   async openCoachMenu(ev: any) {
     const popover = await this.popoverController.create({
       component: CoachMenuPopOverComponent,

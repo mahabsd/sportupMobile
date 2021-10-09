@@ -27,6 +27,9 @@ import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { Router } from '@angular/router';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
+
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -60,6 +63,11 @@ export class StatusComponent implements OnInit {
   liked = false;
   bookmarked = false;
   id;
+  iduser1;
+  EtatSuivre = false;
+  follower = false;
+  idFollowtoDelete
+  idprofilePassed;
   isUserConnected
   loading: any;
   constructor(
@@ -69,7 +77,9 @@ export class StatusComponent implements OnInit {
     private modalController: ModalController,
     private loadingController: LoadingController,
     private popoverCtrl: PopoverController,
-    private videoPlayer: VideoPlayer
+    private videoPlayer: VideoPlayer,    public router: Router  ,  private followerService: FollowerService,
+
+
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -77,7 +87,7 @@ export class StatusComponent implements OnInit {
   }
   async ngOnInit() {
     //console.log(this.post);
-
+this. getMe()
     await this.getCommentByPost();
   }
 
@@ -223,4 +233,27 @@ export class StatusComponent implements OnInit {
     });
     await this.loading.present();
   }
+
+  getfollow(iduserpassed) {
+    this.userervice.getMe().subscribe(
+      (response) => {
+        this.iduser1 = response.data.data.id;
+        this.followerService.getFollow(iduserpassed, this.iduser1)
+          .subscribe((res) => {
+            if (res == null) {
+              this.router.navigate(["profil",iduserpassed,'adulte']);
+              console.log('nope');
+            } else {
+              console.log(res);
+              this.router.navigate(["menu/tabs/layouts/coachprofile",iduserpassed,"followed"]);
+            }
+          });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+
 }

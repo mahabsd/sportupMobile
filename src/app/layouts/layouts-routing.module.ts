@@ -176,11 +176,11 @@ const routes: Routes = [
         loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule)
       },
       {
-        path: 'coachprofile',
+        path: 'coachprofile/:id/:type',
         loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule)
       },
       {
-        path: 'palmares',
+        path: 'palmares/:id',
         loadChildren: () => import('./coachprofile/palmares/palmares.module').then(m => m.PalmaresPageModule)
       },
       {
