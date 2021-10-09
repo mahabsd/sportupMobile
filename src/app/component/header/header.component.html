@@ -21,9 +21,13 @@
       <ion-icon *ngIf="!isModal  && AdulteProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
 
+      <ion-button shape="rounded" *ngIf="isOption" [routerLink]="['/menu/tabs/layouts/scan']"
+      routerLinkActive="router-link-active">
+      <img src="../../assets/icon/icon_scan.png" class="image" alt="">
+    </ion-button>
     
     
-      <ion-button  slot="start" shape="rounded" *ngIf="isCoach || isOption" (click)="openCoachMenu($event)">
+      <ion-button  slot="start" shape="rounded" *ngIf="isCoach" (click)="openCoachMenu($event)">
         <ion-icon color="light" name="menu"></ion-icon>
       </ion-button>
 
