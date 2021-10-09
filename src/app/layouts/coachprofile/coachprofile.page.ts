@@ -10,6 +10,8 @@ import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ParametresComponent } from 'src/app/component/parametres/parametres.component';
 import { ImageProfileComponent } from './image-profile/image-profile.component';
+import { PostService } from 'src/app/Shared/Service/post.service';
+import { EventService } from 'src/app/shared/Service/event.service';
 
 
 
@@ -25,9 +27,12 @@ export class CoachprofilePage implements OnInit {
     centeredSlides: true,
     spaceBetween: 20
   };
+  page = 1;
 
   user$: any = [];
-  posts$: any = [];
+  posts$= [];
+  posts2$= [];
+
   images: any = [];
   mediafiles: any = [];
   newMediaFiles: any= [];
@@ -46,7 +51,7 @@ export class CoachprofilePage implements OnInit {
   isScrollTop: boolean;
   pub=false;
   type;
-  constructor(        private popoverCtrl: PopoverController,    private loadingController: LoadingController,
+  constructor(private eventService: EventService,    private postService: PostService,   private popoverCtrl: PopoverController,    private loadingController: LoadingController,
 
    private videoPlayer: VideoPlayer,
    private userService: UserService, private activatedRoute: ActivatedRoute,private savepostsService: FavorisService,  private followerService: FollowerService,private modalController: ModalController) { }
@@ -59,6 +64,8 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getAllsaveposts()
     this.getfollow()
+    this.getPosts();
+
   }
 
 
@@ -108,6 +115,38 @@ export class CoachprofilePage implements OnInit {
   }
 
 
+  
+  getPosts(event?) {
+    console.log(this.page);
+
+    this.postService.getAllPosts(this.page).subscribe((response) => {
+
+      
+      console.log(response['data'])
+      this.posts2$=response['data'] 
+      if (event) {
+        event.target.complete();
+      }
+    }, error => {
+      console.error(error);
+    });
+  }
+  loadMore(event) {
+    this.page++;
+    this.getPosts(event);
+    this. getAllsaveposts()
+ 
+    console.log( this.posts2$.length)
+  }
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
+      this.isScrollTop = false;
+
+    } else {
+      this.isScrollTop = true;;
+    }
+    this.eventService.sendMessage(this.isScrollTop);
+  }
   
   getfollow() {
     this.userService.getMe().subscribe(
@@ -200,5 +239,8 @@ export class CoachprofilePage implements OnInit {
     });
     await this.loading.present();
   }
+
+
+
 }
 
