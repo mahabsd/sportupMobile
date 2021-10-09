@@ -1,20 +1,16 @@
 import { Injectable, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser'
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { FooterPageModule } from '../../component/footer/footer.module';
 import { StatusComponent } from './status/status.component';
-import { ReactionsPage } from './reactions/reactions.page';
 import { ComponentModule } from '../../component/component.module';
-import { CommentsPage } from './comments/comments.page';
 import { CommentsPageModule } from './comments/comments.module';
 import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
-import { from } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 import { CommonModule } from '@angular/common';
+
+
 @Injectable()
 export class LazyLoadImageHooks extends IntersectionObserverHooks {
   toast: any;
