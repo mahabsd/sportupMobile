@@ -6,10 +6,9 @@
       </ion-icon>
       <ion-icon *ngIf="!isModal && BoiteRecepetionKids" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/menu/tabs/home"
-        name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/menu/tabs/home"        name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/accueil" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && KidsProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
@@ -22,10 +21,15 @@
       <ion-icon *ngIf="!isModal  && AdulteProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
 
-      <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
-        routerLinkActive="router-link-active">
-        <img src="../../assets/icon/icon_scan.png" class="image" alt="">
+    
+    
+      <ion-button  slot="start" shape="rounded" *ngIf="isCoach || isOption" (click)="openCoachMenu($event)">
+        <ion-icon color="light" name="menu"></ion-icon>
       </ion-button>
+
+        
+      
+      
       <ion-buttons slot="start">
         <ion-icon *ngIf="isParam" color="light" routerLink="/menu/tabs/layouts/coachprofile/coachphoto"
           name="chevron-back-outline">
@@ -33,8 +37,14 @@
       </ion-buttons>
 
     </ion-buttons>
+    <ion-buttons slot="end" *ngIf="isCoachNotSameUser">
 
+    <ion-button  slot="end" shape="rounded"  (click)="openCoachPalmares($event)">
+      <ion-icon color="light" name="ellipsis-vertical-outline"></ion-icon>
+    </ion-button>
+  </ion-buttons>
 
+    
 
     <ion-buttons slot="end" *ngIf="isOptionPageSuivre">
 
@@ -62,7 +72,7 @@
       </ion-button>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="isCoach">
-      <ion-button shape="rounded" (click)="openCoachMenu($event)">
+      <ion-button shape="rounded" (click)="openCoachPalmares($event)">
         <ion-icon color="light" name="ellipsis-vertical"></ion-icon>
       </ion-button>
     </ion-buttons>

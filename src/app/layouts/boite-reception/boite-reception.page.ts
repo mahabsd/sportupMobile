@@ -22,7 +22,7 @@ export class BoiteReceptionPage implements OnInit {
 
   userid = '60f983fb06d9b3846c3d1030';
   isScrollTop: boolean;
-  constructor(private userservice: UserService, private followerService: FollowerService, private eventService: EventService, private chatService: ChatService
+  constructor(private userservice: UserService, private followerService: FollowerService, private eventService: EventService,private chatService:ChatService
   ) {
     this.addMoreItems();
   }
@@ -57,7 +57,8 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
-          this.users = res;
+              this.users=res;          
+         
           if (event) {
             event.target.complete()
           }
@@ -73,7 +74,7 @@ export class BoiteReceptionPage implements OnInit {
 
   }
 
-
+  
 
   loadData(event) {
 
@@ -83,7 +84,7 @@ export class BoiteReceptionPage implements OnInit {
       this.getfollow();
       this.numTimesLeft -= 1;
       event.target.complete();
-      this.users2 = []
+      this.users2=[]
 
     }, 500);
   }

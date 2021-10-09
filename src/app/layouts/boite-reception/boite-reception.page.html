@@ -9,7 +9,7 @@
       </ion-fab-button>
     </ion-fab>
 
-    <ion-searchbar placeholder=""></ion-searchbar>
+    <ion-searchbar placeholder="" style="width:86%"></ion-searchbar>
   </div>
 
 
@@ -23,7 +23,7 @@
         <ion-col style="    margin-top: 20px;" size="13" size-lg>
           <ion-item-sliding class="item-background-color" *ngFor="let item of users; let i = index"
             (ionDrag)="logDrag(i)">
-            <ion-item class="item-background-color2" routerLink="/chat/{{item.id}}">
+            <ion-item class="item-background-color2" routerLink="/chat/{{item.userReceiver._id}}">
 
               <ion-label>
                 <p>

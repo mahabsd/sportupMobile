@@ -485,25 +485,30 @@ ion-toolbar {
   font-size: $ruler*3.2;
   width: 340px;
 
-}
-
-.item-background-color {
-  --ion-item-background: #eee;
-  margin: 10px auto;
-  --min-height: 63px;
-  border-radius: 10px;
-  border-left: 4px solid green
+  .item-background-color{
+    --ion-item-background:#eee;
+    margin: 10px auto;
+    --min-height:73px;
+    border-radius: 10px;
+    border-left: 4px solid green
 }
 
 
 .item-background-color2 {
 
-  --min-height: 63px;
+  --min-height:73px;
 }
 
-ion-searchbar {
-  width: 80%;
-  height: 41px;
-  margin: 11px;
-  margin-right: 80px;
+ion-searchbar{
+  height: 1px;
+  margin-top: 7%;
+  margin-bottom: 7%;
+  padding-right: 63px;
+  width: 300px;
+
+}
+.searchbar-input.sc-ion-searchbar-md {
+  background-color: #eee;
+}
+
 }
