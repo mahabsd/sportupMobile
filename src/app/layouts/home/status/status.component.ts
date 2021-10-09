@@ -48,9 +48,9 @@ export class StatusComponent implements OnInit {
   comments: any = [];
   images: any = [];
   mediafiles: any = [];
-  newMediaFiles: any= [];
-  secondNewMediaFiles: any= [];
-  thirdNewMediaFiles: any= [];
+  newMediaFiles: any = [];
+  secondNewMediaFiles: any = [];
+  thirdNewMediaFiles: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -60,7 +60,7 @@ export class StatusComponent implements OnInit {
   liked = false;
   bookmarked = false;
   id;
-  isUserConnected
+  isUserConnected;
   loading: any;
   constructor(
     private commentService: CommentService,
@@ -191,13 +191,13 @@ export class StatusComponent implements OnInit {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      if (this.mediafiles.length<4){
-        this.newMediaFiles= this.mediafiles.splice(0,1);
+      if (this.mediafiles.length < 4) {
+        this.newMediaFiles = this.mediafiles.splice(0, 1);
       }
-      if (this.mediafiles.length>3){
-        this.newMediaFiles=this.mediafiles.slice(0,1);
-        this.thirdNewMediaFiles=this.mediafiles.slice(1,3);
-        this.secondNewMediaFiles=this.mediafiles.splice(3,this.mediafiles.length);
+      if (this.mediafiles.length > 3) {
+        this.newMediaFiles = this.mediafiles.slice(0, 1);
+        this.thirdNewMediaFiles = this.mediafiles.slice(1, 3);
+        this.secondNewMediaFiles = this.mediafiles.splice(3, this.mediafiles.length);
       }
     });
   }
