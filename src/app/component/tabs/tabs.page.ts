@@ -18,6 +18,7 @@ import { EventService } from 'src/app/shared/Service/event.service';
 export class TabsPage implements OnInit {
   user$: any = [];
   menuOpened = false;
+  userid
   subscription: Subscription;
   constructor(
     private imageService: ImageService,
@@ -37,6 +38,8 @@ export class TabsPage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
+      this.userid= res.data.data._id;
+
     });
   }
 

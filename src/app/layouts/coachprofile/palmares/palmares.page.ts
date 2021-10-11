@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { User } from 'src/app/Shared/Model/User';
 import { CoachService } from 'src/app/Shared/Service/coach.service';
@@ -35,16 +36,18 @@ export class PalmaresPage implements OnInit {
   };
   user$: User;
   isconnected: boolean = false;
+  idprofilePassed
   constructor(
     private alertCtrl: AlertController,
     private userService: UserService,
     private coachService: CoachService,
-    private storageService: StorageService
+    private storageService: StorageService,private activatedRoute: ActivatedRoute
   ) {
   }
 
   async ngOnInit() {
     await this.getMe();
+    this.idprofilePassed = this.activatedRoute.snapshot.params.id;
 
   }
   readOnlyPalmaresToggle() {
@@ -86,10 +89,10 @@ export class PalmaresPage implements OnInit {
   }
   getMe() {
     this.userService.getMe().subscribe(async res => {
-      this.user$ = res?.data?.data?._id
+      this.user$ =this.idprofilePassed
       this.getCoachByIdUser(res?.data?.data?._id);
-      this.storageService.get('currentUser').subscribe((res) => {
 
+      this.storageService.get('currentUser').subscribe((res) => {
         res._id === this.user$ ? this.isconnected = true : this.isconnected = false
         console.log(this.isconnected);
       });

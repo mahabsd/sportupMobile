@@ -1,4 +1,6 @@
-<app-header title="COACH" [isCoach]="true"></app-header>
+<app-header title="COACH" [isCoach]="true"  *ngIf="testConnected"></app-header>
+<app-header title="COACH" [CoachProfileNotConnectedUser]="true" *ngIf="!testConnected"></app-header>
+
 <ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer"
   routerLink="/updateprofil">
   <div class="profileID">
@@ -34,7 +36,7 @@
       <ion-tab-button [routerLink]="['/calendar']">
         <ion-label>Calendrier</ion-label>
       </ion-tab-button>
-      <ion-tab-button [routerLink]="['/palmares']">
+      <ion-tab-button [routerLink]="['/palmares',idprofilePassed]">
         <ion-label>Palmarés</ion-label>
       </ion-tab-button>
     </ion-tab-bar>

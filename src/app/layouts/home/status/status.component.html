@@ -1,10 +1,9 @@
 <ion-grid>
   <ion-row lines="none">
-    <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected !== post?.user?._id">
-      <img [src]="apiImgUser + post?.user?.photo" routerLink="/menu/tabs/home" />
+    <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected != post?.user?._id">
+      <img [src]="apiImgUser + post?.user?.photo" (click)='getfollow(post?.user?._id)'  />
     </ion-avatar>
-    <ion-label routerLink="/profil/{{ post.user.id }}/adulte" class="ion-justify-content-center"
-      *ngIf="isUserConnected !== post?.user?._id" style="display: grid; align-self: center">
+    <ion-label (click)='getfollow(post?.user?._id)' class="ion-justify-content-center" *ngIf="isUserConnected != post?.user?._id" style="display: grid; align-self: center">
       <h3 class="
           ion-text-capitalize
           ion-align-self-start
@@ -16,8 +15,8 @@
       <p>{{ post?.createdAt | date }}</p>
     </ion-label>
 
-    <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected === post?.user?._id">
-      <img [src]="apiImgUser + post?.user?.photo" [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']" />
+    <ion-avatar slot="" class="ion-padding"  *ngIf="isUserConnected === post?.user?._id">
+      <img [src]="apiImgUser + post?.user?.photo"  routerLink="/menu/tabs/layouts/coachprofile/{{post.user.id}}/me"  />
     </ion-avatar>
 
     <ion-label [routerLink]="['/menu/tabs/layouts/coachprofile/coachphoto']" class="ion-justify-content-center"
