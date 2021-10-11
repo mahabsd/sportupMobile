@@ -57,7 +57,7 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
-          this.users = res;
+              this.users=res;          
           if (event) {
             event.target.complete()
           }
@@ -72,6 +72,7 @@ export class BoiteReceptionPage implements OnInit {
     );
 
   }
+
 
 
 
