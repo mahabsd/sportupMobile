@@ -29,7 +29,7 @@
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
 
-      
+
       <ion-button shape="rounded" *ngIf="CoachProfileNotConnectedUser" [routerLink]="['/menu/tabs/layouts/scan']"
         routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
@@ -37,7 +37,7 @@
 
 
       <ion-buttons slot="start">
-        <ion-icon *ngIf="isParam" color="light" routerLink="/menu/tabs/layouts/coachprofile/coachphoto"
+        <ion-icon *ngIf="isParam" color="light" routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me"
           name="chevron-back-outline">
         </ion-icon>
       </ion-buttons>

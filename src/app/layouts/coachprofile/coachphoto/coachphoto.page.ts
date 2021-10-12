@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/core';
 import {
   ActionSheetController,
@@ -7,6 +8,7 @@ import {
 } from '@ionic/angular';
 import { Subscription } from 'rxjs';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { PostService } from 'src/app/Shared/Service/post.service';
 import { environment } from 'src/environments/environment';
 import { ImageService } from '../../../Shared/Service/image.service';
 import { UserService } from '../../../Shared/Service/user.service';
@@ -24,6 +26,8 @@ export class CoachphotoPage implements OnInit {
   user$: any;
   messages: any[] = [];
   isScrollTop: boolean;
+  userId: any;
+  postsOwnerId: any;
   constructor(
     private imageService: ImageService,
     private userService: UserService,
@@ -31,11 +35,12 @@ export class CoachphotoPage implements OnInit {
     private action: ActionSheetController,
     private toastCtrl: ToastController,
     private eventService: EventService,
+    private router: Router,
+    private postService: PostService,
   ) {
     this.subscription = this.imageService.getMessage().subscribe((message) => {
       if (message.event === 'addphoto') {
         this.selectImageSource();
-        console.log(message);
       } else {
         // clear messages when empty message received
         this.messages = [];
@@ -43,7 +48,10 @@ export class CoachphotoPage implements OnInit {
     });
   }
   ngOnInit() {
-    this.getMe();
+  //  this.getMe();
+    this.postsOwnerId = this.postService.postsOwnerId;
+    console.log(  this.postsOwnerId );
+    this.getImageByIdUser(this.postsOwnerId);
 
   }
 
@@ -60,7 +68,6 @@ export class CoachphotoPage implements OnInit {
   }
 
   async addImage(source: CameraSource) {
-    console.log('addimage');
 
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
@@ -113,8 +120,8 @@ export class CoachphotoPage implements OnInit {
   }
 
   getImageByIdUser(id) {
+
     this.imageService.getImageByUserId(id).subscribe((res) => {
-      console.log(res);
       this.images = res;
     });
   }

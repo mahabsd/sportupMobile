@@ -5,6 +5,7 @@ import { PopoverController } from '@ionic/angular';
 import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
 import { Location } from "@angular/common";
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 
 
@@ -39,12 +40,18 @@ export class HeaderComponent implements OnInit {
   @Input() isParam: boolean = false;
   @Input() AdulteProfile: boolean = false;
   @Input() CoachProfileNotConnectedUser: boolean = false;
+  userid: any;
+  user$: any;
 
   constructor(private modalCtrl: ModalController,
-    public popoverController: PopoverController,private location: Location
+    public popoverController: PopoverController,
+    private location: Location,
+    private userservice: UserService,
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.getMe()
+  }
   close() {
     this.modalCtrl.dismiss();
   }
@@ -87,4 +94,12 @@ export class HeaderComponent implements OnInit {
     });
     return await modal.present();
   }
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      this.userid= res.data.data._id;
+    });
 }
+}
+
+
