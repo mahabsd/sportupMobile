@@ -25,13 +25,13 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-slides>
-    <ion-slide style="padding: 10px; display: flex; flex-direction: column">
+  <div style="height: 100%" pager="true">
+    <div style="display: flex; flex-direction: column">
       <div
         style="
           display: flex;
           justify-content: space-between;
-          padding: 0 20px;
+          padding: 10px 20px 0 20px;
           width: 100%;
           align-items: center;
         "
@@ -39,140 +39,602 @@
         <p>Exercices / activités</p>
         <p style="color: rgb(17, 82, 1); font-size: 10px">modifier</p>
       </div>
-      <div>
-        <div style="display: flex">
-          <div
-            style="
-              margin: 5px;
-              position: relative;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            "
-          >
-            <img src="../../assets/imgs/color-bleu.png" alt="" />
+      <ion-slides pager="true" style="width: 100%; height: 410px">
+        <ion-slide
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <div style="display: flex; margin-top: 20px">
             <div
               style="
-                color: white;
-                position: absolute;
+                margin: 0 15px 15px 15px;
+                position: relative;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
-                height: 90%;
-                margin-top: 20px;
+                align-items: center;
               "
             >
-              <div>
-                <img
-                  style="width: 30px; z-index: 10"
-                  src="../../../assets/icon/etoile_vert.png"
-                  alt=""
-                />
-                <p style="font-size: 40px">1.650</p>
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-bleu.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
               </div>
-              <p>Total distance</p>
             </div>
-          </div>
-          <div
-            style="
-              margin: 5px;
-              position: relative;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            "
-          >
-            <img src="../../assets/imgs/color-pulpe.png" alt="" />
             <div
               style="
-                color: white;
-                position: absolute;
+                margin: 0 15px 15px 15px;
+                position: relative;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
-                height: 90%;
-                margin-top: 20px;
+                align-items: center;
               "
             >
-              <div>
-                <img
-                  style="width: 30px; z-index: 10"
-                  src="../../../assets/icon/etoile_vert.png"
-                  alt=""
-                />
-                <p style="font-size: 40px">1.650</p>
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-red.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
               </div>
-              <p>Total distance</p>
             </div>
           </div>
-        </div>
-        <div style="display: flex">
-          <div
-            style="
-              margin: 5px;
-              position: relative;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            "
-          >
-            <img src="../../assets/imgs/color-red.png" alt="" />
+          <div style="display: flex">
             <div
               style="
-                color: white;
-                position: absolute;
+                margin: 0 15px 15px 15px;
+                position: relative;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
-                height: 90%;
-                margin-top: 20px;
+                align-items: center;
               "
             >
-              <div>
-                <img
-                  style="width: 30px; z-index: 10"
-                  src="../../../assets/icon/etoile_vert.png"
-                  alt=""
-                />
-                <p style="font-size: 40px">1.650</p>
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-pulpe.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
               </div>
-              <p>Total distance</p>
             </div>
-          </div>
-          <div
-            style="
-              margin: 5px;
-              position: relative;
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-            "
-          >
-            <img src="../../assets/imgs/color-violet.png" alt="" />
             <div
               style="
-                color: white;
-                position: absolute;
+                margin: 0 15px 15px 15px;
+                position: relative;
                 display: flex;
                 flex-direction: column;
-                justify-content: space-around;
-                height: 90%;
-                margin-top: 20px;
+                align-items: center;
               "
             >
-              <div>
-                <img
-                  style="width: 30px; z-index: 10"
-                  src="../../../assets/icon/etoile_vert.png"
-                  alt=""
-                />
-                <p style="font-size: 40px">1.650</p>
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-violet.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
               </div>
-              <p>Total distance</p>
             </div>
           </div>
-        </div>
-      </div>
+        </ion-slide>
+        <ion-slide
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <div style="display: flex; margin-top: 20px">
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-bleu.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-red.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex">
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-pulpe.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-violet.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-slide>
+        <ion-slide
+          style="display: flex; flex-direction: column; align-items: center"
+        >
+          <div style="display: flex; margin-top: 20px">
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-bleu.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-red.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+          </div>
+          <div style="display: flex">
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-pulpe.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+            <div
+              style="
+                margin: 0 15px 15px 15px;
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+              "
+            >
+              <img
+                style="width: 160px; height: 160px"
+                src="../../assets/imgs/color-violet.png"
+                alt=""
+              />
+              <div
+                style="
+                  color: white;
+                  position: absolute;
+                  display: flex;
+                  flex-direction: column;
+                  justify-content: space-between;
+                  height: 100%;
+                  margin-top: 10px;
+                "
+              >
+                <div
+                  style="
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: flex-start;
+                    padding-top: 0;
+                  "
+                >
+                  <img
+                    style="width: 30px; z-index: 10"
+                    src="../../../assets/icon/etoile_vert.png"
+                    alt=""
+                  />
+                  <p style="font-size: 32px; margin-top: 2px">1.650</p>
+                </div>
+                <p style="font-size: 13px; padding-bottom: 3px">
+                  Total distance
+                </p>
+              </div>
+            </div>
+          </div>
+        </ion-slide>
+        <button
+          type="submit"
+          float-left
+          ion-button
+          class="btnPrev"
+          (click)="prev()"
+        >
+          Prev
+        </button>
+        <button
+          type="submit"
+          float-right
+          ion-button
+          class="btnNext"
+          (click)="next()"
+        >
+          Next
+        </button>
+      </ion-slides>
       <div
         style="
           display: flex;
@@ -193,415 +655,11 @@
           <p style="color: rgb(17, 82, 1); font-size: 10px">modifier</p>
         </div>
         <img
-          src="../../../assets/icon/etoile_vert.png"
-          style="width: 100px; align-self: center"
+          src="https://www.calculersonimc.fr/wp-content/uploads/2018/04/e%CC%81volution-IMC-femme.jpg"
+          style="height: 200px; align-self: center"
           alt=""
         />
       </div>
-    </ion-slide>
-
-    <ion-slide
-      style="display: flex; flex-direction: column; align-items: flex-start"
-    >
-      <div
-        class="slide-content"
-        style="display: flex; flex-direction: column; align-items: flex-start"
-      >
-        <ion-card style="box-shadow: unset">
-          <div class="concert bg"></div>
-          <ion-card-content class="item item-body">
-            <div
-              style="
-                padding: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                margin-top: 25px;
-              "
-            >
-              <p style="margin-bottom: 5px; font-size: large; font-weight: 700">
-                Poids(Kg) :
-              </p>
-              <div
-                style="
-                  background-color: white;
-                  border-radius: 10px;
-                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
-                    inset 0 0 1px rgba(88, 77, 77, 0.6);
-                  width: 100%;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: center;
-                "
-              >
-                <div
-                  style="
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    width: 100%;
-                    padding: 5px 10px;
-                  "
-                >
-                  <p>Date: 6 derniers mois</p>
-                  <p style="color: rgb(17, 82, 1); font-size: 10px">modifier</p>
-                </div>
-                <div
-                  style="
-                    margin: 5px -20px;
-                    display: flex;
-                    width: 100%;
-                    justify-content: space-around;
-                    padding: 10px;
-                  "
-                >
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 50px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 60px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 54px;
-                        background-color: rgb(158, 25, 92);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 63px;
-                        background-color: rgb(236, 168, 129);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 55px;
-                        background-color: rgb(226, 147, 43);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 57px;
-                        background-color: rgb(194, 71, 167);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 58.7px;
-                        background-color: rgb(124, 48, 196);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 50px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 50px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 50px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 50px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                  <div style="position: relative">
-                    <div
-                      style="
-                        width: 15px;
-                        height: 50px;
-                        background-color: rgb(43, 120, 172);
-                        z-index: 10;
-                        position: absolute;
-                        bottom: 20px;
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <div
-                      style="
-                        width: 15px;
-                        height: 100px;
-                        background-color: rgb(226, 226, 226);
-                        border-top-left-radius: 10px;
-                        border-top-right-radius: 10px;
-                      "
-                    ></div>
-                    <p>60</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              style="
-                padding: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-              "
-            >
-              <p
-                style="margin-bottom: 5px; font-size: larger; font-weight: 700"
-              >
-                Taille (cm) :
-              </p>
-              <div
-                style="
-                  background-color: white;
-                  border-radius: 10px;
-                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
-                    inset 0 0 1px rgba(88, 77, 77, 0.6);
-                  padding: 20px;
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                  width: 100%;
-                "
-              >
-                <p>Actuel</p>
-                <p>170.0 cm</p>
-              </div>
-            </div>
-            <div
-              style="
-                padding: 10px;
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-              "
-            >
-              <p style="margin-bottom: 5px; font-size: large; font-weight: 700">
-                Calories brulées (estimation) :
-              </p>
-              <div
-                style="
-                  background-color: white;
-                  border-radius: 10px;
-                  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1),
-                    inset 0 0 1px rgba(88, 77, 77, 0.6);
-                  padding: 15px;
-                "
-              >
-                <app-line-ch></app-line-ch>
-              </div>
-            </div>
-          </ion-card-content>
-        </ion-card>
-      </div>
-    </ion-slide>
-  </ion-slides>
+    </div>
+  </div>
 </ion-content>
