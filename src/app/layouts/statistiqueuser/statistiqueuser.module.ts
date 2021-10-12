@@ -8,6 +8,7 @@ import { StatistiqueuserPageRoutingModule } from './statistiqueuser-routing.modu
 
 import { StatistiqueuserPage } from './statistiqueuser.page';
 import { LineChComponent } from '../line-ch/line-ch.component';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { LineChComponent } from '../line-ch/line-ch.component';
     FormsModule,
     IonicModule,
     StatistiqueuserPageRoutingModule,
+    ComponentModule
   ],
   declarations: [StatistiqueuserPage, LineChComponent],
   exports: [LineChComponent],

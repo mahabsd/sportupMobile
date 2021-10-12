@@ -69,8 +69,7 @@ export class SignKidsPage implements OnInit {
 
 
     this.authService.login(this.user).subscribe(async (response) => {
-      console.log('hello user', response.user.role);
-      if (response.user.role == "kids") {
+      if (response.user.role === "kids") {
         this.router.navigateByUrl('/accueil');
 
       }

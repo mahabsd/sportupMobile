@@ -2,44 +2,48 @@
 <ion-content padding [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <div id="container">
     <ion-grid>
-      <ion-row id="rowTabFiltre">
+      <ion-row  id="rowTabFiltre">
         <ion-col>
-          <ion-button
+          <button
             style="
-              box-shadow: 5px 5px 10px rgba(49, 49, 46, 0.452);
+              box-shadow: 0px 3px 10px  rgba(114, 114, 114, 0.452);
               border-radius: 10px;
               margin: 0 10px;
-            "
-            color="light"
-            (click)="getAllPostsByEvent()"
-          >
+              height: 30px;
+              width: 100px;
+              color: #898b8b;
+              background: white"
+            (click)="getAllPostsByEvent()">
             Tout
-          </ion-button>
+        </button>
 
-          <ion-button
+          <button
             color="white"
             style="
-              box-shadow: 5px 5px 10px rgba(49, 49, 46, 0.452);
+              box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
               border-radius: 10px;
               margin: 0 10px;
-            "
-            routerLink="/menu/tabs/hobbies"
-          >
+              height: 30px;
+              width: 100px;
+              color: #898b8b;
+              background: white"
+              routerLink="/menu/tabs/hobbies">
             Favoris
-          </ion-button>
-          <ion-button
+      </button>
+          <button
             color="white"
             style="
-              box-shadow: 5px 5px 10px rgba(49, 49, 46, 0.452);
+              box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
               border-radius: 10px;
               margin: 0 10px;
-            "
-          >
-            Abonnement
-          </ion-button>
+              height: 30px;
+              width: 100px;
+              color: #898b8b;
+              background: white">
+            Abonnements
+          </button>
         </ion-col>
       </ion-row>
-
       <ion-row class="bodyFilter">
         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
           <ion-refresher-content

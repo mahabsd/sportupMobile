@@ -8,6 +8,7 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class PostService {
+  postsOwnerId
   constructor(
     private utilsService: UtilsService,
     private storage: StorageService
@@ -82,4 +83,8 @@ export class PostService {
       formData
     );
   }
+  postsOwner(id){
+    this.postsOwnerId = id;
+  }
+
 }

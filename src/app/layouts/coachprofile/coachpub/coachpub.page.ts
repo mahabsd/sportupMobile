@@ -7,6 +7,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 import { DeletePostPopoverPage } from '../delete-post-popover/delete-post-popover.page';
 import { PopoverController } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-coachpub',
   templateUrl: './coachpub.page.html',
@@ -19,14 +20,16 @@ export class CoachpubPage implements OnInit {
   page = 1;
   selectedDate;
   isScrollTop: boolean;
-  constructor(private postService: PostService, private userService: UserService, private eventService: EventService,
-
+  postsOwnerId: any;
+  constructor(private postService: PostService,
+    private userService: UserService,
+    private eventService: EventService,
+    private router: Router,
     public popoverController: PopoverController,
   ) { }
 
   async ngOnInit() {
     await this.getMe();
-
   }
 
   getMe() {
@@ -37,9 +40,8 @@ export class CoachpubPage implements OnInit {
     });
   }
   getPosts(event?) {
-    console.log(this.page);
-
-    this.postService.getAllPostsById(this.page, this.user$._id).subscribe((response) => {
+    this.postsOwnerId = this.postService.postsOwnerId;
+    this.postService.getAllPostsById(this.page, this.postsOwnerId).subscribe((response) => {
       this.posts = this.posts.concat(response['data']);
       if (event) {
         event.target.complete();
@@ -66,7 +68,6 @@ export class CoachpubPage implements OnInit {
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
