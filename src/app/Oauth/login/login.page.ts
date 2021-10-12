@@ -42,7 +42,14 @@ export class LoginPage implements OnInit {
 
     this.authService.login(this.loginForm.value).subscribe((response) => {
       // console.log('hello user', response);
-      location.href = '/menu/tabs/home';
+
+      if (response.user.role != "kids") {
+        location.href = '/menu/tabs/home';
+
+      }
+      else {
+        this.presentToast('vous n\'avez pas le droit d\accées', 'warning', 'top');
+      }
 
     }, error => {
       console.error(error);
