@@ -1,4 +1,4 @@
-import { Component, OnInit ,ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit ,ChangeDetectorRef, ViewChild  } from '@angular/core';
 import { ImageModalPage } from '../image-modal/image-modal.page';
 import { ModalController, IonSlides } from '@ionic/angular';
 @Component({
@@ -7,6 +7,7 @@ import { ModalController, IonSlides } from '@ionic/angular';
   styleUrls: ['./statistiqueuser.page.scss'],
 })
 export class StatistiqueuserPage implements OnInit {
+  @ViewChild('slides') slides: IonSlides;
   sliderOpts = {
     zoom: false,
     slidesPerView: 1.5,
@@ -30,7 +31,14 @@ export class StatistiqueuserPage implements OnInit {
   ngOnInit() {
   }
 
+  next(){
+    this.slides.slideNext();
+  }
+
+  prev(){
+    this.slides.slidePrev();
+  }
 }
-// 30-2350 
+// 30-2350
 // or
 // 50 / 1200
