@@ -43,7 +43,7 @@ export class LoginPage implements OnInit {
     this.authService.login(this.loginForm.value).subscribe((response) => {
       // console.log('hello user', response);
 
-      if (response.user.role != "kids") {
+      if (response.user.role === "user"||response.user.role === "pro"||response.user.role === "admin") {
         location.href = '/menu/tabs/home';
 
       }
