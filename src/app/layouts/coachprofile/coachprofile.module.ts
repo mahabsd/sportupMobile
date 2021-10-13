@@ -12,6 +12,7 @@ import { CoachphotoPage } from './coachphoto/coachphoto.page';
 import { CoachpubPage } from './coachpub/coachpub.page';
 import { ImageProfileComponent } from './image-profile/image-profile.component';
 import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
+import { CoachMenuPopOverComponent } from './coach-menu-pop-over/coach-menu-pop-over.component';
 @Injectable()
 export class LazyLoadImageHooks extends IntersectionObserverHooks {
   toast: any;
@@ -49,7 +50,8 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     HomePageModule,
     LazyLoadImageModule,
   ],
-  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent],
+  declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent,    CoachMenuPopOverComponent
+  ],
   exports: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],
 
