@@ -89,15 +89,39 @@
 
     <div class="body" *ngIf="selected==='photo'">
       <div id="first-bloc">
-        <div id="first-photo"></div>
+        <div id="first-photo" style="position: relative">
+          <div class="left-tape-first"></div>
+          <div class="right-tape-first"></div>
+        </div>
         <div id="photo-set-one">
-          <div class="fourPics"></div>
-          <div class="fourPics"></div>
-          <div class="fourPics"></div>
-          <div class="fourPics"></div>
+          <div class="fourPics" style="position: relative">
+            <div class="left-tape-second"></div>
+            <div class="right-tape-second"></div>
+          </div>
+          <div class="fourPics" style="position: relative">
+            <div class="left-tape-third"></div>
+            <div class="right-tape-third"></div>
+          </div>
+          <div class="fourPics" style="position: relative">
+            <div class="left-tape-third"></div>
+            <div class="right-tape-third"></div>
+          </div>
+          <div class="fourPics" style="position: relative">
+            <div class="left-tape-second"></div>
+            <div class="right-tape-second"></div>
+          </div>
         </div>
       </div>
-      <div id="photo-set-two"></div>
+      <div id="photo-set-two">
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+        <div class="eightPic"></div>
+      </div>
     </div>
 
     <div class="content-profil" *ngIf="selected==='propos'">
