@@ -59,9 +59,7 @@ export class PostService {
   }
   getPost(id): Observable<Post> {
     return this.utilsService.get(`${UtilsService.apiPost}${id}`).pipe(
-      map((res) => {
-        return res.data.data;
-      })
+      map((res) => {return res.data.data;})
     );
   }
   getAllPostsKids(): Observable<Post[]> {
