@@ -44,6 +44,7 @@ export class HeaderComponent implements OnInit {
   
   @Input()  type: string;
   @Input()  idprofillepassed: string;
+  @Input()  followid: string;
 
   userid: any;
   user$: any;
@@ -73,7 +74,7 @@ export class HeaderComponent implements OnInit {
     const popover = await this.popoverController.create({
       component: CoachMenuPopOverComponent,
       cssClass: 'pop-over-style',
-      componentProps: {Etatfollow: this.type,IdprofilePassed: this.idprofillepassed},
+      componentProps: {Etatfollow: this.type,IdprofilePassed: this.idprofillepassed,followid:this.followid},
 
       event: ev,
       translucent: true,

@@ -34,6 +34,7 @@ export class CoachprofilePage implements OnInit {
   type;
   posts$: any = [];
   testConnected = false;
+  followId;
   // eslint-disable-next-line max-len
   coachInfo = { backgroundImage: 'https://www.nouvelleviepro.fr/assets/uploads/salon/nouvelleviepro-choisir_coaching.jpg' };
   apiImg = environment.apiImg + 'User/';
@@ -127,6 +128,7 @@ export class CoachprofilePage implements OnInit {
               console.log('nope');
               this.follower = false;
             } else {
+              this.followId=res._id;
               this.follower = true;
 
               console.log(res);
