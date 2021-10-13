@@ -1445,6 +1445,7 @@ svg {
 
 .left-tape-first {
   position: absolute;
+  border-radius: 5px;
   width: 20px;
   height: 40px;
   background-color: rgba(226, 183, 43, 0.753);
@@ -1455,6 +1456,7 @@ svg {
 
 .right-tape-first {
   position: absolute;
+  border-radius: 5px;
   width: 20px;
   height: 40px;
   background-color: rgba(226, 183, 43, 0.753);
@@ -1465,6 +1467,7 @@ svg {
 
 .left-tape-second {
   position: absolute;
+  border-radius: 5px;
   width: 20px;
   height: 30px;
   background-color: rgba(189, 43, 226, 0.753);
@@ -1475,6 +1478,7 @@ svg {
 
 .right-tape-second {
   position: absolute;
+  border-radius: 5px;
   width: 20px;
   height: 30px;
   background-color: rgba(189, 43, 226, 0.753);
@@ -1485,6 +1489,7 @@ svg {
 
 .left-tape-third {
   position: absolute;
+  border-radius: 5px;
   width: 20px;
   height: 30px;
   background-color: rgba(61, 43, 226, 0.753);
@@ -1495,9 +1500,32 @@ svg {
 
 .right-tape-third {
   position: absolute;
+  border-radius: 5px;
   width: 20px;
   height: 30px;
   background-color: rgba(61, 43, 226, 0.753);
+  transform: rotate(15deg);
+  top: -17px;
+  right: -5px;
+}
+
+.left-tape-fourth {
+  position: absolute;
+  border-radius: 5px;
+  width: 20px;
+  height: 30px;
+  background-color: rgba(226, 183, 43, 0.753);
+  transform: rotate(-15deg);
+  top: -15px;
+  left: -5px;
+}
+
+.right-tape-fourth {
+  position: absolute;
+  border-radius: 5px;
+  width: 20px;
+  height: 30px;
+  background-color: rgba(226, 183, 43, 0.753);
   transform: rotate(15deg);
   top: -17px;
   right: -5px;

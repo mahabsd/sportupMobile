@@ -17,8 +17,8 @@ export class FavorisService {
   getFavorisByService(post): Observable<Favoris[]> {
     return this.apiService.get(`${UtilsService.apiPost}${post}/Favoris`).pipe(map((res) => res.data.data));
   }
-  getSavedPosts(): Observable<[]> {
-    return this.apiService.get(`${UtilsService.apiFavoris}`).pipe(((res) => res));
+  getSavedPosts(page, id): Observable<[]> {
+    return this.apiService.get(`${UtilsService.apiFavoris}?page=${page}&limit=5&user=${id}`).pipe(((res) => res));
   }
 
   updateFavoriss(Favoris: Favoris) {

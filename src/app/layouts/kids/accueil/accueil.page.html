@@ -1,12 +1,15 @@
-<app-header [isKid]="true">
-
-</app-header>
+<app-header [isKid]="true"> </app-header>
 <ion-content>
   <ion-grid>
     <ion-row>
       <ion-col class="my-thin-col stylecards" *ngFor="let post of posts ">
-        <app-status-kids [post]="post" [user]="user$" (disLikeFn)="disLike(post)" (refreshPosts)="getAllPostsKids()"
-          (likeFn)="like(post)"></app-status-kids>
+        <app-status-kids
+          [post]="post"
+          [user]="user$"
+          (disLikeFn)="disLike(post)"
+          (refreshPosts)="getAllPostsKids()"
+          (likeFn)="like(post)"
+        ></app-status-kids>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -16,13 +19,19 @@
     <ion-col></ion-col>
     <ion-col>
       <div>
-        <img routerLink="/accueil" src="../../../assets/IconMenu/iconhome.png" />
+        <img
+          routerLink="/accueil"
+          src="../../../assets/IconMenu/iconhome.png"
+        />
       </div>
     </ion-col>
     <ion-col></ion-col>
     <ion-col>
       <div>
-        <img routerLink="/boitereceptionkids" src="../../../assets/IconMenu/iconmessage.png" />
+        <img
+          routerLink="/boitereceptionkids"
+          src="../../../assets/IconMenu/iconmessage.png"
+        />
       </div>
     </ion-col>
     <ion-col></ion-col>
@@ -34,13 +43,19 @@
     <ion-col></ion-col>
     <ion-col>
       <div>
-        <img routerLink="/notificationsKids" src="../../../assets/IconMenu/iconnotif.png" />
+        <img
+          routerLink="/notificationsKids"
+          src="../../../assets/IconMenu/iconnotif.png"
+        />
       </div>
     </ion-col>
     <ion-col></ion-col>
-    <ion-col  >
+    <ion-col>
       <div>
-        <img src="../../../assets/IconMenu/iconmenu.png" />
+        <img
+          routerLink="/profilkids"
+          src="../../../assets/IconMenu/iconmenu.png"
+        />
       </div>
     </ion-col>
     <ion-col></ion-col>
