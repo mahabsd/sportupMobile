@@ -49,5 +49,16 @@ export class CoachMenuPopOverComponent implements OnInit {
     this.authService.logout();
   }
 
+  desabonner(){
+   
+      this.followerService
+        .deleteFollow(this.IdprofilePassed)
+        .subscribe((res) => {
+          console.log(res);
+          this.router.navigate(["profil",this.IdprofilePassed,'adulte']);
 
+        });
+    
+
+  }
 }
