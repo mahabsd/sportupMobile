@@ -39,14 +39,16 @@
 <div  *ngIf="follower===true" >
 
   <ion-list style=" height: 100px;width:190px" > 
-    <ion-item style="--padding-start:0" routerLink="/chat/{{IdprofilePassed}}">
+    <ion-item style="--padding-start:0" [routerLinkActive]="'active'" routerLink="/chat/{{IdprofilePassed}}" detail="false">
       <ion-icon name="send-outline" class="ionPopOver"></ion-icon>
       <ion-label>
         <h6>Envoyer un message</h6>
       </ion-label>
     </ion-item>
     
-    <ion-item style="--padding-start:0">
+
+ 
+    <ion-item style="--padding-start:0" (click)="desabonner()">
       <ion-icon name="person-remove-outline" class="ionPopOver"></ion-icon>
       <ion-label>
         <h6>Se désabonner</h6>
