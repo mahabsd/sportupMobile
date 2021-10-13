@@ -18,7 +18,9 @@ h6#erp {
 }
 
 .ionPopOver {
-  width: 35px;
+  width: 20px;
+  /* margin-right: 5px; */
+  margin: 5px;
 }
 
 .item-native {
@@ -31,4 +33,9 @@ ion-content {
 
 .disconnect {
   color: #3b8c4f;
+}
+
+
+.pop-over-style .popover-content {
+  --min-width: 300px !important;
 }

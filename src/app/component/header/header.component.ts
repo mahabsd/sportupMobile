@@ -6,6 +6,7 @@ import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-me
 import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
 import { Location } from "@angular/common";
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 
 
 
@@ -40,17 +41,25 @@ export class HeaderComponent implements OnInit {
   @Input() isParam: boolean = false;
   @Input() AdulteProfile: boolean = false;
   @Input() CoachProfileNotConnectedUser: boolean = false;
+  
+  @Input()  type: string;
+  @Input()  idprofillepassed: string;
+
   userid: any;
   user$: any;
-
+  
+  iduser1;
+  follower = false;
   constructor(private modalCtrl: ModalController,
     public popoverController: PopoverController,
     private location: Location,
-    private userservice: UserService,
+    private userservice: UserService,   private followerService: FollowerService
   ) { }
 
   ngOnInit() {
     this.getMe()
+    console.log("popver"+this.idprofillepassed);
+   // this.getfollow();
   }
   close() {
     this.modalCtrl.dismiss();
@@ -60,13 +69,19 @@ export class HeaderComponent implements OnInit {
     this.location.back();
   }
   async openCoachMenu(ev: any) {
+   
     const popover = await this.popoverController.create({
       component: CoachMenuPopOverComponent,
-      cssClass: 'my-custom-class',
+      cssClass: 'pop-over-style',
+      componentProps: {Etatfollow: this.type,IdprofilePassed: this.idprofillepassed},
+
       event: ev,
       translucent: true,
       mode: 'ios'
     });
+    if(this.type==='followed'){
+    popover.style.cssText = '--max-height:100px;--max-width:200px;';
+    }
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
@@ -100,6 +115,9 @@ export class HeaderComponent implements OnInit {
       this.userid= res.data.data._id;
     });
 }
+
+
+
 }
 
 
