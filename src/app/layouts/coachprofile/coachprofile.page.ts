@@ -53,7 +53,6 @@ export class CoachprofilePage implements OnInit {
     this.type = this.activatedRoute.snapshot.params.type;
     this.getMe();
     this.getUserByid();
-    this.getAllsaveposts();
     this.getfollow();
     this.publiations();
   }
@@ -104,17 +103,6 @@ export class CoachprofilePage implements OnInit {
     this.selected = ev.detail.value;
 
   }
-
-
-  getAllsaveposts() {
-    this.savepostsService.getSavedPosts().subscribe(res => {
-      console.log(res['data']['data']);
-      this.posts$ = res['data']['data']
-    });
-
-  }
-
-
 
   getfollow() {
     this.userService.getMe().subscribe(

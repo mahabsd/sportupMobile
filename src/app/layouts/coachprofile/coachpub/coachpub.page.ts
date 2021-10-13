@@ -8,6 +8,7 @@ import { DeletePostPopoverPage } from '../delete-post-popover/delete-post-popove
 import { PopoverController } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { Router } from '@angular/router';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 @Component({
   selector: 'app-coachpub',
   templateUrl: './coachpub.page.html',
@@ -21,15 +22,17 @@ export class CoachpubPage implements OnInit {
   selectedDate;
   isScrollTop: boolean;
   postsOwnerId: any;
+  posts$: any;
   constructor(private postService: PostService,
     private userService: UserService,
     private eventService: EventService,
-    private router: Router,
+    private savepostsService: FavorisService,
     public popoverController: PopoverController,
   ) { }
 
   async ngOnInit() {
     await this.getMe();
+
   }
 
   getMe() {
@@ -43,7 +46,13 @@ export class CoachpubPage implements OnInit {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.postsOwnerId).subscribe((response) => {
       this.posts = this.posts.concat(response['data']);
-      if (event) {
+      this.savepostsService.getSavedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
+        this.posts$ = res.data.data;
+        this.posts$.map(post=> {
+          this.posts.push(post.post);
+        });
+       });
+       if (event) {
         event.target.complete();
       }
     }, error => {
@@ -78,4 +87,5 @@ export class CoachpubPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
+
 }
