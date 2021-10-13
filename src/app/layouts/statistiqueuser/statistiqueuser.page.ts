@@ -7,7 +7,7 @@ import { ModalController, IonSlides } from '@ionic/angular';
   styleUrls: ['./statistiqueuser.page.scss'],
 })
 export class StatistiqueuserPage implements OnInit {
-  @ViewChild('slides') slides: IonSlides;
+  @ViewChild(IonSlides) slides: IonSlides;
   sliderOpts = {
     zoom: false,
     slidesPerView: 1.5,
