@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/Shared/Auth/auth.service';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { StorageService } from '../../../shared/Service/storage.service';
 
@@ -12,16 +13,30 @@ import { StorageService } from '../../../shared/Service/storage.service';
 })
 export class CoachMenuPopOverComponent implements OnInit {
   user$: any;
-  // isconnected: boolean = false;
+  iduser1
+  follower = false;
+   isconnected: boolean = false;
+   @Input() Etatfollow: string;
+   @Input() IdprofilePassed: string;
 
   constructor(private authService: AuthService,
     private userService: UserService,
     private router: Router,
     private modalCtrl: ModalController,
-    private storageService: StorageService) { }
+    private storageService: StorageService, 
+    private followerService: FollowerService,
+    ) { }
 
   ngOnInit() {
     this.getMe();
+  //  this.getfollow()
+  if(this.Etatfollow==='followed'){
+    this.follower=true
+  }
+  else  if(this.Etatfollow==='me'){
+    this.follower=false
+  }
+    console.log("popover"+this.IdprofilePassed)
   }
 
   getMe() {
@@ -33,5 +48,6 @@ export class CoachMenuPopOverComponent implements OnInit {
   logout() {
     this.authService.logout();
   }
+
 
 }
