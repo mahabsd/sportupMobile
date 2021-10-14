@@ -18,6 +18,7 @@ export class CoachMenuPopOverComponent implements OnInit {
    isconnected: boolean = false;
    @Input() Etatfollow: string;
    @Input() IdprofilePassed: string;
+   @Input() followid: string;
 
   constructor(private authService: AuthService,
     private userService: UserService,
@@ -52,7 +53,7 @@ export class CoachMenuPopOverComponent implements OnInit {
   desabonner(){
    
       this.followerService
-        .deleteFollow(this.IdprofilePassed)
+        .deleteFollow(this.followid)
         .subscribe((res) => {
           console.log(res);
           this.router.navigate(["profil",this.IdprofilePassed,'adulte']);

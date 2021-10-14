@@ -81,6 +81,10 @@
       Accueil</ion-title>
 
 
+      <ion-title color="light" *ngIf="BoiteRecepetion" class="ion-text-center" >
+        Boite réception</ion-title>
+  
+
     <ion-buttons>
       <ion-button shape="rounded" *ngIf="isKid" slot="end" [routerLink]="['/activite']"
         routerLinkActive="router-link-active">
