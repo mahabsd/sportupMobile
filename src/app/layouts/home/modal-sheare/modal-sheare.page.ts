@@ -18,6 +18,8 @@ const { Camera } = Plugins;
 })
 export class ModalShearePage implements OnInit {
   @Input() user: User;
+  @Input() pagetype: String;
+
   // user: User = new User();
   post: Post = new Post();
   postForm: FormGroup;
@@ -43,6 +45,7 @@ export class ModalShearePage implements OnInit {
     private Renderer: Renderer2,
   ) { }
   ngOnInit() {
+    console.log(this.pagetype)
     this.loadImage();
 
     this.postForm = new FormGroup({
@@ -132,8 +135,13 @@ export class ModalShearePage implements OnInit {
       fd.append('photo', this.filesToUpload, this.filesToUpload?.name);
     }
     if (this.post?.content) {
+      
       fd.append('content', this.post?.content);
-      fd.append('type', 'kids');
+      if(this.pagetype=="home"){
+      fd.append('type', 'user');}
+      else  if(this.pagetype=="accueil"){
+        fd.append('type', 'kids');}
+      //problem hereeeeeeeeeeeeeeeeeeeeeee
     }
 
     if (this.selectedFiles) {
