@@ -74,7 +74,7 @@ export class CoachphotoPage implements OnInit {
     fd.append('createdBy', this.user$._id);
 
     this.imageService.addImage(fd).subscribe(async (res) => {
-      console.log(res);
+      // console.log(res);
       this.presentToast('Photo ajoutée!');
       this.getImageByIdUser(this.user$.id);
     });
