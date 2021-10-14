@@ -66,10 +66,11 @@ export class StatusComponent implements OnInit {
   iduser1;
   EtatSuivre = false;
   follower = false;
-  idFollowtoDelete
+  idFollowtoDelete;
   idprofilePassed;
-  isUserConnected
+  isUserConnected;
   loading: any;
+  shared= false;
   constructor(
     private commentService: CommentService,
     private postService: PostService, private userervice: UserService,
@@ -122,7 +123,12 @@ this. getMe()
   }
 
   onComment() { }
-  share() { }
+  share(post) {
+    this.shared = true;
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+      this.shared = true;
+    });
+  }
   bookmark(post) {
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
       //console.log(res);
