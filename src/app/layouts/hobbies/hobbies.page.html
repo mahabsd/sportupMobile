@@ -1,12 +1,7 @@
 <app-header [title]="title" [isDetails]="true" [isOption]="true"></app-header>
-
-
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-
   <h5>Bienvenue sur votre onglet des hobbies</h5>
   <h6>rechercher des personnes selon votre activité préférée</h6>
-
-
   <ion-grid>
     <ion-row>
       <ion-col size="1">
@@ -15,20 +10,14 @@
         </span>
       </ion-col>
       <ion-col size="10">
-
         <ion-slides pager="true" autoplay="3000" loop="true" [options]="slideOptsTwo" #slideWithNav2
           (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 200px;">
-
           <ion-slide *ngFor="let item of HobbiesData">
             <div class="container">
               <img src={{item.imgsrc}}>
-
               <div class="centered">{{item.hobbiename}}</div>
             </div>
           </ion-slide>
-
-
-
         </ion-slides>
       </ion-col>
       <ion-col size="1">
@@ -38,10 +27,7 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
-
   <ion-searchbar placeholder="rechercher" [(ngModel)]="recherche"></ion-searchbar>
-
   <div style="text-align: center;margin: 20px auto">
     <ion-card *ngFor="let user of userlist | filter : recherche;let i=index; " scrollY="true"
       style="font-size:20px; width : 100%;display:flex;align-items: center; justify-content:space-between">
@@ -50,37 +36,19 @@
       <ion-col size="4" style="   display: flex;
       align-items: center;">
         <h4 style="margin-left:40px;" (click)="redirectToprofile(user._id,user.role)">{{user.name}}</h4>
-
       </ion-col>
-   
-    
         <ng-container *ngFor="let item2 of buttonColor">
           <ng-container *ngIf="item2.iduser===user._id">
-
-         
-         
-             
                 <ion-col size="2">
                   <ion-button *ngIf="item2.etat==='no'" expand="block"  id="dejasuivi"  (click)="buttonSuivre(user._id)" >S'abonner</ion-button>
-                  <ion-button expand="block" *ngIf="item2.etat==='yes'"  type="button" id="bloquer" style="background-color: #e64646c4;" (click)="buttonBlock()" >
+                  <ion-button expand="block" *ngIf="item2.etat==='yes'"  type="button" id="bloquer" (click)="buttonBlock()" >
                     Demande en cours
                   </ion-button>
                 </ion-col>
-     
-
-
-
             </ng-container>
-            
-
         </ng-container>
       </ion-row>
     </ion-grid>
-
-
-
     </ion-card>
   </div>
-
-
 </ion-content>
