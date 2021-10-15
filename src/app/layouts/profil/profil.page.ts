@@ -30,7 +30,8 @@ export class ProfilPage implements OnInit {
   user: any = [];
   posts: any[] = [];
   follower = false;
-  ahla;
+  userClicked;
+  ;
   public folder: string;
   imagesBasic = [
     {
@@ -89,11 +90,16 @@ export class ProfilPage implements OnInit {
               this.idFollowtoDelete = res._id;
               console.log(res);
               this.EtatSuivre = true;
-              if( this.typepage==='kids'){
-              this.router.navigate(["profilkids",this.idprofilePassed]);}
-                else  if( this.typepage==='adulte'){
-                  this.router.navigate(["profiladulte",this.idprofilePassed]);}
+       
+             // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
 
+              if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
+                this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
+                  }
+                  else if (this.userClicked.role==='kids'){
+                    this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
+        
+                  } 
             }
           });
       },
@@ -116,6 +122,7 @@ export class ProfilPage implements OnInit {
         console.log(response);
         this.myInformation.userLastName = response.data.data.name;
         this.iduser = response.data.data.id;
+        
       },
       (error) => {
         console.error(error);
@@ -128,6 +135,8 @@ export class ProfilPage implements OnInit {
       (response) => {
         console.log('user clicked' + response.data.data.name);
         this.profileClickedName = response.data.data.name;
+        this.userClicked= response.data.data
+
       },
       (error) => {
         console.error(error);
@@ -161,17 +170,22 @@ export class ProfilPage implements OnInit {
     this.follow.userFollowing = this.iduser;
     this.followerService.createFollow(this.follow).subscribe((res) => {
       if(res['status']==='successs'){
-        if( this.typepage==='kids'){
-          this.router.navigate(["profilkids",this.idprofilePassed]);}
-            else  if( this.typepage==='adulte'){
-              this.router.navigate(["profiladulte",this.idprofilePassed]);}
+        console.log(this.userClicked.role)
+        if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
+          this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
+          }
+          else if (this.userClicked.role==='kids'){
+            this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
+
+          } 
+
 
       }
 
       
     });
       
-    this.getfollow();
+    //this.getfollow();
 
   }
 

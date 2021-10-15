@@ -8,6 +8,7 @@ import { StorageService } from './storage.service';
   providedIn: 'root',
 })
 export class PostService {
+  postsOwnerId
   constructor(
     private utilsService: UtilsService,
     private storage: StorageService
@@ -42,7 +43,6 @@ export class PostService {
       .get(`${UtilsService.apiPost}?page=${page}&limit=5`)
       .pipe(
         map((res) => {
-          // console.log(res);
           return res.data;
         })
       );
@@ -54,18 +54,12 @@ export class PostService {
     return this.utilsService
       .get(`${UtilsService.apiPost}?page=${page}&limit=5&user=${id}`)
       .pipe(
-        map((res) => {
-          // console.log(res);
-
-          return res.data;
-        })
+        map((res) => {return res.data;})
       );
   }
   getPost(id): Observable<Post> {
     return this.utilsService.get(`${UtilsService.apiPost}${id}`).pipe(
-      map((res) => {
-        return res.data.data;
-      })
+      map((res) => {return res.data.data;})
     );
   }
   getAllPostsKids(): Observable<Post[]> {
@@ -82,4 +76,8 @@ export class PostService {
       formData
     );
   }
+  postsOwner(id){
+    this.postsOwnerId = id;
+  }
+
 }

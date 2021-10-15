@@ -28,6 +28,9 @@ import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { PostDisplayComponent} from '../../post-display/post-display.component';
+import { Router } from '@angular/router';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
+
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -52,15 +55,20 @@ export class StatusComponent implements OnInit {
   newMediaFiles: any= [];
   secondNewMediaFiles: any= [];
   thirdNewMediaFiles: any= [];
+  a: any= [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
-  // newMediaFiles: any= mediafiles.splice(1,1);
   tap = 0;
   press = 0;
   liked = false;
   bookmarked = false;
   id;
+  iduser1;
+  EtatSuivre = false;
+  follower = false;
+  idFollowtoDelete
+  idprofilePassed;
   isUserConnected
   loading: any;
   constructor(
@@ -70,15 +78,16 @@ export class StatusComponent implements OnInit {
     private modalController: ModalController,
     private loadingController: LoadingController,
     private popoverCtrl: PopoverController,
-    private videoPlayer: VideoPlayer
+    private videoPlayer: VideoPlayer,    public router: Router  ,  private followerService: FollowerService,
+
+
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
   }
   async ngOnInit() {
-    //console.log(this.post);
-
+this. getMe()
     await this.getCommentByPost();
   }
 
@@ -148,15 +157,15 @@ export class StatusComponent implements OnInit {
     return ext;
   }
 
-  async displayImage(file: any) {
+  async displayImage(a: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     //console.log(url);
-
+    console.log(this.mediafiles);
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
       cssClass: 'imageModal',
       componentProps: {
-        image: file,
+        image: a,
       },
     });
     return await modal.present();
@@ -198,8 +207,8 @@ export class StatusComponent implements OnInit {
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
       mediafiles: this.postService.getPost(this.post._id),
-      // newMediaFiles: this.mediafiles.splice(0,1),
-    }).subscribe(({ comments, images, mediafiles }) => {
+      a: this.postService.getPost(this.post._id),
+    }).subscribe(({ comments, images, mediafiles,a }) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
@@ -239,4 +248,27 @@ export class StatusComponent implements OnInit {
     });
     await this.loading.present();
   }
+
+  getfollow(iduserpassed) {
+    this.userervice.getMe().subscribe(
+      (response) => {
+        this.iduser1 = response.data.data.id;
+        this.followerService.getFollow(iduserpassed, this.iduser1)
+          .subscribe((res) => {
+            if (res == null) {
+              this.router.navigate(["profil",iduserpassed,'adulte']);
+              console.log('nope');
+            } else {
+              console.log(res);
+              this.router.navigate(["menu/tabs/layouts/coachprofile",iduserpassed,"followed"]);
+            }
+          });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
+
 }

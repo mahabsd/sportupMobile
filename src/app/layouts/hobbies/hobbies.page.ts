@@ -5,6 +5,7 @@ import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
 import { Follow } from 'src/app/shared/Model/Follow';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-hobbies',
@@ -155,7 +156,7 @@ export class HobbiesPage implements OnInit {
   };
   isScrollTop: boolean;
 
-  constructor(public hobbiesService: HobbiesService, private eventService: EventService, private followerService: FollowerService, private userservice: UserService
+  constructor(public hobbiesService: HobbiesService, private eventService: EventService, private followerService: FollowerService, private userservice: UserService,private router:Router
   ) {
     this.HobbiesData = [
       {
@@ -338,5 +339,35 @@ export class HobbiesPage implements OnInit {
     this.getfollow()
     //this.router.navigate(["profilkids",this.idprofilePassed]);
 
+  }
+
+
+  redirectToprofile(userpassedid,role){
+    this.userservice.getMe().subscribe(
+      (response) => {
+        this.iduser1 = response.data.data.id;
+        this.followerService.getFollow(userpassedid, this.iduser1)
+          .subscribe((res) => {
+            if (res == null) {
+              this.router.navigate(["profil",userpassedid,'adulte']);
+              console.log('nope');
+            } else {
+              console.log(res);
+              if (res != null) {
+                if( role==='user'||role==='pro'){
+                  this.router.navigate(["menu/tabs/layouts/coachprofile",userpassedid,"followed"]);
+                  }
+                  else if (role==='kids'){
+                    this.router.navigate(["tabs/profilkids/",userpassedid]);
+        
+                  } 
+              }
+            }
+          });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
   }
 }

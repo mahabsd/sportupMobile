@@ -9,7 +9,9 @@
       <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/menu/tabs/home"
         name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/accueil" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="!isModal && isPalmares" color="light" (click)="BackButtonPalmares()" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && KidsProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
@@ -26,8 +28,16 @@
         routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
+
+
+      <ion-button shape="rounded" *ngIf="CoachProfileNotConnectedUser" [routerLink]="['/menu/tabs/layouts/scan']"
+        routerLinkActive="router-link-active">
+        <img src="../../assets/icon/icon_scan.png" class="image" alt="">
+      </ion-button>
+
+
       <ion-buttons slot="start">
-        <ion-icon *ngIf="isParam" color="light" routerLink="/menu/tabs/layouts/coachprofile/coachphoto"
+        <ion-icon *ngIf="isParam" color="light" routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me"
           name="chevron-back-outline">
         </ion-icon>
       </ion-buttons>
@@ -70,6 +80,10 @@
     <ion-title color="light" *ngIf="isKid" slot="start" style="text-align: center; margin-left: 20xp">
       Accueil</ion-title>
 
+
+      <ion-title color="light" *ngIf="BoiteRecepetion" class="ion-text-center" >
+        Boite réception</ion-title>
+  
 
     <ion-buttons>
       <ion-button shape="rounded" *ngIf="isKid" slot="end" [routerLink]="['/activite']"

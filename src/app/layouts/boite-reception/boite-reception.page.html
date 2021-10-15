@@ -1,15 +1,15 @@
-<app-header title="Boite réception" [BoiteRecepetion]="true"></app-header>
+<app-header  [BoiteRecepetion]="true" ></app-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
 
   <div style="background-color: whitesmoke;padding: 5px;">
     <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
-      <ion-fab-button style="--background	:#ddd;   height: 50px;      width: 50px;">
+        <ion-fab-button style="--background	:#ddd;   height: 50px;      width: 50px;">
         <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
       </ion-fab-button>
     </ion-fab>
 
-    <ion-searchbar placeholder=""></ion-searchbar>
+    <ion-searchbar placeholder="" [(ngModel)]="recherche"></ion-searchbar>
   </div>
 
 
@@ -21,9 +21,9 @@
     <ion-row class="BadyFilter">
       <ion-row class="myItem" style="width:95% ; border: 20px !important">
         <ion-col style="    margin-top: 20px;" size="13" size-lg>
-          <ion-item-sliding class="item-background-color" *ngFor="let item of users; let i = index"
+          <ion-item-sliding class="item-background-color" *ngFor="let item of users | filter : recherche; let i = index"
             (ionDrag)="logDrag(i)">
-            <ion-item class="item-background-color2" routerLink="/chat/{{item.id}}">
+            <ion-item class="item-background-color2" routerLink="/chat/{{item.userReceiver._id}}">
 
               <ion-label>
                 <p>

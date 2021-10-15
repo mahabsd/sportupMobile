@@ -11,18 +11,20 @@ import { ChatService } from 'src/app/shared/Service/chat.service';
   styleUrls: ['./boite-reception.page.scss'],
 })
 export class BoiteReceptionPage implements OnInit {
+  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
   hideicon = false;
   selecteditemIndex;
   users = [];
   users2: any = [];
-
   page = 8; items = [];
   numTimesLeft = 5;
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
-
   userid = '60f983fb06d9b3846c3d1030';
   isScrollTop: boolean;
-  constructor(private userservice: UserService, private followerService: FollowerService, private eventService: EventService, private chatService: ChatService
+  recherche;
+  constructor(private userservice: UserService,
+    private followerService: FollowerService,
+     private eventService: EventService,
+      private chatService: ChatService
   ) {
     this.addMoreItems();
   }
@@ -57,7 +59,7 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
-          this.users = res;
+              this.users=res;
           if (event) {
             event.target.complete()
           }
@@ -72,6 +74,7 @@ export class BoiteReceptionPage implements OnInit {
     );
 
   }
+
 
 
 

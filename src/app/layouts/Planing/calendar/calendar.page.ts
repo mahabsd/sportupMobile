@@ -44,6 +44,7 @@ export class CalendarPage implements OnInit {
   subscription: Subscription;
 
   selectedYear: any;
+  isParam: boolean;
 
   constructor(
     private alertCtrl: AlertController,

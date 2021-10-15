@@ -7,6 +7,8 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 import { DeletePostPopoverPage } from '../delete-post-popover/delete-post-popover.page';
 import { PopoverController } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { Router } from '@angular/router';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 @Component({
   selector: 'app-coachpub',
   templateUrl: './coachpub.page.html',
@@ -19,8 +21,12 @@ export class CoachpubPage implements OnInit {
   page = 1;
   selectedDate;
   isScrollTop: boolean;
-  constructor(private postService: PostService, private userService: UserService, private eventService: EventService,
-
+  postsOwnerId: any;
+  posts$: any;
+  constructor(private postService: PostService,
+    private userService: UserService,
+    private eventService: EventService,
+    private savepostsService: FavorisService,
     public popoverController: PopoverController,
   ) { }
 
@@ -37,11 +43,16 @@ export class CoachpubPage implements OnInit {
     });
   }
   getPosts(event?) {
-    console.log(this.page);
-
-    this.postService.getAllPostsById(this.page, this.user$._id).subscribe((response) => {
+    this.postsOwnerId = this.postService.postsOwnerId;
+    this.postService.getAllPostsById(this.page, this.postsOwnerId).subscribe((response) => {
       this.posts = this.posts.concat(response['data']);
-      if (event) {
+      this.savepostsService.getSavedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
+        this.posts$ = res.data.data;
+        this.posts$.map(post=> {
+          this.posts.push(post.post);
+        });
+       });
+       if (event) {
         event.target.complete();
       }
     }, error => {
@@ -66,7 +77,6 @@ export class CoachpubPage implements OnInit {
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
@@ -77,4 +87,5 @@ export class CoachpubPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
+
 }

@@ -717,6 +717,34 @@ ion-slides {
 }
 :host ::ng-deep {
   .swiper-pagination {
-    bottom: 15% !important;
+    bottom: 2% !important;
   }
+}
+
+.btnPrev {
+  background: url(https://i.imgur.com/JpEpYLZ.png) no-repeat scroll 0px 0px;
+  height: 48px;
+  width: 20px;
+  cursor: pointer;
+
+  vertical-align: middle;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  margin-left: 5px;
+}
+
+.btnNext {
+  background: url(https://i.imgur.com/JpEpYLZ.png) no-repeat scroll -32px 0px;
+  height: 48px;
+  width: 20px;
+  cursor: pointer;
+  right: 0;
+  vertical-align: middle;
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  z-index: 10;
+  margin-right: 5px;
 }

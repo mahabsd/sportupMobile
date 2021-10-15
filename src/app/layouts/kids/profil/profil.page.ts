@@ -28,8 +28,8 @@ export class ProfilPage implements OnInit {
   user_id;
   title: any;
   checkSelf=false;
-  idprofilePassed
-  profileClickedName
+  idprofilePassed;
+  profileClickedName;
   constructor(private userservice: UserService, private postKidsService: PostKidsService,
     public popoverController: PopoverController, public userService: UserService,  private activatedRoute: ActivatedRoute) { }
 
@@ -61,7 +61,7 @@ export class ProfilPage implements OnInit {
   async getMe() {
     this.userservice.getMe().subscribe((res) => {
     //  this.user = res.data.data;
-      if(this.idprofilePassed==res.data.data._id){
+      if(this.idprofilePassed===res.data.data._id){
         this.checkSelf=true;
       }
     });
@@ -126,11 +126,8 @@ export class ProfilPage implements OnInit {
       translucent: true
     });
    // console.log(idprofilePassed)
-    popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
-    
-
+    popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; ';
     await popover.present();
-
     const { role } = await popover.onDidDismiss();
     console.log('onDidDismiss resolved with role', role);
   }

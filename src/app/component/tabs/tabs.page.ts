@@ -18,7 +18,11 @@ import { EventService } from 'src/app/shared/Service/event.service';
 export class TabsPage implements OnInit {
   user$: any = [];
   menuOpened = false;
+  userid
   subscription: Subscription;
+  pagetype: string;
+   urlpage = this.router.url.split('/', 6);
+
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
@@ -37,6 +41,8 @@ export class TabsPage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
+      this.userid= res.data.data._id;
+
     });
   }
 
@@ -47,10 +53,9 @@ export class TabsPage implements OnInit {
 
   openModal() {
     const url = this.router.url.split('/', 6);
-    console.log(url);
 
     if (url[3] === 'home') {
-      this.openShareModal();
+      this.openShareModal('home');
       console.log(url[3]);
     }
     if (url[4] === 'coachprofile') {
@@ -58,18 +63,28 @@ export class TabsPage implements OnInit {
       console.log(url[4]);
 
     }
+
+    if (url[2] === 'accueil') {
+      this.openShareModal("accueil");
+      console.log(url[2]);
+    }
   }
 
 
-  async openShareModal() {
+  async openShareModal(type) {
+  
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
         user: this.user$,
+        pagetype:type
       },
     });
     await modal.present();
-    await modal.onWillDismiss().then((result) => { });
+    await modal.onWillDismiss().then((result) => {    
+         console.log("tt");
+       
+  });
   }
 
 
