@@ -1,13 +1,6 @@
 <ion-content>
   <ion-toolbar color="dark">
-    <ion-buttons slot="start" *ngIf="isImages">
-      <ion-button (click)="selectImageSource()" large>
-        <ion-icon name="create-outline" size="large"></ion-icon>
-      </ion-button>
-      <ion-button (click)="supprimer(image)" large>
-        <ion-icon name="trash-outline" size="large"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+ 
 
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" large>
@@ -34,7 +27,7 @@
             rgb(122, 113, 172) 100%
           );
 ">
-        <h5 style="color: white" *ngIf="image">{{ mediafiles[0]?.createdAt | date }}</h5>
+        <h5 style="color: white" >{{ mediafiles[0]?.createdAt | date }}</h5>
       
 
 
