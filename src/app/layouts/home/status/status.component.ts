@@ -54,10 +54,10 @@ export class StatusComponent implements OnInit {
   newMediaFiles: any= [];
   secondNewMediaFiles: any= [];
   thirdNewMediaFiles: any= [];
+  a: any= [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
-  // newMediaFiles: any= mediafiles.splice(1,1);
   tap = 0;
   press = 0;
   liked = false;
@@ -87,7 +87,6 @@ export class StatusComponent implements OnInit {
     });
   }
   async ngOnInit() {
-    //console.log(this.post);
 this. getMe()
     await this.getCommentByPost();
   }
@@ -163,15 +162,15 @@ this. getMe()
     return ext;
   }
 
-  async displayImage(file: any) {
+  async displayImage(a: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     //console.log(url);
-
+    console.log(this.mediafiles);
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
       cssClass: 'imageModal',
       componentProps: {
-        image: file,
+        image: a,
       },
     });
     return await modal.present();
@@ -202,18 +201,19 @@ this. getMe()
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
       mediafiles: this.postService.getPost(this.post._id),
-      // newMediaFiles: this.mediafiles.splice(0,1),
-    }).subscribe(({ comments, images, mediafiles }) => {
+      a: this.postService.getPost(this.post._id),
+    }).subscribe(({ comments, images, mediafiles,a }) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      if (this.mediafiles.length<4){
-        this.newMediaFiles= this.mediafiles.splice(0,1);
+      this.a = a.mediafiles;
+      if (this.a.length<4){
+        this.newMediaFiles= this.a.splice(0,1);
       }
-      if (this.mediafiles.length>3){
-        this.newMediaFiles=this.mediafiles.slice(0,1);
-        this.thirdNewMediaFiles=this.mediafiles.slice(1,3);
-        this.secondNewMediaFiles=this.mediafiles.splice(3,this.mediafiles.length);
+      if (this.a.length>3){
+        this.newMediaFiles=this.a.slice(0,1);
+        this.thirdNewMediaFiles=this.a.slice(1,3);
+        this.secondNewMediaFiles=this.a.splice(3,this.a.length);
       }
     });
   }
