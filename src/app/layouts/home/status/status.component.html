@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid (click)="displayContent(post)">
   <ion-row lines="none">
     <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected !== post?.user?._id">
       <img [src]="apiImgUser + post?.user?.photo" routerLink="/menu/tabs/home" />
@@ -41,13 +41,13 @@
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length > 0">
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0">
-    <div style="display: flex; justify-content: center">
+  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0" >
+    <div style="display: flex; justify-content: center" > 
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div style="width: 250px" id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-            errorImage="../../../assets/imgs/150.png" (click)="displayImage(file)">
+            errorImage="../../../assets/imgs/150.png" >
             <ion-icon></ion-icon>
           </div>
         </ng-container>
@@ -61,23 +61,23 @@
               align-items: center;
               border-radius: 10px;
             " [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-            errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+            errorImage="../../../assets/imgs/150.png"  >
             <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
           </div>
         </ng-container>
       </div>
-      <div class="nextContainer">
-        <div *ngFor="let file of mediafiles">
+      <div class="nextContainer" >
+        <div *ngFor="let file of mediafiles" >
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+              errorImage="../../../assets/imgs/150.png" >
               <ion-icon></ion-icon>
             </div>
           </ng-container>
           <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
             <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(mediafiles)">
+              errorImage="../../../assets/imgs/150.png"  >
               <ion-icon name="videocam"></ion-icon>
             </div>
           </ng-container>
@@ -86,12 +86,12 @@
     </div>
   </div>
   <div *ngIf="secondNewMediaFiles.length !== 0">
-    <div style="display: flex">
+    <div style="display: flex"  >
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-            errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+            errorImage="../../../assets/imgs/150.png"  >
             <ion-icon></ion-icon>
           </div>
         </ng-container>
@@ -105,7 +105,7 @@
               align-items: center;
               border-radius: 10px;
             " [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-            errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+            errorImage="../../../assets/imgs/150.png"  >
             <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
           </div>
         </ng-container>
@@ -115,14 +115,14 @@
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayImage(file)">
+              errorImage="../../../assets/imgs/150.png"  >
               <ion-icon></ion-icon>
             </div>
           </ng-container>
           <!-- <p style="color: black">{{ secondNewMediaFiles.lenght }}</p> -->
           <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
             <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+              errorImage="../../../assets/imgs/150.png" >
               <ion-icon name="videocam"></ion-icon>
             </div>
           </ng-container>

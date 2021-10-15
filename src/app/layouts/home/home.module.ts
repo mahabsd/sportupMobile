@@ -1,11 +1,12 @@
 import { Injectable, NgModule } from '@angular/core';
- 
+import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { FooterPageModule } from '../../component/footer/footer.module';
 import { StatusComponent } from './status/status.component';
+import { PostDisplayModule } from '../post-display/post-display.module';
 import { ReactionsPage } from './reactions/reactions.page';
 import { ComponentModule } from '../../component/component.module';
 import { CommentsPage } from './comments/comments.page';
@@ -38,7 +39,7 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
 }
 @NgModule({
   imports: [
- 
+    CommonModule,
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
@@ -46,7 +47,10 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     ComponentModule,
     ReactiveFormsModule,
     LazyLoadImageModule,
-    CommentsPageModule],
+    CommentsPageModule,
+    PostDisplayModule
+  ],
+    
   declarations: [HomePage, StatusComponent],
   exports: [HomePage, StatusComponent],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],

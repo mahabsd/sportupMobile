@@ -9,18 +9,25 @@ import { InviteService } from 'src/app/shared/Service/invite.service';
 })
 export class InvitemodalComponent implements OnInit {
 
-
+  country;
   email;
-  tel;
+  phoneNumber;
   constructor(private modalController: ModalController, private inviteService: InviteService) { }
 
   ngOnInit() {
   }
 
 
+  sendText(){
+      this.inviteService.sendText({tel: this.phoneNumber.internationalNumber}).subscribe(async res => {
+        console.log(res);
+
+      });
+    
+  }
   sendMail()
   {
-      this.inviteService.sendMail({email: this.email, name:''}).subscribe(async res => {
+      this.inviteService.sendMail({email: this.email}).subscribe(async res => {
         console.log(res);
  
       });

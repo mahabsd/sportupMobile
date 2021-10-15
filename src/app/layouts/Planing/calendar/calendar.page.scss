@@ -25,7 +25,7 @@ ion-menu-button {
   
   .monthview-container {
     height: auto !important;
-    color: rgb(146, 146, 146) !important;
+    color: rgb(207, 207, 207) !important;
   }
 
   .monthview-datetable td,
@@ -36,13 +36,16 @@ ion-menu-button {
   .cal-green {
     padding-top: 0;
     border-radius: 30px;
-    background: linear-gradient(13deg, rgba(28,117,55,1) 0%, rgba(36,114,56,1) 9%, rgba(142,191,37,1) 100%);
+    background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(33,116,56,1) 0%, rgba(140,190,36,1) 100%);
   }
+
+ 
+  
   .cal-white
   {
     padding-top: 0;
     border-radius: 30px;
-    background-color: rgb(243, 243, 243);
+    background-color: white;
   }
 
 .monthview-primary-with-event, .calendar-event-inner{
@@ -54,14 +57,28 @@ ion-menu-button {
     color: #247238 !important;
     border-radius: 10px;
   }
+  .light  {
+    
+    background-color: rgb(235, 235, 235) !important;
+  
+  }
 
+  .dark  {
+    color: white !important;
+    background-color: #5cb13e !important;
+    border: 1px solid;
+  
+  }
  
   .item-native {
     background: #ebebeb18;
   }
 }
  
-
+td{
+  background-color: red !important;
+}
+ 
 .item-native {
   background: #ebebeb18;
 }
@@ -75,6 +92,10 @@ ion-menu-button {
 .with-event {
   background-color: none;
   border-radius: 15px;
+}
+
+ion-item {
+  --background: transparent;
 }
 
 .ion-color-primary {

@@ -13,5 +13,8 @@ export class InviteService {
   sendMail(user): Observable<any> {
     return this.apiService.post(`${UtilsService.apiInvite}sendmail`, user).pipe(map((res) => res));
   }
+  sendText(phone): Observable<any> {
+    return this.apiService.post(`${UtilsService.apiInvite}sendtext`, phone).pipe(map((res) => res));
+  }
 
 }

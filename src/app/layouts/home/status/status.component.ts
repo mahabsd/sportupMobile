@@ -27,6 +27,7 @@ import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { PostDisplayComponent} from '../../post-display/post-display.component';
 @Component({
   selector: 'app-status',
   templateUrl: './status.component.html',
@@ -161,6 +162,17 @@ export class StatusComponent implements OnInit {
     return await modal.present();
   }
 
+  async displayContent(files){
+    const modal = await this.modalController.create({
+      component: PostDisplayComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        post: files,
+      },
+    });
+    return await modal.present();
+  }
+
   async displayVideo(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // console.log(url);
@@ -191,14 +203,18 @@ export class StatusComponent implements OnInit {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      if (this.mediafiles.length<4){
-        this.newMediaFiles= this.mediafiles.splice(0,1);
+      let tempMedia = mediafiles.mediafiles;
+      
+      if ( tempMedia.length<4){
+        this.newMediaFiles= tempMedia.splice(0,1);
       }
-      if (this.mediafiles.length>3){
-        this.newMediaFiles=this.mediafiles.slice(0,1);
-        this.thirdNewMediaFiles=this.mediafiles.slice(1,3);
-        this.secondNewMediaFiles=this.mediafiles.splice(3,this.mediafiles.length);
+      if (tempMedia.length>3){
+        this.newMediaFiles=tempMedia.slice(0,1);
+        this.thirdNewMediaFiles=tempMedia.slice(1,3);
+        this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
       }
+ 
+      
     });
   }
   async presentPopover(ev: any) {
