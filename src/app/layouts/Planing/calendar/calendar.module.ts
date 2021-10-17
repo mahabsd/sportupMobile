@@ -9,6 +9,7 @@ import { CalendarPageRoutingModule } from './calendar-routing.module';
 import { CalendarPage } from './calendar.page';
 import { NgCalendarModule } from 'ionic2-calendar';
 import { CalendarModalPageModule } from '../calendar-modal/calendar-modal.module';
+import { EventmodalComponent } from '../eventmodal/eventmodal.component';
 import localeFr from '@angular/common/locales/fr';
 import { ComponentModule } from 'src/app/component/component.module';
 
@@ -22,7 +23,7 @@ import { ComponentModule } from 'src/app/component/component.module';
     CalendarModalPageModule,
     ComponentModule
   ],
-  declarations: [CalendarPage],
+  declarations: [CalendarPage,EventmodalComponent],
   providers: [{ provide: LOCALE_ID, useValue: 'en-GB' }]
 })
 export class CalendarPageModule {}

@@ -2,55 +2,44 @@
 <ion-content padding [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <div id="container">
     <ion-grid>
-      <ion-row  id="rowTabFiltre">
+      <ion-row id="rowTabFiltre">
         <ion-col>
-          <button
+          <ion-button
             style="
-              box-shadow: 0px 3px 10px  rgba(114, 114, 114, 0.452);
+              box-shadow: 5px 5px 10px rgba(49, 49, 46, 0.452);
               border-radius: 10px;
               margin: 0 10px;
-<<<<<<< HEAD
             "
             color="light"
             (click)="getAllPostsByEvent()"
-            i18n="@@tout" >
-=======
-              height: 30px;
-              width: 100px;
-              color: #898b8b;
-              background: white"
-            (click)="getAllPostsByEvent()">
->>>>>>> 1faefef326346b6ae90178025c332570499422a1
-            Tout
-        </button>
+          >
+          {{'home.tout' | translate}} 
+          </ion-button>
 
-          <button
+          <ion-button
             color="white"
             style="
-              box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+              box-shadow: 5px 5px 10px rgba(49, 49, 46, 0.452);
               border-radius: 10px;
               margin: 0 10px;
-              height: 30px;
-              width: 100px;
-              color: #898b8b;
-              background: white"
-              routerLink="/menu/tabs/hobbies">
-            Favoris
-      </button>
-          <button
+            "
+            routerLink="/menu/tabs/hobbies"
+          >
+            {{'home.favoris' | translate}}
+          </ion-button>
+          <ion-button
             color="white"
             style="
-              box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+              box-shadow: 5px 5px 10px rgba(49, 49, 46, 0.452);
               border-radius: 10px;
               margin: 0 10px;
-              height: 30px;
-              width: 100px;
-              color: #898b8b;
-              background: white">
-            Abonnements
-          </button>
+            "
+          >
+          {{'home.abonnement' | translate}}
+          </ion-button>
         </ion-col>
       </ion-row>
+
       <ion-row class="bodyFilter">
         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
           <ion-refresher-content
