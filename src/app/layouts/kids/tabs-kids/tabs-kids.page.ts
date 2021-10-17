@@ -10,13 +10,12 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { AddStatusKidsPage } from 'src/app/layouts/kids/accueil/status-kids/add-status-kids/add-status-kids.page';
-
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.page.html',
-  styleUrls: ['./tabs.page.scss'],
+  selector: 'app-tabs-kids',
+  templateUrl: './tabs-kids.page.html',
+  styleUrls: ['./tabs-kids.page.scss'],
 })
-export class TabsPage implements OnInit {
+export class TabsKidsPage implements OnInit {
   user$: any = [];
   menuOpened = false;
   userid
@@ -53,28 +52,17 @@ export class TabsPage implements OnInit {
   }
 
   openModal() {
-    const url = this.router.url.split('/', 6);
+    this.openShareModal("accueil");
 
-    if (url[3] === 'home') {
-      this.openShareModal('home');
-      console.log(url[3]);
-    }
-    if (url[4] === 'coachprofile') {
-      this.sendMessage('addphoto');
-      console.log(url[4]);
-
-    }
-
- 
   }
 
 
   async openShareModal(type) {
     const modal = await this.modalController.create({
-      component: ModalShearePage,
+      component: AddStatusKidsPage,
       componentProps: {
         user: this.user$,
-        pagetype:type
+       // pagetype:type
       },
     });
     await modal.present();
@@ -99,3 +87,4 @@ export class TabsPage implements OnInit {
     console.log(event);
   }
 }
+
