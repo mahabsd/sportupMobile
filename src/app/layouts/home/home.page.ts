@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 import { share } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -17,8 +18,10 @@ import { EventService } from 'src/app/shared/Service/event.service';
 })
 export class HomePage implements OnInit {
   @ViewChild(IonCard, { read: ElementRef }) list: ElementRef;
+  menuLabels = ['Tout','Favoris','Abonnement']
   indexPub = null;
   posts: any = [];
+  tout;
   page = 1;
   maximumPages = 10;
   user$: any = [];
@@ -40,7 +43,11 @@ export class HomePage implements OnInit {
     private toastCtrl: ToastController,
     private postService: PostService,
     private eventService: EventService,
-    private userService: UserService) {
+    private userService: UserService,
+    private translate: TranslateService) {
+      translate.addLangs(['fr', 'en']);
+      translate.setDefaultLang('fr');
+      translate.use('fr');
   }
 
   async ngOnInit() {
@@ -48,6 +55,12 @@ export class HomePage implements OnInit {
     // console.log(this.page);
 
     this.getMe();
+    this.translate.get(['home.tout', 'home.favoris','home.abonnement'])
+      .subscribe(translations => {
+        this.menuLabels[0] = translations['home.tout'];
+        this.menuLabels[1] = translations['home.favoris'];
+        this.menuLabels[2] = translations['home.abonnement'];
+      });
   }
 
 

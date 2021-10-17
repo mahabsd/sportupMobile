@@ -5,6 +5,8 @@ import { LayoutsRoutingModule } from './layouts-routing.module';
 import { ComponentModule } from '../component/component.module';
 import { KidsModule } from './kids/kids.module';
 
+ // AoT requires an exported function for factories
+
 
 @NgModule({
   declarations: [
@@ -14,6 +16,6 @@ import { KidsModule } from './kids/kids.module';
     LayoutsRoutingModule,
     ComponentModule,
     KidsModule,
-  ]
+]
 })
 export class LayoutsModule { }
