@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { AddStatusKidsPage } from 'src/app/layouts/kids/accueil/status-kids/add-status-kids/add-status-kids.page';
 
 @Component({
   selector: 'app-tabs',
@@ -72,7 +73,7 @@ export class TabsPage implements OnInit {
 
 
   async openShareModal(type) {
-  
+  if(  this.user$.role==='user'){
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
@@ -82,9 +83,25 @@ export class TabsPage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {    
-         console.log("tt");
+      
        
   });
+}
+    else if(  this.user$.role==='kids'){
+      const modal = await this.modalController.create({
+        component: AddStatusKidsPage,
+        componentProps: {
+          user: this.user$,
+         // pagetype:type
+        },
+      });
+      await modal.present();
+      await modal.onWillDismiss().then((result) => {    
+        
+         
+    });
+    }
+
   }
 
 

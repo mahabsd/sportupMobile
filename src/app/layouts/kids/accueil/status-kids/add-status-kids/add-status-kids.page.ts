@@ -1,22 +1,24 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { ModalController, Platform, ToastController } from '@ionic/angular';
 import { ActionSheetController } from '@ionic/angular';
-import { User } from '../../../Shared/Model/User';
-import { AuthService } from '../../../Shared/Auth/auth.service';
-import { PostService } from '../../../Shared/Service/post.service';
-import { Post } from '../../../Shared/Model/Post';
+
+
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ImageModel } from 'src/app/Shared/Model/ImageModel';
 import { CameraResultType, CameraSource, Plugins } from '@capacitor/core';
 import { SlicePipe } from '@angular/common';
 import { Renderer2 } from '@angular/core';
+import { PostService } from 'src/app/Shared/Service/post.service';
+import { AuthService } from 'src/app/Shared/Auth/auth.service';
+import { User } from 'src/app/Shared/Model/User';
+import { Post } from 'src/app/Shared/Model/Post';
 const { Camera } = Plugins;
 @Component({
-  selector: 'app-modal-sheare',
-  templateUrl: './modal-sheare.page.html',
-  styleUrls: ['./modal-sheare.page.scss'],
+  selector: 'app-add-status-kids',
+  templateUrl: './add-status-kids.page.html',
+  styleUrls: ['./add-status-kids.page.scss'],
 })
-export class ModalShearePage implements OnInit {
+export class AddStatusKidsPage implements OnInit {
   @Input() user: User;
   @Input() pagetype: String;
 
@@ -137,7 +139,7 @@ export class ModalShearePage implements OnInit {
     if (this.post?.content) {
       
       fd.append('content', this.post?.content);
-      fd.append('type', 'user');
+      fd.append('type', 'kids');
 
     }
 
