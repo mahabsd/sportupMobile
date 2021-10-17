@@ -29,6 +29,10 @@ export class SigninformationPage implements OnInit {
     poids: '',
     sexe: ''
   };
+
+  openGallery(){
+    
+  }
   logForm(form) {
     // manzeh 1 / pharmacie
     // 6 persone / groupe

@@ -2,10 +2,12 @@ import { CalendarComponent } from 'ionic2-calendar';
 import {
   Component,
   ViewChild,
+  Renderer2,
   OnInit,
   Inject,
   LOCALE_ID,
   Input,
+  ElementRef,
 } from '@angular/core';
 import { AlertController, IonSlides, ModalController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
@@ -50,12 +52,37 @@ export class CalendarPage implements OnInit {
     private modalCtrl: ModalController,
     private calendarService: CalendarService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private renderer: Renderer2,
+    private elem: ElementRef,
   ) {}
 
+
+  ngAfterContentChecked()
+  {
+    let events = [];
+    let elements = this.elem.nativeElement.querySelectorAll('td');
+    for (var i = 0; i < elements.length; ++i) {
+      if(elements[i].className==='monthview-primary-with-event')
+   
+      events.push(elements[i]);
+    }
+
+    events.forEach(element => {
+      if(this.slider)
+        this.renderer.addClass(element,'dark');
+        else
+        this.renderer.addClass(element,'light');
+    });
+
+    console.log(events);
+  }
   ngOnInit() {
     const url = this.router.url.split('/', 6);
     console.log(url);
+
+ 
+    
 
     if (url[1] === 'calendar') {
       this.slider = false;
@@ -94,6 +121,12 @@ export class CalendarPage implements OnInit {
       console.log(this.user$);
 
       this.loadEvents();
+      
+      
+
+      
+      
+     
     });
   }
 
@@ -108,6 +141,8 @@ export class CalendarPage implements OnInit {
 
       this.extractEventDays();
     });
+
+ 
   }
   getDayName(day, month, year) {
     const newDate = new Date(year, month, day);

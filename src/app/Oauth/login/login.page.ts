@@ -5,6 +5,7 @@ import { PatternValidator } from '../../Shared/patternValidator';
 import { User } from 'src/app/Shared/Model/User';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -15,13 +16,19 @@ export class LoginPage implements OnInit {
   fileUrl: any = null;
   respData: any;
   user: User = new User();
+    loginLabels = ['','','']
 
   constructor(
     public fb: FormBuilder,
     private toastCtrl: ToastController,
     private alertController: AlertController,
     private router: Router,
-    public authService: AuthService) { }
+    public authService: AuthService,
+    private translate: TranslateService) {
+      translate.addLangs(['fr', 'en']);
+      translate.setDefaultLang('fr');
+      translate.use('fr');
+  }
   ngOnInit() {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required,
@@ -29,6 +36,14 @@ export class LoginPage implements OnInit {
       PatternValidator(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]),
       password: new FormControl('', Validators.required)
     });
+
+
+    this.translate.get(['home.tout', 'home.favoris','home.abonnement'])
+      .subscribe(translations => {
+        this.loginLabels[0] = translations['login.oublie'];
+        this.loginLabels[1] = translations['login.espaceEnfant'];
+        this.loginLabels[2] = translations['login.abonnement'];
+      });
   }
   connectFacebook() {
     console.log('hello facebook');

@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./popovercomponent.page.scss'],
 })
 export class PopovercomponentPage implements OnInit {
-
+  dismissPopover(msg)
+  {
+    console.log(msg);
+    
+  }
   constructor() { }
 
   ngOnInit() {
