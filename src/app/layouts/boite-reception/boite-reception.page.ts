@@ -108,4 +108,8 @@ export class BoiteReceptionPage implements OnInit {
     this.eventService.sendMessage(this.isScrollTop);
 
   }
+  updateSeenMsgs(item){
+item.seen = true;
+this.chatService.updateChat(item._id, item).subscribe(res=> console.log(res));
+  }
 }

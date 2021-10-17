@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { ChatService } from 'src/app/shared/Service/chat.service';
 
 @Component({
   selector: 'app-tabs',
@@ -21,14 +22,16 @@ export class TabsPage implements OnInit {
   userid
   subscription: Subscription;
   pagetype: string;
-   urlpage = this.router.url.split('/', 6);
-
+  urlpage = this.router.url.split('/', 6);
+  messagesNumber: number;
+  seenMessagesNumber: any = 0;
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
     private router: Router,
     private userservice: UserService,
     private eventService: EventService,
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
@@ -41,11 +44,10 @@ export class TabsPage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      this.userid= res.data.data._id;
-
+      this.userid = res.data.data._id;
+      this.getNumberNonreadChats();
     });
   }
-
 
   openMenu() {
     this.menuOpened = true;
@@ -70,34 +72,36 @@ export class TabsPage implements OnInit {
     }
   }
 
-
   async openShareModal(type) {
-  
+
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
         user: this.user$,
-        pagetype:type
+        pagetype: type
       },
     });
     await modal.present();
-    await modal.onWillDismiss().then((result) => {    
-         console.log("tt");
-       
-  });
+    await modal.onWillDismiss().then((result) => {
+      console.log("tt");
+
+    });
+
   }
-
-
-
 
   sendMessage(message) {
     // send message to subscribers via observable subject
     this.imageService.sendMessage(message);
   }
 
-
-
   add(event: any) {
     console.log(event);
   }
+
+  getNumberNonreadChats(){
+    this.chatService.getAllChatsByuser(this.userid).subscribe(res=> {
+console.log(res);
+
+    });
+   }
 }
