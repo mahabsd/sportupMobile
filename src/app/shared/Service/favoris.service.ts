@@ -15,7 +15,7 @@ export class FavorisService {
     return this.apiService.patch(`${UtilsService.apiPost}${post}/favoris`, null).pipe(map((res) => res));
   }
   addShared(post: Post): Observable<Favoris> {
-    return this.apiService.patch(`${UtilsService.apiPost}${post}/favoris`, null).pipe(map((res) => res));
+    return this.apiService.patch(`${UtilsService.apiPost}${post}/favoris/shared`, null).pipe(map((res) => res));
   }
   getFavorisByService(post): Observable<Favoris[]> {
     return this.apiService.get(`${UtilsService.apiPost}${post}/Favoris`).pipe(map((res) => res.data.data));

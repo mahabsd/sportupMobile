@@ -125,7 +125,7 @@ this. getMe()
   onComment() { }
   share(post) {
     this.shared = true;
-    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+    this.favorisService.addShared(post?._id).subscribe((res) => {
       this.shared = true;
     });
   }
@@ -219,7 +219,7 @@ this. getMe()
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       let tempMedia = mediafiles.mediafiles;
-      
+
       if ( tempMedia.length<4){
         this.newMediaFiles= tempMedia.splice(0,1);
       }
@@ -228,8 +228,8 @@ this. getMe()
         this.thirdNewMediaFiles=tempMedia.slice(1,3);
         this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
       }
- 
-      
+
+
     });
   }
   async presentPopover(ev: any) {

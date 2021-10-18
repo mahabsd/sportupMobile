@@ -86,7 +86,7 @@ export class ChatPage implements OnInit {
       this.chatService.getChat( res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
       console.log(res1);
       this.messages2=res1;
-      //this.updateSeenMsgs(res1, sender);
+     // this.updateSeenMsgs(res1, sender);
 
       });
 
@@ -94,11 +94,11 @@ export class ChatPage implements OnInit {
     });
 
   }
-  //updateSeenMsgs(item, sender){
-   // item.seen = false;
-  //  console.log(sender);
-  //  this.chatService.updateChat(item._id, item).subscribe(res=> console.log(res));
-  //    }
+  updateSeenMsgs(item, sender){
+    item.seen = false;
+    console.log(sender);
+    this.chatService.updateChat(item._id, item).subscribe(res=> console.log(res));
+      }
 }
 
 

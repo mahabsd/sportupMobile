@@ -86,7 +86,7 @@
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
   <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0" >
-    <div style="display: flex; justify-content: center" > 
+    <div style="display: flex; justify-content: center" >
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -328,6 +328,7 @@
         </ng-template>
         <ion-button (click)="share(post)" shape="round" fill="clear" size="large ">
           <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
+          <sub>{{ post?.sharedeNb }}</sub>
         </ion-button>
       </ion-chip>
     </ion-col>
