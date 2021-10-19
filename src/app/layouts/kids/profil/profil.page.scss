@@ -412,8 +412,6 @@ ion-slide {
   margin-right: -2px !important;
 }
 .img-wrapper {
-  min-height: 200px;
-  width: 103%;
   //background-size: cover;
   background-repeat: no-repeat;
   border-radius: 15px;
@@ -1142,13 +1140,7 @@ ion-slide {
   margin-right: -2px !important;
 }
 .img-wrapper {
-  min-height: 200px;
-  width: 103%;
-  //background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 15px;
-  //box-shadow: inset 1px 1px 1px 1px #247238;
-  // background-image: linear-gradient(180deg, rgb(219, 215, 215), rgb(219, 215, 215)40%, rgb(219, 215, 215));
+  padding: 20px;
 }
 .centered {
   position: absolute;
@@ -1157,6 +1149,7 @@ ion-slide {
 }
 .myImageUser {
   border-radius: 15px;
+  margin-right: 25px;
   width: 30px;
   height: 30px;
 }
