@@ -133,10 +133,13 @@ ion-content{
   max-width: 120px;
 }
 
-ion-card{
-  margin: 5px;
+
+ion-card .card-content-ios {padding-top: 0px  !important;
+  padding-bottom: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
- 
+
 
 .dateCol{
   position: absolute;

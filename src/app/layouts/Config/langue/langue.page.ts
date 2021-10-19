@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-langue',
@@ -8,18 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class LanguePage implements OnInit {
   public fish: string;
 
-  constructor() { }
-  fishyHandler(event) {
-    // get data throught event emitter
-    this.fish = event.target.value;
-  }
-  leaveFish(event) {
+  constructor(public storage: Storage) { }
+  selectLanguage(event) {
     console.log('SELECT ', event.target.value);
+    this.storage.set('lan',event.target.value);
   }
-  goFish(event) {
-    console.log('SELECT ', event.target.value);
-  }
+ 
   ngOnInit() {
+    this.storage.get('lan').then((val) => {
+      console.log('Your age is', val);
+    });
   }
 
 }
