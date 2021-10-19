@@ -1,7 +1,7 @@
 <app-header title="Boite réception" [BoiteRecepetionKids]="true"></app-header>
 
 
-<ion-content>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
 
 
   <div style="background-color: whitesmoke;padding: 5px;">

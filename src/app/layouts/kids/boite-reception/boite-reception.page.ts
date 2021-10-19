@@ -6,6 +6,7 @@ import { ChatKidsPage } from '../chat-kids/chat-kids.page';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { EventService } from 'src/app/shared/Service/event.service';
 @Component({
   selector: 'app-boite-reception',
   templateUrl: './boite-reception.page.html',
@@ -15,8 +16,11 @@ export class BoiteReceptionPage implements OnInit {
   message = '';
   kids = [];
   currentUser;
-  constructor( private modalController: ModalController,private socket: Socket,  private userservice: UserService,
-
+  isScrollTop: boolean;
+  constructor( private modalController: ModalController,
+    private socket: Socket,
+    private userservice: UserService,
+    private eventService: EventService,
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
@@ -45,9 +49,17 @@ export class BoiteReceptionPage implements OnInit {
    getkids() {
     this.userservice.getUsersKids().subscribe((res) => {
       this.kids=res
-     console.log(res)
+     console.log(res);
     });
   }
 
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
+      this.isScrollTop = false;
 
+    } else {
+      this.isScrollTop = true;;
+    }
+    this.eventService.sendMessage(this.isScrollTop);
+  }
 }
