@@ -31,8 +31,11 @@ ion-menu-button {
   .monthview-datetable td,
   .monthview-datetable th {
     border: none !important;
+    color: white;
   }
-
+  .monthview-current {
+    color: rgb(24, 82, 10) !important;
+  }
   .cal-green {
     padding-top: 0;
     border-top-left-radius: 40px;
