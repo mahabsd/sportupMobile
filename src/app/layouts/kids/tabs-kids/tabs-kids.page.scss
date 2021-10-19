@@ -1,0 +1,50 @@
+ion-tab-bar {
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 0px;
+    width: 75%;
+    height: 6%;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #c2bfbf;
+    background-color: #EEE;
+    box-shadow: -1px 1px 2px 1px #b0acac;
+    border: none;
+  }
+  
+  ion-tabs {
+    --background: transparent !important;
+  }
+  
+  ion-tab-button {
+    background-color: transparent;
+  
+  }
+  
+  
+  
+  
+  ion-tab-bar {
+    transition: all 1s;
+  }
+  
+  .showTabs {
+    position: absolute;
+    transition: all 1s;
+    transform: translateY(0px);
+  
+  }
+  
+  .hideTabs {
+    position: absolute;
+    transition: all 1s;
+    transform: translateY(100px);
+  
+  }
+  

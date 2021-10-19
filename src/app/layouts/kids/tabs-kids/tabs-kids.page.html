@@ -1,0 +1,29 @@
+<ion-tabs >
+  <!-- Tab bar -->
+  <ion-tab-bar slot="bottom" translucent="true" [ngClass]="menuOpened? 'hideTabs' : 'showTabs'">
+    <ion-tab-button title="accueil">
+      <img [routerLink]="['/tabsKids/accueil']" src="../../assets/icon/icon_home.png" />
+    </ion-tab-button>
+
+    <!--
+ <ion-tab-button tab="map" *ngIf="user$.role==='kids'">
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
+    </ion-tab-button>-->
+    <ion-tab-button tab="map">
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/tabsKids/boitereceptionkids']" src="../../assets/icon/icon_boite.png" />
+    </ion-tab-button>
+    <ion-tab-button>
+      <img src="../../assets/icon/icon_nvposte.png" (click)="openModal()" />
+    </ion-tab-button>
+    <ion-tab-button>
+      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <img [routerLink]="['/menu/tabs/layouts/notifications']" src="../../assets/icon/icon_notification.png" />
+    </ion-tab-button>
+    <ion-tab-button routerLink="/tabsKids/profilkids/{{userid}}">
+      <img src="../../assets/icon/icon_profile.png" />
+
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

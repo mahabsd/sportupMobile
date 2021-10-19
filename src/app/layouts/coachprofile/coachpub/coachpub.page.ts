@@ -52,6 +52,17 @@ export class CoachpubPage implements OnInit {
           this.posts.push(post.post);
         });
        });
+       this.savepostsService.getAllSharedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
+        this.posts$ = res.data.data;
+        console.log(res.data.data);
+
+        this.posts$.map(post=> {
+          this.posts.push(post.post);
+       });
+       console.log(this.posts);
+
+      });
+    // this.getAllsharedPosts();
        if (event) {
         event.target.complete();
       }
@@ -87,5 +98,17 @@ export class CoachpubPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
+getAllsharedPosts() {
+  this.savepostsService.getAllSharedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
+    this.posts$ = res.data.data;
+    console.log(res.data.data);
+
+    this.posts$.map(post=> {
+      this.posts.push(post.post);
+   });
+   console.log(this.posts);
+
+  });
+ }
 
 }
