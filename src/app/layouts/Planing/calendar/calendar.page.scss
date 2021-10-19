@@ -19,10 +19,10 @@ ion-menu-button {
   ion-list .list-ios {
     --background: none;
   }
-  .swiper-wrapper{
+  .swiper-wrapper {
     align-items: center;
   }
-  
+
   .monthview-container {
     height: auto !important;
     color: rgb(207, 207, 207) !important;
@@ -31,54 +31,63 @@ ion-menu-button {
   .monthview-datetable td,
   .monthview-datetable th {
     border: none !important;
+    color: white;
   }
-
+  .monthview-current {
+    color: rgb(24, 82, 10) !important;
+  }
   .cal-green {
     padding-top: 0;
-    border-radius: 30px;
-    background: linear-gradient(54deg, rgba(2,0,36,1) 0%, rgba(33,116,56,1) 0%, rgba(140,190,36,1) 100%);
-  }
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
 
- 
-  
-  .cal-white
-  {
+    background: linear-gradient(
+      54deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(33, 116, 56, 1) 0%,
+      rgb(156, 191, 79) 100%
+    );
+  }
+  .text-muted {
+    color: rgba(255, 0, 0, 0) !important;
+  }
+  .cal-white {
     padding-top: 0;
     border-radius: 30px;
     background-color: white;
   }
 
-.monthview-primary-with-event, .calendar-event-inner{
-  color: #247238;
-}
-  .monthview-primary-with-event  {
+  .monthview-primary-with-event,
+  .calendar-event-inner {
+    color: #247238;
+  }
+  .monthview-primary-with-event {
     margin: 3px !important;
     background-color: white !important;
     color: #247238 !important;
     border-radius: 10px;
   }
-  .light  {
-    
+  .light {
     background-color: rgb(235, 235, 235) !important;
-  
   }
 
-  .dark  {
+  .dark {
     color: white !important;
     background-color: #5cb13e !important;
     border: 1px solid;
-  
   }
- 
+
   .item-native {
     background: #ebebeb18;
   }
 }
- 
-td{
+
+td {
   background-color: red !important;
 }
- 
+
 .item-native {
   background: #ebebeb18;
 }
@@ -112,20 +121,19 @@ ion-item {
   --ion-color-tint: var(--ion-color-primary-tint, #247238) !important;
 }
 
-.container{
+.container {
   display: grid;
   grid-template-columns: repeat(1, 1fr);
- 
+
   grid-auto-rows: minmax(100px, auto);
 }
 
-
-ion-content{
+ion-content {
   --padding-start: 10px;
   --padding-end: 10px;
 }
 
-.stat{
+.stat {
   margin-left: 10px;
   border-radius: 10px;
   background: #fff;
@@ -141,7 +149,7 @@ ion-card .card-content-ios {padding-top: 0px  !important;
 }
 
 
-.dateCol{
+.dateCol {
   position: absolute;
   top: 50%;
   left: 50%;

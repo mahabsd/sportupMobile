@@ -32,7 +32,8 @@ export class UtilsService {
   public static apiHobbies = UtilsService.remoteAdress + 'hobbies/';
   public static apiacitivteKids = UtilsService.remoteAdress + 'activiteKids/';
   public static apiInvite = UtilsService.remoteAdress + 'invi/';
-  
+  public static apishared = UtilsService.remoteAdress + 'shared/';
+
   token: any;
   myToast: any;
   header: any;

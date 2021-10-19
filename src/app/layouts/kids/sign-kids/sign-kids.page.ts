@@ -70,7 +70,7 @@ export class SignKidsPage implements OnInit {
 
     this.authService.login(this.user).subscribe(async (response) => {
       if (response.user.role === "kids") {
-        this.router.navigateByUrl('/tabs/accueil');
+        this.router.navigateByUrl('/tabsKids/accueil');
 
       }
       else {

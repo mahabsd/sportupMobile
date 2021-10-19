@@ -4,7 +4,7 @@
 
       <ion-icon *ngIf="!isModal && isModProfile" color="light" routerLink="/profil" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && BoiteRecepetionKids" color="light" routerLink="/accueil" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && BoiteRecepetionKids" color="light" routerLink="/tabsKids/accueil" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/menu/tabs/home"
         name="chevron-back-outline">
@@ -13,15 +13,15 @@
       </ion-icon>
       <ion-icon *ngIf="!isModal && isPalmares" color="light" (click)="BackButtonPalmares()" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && KidsProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && KidsProfile" color="light" routerLink="/tabsKids/accueil" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && SuivrePage" color="light" routerLink="/accueil" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && SuivrePage" color="light" routerLink="/tabsKids/accueil" name="chevron-back-outline">
       </ion-icon>
       <!--
 <ion-icon *ngIf="isDetails" color="light" routerLink="/accueil" name="chevron-back-outline">
       </ion-icon>
     -->
-      <ion-icon *ngIf="!isModal  && AdulteProfile" color="light" routerLink="/accueil" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal  && AdulteProfile" color="light" routerLink="/tabsKids/accueil" name="chevron-back-outline">
       </ion-icon>
 
       <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/Shared/Guard/auth.guard';
 
 const routes: Routes = [
   {
@@ -15,7 +16,11 @@ const routes: Routes = [
         path: 'planning',
         loadChildren: () => import('./planning/planning.module').then(m => m.PlanningPageModule)
       },
-
+      
+      {
+        path: 'tabsKids',
+        loadChildren: () => import('./tabs-kids/tabs-kids.module').then(m => m.TabsKidsPageModule), canActivate: [AuthGuard]
+      },
       {
         path: 'maps',
         loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule)
@@ -38,6 +43,10 @@ const routes: Routes = [
       }
 
     ]
+  },
+  {
+    path: 'tabs-kids',
+    loadChildren: () => import('./tabs-kids/tabs-kids.module').then( m => m.TabsKidsPageModule)
   },
 
 ];

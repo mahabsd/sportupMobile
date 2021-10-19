@@ -156,7 +156,11 @@ export class HobbiesPage implements OnInit {
   };
   isScrollTop: boolean;
 
-  constructor(public hobbiesService: HobbiesService, private eventService: EventService, private followerService: FollowerService, private userservice: UserService,private router:Router
+  constructor(public hobbiesService: HobbiesService,
+     private eventService: EventService,
+      private followerService: FollowerService,
+       private userservice: UserService,
+       private router: Router
   ) {
     this.HobbiesData = [
       {
@@ -214,15 +218,12 @@ export class HobbiesPage implements OnInit {
           this.hobbiesService.findbyactivity(this.sportname).subscribe((res: any) => {
             this.userlist = res.data.data;
             console.log(res);
-            this.getfollow()
+            this.getfollow();
           }
           );
         }
       });
     });
-
-
-
   }
 
   //Call methods to check if slide is first or last to enable disbale navigation
@@ -359,8 +360,7 @@ export class HobbiesPage implements OnInit {
                   }
                   else if (role==='kids'){
                     this.router.navigate(["tabs/profilkids/",userpassedid]);
-        
-                  } 
+                  }
               }
             }
           });

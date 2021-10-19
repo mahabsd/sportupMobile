@@ -3,7 +3,7 @@
     <ion-avatar
       slot=""
       class="ion-padding"
-      *ngIf="isUserConnected != post?.user?._id"
+      *ngIf="isUserConnected !== post?.user?._id"
     >
       <img
         [src]="apiImgUser + post?.user?.photo"
@@ -13,7 +13,7 @@
     <ion-label
       (click)="getfollow(post?.user?._id)"
       class="ion-justify-content-center"
-      *ngIf="isUserConnected != post?.user?._id"
+      *ngIf="isUserConnected !== post?.user?._id"
       style="display: grid; align-self: center"
     >
       <h3
@@ -85,8 +85,8 @@
   >
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0" >
-    <div style="display: flex; justify-content: center" > 
+  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0">
+    <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -96,7 +96,7 @@
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
             [lazyLoad]="apiImg + file?.file_name"
             errorImage="../../../assets/imgs/150.png"
-            (click)="displayImage(file)"
+            (click)="displayImage(mediafiles)"
           >
             <ion-icon></ion-icon>
           </div>
@@ -124,8 +124,8 @@
           </div>
         </ng-container>
       </div>
-      <div class="nextContainer" >
-        <div *ngFor="let file of mediafiles" >
+      <div class="nextContainer">
+        <div *ngFor="let file of mediafiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div
               id="next"
@@ -153,7 +153,7 @@
     </div>
   </div>
   <div *ngIf="secondNewMediaFiles.length !== 0">
-    <div style="display: flex"  >
+    <div style="display: flex">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -199,7 +199,7 @@
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
               [lazyLoad]="apiImg + file?.file_name"
               errorImage="../../../assets/imgs/150.png"
-              (click)="displayImage(file)"
+              (click)="displayImage(mediafiles)"
             >
               <ion-icon></ion-icon>
             </div>
@@ -326,11 +326,17 @@
             <sub>{{ post?.favorisNb }}</sub>
           </ion-button>
         </ng-template>
-        <ion-button (click)="share()" shape="round" fill="clear" size="large ">
+        <ion-button
+          (click)="share(post)"
+          shape="round"
+          fill="clear"
+          size="large "
+        >
           <img
             class="iconstyle"
             src="../../../../assets/iconPost/icon_share.svg"
           />
+          <sub>{{ post?.sharedeNb }}</sub>
         </ion-button>
       </ion-chip>
     </ion-col>

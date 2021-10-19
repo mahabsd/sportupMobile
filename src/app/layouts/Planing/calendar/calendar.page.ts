@@ -64,7 +64,7 @@ export class CalendarPage implements OnInit {
     let elements = this.elem.nativeElement.querySelectorAll('td');
     for (var i = 0; i < elements.length; ++i) {
       if(elements[i].className==='monthview-primary-with-event')
-   
+
       events.push(elements[i]);
     }
 
@@ -80,9 +80,6 @@ export class CalendarPage implements OnInit {
   ngOnInit() {
     const url = this.router.url.split('/', 6);
     console.log(url);
-
- 
-    
 
     if (url[1] === 'calendar') {
       this.slider = false;
@@ -119,14 +116,7 @@ export class CalendarPage implements OnInit {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = res.data.data;
       console.log(this.user$);
-
       this.loadEvents();
-      
-      
-
-      
-      
-     
     });
   }
 
@@ -142,7 +132,7 @@ export class CalendarPage implements OnInit {
       this.extractEventDays();
     });
 
- 
+
   }
   getDayName(day, month, year) {
     const newDate = new Date(year, month, day);
