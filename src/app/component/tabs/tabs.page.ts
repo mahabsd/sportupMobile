@@ -67,7 +67,7 @@ export class TabsPage implements OnInit {
 
     }
 
- 
+
   }
 
   async openShareModal(type) {
@@ -79,19 +79,10 @@ export class TabsPage implements OnInit {
       },
     });
     await modal.present();
-    await modal.onWillDismiss().then((result) => {    
-      
-       
-  });
-
-  }
-
     await modal.onWillDismiss().then((result) => {
-      console.log("tt");
-
-    });
-
+  });
   }
+
 
   sendMessage(message) {
     // send message to subscribers via observable subject
