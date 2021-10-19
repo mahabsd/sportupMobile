@@ -29,23 +29,13 @@ h5 {
 .Annuler {
   width: 100px;
   margin: 5px;
- 
-  --background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(210, 38, 0, 1) 0%,
-    rgba(247, 193, 181, 1) 100%
-  );
+  color: white;
 }
 .Enregistrer {
     margin: 5px;
     width: 100px;
-    --background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgb(3, 143, 50) 0%,
-      rgb(181, 247, 227) 100%
-    );
+    --background:rgb(3, 143, 50);
+    color: white;
 }
 .dateItem{
 
