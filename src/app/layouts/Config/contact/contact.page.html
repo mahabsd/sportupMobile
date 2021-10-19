@@ -20,10 +20,10 @@
         </ion-card-header>
         <ion-card-content>
           <ion-row>
-            <input style="font-size: small;" class="MyinputUpdate" type="text" placeholder="NOM" />
-            <input style="font-size: small;" class="MyinputUpdate" type="email" placeholder="EMAIL" />
-            <input style="font-size: small;" class="MyinputUpdate" type="text" placeholder="SUJET" />
-            <ion-textarea style="font-size: small;" class="MyinputUpdate" type="text" placeholder="MESSAGE">
+            <input style="font-size: small;" class="MyinputUpdate" type="text" placeholder="NOM"  [(ngModel)]="nom"/>
+            <input style="font-size: small;" class="MyinputUpdate" type="email" placeholder="EMAIL"  [(ngModel)]="email" />
+            <input style="font-size: small;" class="MyinputUpdate" type="text" placeholder="SUJET"  [(ngModel)]="sujet" />
+            <ion-textarea style="font-size: small;" class="MyinputUpdate" type="text" placeholder="MESSAGE" [(ngModel)]="message">
             </ion-textarea>
           </ion-row>
           <ion-row style="    padding-bottom: 30px;padding-top: 30px;">
@@ -31,8 +31,8 @@
             </ion-col>
             <ion-col size="4">
               <div routerLink="/parametre" class="message-box">
-                <div type="submit" class="message-submit">
-                  <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">Envoyer
+                <div type="submit" class="message-submit" (click)="sendMail()">
+                  <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline" >Envoyer
                   </h6>
                 </div>
               </div>
