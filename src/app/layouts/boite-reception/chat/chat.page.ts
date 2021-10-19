@@ -31,32 +31,29 @@ export class ChatPage implements OnInit {
     this.idprofilePassed= this.activatedRoute.snapshot.params.id
     this.socket.connect();
 
-    let name = ` User-${new Date().getTime()}`;
+   // let name = ` User-${new Date().getTime()}`;
 
     this.currentUser = name;
     this.socket.emit('set-name', name);
     this.socket.fromEvent('users-changed').subscribe(data => {
       console.log('getdata', data);
       let user = data['user'];
-      if (data['event'] == 'left') {
-        this.presentToast(`User left:${user}`)
+      if (data['event'] === 'left') {
+        this.presentToast(`User left:${user}`);
       } else {
 
-        this.presentToast(`User joined:${user}`)
+        this.presentToast(`User joined:${user}`);
       }
     });
     this.socket.fromEvent('message').subscribe(message => {
       console.log('New:', message);
       this.getchat();
-
-      
-    })
+    });
   }
   sendMessage() {
     this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed});
     this.message = '';
     this.getchat();
-
   }
 
   ionViewWillLeave() {
@@ -82,20 +79,26 @@ export class ChatPage implements OnInit {
 
 
   getchat(){
-   
+
 
     this.userservice.getMe().subscribe((res) => {
 
       this.chatService.getChat( res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
-      console.log(res1)
+      console.log(res1);
       this.messages2=res1;
-      //  this.userSenderId=res1.userSender;
+     // this.updateSeenMsgs(res1, sender);
+
       });
 
 
     });
 
   }
+  updateSeenMsgs(item, sender){
+    item.seen = false;
+    console.log(sender);
+    this.chatService.updateChat(item._id, item).subscribe(res=> console.log(res));
+      }
 }
 
 

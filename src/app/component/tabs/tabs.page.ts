@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { ChatService } from 'src/app/shared/Service/chat.service';
 
 @Component({
   selector: 'app-tabs',
@@ -20,12 +21,17 @@ export class TabsPage implements OnInit {
   menuOpened = false;
   userid
   subscription: Subscription;
+  pagetype: string;
+  urlpage = this.router.url.split('/', 6);
+  messagesNumber: number;
+  seenMessagesNumber: any = 0;
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
     private router: Router,
     private userservice: UserService,
     private eventService: EventService,
+    private chatService: ChatService
   ) { }
 
   ngOnInit() {
@@ -38,11 +44,10 @@ export class TabsPage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      this.userid= res.data.data._id;
-
+      this.userid = res.data.data._id;
+      this.getNumberNonreadChats();
     });
   }
-
 
   openMenu() {
     this.menuOpened = true;
@@ -50,10 +55,9 @@ export class TabsPage implements OnInit {
 
   openModal() {
     const url = this.router.url.split('/', 6);
-    console.log(url);
 
     if (url[3] === 'home') {
-      this.openShareModal();
+      this.openShareModal('home');
       console.log(url[3]);
     }
     if (url[4] === 'coachprofile') {
@@ -61,31 +65,43 @@ export class TabsPage implements OnInit {
       console.log(url[4]);
 
     }
+
+    if (url[2] === 'accueil') {
+      this.openShareModal("accueil");
+      console.log(url[2]);
+    }
   }
 
+  async openShareModal(type) {
 
-  async openShareModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
         user: this.user$,
+        pagetype: type
       },
     });
     await modal.present();
-    await modal.onWillDismiss().then((result) => { });
+    await modal.onWillDismiss().then((result) => {
+      console.log("tt");
+
+    });
+
   }
-
-
-
 
   sendMessage(message) {
     // send message to subscribers via observable subject
     this.imageService.sendMessage(message);
   }
 
-
-
   add(event: any) {
     console.log(event);
   }
+
+  getNumberNonreadChats(){
+    this.chatService.getAllChatsByuser(this.userid).subscribe(res=> {
+console.log(res);
+
+    });
+   }
 }

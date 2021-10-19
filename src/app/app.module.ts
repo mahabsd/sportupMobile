@@ -20,6 +20,7 @@ import { StorageService } from './Shared/Service/storage.service';
 import { ComponentModule } from './component/component.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { SharedModule } from './shared/modules/shared.module';
 
 const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
 @NgModule({
@@ -27,6 +28,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
   exports: [],
   entryComponents: [],
   imports: [
+    SharedModule,
     IonicStorageModule.forRoot({
       name: '__mydb',
       driverOrder: ['localstorage', 'sqlite', 'indexeddb', 'websql']
@@ -37,7 +39,7 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
     HttpClientModule,
     LayoutsModule,
     ComponentModule,
-    SocketIoModule.forRoot(config),
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     ImagePicker,

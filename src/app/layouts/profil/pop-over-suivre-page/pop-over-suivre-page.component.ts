@@ -10,7 +10,11 @@ export class PopOverSuivrePageComponent implements OnInit {
   @Input() idpassed: string;
 
   constructor(private router: Router) { }
-
+  dismissPopover(msg)
+  {
+      console.log(msg);
+      
+  }
   ngOnInit() {
     console.log(this.idpassed)
   }

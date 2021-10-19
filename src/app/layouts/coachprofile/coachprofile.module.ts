@@ -2,7 +2,7 @@ import { Injectable, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
-
+import { PalmaresPopOverModule } from '././palmares-pop-over/palmares-pop-over.module';
 import { CoachprofilePageRoutingModule } from './coachprofile-routing.module';
 import { CoachprofilePage } from './coachprofile.page';
 import { ComponentModule } from '../../component/component.module';
@@ -48,6 +48,7 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     CoachprofilePageRoutingModule,
     ComponentModule,
     HomePageModule,
+    PalmaresPopOverModule,
     LazyLoadImageModule,
   ],
   declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent,    CoachMenuPopOverComponent

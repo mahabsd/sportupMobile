@@ -20,6 +20,9 @@ export class ChatService {
     return this.apiService.get(`${UtilsService.apiChat}${idConnectedUser}`).pipe(map((res) => res.data.data));
 
   }
+  updateChat(idConnectedUser, chat) {
+    return this.apiService.patch(`${UtilsService.apiChat}${idConnectedUser}`, chat).pipe(map((res) => res.data.data));
+  }
 
 }
 

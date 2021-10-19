@@ -27,6 +27,7 @@ import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { PostDisplayComponent} from '../../post-display/post-display.component';
 import { Router } from '@angular/router';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 
@@ -66,10 +67,11 @@ export class StatusComponent implements OnInit {
   iduser1;
   EtatSuivre = false;
   follower = false;
-  idFollowtoDelete
+  idFollowtoDelete;
   idprofilePassed;
-  isUserConnected
+  isUserConnected;
   loading: any;
+  shared= false;
   constructor(
     private commentService: CommentService,
     private postService: PostService, private userervice: UserService,
@@ -121,7 +123,12 @@ this. getMe()
   }
 
   onComment() { }
-  share() { }
+  share(post) {
+    this.shared = true;
+    this.favorisService.addShared(post?._id).subscribe((res) => {
+      this.shared = true;
+    });
+  }
   bookmark(post) {
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
       //console.log(res);
@@ -170,6 +177,17 @@ this. getMe()
     return await modal.present();
   }
 
+  async displayContent(files){
+    const modal = await this.modalController.create({
+      component: PostDisplayComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        post: files,
+      },
+    });
+    return await modal.present();
+  }
+
   async displayVideo(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // console.log(url);
@@ -200,15 +218,18 @@ this. getMe()
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      this.a = a.mediafiles;
-      if (this.a.length<4){
-        this.newMediaFiles= this.a.splice(0,1);
+      let tempMedia = mediafiles.mediafiles;
+
+      if ( tempMedia.length<4){
+        this.newMediaFiles= tempMedia.splice(0,1);
       }
-      if (this.a.length>3){
-        this.newMediaFiles=this.a.slice(0,1);
-        this.thirdNewMediaFiles=this.a.slice(1,3);
-        this.secondNewMediaFiles=this.a.splice(3,this.a.length);
+      if (tempMedia.length>3){
+        this.newMediaFiles=tempMedia.slice(0,1);
+        this.thirdNewMediaFiles=tempMedia.slice(1,3);
+        this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
       }
+
+
     });
   }
   async presentPopover(ev: any) {

@@ -1,4 +1,4 @@
-<ion-grid>
+<ion-grid (click)="displayContent(post)">
   <ion-row lines="none">
     <ion-avatar
       slot=""
@@ -85,8 +85,8 @@
   >
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0">
-    <div style="display: flex; justify-content: center">
+  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0" >
+    <div style="display: flex; justify-content: center" >
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -124,8 +124,8 @@
           </div>
         </ng-container>
       </div>
-      <div class="nextContainer">
-        <div *ngFor="let file of mediafiles">
+      <div class="nextContainer" >
+        <div *ngFor="let file of mediafiles" >
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div
               id="next"
@@ -153,7 +153,7 @@
     </div>
   </div>
   <div *ngIf="secondNewMediaFiles.length !== 0">
-    <div style="display: flex">
+    <div style="display: flex"  >
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -326,11 +326,9 @@
             <sub>{{ post?.favorisNb }}</sub>
           </ion-button>
         </ng-template>
-        <ion-button (click)="share()" shape="round" fill="clear" size="large ">
-          <img
-            class="iconstyle"
-            src="../../../../assets/iconPost/icon_share.svg"
-          />
+        <ion-button (click)="share(post)" shape="round" fill="clear" size="large ">
+          <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
+          <sub>{{ post?.sharedeNb }}</sub>
         </ion-button>
       </ion-chip>
     </ion-col>

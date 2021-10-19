@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 import { CoachpubPageRoutingModule } from './coachpub-routing.module';
-
+import { DeletePostPopoverPage } from './../delete-post-popover/delete-post-popover.page';
 import { CoachpubPage } from './coachpub.page';
 
 @NgModule({
@@ -14,8 +14,7 @@ import { CoachpubPage } from './coachpub.page';
     IonicModule,
     CoachpubPageRoutingModule,
 
-
   ],
-  declarations: []
+  declarations: [DeletePostPopoverPage]
 })
 export class CoachpubPageModule { }

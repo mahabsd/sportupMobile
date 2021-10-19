@@ -1,0 +1,16 @@
+{
+    "welcomeMessage": "Thanks for joining, {{ name }}! It's great to have you!",
+    "login": {
+      "username": "Enter your user name",
+      "password": "Password here"
+    },
+    "home": {
+        "tout": "all",
+        "favoris": "favorites",
+        "abonnement": "followers"
+      },
+      "login":{
+        "oublie":"Forgot Passwor",
+        "enfants": "Junior Space"
+      }
+  }
