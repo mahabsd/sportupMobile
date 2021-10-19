@@ -20,6 +20,7 @@ import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { Post } from 'src/app/Shared/Model/Post';
 import { User } from 'src/app/Shared/Model/User';
 import { ModalShearePage } from '../../home/modal-sheare/modal-sheare.page';
+import { EventService } from 'src/app/shared/Service/event.service';
 
 
 @Component({
@@ -43,12 +44,15 @@ export class AccueilPage implements OnInit {
   comwiw;
   buttonColor: string;
   posts: any[] = [];
+  isScrollTop: boolean;
   constructor(
     private commentService: CommentService,
     private modalController: ModalController,
     private postKidsService: PostKidsService,
     private postService: PostService,
-    private userservice: UserService
+    private userservice: UserService,
+    private eventService: EventService,
+
   ) { }
 
   ngOnInit() {
@@ -137,5 +141,14 @@ export class AccueilPage implements OnInit {
     this.dict.forEach((r) => {
       console.log(r);
     });
+  }
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
+      this.isScrollTop = false;
+
+    } else {
+      this.isScrollTop = true;;
+    }
+    this.eventService.sendMessage(this.isScrollTop);
   }
 }

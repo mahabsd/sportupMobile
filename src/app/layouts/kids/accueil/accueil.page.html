@@ -1,5 +1,5 @@
 <app-header [isKid]="true"> </app-header>
-<ion-content>
+<ion-content [scrollEvents]="true"  (ionScroll)="logScrolling($event)">
   <ion-grid>
     <ion-row>
       <ion-col class="my-thin-col stylecards" *ngFor="let post of posts ">

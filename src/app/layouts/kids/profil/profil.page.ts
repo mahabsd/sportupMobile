@@ -13,6 +13,7 @@ import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page'
 import { User } from 'src/app/Shared/Model/User';
 import { ActivatedRoute } from '@angular/router';
 import { PopOverSuivrePageComponent } from '../../profil/pop-over-suivre-page/pop-over-suivre-page.component';
+import { EventService } from 'src/app/shared/Service/event.service';
 
 @Component({
   selector: 'app-profil',
@@ -68,8 +69,14 @@ export class ProfilPage implements OnInit {
     }
   }
 ];
-  constructor(private userservice: UserService, private postKidsService: PostKidsService,
-    public popoverController: PopoverController, public userService: UserService,  private activatedRoute: ActivatedRoute) { }
+  isScrollTop: boolean;
+  constructor(private userservice: UserService,
+     private postKidsService: PostKidsService,
+    public popoverController: PopoverController,
+     public userService: UserService,
+      private activatedRoute: ActivatedRoute,
+      private eventService: EventService,
+      ) { }
 
   ngOnInit() {
     this.selected = 'photo';
@@ -180,5 +187,15 @@ export class ProfilPage implements OnInit {
       console.log(res);
     });
     this.update = false;
+  }
+
+  logScrolling(event) {
+    if (event.detail.deltaY < 0) {
+      this.isScrollTop = false;
+
+    } else {
+      this.isScrollTop = true;;
+    }
+    this.eventService.sendMessage(this.isScrollTop);
   }
 }
