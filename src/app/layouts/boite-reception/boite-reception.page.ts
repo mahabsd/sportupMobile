@@ -19,6 +19,7 @@ export class BoiteReceptionPage implements OnInit {
   page = 8; items = [];
   numTimesLeft = 5;
   userid = '60f983fb06d9b3846c3d1030';
+  user$
   isScrollTop: boolean;
   recherche;
   constructor(private userservice: UserService,
@@ -32,6 +33,8 @@ export class BoiteReceptionPage implements OnInit {
   ngOnInit() {
     // this.getAllusers()
     this.getfollow();
+    this.getMe();
+
   }
   logDrag(i) {
     let a = 0;
@@ -47,6 +50,11 @@ export class BoiteReceptionPage implements OnInit {
 
   }
 
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+    });
+  }
 
   getAllusers() {
     this.userservice.getRoleUsers().subscribe((res) => {
