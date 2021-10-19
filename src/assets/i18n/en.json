@@ -1,16 +1,22 @@
 {
     "welcomeMessage": "Thanks for joining, {{ name }}! It's great to have you!",
-    "login": {
-      "username": "Enter your user name",
-      "password": "Password here"
-    },
     "home": {
         "tout": "all",
         "favoris": "favorites",
         "abonnement": "followers"
       },
       "login":{
-        "oublie":"Forgot Passwor",
+        "language":"Change Language",
+        "oublie":"Forgot Password",
         "enfants": "Junior Space"
+      },
+      "profile":{
+        "photo":"Photos",
+        "publication": "Posts",
+        "calendrier": "Calendar",
+        "palmares": "Trophies",
+        "abonnes": "Followers",
+        "abonnement": "Following"
       }
+    
   }

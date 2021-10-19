@@ -11,6 +11,7 @@ import { share } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -36,6 +37,7 @@ export class HomePage implements OnInit {
   scrolTo = null;
   isScrollTop = false;
   messages = [];
+  lang;
   currentUser = '';
   constructor(
     private modalController: ModalController,
@@ -44,23 +46,21 @@ export class HomePage implements OnInit {
     private postService: PostService,
     private eventService: EventService,
     private userService: UserService,
-    private translate: TranslateService) {
-      translate.addLangs(['fr', 'en']);
-      translate.setDefaultLang('fr');
-      translate.use('fr');
+    private translate: TranslateService,
+    public storage: Storage) {
+      storage.get('lan').then((val) => {
+        this.lang = val;
+         translate.use(this.lang);
+      });
   }
 
   async ngOnInit() {
     this.getAllPostsByEvent();
+    
     // console.log(this.page);
 
     this.getMe();
-    this.translate.get(['home.tout', 'home.favoris','home.abonnement'])
-      .subscribe(translations => {
-        this.menuLabels[0] = translations['home.tout'];
-        this.menuLabels[1] = translations['home.favoris'];
-        this.menuLabels[2] = translations['home.abonnement'];
-      });
+   
   }
 
 

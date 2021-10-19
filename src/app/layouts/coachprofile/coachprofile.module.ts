@@ -13,6 +13,7 @@ import { CoachpubPage } from './coachpub/coachpub.page';
 import { ImageProfileComponent } from './image-profile/image-profile.component';
 import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
 import { CoachMenuPopOverComponent } from './coach-menu-pop-over/coach-menu-pop-over.component';
+import { SharedModule } from '../../shared/modules/shared.module';
 @Injectable()
 export class LazyLoadImageHooks extends IntersectionObserverHooks {
   toast: any;
@@ -50,6 +51,7 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     HomePageModule,
     PalmaresPopOverModule,
     LazyLoadImageModule,
+    SharedModule
   ],
   declarations: [CoachprofilePage, CoachphotoPage, CoachpubPage, ImageProfileComponent,    CoachMenuPopOverComponent
   ],

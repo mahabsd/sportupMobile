@@ -6,6 +6,7 @@ import { User } from 'src/app/Shared/Model/User';
 import { ToastController, AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { Storage } from '@ionic/storage';
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -24,10 +25,12 @@ export class LoginPage implements OnInit {
     private alertController: AlertController,
     private router: Router,
     public authService: AuthService,
-    private translate: TranslateService) {
-      translate.addLangs(['fr', 'en']);
-      translate.setDefaultLang('fr');
-      translate.use('fr');
+    private translate: TranslateService,
+    private storage: Storage) {
+    
+      this.storage.get('lan').then((val) => {
+        translate.use(val);
+      });
   }
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -38,12 +41,7 @@ export class LoginPage implements OnInit {
     });
 
 
-    this.translate.get(['home.tout', 'home.favoris','home.abonnement'])
-      .subscribe(translations => {
-        this.loginLabels[0] = translations['login.oublie'];
-        this.loginLabels[1] = translations['login.espaceEnfant'];
-        this.loginLabels[2] = translations['login.abonnement'];
-      });
+    
   }
   connectFacebook() {
     console.log('hello facebook');

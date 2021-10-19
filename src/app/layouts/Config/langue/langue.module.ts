@@ -8,6 +8,7 @@ import { LanguePageRoutingModule } from './langue-routing.module';
 
 import { LanguePage } from './langue.page';
 import { ComponentModule } from 'src/app/component/component.module';
+import { SharedModule } from '../../../shared/modules/shared.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,8 @@ import { ComponentModule } from 'src/app/component/component.module';
     FormsModule,
     IonicModule,
     LanguePageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    SharedModule,
   ],
   declarations: [LanguePage]
 })

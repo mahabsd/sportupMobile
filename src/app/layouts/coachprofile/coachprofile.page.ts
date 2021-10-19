@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { PostService } from 'src/app/Shared/Service/post.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
-
+import { Storage } from '@ionic/storage';
 
 
 
@@ -17,6 +18,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./coachprofile.page.scss'],
 })
 export class CoachprofilePage implements OnInit {
+  profileLabels = ['', '', ''];
   sliderOpts = {
     zoom: false,
     slidesPreview: 1.5,
@@ -47,7 +49,13 @@ export class CoachprofilePage implements OnInit {
     private activatedRoute: ActivatedRoute,
     private savepostsService: FavorisService,
     private router: Router,
-    private postService: PostService) { }
+    private postService: PostService,
+    private translate: TranslateService,
+    public storage: Storage) {
+    storage.get('lan').then((val) => {
+      translate.use(val);
+    });
+  }
 
   ngOnInit() {
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
@@ -56,6 +64,7 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getfollow();
     this.publiations();
+     
   }
 
 
@@ -67,7 +76,7 @@ export class CoachprofilePage implements OnInit {
 
   getMe() {
     this.userService.getMe().subscribe(async res => {
-       this.user$ = res.data.data;
+      this.user$ = res.data.data;
     });
 
   }
@@ -116,7 +125,7 @@ export class CoachprofilePage implements OnInit {
               console.log('nope');
               this.follower = false;
             } else {
-              this.followId=res._id;
+              this.followId = res._id;
               this.follower = true;
 
               console.log(res);
@@ -130,10 +139,10 @@ export class CoachprofilePage implements OnInit {
       }
     );
   }
-publiations(){
-  this.userId = this.router.url.slice(32, 56);
-  this.postService.postsOwner(this.userId);
-}
+  publiations() {
+    this.userId = this.router.url.slice(32, 56);
+    this.postService.postsOwner(this.userId);
+  }
 
 }
 

@@ -19,21 +19,21 @@
         </ion-card-header>
         <ion-card-content>
           <ion-list>
-            <ion-radio-group allow-empty-selection="true" (ionChange)="fishyHandler($event)"
-              (ionSelect)="goFish($event)" (ionBlur)="leaveFish($event)">
+            <ion-radio-group allow-empty-selection="true" (ionChange)="selectLanguage($event)"
+              >
               <ion-list-header>
               </ion-list-header>
               <ion-item lines="none">
                 <ion-label style="color: grey;font-weight: bold;font-size:small;margin-top: 5px;">FRANCAIS</ion-label>
-                <ion-radio slot="start" value="FR" checked></ion-radio>
+                <ion-radio slot="start" value="fr" checked></ion-radio>
               </ion-item>
               <ion-item lines="none">
                 <ion-label style="color: grey;font-weight: bold;font-size:small;margin-top: 5px;">ANGLAIS</ion-label>
-                <ion-radio slot="start" value="EN"></ion-radio>
+                <ion-radio slot="start" value="en"></ion-radio>
               </ion-item>
               <ion-item lines="none">
                 <ion-label style="color: grey;font-weight: bold;font-size:small;margin-top: 5px;">ESPAGNOL</ion-label>
-                <ion-radio slot="start" value="ES"></ion-radio>
+                <ion-radio slot="start" value="es"></ion-radio>
               </ion-item>
             </ion-radio-group>
           </ion-list>
