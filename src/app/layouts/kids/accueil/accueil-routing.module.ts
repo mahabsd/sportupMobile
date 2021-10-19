@@ -7,6 +7,10 @@ const routes: Routes = [
   {
     path: '',
     component: AccueilPage
+  },
+  {
+    path: 'add-status-kids',
+    loadChildren: () => import('./status-kids/add-status-kids/add-status-kids.module').then( m => m.AddStatusKidsPageModule)
   }
 ];
 

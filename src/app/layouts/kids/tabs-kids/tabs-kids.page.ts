@@ -10,29 +10,25 @@ import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { AddStatusKidsPage } from 'src/app/layouts/kids/accueil/status-kids/add-status-kids/add-status-kids.page';
-import { ChatService } from 'src/app/shared/Service/chat.service';
-
 @Component({
-  selector: 'app-tabs',
-  templateUrl: './tabs.page.html',
-  styleUrls: ['./tabs.page.scss'],
+  selector: 'app-tabs-kids',
+  templateUrl: './tabs-kids.page.html',
+  styleUrls: ['./tabs-kids.page.scss'],
 })
-export class TabsPage implements OnInit {
+export class TabsKidsPage implements OnInit {
   user$: any = [];
   menuOpened = false;
   userid
   subscription: Subscription;
   pagetype: string;
-  urlpage = this.router.url.split('/', 6);
-  messagesNumber: number;
-  seenMessagesNumber: any = 0;
+   urlpage = this.router.url.split('/', 6);
+
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
     private router: Router,
     private userservice: UserService,
     private eventService: EventService,
-    private chatService: ChatService
   ) { }
 
   ngOnInit() {
@@ -45,37 +41,28 @@ export class TabsPage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      this.userid = res.data.data._id;
-      this.getNumberNonreadChats();
+      this.userid= res.data.data._id;
+
     });
   }
+
 
   openMenu() {
     this.menuOpened = true;
   }
 
   openModal() {
-    const url = this.router.url.split('/', 6);
+    this.openShareModal("accueil");
 
-    if (url[3] === 'home') {
-      this.openShareModal('home');
-      console.log(url[3]);
-    }
-    if (url[4] === 'coachprofile') {
-      this.sendMessage('addphoto');
-      console.log(url[4]);
-
-    }
-
- 
   }
+
 
   async openShareModal(type) {
     const modal = await this.modalController.create({
-      component: ModalShearePage,
+      component: AddStatusKidsPage,
       componentProps: {
         user: this.user$,
-        pagetype: type
+       // pagetype:type
       },
     });
     await modal.present();
@@ -86,26 +73,18 @@ export class TabsPage implements OnInit {
 
   }
 
-    await modal.onWillDismiss().then((result) => {
-      console.log("tt");
 
-    });
 
-  }
 
   sendMessage(message) {
     // send message to subscribers via observable subject
     this.imageService.sendMessage(message);
   }
 
+
+
   add(event: any) {
     console.log(event);
   }
-
-  getNumberNonreadChats(){
-    this.chatService.getAllChatsByuser(this.userid).subscribe(res=> {
-console.log(res);
-
-    });
-   }
 }
+
