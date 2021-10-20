@@ -13,13 +13,13 @@
       <p>2 k</p>
     </ion-col>
     <ion-col>
-      <p>Abonnés</p>
+      <p>{{'profile.abonnees' | translate}}</p>
     </ion-col>
     <ion-col>
       <p>500</p>
     </ion-col>
     <ion-col>
-      <p>Abonnements</p>
+      <p>{{'profile.abonnement' | translate}}</p>
     </ion-col>
   </ion-row>
 </ion-row>
@@ -27,16 +27,16 @@
   <ion-tabs>
     <ion-tab-bar slot="top">
       <ion-tab-button   tab="coachphoto">
-        <ion-label>Photo</ion-label>
+        <ion-label>{{'profile.photo' | translate}}</ion-label>
       </ion-tab-button>
       <ion-tab-button tab="coachpub" id="middle">
-        <ion-label>Publications</ion-label>
+        <ion-label>{{'profile.publication' | translate}}</ion-label>
       </ion-tab-button>
       <ion-tab-button [routerLink]="['/calendar']">
-        <ion-label>Calendrier</ion-label>
+        <ion-label>{{'profile.calendrier' | translate}}</ion-label>
       </ion-tab-button>
       <ion-tab-button [routerLink]="['/palmares',idprofilePassed]">
-        <ion-label>Palmarés</ion-label>
+        <ion-label>{{'profile.palmares' | translate}}</ion-label>
       </ion-tab-button>
     </ion-tab-bar>
   </ion-tabs>

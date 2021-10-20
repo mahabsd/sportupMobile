@@ -1,9 +1,5 @@
 {
     "welcomeMessage": "Thanks for joining, {{ name }}! It's great to have you!",
-    "login": {
-      "username": "Enter your user name",
-      "password": "Password here"
-    },
     "home": {
         "tout": "tout",
         "favoris": "favoris",
@@ -13,5 +9,15 @@
       "login":{
         "oublie":"Mot de passe oublié",
         "enfants": "Espace Anfant"
+      },
+      "settings":{
+        "language":"Changer Language",
+        "enfants": "Espace Anfant"
+      },
+      "profile":{
+        "photo":"Photo",
+        "publication": "Publication",
+        "calendrier": "Calendrier",
+        "palmares": "Palmarès"
       }
   }

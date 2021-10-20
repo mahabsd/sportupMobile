@@ -4,14 +4,15 @@ import { SharedComponent } from './shared.component';
 import { TranslateLoader, TranslateModule  } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient } from '@angular/common/http';
- 
- 
+import { IonicStorageModule } from '@ionic/storage';
+
  export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
   imports: [
     CommonModule,
+    IonicStorageModule,
     TranslateModule.forRoot({
       loader: {
           provide: TranslateLoader,
