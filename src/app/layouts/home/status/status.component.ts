@@ -90,6 +90,8 @@ export class StatusComponent implements OnInit {
   async ngOnInit() {
 this. getMe()
     await this.getCommentByPost();
+    console.log(this.images[0])
+
   }
 
 
