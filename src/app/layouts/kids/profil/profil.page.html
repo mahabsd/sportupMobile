@@ -33,7 +33,11 @@
     >
   </ion-toolbar>
 </ion-header>
-<ion-content class="parent" [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+<ion-content
+  class="parent"
+  [scrollEvents]="true"
+  (ionScroll)="logScrolling($event)"
+>
   <div class="image1">
     <ion-img
       class="imgUser"
@@ -80,7 +84,7 @@
           >Planning</ion-label
         >
       </ion-segment-button>
-      <ion-segment-button value="propos" style="width: 30px">
+      <ion-segment-button value="propos">
         <ion-label style="font-family: 'Leckerli One', cursive"
           >à propos</ion-label
         >
@@ -165,7 +169,7 @@
           ></ion-icon>
         </ion-col>
       </ion-row>
-      <p>
+      <p style="margin: 10px 25px">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt
         consequuntur mollitia cum soluta dolorem omnis quam totam. Ipsa,
       </p>
@@ -234,7 +238,11 @@
             </ion-datetime>
           </ion-col>
         </ion-row>
-
+        <ion-row>
+          <ion-icon name="calendar"></ion-icon>
+          <ion-icon name="school"></ion-icon>
+          <p>Etablissement scolaire</p>
+        </ion-row>
         <ion-row>
           <ion-col size="3.5" style="margin-top: 15px">
             <ion-label style="font-weight: bold">Genre</ion-label>
@@ -273,32 +281,44 @@
       </ng-container>
 
       <ng-template #noupdate>
-        <ion-row>
-          <ion-col size="4">
+        <div style="display: flex">
+          <div style="display: flex; align-items: center; margin-right: 15px">
             <ion-icon name="location-sharp"></ion-icon>
             <ion-label style="font-weight: bold">Adresse</ion-label>
-          </ion-col>
-          <ion-col> {{user.adresse}} </ion-col>
-          <ion-col size="4">
+            <!-- <div>{{user.adresse}}</div> -->
+            <p style="margin-left: 10px">21 baker street</p>
+          </div>
+          <div style="display: flex; align-items: center">
             <ion-label style="font-weight: bold">Code postal</ion-label>
-          </ion-col>
-          <ion-col> 2083 </ion-col>
-        </ion-row>
+            <p style="margin-left: 10px">2083</p>
+          </div>
+        </div>
 
-        <ion-row>
-          <ion-col size="4">
+        <div style="display: flex">
+          <div style="display: flex; align-items: center; margin-right: 15px">
             <ion-label style="font-weight: bold">Ville</ion-label>
-          </ion-col>
-          <ion-col> {{user.ville}} </ion-col>
-          <ion-col size="3.5">
+            <!-- <div> {{user.ville}} </div> -->
+            <p style="margin-left: 10px">Tunis</p>
+          </div>
+          <div style="display: flex; align-items: center">
             <ion-label style="font-weight: bold">Pays</ion-label>
-          </ion-col>
-          <ion-col> {{user.pays}} </ion-col>
-        </ion-row>
-
+            <p style="margin-left: 10px">Tunisie</p>
+          </div>
+          <div>{{user.pays}}</div>
+        </div>
+        <div style="display: flex; align-items: center">
+          <ion-icon name="school"></ion-icon>
+          <ion-label style="font-weight: bold; margin-left: 10px"
+            >Etablissement scolaire</ion-label
+          >
+          <p style="margin-left: 10px">SCHOOL</p>
+        </div>
         <ion-row>
-          <ion-col size="4">
-            <ion-label style="font-weight: bold">Date naissance</ion-label>
+          <ion-col style="display: flex; align-items: center">
+            <ion-icon name="calendar"></ion-icon>
+            <ion-label style="font-weight: bold; margin-left: 10px"
+              >Date naissance</ion-label
+            >
           </ion-col>
           <ion-col>
             <ion-datetime
