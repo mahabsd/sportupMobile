@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { EventService } from 'src/app/shared/Service/event.service';
 
 @Component({
@@ -21,13 +22,16 @@ export class NotificationsPage implements OnInit {
 
   ];
   isScrollTop: boolean;
+  notif: any;
 
-  constructor(private eventService: EventService,
+  constructor(private eventService: EventService, public router: Router
   ) {
   }
 
   ngOnInit() {
-  }
+    this.notif =this.router.url.slice(19, );
+    console.log(this.notif);
+    }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
       this.isScrollTop = false;

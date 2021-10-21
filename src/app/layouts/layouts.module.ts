@@ -16,6 +16,6 @@ import { KidsModule } from './kids/kids.module';
     LayoutsRoutingModule,
     ComponentModule,
     KidsModule,
-]
+],
 })
 export class LayoutsModule { }
