@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdultsNotAllowedGuard } from 'src/app/shared/Guard/adults-not-allowed.guard';
 import { AuthGuard } from 'src/app/Shared/Guard/auth.guard';
 
 const routes: Routes = [
@@ -10,24 +11,29 @@ const routes: Routes = [
 
       {
         path: 'boitereceptionkids',
-        loadChildren: () => import('./boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule)
+        loadChildren: () => import('./boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule),
+        canActivate:[AdultsNotAllowedGuard]
+
       },
       {
         path: 'planning',
         loadChildren: () => import('./planning/planning.module').then(m => m.PlanningPageModule)
       },
-      
+
       {
         path: 'tabsKids',
         loadChildren: () => import('./tabs-kids/tabs-kids.module').then(m => m.TabsKidsPageModule), canActivate: [AuthGuard]
       },
       {
         path: 'maps',
-        loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule)
+        loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule),
+        canActivate:[AdultsNotAllowedGuard]
       },
       {
         path: 'activite',
-        loadChildren: () => import('./activite/activite.module').then(m => m.ActivitePageModule)
+        loadChildren: () => import('./activite/activite.module').then(m => m.ActivitePageModule),
+        canActivate:[AdultsNotAllowedGuard]
+
       },
       {
         path: 'sign-kids',
@@ -35,7 +41,9 @@ const routes: Routes = [
       },
       {
         path: 'profilkids',
-        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule)
+        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule),
+        canActivate:[AdultsNotAllowedGuard]
+
       },
       {
         path: 'notificationsKids',

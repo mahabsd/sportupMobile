@@ -27,6 +27,7 @@ export class ProfilPage implements OnInit {
   selected;
   user: User = new User();
   user_id;
+  date;
   title: any;
   checkSelf=false;
   idprofilePassed;
@@ -97,6 +98,8 @@ export class ProfilPage implements OnInit {
         console.log('user clicked' + response.data.data);
         this.user = response.data.data;
        // this.profileClickedName = response.data.data.name;
+      console.log(this.user);
+      this.date=this.user.datedenaissance.slice(0,10);
       },
       (error) => {
         console.error(error);
@@ -115,11 +118,8 @@ export class ProfilPage implements OnInit {
   getMyPostsKids() {
     this.userservice.getMe().subscribe((res) => {
       this.user_id = res.data.data._id;
-      console.log(this.user_id);
       this.postKidsService.getMyPostsKids(this.user_id).subscribe((res1) => {
         this.posts = res1['data'];
-        console.log(this.posts);
-
       });
     });
 
