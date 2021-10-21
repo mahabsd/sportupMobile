@@ -153,8 +153,8 @@
     </div>
 
     <div class="content-profil" *ngIf="selected==='propos'">
-      <ion-row>
-        <ion-col
+      <div>
+        <div
           style="
             display: flex;
             justify-content: space-between;
@@ -167,88 +167,118 @@
             style="color: green"
             name="create"
           ></ion-icon>
-        </ion-col>
-      </ion-row>
-      <p style="margin: 10px 25px">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt
-        consequuntur mollitia cum soluta dolorem omnis quam totam. Ipsa,
-      </p>
+        </div>
+      </div>
       <ng-container *ngIf="update;else noupdate">
-        <ion-row>
-          <ion-col size="4">
-            <ion-icon name="location-sharp"></ion-icon>
+        <textarea
+          rows="5"
+          cols="40"
+          wrap="soft"
+          style="margin: 10px 25px; resize: none; text-indent: -35px"
+        >
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt consequuntur mollitia cum soluta dolorem omnis quam totam.
+          </textarea
+        >
+        <div style="display: flex; align-items: center; margin-bottom: 15px">
+          <div>
+            <ion-icon
+              style="margin-right: 10px"
+              name="location-sharp"
+            ></ion-icon>
             <ion-label style="font-weight: bold">Adresse</ion-label>
-          </ion-col>
-          <ion-col style="margin-top: -8px">
-            <ion-input
+          </div>
+          <div>
+            <input
+              style="margin-left: 5px; width: 120px; text-align: center"
               class="commentaire"
               id="contentadresse"
               type="text"
-              [(ngModel)]="user.adresse"
-            ></ion-input>
-          </ion-col>
-          <ion-col size="4">
+              value="{{user.adresse}} 21 baker street"
+            />
+          </div>
+          <div style="margin: 0 5px">
             <ion-label style="font-weight: bold">Code postal</ion-label>
-          </ion-col>
-          <ion-col style="margin-top: -8px">
-            <ion-input
+          </div>
+          <div>
+            <input
+              style="width: 55px; text-align: center"
               class="commentaire"
               id="contentPostal"
               type="text"
-            ></ion-input>
-          </ion-col>
-        </ion-row>
+              value="2083"
+            />
+          </div>
+        </div>
 
-        <ion-row>
-          <ion-col size="4">
+        <div
+          style="
+            display: flex;
+            align-items: center;
+            margin-left: 25px;
+            margin-bottom: 10px;
+          "
+        >
+          <div>
             <ion-label style="font-weight: bold">Ville</ion-label>
-          </ion-col>
-          <ion-col style="margin-top: -8px">
-            <ion-input
-              class="commentaire"
+          </div>
+          <div style="display: flex; align-items: center">
+            <input
+              style="
+                margin-left: 5px;
+                width: 100px;
+                text-align: center;
+                margin-right: 5px;
+              "
               type="text"
               id="contentVille"
-              [(ngModel)]="user.ville"
-            ></ion-input>
-          </ion-col>
-          <ion-col size="4">
+              value="{{user.ville}} Tunis"
+            />
+          </div>
+          <div>
             <ion-label style="font-weight: bold">Pays</ion-label>
-          </ion-col>
-          <ion-col style="margin-top: -8px">
-            <ion-input
-              class="commentaire"
+          </div>
+          <div>
+            <input
+              style="
+                margin-left: 5px;
+                width: 100px;
+                text-align: center;
+                margin-right: 5px;
+              "
               type="text"
               id="contentPays"
-              [(ngModel)]="user.location"
-            ></ion-input>
-          </ion-col>
-        </ion-row>
+              value="{{user.location}} Tunisie"
+            />
+          </div>
+        </div>
 
-        <ion-row>
-          <ion-col size="3.5">
+        <div style="display: flex; align-items: center">
+          <ion-icon style="margin-right: 10px" name="calendar"></ion-icon>
+          <div style="margin-right: 10px">
             <ion-label style="font-weight: bold">Date naissance</ion-label>
-          </ion-col>
-          <ion-col style="margin-top: -8px">
-            <ion-datetime
+          </div>
+          <div>
+            <input
               class="commentaire"
               type="date"
               id="datenaissance"
-              [(ngModel)]="user.datedenaissance"
-            >
-            </ion-datetime>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-icon name="calendar"></ion-icon>
-          <ion-icon name="school"></ion-icon>
-          <p>Etablissement scolaire</p>
-        </ion-row>
-        <ion-row>
-          <ion-col size="3.5" style="margin-top: 15px">
+              value="{{date}}"
+            />
+          </div>
+        </div>
+        <div style="display: flex; align-items: center">
+          <ion-icon style="margin-right: 10px" name="school"></ion-icon>
+          <p style="font-weight: bold; margin-right: 10px">
+            Etablissement scolaire
+          </p>
+          <input type="text" value="SCHOOL" style="width: 130px" />
+        </div>
+        <div style="display: flex">
+          <div style="margin-top: 15px; margin-right: 20px">
             <ion-label style="font-weight: bold">Genre</ion-label>
-          </ion-col>
+          </div>
 
-          <ion-col>
+          <div>
             <ion-item>
               <ng-container *ngIf="user.sexe==='homme';else femme">
                 <ion-select
@@ -270,20 +300,27 @@
                   value="femme"
                   [(ngModel)]="user.sexe"
                 >
-                  <ion-select-option value="femme">femme</ion-select-option>
+                  <ion-select-option value="femme">Femme</ion-select-option>
                   <ion-select-option value="homme">Homme</ion-select-option>
                   <ion-select-option value="autres">Autre</ion-select-option>
                 </ion-select>
               </ng-template>
             </ion-item>
-          </ion-col>
-        </ion-row>
+          </div>
+        </div>
       </ng-container>
 
       <ng-template #noupdate>
+        <p style="margin: 10px 25px; text-align: left">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae
+          deserunt consequuntur mollitia cum soluta dolorem omnis quam totam.
+        </p>
         <div style="display: flex">
           <div style="display: flex; align-items: center; margin-right: 15px">
-            <ion-icon name="location-sharp"></ion-icon>
+            <ion-icon
+              style="margin-right: 10px"
+              name="location-sharp"
+            ></ion-icon>
             <ion-label style="font-weight: bold">Adresse</ion-label>
             <!-- <div>{{user.adresse}}</div> -->
             <p style="margin-left: 10px">21 baker street</p>
@@ -294,7 +331,7 @@
           </div>
         </div>
 
-        <div style="display: flex">
+        <div style="display: flex; margin-left: 25px">
           <div style="display: flex; align-items: center; margin-right: 15px">
             <ion-label style="font-weight: bold">Ville</ion-label>
             <!-- <div> {{user.ville}} </div> -->
@@ -313,69 +350,40 @@
           >
           <p style="margin-left: 10px">SCHOOL</p>
         </div>
-        <ion-row>
-          <ion-col style="display: flex; align-items: center">
+        <div>
+          <div style="display: flex; align-items: center">
             <ion-icon name="calendar"></ion-icon>
             <ion-label style="font-weight: bold; margin-left: 10px"
               >Date naissance</ion-label
             >
-          </ion-col>
-          <ion-col>
-            <ion-datetime
-              class="commentaire"
-              type="date"
-              id="datenaissance"
-              [(ngModel)]="user.datedenaissance"
-            >
-            </ion-datetime>
-          </ion-col>
-        </ion-row>
+            <div>
+              <ion-datetime
+                class="commentaire"
+                type="date"
+                id="datenaissance"
+                [(ngModel)]="user.datedenaissance"
+              >
+              </ion-datetime>
+            </div>
+          </div>
+        </div>
 
-        <ion-row>
-          <ion-col size="3.5" style="margin-top: 15px">
+        <div style="display: flex">
+          <div style="margin-top: 15px; margin-left: 25px">
             <ion-label style="font-weight: bold">Genre</ion-label>
-          </ion-col>
+          </div>
 
-          <ion-col>
-            <ion-item>
-              <ng-container *ngIf="user.sexe==='homme';else femme">
-                <ion-select
-                  interface="popover"
-                  placeholder="Select One"
-                  value="h"
-                >
-                  <ion-select-option value="f">Femme</ion-select-option>
-                  <ion-select-option value="h">Homme</ion-select-option>
-                  <ion-select-option value="a">Autres</ion-select-option>
-                </ion-select>
-              </ng-container>
-
-              <ng-template #femme>
-                <ion-select
-                  interface="popover"
-                  placeholder="Select One"
-                  value="f"
-                >
-                  <ion-select-option value="f" selected
-                    >Femme</ion-select-option
-                  >
-                  <ion-select-option value="h">Homme</ion-select-option>
-                  <ion-select-option value="a">Autre</ion-select-option>
-                </ion-select>
-              </ng-template>
-            </ion-item>
-          </ion-col>
-        </ion-row>
+          <p style="margin-left: 20px">{{user.sexe}}</p>
+        </div>
       </ng-template>
-
-      <ng-container *ngIf="update">
+      <ng-container style="margin: 15px" *ngIf="update">
         <ion-icon
-          style="font-size: 25px; color: red; float: right; margin-top: 20px"
+          style="font-size: 30px; color: red; float: right; margin-top: 20px"
           (click)="updateComment()"
           name="close-circle-outline"
         ></ion-icon>
         <ion-icon
-          style="font-size: 25px; color: green; float: right; margin-top: 20px"
+          style="font-size: 30px; color: green; float: right; margin-top: 20px"
           (click)="userUpdate()"
           name="checkmark-circle-outline"
         ></ion-icon>
