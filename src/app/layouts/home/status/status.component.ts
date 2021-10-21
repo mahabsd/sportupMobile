@@ -38,13 +38,13 @@ import { FollowerService } from 'src/app/shared/Service/follower.service';
 })
 export class StatusComponent implements OnInit {
   @ViewChild(IonVirtualScroll) virtualScroll: IonVirtualScroll;
-  apiImgUser = `${environment.apiImg}User/`;
-  apiImg = `${environment.apiImg}Post/`;
   @Input() post: any;
   @Input() index: any;
   @Input() user: any;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
+  apiImgUser = `${environment.apiImg}User/`;
+  apiImg = `${environment.apiImg}Post/`;
   commentForm: FormGroup;
   comment: Comment = new Comment();
   longPressActive = false;
@@ -65,7 +65,7 @@ export class StatusComponent implements OnInit {
   bookmarked = false;
   id;
   iduser1;
-  EtatSuivre = false;
+  etatSuivre = false;
   follower = false;
   idFollowtoDelete;
   idprofilePassed;
@@ -88,7 +88,7 @@ export class StatusComponent implements OnInit {
     });
   }
   async ngOnInit() {
-this. getMe()
+this.getMe()
     await this.getCommentByPost();
   }
 
@@ -264,11 +264,11 @@ this. getMe()
         this.followerService.getFollow(iduserpassed, this.iduser1)
           .subscribe((res) => {
             if (res == null) {
-              this.router.navigate(["profil",iduserpassed,'adulte']);
+              this.router.navigate(['profil',iduserpassed,'adulte']);
               console.log('nope');
             } else {
               console.log(res);
-              this.router.navigate(["menu/tabs/layouts/coachprofile",iduserpassed,"followed"]);
+              this.router.navigate(['menu/tabs/layouts/coachprofile',iduserpassed,'followed']);
             }
           });
       },
