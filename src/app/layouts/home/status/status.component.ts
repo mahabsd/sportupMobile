@@ -55,7 +55,7 @@ export class StatusComponent implements OnInit {
   newMediaFiles: any= [];
   secondNewMediaFiles: any= [];
   thirdNewMediaFiles: any= [];
-  a: any= [];
+  tempMedia: any= [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -214,20 +214,21 @@ this. getMe()
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
       mediafiles: this.postService.getPost(this.post._id),
-      a: this.postService.getPost(this.post._id),
-    }).subscribe(({ comments, images, mediafiles,a }) => {
+      tempMedia: this.postService.getPost(this.post._id),
+    }).subscribe(({ comments, images, mediafiles,tempMedia }) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      let tempMedia = mediafiles.mediafiles;
+      this.tempMedia = mediafiles.mediafiles;
+      console.log(this.mediafiles);
 
-      if ( tempMedia.length<4){
-        this.newMediaFiles= tempMedia.splice(0,1);
+      if ( this.tempMedia.length<4){
+        this.newMediaFiles= this.tempMedia.splice(0,1);
       }
-      if (tempMedia.length>3){
-        this.newMediaFiles=tempMedia.slice(0,1);
-        this.thirdNewMediaFiles=tempMedia.slice(1,3);
-        this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
+      if (this.tempMedia.length>3){
+        this.newMediaFiles=this.tempMedia.slice(0,1);
+        this.thirdNewMediaFiles=this.tempMedia.slice(1,3);
+        this.secondNewMediaFiles=this.tempMedia.splice(3,this.mediafiles.length);
       }
 
 
