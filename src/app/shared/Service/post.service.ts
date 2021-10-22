@@ -79,5 +79,8 @@ export class PostService {
   postsOwner(id){
     this.postsOwnerId = id;
   }
+  getAllfollowingPosts(page, iduser) {
+    return this.utilsService.get(`${UtilsService.apiPost}following/${iduser}?page=${page}&limit=5`).pipe(map((res) => res));
+  }
 
 }

@@ -38,7 +38,9 @@ export class FollowerService {
 */
   deleteFollow(id: any) {
     return this.apiService.delete(`${UtilsService.apiFollower}`+id);
-  }   
+  }
+
+
 }
 
 
