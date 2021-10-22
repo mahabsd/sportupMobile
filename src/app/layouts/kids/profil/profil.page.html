@@ -92,8 +92,31 @@
     </ion-segment>
 
     <div class="body" *ngIf="selected==='photo'">
- 
+      <ion-row *ngFor="let file of postsimg">
+        <ion-col >
+          <div class="offer">
+            <div>
+              <ng-container *ngIf="getExt(file.file_name) === 'png'">
+                <div style="    width: 250px;
+                height: 200px;"  [style.background-size]="'cover'"
+                  [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
+                  errorImage="../../../assets/imgs/150.png" >
+                  <ion-icon></ion-icon>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+                <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                  errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+                  <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ion-col>
       
+      </ion-row>
+
+
     
     </div>
 

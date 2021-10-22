@@ -114,7 +114,7 @@
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div style="width: 150px;margin: 0 auto;" id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-            errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+            errorImage="../../../assets/imgs/150.png" (click)="displayImage(file?.file_name)">
             <ion-icon></ion-icon>
           </div>
         </ng-container>

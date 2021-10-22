@@ -206,9 +206,13 @@ export class StatusKidsComponent implements OnInit {
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       let tempMedia = mediafiles.mediafiles;
-
+      console.log("++++++++++++");
+      //work in mediafiless table
+            console.log(tempMedia);
       if ( tempMedia.length<4){
         this.newMediaFiles= tempMedia.splice(0,1);
+        console.log( this.newMediaFiles);
+
       }
       if (tempMedia.length>3){
         this.newMediaFiles=tempMedia.slice(0,1);
@@ -275,7 +279,7 @@ export class StatusKidsComponent implements OnInit {
   }
 
   async displayContent(files){
-
+console.log(files)
     const modal = await this.modalController.create({
       component: PostDisplayComponent,
       cssClass: 'imageModal',
