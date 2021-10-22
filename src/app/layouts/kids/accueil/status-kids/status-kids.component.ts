@@ -260,6 +260,7 @@ export class StatusKidsComponent implements OnInit {
   }
 
   async displayImage(a: any) {
+
     // eslint-disable-next-line @typescript-eslint/naming-convention
     //console.log(url);
     console.log(this.mediafiles);
@@ -274,6 +275,7 @@ export class StatusKidsComponent implements OnInit {
   }
 
   async displayContent(files){
+
     const modal = await this.modalController.create({
       component: PostDisplayComponent,
       cssClass: 'imageModal',

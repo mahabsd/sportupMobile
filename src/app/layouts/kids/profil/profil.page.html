@@ -36,8 +36,8 @@
 <ion-content
   class="parent"
   [scrollEvents]="true"
-  (ionScroll)="logScrolling($event)"
->
+  (ionScroll)="logScrolling($event)">
+
   <div class="image1">
     <ion-img
       class="imgUser"
@@ -92,64 +92,9 @@
     </ion-segment>
 
     <div class="body" *ngIf="selected==='photo'">
-      <div id="first-bloc">
-        <div id="first-photo" style="position: relative">
-          <div class="left-tape-first"></div>
-          <div class="right-tape-first"></div>
-        </div>
-        <div id="photo-set-one">
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-fourth"></div>
-            <div class="right-tape-fourth"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-third"></div>
-            <div class="right-tape-third"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
-          </div>
-        </div>
-      </div>
-      <div id="photo-set-two">
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-fourth"></div>
-          <div class="right-tape-fourth"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-fourth"></div>
-          <div class="right-tape-fourth"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-      </div>
+ 
+      
+    
     </div>
 
     <div class="content-profil" *ngIf="selected==='propos'">
@@ -391,35 +336,27 @@
     </div>
 
     <div *ngIf="selected==='Publications'">
-      <div
-        style="
-          padding: 15px 5px;
-          background-color: rgba(187, 187, 187, 0.589);
-          border-radius: 20px;
-          margin: 5px;
-        "
-        *ngFor="let post of userPosts"
-      >
-        <div>
-          <div style="display: flex; align-items: center">
-            <ion-avatar style="margin: 5px 20px">
-              <img src="../../../assets/kidsuser.png" />
-            </ion-avatar>
-
-            <div style="display: flex; flex-direction: column">
-              <ion-label>{{post.user.name}}</ion-label>
-              <ion-label>{{post.createdAt}}</ion-label>
+      <ion-row class="bodyFilter">
+    
+        <!-- <ion-virtual-scroll [items]="posts"> -->
+        <ion-card *ngFor="let post of posts;let i=index;" scrollY="true" style="width : 100%; border-radius: 10px;">
+          <div style="display: flex;justify-content:space-between">
+            <div></div>
+            <div class="delete" color="light" (click)="openPostMenu(post)">
+              <ion-icon name="ellipsis-horizontal"></ion-icon>
             </div>
           </div>
-          <div
-            style="display: flex; flex-direction: column; margin-left: 105px"
-          >
-            <ion-label style="font-weight: bold">{{post.title}} :</ion-label>
-            <ion-label>{{post.content}} </ion-label>
-          </div>
-        </div>
-        <div id="main-content"></div>
-      </div>
+         
+          <app-status [post]="post" [index]="i" [user]="user$">
+          </app-status>
+        </ion-card>
+        <!-- </ion-virtual-scroll> -->
+      </ion-row>
+    
+      <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
+        <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </div>
   </div>
 </ion-content>

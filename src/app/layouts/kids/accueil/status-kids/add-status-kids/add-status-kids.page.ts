@@ -126,6 +126,17 @@ export class AddStatusKidsPage implements OnInit {
     toast.present();
   }
 
+  async AlertpresentToast(message) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration: 2000,
+      color: 'dark',
+      position: 'bottom'
+    });
+    toast.present();
+  }
+
+
   createPost() {
     console.log(this.filesToUpload);
     const fd = new FormData();
@@ -290,24 +301,24 @@ export class AddStatusKidsPage implements OnInit {
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
     this.selectedPreviews = [];
-    for (const file of this.selectedFiles) {
-      console.log('tpye' + file.type);
 
-      if (file.type === 'image/jpeg') {
-        const reader = new FileReader();
-        reader.onload = e => this.selectedPreviews.push(reader.result);
-
-        reader.readAsDataURL(file);
-      }
-      else if (file.type === "video/mp4") {
-        this.selectedPreviews.push('../../../assets/imgs/150.png');
-
-      }
-
-
-
-    }
-
+        if(this.selectedFiles.length>1){
+          this.AlertpresentToast("vous devez ajouter seulement une image")
+          
+        }
+        else {
+          if (this.selectedFiles[0].type === 'image/jpeg') {
+            const reader = new FileReader();
+            reader.onload = e => this.selectedPreviews.push(reader.result);
+    
+            reader.readAsDataURL(this.selectedFiles[0]);
+          }
+          else if (this.selectedFiles[0].type === "video/mp4") {
+            this.selectedPreviews.push('../../../assets/imgs/150.png');
+    
+          }
+        }
+            
     this.actionSheet.dismiss();
   }
 

@@ -1,4 +1,4 @@
-<div class="img-wrapper">
+<div class="img-wrapper" >
   <div>
     
     
@@ -87,18 +87,6 @@
   </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
     <ion-row>
       <ion-col size="9">
         <ion-label
@@ -119,7 +107,8 @@
     </ion-row>
   </div>
 
-  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0">
+  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0" (click)="displayContent(post)">
+    
     <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
