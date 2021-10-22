@@ -164,25 +164,74 @@ export class HobbiesPage implements OnInit {
   ) {
     this.HobbiesData = [
       {
-        imgsrc: "https://images.unsplash.com/photo-1483721310020-03333e577078?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
-        hobbiename: 'Tennis ',
+        imgsrc: "../../assets/imgsHobbies/Aquatique.jpg",
+        hobbiename: 'Aquatique',
         id: 3
       },
       {
-        imgsrc: "https://images.unsplash.com/photo-1544698310-74ea9d1c8258?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1490&q=80",
-        hobbiename: 'Foot ',
+        imgsrc: "../../assets/imgsHobbies/avecMoteur.jpg",
+        hobbiename: 'Avec Moteur ',
         id: 4
       },
+      
       {
-        imgsrc: "https://images.unsplash.com/photo-1624880357913-a8539238245b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80",
-        hobbiename: 'Hand ',
+        imgsrc: "../../assets/imgsHobbies/dansLesAirs.jpg",
+        hobbiename: 'Dans les airs ',
+        id: 5
+      },
+      
+      {
+        imgsrc: "../../assets/imgsHobbies/DIVERS.jpg",
+        hobbiename: 'Divers ',
+        id: 6
+      },
+      
+      {
+        imgsrc: "../../assets/imgsHobbies/enEquipe.jpg",
+        hobbiename: 'En Equipe ',
+        id: 7
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/fullnature.jpg",
+        hobbiename: 'Full nature',
+        id: 8
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/marche.jpg",
+        hobbiename: 'Marche',
+        id: 9
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/rando.jpg",
+        hobbiename: 'Rando ',
+        id: 10
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/RAQUETTES.jpg",
+        hobbiename: 'Raquettes ',
+        id: 11
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/rouesansMoteur.jpg",
+        hobbiename: 'Sans Moteur ',
+        id: 12
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/sportDeGlisse.jpg",
+        hobbiename: 'Sport De Glisse ',
+        id: 13
+      },
+      {
+        imgsrc: "../../assets/imgsHobbies/sportsDeDuels.jpg",
+        hobbiename: 'sports De Duels ',
         id: 1
       },
       {
-        imgsrc: "https://images.unsplash.com/photo-1546519638-68e109498ffc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1067&q=80",
-        hobbiename: 'Basket ',
+        imgsrc: "../../assets/imgsHobbies/trainingEtDancing.jpg",
+        hobbiename: 'Training et Dancing',
         id: 2
-      },
+      }
+    
     ];
 
     this.sliderTwo = {
