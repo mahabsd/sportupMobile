@@ -278,34 +278,47 @@
             <ion-label style="font-weight: bold">Genre</ion-label>
           </div>
 
-          <div>
-            <ion-item>
-              <ng-container *ngIf="user.sexe==='homme';else femme">
-                <ion-select
-                  interface="popover"
-                  placeholder="Select One"
-                  value="homme"
-                  [(ngModel)]="user.sexe"
-                >
-                  <ion-select-option value="femme">Femme</ion-select-option>
-                  <ion-select-option value="homme">Homme</ion-select-option>
-                  <ion-select-option value="autres">Autre</ion-select-option>
-                </ion-select>
-              </ng-container>
+          <ion-item>
+            <ng-container *ngIf="user.sexe==='Homme';else Femme">
+              <ion-select
+                interface="popover"
+                placeholder="Select One"
+                value="Homme"
+                [(ngModel)]="user.sexe"
+              >
+                <ion-select-option value="Femme">Femme</ion-select-option>
+                <ion-select-option value="Homme">Homme</ion-select-option>
+                <ion-select-option value="Autre">Autre</ion-select-option>
+              </ion-select>
+            </ng-container>
 
-              <ng-template #femme>
-                <ion-select
-                  interface="popover"
-                  placeholder="Select One"
-                  value="femme"
-                  [(ngModel)]="user.sexe"
-                >
-                  <ion-select-option value="femme">Femme</ion-select-option>
-                  <ion-select-option value="homme">Homme</ion-select-option>
-                  <ion-select-option value="autres">Autre</ion-select-option>
-                </ion-select>
-              </ng-template>
-            </ion-item>
+            <ng-template #Femme>
+              <ion-select
+                interface="popover"
+                placeholder="Select One"
+                value="Femme"
+                [(ngModel)]="user.sexe"
+              >
+                <ion-select-option value="Femme">Femme</ion-select-option>
+                <ion-select-option value="Homme">Homme</ion-select-option>
+                <ion-select-option value="Autre">Autre</ion-select-option>
+              </ion-select>
+            </ng-template>
+          </ion-item>
+        </div>
+        <div style="display: flex; justify-content: space-between">
+          <div></div>
+          <div style="margin: 15px">
+            <ion-icon
+              style="font-size: 30px; color: red"
+              (click)="updateComment()"
+              name="close-circle-outline"
+            ></ion-icon>
+            <ion-icon
+              style="font-size: 30px; color: green"
+              (click)="userUpdate()"
+              name="checkmark-circle-outline"
+            ></ion-icon>
           </div>
         </div>
       </ng-container>
@@ -376,18 +389,6 @@
           <p style="margin-left: 20px">{{user.sexe}}</p>
         </div>
       </ng-template>
-      <ng-container style="margin: 15px" *ngIf="update">
-        <ion-icon
-          style="font-size: 30px; color: red; float: right; margin-top: 20px"
-          (click)="updateComment()"
-          name="close-circle-outline"
-        ></ion-icon>
-        <ion-icon
-          style="font-size: 30px; color: green; float: right; margin-top: 20px"
-          (click)="userUpdate()"
-          name="checkmark-circle-outline"
-        ></ion-icon>
-      </ng-container>
     </div>
 
     <div *ngIf="selected==='Publications'">

@@ -85,7 +85,7 @@
   >
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="mediafiles.length === 1">
+  <div *ngIf="mediafiles.length === 0">
     <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
@@ -130,7 +130,7 @@
     *ngIf="
       newMediaFiles.length > 0 &&
       thirdNewMediaFiles.length === 0 &&
-      mediafiles.length !== 1
+      mediafiles.length !== 0
     "
   >
     <div style="display: flex; justify-content: center">

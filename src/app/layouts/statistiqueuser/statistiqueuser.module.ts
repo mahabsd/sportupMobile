@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { StatistiqueuserPageRoutingModule } from './statistiqueuser-routing.module';
 
 import { StatistiqueuserPage } from './statistiqueuser.page';
-import { LineChComponent } from '../line-ch/line-ch.component';
 import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
@@ -18,7 +17,7 @@ import { ComponentModule } from 'src/app/component/component.module';
     StatistiqueuserPageRoutingModule,
     ComponentModule
   ],
-  declarations: [StatistiqueuserPage, LineChComponent],
-  exports: [LineChComponent],
+  declarations: [StatistiqueuserPage],
+  exports: [],
 })
 export class StatistiqueuserPageModule { }
