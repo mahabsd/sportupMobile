@@ -220,7 +220,6 @@ this.getMe()
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       this.tempMedia = mediafiles.mediafiles;
-      console.log(this.mediafiles);
 
       if ( this.tempMedia.length<4){
         this.newMediaFiles= this.tempMedia.splice(0,1);
