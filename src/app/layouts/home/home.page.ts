@@ -53,8 +53,8 @@ export class HomePage implements OnInit {
          // the lang to use, if the lang isn't available, it will use the current loader to get them
         translate.use('en');
       storage.get('lan').then((val) => {
-        this.lang = val;
-         translate.use(this.lang);
+        if(val)
+         translate.use(val);
       });
   }
 
