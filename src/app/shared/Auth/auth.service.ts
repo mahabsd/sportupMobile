@@ -9,7 +9,9 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { UtilsService } from '../Service/utils.service';
 import { StorageService } from '../Service/storage.service';
 import { throwError } from 'rxjs';
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   role: any;
   statut = false;

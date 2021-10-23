@@ -21,6 +21,7 @@ import { ComponentModule } from './component/component.module';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { SharedModule } from './shared/modules/shared.module';
+import { AdultsNotAllowedGuard } from './shared/Guard/adults-not-allowed.guard';
 
 const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
 @NgModule({
@@ -56,7 +57,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4112', options: {} };
     },
     { provide: HTTP_INTERCEPTORS, useClass: JWTInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: H401Interceptor, multi: true },
-    GoogleMaps
+    GoogleMaps,
+    AdultsNotAllowedGuard
   ],
   bootstrap: [AppComponent]
 })

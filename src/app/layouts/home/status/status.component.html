@@ -85,7 +85,54 @@
   >
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0">
+  <div *ngIf="mediafiles.length === 0">
+    <div style="display: flex; justify-content: center">
+      <div *ngFor="let file of newMediaFiles">
+        <ng-container *ngIf="getExt(file.file_name) === 'png'">
+          <div
+            style="width: 350px; height: 220px"
+            id="first"
+            [style.background-size]="'cover'"
+            [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+            [lazyLoad]="apiImg + file?.file_name"
+            errorImage="../../../assets/imgs/150.png"
+            (click)="displayImage(mediafiles)"
+          >
+            <ion-icon></ion-icon>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+          <div
+            style="
+              margin-left: 15px;
+              width: 350px;
+              height: 220px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 10px;
+            "
+            [style.background-size]="'cover'"
+            [style.background-image]="'url(../../../assets/imgs/150.png)'"
+            errorImage="../../../assets/imgs/150.png"
+            (click)="displayVideo(file)"
+          >
+            <ion-icon
+              style="height: 50px; width: 50px"
+              name="videocam"
+            ></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+  <div
+    *ngIf="
+      newMediaFiles.length > 0 &&
+      thirdNewMediaFiles.length === 0 &&
+      mediafiles.length !== 0
+    "
+  >
     <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
@@ -140,6 +187,15 @@
           </ng-container>
           <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
             <div
+              style="
+                margin-left: 15px;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+              "
               [style.background-size]="'cover'"
               [style.background-image]="'url(../../../assets/imgs/150.png)'"
               errorImage="../../../assets/imgs/150.png"

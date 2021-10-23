@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { PostsResolverService } from 'src/app/Shared/Service/posts-resolver.service';
 import { TabsPage } from './tabs.page';
 import { ProfileResolverService } from '../../Shared/Resolvers/ProfileResolverService';
+import { AdultsNotAllowedGuard } from 'src/app/shared/Guard/adults-not-allowed.guard';
+import { RolesGuardGuard } from 'src/app/shared/Guard/roles-guard.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +17,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () => import('./../../layouts/home/home.module').then(m => m.HomePageModule),
+            canActivate:[RolesGuardGuard],
             resolve: {
               data: ProfileResolverService
             }
@@ -23,11 +26,15 @@ const routes: Routes = [
       },
       {
         path: 'accueil',
-        loadChildren: () => import('./../../layouts/kids/accueil/accueil.module').then(m => m.AccueilPageModule)
+        loadChildren: () => import('./../../layouts/kids/accueil/accueil.module').then(m => m.AccueilPageModule),
+        canActivate:[AdultsNotAllowedGuard]
+
       },
       {
         path: 'commentskids',
-        loadChildren: () => import('./../../layouts/kids/comments-kids/comments-kids.module').then(m => m.CommentsKidsPageModule)
+        loadChildren: () => import('./../../layouts/kids/comments-kids/comments-kids.module').then(m => m.CommentsKidsPageModule),
+        canActivate:[AdultsNotAllowedGuard]
+
       },
       {
         path: 'layouts',
@@ -48,7 +55,8 @@ const routes: Routes = [
       },
       {
         path: 'profilkids/:id',
-        loadChildren: () => import('../../layouts/kids/profil/profil.module').then(m => m.ProfilPageModule)
+        loadChildren: () => import('../../layouts/kids/profil/profil.module').then(m => m.ProfilPageModule),
+        canActivate:[AdultsNotAllowedGuard]
       },
       {
         path: 'hobbies',

@@ -12,6 +12,7 @@ import { Socket } from 'ngx-socket-io';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { TranslateService } from '@ngx-translate/core';
 import { Storage } from '@ionic/storage';
+import { FollowerService } from '../../shared/Service/follower.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -19,7 +20,7 @@ import { Storage } from '@ionic/storage';
 })
 export class HomePage implements OnInit {
   @ViewChild(IonCard, { read: ElementRef }) list: ElementRef;
-  menuLabels = ['Tout','Favoris','Abonnement']
+  menuLabels = ['Tout', 'Favoris', 'Abonnement']
   indexPub = null;
   posts: any = [];
   tout;
@@ -48,7 +49,7 @@ export class HomePage implements OnInit {
     private userService: UserService,
     private translate: TranslateService,
     public storage: Storage) {
-      translate.setDefaultLang('en');
+    translate.setDefaultLang('en');
 
          // the lang to use, if the lang isn't available, it will use the current loader to get them
         translate.use('en');
@@ -59,12 +60,8 @@ export class HomePage implements OnInit {
   }
 
   async ngOnInit() {
-    this.getAllPostsByEvent();
-    
-    // console.log(this.page);
-
     this.getMe();
-   
+    this.getAllPostsByEvent();
   }
 
 
@@ -79,15 +76,20 @@ export class HomePage implements OnInit {
   }
 
   getAllPostsByEvent(event?) {
-    this.postService.getAllPosts(this.page).pipe(share()).subscribe(res => {
-      this.posts = this.posts.concat(res['data']);
-      if (event) {
-        event.target.complete();
-      }
+    this.userService.getMe().subscribe(res => {
+      this.user$ = res.data.data;
+      this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
+        console.log(res.data.shared);
+        this.posts = this.posts.concat(res.data.data);
+        console.log(this.posts);
+        if (event) {
+          event.target.complete();
+        }
+      });
     });
+
   }
   loadMore(event) {
-    // console.log(this.page);
     this.page++;
     this.getAllPostsByEvent(event);
   }
