@@ -16,7 +16,7 @@ import { PopOverSuivrePageComponent } from '../profil/pop-over-suivre-page/pop-o
 export class ProfilAdultePage implements OnInit {
 
 
- 
+
   posts: any = [];
   update = false;
   gendre;
@@ -24,11 +24,14 @@ export class ProfilAdultePage implements OnInit {
   user: User = new User();
   user_id;
   title: any;
-  checkSelf=false;
+  checkSelf = false;
   idprofilePassed
   profileClickedName
-  constructor(private userservice: UserService, private postKidsService: PostKidsService,
-    public popoverController: PopoverController, public userService: UserService,  private activatedRoute: ActivatedRoute) { }
+  constructor(private userservice: UserService,
+    private postKidsService: PostKidsService,
+    public popoverController: PopoverController,
+    public userService: UserService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.selected = 'photo';
@@ -48,7 +51,7 @@ export class ProfilAdultePage implements OnInit {
       (response) => {
         console.log('user clicked' + response.data.data);
         this.user = response.data.data;
-       // this.profileClickedName = response.data.data.name;
+        // this.profileClickedName = response.data.data.name;
       },
       (error) => {
         console.error(error);
@@ -57,9 +60,9 @@ export class ProfilAdultePage implements OnInit {
   }
   async getMe() {
     this.userservice.getMe().subscribe((res) => {
-    //  this.user = res.data.data;
-      if(this.idprofilePassed==res.data.data._id){
-        this.checkSelf=true;
+      //  this.user = res.data.data;
+      if (this.idprofilePassed == res.data.data._id) {
+        this.checkSelf = true;
         console.log('nafsoussssssss')
       }
     });
@@ -114,18 +117,18 @@ export class ProfilAdultePage implements OnInit {
   }
 
 
-  async presentPopoverNewMsg(ev: any,idprofilePassed) {
+  async presentPopoverNewMsg(ev: any, idprofilePassed) {
     const popover = await this.popoverController.create({
       component: PopOverSuivrePageComponent,
-     // cssClass: 'popoverProfil-custom-class',
+      // cssClass: 'popoverProfil-custom-class',
       event: ev,
-      componentProps: {idpassed: idprofilePassed},
+      componentProps: { idpassed: idprofilePassed },
 
       translucent: true
     });
-   // console.log(idprofilePassed)
+    // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
-    
+
 
     await popover.present();
 

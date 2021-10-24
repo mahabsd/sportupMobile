@@ -28,7 +28,7 @@ export class ChatPage implements OnInit {
   ngOnInit() {
     this.getMe();
     this.getchat();
-    this.idprofilePassed= this.activatedRoute.snapshot.params.id
+    this.idprofilePassed= this.activatedRoute.snapshot.params.id;
     this.socket.connect();
 
    // let name = ` User-${new Date().getTime()}`;
@@ -41,12 +41,10 @@ export class ChatPage implements OnInit {
       if (data['event'] === 'left') {
         this.presentToast(`User left:${user}`);
       } else {
-
         this.presentToast(`User joined:${user}`);
       }
     });
     this.socket.fromEvent('message').subscribe(message => {
-      console.log('New:', message);
       this.getchat();
     });
   }
@@ -79,26 +77,13 @@ export class ChatPage implements OnInit {
 
 
   getchat(){
-
-
     this.userservice.getMe().subscribe((res) => {
-
-      this.chatService.getChat( res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
+      this.chatService.getChat(res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
       console.log(res1);
       this.messages2=res1;
-     // this.updateSeenMsgs(res1, sender);
-
       });
-
-
     });
-
   }
-  updateSeenMsgs(item, sender){
-    item.seen = false;
-    console.log(sender);
-    this.chatService.updateChat(item._id, item).subscribe(res=> console.log(res));
-      }
 }
 
 

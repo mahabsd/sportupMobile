@@ -64,7 +64,7 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getfollow();
     this.publiations();
-     
+
   }
 
 
