@@ -8,8 +8,6 @@ export class EventService {
   private subject = new Subject<any>();
   constructor() { }
 
-
-  
   sendMessage(eventTop: boolean) {
     this.subject.next({ event: eventTop });
   }

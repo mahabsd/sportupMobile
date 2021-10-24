@@ -27,8 +27,8 @@ export class BoiteReceptionPage implements OnInit {
   recherche;
   constructor(private userservice: UserService,
     private followerService: FollowerService,
-     private eventService: EventService,
-      private chatService: ChatService
+    private eventService: EventService,
+    private chatService: ChatService
   ) {
     this.addMoreItems();
   }
@@ -46,11 +46,7 @@ export class BoiteReceptionPage implements OnInit {
     this.hideicon = true;
     this.selecteditemIndex = i;
     if (this.hideicon) {
-
-
     }
-
-
   }
 
   getMe() {
@@ -70,13 +66,10 @@ export class BoiteReceptionPage implements OnInit {
     this.userservice.getMe().subscribe(
       (response) => {
         this.chatService.getAllChatsByuser(response.data.data.id).subscribe((res) => {
-              this.users=res;
+          this.users = res;
           if (event) {
-            event.target.complete()
+            event.target.complete();
           }
-          console.log("foloow")
-
-          console.log(res)
         });
       },
       (error) => {
@@ -86,18 +79,15 @@ export class BoiteReceptionPage implements OnInit {
 
   }
 
-
-
-
   loadData(event) {
 
     setTimeout(() => {
       console.log('Done');
-      this.page = this.page * 2
+      this.page = this.page * 2;
       this.getfollow();
       this.numTimesLeft -= 1;
       event.target.complete();
-      this.users2 = []
+      this.users2 = [];
 
     }, 500);
   }
@@ -114,13 +104,22 @@ export class BoiteReceptionPage implements OnInit {
       this.isScrollTop = false;
 
     } else {
-      this.isScrollTop = true;;
+      this.isScrollTop = true;
     }
     this.eventService.sendMessage(this.isScrollTop);
 
   }
-  updateSeenMsgs(item){
-item.seen = true;
-this.chatService.updateChat(item._id, item).subscribe(res=> console.log(res));
+  updateSeenMsgs(item) {
+    item.seen = true;
+
+    if (item.seenuser1.user1 === this.user$ )
+    {
+      item.seenuser1.lastVisit = Date();
+    }
+    else {
+      item.seenuser1.lastVisit = Date();
+    }
+
+    this.chatService.updateChat(item._id, item).subscribe(res => console.log(res));
   }
 }

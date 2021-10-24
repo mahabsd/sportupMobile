@@ -52,9 +52,14 @@ export class CoachprofilePage implements OnInit {
     private postService: PostService,
     private translate: TranslateService,
     public storage: Storage) {
-    storage.get('lan').then((val) => {
+      translate.setDefaultLang('en');
+
+      // the lang to use, if the lang isn't available, it will use the current loader to get them
+     translate.use('en');
+   storage.get('lan').then((val) => {
+     if(val)
       translate.use(val);
-    });
+   });
   }
 
   ngOnInit() {
@@ -64,7 +69,7 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getfollow();
     this.publiations();
-     
+
   }
 
 
