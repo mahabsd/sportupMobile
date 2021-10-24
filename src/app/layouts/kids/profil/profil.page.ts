@@ -5,7 +5,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/type-annotation-spacing */
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSegment } from '@ionic/angular';
+import { IonSegment, ModalController } from '@ionic/angular';
 import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { UserService } from '../../../Shared/Service/user.service';
 import { PopoverController } from '@ionic/angular';
@@ -14,6 +14,14 @@ import { User } from 'src/app/Shared/Model/User';
 import { ActivatedRoute } from '@angular/router';
 import { PopOverSuivrePageComponent } from '../../profil/pop-over-suivre-page/pop-over-suivre-page.component';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { PostService } from 'src/app/Shared/Service/post.service';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
+import { forkJoin } from 'rxjs';
+import { ImageService } from 'src/app/shared/Service/image.service';
+import { environment } from 'src/environments/environment';
+import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { PostDisplayComponent } from '../../post-display/post-display.component';
 
 @Component({
   selector: 'app-profil',
@@ -21,6 +29,14 @@ import { EventService } from 'src/app/shared/Service/event.service';
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
+  images: any = [];
+  apiImg = `${environment.apiImg}Post/`;
+
+  mediafiles: any = [];
+  newMediaFiles: any= [];
+  secondNewMediaFiles: any= [];
+  thirdNewMediaFiles: any= [];
+  tempMedia: any= [];
   posts: any = [];
   update = false;
   gendre;
@@ -71,25 +87,36 @@ export class ProfilPage implements OnInit {
   }
 ];
   isScrollTop: boolean;
+  page = 1;
+  selectedDate;
+  postsOwnerId: any;
+  posts$: any;
+  postsimg$: any;
+  postsimg: any = [];
+
   constructor(private userservice: UserService,
      private postKidsService: PostKidsService,
     public popoverController: PopoverController,
      public userService: UserService,
       private activatedRoute: ActivatedRoute,
-      private eventService: EventService,
+      private savepostsService: FavorisService,
+      private eventService: EventService,private postService: PostService,private imageservice:ImageService,private videoPlayer: VideoPlayer,
+      private modalController: ModalController,
+
       ) { }
 
   ngOnInit() {
     this.selected = 'photo';
     this.getMe();
-    this.getMyPostsKids();
+    //this.getMyPostsKids();
     this.title = "Profile";
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
 
 
     this.getUserByid();
-
-
+this.getPosts()
+//this.getCommentByPost()
+//this.getImageBypost()
   }
 
   getUserByid() {
@@ -189,6 +216,56 @@ export class ProfilPage implements OnInit {
     this.update = false;
   }
 
+
+   getimageBypostId(idpost) {
+    console.log(idpost)
+      this.imageservice.getImageBypost(idpost).subscribe((res) => {
+        this.postsimg$=res;
+        this.postsimg$.map(post=> {
+          console.log(post)
+          this.postsimg.push(post);
+
+          //this.posts.push(post.post);
+       });
+      //console.log( res)
+      });
+  }
+
+
+  getPosts(event?) {
+    this.postsOwnerId = this.postService.postsOwnerId;
+   
+    this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
+     // this.posts = this.posts.concat(response['data']);
+      this.savepostsService.getSavedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
+        this.posts$ = res.data.data;
+        this.posts$.map(post=> {
+          console.log(post.post);
+          this.getimageBypostId(post.post.id)
+          this.posts.push(post.post);
+        });
+       });
+       this.savepostsService.getAllSharedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
+
+        this.posts$ = res.data.data;
+        console.log(res.data.data);
+
+        this.posts$.map(post=> {
+          this.getimageBypostId(post.post.id)
+
+          this.posts.push(post.post);
+       });
+     //  console.log(this.posts);
+
+      });
+    // this.getAllsharedPosts();
+       if (event) {
+        event.target.complete();
+      }
+    }, error => {
+      console.error(error);
+    });
+  }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
       this.isScrollTop = false;
@@ -198,4 +275,79 @@ export class ProfilPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
+
+  loadMore(event) {
+    this.page++;
+    this.getPosts(event);
+  }
+
+  getAllsharedPosts() {
+    this.savepostsService.getAllSharedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
+      this.posts$ = res.data.data;
+      console.log(res.data.data);
+  
+      this.posts$.map(post=> {
+        this.posts.push(post.post);
+     });
+     console.log(this.posts);
+  
+    });
+   }
+
+   getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    //console.log(ext);
+    return ext;
+  }
+
+  
+
+  async displayImage(a: any) {
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    //console.log(url);
+    console.log(this.mediafiles);
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        image: a,
+      },
+    });
+    return await modal.present();
+  }
+
+  async displayContent(files){
+
+    const modal = await this.modalController.create({
+      component: PostDisplayComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        post: files,
+      },
+    });
+    return await modal.present();
+  }
+
+  async displayVideo(file: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    // console.log(url);
+
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        video: file,
+      },
+    });
+    return await modal.present();
+  }
+  playvid(url) {
+    this.videoPlayer.play(url).then(() => {
+      //console.log('video completed');
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+   
 }

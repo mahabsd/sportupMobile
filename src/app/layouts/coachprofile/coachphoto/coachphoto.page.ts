@@ -120,9 +120,9 @@ export class CoachphotoPage implements OnInit {
   }
 
   getImageByIdUser(id) {
-
     this.imageService.getImageByUserId(id).subscribe((res) => {
       this.images = res;
+      
     });
   }
   getMe() {

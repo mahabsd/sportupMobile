@@ -3,6 +3,7 @@ import { PostService } from 'src/app/Shared/Service/post.service';
 import { forkJoin, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ModalController } from '@ionic/angular';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 @Component({
   selector: 'app-post-display',
   templateUrl: './post-display.component.html',
@@ -14,8 +15,10 @@ export class PostDisplayComponent implements OnInit {
   images;
   mediafiles;
   apiPost = `${environment.apiImg}Post/`;
-
-  constructor(private postService: PostService, private modalController: ModalController) { }
+  shared= false;
+  bookmarked=false;
+  constructor(private postService: PostService, private modalController: ModalController,    private favorisService: FavorisService,
+    ) { }
 
     get_url_extension( url ) {
     return url.split(/[#?]/)[0].split('.').pop().trim();
@@ -38,6 +41,25 @@ forkJoin({
       this.mediafiles = mediafiles.mediafiles;
       let tempMedia = mediafiles.mediafiles;
     });
+}
+share(post) {
+  this.shared = true;
+  this.favorisService.addShared(this.post._id).subscribe((res) => {
+    this.shared = true;
+  });
+}
+
+bookmark(post) {
+  this.favorisService.addFavoris(this.post._id).subscribe((res) => {
+    //console.log(res);
+    this.bookmarked = true;
+  });
+}
+unBookmark(post) {
+  this.favorisService.addFavoris(this.post._id).subscribe((res) => {
+    //console.log(res);
+    this.bookmarked = false;
+  });
 }
 
 }
