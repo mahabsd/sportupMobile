@@ -28,10 +28,9 @@ export class LoginPage implements OnInit {
     private translate: TranslateService,
     private storage: Storage) {
       translate.setDefaultLang('en');
-
-      // the lang to use, if the lang isn't available, it will use the current loader to get them
-     translate.use('en');
+ 
       this.storage.get('lan').then((val) => {
+        if(val)
         translate.use(val);
       });
   }
