@@ -1,16 +1,31 @@
 <app-header [isKid]="true"> </app-header>
 <ion-content [scrollEvents]="true"  (ionScroll)="logScrolling($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Refreshing..."
+    >
+    </ion-refresher-content>
+  </ion-refresher>
   <ion-grid>
     <ion-row>
-      <ion-col class="my-thin-col stylecards" *ngFor="let post of posts ">
+      <ion-col class="my-thin-col stylecards" *ngFor="let post of posts " >
         <app-status-kids
           [post]="post"
           [user]="user$"
           (disLikeFn)="disLike(post)"
-          (refreshPosts)="getAllPostsKids()"
           (likeFn)="like(post)"
         ></app-status-kids>
       </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content
+      loadingSpinner="crescent"
+      loadingText="Loading more data..."
+    >
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

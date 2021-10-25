@@ -7,6 +7,7 @@ import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-boite-reception',
   templateUrl: './boite-reception.page.html',
@@ -14,6 +15,8 @@ import { EventService } from 'src/app/shared/Service/event.service';
 })
 export class BoiteReceptionPage implements OnInit {
   message = '';
+  apiImgUser = `${environment.apiImg}User/`;
+  apiImg = `${environment.apiImg}Post/`;
   kids = [];
   currentUser;
   isScrollTop: boolean;

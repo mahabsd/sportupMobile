@@ -22,6 +22,7 @@ import { environment } from 'src/environments/environment';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { PostDisplayComponent } from '../../post-display/post-display.component';
+import { DisplayImgProfilKidsComponent } from './display-img-profil-kids/display-img-profil-kids.component';
 
 @Component({
   selector: 'app-profil',
@@ -31,7 +32,7 @@ import { PostDisplayComponent } from '../../post-display/post-display.component'
 export class ProfilPage implements OnInit {
   images: any = [];
   apiImg = `${environment.apiImg}Post/`;
-
+  apiImgUser = `${environment.apiImg}User/`;
   mediafiles: any = [];
   newMediaFiles: any= [];
   secondNewMediaFiles: any= [];
@@ -93,7 +94,10 @@ export class ProfilPage implements OnInit {
   posts$: any;
   postsimg$: any;
   postsimg: any = [];
-
+  ResWithOneimg: any= [];
+  
+  ResWithTwoimg: any= [];
+  ResWithThreeimg: any= [];
   constructor(private userservice: UserService,
      private postKidsService: PostKidsService,
     public popoverController: PopoverController,
@@ -225,9 +229,13 @@ this.getPosts()
           console.log(post)
           this.postsimg.push(post);
 
-          //this.posts.push(post.post);
        });
-      //console.log( res)
+      console.log(  this.postsimg.length)
+
+      this.ResWithOneimg= this.postsimg.slice(0,1);
+      this.ResWithTwoimg= this.postsimg.slice(1,5);
+      this.ResWithThreeimg= this.postsimg.slice(5, this.postsimg.length);
+
       });
   }
 
@@ -258,7 +266,7 @@ this.getPosts()
      //  console.log(this.posts);
 
       });
-    // this.getAllsharedPosts();
+   
        if (event) {
         event.target.complete();
       }
@@ -312,6 +320,19 @@ this.getPosts()
       cssClass: 'imageModal',
       componentProps: {
         image: a,
+      },
+    });
+    return await modal.present();
+  }
+  
+
+  async displayContentPhotoTab(files){
+
+    const modal = await this.modalController.create({
+      component: DisplayImgProfilKidsComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        post: files,
       },
     });
     return await modal.present();

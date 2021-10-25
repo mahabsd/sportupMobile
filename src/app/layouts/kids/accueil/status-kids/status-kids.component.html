@@ -6,7 +6,8 @@
     <ion-row style="height: 40px;text-align: initial;" routerLink="/profil/{{post.user.id}}/kids" >
       <ion-col size="3">
         <ion-avatar>
-          <img class="myImageUser" src="../../../assets/kidsuser.png" />
+          <img [src]="apiImgUser + post?.user?.photo" class="myImageUser" />
+
           
 
         </ion-avatar>
@@ -177,18 +178,17 @@
         </ng-template>
       </ion-col>
 
-      <ion-col size="3"> </ion-col>
+      <ion-col size="5"> </ion-col>
 
       <ion-col size="3">
         <ion-icon (click)="presentModal(post)"  name="chatbubble-ellipses-outline"></ion-icon>
 
-        <ion-label class="labelnblikes" >{{comments.length}}</ion-label>
+        <ion-label class="labelnblikes" >{{comments.length}} </ion-label>
 
 
       </ion-col>
-      <ion-col size="1">
-        <ion-icon name="close" (click)="presentAlertConfirm(post)"></ion-icon>
-      </ion-col>
+ 
+      
     </ion-row>
   </div>
 </div>

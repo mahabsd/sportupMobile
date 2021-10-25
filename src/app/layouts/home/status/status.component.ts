@@ -167,6 +167,8 @@ this.getMe()
   }
 
   async displayImage(a: any) {
+    console.log("here")
+
     // eslint-disable-next-line @typescript-eslint/naming-convention
     //console.log(url);
     console.log(this.mediafiles);
@@ -223,9 +225,7 @@ console.log("++++"+this.post._id)
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       this.tempMedia = mediafiles.mediafiles;
-      console.log("++++++++++++");
-//work in mediafiless table
-      console.log(this.tempMedia);
+
 
       if ( this.tempMedia.length<4){
         this.newMediaFiles= this.tempMedia.splice(0,1);
