@@ -4,6 +4,7 @@ import { FollowerService } from 'src/app/Shared/Service/follower.service';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { ChatService } from 'src/app/shared/Service/chat.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-boite-reception',
@@ -15,6 +16,8 @@ export class BoiteReceptionPage implements OnInit {
   hideicon = false;
   selecteditemIndex;
   users = [];
+  apiImgUser = `${environment.apiImg}User/`;
+  apiImg = `${environment.apiImg}Post/`;
   users2: any = [];
   page = 8; items = [];
   numTimesLeft = 5;

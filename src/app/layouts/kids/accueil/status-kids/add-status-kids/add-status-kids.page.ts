@@ -307,7 +307,7 @@ export class AddStatusKidsPage implements OnInit {
           
         }
         else {
-          if (this.selectedFiles[0].type === 'image/jpeg') {
+          if (this.selectedFiles[0].type === 'image/png'||this.selectedFiles[0].type === 'image/jpeg') {
             const reader = new FileReader();
             reader.onload = e => this.selectedPreviews.push(reader.result);
     

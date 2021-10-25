@@ -206,12 +206,12 @@ export class StatusKidsComponent implements OnInit {
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       let tempMedia = mediafiles.mediafiles;
-      console.log("++++++++++++");
-      //work in mediafiless table
-            console.log(tempMedia);
+    console.log(tempMedia)
+    console.log(mediafiles)
+
       if ( tempMedia.length<4){
         this.newMediaFiles= tempMedia.splice(0,1);
-        console.log( this.newMediaFiles);
+       console.log( this.newMediaFiles);
 
       }
       if (tempMedia.length>3){

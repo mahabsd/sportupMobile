@@ -4,6 +4,8 @@ import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/shared/Service/chat.service';
+import { environment } from 'src/environments/environment';
+
 @Component({
   selector: 'app-chatkids',
   templateUrl: './chatkids.page.html',
@@ -13,12 +15,15 @@ import { ChatService } from 'src/app/shared/Service/chat.service';
 
 
   export class ChatkidsPage implements OnInit {
+    apiImgUser = `${environment.apiImg}User/`;
+    apiImg = `${environment.apiImg}Post/`;
     message = '';
     messages = [];
     messages2 = [];
     userSenderId;
     currentUser;
     user$;
+    username
     idprofilePassed;
     filterchat:string;
     constructor(private socket: Socket,
@@ -27,25 +32,31 @@ import { ChatService } from 'src/app/shared/Service/chat.service';
       private toastCtrl: ToastController) { }
   
     ngOnInit() {
-      this.getMe();
+    
       this.getchat();
       this.idprofilePassed= this.activatedRoute.snapshot.params.id
       this.socket.connect();
   
+      this.userservice.getMe().subscribe((res) => {
+        this.user$ = res.data.data._id;
+        this.username=res.data.data.name
+        console.log(this.user$);
+    
       let name = ` User-${new Date().getTime()}`;
   
-      this.currentUser = name;
-      this.socket.emit('set-name', name);
+      this.currentUser =  this.username;
+      this.socket.emit('set-name',  this.username);
       this.socket.fromEvent('users-changed').subscribe(data => {
         console.log('getdata', data);
         let user = data['user'];
-        if (data['event'] == 'left') {
-          this.presentToast(`User left:${user}`)
+        if (data['event'] === 'left') {
+          this.presentToast(`${user} left the chat`);
         } else {
-  
-          this.presentToast(`User joined:${user}`)
+            if(user!== this.currentUser){
+              this.presentToast(`${user} joined the chat`);}
         }
       });
+    });
       this.socket.fromEvent('message').subscribe(message => {
         console.log('New:', message);
         this.getchat();
