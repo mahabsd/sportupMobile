@@ -97,7 +97,7 @@ export class UserService {
 
   getRoleUsers(): Observable<any> {
 
-    return this.utilsService.get(`${UtilsService.apiUSER}?role=user`).pipe(map(res => res.data
+    return this.utilsService.get(`${UtilsService.apiUSER}?role=user`).pipe(map(res => res.data.data
 
     ));
   }

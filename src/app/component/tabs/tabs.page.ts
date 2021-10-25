@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalShearePage } from 'src/app/layouts/home/modal-sheare/modal-sheare.page';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -21,7 +21,7 @@ import { Socket } from 'ngx-socket-io';
 export class TabsPage implements OnInit {
   user$: any = [];
   menuOpened = false;
-  userid
+  userid;
   subscription: Subscription;
   pagetype: string;
   urlpage = this.router.url.split('/', 6);
@@ -34,20 +34,18 @@ export class TabsPage implements OnInit {
     private eventService: EventService,
     private chatService: ChatService,
     private socket: Socket
-  ) {
-    this.socket.connect();
-    this.socket.emit('set-msg-number', { message: this.notseenMessagesNumber });
-    this.socket.on('set-msg-number', (res) => {
-      this.getMe();
-    });
-  }
+  ) { }
 
   ngOnInit() {
-    //  this.getMe();
+    this.getMe();
     this.subscription = this.eventService.getMessage().subscribe((message) => {
       this.menuOpened = message.event;
     });
-
+    this.socket.connect();
+    this.socket.emit('set-msg-number', { message: this.notseenMessagesNumber });
+    this.socket.fromEvent('set-msg-number').subscribe( (res) => {
+      this.getMe();
+    });
   }
 
   getMe() {
@@ -101,6 +99,7 @@ export class TabsPage implements OnInit {
   }
 
   getNumberNonreadChats() {
+    this.notseenMessagesNumber  = 0;
     this.chatService.getAllChatsByuser(this.userid).subscribe(res => {
       res.map(msg => {
         if (msg.messages[msg.messages.length - 1].userSender !== this.userid) {

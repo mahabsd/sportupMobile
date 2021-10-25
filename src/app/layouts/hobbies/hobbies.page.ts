@@ -173,19 +173,19 @@ export class HobbiesPage implements OnInit {
         hobbiename: 'Avec Moteur ',
         id: 4
       },
-      
+
       {
         imgsrc: "../../assets/imgsHobbies/dansLesAirs.jpg",
         hobbiename: 'Dans les airs ',
         id: 5
       },
-      
+
       {
         imgsrc: "../../assets/imgsHobbies/DIVERS.jpg",
         hobbiename: 'Divers ',
         id: 6
       },
-      
+
       {
         imgsrc: "../../assets/imgsHobbies/enEquipe.jpg",
         hobbiename: 'En Equipe ',
@@ -231,7 +231,6 @@ export class HobbiesPage implements OnInit {
         hobbiename: 'Training et Dancing',
         id: 2
       }
-    
     ];
 
     this.sliderTwo = {

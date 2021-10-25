@@ -59,22 +59,22 @@ const routes: Routes = [
       {
         path: 'parametre',
         loadChildren: () => import('./Config/parametre/parametre.module').then(m => m.ParametrePageModule),
-        canActivate:[RolesGuardGuard]
+        //canActivate:[RolesGuardGuard]
       },
       {
         path: 'abonnerinviteramis',
         loadChildren: () => import('./Config/abonnerinviteramis/abonnerinviteramis.module').then(m => m.AbonnerinviteramisPageModule),
-        canActivate:[RolesGuardGuard]
+       // canActivate:[RolesGuardGuard]
       },
       {
         path: 'updateprofil',
         loadChildren: () => import('./Config/updateprofil/updateprofil.module').then(m => m.UpdateprofilPageModule),
-        canActivate:[RolesGuardGuard]
+      //  canActivate:[RolesGuardGuard]
       },
       {
         path: 'securiteconnexion',
         loadChildren: () => import('./Config/securiteconnexion/securiteconnexion.module').then(m => m.SecuriteconnexionPageModule),
-        canActivate:[RolesGuardGuard]
+       // canActivate:[RolesGuardGuard]
       },
       {
         path: 'langue',
@@ -83,12 +83,12 @@ const routes: Routes = [
       {
         path: 'historiquepersonnel',
         loadChildren: () => import('./Config/historiquepersonnel/historiquepersonnel.module').then(m => m.HistoriquepersonnelPageModule),
-        canActivate:[RolesGuardGuard]
+       // canActivate:[RolesGuardGuard]
       },
       {
         path: 'contact',
         loadChildren: () => import('./Config/contact/contact.module').then(m => m.ContactPageModule),
-        canActivate:[RolesGuardGuard]
+       // canActivate:[RolesGuardGuard]
       },
       {
         path: 'desactivermoncompte',
@@ -224,7 +224,7 @@ const routes: Routes = [
         path: 'politiques-utilisation',
         loadChildren: () => import('./Config/politiques-utilisation/politiques-utilisation.module').
           then(m => m.PolitiquesUtilisationPageModule),
-          canActivate:[RolesGuardGuard]
+        // canActivate:[RolesGuardGuard]
       },
       {
         path: 'profiladulte/:id',

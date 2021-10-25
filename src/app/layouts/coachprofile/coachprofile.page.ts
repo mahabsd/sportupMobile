@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { PostService } from 'src/app/Shared/Service/post.service';

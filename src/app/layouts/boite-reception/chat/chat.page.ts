@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/shared/Service/chat.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-chat',
