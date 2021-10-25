@@ -34,7 +34,7 @@ export class UtilsService {
   public static apiInvite = UtilsService.remoteAdress + 'invi/';
   public static apishared = UtilsService.remoteAdress + 'shared/';
   public static apimediafile = UtilsService.remoteAdress + 'media/';
-
+  public static apimyaccesshistory = UtilsService.remoteAdress + 'accesshistory/myaccesshistory/';
   token: any;
   myToast: any;
   header: any;
