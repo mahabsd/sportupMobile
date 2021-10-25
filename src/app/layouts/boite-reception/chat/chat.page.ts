@@ -6,6 +6,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/shared/Service/chat.service';
 import { Subject } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chat',
@@ -13,12 +14,15 @@ import { Subject } from 'rxjs';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
+  apiImgUser = `${environment.apiImg}User/`;
+  apiImg = `${environment.apiImg}Post/`;
   message = '';
   messages = [];
   messages2 = [];
   userSenderId;
   currentUser;
   user$;
+  username;
   idprofilePassed;
   filterchat:string;
   constructor(private socket: Socket,
@@ -27,24 +31,30 @@ export class ChatPage implements OnInit {
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
-    this.getMe();
+
     this.getchat();
     this.idprofilePassed= this.activatedRoute.snapshot.params.id;
     this.socket.connect();
+    this.userservice.getMe().subscribe((res) => {
+      this.user$ = res.data.data._id;
+      this.username=res.data.data.name
+      console.log(this.user$);
 
-   // let name = ` User-${new Date().getTime()}`;
+    let name = ` User-${new Date().getTime()}`;
 
-    this.currentUser = name;
-    this.socket.emit('set-name', name);
+    this.currentUser =  this.username;
+    this.socket.emit('set-name',  this.username);
     this.socket.fromEvent('users-changed').subscribe(data => {
       console.log('getdata', data);
       let user = data['user'];
       if (data['event'] === 'left') {
-        this.presentToast(`User left:${user}`);
+        this.presentToast(`${user} left the chat`);
       } else {
-        this.presentToast(`User joined:${user}`);
+          if(user!== this.currentUser){
+            this.presentToast(`${user} joined the chat`);}
       }
     });
+  });
     this.socket.fromEvent('message').subscribe(message => {
       this.getchat();
     });
@@ -69,12 +79,6 @@ export class ChatPage implements OnInit {
     });
   }
 
-  getMe() {
-    this.userservice.getMe().subscribe((res) => {
-      this.user$ = res.data.data._id;
-      console.log(this.user$);
-    });
-  }
 
 
   getchat(){
