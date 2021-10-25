@@ -34,6 +34,7 @@ import { environment } from 'src/environments/environment';
 import { ImageProfileComponent } from 'src/app/layouts/coachprofile/image-profile/image-profile.component';
 import { PostDisplayComponent } from 'src/app/layouts/post-display/post-display.component';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 
 @Component({
   selector: 'app-status-kids',
@@ -79,7 +80,7 @@ export class StatusKidsComponent implements OnInit {
     private postKidsService: PostKidsService,
     private popoverCtrl: PopoverController,
     private userService: UserService,
-    private followerService: FollowerService,private videoPlayer: VideoPlayer, private postService: PostService
+    private followerService: FollowerService,private videoPlayer: VideoPlayer, private postService: PostService, private favorisService: FavorisService
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -168,14 +169,6 @@ export class StatusKidsComponent implements OnInit {
   }
   share() {
     console.log('share');
-  }
-  bookmark() {
-    console.log('bookmark');
-    this.bookmarked = true;
-  }
-  unBookmark() {
-    console.log('unbookmark');
-    this.bookmarked = false;
   }
 
   async presentModal(post) {
@@ -308,6 +301,19 @@ console.log(files)
       //console.log('video completed');
     }).catch(err => {
       console.log(err);
+    });
+  }
+
+  bookmark(post) {
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+      console.log(res);
+      this.bookmarked = true;
+    });
+  }
+  unBookmark(post) {
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+      console.log(res);
+      this.bookmarked = false;
     });
   }
 }
