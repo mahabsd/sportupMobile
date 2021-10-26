@@ -1,4 +1,4 @@
-<ion-grid (click)="displayContent(post)">
+<ion-grid >
   <ion-row lines="none">
     <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected !== post?.user?._id">
       <img [src]="apiImgUser + post?.user?.photo" (click)="getfollow(post?.user?._id)" />
@@ -41,7 +41,7 @@
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length > 0">
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <div *ngIf="mediafiles.length === 0">
+  <div (click)="displayContent(post)" *ngIf="mediafiles.length === 0">
     <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
@@ -83,6 +83,7 @@
     </div>
   </div>
   <div
+  (click)="displayContent(post)"
     *ngIf="
       newMediaFiles.length > 0 &&
       thirdNewMediaFiles.length === 0 &&
