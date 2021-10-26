@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/shared/Service/chat.service';
+import { Subject } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -30,7 +31,7 @@ export class ChatPage implements OnInit {
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
-  
+
     this.getchat();
     this.idprofilePassed= this.activatedRoute.snapshot.params.id;
     this.socket.connect();
@@ -38,7 +39,7 @@ export class ChatPage implements OnInit {
       this.user$ = res.data.data._id;
       this.username=res.data.data.name
       console.log(this.user$);
-  
+
     let name = ` User-${new Date().getTime()}`;
 
     this.currentUser =  this.username;

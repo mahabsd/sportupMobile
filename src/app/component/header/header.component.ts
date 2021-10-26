@@ -7,6 +7,7 @@ import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-
 import { Location } from "@angular/common";
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
+import { ShowImagePage } from '../modal/show-image/show-image.page';
 
 
 
@@ -41,14 +42,14 @@ export class HeaderComponent implements OnInit {
   @Input() isParam: boolean = false;
   @Input() AdulteProfile: boolean = false;
   @Input() CoachProfileNotConnectedUser: boolean = false;
-  
+
   @Input()  type: string;
   @Input()  idprofillepassed: string;
   @Input()  followid: string;
 
   userid: any;
   user$: any;
-  
+
   iduser1;
   follower = false;
   constructor(private modalCtrl: ModalController,
@@ -70,7 +71,7 @@ export class HeaderComponent implements OnInit {
     this.location.back();
   }
   async openCoachMenu(ev: any) {
-   
+
     const popover = await this.popoverController.create({
       component: CoachMenuPopOverComponent,
       cssClass: 'pop-over-style',
@@ -117,6 +118,13 @@ export class HeaderComponent implements OnInit {
     });
 }
 
+async openSearch() {
+  const modal = await this.modalCtrl.create({
+    component: ShowImagePage,
+    cssClass: ''
+  });
+  return await modal.present();
+}
 
 
 }
