@@ -178,7 +178,7 @@
         </ng-template>
       </ion-col>
 
-      <ion-col size="5"> </ion-col>
+      <ion-col size="2"> </ion-col>
 
       <ion-col size="3">
         <ion-icon (click)="presentModal(post)"  name="chatbubble-ellipses-outline"></ion-icon>
@@ -187,8 +187,18 @@
 
 
       </ion-col>
- 
+      <ion-col size="2">
+        <ng-container *ngIf="!bookmarked; else unbook">
+            <ion-icon  (click)="bookmark(post)" name="bookmark-outline"></ion-icon>
+            <sub>{{ post?.favorisNb }}</sub>
+        </ng-container>
+        <ng-template #unbook>
+            <ion-icon name="bookmark" (click)="unBookmark(post)" ></ion-icon>
+            <sub>{{ post?.favorisNb }}</sub>
+        </ng-template>
+      </ion-col>
       
+    
     </ion-row>
   </div>
 </div>

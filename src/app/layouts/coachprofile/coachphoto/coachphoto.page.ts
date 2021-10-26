@@ -6,13 +6,14 @@ import {
   ModalController,
   ToastController,
 } from '@ionic/angular';
-import { Subscription } from 'rxjs';
+import { forkJoin, Subscription } from 'rxjs';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { PostService } from 'src/app/Shared/Service/post.service';
 import { environment } from 'src/environments/environment';
 import { ImageService } from '../../../Shared/Service/image.service';
 import { UserService } from '../../../Shared/Service/user.service';
 import { ImageProfileComponent } from '../image-profile/image-profile.component';
+import { share } from 'rxjs/operators';
 @Component({
   selector: 'app-coachphoto',
   templateUrl: './coachphoto.page.html',
@@ -20,14 +21,17 @@ import { ImageProfileComponent } from '../image-profile/image-profile.component'
 })
 export class CoachphotoPage implements OnInit {
   images: any = [];
-  apImg = environment.apiImg + 'image/';
+  posts: any = [];
+  apImg = environment.apiImg + 'Post/';
   subscription: Subscription;
   filesToUpload: any;
   user$: any;
   messages: any[] = [];
   isScrollTop: boolean;
   userId: any;
+  page = 1;
   postsOwnerId: any;
+  mediafiles;
   constructor(
     private imageService: ImageService,
     private userService: UserService,
@@ -52,6 +56,7 @@ export class CoachphotoPage implements OnInit {
     this.postsOwnerId = this.postService.postsOwnerId;
     console.log(  this.postsOwnerId );
     this.getImageByIdUser(this.postsOwnerId);
+    this.getAllPostsByEvent();
 
   }
 
@@ -131,6 +136,44 @@ export class CoachphotoPage implements OnInit {
       this.getImageByIdUser(res?.data?.data?._id);
     });
   }
+
+
+  getpostFiles(post) {
+    console.log("++++"+post._id)
+        forkJoin({
+          mediafiles: this.postService.getPost(post._id),
+        }).subscribe(({ mediafiles }) => {
+          this.mediafiles = mediafiles.mediafiles;
+          this.mediafiles.forEach(element => {
+            console.log(element);
+            this.images.push(element);
+          });
+      
+  
+    
+    
+        });
+      }
+
+      
+  getAllPostsByEvent(event?) {
+    this.userService.getMe().subscribe(res => {
+      this.user$ = res.data.data;
+      this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
+        console.log(res.data.shared);
+        this.posts = this.posts.concat(res.data.data);
+        console.log(this.posts);
+        this.posts.forEach(post => {
+          this.getpostFiles(post);
+        });
+        if (event) {
+          event.target.complete();
+        }
+      });
+    });
+
+  }
+
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
       this.isScrollTop = false;

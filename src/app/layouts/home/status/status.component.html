@@ -50,9 +50,9 @@
             id="first"
             [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-            [lazyLoad]="apiImg + file?.file_name"
+        
             errorImage="../../../assets/imgs/150.png"
-            (click)="displayImage(mediafiles)"
+            
           >
             <ion-icon></ion-icon>
           </div>
@@ -93,8 +93,8 @@
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div style="width: 250px" id="first" [style.background-size]="'cover'"
-            [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-            errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+            [style.background-image]="'url(' + apiImg + file?.file_name + ')'"  
+            errorImage="../../../assets/imgs/150.png" >
             <ion-icon></ion-icon>
           </div>
         </ng-container>
@@ -117,8 +117,8 @@
         <div *ngFor="let file of mediafiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
-              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+              [style.background-image]="'url(' + apiImg + file?.file_name + ')'"  
+              errorImage="../../../assets/imgs/150.png"  >
               <ion-icon></ion-icon>
             </div>
           </ng-container>
@@ -150,8 +150,8 @@
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div id="first" [style.background-size]="'cover'"
-            [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-            errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+            [style.background-image]="'url(' + apiImg + file?.file_name + ')'"  
+            errorImage="../../../assets/imgs/150.png"  >
             <ion-icon></ion-icon>
           </div>
         </ng-container>
@@ -174,8 +174,8 @@
         <div *ngFor="let file of thirdNewMediaFiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
-              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayImage(mediafiles)">
+              [style.background-image]="'url(' + apiImg + file?.file_name + ')'"  
+              errorImage="../../../assets/imgs/150.png"  >
               <ion-icon></ion-icon>
             </div>
           </ng-container>
@@ -187,7 +187,7 @@
             </div>
           </ng-container>
         </div>
-        <div (click)="displayImage(mediafiles)" style="
+        <div   style="
             position: absolute;
             background-color: rgba(0, 0, 0, 0.219);
             color: rgb(255, 255, 255);
@@ -208,7 +208,7 @@
       </div>
     </div>
   </div>
-
+</ion-grid>
   <ion-row>
     <ion-card-content>
       {{ post?.content }}
@@ -258,4 +258,4 @@
       </ion-chip>
     </ion-col>
   </ion-row>
-</ion-grid>
+   
