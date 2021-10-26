@@ -9,6 +9,7 @@ import { ChatPageRoutingModule } from './chat-routing.module';
 import { ChatPage } from './chat.page';
 import { FilterChatPipe } from './filter-chat.pipe';
 import { ComponentModule } from 'src/app/component/component.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ComponentModule } from 'src/app/component/component.module';
     FormsModule,
     IonicModule,
     ChatPageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    Ng2SearchPipeModule
   ],
   declarations: [ChatPage, FilterChatPipe]
 })

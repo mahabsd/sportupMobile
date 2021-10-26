@@ -163,11 +163,11 @@ export class AccueilPage implements OnInit {
         //console.log(res.data.shared);
        // console.log(res.data.data);
 
-        
+
         this.posts1 =res.data.data;
         this.posts1.forEach(e => {
            if(e.type==='kids'){
-            this.posts= this.posts.concat(e)
+            this.posts= this.posts.concat(e);
            }
          });
         //console.log(this.posts);
@@ -179,7 +179,7 @@ export class AccueilPage implements OnInit {
 
   }
 
-  
+
   loadMore(event) {
     this.page++;
     this.getAllPostsByEvent(event);
