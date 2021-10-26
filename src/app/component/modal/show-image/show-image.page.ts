@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController, NavParams, IonSlides } from '@ionic/angular';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-show-image',
@@ -7,27 +8,46 @@ import { ModalController, NavParams, IonSlides } from '@ionic/angular';
   styleUrls: ['./show-image.page.scss'],
 })
 export class ShowImagePage implements OnInit {
-  @ViewChild(IonSlides) slider: IonSlides;
-  img: any;
-  sliderOpts = {
-    zoom: true
-  }
+  recherche;
+  users;
+  isItemAvailable: boolean;
+  usersfiltered: any;
+  userRole: any;
   constructor(
     private navParams: NavParams,
-    private modalController: ModalController
+    private modalController: ModalController,
+    private userService: UserService
   ) { }
-  ionViewDidEnter() {
-    this.slider.update();
-  }
+
   ngOnInit() {
-    this.img = this.navParams.get('img');
+    this.getMe();
+
+
   }
   close() {
     this.modalController.dismiss();
   }
-  async zoom(zoomIn: boolean) {
-    const slider = await this.slider.getSwiper();
-    const zoom = slider.zoom;
-    zoomIn ? zoom.in() : zoom.out();
+  getItems($event) {
+
+    const val = $event.target.value;
+    if (val && val.trim() !== '') {
+      this.isItemAvailable = true;
+      this.usersfiltered = this.users.filter((item) => {
+        return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1)
+      });
+
+    } else {
+      this.isItemAvailable = false;
+    }
   }
+  getMe() {
+    this.userService.getMe().subscribe((res) => {
+      this.userRole= res.data.data.role;
+      if(this.userRole === 'user')  {
+        this.userService.getRoleUsers().subscribe(res => this.users = res);
+      }else {
+        this.userService.getUsersKids().subscribe(res => this.users = res);
+      }
+    });
+}
 }

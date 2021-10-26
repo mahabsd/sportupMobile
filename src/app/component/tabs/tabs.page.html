@@ -11,7 +11,7 @@
       <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
     </ion-tab-button>-->
     <ion-tab-button tab="map">
-      <ion-badge id="notifications-badge" color="danger">{{seenMessagesNumber}}</ion-badge>
+      <ion-badge id="notifications-badge" color="danger" *ngIf="notseenMessagesNumber > 0">{{notseenMessagesNumber}}</ion-badge>
       <img [routerLink]="['/menu/tabs/layouts/boitereception']" src="../../assets/icon/icon_boite.png" />
     </ion-tab-button>
     <ion-tab-button>
@@ -21,7 +21,7 @@
       <ion-badge id="notifications-badge" color="danger">5</ion-badge>
       <img [routerLink]="['/menu/tabs/layouts/notifications']" src="../../assets/icon/icon_notification.png" />
     </ion-tab-button>
-    <ion-tab-button routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me">
+    <ion-tab-button routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me/coachphoto">
       <img src="../../assets/icon/icon_profile.png" />
 
     </ion-tab-button>

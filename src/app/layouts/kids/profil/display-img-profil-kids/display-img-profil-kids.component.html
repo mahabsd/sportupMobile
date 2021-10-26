@@ -1,0 +1,40 @@
+<ion-content>
+  <ion-toolbar>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()" large>
+        <ion-icon name="close-circle-outline" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12">
+      <img
+     
+        src="{{ apiImg +post}}"
+      />
+
+      <video
+      *ngIf="isvideo"
+        controls
+        width="100%"
+      >
+        <source src="{{ apiImg + post }}" type="video/mp4" />
+      </video>
+
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-title
+        style="
+          background-image: linear-gradient(
+            119deg,
+            rgba(92, 99, 91, 1) 0%,
+            rgba(36, 114, 56, 1) 35%,
+            rgb(169, 194, 26) 100%
+          );
+        "
+      >
+      </ion-title>
+    </ion-col>
+  </ion-row>
+</ion-content>

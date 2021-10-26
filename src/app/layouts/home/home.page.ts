@@ -51,12 +51,12 @@ export class HomePage implements OnInit {
     public storage: Storage) {
     translate.setDefaultLang('en');
 
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
-    translate.use('en');
-    storage.get('lan').then((val) => {
-      this.lang = val;
-      translate.use(this.lang);
-    });
+         // the lang to use, if the lang isn't available, it will use the current loader to get them
+        translate.use('en');
+      storage.get('lan').then((val) => {
+        if(val)
+         translate.use(val);
+      });
   }
 
   async ngOnInit() {

@@ -438,7 +438,7 @@ ion-slide {
   margin-right: -2px !important;
   }
   .img-wrapper {
-    min-height: 200px;
+  //  min-height: 200px;
     width: 103%;
     //background-size: cover;
     background-repeat: no-repeat;
@@ -586,4 +586,48 @@ svg{
 .imgUser
 {
 height: 100px !important;
+}
+
+
+
+
+
+
+
+#first {
+  height: 190px;
+  width: 250px;
+  border-radius: 10px;
+  object-fit: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
+  margin-left: 20px;
+  margin-right: 5px;
+}
+
+
+#next {
+  margin: 1px;
+  border-radius: 5px;
+  width: 95px;
+  height: 95px;
+  object-fit: cover;
+}
+.nextContainer {
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  height: auto;
+  margin-left: 2px;
+}
+
+.a {
+  background-size: cover;
+  padding: 50px 0;
+}
+.iconstyle{
+
+  height: 40% !important;
 }

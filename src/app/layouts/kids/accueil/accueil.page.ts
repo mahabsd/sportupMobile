@@ -22,6 +22,7 @@ import { User } from 'src/app/Shared/Model/User';
 import { ModalShearePage } from '../../home/modal-sheare/modal-sheare.page';
 import { EventService } from 'src/app/shared/Service/event.service';
 
+import { share } from 'rxjs/operators';
 
 @Component({
   selector: 'app-accueil',
@@ -37,13 +38,13 @@ export class AccueilPage implements OnInit {
   initialButtonIcon = 'heart-outline';
   idpostcom;
   user$: any = [];
-
+  page = 1;
   xxxMap = new Map();
   dict: any[] = [];
-  idwiw;
-  comwiw;
   buttonColor: string;
   posts: any[] = [];
+  posts1: any[] = [];
+
   isScrollTop: boolean;
   constructor(
     private commentService: CommentService,
@@ -56,8 +57,10 @@ export class AccueilPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getAllPostsKids();
+   // this.getAllPostsKids();
     this.getMe();
+    this.getAllPostsByEvent();
+
   }
 
   getAllPostsKids() {
@@ -151,4 +154,42 @@ export class AccueilPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
+
+
+  getAllPostsByEvent(event?) {
+    this.userservice.getMe().subscribe(res => {
+      this.user$ = res.data.data;
+      this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
+        //console.log(res.data.shared);
+       // console.log(res.data.data);
+
+        
+        this.posts1 =res.data.data;
+        this.posts1.forEach(e => {
+           if(e.type==='kids'){
+            this.posts= this.posts.concat(e)
+           }
+         });
+        //console.log(this.posts);
+        if (event) {
+          event.target.complete();
+        }
+      });
+    });
+
+  }
+
+  
+  loadMore(event) {
+    this.page++;
+    this.getAllPostsByEvent(event);
+  }
+  doRefresh(event) {
+    this.posts = [];
+    setTimeout(() => {
+      this.getAllPostsByEvent();
+      event.target.complete();
+    }, 1000);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalShearePage } from 'src/app/layouts/home/modal-sheare/modal-sheare.page';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -11,6 +11,7 @@ import { map } from 'rxjs/operators';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { AddStatusKidsPage } from 'src/app/layouts/kids/accueil/status-kids/add-status-kids/add-status-kids.page';
 import { ChatService } from 'src/app/shared/Service/chat.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-tabs',
@@ -20,25 +21,30 @@ import { ChatService } from 'src/app/shared/Service/chat.service';
 export class TabsPage implements OnInit {
   user$: any = [];
   menuOpened = false;
-  userid
+  userid;
   subscription: Subscription;
   pagetype: string;
   urlpage = this.router.url.split('/', 6);
-  messagesNumber: number;
-  seenMessagesNumber: any = 0;
+  notseenMessagesNumber: any = 0;
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
     private router: Router,
     private userservice: UserService,
     private eventService: EventService,
-    private chatService: ChatService
+    private chatService: ChatService,
+    private socket: Socket
   ) { }
 
   ngOnInit() {
     this.getMe();
     this.subscription = this.eventService.getMessage().subscribe((message) => {
       this.menuOpened = message.event;
+    });
+    this.socket.connect();
+    this.socket.emit('set-msg-number', { message: this.notseenMessagesNumber });
+    this.socket.fromEvent('set-msg-number').subscribe( (res) => {
+      this.getMe();
     });
   }
 
@@ -64,7 +70,6 @@ export class TabsPage implements OnInit {
     if (url[4] === 'coachprofile') {
       this.sendMessage('addphoto');
       console.log(url[4]);
-
     }
 
 
@@ -80,7 +85,7 @@ export class TabsPage implements OnInit {
     });
     await modal.present();
     await modal.onWillDismiss().then((result) => {
-  });
+    });
   }
 
 
@@ -93,10 +98,22 @@ export class TabsPage implements OnInit {
     console.log(event);
   }
 
-  getNumberNonreadChats(){
-    this.chatService.getAllChatsByuser(this.userid).subscribe(res=> {
-console.log(res);
-
+  getNumberNonreadChats() {
+    this.notseenMessagesNumber  = 0;
+    this.chatService.getAllChatsByuser(this.userid).subscribe(res => {
+      res.map(msg => {
+        if (msg.messages[msg.messages.length - 1].userSender !== this.userid) {
+          if (msg.seenuser1.user1 === this.userid) {
+            if (msg.seenuser1.lastVisit < msg.messages[msg.messages.length - 1].createdDate) {
+              this.notseenMessagesNumber = this.notseenMessagesNumber + 1;
+            }
+          } else if (msg.seenuser2.user2 === this.userid) {
+            if (msg.seenuser2.lastVisit < msg.messages[msg.messages.length - 1].createdDate) {
+              this.notseenMessagesNumber = this.notseenMessagesNumber + 1;
+            }
+          }
+        }
+      });
     });
-   }
+  }
 }

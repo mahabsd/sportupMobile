@@ -45,10 +45,8 @@
     ></ion-img>
 
     <ion-avatar class="image2">
-      <img
-        class="myImageUser"
-        src="https://www.next.co.uk/nxtcms/resource/image/2639914/portrait_ratio1x1/305/305/7ddcbe6fc57d27c5f26a12fde323f828/lR/-0001-g69-mb-sh368442-lm-017-baby.jpg"
-      />
+      <img [src]="apiImgUser +user?.photo" class="myImageUser" />
+
       <ion-label color="light" style="white-space: pre">
         {{user?.name}}</ion-label
       >
@@ -92,62 +90,223 @@
     </ion-segment>
 
     <div class="body" *ngIf="selected==='photo'">
-      <div id="first-bloc">
-        <div id="first-photo" style="position: relative">
-          <div class="left-tape-first"></div>
-          <div class="right-tape-first"></div>
-        </div>
-        <div id="photo-set-one">
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-fourth"></div>
-            <div class="right-tape-fourth"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-third"></div>
-            <div class="right-tape-third"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
+      <div *ngIf="this.postsimg.length===1">
+        <div id="first-bloc">
+          <div
+            id="first-photo"
+            style="position: relative"
+            *ngFor="let file of ResWithOneimg"
+          >
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div
+                style="width: 250px; height: 200px"
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayContentPhotoTab(file?.file_name)"
+              >
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayVideo(file)"
+              >
+                <ion-icon
+                  style="height: 50px; width: 50px"
+                  name="videocam"
+                ></ion-icon>
+              </div>
+            </ng-container>
           </div>
         </div>
       </div>
-      <div id="photo-set-two">
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
+
+      <div *ngIf="this.postsimg.length>=1&&this.postsimg.length<6">
+        <div id="first-bloc">
+          <div
+            id="first-photo"
+            style="position: relative"
+            *ngFor="let file of ResWithOneimg"
+          >
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div
+                style="height: 200px"
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayContentPhotoTab(file?.file_name)"
+              >
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayVideo(file)"
+              >
+                <ion-icon
+                  style="height: 50px; width: 50px"
+                  name="videocam"
+                ></ion-icon>
+              </div>
+            </ng-container>
+          </div>
+          <div id="photo-set-one">
+            <div
+              class="fourPics"
+              style="position: relative"
+              *ngFor="let file of ResWithTwoimg"
+            >
+              <div class="left-tape-second"></div>
+              <div class="right-tape-second"></div>
+              <ng-container *ngIf="getExt(file.file_name) === 'png'">
+                <div
+                  style="height: 100px"
+                  [style.background-size]="'cover'"
+                  [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                  [lazyLoad]="apiImg + file?.file_name"
+                  errorImage="../../../assets/imgs/150.png"
+                  (click)="displayContentPhotoTab(file?.file_name)"
+                >
+                  <ion-icon></ion-icon>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+                <div
+                  [style.background-size]="'cover'"
+                  [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                  errorImage="../../../assets/imgs/150.png"
+                  (click)="displayVideo(file)"
+                >
+                  <ion-icon
+                    style="height: 50px; width: 50px"
+                    name="videocam"
+                  ></ion-icon>
+                </div>
+              </ng-container>
+            </div>
+          </div>
         </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
+      </div>
+
+      <div *ngIf="this.postsimg.length>5">
+        <div id="first-bloc">
+          <div
+            id="first-photo"
+            style="position: relative"
+            *ngFor="let file of ResWithOneimg"
+          >
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
+
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div
+                style="height: 200px"
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayContentPhotoTab(file?.file_name)"
+              >
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayVideo(file)"
+              >
+                <ion-icon
+                  style="height: 50px; width: 50px"
+                  name="videocam"
+                ></ion-icon>
+              </div>
+            </ng-container>
+          </div>
+          <div id="photo-set-one">
+            <div
+              class="fourPics"
+              style="position: relative"
+              *ngFor="let file of ResWithTwoimg"
+            >
+              <div class="left-tape-second"></div>
+              <div class="right-tape-second"></div>
+              <ng-container *ngIf="getExt(file.file_name) === 'png'">
+                <div
+                  style="height: 100px"
+                  [style.background-size]="'cover'"
+                  [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                  [lazyLoad]="apiImg + file?.file_name"
+                  errorImage="../../../assets/imgs/150.png"
+                  (click)="displayContentPhotoTab(file?.file_name)"
+                >
+                  <ion-icon></ion-icon>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+                <div
+                  [style.background-size]="'cover'"
+                  [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                  errorImage="../../../assets/imgs/150.png"
+                  (click)="displayVideo(file)"
+                >
+                  <ion-icon
+                    style="height: 50px; width: 50px"
+                    name="videocam"
+                  ></ion-icon>
+                </div>
+              </ng-container>
+            </div>
+          </div>
         </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-fourth"></div>
-          <div class="right-tape-fourth"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-fourth"></div>
-          <div class="right-tape-fourth"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
+        <div id="photo-set-two">
+          <div
+            class="eightPic"
+            style="position: relative"
+            *ngFor="let file of ResWithThreeimg"
+          >
+            <div class="left-tape-second"></div>
+            <div class="right-tape-second"></div>
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div
+                style="height: 100px"
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayContentPhotoTab(file?.file_name)"
+              >
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div
+                [style.background-size]="'cover'"
+                [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png"
+                (click)="displayVideo(file)"
+              >
+                <ion-icon
+                  style="height: 50px; width: 50px"
+                  name="videocam"
+                ></ion-icon>
+              </div>
+            </ng-container>
+          </div>
         </div>
       </div>
     </div>
@@ -399,22 +558,24 @@
           margin: 5px;
           position: relative;
         "
-        *ngFor="let post of userPosts"
+        *ngFor="let post of postsStatut"
       >
         <div>
           <div style="display: flex; align-items: center">
-            <ion-avatar style="margin: 3px 20px">
-              <img src="../../../assets/kidsuser.png" />
+            <ion-avatar style="margin: 5px 20px">
+              <img [src]="apiImgUser +user?.photo" />
             </ion-avatar>
 
             <div style="display: flex; flex-direction: column">
-              <div>{{post.user.name}}</div>
-              <div>{{post.createdAt}}</div>
+              <ion-label>{{post.user.name}}</ion-label>
+              <ion-label>{{post.createdAt| date}}</ion-label>
             </div>
           </div>
-          <div style="display: flex; flex-direction: column; margin-left: 65px">
-            <div style="font-weight: bold">{{post.title}} :</div>
-            <div style="padding-right: 40px">{{post.content}}</div>
+          <div
+            style="display: flex; flex-direction: column; margin-left: 105px"
+          >
+            <ion-label style="font-weight: bold">{{post.title}}</ion-label>
+            <ion-label>{{post.content}} </ion-label>
           </div>
         </div>
         <div

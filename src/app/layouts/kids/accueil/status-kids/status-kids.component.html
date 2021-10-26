@@ -1,13 +1,13 @@
 <div class="img-wrapper">
   <div>
-    <div *ngIf="isUserConnected !== post.user.id && follower === false">
+    <div *ngIf="isUserConnected != post.user.id && follower === false">
       <ion-row
         style="height: 40px; text-align: initial"
         routerLink="/profil/{{ post.user.id }}/kids"
       >
         <ion-col size="3">
           <ion-avatar>
-            <img class="myImageUser" src="../../../assets/kidsuser.png" />
+            <img [src]="apiImgUser + post?.user?.photo" class="myImageUser" />
           </ion-avatar>
         </ion-col>
         <ion-col size="9" style="margin-left: 35px; margin-top: -77px">
@@ -29,7 +29,7 @@
       >
         <ion-col size="3">
           <ion-avatar>
-            <img class="myImageUser" src="../../../assets/kidsuser.png" />
+            <img [src]="apiImgUser + post?.user?.photo" class="myImageUser" />
           </ion-avatar>
         </ion-col>
         <ion-col size="9" style="margin-left: 35px; margin-top: -77px">
@@ -44,14 +44,14 @@
       </ion-row>
     </div>
 
-    <div *ngIf="follower === true && isUserConnected !== post.user.id">
+    <div *ngIf="follower === true && isUserConnected != post.user.id">
       <ion-row
         style="height: 40px; text-align: initial"
         routerLink="/tabs/profilkids/{{ post.user.id }}"
       >
         <ion-col size="3">
           <ion-avatar>
-            <img class="myImageUser" src="../../../assets/kidsuser.png" />
+            <img [src]="apiImgUser + post?.user?.photo" class="myImageUser" />
           </ion-avatar>
         </ion-col>
         <ion-col size="9" style="margin-left: 35px; margin-top: -77px">
@@ -84,10 +84,78 @@
       </ion-col>
     </ion-row>
   </div>
-  <img
-    style="border-radius: 15px"
-    src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/SpongeBob_SquarePants_character.svg/1200px-SpongeBob_SquarePants_character.svg.png"
-  />
+
+  <div
+    *ngIf="newMediaFiles.length > 0 && thirdNewMediaFiles.length === 0"
+    (click)="displayContent(post)"
+  >
+    <div style="display: flex; justify-content: center">
+      <div *ngFor="let file of newMediaFiles">
+        <ng-container *ngIf="getExt(file.file_name) === 'png'">
+          <div
+            style="width: 150px; margin: 0 auto"
+            id="first"
+            [style.background-size]="'cover'"
+            [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+            [lazyLoad]="apiImg + file?.file_name"
+            errorImage="../../../assets/imgs/150.png"
+            (click)="displayImage(file?.file_name)"
+          >
+            <ion-icon></ion-icon>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+          <div
+            style="
+              margin-left: 15px;
+              width: 250px;
+              height: 200px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              border-radius: 10px;
+            "
+            [style.background-size]="'cover'"
+            [style.background-image]="'url(../../../assets/imgs/150.png)'"
+            errorImage="../../../assets/imgs/150.png"
+            (click)="displayVideo(file)"
+          >
+            <ion-icon
+              style="height: 50px; width: 50px"
+              name="videocam"
+            ></ion-icon>
+          </div>
+        </ng-container>
+      </div>
+      <div class="nextContainer">
+        <div *ngFor="let file of mediafiles">
+          <ng-container *ngIf="getExt(file.file_name) === 'png'">
+            <div
+              id="next"
+              [style.background-size]="'cover'"
+              [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+              [lazyLoad]="apiImg + file?.file_name"
+              errorImage="../../../assets/imgs/150.png"
+              (click)="displayImage(mediafiles)"
+            >
+              <ion-icon></ion-icon>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+            <div
+              [style.background-size]="'cover'"
+              [style.background-image]="'url(../../../assets/imgs/150.png)'"
+              errorImage="../../../assets/imgs/150.png"
+              (click)="displayVideo(mediafiles)"
+            >
+              <ion-icon name="videocam"></ion-icon>
+            </div>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="main-content">
     <ion-icon slot="end" name="heart-empty"></ion-icon>
     <ion-row>
@@ -112,7 +180,7 @@
         </ng-template>
       </ion-col>
 
-      <ion-col size="3"> </ion-col>
+      <ion-col size="2"> </ion-col>
 
       <ion-col size="3">
         <ion-icon
@@ -120,10 +188,19 @@
           name="chatbubble-ellipses-outline"
         ></ion-icon>
 
+        <ion-label class="labelnblikes">{{ comments.length }} </ion-label>
+
         <ion-label class="labelnblikes">{{ comments.length }}</ion-label>
       </ion-col>
-      <ion-col size="1">
-        <ion-icon name="close" (click)="presentAlertConfirm(post)"></ion-icon>
+      <ion-col size="2">
+        <ng-container *ngIf="!bookmarked; else unbook">
+          <ion-icon (click)="bookmark(post)" name="bookmark-outline"></ion-icon>
+          <sub>{{ post?.favorisNb }}</sub>
+        </ng-container>
+        <ng-template #unbook>
+          <ion-icon name="bookmark" (click)="unBookmark(post)"></ion-icon>
+          <sub>{{ post?.favorisNb }}</sub>
+        </ng-template>
       </ion-col>
     </ion-row>
   </div>

@@ -20,7 +20,7 @@ import {
 
 import { PostService } from '../../../../Shared/Service/post.service';
 import { Post } from '../../../../Shared/Model/Post';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { User } from 'src/app/Shared/Model/User';
 import { UserService } from '../../../../Shared/Service/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -30,6 +30,11 @@ import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { AlertController } from '@ionic/angular';
 import { CommentsKidsPage } from '../../comments-kids/comments-kids.page';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
+import { environment } from 'src/environments/environment';
+import { ImageProfileComponent } from 'src/app/layouts/coachprofile/image-profile/image-profile.component';
+import { PostDisplayComponent } from 'src/app/layouts/post-display/post-display.component';
+import { VideoPlayer } from '@ionic-native/video-player/ngx';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 
 @Component({
   selector: 'app-status-kids',
@@ -44,7 +49,8 @@ export class StatusKidsComponent implements OnInit {
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
   @Output() refreshPosts = new EventEmitter();
-
+  apiImgUser = `${environment.apiImg}User/`;
+  apiImg = `${environment.apiImg}Post/`;
   commentForm: FormGroup;
   comment: Comment = new Comment();
   longPressActive = false;
@@ -59,6 +65,11 @@ export class StatusKidsComponent implements OnInit {
   bookmarked = false;
   follower = false;
   id;
+  images: any = [];
+  mediafiles: any = [];
+  newMediaFiles: any= [];
+  secondNewMediaFiles: any= [];
+  thirdNewMediaFiles: any= [];
   isUserConnected: any;
   constructor(
     private navCtrl: NavController,
@@ -69,7 +80,7 @@ export class StatusKidsComponent implements OnInit {
     private postKidsService: PostKidsService,
     private popoverCtrl: PopoverController,
     private userService: UserService,
-    private followerService: FollowerService
+    private followerService: FollowerService,private videoPlayer: VideoPlayer, private postService: PostService, private favorisService: FavorisService
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -159,14 +170,6 @@ export class StatusKidsComponent implements OnInit {
   share() {
     console.log('share');
   }
-  bookmark() {
-    console.log('bookmark');
-    this.bookmarked = true;
-  }
-  unBookmark() {
-    console.log('unbookmark');
-    this.bookmarked = false;
-  }
 
   async presentModal(post) {
     const modal = await this.modalController.create({
@@ -186,10 +189,31 @@ export class StatusKidsComponent implements OnInit {
   }
 
   getCommentByPost() {
-    // eslint-disable-next-line no-underscore-dangle
-    this.commentService.getCommentByService(this.post._id).subscribe((arg) => {
-      this.comments = arg;
-      console.log(this.comments);
+    forkJoin({
+      comments: this.commentService.getCommentByService(this.post._id),
+      images: this.postService.getPost(this.post._id),
+      mediafiles: this.postService.getPost(this.post._id),
+      a: this.postService.getPost(this.post._id),
+    }).subscribe(({ comments, images, mediafiles,a }) => {
+      this.comments = comments;
+      this.images = images.images;
+      this.mediafiles = mediafiles.mediafiles;
+      let tempMedia = mediafiles.mediafiles;
+    console.log(tempMedia)
+    console.log(mediafiles)
+
+      if ( tempMedia.length<4){
+        this.newMediaFiles= tempMedia.splice(0,1);
+       console.log( this.newMediaFiles);
+
+      }
+      if (tempMedia.length>3){
+        this.newMediaFiles=tempMedia.slice(0,1);
+        this.thirdNewMediaFiles=tempMedia.slice(1,3);
+        this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
+      }
+
+
     });
   }
 
@@ -223,5 +247,73 @@ export class StatusKidsComponent implements OnInit {
         console.error(error),
      
     );
+  }
+
+  
+  getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    //console.log(ext);
+    return ext;
+  }
+
+  async displayImage(a: any) {
+
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    //console.log(url);
+    console.log(this.mediafiles);
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        image: a,
+      },
+    });
+    return await modal.present();
+  }
+
+  async displayContent(files){
+console.log(files)
+    const modal = await this.modalController.create({
+      component: PostDisplayComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        post: files,
+      },
+    });
+    return await modal.present();
+  }
+
+  async displayVideo(file: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    // console.log(url);
+
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        video: file,
+      },
+    });
+    return await modal.present();
+  }
+  playvid(url) {
+    this.videoPlayer.play(url).then(() => {
+      //console.log('video completed');
+    }).catch(err => {
+      console.log(err);
+    });
+  }
+
+  bookmark(post) {
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+      console.log(res);
+      this.bookmarked = true;
+    });
+  }
+  unBookmark(post) {
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+      console.log(res);
+      this.bookmarked = false;
+    });
   }
 }

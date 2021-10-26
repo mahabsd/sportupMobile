@@ -18,6 +18,8 @@
         "photo":"Photo",
         "publication": "Publication",
         "calendrier": "Calendrier",
-        "palmares": "Palmarès"
+        "palmares": "Palmarès",
+        "abonnees": "Abonnees",
+        "abonnement": "Abonnement"
       }
   }

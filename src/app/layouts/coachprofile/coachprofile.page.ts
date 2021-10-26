@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
-import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { PostService } from 'src/app/Shared/Service/post.service';
@@ -52,9 +51,14 @@ export class CoachprofilePage implements OnInit {
     private postService: PostService,
     private translate: TranslateService,
     public storage: Storage) {
-    storage.get('lan').then((val) => {
+      translate.setDefaultLang('en');
+
+      // the lang to use, if the lang isn't available, it will use the current loader to get them
+     translate.use('en');
+   storage.get('lan').then((val) => {
+     if(val)
       translate.use(val);
-    });
+   });
   }
 
   ngOnInit() {
@@ -64,7 +68,7 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getfollow();
     this.publiations();
-     
+
   }
 
 

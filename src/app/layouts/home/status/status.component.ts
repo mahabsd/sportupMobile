@@ -90,6 +90,8 @@ export class StatusComponent implements OnInit {
   async ngOnInit() {
 this.getMe()
     await this.getCommentByPost();
+    console.log(this.images[0])
+
   }
 
 
@@ -165,6 +167,8 @@ this.getMe()
   }
 
   async displayImage(a: any) {
+    console.log("here")
+
     // eslint-disable-next-line @typescript-eslint/naming-convention
     //console.log(url);
     console.log(this.mediafiles);
@@ -210,6 +214,7 @@ this.getMe()
     });
   }
   getCommentByPost() {
+console.log("++++"+this.post._id)
     forkJoin({
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
@@ -220,6 +225,7 @@ this.getMe()
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       this.tempMedia = mediafiles.mediafiles;
+
 
       if ( this.tempMedia.length<4){
         this.newMediaFiles= this.tempMedia.splice(0,1);
