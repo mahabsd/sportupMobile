@@ -9,7 +9,7 @@ import { IonSegment, ModalController } from '@ionic/angular';
 import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { UserService } from '../../../Shared/Service/user.service';
 import { PopoverController } from '@ionic/angular';
-import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page';
+import { PopovercomponentPage } from './popovercomponent/popovercomponent.page';
 import { User } from 'src/app/Shared/Model/User';
 import { ActivatedRoute } from '@angular/router';
 import { PopOverSuivrePageComponent } from '../../profil/pop-over-suivre-page/pop-over-suivre-page.component';
@@ -98,7 +98,7 @@ export class ProfilPage implements OnInit {
   postsStatut$: any ;
 
   ResWithOneimg: any= [];
-  
+
   ResWithTwoimg: any= [];
   ResWithThreeimg: any= [];
   constructor(private userservice: UserService,
@@ -239,14 +239,14 @@ this.getPosts()
       });
   }
 
-  
+
   GetPostStatusOnly(idpost) {
     console.log(idpost)
       this.imageservice.GetPostStatusOnly(idpost).subscribe((res) => {
         console.log(res)
-        
+
         this.postsStatut=  this.postsStatut.concat(res);
-     
+
 
       });
   }
@@ -254,7 +254,6 @@ this.getPosts()
 
   getPosts(event?) {
     this.postsOwnerId = this.postService.postsOwnerId;
-   
     this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
      // this.posts = this.posts.concat(response['data']);
       this.savepostsService.getSavedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
@@ -262,8 +261,8 @@ this.getPosts()
         this.posts$ = res.data.data;
         this.posts$.map(post=> {
           //console.log(post.post);
-          this.getimageBypostId(post.post.id)
-          this.GetPostStatusOnly(post.post.id)
+          this.getimageBypostId(post.post.id);
+          this.GetPostStatusOnly(post.post.id);
 
           this.posts.push(post.post);
         });
@@ -281,7 +280,7 @@ this.getPosts()
     //  console.log(this.posts);
 
       });
-   
+
        if (event) {
         event.target.complete();
       }
@@ -308,12 +307,12 @@ this.getPosts()
     this.savepostsService.getAllSharedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
       this.posts$ = res.data.data;
       console.log(res.data.data);
-  
+
       this.posts$.map(post=> {
         this.posts.push(post.post);
      });
      console.log(this.posts);
-  
+
     });
    }
 
@@ -323,7 +322,7 @@ this.getPosts()
     return ext;
   }
 
-  
+
 
   async displayImage(a: any) {
 
@@ -339,7 +338,7 @@ this.getPosts()
     });
     return await modal.present();
   }
-  
+
 
   async displayContentPhotoTab(files){
 
@@ -385,5 +384,5 @@ this.getPosts()
       console.log(err);
     });
   }
-   
+
 }

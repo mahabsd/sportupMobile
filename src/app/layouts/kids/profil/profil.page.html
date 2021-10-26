@@ -562,40 +562,55 @@
       >
         <div>
           <div style="display: flex; align-items: center">
-            <ion-avatar style="margin: 5px 20px">
+            <ion-avatar style="margin: 5px 20px; width: 40px; height: 40px">
               <img [src]="apiImgUser +user?.photo" />
             </ion-avatar>
 
             <div style="display: flex; flex-direction: column">
-              <ion-label>{{post.user.name}}</ion-label>
+              <ion-label style="font-weight: bold"
+                >{{post.user.name}}</ion-label
+              >
               <ion-label>{{post.createdAt| date}}</ion-label>
             </div>
+            <p
+              style="
+                font-size: 30px;
+                position: absolute;
+                right: 60px;
+                top: -30px;
+              "
+              (click)="presentPopover($event)"
+            >
+              ...
+            </p>
           </div>
-          <div
-            style="display: flex; flex-direction: column; margin-left: 105px"
-          >
+          <div style="display: flex; flex-direction: column; margin-left: 65px">
             <ion-label style="font-weight: bold">{{post.title}}</ion-label>
             <ion-label>{{post.content}} </ion-label>
           </div>
         </div>
         <div
           style="
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 80px;
             display: flex;
             justify-content: space-around;
+            align-items: center;
+            margin: 10px 0;
           "
         >
-          <ion-icon
-            name="heart-outline"
-            style="color: red; font-size: 30px"
-          ></ion-icon>
-          <ion-icon
-            name="chatbubble-ellipses-outline"
-            style="font-size: 30px"
-          ></ion-icon>
+          <div style="display: flex; align-items: center">
+            <ion-icon
+              name="heart-outline"
+              style="color: red; font-size: 30px; margin-right: 10px"
+            ></ion-icon>
+            Like
+          </div>
+          <div style="display: flex; align-items: center">
+            <ion-icon
+              name="chatbubble-ellipses-outline"
+              style="font-size: 30px; margin-right: 10px"
+            ></ion-icon>
+            Comment
+          </div>
         </div>
         <div id="main-content"></div>
       </div>
