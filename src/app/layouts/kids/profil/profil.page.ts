@@ -94,6 +94,9 @@ export class ProfilPage implements OnInit {
   posts$: any;
   postsimg$: any;
   postsimg: any = [];
+  postsStatut: any = [];
+  postsStatut$: any ;
+
   ResWithOneimg: any= [];
   
   ResWithTwoimg: any= [];
@@ -222,19 +225,28 @@ this.getPosts()
 
 
    getimageBypostId(idpost) {
-    console.log(idpost)
       this.imageservice.getImageBypost(idpost).subscribe((res) => {
         this.postsimg$=res;
         this.postsimg$.map(post=> {
-          console.log(post)
           this.postsimg.push(post);
 
        });
-      console.log(  this.postsimg.length)
 
       this.ResWithOneimg= this.postsimg.slice(0,1);
       this.ResWithTwoimg= this.postsimg.slice(1,5);
       this.ResWithThreeimg= this.postsimg.slice(5, this.postsimg.length);
+
+      });
+  }
+
+  
+  GetPostStatusOnly(idpost) {
+    console.log(idpost)
+      this.imageservice.GetPostStatusOnly(idpost).subscribe((res) => {
+        console.log(res)
+        
+        this.postsStatut=  this.postsStatut.concat(res);
+     
 
       });
   }
@@ -246,24 +258,27 @@ this.getPosts()
     this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
      // this.posts = this.posts.concat(response['data']);
       this.savepostsService.getSavedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
+
         this.posts$ = res.data.data;
         this.posts$.map(post=> {
-          console.log(post.post);
+          //console.log(post.post);
           this.getimageBypostId(post.post.id)
+          this.GetPostStatusOnly(post.post.id)
+
           this.posts.push(post.post);
         });
        });
        this.savepostsService.getAllSharedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
 
         this.posts$ = res.data.data;
-        console.log(res.data.data);
+        //console.log(res.data.data);
 
         this.posts$.map(post=> {
           this.getimageBypostId(post.post.id)
-
+          this.GetPostStatusOnly(post.post.id)
           this.posts.push(post.post);
        });
-     //  console.log(this.posts);
+    //  console.log(this.posts);
 
       });
    
