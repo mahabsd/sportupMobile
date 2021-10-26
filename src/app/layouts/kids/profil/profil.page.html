@@ -394,30 +394,47 @@
     <div *ngIf="selected==='Publications'">
       <div
         style="
-          padding: 15px 5px;
-          background-color: rgba(187, 187, 187, 0.589);
+          padding: 10px 5px;
           border-radius: 20px;
           margin: 5px;
+          position: relative;
         "
         *ngFor="let post of userPosts"
       >
         <div>
           <div style="display: flex; align-items: center">
-            <ion-avatar style="margin: 5px 20px">
+            <ion-avatar style="margin: 3px 20px">
               <img src="../../../assets/kidsuser.png" />
             </ion-avatar>
 
             <div style="display: flex; flex-direction: column">
-              <ion-label>{{post.user.name}}</ion-label>
-              <ion-label>{{post.createdAt}}</ion-label>
+              <div>{{post.user.name}}</div>
+              <div>{{post.createdAt}}</div>
             </div>
           </div>
-          <div
-            style="display: flex; flex-direction: column; margin-left: 105px"
-          >
-            <ion-label style="font-weight: bold">{{post.title}} :</ion-label>
-            <ion-label>{{post.content}} </ion-label>
+          <div style="display: flex; flex-direction: column; margin-left: 65px">
+            <div style="font-weight: bold">{{post.title}} :</div>
+            <div style="padding-right: 40px">{{post.content}}</div>
           </div>
+        </div>
+        <div
+          style="
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            display: flex;
+            justify-content: space-around;
+          "
+        >
+          <ion-icon
+            name="heart-outline"
+            style="color: red; font-size: 30px"
+          ></ion-icon>
+          <ion-icon
+            name="chatbubble-ellipses-outline"
+            style="font-size: 30px"
+          ></ion-icon>
         </div>
         <div id="main-content"></div>
       </div>
