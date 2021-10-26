@@ -12,6 +12,7 @@ export class ShowImagePage implements OnInit {
   users;
   isItemAvailable: boolean;
   usersfiltered: any;
+  userRole: any;
   constructor(
     private navParams: NavParams,
     private modalController: ModalController,
@@ -19,8 +20,9 @@ export class ShowImagePage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userService.getRoleUsers().subscribe(res => this.users = res
-      );
+    this.getMe();
+
+
   }
   close() {
     this.modalController.dismiss();
@@ -38,5 +40,14 @@ export class ShowImagePage implements OnInit {
       this.isItemAvailable = false;
     }
   }
-
+  getMe() {
+    this.userService.getMe().subscribe((res) => {
+      this.userRole= res.data.data.role;
+      if(this.userRole === 'user')  {
+        this.userService.getRoleUsers().subscribe(res => this.users = res);
+      }else {
+        this.userService.getUsersKids().subscribe(res => this.users = res);
+      }
+    });
+}
 }

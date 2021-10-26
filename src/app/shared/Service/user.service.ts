@@ -92,7 +92,7 @@ export class UserService {
   }
   getUsersKids(): Observable<any> {
 
-    return this.utilsService.get(`${UtilsService.apiUSER}?role=kids`).pipe(map(res => res.data));
+    return this.utilsService.get(`${UtilsService.apiUSER}?role=kids`).pipe(map(res => res.data.data));
   }
 
   getRoleUsers(): Observable<any> {
