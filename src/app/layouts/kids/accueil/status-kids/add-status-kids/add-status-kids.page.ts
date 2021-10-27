@@ -12,6 +12,7 @@ import { PostService } from 'src/app/Shared/Service/post.service';
 import { AuthService } from 'src/app/Shared/Auth/auth.service';
 import { User } from 'src/app/Shared/Model/User';
 import { Post } from 'src/app/Shared/Model/Post';
+import { Router } from '@angular/router';
 const { Camera } = Plugins;
 @Component({
   selector: 'app-add-status-kids',
@@ -44,7 +45,7 @@ export class AddStatusKidsPage implements OnInit {
     private authService: AuthService,
     private postService: PostService,
     private toastCtrl: ToastController,
-    private Renderer: Renderer2,
+    private Renderer: Renderer2,public router: Router
   ) { }
   ngOnInit() {
     console.log(this.pagetype)
@@ -169,6 +170,8 @@ export class AddStatusKidsPage implements OnInit {
       this.postService.createPost(fd).subscribe((res) => {
         this.presentToast('Fichiers Ajoutées');
         this.closeModal();
+        this.router.navigate(["/tabsKids/accueil"]);
+
 
         return res;
       });
