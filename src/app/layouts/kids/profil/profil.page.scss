@@ -1387,6 +1387,7 @@ svg {
   width: 290px;
   border-radius: 5px;
   margin-left: 40px;
+  background-color: black;
 }
 
 .fourPics {
@@ -1394,6 +1395,7 @@ svg {
   width: 80px;
   margin: 0px 12px 23px 0px;
   border-radius: 5px;
+  background-color: black;
 }
 
 #photo-set-one {
@@ -1416,12 +1418,121 @@ svg {
 }
 
 .eightPic {
-  width: 72px;
-  margin: 10px;
-  margin-left: 30px;
+  width: 79px;
+  height: 79px;
+  margin: 6px;
   border-radius: 5px;
+  background-color: black;
 }
 
+// .first-left-tape-0 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 40px;
+//   background-color: rgba(226, 183, 43, 0.753);
+//   transform: rotate(-30deg);
+//   top: -15px;
+//   left: -10px;
+// }
+
+// .first-right-tape-0 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 40px;
+//   background-color: rgba(226, 183, 43, 0.753);
+//   transform: rotate(30deg);
+//   top: -20px;
+//   right: 0px;
+// }
+// .left-tape-0 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 40px;
+//   background-color: rgba(247, 96, 9, 0.753);
+//   transform: rotate(-30deg);
+//   top: -15px;
+//   left: -10px;
+// }
+
+// .right-tape-0 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 40px;
+//   background-color: rgba(247, 96, 9, 0.753);
+//   transform: rotate(30deg);
+//   top: -20px;
+//   right: -10px;
+// }
+
+// .left-tape-1 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 30px;
+//   background-color: rgba(189, 43, 226, 0.753);
+//   transform: rotate(-15deg);
+//   top: -15px;
+//   left: -5px;
+// }
+
+// .right-tape-1 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 30px;
+//   background-color: rgba(189, 43, 226, 0.753);
+//   transform: rotate(15deg);
+//   top: -17px;
+//   right: -5px;
+// }
+
+// .left-tape-2 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 30px;
+//   background-color: rgba(61, 43, 226, 0.753);
+//   transform: rotate(-15deg);
+//   top: -15px;
+//   left: -5px;
+// }
+
+// .right-tape-2 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 30px;
+//   background-color: rgba(61, 43, 226, 0.753);
+//   transform: rotate(15deg);
+//   top: -17px;
+//   right: -5px;
+// }
+
+// .left-tape-3 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 30px;
+//   background-color: rgba(64, 226, 43, 0.753);
+//   transform: rotate(-15deg);
+//   top: -15px;
+//   left: -5px;
+// }
+
+// .right-tape-3 {
+//   position: absolute;
+//   border-radius: 5px;
+//   width: 20px;
+//   height: 30px;
+//   background-color: rgba(64, 226, 43, 0.753);
+//   transform: rotate(15deg);
+//   top: -17px;
+//   right: -5px;
+// }
 .first-left-tape-0 {
   position: absolute;
   border-radius: 5px;
@@ -1443,7 +1554,7 @@ svg {
   top: -20px;
   right: 0px;
 }
-.left-tape-0 {
+.left-tape-first {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1454,7 +1565,7 @@ svg {
   left: -10px;
 }
 
-.right-tape-0 {
+.right-tape-first {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1465,7 +1576,7 @@ svg {
   right: -10px;
 }
 
-.left-tape-1 {
+.left-tape-second {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1476,7 +1587,7 @@ svg {
   left: -5px;
 }
 
-.right-tape-1 {
+.right-tape-second {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1487,7 +1598,7 @@ svg {
   right: -5px;
 }
 
-.left-tape-2 {
+.left-tape-third {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1498,7 +1609,7 @@ svg {
   left: -5px;
 }
 
-.right-tape-2 {
+.right-tape-third {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1509,7 +1620,7 @@ svg {
   right: -5px;
 }
 
-.left-tape-3 {
+.left-tape-fourth {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1520,7 +1631,7 @@ svg {
   left: -5px;
 }
 
-.right-tape-3 {
+.right-tape-fourth {
   position: absolute;
   border-radius: 5px;
   width: 20px;

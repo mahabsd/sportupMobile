@@ -60,27 +60,14 @@ export class TabsPage implements OnInit {
     this.menuOpened = true;
   }
 
-  openModal() {
-    const url = this.router.url.split('/', 6);
+ 
 
-    if (url[3] === 'home') {
-      this.openShareModal('home');
-      console.log(url[3]);
-    }
-    if (url[4] === 'coachprofile') {
-      this.sendMessage('addphoto');
-      console.log(url[4]);
-    }
-
-
-  }
-
-  async openShareModal(type) {
+  async openShareModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
         user: this.user$,
-        pagetype: type
+ 
       },
     });
     await modal.present();

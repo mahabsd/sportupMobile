@@ -44,7 +44,7 @@ export class CoachphotoPage implements OnInit {
   ) {
     this.subscription = this.imageService.getMessage().subscribe((message) => {
       if (message.event === 'addphoto') {
-        this.selectImageSource();
+      //  this.selectImageSource();
       } else {
         // clear messages when empty message received
         this.messages = [];
@@ -70,7 +70,7 @@ export class CoachphotoPage implements OnInit {
     return await modal.present();
   }
 
-  async addImage(source: CameraSource) {
+ /* async addImage(source: CameraSource) {
 
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
@@ -106,7 +106,7 @@ export class CoachphotoPage implements OnInit {
     });
 
     await actionSheet.present();
-  }
+  }*/
 
   async presentToast(message) {
     const myToast = await this.toastCtrl
@@ -147,7 +147,7 @@ export class CoachphotoPage implements OnInit {
   getAllPostsByEvent(event?) {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
-      this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
+      this.postService.getAllfollowingPosts(this.page, this.postsOwnerId).pipe(share()).subscribe(res => {
         console.log(res.data.shared);
         this.posts = this.posts.concat(res.data.data);
         console.log(this.posts);
