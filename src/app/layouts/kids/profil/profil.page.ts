@@ -211,6 +211,8 @@ this.getPosts();
         this.postsimg$.map(post=> {
           this.postsimg.push(post);
 
+          console.log(res.length)
+
        });
 
       this.ResWithOneimg= this.postsimg.slice(0,1);
