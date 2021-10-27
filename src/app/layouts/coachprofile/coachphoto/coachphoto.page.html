@@ -3,15 +3,20 @@
     <!-- -->
 
     <div class="container">
-      <div
-        *ngFor="let item of images ; let i = index; "
-        [ngClass]="[i === 0 ? 'item b' : 'item a']"
-        [style.background-size]="'cover'"
-        [style.background-image]="'url('+ apImg+item?.file_name + ')'"
-        [lazyLoad]="apImg+item?.file_name"
-        errorImage="../../../assets/imgs/150.png"
-        (click)="presentModal(item)"
-      ></div>
+      <ng-container *ngFor="let item of images ; let i = index; ">
+
+        <div *ngIf="getExt(item.file_name) === 'png'" [ngClass]="[i === 0 ? 'item b' : 'item a']"
+          [style.background-size]="'cover'" [style.background-image]="'url('+ apImg+item?.file_name + ')'"
+          [lazyLoad]="apImg+item?.file_name" errorImage="../../../assets/imgs/150.png" (click)="presentModal(item)">
+        </div>
+        <div *ngIf="getExt(item.file_name) === 'mp4'" [ngClass]="[i === 0 ? 'item b' : 'item a']"
+        [style.background-size]="'cover'" [style.background-image]="'url('+ apImg+item?.file_name + ')'"
+        [lazyLoad]="apImg+item?.file_name" errorImage="../../../assets/imgs/150.png" (click)="presentModal(item)">
+        
+      </div>
+      </ng-container>
+
+
     </div>
   </ion-grid>
 </ion-content>

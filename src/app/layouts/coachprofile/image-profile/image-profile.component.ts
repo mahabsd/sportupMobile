@@ -27,6 +27,14 @@ export class ImageProfileComponent implements OnInit {
 
    
   }
+
+  getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    //console.log(ext);
+    return ext;
+  }
+
+  
   dismiss() {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
