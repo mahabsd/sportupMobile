@@ -14,6 +14,8 @@ import { ModalController } from '@ionic/angular';
 export class CommentsPage implements OnInit {
   @Input() post: Post;
   @Input() comments: any = [];
+  apiImgUser = `${environment.apiImg}User/`;
+
   comment: Comment = new Comment();
   commentForm: FormGroup;
   apiImg: any;

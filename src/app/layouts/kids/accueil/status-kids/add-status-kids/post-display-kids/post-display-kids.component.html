@@ -1,14 +1,13 @@
 <ion-content>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-buttons slot="end">
       <ion-button (click)="dismiss()" large>
         <ion-icon name="close-circle-outline" size="large"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
-
+asfour
   <ion-row class="ion-justify-content-center">
-   
     <ion-col size="12" *ngFor="let mediafile of mediafiles">
       <img
         *ngIf="get_url_extension(mediafile?.file_name).includes('png', 'jpeg')"
@@ -24,7 +23,7 @@
       </video>
       <ion-row lines="none">
         <ion-col size="col-2">
-          <ion-chip *ngIf="post?.type==='user'">
+          <ion-chip>
             <ng-container
               *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp"
             >
@@ -63,7 +62,7 @@
         <ion-col style="text-align: end">
           <ion-chip>
             <ion-button
-              (click)="presentModal(post)"  *ngIf="post?.type==='user'"
+              (click)="presentModal(post)"
               shape="round"
               fill="clear"
               size="large"
@@ -130,7 +129,7 @@
           );
         "
       >
-        <h5 style="color: white">{{ mediafiles[0]?.createdAt | date }}</h5>
+        <h5 style="color: white">{{ mediafiles[0]?.createdAt }}</h5>
       </ion-title>
     </ion-col>
   </ion-row>

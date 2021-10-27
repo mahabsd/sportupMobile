@@ -35,6 +35,7 @@ import { ImageProfileComponent } from 'src/app/layouts/coachprofile/image-profil
 import { PostDisplayComponent } from 'src/app/layouts/post-display/post-display.component';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
+import { DisplayImgProfilKidsComponent } from '../../profil/display-img-profil-kids/display-img-profil-kids.component';
 
 @Component({
   selector: 'app-status-kids',
@@ -259,10 +260,10 @@ export class StatusKidsComponent implements OnInit {
   async displayImage(a: any) {
 
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    //console.log(url);
+    console.log("displayImage");
     console.log(this.mediafiles);
     const modal = await this.modalController.create({
-      component: ImageProfileComponent,
+      component: DisplayImgProfilKidsComponent,
       cssClass: 'imageModal',
       componentProps: {
         image: a,
@@ -272,6 +273,8 @@ export class StatusKidsComponent implements OnInit {
   }
 
   async displayContent(files){
+    console.log("displayContent");
+
 console.log(files)
     const modal = await this.modalController.create({
       component: PostDisplayComponent,
@@ -286,6 +289,7 @@ console.log(files)
   async displayVideo(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // console.log(url);
+    console.log("displayVideo");
 
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
