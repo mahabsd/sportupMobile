@@ -24,7 +24,7 @@ export class ImageProfileComponent implements OnInit {
 
   ngOnInit() {
    
-
+console.log(this.image)
    
   }
 

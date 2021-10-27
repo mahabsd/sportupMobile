@@ -90,16 +90,16 @@
     </ion-segment>
 
     <div class="body" *ngIf="selected==='photo'">
+      
       <div *ngIf="this.postsimg.length===1">
+        
         <div id="first-bloc">
-          <div
-            id="first-photo"
+          <div id="first-photo"
             style="position: relative"
-            *ngFor="let file of ResWithOneimg"
-          >
-            <div class="first-left-tape-0"></div>
-            <div class="right-tape-0"></div>
-            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+            *ngFor="let file of ResWithOneimg"          >
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
+            <ng-container *ngIf="getExt(file.file_name) === 'png'||getExt(file.file_name) === 'jpeg||getExt(file.file_name) === 'jpg''">
               <div
                 style="width: 250px; height: 200px"
                 [style.background-size]="'cover'"
@@ -128,7 +128,7 @@
         </div>
       </div>
 
-      <div *ngIf="this.postsimg.length>=1&&this.postsimg.length<6">
+      <div *ngIf="this.postsimg.length>1&&this.postsimg.length<6">
         <div id="first-bloc">
           <div
             id="first-photo"
