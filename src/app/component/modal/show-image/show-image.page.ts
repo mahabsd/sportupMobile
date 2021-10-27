@@ -2,6 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ModalController, NavParams, IonSlides } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { Router } from '@angular/router';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 
 @Component({
   selector: 'app-show-image',
@@ -19,7 +20,7 @@ export class ShowImagePage implements OnInit {
     private navParams: NavParams,
     private modalController: ModalController,
     private userService: UserService,
-    private router: Router
+    private router: Router,private followerService:FollowerService
   ) { }
 
   ngOnInit() {
@@ -65,20 +66,63 @@ console.log(this.users);
   }
   gotoProfile(userId) {
     if (userId === this.userConnectedId) {
+
      if(this.userRole === 'user' || this.userRole === 'pro' ){
       this.router.navigate(['menu/tabs/layouts/coachprofile/',userId,'me','coachphoto']);
      } else  {
-// kids redirect
+
+      this.router.navigate(["tabs/profilkids/",userId]);
+
      }
       this.close();
     } else {
+
       if(this.userRole === 'user' || this.userRole === 'pro' ){
-        this.router.navigate(['menu/tabs/layouts/coachprofile',userId,'followed','coachphoto']);
+        this.getfollow(userId)
       }else{
-// kids redirect
+        this.userService.getMe().subscribe(
+          (response) => {
+            this.followerService.getFollow(userId, this.userConnectedId)
+              .subscribe((res) => {
+                if (res == null) {
+                  this.router.navigate(['/profil-kid/',userId]);
+                  console.log('nope');
+                } else {
+                  console.log(res);
+                  this.router.navigate(["tabs/profilkids/",userId]);
+                }
+              });
+          },
+          (error) => {
+            console.error(error);
+          }
+        );
       }
       this.close();
     }
   }
 
+  getfollow(iduserpassed) {
+    this.userService.getMe().subscribe(
+      (response) => {
+        this.followerService.getFollow(iduserpassed, this.userConnectedId)
+          .subscribe((res) => {
+            if (res == null) {
+              this.router.navigate(['profil',iduserpassed,'adulte']);
+              console.log('nope');
+            } else {
+              console.log(res);
+              this.router.navigate(['menu/tabs/layouts/coachprofile',iduserpassed,'followed']);
+            }
+          });
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
+
 }
+
+//profil follow      // this.router.navigate(['profil',userId,'adulte']);
+

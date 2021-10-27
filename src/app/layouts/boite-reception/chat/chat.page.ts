@@ -23,6 +23,7 @@ export class ChatPage implements OnInit {
   currentUser;
   user$;
   username;
+  userconnectedrole;
   idprofilePassed;
   filterchat:string;
   constructor(private socket: Socket,
@@ -38,6 +39,7 @@ export class ChatPage implements OnInit {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data._id;
       this.username=res.data.data.name
+this.userconnectedrole=res.data.data.role;
       console.log(this.user$);
 
     let name = ` User-${new Date().getTime()}`;
