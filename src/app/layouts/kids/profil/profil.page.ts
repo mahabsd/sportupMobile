@@ -11,6 +11,7 @@ import { UserService } from '../../../Shared/Service/user.service';
 import { PopoverController } from '@ionic/angular';
 import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page';
 import { Popovercomponent2Page } from './popovercomponent2/popovercomponent2.page';
+
 import { User } from 'src/app/Shared/Model/User';
 import { ActivatedRoute } from '@angular/router';
 import { PopOverSuivrePageComponent } from '../../profil/pop-over-suivre-page/pop-over-suivre-page.component';
@@ -260,7 +261,6 @@ this.getPosts();
   GetPostStatusOnly(idpost) {
     console.log(idpost);
       this.imageservice.GetPostStatusOnly(idpost).subscribe((res) => {
-        console.log(res);
 
         this.postsStatut=  this.postsStatut.concat(res);
 
