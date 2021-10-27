@@ -155,7 +155,11 @@ export class CoachphotoPage implements OnInit {
         });
       }
 
-      
+      getExt(fileName) {
+        const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+        //console.log(ext);
+        return ext;
+      }
   getAllPostsByEvent(event?) {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
