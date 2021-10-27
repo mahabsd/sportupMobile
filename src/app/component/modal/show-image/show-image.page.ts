@@ -20,7 +20,7 @@ export class ShowImagePage implements OnInit {
     private navParams: NavParams,
     private modalController: ModalController,
     private userService: UserService,
-    private router: Router,private followerService:FollowerService
+    private router: Router, private followerService: FollowerService
   ) { }
 
   ngOnInit() {
@@ -30,19 +30,19 @@ export class ShowImagePage implements OnInit {
     this.modalController.dismiss();
   }
   getItems($event) {
-console.log(this.users);
+    console.log(this.users);
 
     const val = $event.target.value;
     if (val && val.trim() !== '') {
       this.isItemAvailable = true;
-      if (this.userRole === 'user' || this.userRole === 'pro'  ) {
-        this.userService.getRoleUsers().subscribe(res =>  {
+      if (this.userRole === 'user' || this.userRole === 'pro') {
+        this.userService.getRoleUsers().subscribe(res => {
           this.users = res;
           this.usersfiltered = this.users.filter((item) => {
             return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1)
           });
-         }
-          );
+        }
+        );
       } else {
         this.userService.getUsersKids().subscribe(res => {
           this.users = res;
@@ -50,7 +50,7 @@ console.log(this.users);
             return (item.name.toLowerCase().indexOf(val.toLowerCase()) > -1)
           });
         }
-          );
+        );
       }
 
 
@@ -67,29 +67,27 @@ console.log(this.users);
   gotoProfile(userId) {
     if (userId === this.userConnectedId) {
 
-     if(this.userRole === 'user' || this.userRole === 'pro' ){
-      this.router.navigate(['menu/tabs/layouts/coachprofile/',userId,'me','coachphoto']);
-     } else  {
-
-      this.router.navigate(["tabs/profilkids/",userId]);
-
-     }
+      if (this.userRole === 'user' || this.userRole === 'pro') {
+        this.router.navigate(['menu/tabs/layouts/coachprofile/', userId, 'me', 'coachphoto']);
+      } else {
+        this.router.navigate(["tabs/profilkids/", userId]);
+      }
       this.close();
     } else {
 
-      if(this.userRole === 'user' || this.userRole === 'pro' ){
-        this.getfollow(userId)
-      }else{
+      if (this.userRole === 'user' || this.userRole === 'pro') {
+        this.getfollow(userId);
+      } else {
         this.userService.getMe().subscribe(
           (response) => {
             this.followerService.getFollow(userId, this.userConnectedId)
               .subscribe((res) => {
                 if (res == null) {
-                  this.router.navigate(['/profil-kid/',userId]);
+                  this.router.navigate(['/profil-kid/', userId]);
                   console.log('nope');
                 } else {
                   console.log(res);
-                  this.router.navigate(["tabs/profilkids/",userId]);
+                  this.router.navigate(["tabs/profilkids/", userId]);
                 }
               });
           },
@@ -108,11 +106,11 @@ console.log(this.users);
         this.followerService.getFollow(iduserpassed, this.userConnectedId)
           .subscribe((res) => {
             if (res == null) {
-              this.router.navigate(['profil',iduserpassed,'adulte']);
+              this.router.navigate(['profil', iduserpassed, 'adulte']);
               console.log('nope');
             } else {
               console.log(res);
-              this.router.navigate(['menu/tabs/layouts/coachprofile',iduserpassed,'followed']);
+              this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed']);
             }
           });
       },

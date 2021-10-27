@@ -127,7 +127,7 @@ export class CoachphotoPage implements OnInit {
   getImageByIdUser(id) {
     this.imageService.getImageByUserId(id).subscribe((res) => {
       this.images = res;
-      
+
     });
   }
   getMe() {
@@ -148,10 +148,6 @@ export class CoachphotoPage implements OnInit {
             console.log(element);
             this.images.push(element);
           });
-      
-  
-    
-    
         });
       }
 
