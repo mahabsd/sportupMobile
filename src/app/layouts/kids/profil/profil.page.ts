@@ -9,7 +9,9 @@ import { IonSegment, ModalController } from '@ionic/angular';
 import { PostKidsService } from 'src/app/Shared/kids/Service/postKids.service';
 import { UserService } from '../../../Shared/Service/user.service';
 import { PopoverController } from '@ionic/angular';
-import { PopovercomponentPage } from './popovercomponent/popovercomponent.page';
+import { PopovercomponentPage } from '../popovercomponent/popovercomponent.page';
+import { Popovercomponent2Page } from './popovercomponent2/popovercomponent2.page';
+
 import { User } from 'src/app/Shared/Model/User';
 import { ActivatedRoute } from '@angular/router';
 import { PopOverSuivrePageComponent } from '../../profil/pop-over-suivre-page/pop-over-suivre-page.component';
@@ -96,18 +98,23 @@ export class ProfilPage implements OnInit {
   postsimg: any = [];
   postsStatut: any = [];
   postsStatut$: any ;
-
   ResWithOneimg: any= [];
-
   ResWithTwoimg: any= [];
   ResWithThreeimg: any= [];
+  blocFourOneLeft:"left-tape-";
+  blocFourTwoLeft:"left-tape-second";
+  blocFourThreeLeft:"left-tape-third";
+  blocFourFourLeft:"left-tape-fourth";
   constructor(private userservice: UserService,
      private postKidsService: PostKidsService,
     public popoverController: PopoverController,
      public userService: UserService,
       private activatedRoute: ActivatedRoute,
       private savepostsService: FavorisService,
-      private eventService: EventService,private postService: PostService,private imageservice:ImageService,private videoPlayer: VideoPlayer,
+      private eventService: EventService,
+      private postService: PostService,
+      private imageservice:ImageService,
+      private videoPlayer: VideoPlayer,
       private modalController: ModalController,
 
       ) { }
@@ -121,7 +128,7 @@ export class ProfilPage implements OnInit {
 
 
     this.getUserByid();
-this.getPosts()
+this.getPosts();
 //this.getCommentByPost()
 //this.getImageBypost()
   }
@@ -161,6 +168,18 @@ this.getPosts()
   async presentPopover(ev: any) {
     const popover = await this.popoverController.create({
       component: PopovercomponentPage,
+      cssClass: 'popoverProfil-custom-class',
+      event: ev,
+      translucent: true
+    });
+    await popover.present();
+
+    const { role } = await popover.onDidDismiss();
+    console.log('onDidDismiss resolved with role', role);
+  }
+  async presentPopover2(ev: any) {
+    const popover = await this.popoverController.create({
+      component: Popovercomponent2Page,
       cssClass: 'popoverProfil-custom-class',
       event: ev,
       translucent: true
@@ -237,15 +256,13 @@ this.getPosts()
       this.ResWithOneimg= this.postsimg.slice(0,1);
       this.ResWithTwoimg= this.postsimg.slice(1,5);
       this.ResWithThreeimg= this.postsimg.slice(5, this.postsimg.length);
-
       });
   }
 
 
   GetPostStatusOnly(idpost) {
-    console.log(idpost)
+    console.log(idpost);
       this.imageservice.GetPostStatusOnly(idpost).subscribe((res) => {
-        console.log(res)
 
         this.postsStatut=  this.postsStatut.concat(res);
 
@@ -275,8 +292,8 @@ this.getPosts()
         //console.log(res.data.data);
 
         this.posts$.map(post=> {
-          this.getimageBypostId(post.post.id)
-          this.GetPostStatusOnly(post.post.id)
+          this.getimageBypostId(post.post.id);
+          this.GetPostStatusOnly(post.post.id);
           this.posts.push(post.post);
        });
     //  console.log(this.posts);
