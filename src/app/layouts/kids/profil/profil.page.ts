@@ -51,44 +51,6 @@ export class ProfilPage implements OnInit {
   checkSelf=false;
   idprofilePassed;
   profileClickedName;
-  userPosts=[
-    {
-    id:1,
-    content:"hello this is my first post,hello this is my first post,hello this is my first post,hello this is my first post",
-    createdAt:"27/08/2020",
-    title:"winterfel",
-    user:{
-      name:"jon snow"
-    }
-  },
-  {
-    id:2,
-    content:"hello this is my second post,hello this is my second post,hello this is my second post,hello this is my second post",
-    createdAt:"07/01/2020",
-    title:"the wall",
-    user:{
-      name:"jon snow"
-    }
-  },
-  {
-    id:3,
-    content:"hello this is my third post,hello this is my third post,hello this is my third post,hello this is my third post",
-    createdAt:"26/12/2020",
-    title:"beyond the wall",
-    user:{
-      name:"jon snow"
-    }
-  },
-  {
-    id:4,
-    content:"hello this is my fourth post,hello this is my fourth post,hello this is my fourth post,hello this is my fourth post",
-    createdAt:"26/12/2020",
-    title:"back to the wall again",
-    user:{
-      name:"jon snow"
-    }
-  }
-];
   isScrollTop: boolean;
   page = 1;
   selectedDate;
