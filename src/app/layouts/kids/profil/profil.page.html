@@ -97,8 +97,8 @@
             style="position: relative"
             *ngFor="let file of ResWithOneimg"
           >
-            <div class="left-tape-first"></div>
-            <div class="right-tape-first"></div>
+            <div class="first-left-tape-0"></div>
+            <div class="right-tape-0"></div>
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
               <div
                 style="width: 250px; height: 200px"
@@ -133,10 +133,10 @@
           <div
             id="first-photo"
             style="position: relative"
-            *ngFor="let file of ResWithOneimg"
+            *ngFor="let file of ResWithOneimg let index=index"
           >
-            <div class="left-tape-first"></div>
-            <div class="right-tape-first"></div>
+            <div class="{{'left-tape-'+index}}"></div>
+            <div class="{{'right-tape-'+index}}"></div>
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
               <div
                 style="height: 200px"
@@ -167,10 +167,11 @@
             <div
               class="fourPics"
               style="position: relative"
-              *ngFor="let file of ResWithTwoimg"
+              *ngFor="let file of ResWithTwoimg; let index=index"
             >
-              <div class="left-tape-second"></div>
-              <div class="right-tape-second"></div>
+              <div class="{{'left-tape-'+index}}"></div>
+              <div class="{{'right-tape-'+index}}"></div>
+
               <ng-container *ngIf="getExt(file.file_name) === 'png'">
                 <div
                   style="height: 100px"
@@ -208,8 +209,9 @@
             style="position: relative"
             *ngFor="let file of ResWithOneimg"
           >
-            <div class="left-tape-first"></div>
-            <div class="right-tape-first"></div>
+            <div class="first-left-tape-0"></div>
+            <div class="first-right-tape-0"></div>
+
 
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
               <div
@@ -241,10 +243,10 @@
             <div
               class="fourPics"
               style="position: relative"
-              *ngFor="let file of ResWithTwoimg"
+              *ngFor="let file of ResWithTwoimg let index=index"
             >
-              <div class="left-tape-second"></div>
-              <div class="right-tape-second"></div>
+              <div class="{{'left-tape-'+index}}"></div>
+              <div class="{{'right-tape-'+index}}"></div>
               <ng-container *ngIf="getExt(file.file_name) === 'png'">
                 <div
                   style="height: 100px"
@@ -277,10 +279,11 @@
           <div
             class="eightPic"
             style="position: relative"
-            *ngFor="let file of ResWithThreeimg"
+            *ngFor="let file of ResWithThreeimg let index=index"
           >
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
+            <div class="{{'left-tape-'+index}}"></div>
+            <div class="{{'right-tape-'+index}}"></div>
+
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
               <div
                 style="height: 100px"
@@ -579,7 +582,7 @@
                 right: 60px;
                 top: -30px;
               "
-              (click)="presentPopover($event)"
+              (click)="presentPopover2($event)"
             >
               ...
             </p>
