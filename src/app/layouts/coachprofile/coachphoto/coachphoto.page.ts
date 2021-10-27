@@ -55,9 +55,7 @@ export class CoachphotoPage implements OnInit {
   //  this.getMe();
     this.postsOwnerId = this.postService.postsOwnerId;
     console.log(  this.postsOwnerId );
-    this.getImageByIdUser(this.postsOwnerId);
     this.getAllPostsByEvent();
-
   }
 
   async presentModal(img: any) {
@@ -81,7 +79,6 @@ export class CoachphotoPage implements OnInit {
     this.imageService.addImage(fd).subscribe(async (res) => {
       // console.log(res);
       this.presentToast('Photo ajoutée!');
-      this.getImageByIdUser(this.user$.id);
     });
   }
 
@@ -123,20 +120,11 @@ export class CoachphotoPage implements OnInit {
         toastData.present();
       });
   }
-
-  getImageByIdUser(id) {
-    this.imageService.getImageByUserId(id).subscribe((res) => {
-      this.images = res;
-
-    });
-  }
   getMe() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = res.data.data;
-      this.getImageByIdUser(res?.data?.data?._id);
     });
   }
-
 
   getpostFiles(post) {
     console.log("++++"+post._id)

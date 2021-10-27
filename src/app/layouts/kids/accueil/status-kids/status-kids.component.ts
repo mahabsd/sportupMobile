@@ -86,7 +86,7 @@ export class StatusKidsComponent implements OnInit {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
-    
+
 
     const _this = this;
 
@@ -98,16 +98,16 @@ export class StatusKidsComponent implements OnInit {
       .subscribe((res) => {
         if (res == null) {
           _this.follower = false;
-        
+
         } else {
           _this.follower = true;
 
         }
       });
   },
-  (error) => 
+  (error) =>
     console.error(error),
- 
+
 );
   }
   ngOnInit() {
@@ -244,13 +244,13 @@ export class StatusKidsComponent implements OnInit {
             }
           });
       },
-      (error) => 
+      (error) =>
         console.error(error),
-     
+
     );
   }
 
-  
+
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
     //console.log(ext);
