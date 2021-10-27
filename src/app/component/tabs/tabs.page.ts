@@ -37,7 +37,7 @@ export class TabsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getMe();
+   // this.getMe();
     this.subscription = this.eventService.getMessage().subscribe((message) => {
       this.menuOpened = message.event;
     });

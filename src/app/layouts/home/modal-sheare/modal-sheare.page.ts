@@ -135,7 +135,7 @@ export class ModalShearePage implements OnInit {
       fd.append('photo', this.filesToUpload, this.filesToUpload?.name);
     }
     if (this.post?.content) {
-      
+
       fd.append('content', this.post?.content);
       fd.append('type', 'user');
 
@@ -301,9 +301,6 @@ export class ModalShearePage implements OnInit {
         this.selectedPreviews.push('../../../assets/imgs/150.png');
 
       }
-
-
-
     }
 
     this.actionSheet.dismiss();
@@ -315,7 +312,7 @@ export class ModalShearePage implements OnInit {
 
   /* uploadFile(event: EventTarget) {
      console.log('uploadfile');
- 
+
      const eventObj: MSInputMethodContext = event as MSInputMethodContext;
      const target: HTMLInputElement = eventObj.target as HTMLInputElement;
      const file: File = target.files[0];
@@ -323,7 +320,7 @@ export class ModalShearePage implements OnInit {
      console.log(file);
      this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
        this.images.push(newImage);
- 
+
      });
    }*/
 }

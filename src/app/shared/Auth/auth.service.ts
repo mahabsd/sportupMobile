@@ -49,7 +49,7 @@ export class AuthService {
   }
   public logout() {
     this.storage.clear();
-    this.router.navigateByUrl('/logout');
+    this.router.navigateByUrl('/login');
   }
   public getRole() {
     this.role = this.storage.get(environment.currentUser);
