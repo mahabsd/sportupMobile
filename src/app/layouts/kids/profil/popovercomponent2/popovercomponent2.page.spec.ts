@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { PopovercomponentPage } from './popovercomponent.page';
+import { Popovercomponent2Page } from './popovercomponent2.page';
 
-describe('PopovercomponentPage', () => {
-  let component: PopovercomponentPage;
-  let fixture: ComponentFixture<PopovercomponentPage>;
+describe('Popovercomponent2Page', () => {
+  let component: Popovercomponent2Page;
+  let fixture: ComponentFixture<Popovercomponent2Page>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ PopovercomponentPage ],
+      declarations: [ Popovercomponent2Page ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(PopovercomponentPage);
+    fixture = TestBed.createComponent(Popovercomponent2Page);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { PopovercomponentPage } from './popovercomponent.page';
+import { Popovercomponent2Page } from './popovercomponent2.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PopovercomponentPage
+    component: Popovercomponent2Page
   }
 ];
 
@@ -14,4 +14,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class PopovercomponentPageRoutingModule {}
+export class Popovercomponent2PageRoutingModule {}
