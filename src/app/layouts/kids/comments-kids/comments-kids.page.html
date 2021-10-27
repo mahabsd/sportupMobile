@@ -39,10 +39,10 @@
 
         <ion-item>
           <ion-avatar slot="end">
-            <ion-img [src]="apiImg+item?.user?.photo"></ion-img>
+            <ion-img [src]="apiImgUser+item?.user?.photo"></ion-img>
           </ion-avatar>
           <ion-label style="text-align: end">
-            <h2>{{item?.user?.name}}</h2>
+            <h2>{{item?.user?.name}} </h2>
             <p>{{item?.content}}</p>
           </ion-label>
         </ion-item>
@@ -56,10 +56,10 @@
       <ng-template #dislikedTemp>
         <ion-item>
           <ion-avatar slot="start">
-            <ion-img [src]="apiImg+item?.user?.photo"></ion-img>
+            <ion-img [src]="apiImgUser+item?.user$.photo"></ion-img>
           </ion-avatar>
           <ion-label>
-            <h2>{{item?.user?.name}}</h2>
+            <h2>{{item?.user?.name}} </h2>
             <p>{{item?.content}}</p>
           </ion-label>
         </ion-item>
