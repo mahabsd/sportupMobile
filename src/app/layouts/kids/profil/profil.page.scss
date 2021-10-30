@@ -1381,19 +1381,20 @@ svg {
 #first-bloc {
   display: flex;
   margin-top: 15px;
+  width: 123%;
 }
 #first-photo {
   height: 185px;
-  width: 290px;
+  width: 345px;
   border-radius: 5px;
-  margin-left: 40px;
+  margin-left: 45px;
   background-color: black;
 }
 
 .fourPics {
   height: 80px;
   width: 80px;
-  margin: 0px 12px 23px 0px;
+  margin: 0px 15px 23px 5px;
   border-radius: 5px;
   background-color: black;
 }
@@ -1405,7 +1406,7 @@ svg {
 }
 
 .body {
-  padding: 20px 20px 0 20px;
+  padding: 20px 15px 0 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -1414,13 +1415,14 @@ svg {
 #photo-set-two {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 103%;
+  justify-content: space-between;
 }
 
 .eightPic {
   width: 79px;
   height: 79px;
-  margin: 6px;
+  margin-bottom: 20px;
   border-radius: 5px;
   background-color: black;
 }
