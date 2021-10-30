@@ -53,4 +53,9 @@ export class CommentsPage implements OnInit {
     });
 
   }
+  dismiss() {
+    this.modalController.dismiss({
+      dismissed: true,
+    });
+  }
 }

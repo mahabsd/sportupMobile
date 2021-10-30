@@ -90,7 +90,7 @@ export class ProfilPage implements OnInit {
               this.idFollowtoDelete = res._id;
               console.log(res);
               this.EtatSuivre = true;
-       
+
              // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
 
               if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
@@ -98,8 +98,8 @@ export class ProfilPage implements OnInit {
                   }
                   else if (this.userClicked.role==='kids'){
                     this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
-        
-                  } 
+
+                  }
             }
           });
       },
@@ -122,7 +122,7 @@ export class ProfilPage implements OnInit {
         console.log(response);
         this.myInformation.userLastName = response.data.data.name;
         this.iduser = response.data.data.id;
-        
+
       },
       (error) => {
         console.error(error);
@@ -155,7 +155,7 @@ export class ProfilPage implements OnInit {
     });
    // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
-    
+
 
     await popover.present();
 
@@ -176,17 +176,10 @@ export class ProfilPage implements OnInit {
           }
           else if (this.userClicked.role==='kids'){
             this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
-
-          } 
-
-
+          };
       }
-
-      
     });
-      
     //this.getfollow();
-
   }
 
   buttonBlock() {

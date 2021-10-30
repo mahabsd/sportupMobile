@@ -1,4 +1,10 @@
-<app-header title="Ajouter un commentaire" [isModal]="true"></app-header>
+<ion-toolbar>
+  <ion-buttons slot="end">
+    <ion-button (click)="dismiss()" large>
+      <ion-icon name="close-circle-outline" size="large"></ion-icon>
+    </ion-button>
+  </ion-buttons>
+</ion-toolbar>
 <ion-content fullscreen>
   <ion-list *ngFor="let item of comments">
     <ion-item>
@@ -10,7 +16,6 @@
         <p>{{item?.content}}</p>
       </ion-label>
     </ion-item>
-
   </ion-list>
   <ion-item class="commentaire" [formGroup]="commentForm">
     <ion-col size="8" style="text-align:start;">

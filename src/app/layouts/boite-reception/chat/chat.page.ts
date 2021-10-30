@@ -58,6 +58,8 @@ this.userconnectedrole=res.data.data.role;
     });
   });
     this.socket.fromEvent('message').subscribe(message => {
+      console.log(message);
+
       this.getchat();
     });
   }

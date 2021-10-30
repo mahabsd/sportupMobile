@@ -1,4 +1,4 @@
- 
+
   <ion-toolbar>
 
     <ion-buttons slot="end">
@@ -9,13 +9,13 @@
   </ion-toolbar>
 
   <ion-row class="ion-justify-content-center">
- 
+
       <img *ngIf="getExt(image.file_name) === 'jpeg' || getExt(image.file_name) === 'png'"  src="{{ apiPost + image?.file_name }}" />
- 
+
       <video  *ngIf="getExt(image.file_name) === 'mp4'" controls width="100%">
         <source src="{{ apiPost + image?.file_name }}" type="video/mp4" />
       </video>
- 
+
 
     <ion-col size="12">
       <ion-title style="
@@ -33,4 +33,3 @@
       </ion-title>
     </ion-col>
   </ion-row>
-</ion-content>

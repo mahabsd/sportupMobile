@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-notifications',
@@ -23,14 +25,19 @@ export class NotificationsPage implements OnInit {
   ];
   isScrollTop: boolean;
   notif: any;
+  user$: any;
+  userid: any;
 
-  constructor(private eventService: EventService, public router: Router
-  ) {
+  constructor(private eventService: EventService,
+     public router: Router,
+      private notificationsService: NotificationsService,
+      private userservice: UserService
+      ) {
   }
 
   ngOnInit() {
+    this.getMe();
     this.notif =this.router.url.slice(19, );
-    console.log(this.notif);
     }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
@@ -41,5 +48,15 @@ export class NotificationsPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      this.userid = res.data.data._id;
+      this.getNotifications();
+    });
 }
-type notification = Array<{ icon: string; message: string, button: string }>;
+  getNotifications(){
+this.notificationsService.getAllNotifications( this.userid).subscribe(res=>console.log(res.data.birthdays));
+  }
+}
+type notification = Array<{ icon: string; message: string; button: string }>;

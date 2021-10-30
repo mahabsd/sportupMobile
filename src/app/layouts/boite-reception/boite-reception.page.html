@@ -3,7 +3,7 @@
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
 
   <div style="background-color: whitesmoke;padding: 5px;">
-    <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;">
+    <ion-fab vertical="top" horizontal="end" slot="fixed" style="margin-top: 20px;"  (click)="openSearch()">
         <ion-fab-button style="--background	:#ddd;   height: 50px;      width: 50px;">
         <img src="../../../../assets/ImgKids/nvx msg-01.svg" alt="">
       </ion-fab-button>
@@ -33,7 +33,7 @@
                     {{item.userSender.name}}
                 </p>
               </ion-label>
-              <img style="width:15px ; height :15px" routerLink="/tabs/layouts/coachprofile"
+              <img style="width:15px ; height :15px"
                 src="../../assets/icon/connect2.png" />
             </ion-item>
           </ng-container>
@@ -47,7 +47,7 @@
                     {{item.userReceiver.name}}
                 </p>
               </ion-label>
-              <img style="width:15px ; height :15px" routerLink="/tabs/layouts/coachprofile"
+              <img style="width:15px ; height :15px"
                 src="../../assets/icon/connect2.png" />
             </ion-item>
           </ng-template>

@@ -37,13 +37,13 @@ export class TabsPage implements OnInit {
   ) { }
 
   ngOnInit() {
-   // this.getMe();
+   this.getMe();
     this.subscription = this.eventService.getMessage().subscribe((message) => {
       this.menuOpened = message.event;
     });
     this.socket.connect();
-    this.socket.emit('set-msg-number', { message: this.notseenMessagesNumber });
-    this.socket.fromEvent('set-msg-number').subscribe( (res) => {
+    this.socket.emit('message', { msg: 'hey' });
+    this.socket.fromEvent('message').subscribe( (res) => {
       this.getMe();
     });
   }
@@ -60,14 +60,14 @@ export class TabsPage implements OnInit {
     this.menuOpened = true;
   }
 
- 
+
 
   async openShareModal() {
     const modal = await this.modalController.create({
       component: ModalShearePage,
       componentProps: {
         user: this.user$,
- 
+
       },
     });
     await modal.present();
