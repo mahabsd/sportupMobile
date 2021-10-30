@@ -23,7 +23,7 @@ export class CommentsKidsPage implements OnInit {
   @Input() userid: any;
   apiImgUser = `${environment.apiImg}User/`;
 
-
+title="Comments"
 
   updateCom = false;
   selectedCom: Comment;
