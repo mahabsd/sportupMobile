@@ -274,7 +274,18 @@ this.getPosts();
   getPosts(event?) {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
-     // this.posts = this.posts.concat(response['data']);
+      console.log("++++++++++++")
+
+     this.posts = this.posts.concat(response['data']);
+     console.log( response['data'])
+     this.posts.forEach(post => {
+      this.getimageBypostId(post.id);
+      this.GetPostStatusOnly(post.id);
+
+      this.posts.push(post);
+       });
+    
+
       this.savepostsService.getSavedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
 
         this.posts$ = res.data.data;
@@ -296,10 +307,10 @@ this.getPosts();
           this.GetPostStatusOnly(post.post.id);
           this.posts.push(post.post);
        });
-    //  console.log(this.posts);
+     
 
       });
-
+      console.log( this.posts)
        if (event) {
         event.target.complete();
       }

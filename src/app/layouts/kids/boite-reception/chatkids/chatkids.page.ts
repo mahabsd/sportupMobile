@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -15,8 +15,20 @@ import { environment } from 'src/environments/environment';
 
 
   export class ChatkidsPage implements OnInit {
+
+    @ViewChild('fileInput', { static: false }) multiFileInput: ElementRef;
+    @ViewChild('maindiv') list:any;
     apiImgUser = `${environment.apiImg}User/`;
+    apiImgChat = `${environment.apiImg}chat/`;
     apiImg = `${environment.apiImg}Post/`;
+    userconnectedrole;
+    idprofilePassed;
+    filterchat:string;
+    selectedFiles: any[];
+    progressInfos: any[];
+    IsimgSelected=0;
+
+    selectedPreviews: any = [];
     message = '';
     messages = [];
     messages2 = [];
@@ -24,52 +36,80 @@ import { environment } from 'src/environments/environment';
     currentUser;
     user$;
     username
-    idprofilePassed;
-    filterchat:string;
+    chatimg = [];
+
     constructor(private socket: Socket,
       private activatedRoute: ActivatedRoute,
       private userservice: UserService, private chatService: ChatService,
-      private toastCtrl: ToastController) { }
+      private toastCtrl: ToastController,   private Renderer: Renderer2) { }
   
-    ngOnInit() {
+      ngOnInit() {
+        console.log(  this.list)
+        //this.list.scrollToBottom(100);
     
-      this.getchat();
-      this.idprofilePassed= this.activatedRoute.snapshot.params.id
-      this.socket.connect();
-  
-      this.userservice.getMe().subscribe((res) => {
-        this.user$ = res.data.data._id;
-        this.username=res.data.data.name
-        console.log(this.user$);
-    
-      let name = ` User-${new Date().getTime()}`;
-  
-      this.currentUser =  this.username;
-      this.socket.emit('set-name',  this.username);
-      this.socket.fromEvent('users-changed').subscribe(data => {
-        console.log('getdata', data);
-        let user = data['user'];
-        if (data['event'] === 'left') {
-          this.presentToast(`${user} left the chat`);
-        } else {
-            if(user!== this.currentUser){
-              this.presentToast(`${user} joined the chat`);}
-        }
-      });
-    });
-      this.socket.fromEvent('message').subscribe(message => {
-        console.log('New:', message);
         this.getchat();
-  
-        
-      })
-    }
-    sendMessage() {
-      this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed});
-      this.message = '';
-      this.getchat();
-  
-    }
+        this.idprofilePassed= this.activatedRoute.snapshot.params.id;
+        this.socket.connect();
+        this.userservice.getMe().subscribe((res) => {
+          this.user$ = res.data.data._id;
+          this.username=res.data.data.name
+          this.userconnectedrole=res.data.data.role;
+          console.log(this.user$);
+    
+        let name = ` User-${new Date().getTime()}`;
+    
+        this.currentUser =  this.username;
+        this.socket.emit('set-name',  this.username);
+        this.socket.fromEvent('users-changed').subscribe(data => {
+          console.log('getdata', data);
+          let user = data['user'];
+          if (data['event'] === 'left') {
+            this.presentToast(`${user} left the chat`);
+          } else {
+              if(user!== this.currentUser){
+                this.presentToast(`${user} joined the chat`);}
+          }
+        });
+      });
+        this.socket.fromEvent('message').subscribe(message => {
+          this.getchat();
+        });
+      }
+      sendMessage() {
+    
+    console.log( this.selectedFiles)
+    
+        const formData=new FormData();
+    if(this.selectedFiles!=undefined){
+        for (const file of this.selectedFiles) {
+          formData.append('file', file);
+        }
+       
+    
+        this.chatService.uploadImageFile(formData).subscribe((res) => {
+         // console.log(res);
+          this.chatimg=res;
+          this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
+            this.message = '';
+            this.getchat();
+            this.selectedFiles=[]
+            this.selectedPreviews = [];
+            this.IsimgSelected=0
+        });
+       
+        }
+        else {
+          this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
+          this.message = '';
+          this.getchat();
+          this.selectedFiles=[]
+          this.selectedPreviews = [];
+          this.IsimgSelected=0
+    
+    
+        }
+      }
+    
   
     ionViewWillLeave() {
       this.socket.disconnect();
@@ -93,21 +133,67 @@ import { environment } from 'src/environments/environment';
     }
   
   
+
     getchat(){
-     
-  
       this.userservice.getMe().subscribe((res) => {
-  
-        this.chatService.getChat( res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
-        console.log(res1)
+        this.chatService.getChat(res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
+        console.log(res1);
         this.messages2=res1;
-        //  this.userSenderId=res1.userSender;
         });
-  
-  
       });
+    }
+  
+    choosefromphoto() {
+  
+      this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/gif, image/png");
+      this.multiFileInput.nativeElement.click();
+    }
+  
+    getType(file) {
+      return file.type;
+    }
+  
+    selectFiles(event) {
+  
+  
+      this.progressInfos = [];
+      this.selectedFiles = event.target.files;
+      this.selectedPreviews = [];
+      for (const file of this.selectedFiles) {
+      
+        console.log(  file.type);
+  
+        if (file.type === 'image/jpeg'||file.type === 'image/png'||file.type === 'image/pdf'||file.type === 'image/gif') {
+          const reader = new FileReader();
+          reader.onload = e => this.selectedPreviews.push(reader.result);
+  
+          reader.readAsDataURL(file);
+        }
+        else if (file.type === "video/mp4") {
+          this.selectedPreviews.push('../../../assets/imgs/video.jpg');
+  
+        }
+        else if (file.type === "application/pdf") {
+          this.selectedPreviews.push('../../../assets/imgs/video.jpg');
+  
+        }
+        else if (file.type === "audio/mpeg"||file.type === " audio/ogg") {
+          this.selectedPreviews.push('../../../assets/imgs/audio.png');
+  
+        }
+  
+      }
+      this.IsimgSelected= this.selectedFiles.length
+      console.log( this.selectedFiles.length);
   
     }
+  
+    getExt(fileName) {
+      const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+      //console.log(ext);Z
+      return ext;
+    }
+  
   }
   
 
