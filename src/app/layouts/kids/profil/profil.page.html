@@ -89,48 +89,34 @@
       </ion-segment-button>
     </ion-segment>
 
-    <!-- <div class="body" *ngIf="selected==='photo'">
+    <div class="body" *ngIf="selected==='photo'">
+
 
       <div *ngIf="this.postsimg.length===1">
-
-        <div id="first-bloc">
-          <div id="first-photo"
-            style="position: relative"
-            *ngFor="let file of ResWithOneimg"          >
-            <div class="left-tape-first"></div>
-            <div class="right-tape-first"></div>
-            <ng-container *ngIf="getExt(file.file_name) === 'png'||getExt(file.file_name) === 'jpeg||getExt(file.file_name) === 'jpg''">
-              <div
-                style="width: 250px; height: 200px"
-                [style.background-size]="'cover'"
-                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-                [lazyLoad]="apiImg + file?.file_name"
-                errorImage="../../../assets/imgs/150.png"
-                (click)="displayContentPhotoTab(file?.file_name)"
-              >
-                <ion-icon></ion-icon>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-              <div
-                [style.background-size]="'cover'"
-                [style.background-image]="'url(../../../assets/imgs/150.png)'"
-                errorImage="../../../assets/imgs/150.png"
-                (click)="displayVideo(file)"
-              >
-                <ion-icon
-                  style="height: 50px; width: 50px"
-                  name="videocam"
-                ></ion-icon>
-              </div>
-            </ng-container>
-          </div>
-        </div>
+      <div id="first-bloc" >
+        <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
+          <div class="left-tape-first"></div>
+          <div class="right-tape-first"></div>
+          <ng-container *ngIf="getExt(file.file_name) === 'png'">
+            <div style="    width: 250px;
+            height: 200px;"  [style.background-size]="'cover'"
+              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
+              errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
+              <ion-icon></ion-icon>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+            <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+              <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+            </div>
+          </ng-container>
+        </div>     
       </div>
     </div>
 
 
-    <div *ngIf="this.postsimg.length>=1&&this.postsimg.length<6">
+    <div *ngIf="this.postsimg.length>1&&this.postsimg.length<6">
       
       <div id="first-bloc" >
         <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
@@ -224,67 +210,32 @@
 
      
       </div>
-    </div> -->
+     <div id="photo-set-two">
+        <div class="eightPic" style="position: relative" *ngFor="let file of ResWithThreeimg">
+          <div class="left-tape-second"></div>
+          <div class="right-tape-second"></div>
+          <ng-container *ngIf="getExt(file.file_name) === 'png'">
+            <div style="  
+            height: 100px;"  [style.background-size]="'cover'"
+              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
+              errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
+              <ion-icon></ion-icon>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+            <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+              <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+            </div>
+          </ng-container>
+        </div>
+ 
+      </div>
 
-    <div class="body" *ngIf="selected==='photo'">
-      <div id="first-bloc">
-        <div id="first-photo" style="position: relative">
-          <div class="left-tape-first"></div>
-          <div class="right-tape-first"></div>
-        </div>
-        <div id="photo-set-one">
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-fourth"></div>
-            <div class="right-tape-fourth"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-third"></div>
-            <div class="right-tape-third"></div>
-          </div>
-          <div class="fourPics" style="position: relative">
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
-          </div>
-        </div>
-      </div>
-      <div id="photo-set-two">
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-fourth"></div>
-          <div class="right-tape-fourth"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-fourth"></div>
-          <div class="right-tape-fourth"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-        </div>
-        <div class="eightPic" style="position: relative">
-          <div class="left-tape-third"></div>
-          <div class="right-tape-third"></div>
-        </div>
-      </div>
+    </div>
+
+
+
     </div>
 
     <div class="content-profil" *ngIf="selected==='propos'">
