@@ -18,8 +18,7 @@ const { Camera } = Plugins;
 })
 export class ModalShearePage implements OnInit {
   @Input() user: User;
-  @Input() pagetype: String;
-
+ 
   // user: User = new User();
   post: Post = new Post();
   postForm: FormGroup;
@@ -45,7 +44,7 @@ export class ModalShearePage implements OnInit {
     private Renderer: Renderer2,
   ) { }
   ngOnInit() {
-    console.log(this.pagetype)
+ 
     this.loadImage();
 
     this.postForm = new FormGroup({
