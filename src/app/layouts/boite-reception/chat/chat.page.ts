@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/dot-notation */
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
-import { ToastController } from '@ionic/angular';
+import { Platform, ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { ActivatedRoute } from '@angular/router';
 import { ChatService } from 'src/app/shared/Service/chat.service';
@@ -14,23 +14,37 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./chat.page.scss'],
 })
 export class ChatPage implements OnInit {
+  @ViewChild('fileInput', { static: false }) multiFileInput: ElementRef;
+  @ViewChild('maindiv') list:any;
   apiImgUser = `${environment.apiImg}User/`;
+  apiImgChat = `${environment.apiImg}chat/`;
+
   apiImg = `${environment.apiImg}Post/`;
+  fileInput;
   message = '';
   messages = [];
   messages2 = [];
+  IsimgSelected=0;
+  chatimg = [];
   userSenderId;
   currentUser;
   user$;
   username;
+  userconnectedrole;
   idprofilePassed;
   filterchat:string;
-  constructor(private socket: Socket,
+  selectedFiles: any[];
+  progressInfos: any[];
+
+  selectedPreviews: any = [];
+  constructor(private socket: Socket, private plt: Platform,
     private activatedRoute: ActivatedRoute,
-    private userservice: UserService, private chatService: ChatService,
+    private userservice: UserService, private chatService: ChatService,   private Renderer: Renderer2,
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
+    console.log(  this.list)
+    //this.list.scrollToBottom(100);
 
     this.getchat();
     this.idprofilePassed= this.activatedRoute.snapshot.params.id;
@@ -38,6 +52,7 @@ export class ChatPage implements OnInit {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data._id;
       this.username=res.data.data.name
+      this.userconnectedrole=res.data.data.role;
       console.log(this.user$);
 
     let name = ` User-${new Date().getTime()}`;
@@ -60,9 +75,38 @@ export class ChatPage implements OnInit {
     });
   }
   sendMessage() {
-    this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed});
-    this.message = '';
-    this.getchat();
+
+console.log( this.selectedFiles)
+
+    const formData=new FormData();
+if(this.selectedFiles!=undefined){
+    for (const file of this.selectedFiles) {
+      formData.append('file', file);
+    }
+   
+
+    this.chatService.uploadImageFile(formData).subscribe((res) => {
+     // console.log(res);
+      this.chatimg=res;
+      this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
+        this.message = '';
+        this.getchat();
+        this.selectedFiles=[]
+        this.selectedPreviews = [];
+        this.IsimgSelected=0
+    });
+   
+    }
+    else {
+      this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
+      this.message = '';
+      this.getchat();
+      this.selectedFiles=[]
+      this.selectedPreviews = [];
+      this.IsimgSelected=0
+
+
+    }
   }
 
   ionViewWillLeave() {
@@ -89,6 +133,60 @@ export class ChatPage implements OnInit {
       });
     });
   }
+
+  choosefromphoto() {
+
+    this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/gif, image/png");
+    this.multiFileInput.nativeElement.click();
+  }
+
+  getType(file) {
+    return file.type;
+  }
+
+  selectFiles(event) {
+
+
+    this.progressInfos = [];
+    this.selectedFiles = event.target.files;
+    this.selectedPreviews = [];
+    for (const file of this.selectedFiles) {
+    
+      console.log(  file.type);
+
+      if (file.type === 'image/jpeg'||file.type === 'image/png'||file.type === 'image/pdf'||file.type === 'image/gif') {
+        const reader = new FileReader();
+        reader.onload = e => this.selectedPreviews.push(reader.result);
+
+        reader.readAsDataURL(file);
+      }
+      else if (file.type === "video/mp4") {
+        this.selectedPreviews.push('../../../assets/imgs/video.jpg');
+
+      }
+      else if (file.type === "application/pdf") {
+        this.selectedPreviews.push('../../../assets/imgs/video.jpg');
+
+      }
+      else if (file.type === "audio/mpeg"||file.type === " audio/ogg") {
+        this.selectedPreviews.push('../../../assets/imgs/audio.png');
+
+      }
+
+    }
+    this.IsimgSelected= this.selectedFiles.length
+    console.log( this.selectedFiles.length);
+
+  }
+
+  getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    //console.log(ext);Z
+    return ext;
+  }
+
+  
+  
 }
 
 

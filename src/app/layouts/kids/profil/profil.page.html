@@ -116,7 +116,7 @@
     </div>
 
 
-    <div *ngIf="this.postsimg.length>=1&&this.postsimg.length<6">
+    <div *ngIf="this.postsimg.length>1&&this.postsimg.length<6">
       
       <div id="first-bloc" >
         <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
@@ -480,29 +480,63 @@
     <div *ngIf="selected==='Publications'">
       <div
         style="
-          padding: 15px 5px;
-          background-color: rgba(187, 187, 187, 0.589);
+          padding: 10px 5px;
           border-radius: 20px;
-          margin: 5px; 
+          margin: 5px;
+          position: relative;
         "
         *ngFor="let post of postsStatut"
       >
         <div>
           <div style="display: flex; align-items: center">
-            <ion-avatar style="margin: 5px 20px">
-              <img [src]="apiImgUser +user?.photo"  />
+            <ion-avatar style="margin: 5px 20px; width: 40px; height: 40px">
+              <img [src]="apiImgUser +user?.photo" />
             </ion-avatar>
 
             <div style="display: flex; flex-direction: column">
-              <ion-label>{{post.user.name}}</ion-label>
+              <ion-label style="font-weight: bold"
+                >{{post.user.name}}</ion-label
+              >
               <ion-label>{{post.createdAt| date}}</ion-label>
             </div>
+            <p
+              style="
+                font-size: 30px;
+                position: absolute;
+                right: 60px;
+                top: -30px;
+              "
+              (click)="presentPopover2($event)"
+            >
+              ...
+            </p>
           </div>
-          <div
-            style="display: flex; flex-direction: column; margin-left: 105px"
-          >
+          <div style="display: flex; flex-direction: column; margin-left: 65px">
             <ion-label style="font-weight: bold">{{post.title}}</ion-label>
             <ion-label>{{post.content}} </ion-label>
+          </div>
+        </div>
+        <div
+          style="
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 10px 0;
+          "
+        >
+          <div style="display: flex; align-items: center">
+            <ion-icon
+              name="heart-outline"
+              style="color: red; font-size: 30px; margin-right: 10px"
+            ></ion-icon>
+            Like
+          </div>
+          <div style="display: flex; align-items: center">
+            <ion-icon
+              name="chatbubble-ellipses-outline"
+              style="font-size: 30px; margin-right: 10px"
+            ></ion-icon>
+            Comment
           </div>
         </div>
         <div id="main-content"></div>

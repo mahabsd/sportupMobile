@@ -24,6 +24,16 @@ export class ChatService {
     return this.apiService.patch(`${UtilsService.apiChat}${idConnectedUser}`, chat).pipe(map((res) => res.data.data));
   }
 
+
+/////////wehel lhné mayCan't find /api/v1/chat/multifile on this server!"
+  uploadImageFile(formData) {
+    console.log(`${UtilsService.apiChat}` + 'multifile')
+    return this.apiService.post(
+      `${UtilsService.apiChat}` + 'multifile',
+      formData
+    );
+  }
+
 }
 
 

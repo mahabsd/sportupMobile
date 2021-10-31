@@ -1425,8 +1425,8 @@ svg {
 .left-tape-first {
   position: absolute;
   border-radius: 5px;
-  width: 20px;
-  height: 40px;
+  width: 16px  ;
+      height: 28px  ;
   background-color: rgba(226, 183, 43, 0.753);
   transform: rotate(-30deg);
   top: -15px;
@@ -1436,8 +1436,8 @@ svg {
 .right-tape-first {
   position: absolute;
   border-radius: 5px;
-  width: 20px;
-  height: 40px;
+  width: 16px  ;
+      height: 28px ;
   background-color: rgba(226, 183, 43, 0.753);
   transform: rotate(30deg);
   top: -20px;
@@ -1447,8 +1447,8 @@ svg {
 .left-tape-second {
   position: absolute;
   border-radius: 5px;
-  width: 20px;
-  height: 30px;
+  width: 13px;
+  height: 26px;
   background-color: rgba(189, 43, 226, 0.753);
   transform: rotate(-15deg);
   top: -15px;
@@ -1458,8 +1458,8 @@ svg {
 .right-tape-second {
   position: absolute;
   border-radius: 5px;
-  width: 20px;
-  height: 30px;
+  width: 13px;
+  height: 26px;
   background-color: rgba(189, 43, 226, 0.753);
   transform: rotate(15deg);
   top: -17px;

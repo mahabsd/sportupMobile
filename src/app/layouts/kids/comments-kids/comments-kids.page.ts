@@ -10,6 +10,7 @@ import { Post } from 'src/app/Shared/Model/Post';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 import { ModalController } from '@ionic/angular';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-comments-kids',
@@ -20,18 +21,20 @@ export class CommentsKidsPage implements OnInit {
   @Input() post: Post;
   @Input() comments: any = [];
   @Input() userid: any;
+  apiImgUser = `${environment.apiImg}User/`;
 
-
+title="Comments"
 
   updateCom = false;
   selectedCom: Comment;
   comment: Comment = new Comment();
   commentForm: FormGroup;
   upcom;
+  user$;
   apiImg: any;
   constructor(
     private commentService: CommentService,
-    private modalController: ModalController) {
+    private modalController: ModalController,private userService:UserService) {
     this.apiImg = `${environment.apiImg}users/`;
     console.log(this.apiImg);
 
@@ -39,6 +42,8 @@ export class CommentsKidsPage implements OnInit {
 
   ngOnInit() {
     console.log("userrrr" + this.userid);
+  
+    
     this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
 

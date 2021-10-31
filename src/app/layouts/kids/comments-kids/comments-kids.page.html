@@ -1,18 +1,10 @@
 <ion-header translucent>
   <ion-toolbar>
-    <ion-title
-      style="
-        background-image: linear-gradient(
-          119deg,
-          rgba(92, 99, 91, 1) 0%,
-          rgba(36, 114, 56, 1) 35%,
-          rgb(122, 113, 172) 100%
-        );
-      "
-      >Comments</ion-title
+    <ion-title style="color: white;"
+     >Comments</ion-title
     >
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Close</ion-button>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()"><ion-icon name="close-outline"></ion-icon></ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -39,10 +31,10 @@
 
         <ion-item>
           <ion-avatar slot="end">
-            <ion-img [src]="apiImg+item?.user?.photo"></ion-img>
+            <ion-img [src]="apiImgUser+item?.user?.photo"></ion-img>
           </ion-avatar>
           <ion-label style="text-align: end">
-            <h2>{{item?.user?.name}}</h2>
+            <h2>{{item?.user?.name}} </h2>
             <p>{{item?.content}}</p>
           </ion-label>
         </ion-item>
@@ -56,10 +48,10 @@
       <ng-template #dislikedTemp>
         <ion-item>
           <ion-avatar slot="start">
-            <ion-img [src]="apiImg+item?.user?.photo"></ion-img>
+            <ion-img [src]="apiImgUser+item?.user$.photo"></ion-img>
           </ion-avatar>
           <ion-label>
-            <h2>{{item?.user?.name}}</h2>
+            <h2>{{item?.user?.name}} </h2>
             <p>{{item?.content}}</p>
           </ion-label>
         </ion-item>
