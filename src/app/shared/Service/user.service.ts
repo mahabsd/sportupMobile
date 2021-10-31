@@ -59,6 +59,11 @@ export class UserService {
   renvoyerToken(user: User): Observable<User> {
     return this.utilsService.post(UtilsService.apiUSER + 'renvoi', user).pipe(map(res => res), catchError(this.handleError));
   }
+  deactivate(user): Observable<any> {
+    return this.utilsService.post(UtilsService.apideactivation,user).pipe(map(res => {
+      return res;
+    }), catchError(this.handleError));
+  }
 
   handleError(error: HttpErrorResponse) {
     console.log(error);

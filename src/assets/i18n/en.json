@@ -17,6 +17,9 @@
         "palmares": "Trophies",
         "abonnees": "Followers",
         "abonnement": "Following"
+      },
+      "header":{
+        "rec":""
       }
     
   }

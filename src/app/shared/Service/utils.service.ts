@@ -32,9 +32,11 @@ export class UtilsService {
   public static apiHobbies = UtilsService.remoteAdress + 'hobbies/';
   public static apiacitivteKids = UtilsService.remoteAdress + 'activiteKids/';
   public static apiInvite = UtilsService.remoteAdress + 'invi/';
-  public static apishared = UtilsService.remoteAdress + 'shared/';
+  public static apishared = UtilsService.remoteAdress + 'shared/';apimyactivityhistory
   public static apimediafile = UtilsService.remoteAdress + 'media/';
   public static apimyaccesshistory = UtilsService.remoteAdress + 'accesshistory/myaccesshistory/';
+  public static apimyactivityhistory = UtilsService.remoteAdress + 'activityhistory';
+  public static apideactivation = UtilsService.remoteAdress + 'deactivateaccount';
   token: any;
   myToast: any;
   header: any;
