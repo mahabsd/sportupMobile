@@ -36,6 +36,11 @@
           name="chevron-back-outline">
         </ion-icon>
       </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-icon *ngIf="inParam" color="light" routerLink="/"
+          name="chevron-back-outline">
+        </ion-icon>
+      </ion-buttons>
       <ion-buttons>
         <ion-button shape="rounded" *ngIf="isKid" slot="start" [routerLink]="['/activite']"
           routerLinkActive="router-link-active">

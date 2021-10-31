@@ -2,11 +2,7 @@
 
 <ion-content>
   <ion-row style="margin: 15px 15px -45px 15px;">
-    <ion-col size="12">
-      <div style="font-weight: bold;font-size:medium;margin-top: 5px;">
-        <p style='font-size:BOLD;color: #247238;'>HISTORIQUE PERSONNEL:</p>
-      </div>
-    </ion-col>
+  
   </ion-row>
   <ion-row>
     <ion-card class="no-padding" style="box-shadow:  0px 0px 0px 0px !important ">
@@ -21,10 +17,13 @@
 
 
   <ion-item *ngFor="let event of history">
+
     <ion-avatar style="margin-right: 20px;">
       <img [src]="apiImg+user$?.photo">
     </ion-avatar>
+ 
     <ion-label>
+      <p>{{event.dateCreated | date}}</p>
       <b style="font-size: 13px;"> {{event.description}}</b>
 
     <p> {{event.activity}}</p>

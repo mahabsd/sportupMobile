@@ -114,7 +114,7 @@
           </div>
         </ng-container>
       </div>
-      <div class="nextContainer">
+      <div class="nextContainer" (click)="displayContent(post)">
         <div *ngFor="let file of mediafiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
@@ -146,7 +146,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="secondNewMediaFiles.length !== 0">
+  <div *ngIf="secondNewMediaFiles.length !== 0" (click)="displayContent(post)">
     <div style="display: flex">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
@@ -172,7 +172,7 @@
         </ng-container>
       </div>
       <div class="nextContainer" style="position: relative">
-        <div *ngFor="let file of thirdNewMediaFiles">
+        <div *ngFor="let file of thirdNewMediaFiles" >
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
