@@ -195,7 +195,7 @@ export class ModalShearePage implements OnInit {
         handler: () => {
 
 
-          this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/gif, image/png");
+          this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/png");
           this.multiFileInput.nativeElement.click();
 
         },
