@@ -40,9 +40,10 @@ export class HeaderComponent implements OnInit {
   @Input() KidsProfile: boolean = false;
   @Input() SuivrePage: boolean = false;
   @Input() isParam: boolean = false;
+  @Input() inParam: boolean = false;
   @Input() AdulteProfile: boolean = false;
   @Input() CoachProfileNotConnectedUser: boolean = false;
-    @Input() ChatKids: boolean = false;
+  @Input() ChatKids: boolean = false;
 
   @Input()  type: string;
   @Input()  idprofillepassed: string;

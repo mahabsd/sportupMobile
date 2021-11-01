@@ -21,7 +21,7 @@ import { share } from 'rxjs/operators';
 })
 export class CoachphotoPage implements OnInit {
   images: any = [];
-  posts: any = [];
+  posts:any = [];
   apImg = environment.apiImg + 'Post/';
   subscription: Subscription;
   filesToUpload: any;
@@ -54,8 +54,10 @@ export class CoachphotoPage implements OnInit {
   ngOnInit() {
   //  this.getMe();
     this.postsOwnerId = this.postService.postsOwnerId;
+
     console.log(  this.postsOwnerId );
-    this.getAllPostsByEvent();
+    this.getAllPosts();
+
   }
 
   async presentModal(img: any) {
@@ -144,16 +146,19 @@ export class CoachphotoPage implements OnInit {
         //console.log(ext);
         return ext;
       }
-  getAllPostsByEvent(event?) {
+      getAllPosts(event?) {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
-      this.postService.getAllfollowingPosts(this.page, this.postsOwnerId).pipe(share()).subscribe(res => {
-        console.log(res.data.shared);
-        this.posts = this.posts.concat(res.data.data);
-        console.log(this.posts);
-        this.posts.forEach(post => {
-          this.getpostFiles(post);
-        });
+      console.log(this.postsOwnerId);
+      this.postService.getAllPostsById(this.page, this.postsOwnerId).pipe(share()).subscribe(res => {
+        console.log(res);
+        this.posts=res.data;
+
+      this.posts.forEach(post => {
+        this.getpostFiles(post);
+      });
+
+
         if (event) {
           event.target.complete();
         }

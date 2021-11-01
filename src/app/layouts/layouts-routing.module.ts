@@ -227,6 +227,12 @@ const routes: Routes = [
         // canActivate:[RolesGuardGuard]
       },
       {
+        path: 'reglespublicitaires',
+        loadChildren: () => import('./Config/reglespublicitaires/reglespublicitaires.module').
+          then(m => m.ReglespublicitairesModule),
+        // canActivate:[RolesGuardGuard]
+      },
+      {
         path: 'profiladulte/:id',
         loadChildren: () => import('./profil-adulte/profil-adulte.module').then( m => m.ProfilAdultePageModule),
         canActivate:[RolesGuardGuard]
