@@ -166,9 +166,8 @@ export class AccueilPage implements OnInit {
 
         this.posts1 =res.data.data;
         this.posts1.forEach(e => {
-           if(e.type==='kids'){
             this.posts= this.posts.concat(e);
-           }
+
          });
         //console.log(this.posts);
         if (event) {

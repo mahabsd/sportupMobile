@@ -235,10 +235,8 @@ this.getPosts();
   getPosts(event?) {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
-      console.log("++++++++++++")
 
      this.posts = this.posts.concat(response['data']);
-     console.log( response['data'])
      this.posts.forEach(post => {
       this.getimageBypostId(post.id);
       this.getPostStatusOnly(post.id);

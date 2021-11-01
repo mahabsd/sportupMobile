@@ -111,19 +111,19 @@
               <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
             </div>
           </ng-container>
-        </div>     
+        </div>
       </div>
     </div>
 
 
     <div *ngIf="this.postsimg.length>1&&this.postsimg.length<6">
-      
+
       <div id="first-bloc" >
         <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
           <div class="left-tape-first"></div>
           <div class="right-tape-first"></div>
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="  
+            <div style="
             height: 200px;"  [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
               errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
@@ -142,7 +142,7 @@
             <div class="left-tape-second"></div>
             <div class="right-tape-second"></div>
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
-              <div style="  
+              <div style="
               height: 100px;"  [style.background-size]="'cover'"
                 [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
                 errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
@@ -156,23 +156,23 @@
               </div>
             </ng-container>
           </div>
-         
+
         </div>
-     
+
       </div>
 
 
     </div>
 
     <div *ngIf="this.postsimg.length>5">
-      
+
       <div id="first-bloc" >
         <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
           <div class="left-tape-first"></div>
           <div class="right-tape-first"></div>
 
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="  
+            <div style="
             height: 200px;"  [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
               errorImage="../../../assets/imgs/150.png"  (click)="displayContentPhotoTab(file?.file_name)">
@@ -191,7 +191,7 @@
             <div class="left-tape-second"></div>
             <div class="right-tape-second"></div>
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
-              <div style="  
+              <div style="
               height: 100px;"  [style.background-size]="'cover'"
                 [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
                 errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)">
@@ -205,17 +205,17 @@
               </div>
             </ng-container>
           </div>
-         
+
         </div>
 
-     
+
       </div>
      <div id="photo-set-two">
         <div class="eightPic" style="position: relative" *ngFor="let file of ResWithThreeimg">
           <div class="left-tape-second"></div>
           <div class="right-tape-second"></div>
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="  
+            <div style="
             height: 100px;"  [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
               errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
@@ -229,7 +229,7 @@
             </div>
           </ng-container>
         </div>
- 
+
       </div>
 
     </div>
@@ -485,7 +485,7 @@
           margin: 5px;
           position: relative;
         "
-        *ngFor="let post of postsStatut"
+        *ngFor="let post of posts"
       >
         <div>
           <div style="display: flex; align-items: center">

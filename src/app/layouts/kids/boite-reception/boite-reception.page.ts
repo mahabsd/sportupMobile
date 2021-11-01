@@ -8,6 +8,7 @@ import { ToastController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { environment } from 'src/environments/environment';
+import { ShowImagePage } from 'src/app/component/modal/show-image/show-image.page';
 @Component({
   selector: 'app-boite-reception',
   templateUrl: './boite-reception.page.html',
@@ -20,11 +21,14 @@ export class BoiteReceptionPage implements OnInit {
   kids = [];
   currentUser;
   isScrollTop: boolean;
+  recherche;
   constructor( private modalController: ModalController,
     private socket: Socket,
     private userservice: UserService,
     private eventService: EventService,
-    private toastCtrl: ToastController) { }
+    private toastCtrl: ToastController,
+    private modalCtrl: ModalController,
+    ) { }
 
   ngOnInit() {
   this.getkids()
@@ -64,5 +68,12 @@ export class BoiteReceptionPage implements OnInit {
       this.isScrollTop = true;;
     }
     this.eventService.sendMessage(this.isScrollTop);
+  }
+  async openSearch() {
+    const modal = await this.modalCtrl.create({
+      component: ShowImagePage,
+      cssClass: ''
+    });
+    return await modal.present();
   }
 }
