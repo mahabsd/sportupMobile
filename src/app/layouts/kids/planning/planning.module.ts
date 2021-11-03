@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PlanningPageRoutingModule } from './planning-routing.module';
 
 import { PlanningPage } from './planning.page';
+import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PlanningPageRoutingModule
+    PlanningPageRoutingModule,
+    ComponentModule
   ],
   declarations: [PlanningPage]
 })

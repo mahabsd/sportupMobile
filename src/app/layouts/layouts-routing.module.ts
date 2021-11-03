@@ -168,7 +168,7 @@ const routes: Routes = [
       },
 
       {
-        path: 'planning',
+        path: 'planning-kids',
         loadChildren: () => import('./kids/planning/planning.module').then(m => m.PlanningPageModule),
         canActivate:[AdultsNotAllowedGuard]
       },
