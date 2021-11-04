@@ -27,9 +27,10 @@ import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 import { UserService } from 'src/app/Shared/Service/user.service';
-import { PostDisplayComponent} from '../../post-display/post-display.component';
+import { PostDisplayComponent } from '../../post-display/post-display.component';
 import { Router } from '@angular/router';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 
 @Component({
   selector: 'app-status',
@@ -52,10 +53,10 @@ export class StatusComponent implements OnInit {
   comments: any = [];
   images: any = [];
   mediafiles: any = [];
-  newMediaFiles: any= [];
-  secondNewMediaFiles: any= [];
-  thirdNewMediaFiles: any= [];
-  tempMedia: any= [];
+  newMediaFiles: any = [];
+  secondNewMediaFiles: any = [];
+  thirdNewMediaFiles: any = [];
+  tempMedia: any = [];
   // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
   // user: any;
@@ -71,7 +72,11 @@ export class StatusComponent implements OnInit {
   idprofilePassed;
   isUserConnected;
   loading: any;
-  shared= false;
+  shared = false;
+  notif: any = { reciever: '', userOwner: '', text: '', postId: '' };
+  iduser;
+  idProfilePassed;
+  user$: any;
   constructor(
     private commentService: CommentService,
     private postService: PostService, private userervice: UserService,
@@ -79,25 +84,26 @@ export class StatusComponent implements OnInit {
     private modalController: ModalController,
     private loadingController: LoadingController,
     private popoverCtrl: PopoverController,
-    private videoPlayer: VideoPlayer,    public router: Router  ,  private followerService: FollowerService,
-
-
+    private videoPlayer: VideoPlayer,
+    public router: Router,
+    private followerService: FollowerService,
+    private notificationsService: NotificationsService
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
   }
   async ngOnInit() {
-this.getMe()
+    this.getMe();
     await this.getCommentByPost();
-    console.log(this.images[0])
-
+    console.log(this.images[0]);
   }
 
 
   getMe() {
     this.userervice.getMe().subscribe((res) => {
       this.isUserConnected = res.data.data._id;
+      this.user$ = res.data.data;
     });
   }
 
@@ -128,6 +134,11 @@ this.getMe()
   onComment() { }
   share(post) {
     this.shared = true;
+    this.notif.reciever = post.user._id;
+    this.notif.userOwner = this.user$._id;
+    this.notif.text = "à partagé votre status";
+    this.notif.postId = post._id
+    this.createNotif(this.notif);
     this.favorisService.addShared(post?._id).subscribe((res) => {
       this.shared = true;
     });
@@ -177,7 +188,7 @@ this.getMe()
     return await modal.present();
   }
 
-  async displayContent(files){
+  async displayContent(files) {
     const modal = await this.modalController.create({
       component: PostDisplayComponent,
       cssClass: 'imageModal',
@@ -209,26 +220,26 @@ this.getMe()
     });
   }
   getCommentByPost() {
-console.log("++++"+this.post._id)
+    console.log("++++" + this.post._id)
     forkJoin({
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
       mediafiles: this.postService.getPost(this.post._id),
       tempMedia: this.postService.getPost(this.post._id),
-    }).subscribe(({ comments, images, mediafiles,tempMedia }) => {
+    }).subscribe(({ comments, images, mediafiles, tempMedia }) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       this.tempMedia = mediafiles.mediafiles;
 
 
-      if ( this.tempMedia.length<4){
-        this.newMediaFiles= this.tempMedia.splice(0,1);
+      if (this.tempMedia.length < 4) {
+        this.newMediaFiles = this.tempMedia.splice(0, 1);
       }
-      if (this.tempMedia.length>3){
-        this.newMediaFiles=this.tempMedia.slice(0,1);
-        this.thirdNewMediaFiles=this.tempMedia.slice(1,3);
-        this.secondNewMediaFiles=this.tempMedia.splice(3,this.mediafiles.length);
+      if (this.tempMedia.length > 3) {
+        this.newMediaFiles = this.tempMedia.slice(0, 1);
+        this.thirdNewMediaFiles = this.tempMedia.slice(1, 3);
+        this.secondNewMediaFiles = this.tempMedia.splice(3, this.mediafiles.length);
       }
 
 
@@ -264,11 +275,11 @@ console.log("++++"+this.post._id)
         this.followerService.getFollow(iduserpassed, this.iduser1)
           .subscribe((res) => {
             if (res == null) {
-              this.router.navigate(['profil',iduserpassed,'adulte']);
+              this.router.navigate(['profil', iduserpassed, 'adulte']);
               console.log('nope');
             } else {
               console.log(res);
-              this.router.navigate(['menu/tabs/layouts/coachprofile',iduserpassed,'followed']);
+              this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed']);
             }
           });
       },
@@ -277,6 +288,8 @@ console.log("++++"+this.post._id)
       }
     );
   }
-
+  createNotif(notif: any) {
+    this.notificationsService.postNotification(notif).subscribe(res => console.log(res));
+  }
 
 }

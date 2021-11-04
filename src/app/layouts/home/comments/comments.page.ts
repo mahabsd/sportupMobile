@@ -20,7 +20,7 @@ export class CommentsPage implements OnInit {
   comment: Comment = new Comment();
   commentForm: FormGroup;
   apiImg: any;
-  notif: any = { receiver: '', userOwner: '', text: '' };
+  notif: any = { reciever: '', userOwner: '', text: '', postId: '' };
   iduser;
   idprofilePassed;
   user$: any;
@@ -46,6 +46,7 @@ export class CommentsPage implements OnInit {
       this.notif.reciever = post.user._id;
       this.notif.userOwner = this.user$._id;
       this.notif.text = "à commenté votre status";
+      this.notif.postId = post._id
       this.createNotif(this.notif);
     });
     return this.commentService.addComment(this.comment, post._id).subscribe(res => {

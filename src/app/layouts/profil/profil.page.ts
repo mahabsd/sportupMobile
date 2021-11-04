@@ -18,7 +18,7 @@ export class ProfilPage implements OnInit {
   // activatedroute importer luser selon leur id
   // en utilisant lapi
   EtatSuivre = false;
-  notif: any = { receiver: '', userOwner: '', text: '' };
+  notif: any = { reciever: '', userOwner: '', text: '' };
   idfollow;
   user$
   profileClickedName;
