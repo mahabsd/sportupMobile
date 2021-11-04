@@ -2,18 +2,18 @@
 
 
 <ion-content>
-  <div style="display: flex; justify-content:space-between;">
+  <div style="display: flex; justify-content:space-between;padding:15px">
     <div style="display: flex;">
-      <p>icon</p>
+      <img style="width:40px;margin:0 15px" src="../../../../assets/svg/defaultIcon.svg" alt="">
       <p>username</p>
     </div>
     <select name="" id="">
       <option value="ativité">activité</option>
     </select>
   </div>
-  <div style="display: flex;justify-content:space-between;">
-    <img style="width: 40px;" src="../../../../assets/svg/yellow-plane.svg" alt="">
-    <img style="width: 40px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
+  <div style="display: flex;justify-content:space-between;padding:15px">
+    <img style="width: 60px;" src="../../../../assets/svg/yellow-plane.svg" alt="">
+    <img style="width: 60px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
     <div style="display: flex; flex-direction:column;align-items:center;justify-content:center">
       <div style="display: flex;font-size:30px">
         <div>P</div>
@@ -25,22 +25,41 @@
         <div>n</div>
         <div class="yellow">g</div>
       </div>
-      <p>Mars 2021</p>
+      <div>Mars 2021</div>
     </div>
-    <img style="width: 40px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
-    <img style="width: 40px;" src="../../../../assets/svg/blue-plane.svg" alt="">
+    <img style="width: 60px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
+    <img style="width: 60px;" src="../../../../assets/svg/blue-plane.svg" alt="">
   </div>
-  <div style="display: flex;flex-direction:column;align-items:center">
-    <div>days</div>
+  <div style="display: flex;flex-direction:column;align-items:center;position:relative">
+    <!-- <div>days</div> -->
+    <div style="position: absolute;display:flex;flex-direction:column;left:10px;top:20px">
+      <img style="width: 10px;padding-bottom:35px" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
+      <img style="width: 10px;" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
+    </div>
+    <div style="position: absolute;display:flex;flex-direction:column;right:10px;top:20px">
+      <img style="width: 10px;padding-bottom:35px" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
+      <img style="width: 10px;" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
+    </div>
     <div class="days">
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
-      <div class="day"></div>
+      <div class="day"><span style="background-color:#7BC2BF ;padding:2px">Lundi</span></div>
+      <div class="day"><span style="background-color:#7BC2BF ;padding:2px">Mardi</span></div>
+      <div class="day"><span style="background-color:#7BC2BF ;padding:2px">Mercredi</span></div>
+      <div class="day"><span style="background-color:#7BC2BF ;padding:2px">Jeudi</span></div>
+      <div class="day"><span style="background-color:#7BC2BF ;padding:2px">Vendredi</span></div>
+      <div class="day"><span style="background-color:#FFAB2B ;padding:2px">Samedi</span></div>
+      <div class="day"><span style="background-color:#EF7534 ;padding:2px">Dimanche</span></div>
     </div>
-    <img style="width: 100%;" src="../../../../assets/svg/buildings.svg" alt="">
+    <img style="width: 100%;margin-top:240px;z-index:10" src="../../../../assets/svg/buildings.svg" alt="">
   </div>
+  <ion-slides pager="true" [options]="slideOptsTwo" #slideWithNav2
+          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 140px;">
+          <ion-slide *ngFor="let event of events">
+            <div class="container">
+              <span class="date">{{event.day}}:{{event.date}} {{event.month}} {{event.year}}</span>
+              <div class="events" *ngFor="let event of event.events" >
+                <span>-{{event.from}}h-{{event.to}}h : {{event.text}}</span>
+              </div>
+            </div>
+          </ion-slide>
+        </ion-slides>
 </ion-content>
