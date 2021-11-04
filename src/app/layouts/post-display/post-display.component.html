@@ -1,30 +1,15 @@
-<ion-row>
-  <ion-col size="12">
-    <ion-title
-      style="
-        background-image: linear-gradient(
-          119deg,
-          rgba(92, 99, 91, 1) 0%,
-          rgba(36, 114, 56, 1) 35%,
-          rgb(169, 194, 26) 100%
-        );
-      "
-    >
-      <h5 style="color: white">{{ mediafiles[0]?.createdAt | date }}</h5>
-    </ion-title>
-  </ion-col>
-</ion-row>
+
 <ion-content>
   <ion-toolbar>
-    <ion-buttons slot="end">
+    <ion-buttons  slot="start">
       <ion-button (click)="dismiss()" large>
-        <ion-icon name="close-circle-outline" size="large"></ion-icon>
+        <ion-icon   color="light" name="chevron-back-outline" ></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 
   <ion-row class="ion-justify-content-center">
-   
+
     <ion-col size="12" *ngFor="let mediafile of mediafiles">
       <img
         *ngIf="get_url_extension(mediafile?.file_name).includes('png', 'jpeg')"

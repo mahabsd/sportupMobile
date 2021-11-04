@@ -4,6 +4,7 @@ import { ModalController, PopoverController } from '@ionic/angular';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Follow } from 'src/app/shared/Model/Follow';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { CoachMenuPopOverComponent } from '../coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 import { PopOverSuivrePageComponent } from './pop-over-suivre-page/pop-over-suivre-page.component';
@@ -17,7 +18,7 @@ export class ProfilPage implements OnInit {
   // activatedroute importer luser selon leur id
   // en utilisant lapi
   EtatSuivre = false;
-  follow: Follow = new Follow();
+  notif: any = { receiver: '', userOwner: '', text: '' };
   idfollow;
   user$
   profileClickedName;
@@ -31,7 +32,9 @@ export class ProfilPage implements OnInit {
   posts: any[] = [];
   follower = false;
   userClicked;
-  ;
+  isUser = false;
+  isKid = false;
+
   public folder: string;
   imagesBasic = [
     {
@@ -53,12 +56,15 @@ export class ProfilPage implements OnInit {
       description: 'Image 3',
     },
   ];
+  userRole: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
     private followerService: FollowerService,
     private modalController: ModalController,
-    public router: Router,public popoverController: PopoverController
+    public router: Router,
+    public popoverController: PopoverController,
+    private notificationsService: NotificationsService
   ) {
     this.getUser();
     this.getfollow();
@@ -69,8 +75,6 @@ export class ProfilPage implements OnInit {
 
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.typepage = this.activatedRoute.snapshot.params.typepage;
-
-
     this.getUserByid();
   }
 
@@ -91,15 +95,15 @@ export class ProfilPage implements OnInit {
               console.log(res);
               this.EtatSuivre = true;
 
-             // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
+              // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
 
-              if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
-                this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
-                  }
-                  else if (this.userClicked.role==='kids'){
-                    this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
+              if (this.userClicked.role === 'user' || this.userClicked.role === 'pro') {
+                this.router.navigate(["menu/tabs/layouts/coachprofile", this.idprofilePassed, "followed"]);
+              }
+              else if (this.userClicked.role === 'kids') {
+                this.router.navigate(["tabs/profilkids/", this.idprofilePassed]);
 
-                  }
+              }
             }
           });
       },
@@ -122,7 +126,12 @@ export class ProfilPage implements OnInit {
         console.log(response);
         this.myInformation.userLastName = response.data.data.name;
         this.iduser = response.data.data.id;
-
+        this.userRole = response.data.data.role;
+        if (this.userRole === 'user') {
+          this.isUser = true;
+        } else if (this.userRole === 'Kids') {
+          this.isKid = true;
+        }
       },
       (error) => {
         console.error(error);
@@ -135,8 +144,7 @@ export class ProfilPage implements OnInit {
       (response) => {
         console.log('user clicked' + response.data.data.name);
         this.profileClickedName = response.data.data.name;
-        this.userClicked= response.data.data
-
+        this.userClicked = response.data.data;
       },
       (error) => {
         console.error(error);
@@ -144,16 +152,16 @@ export class ProfilPage implements OnInit {
     );
   }
 
-  async presentPopover(ev: any,idprofilePassed) {
+  async presentPopover(ev: any, idprofilePassed) {
     const popover = await this.popoverController.create({
       component: PopOverSuivrePageComponent,
-     // cssClass: 'popoverProfil-custom-class',
+      // cssClass: 'popoverProfil-custom-class',
       event: ev,
-      componentProps: {idpassed: idprofilePassed},
+      componentProps: { idpassed: idprofilePassed },
 
       translucent: true
     });
-   // console.log(idprofilePassed)
+    // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
 
 
@@ -166,22 +174,29 @@ export class ProfilPage implements OnInit {
     console.log(data);
   }
   buttonSuivre() {
-    this.follow.userFollowed = this.idprofilePassed;
-    this.follow.userFollowing = this.iduser;
-    this.followerService.createFollow(this.follow).subscribe((res) => {
-      if(res['status']==='successs'){
-        console.log(this.userClicked.role)
-        if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
-          this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
-          }
-          else if (this.userClicked.role==='kids'){
-            this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
-          };
-      }
-    });
-    //this.getfollow();
+    this.notif.reciever = this.idprofilePassed;
+    this.notif.userOwner = this.iduser;
+    this.notif.text = "vous à envoyer une invitation";
+    this.createNotif(this.notif);
   }
+  /* buttonSuivre() {
 
+   this.follow.userFollowed = this.idprofilePassed;
+   this.follow.userFollowing = this.iduser;
+   this.followerService.createFollow(this.follow).subscribe((res) => {
+     if(res['status']==='successs'){
+       console.log(this.userClicked.role)
+       if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
+         this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
+         }
+         else if (this.userClicked.role==='kids'){
+           this.router.navigate(["tabs/profilkids/",this.idprofilePassed]);
+         };
+     }
+   });
+   //this.getfollow();
+ }
+ */
   buttonBlock() {
     this.followerService
       .deleteFollow(this.idFollowtoDelete)
@@ -190,5 +205,8 @@ export class ProfilPage implements OnInit {
       });
     this.EtatSuivre = false;
     //this.getfollow()
+  }
+  createNotif(notif: any) {
+    this.notificationsService.postNotification(notif).subscribe(res => console.log(res));
   }
 }

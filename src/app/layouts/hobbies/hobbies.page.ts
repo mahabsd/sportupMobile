@@ -340,7 +340,6 @@ export class HobbiesPage implements OnInit {
                 console.log(res);
                 this.EtatSuivre = true;
               }
-              console.log(this.buttonColor)
 
             });
 

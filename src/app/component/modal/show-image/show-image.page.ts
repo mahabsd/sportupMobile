@@ -70,7 +70,7 @@ export class ShowImagePage implements OnInit {
       if (this.userRole === 'user' || this.userRole === 'pro') {
         this.router.navigate(['menu/tabs/layouts/coachprofile/', userId, 'me', 'coachphoto']);
       } else {
-        this.router.navigate(["tabs/profilkids/", userId]);
+        this.router.navigate(['tabs/profilkids/', userId]);
       }
       this.close();
     } else {
@@ -78,48 +78,38 @@ export class ShowImagePage implements OnInit {
       if (this.userRole === 'user' || this.userRole === 'pro') {
         this.getfollow(userId);
       } else {
-        this.userService.getMe().subscribe(
-          (response) => {
-            this.followerService.getFollow(userId, this.userConnectedId)
-              .subscribe((res) => {
-                if (res == null) {
-                  this.router.navigate(['/profil-kid/', userId]);
-                  console.log('nope');
-                } else {
-                  console.log(res);
-                  this.router.navigate(["tabs/profilkids/", userId]);
-                }
-              });
-          },
-          (error) => {
-            console.error(error);
+        this.followerService.getFollow(userId, this.userConnectedId)
+        .subscribe((res) => {
+          if (res == null) {
+            this.router.navigate(['/profil-kid/', userId]);
+            console.log('nope');
+          } else {
+            console.log(res);
+            this.router.navigate(['tabs/profilkids/', userId]);
           }
-        );
+        },
+        (error) => {
+          console.error(error);
+        });
       }
       this.close();
     }
   }
 
   getfollow(iduserpassed) {
-    this.userService.getMe().subscribe(
-      (response) => {
-        this.followerService.getFollow(iduserpassed, this.userConnectedId)
-          .subscribe((res) => {
-            if (res == null) {
-              this.router.navigate(['profil', iduserpassed, 'adulte']);
-              console.log('nope');
-            } else {
-              console.log(res);
-              this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed']);
-            }
-          });
-      },
-      (error) => {
-        console.error(error);
+    this.followerService.getFollow(iduserpassed, this.userConnectedId)
+    .subscribe((res) => {
+      if (res == null) {
+        this.router.navigate(['profil', iduserpassed, 'adulte']);
+      } else {
+        console.log(res);
+        this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed']);
       }
-    );
+    },
+    (error) => {
+      console.error(error);
+    });
   }
-
 }
 
 //profil follow      // this.router.navigate(['profil',userId,'adulte']);

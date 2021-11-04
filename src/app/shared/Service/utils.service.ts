@@ -18,7 +18,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 export class UtilsService {
   public static remoteAdress = environment.apiUrl;
   public static apiUSER = UtilsService.remoteAdress + 'users/';
-  public static apiACTION = UtilsService.remoteAdress + 'actions/';s
+  public static apiACTION = UtilsService.remoteAdress + 'actions/';
   public static apiCLIENT = UtilsService.remoteAdress + 'clients/';
   public static apiOPERATION = UtilsService.remoteAdress + 'operations/';
   public static apiPost = UtilsService.remoteAdress + 'posts/';
@@ -32,10 +32,11 @@ export class UtilsService {
   public static apiHobbies = UtilsService.remoteAdress + 'hobbies/';
   public static apiacitivteKids = UtilsService.remoteAdress + 'activiteKids/';
   public static apiInvite = UtilsService.remoteAdress + 'invi/';
-  public static apishared = UtilsService.remoteAdress + 'shared/';apimyactivityhistory
+  public static apishared = UtilsService.remoteAdress + 'shared/';
   public static apimediafile = UtilsService.remoteAdress + 'media/';
   public static apimyaccesshistory = UtilsService.remoteAdress + 'accesshistory/myaccesshistory/';
   public static apiNotif = UtilsService.remoteAdress + 'notifications/';
+
   public static apimyactivityhistory = UtilsService.remoteAdress + 'activityhistory';
   public static apideactivation = UtilsService.remoteAdress + 'deactivateaccount';
   token: any;

@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { PopovercomponentPage } from '../kids/popovercomponent/popovercomponent.page';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { PopOverSuivrePageComponent } from '../profil/pop-over-suivre-page/pop-over-suivre-page.component';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 
 @Component({
   selector: 'app-profil-adulte',
@@ -14,8 +15,6 @@ import { PopOverSuivrePageComponent } from '../profil/pop-over-suivre-page/pop-o
   styleUrls: ['./profil-adulte.page.scss'],
 })
 export class ProfilAdultePage implements OnInit {
-
-
 
   posts: any = [];
   update = false;
@@ -39,11 +38,7 @@ export class ProfilAdultePage implements OnInit {
     this.getMyPostsKids();
     this.title = "Profile";
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
-
-
     this.getUserByid();
-
-
   }
 
   getUserByid() {
@@ -138,14 +133,11 @@ export class ProfilAdultePage implements OnInit {
 
 
   userUpdate() {
-
-
     this.userService.updateMe(this.user).subscribe(res => {
-
-
       console.log(res);
     });
     this.update = false;
   }
+
 
 }

@@ -1,8 +1,14 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-back-button color="light" slot="start" defaultHref="/tabsKids/accueil"></ion-back-button>
-    <ion-title color="light" style="text-align: center; margin-left: 20xp">{{profileClickedName | uppercase}}
-    </ion-title>
+    <div style="display: flex; align-items: center">
+      <ion-icon *ngIf="isKid" size="small" color="light" routerLink="/tabsKids/accueil" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="isUser" size="small" color="light" routerLink="/menu/tabs/layouts/home" name="chevron-back-outline">
+      </ion-icon>
+      <ion-title color="light" style="text-align: center; margin-left: 20xp">{{profileClickedName | uppercase}}
+      </ion-title>
+    </div>
+
     <ion-buttons slot="end">
       <ion-button shape="rounded" (click)="presentPopover($event,idprofilePassed)">
         <ion-icon color="light" name="chevron-down-outline"></ion-icon>
