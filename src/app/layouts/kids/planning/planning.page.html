@@ -1,4 +1,46 @@
-<app-header title="COACH" [isCoach]="true"   [type]="type" [idprofillepassed]="idprofilePassed"  [followid]="followId" ></app-header>
+<app-header [isKidPlanning]="true"></app-header>
 
 
-<ion-content> </ion-content>
+<ion-content>
+  <div style="display: flex; justify-content:space-between;">
+    <div style="display: flex;">
+      <p>icon</p>
+      <p>username</p>
+    </div>
+    <select name="" id="">
+      <option value="ativité">activité</option>
+    </select>
+  </div>
+  <div style="display: flex;justify-content:space-between;">
+    <img style="width: 40px;" src="../../../../assets/svg/yellow-plane.svg" alt="">
+    <img style="width: 40px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
+    <div style="display: flex; flex-direction:column;align-items:center;justify-content:center">
+      <div style="display: flex;font-size:30px">
+        <div>P</div>
+        <div class="yellow">l</div>
+        <div>a</div>
+        <div class="light-green">n</div>
+        <div class="green">n</div>
+        <div>i</div>
+        <div>n</div>
+        <div class="yellow">g</div>
+      </div>
+      <p>Mars 2021</p>
+    </div>
+    <img style="width: 40px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
+    <img style="width: 40px;" src="../../../../assets/svg/blue-plane.svg" alt="">
+  </div>
+  <div style="display: flex;flex-direction:column;align-items:center">
+    <div>days</div>
+    <div class="days">
+      <div class="day"></div>
+      <div class="day"></div>
+      <div class="day"></div>
+      <div class="day"></div>
+      <div class="day"></div>
+      <div class="day"></div>
+      <div class="day"></div>
+    </div>
+    <img style="width: 100%;" src="../../../../assets/svg/buildings.svg" alt="">
+  </div>
+</ion-content>

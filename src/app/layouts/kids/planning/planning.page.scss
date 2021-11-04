@@ -1,0 +1,29 @@
+.yellow{
+  color: #FFAB2B;
+}
+.green{
+  color:#369D98
+}
+.light-green{
+  color:#7BC2BF
+}
+.separation {
+  border-top: 1px dashed #171716;
+  width: 60%;
+  transform: rotate(90deg);
+  position: absolute;
+  top: 95px;
+}
+
+.days{
+  width:100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}
+.day{
+  height: 250px;
+  width: 50px;
+  border-left: #171716 dashed 1px;
+  border-right: #171716 dashed 1px;
+}

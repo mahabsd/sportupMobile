@@ -37,6 +37,8 @@ export class HeaderComponent implements OnInit {
 
   @Input() isNotifications: boolean = false;
   @Input() isKid: boolean = false;
+
+  @Input() isKidPlanning: boolean = false;
   @Input() KidsProfile: boolean = false;
   @Input() SuivrePage: boolean = false;
   @Input() isParam: boolean = false;
