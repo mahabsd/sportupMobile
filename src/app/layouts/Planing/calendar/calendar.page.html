@@ -6,21 +6,21 @@
     style="box-shadow: none; margin-top: 20px !important"
   >
     <ion-card-content [ngClass]="slider ? 'cal-white' : 'cal-green' ">
-      <ion-row style="margin-bottom: 10px">
-        <ion-col size="2">
-          <ion-avatar [ngClass]="slider? '' : ''">
-            <img [src]="apiImg+user$?.photo" />
-          </ion-avatar>
-        </ion-col>
-        <ion-col size="10" style="margin: auto">
-          <ion-row>
-            <ion-col>
-              <h2 [style.color]="slider ? 'black' : 'white'">
-                {{user$?.name}}
-              </h2>
-              <h2 [style.color]="slider ? 'black' : 'white'">Coach sportif</h2>
-            </ion-col>
-            <ion-col style="margin-left: 40px">
+      <div style="display:flex;align-items:center">
+        <div style="display: flex; align-items:center;margin:10px 0">
+          <div size="2">
+            <ion-avatar [ngClass]="slider? '' : ''">
+              <img [src]="apiImg+user$?.photo" />
+            </ion-avatar>
+          </div>
+          <div style="margin-left: 10px;">
+            <h2 [style.color]="slider ? 'black' : 'white'">
+              {{user$?.name}}
+            </h2>
+          </div>
+        </div>
+        <div size="10" style="margin: auto">
+            <div style="margin-left: 40px">
               <button
                 color="white"
                 style="
@@ -37,10 +37,10 @@
               >
                 Statistiques
               </button>
-            </ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
+            </div>
+
+        </div>
+      </div>
 
       <ion-row>
         <!-- Move back one screen of the slides -->
@@ -83,20 +83,20 @@
     </ion-card-content>
   </ion-card>
   <div class="container" *ngIf="!slider">
-    <ion-card *ngFor="let day of eventDays" style="background-color: #edeef8">
-      <ion-card-content style="padding: 0">
+    <ion-card *ngFor="let day of eventDays" style="background-color: #edeef877;border-radius:10px">
+      <ion-card-content style="padding: 0;">
         <ion-row>
           <ion-col
             size="2"
             style="
               background: linear-gradient(
-                135deg,
-                #247238,
-                #247238,
-                #8ebf25,
-                #8ebf25
+                45deg,
+                rgb(239, 239, 245) 0%,
+                rgba(33, 116, 56, 1) 0%,
+                #8ebf25 100%
               );
-              border-radius: 5px;
+              border-bottom-left-radius: 10px;
+              border-top-left-radius: 10px;
             "
           >
             <div class="dateCol">
@@ -108,9 +108,9 @@
               </h1>
             </div>
           </ion-col>
-          <ng-container>
-            <ion-col size="10">
-              <ng-container *ngFor="let event of eventSource">
+          <ng-container style="position:relative">
+            <div>
+              <ng-container style="display: flex;" *ngFor="let event of eventSource">
                 <ion-row
                   *ngIf="event.startTime.getDate() === day"
                   (click)="openDetailModal(event)"
@@ -121,7 +121,7 @@
                       10?'0':''}}{{event.startTime.getHours()}}:{{event.startTime.getMinutes()
                       < 10?'0':''}}{{event.startTime.getMinutes()}}
                     </h2>
-                    <ion-row style="margin-left: 20px">
+                    <ion-row style="margin: 10px 0 10px 20px;">
                       <ion-col size="12" style="height: 20px">
                         <h2><b> {{event.activity}} </b></h2>
                       </ion-col>
@@ -132,7 +132,8 @@
                   </ion-item>
                 </ion-row>
               </ng-container>
-            </ion-col>
+            </div>
+            <ion-icon style="position: absolute;right:2px;top:40%;width:20px;height:20px" name="chevron-forward-outline"></ion-icon>
           </ng-container>
         </ion-row>
       </ion-card-content>
@@ -144,7 +145,6 @@
       <div
         style="
           text-align: center;
-
           z-index: 2;
           position: absolute;
           top: 50%;
@@ -161,7 +161,6 @@
       <div
         style="
           text-align: center;
-
           z-index: 2;
           position: absolute;
           top: 50%;

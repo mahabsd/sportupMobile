@@ -78,9 +78,11 @@
         >
       </ion-segment-button>
 
-        <ion-label routerLink="/planning-kids" style="font-family: 'Leckerli One', cursive"
+      <div class="planning" routerLink="/planning-kids">
+        <ion-label style="font-family: 'Leckerli One', cursive"
           >Planning</ion-label
         >
+      </div>
 
       <ion-segment-button value="propos">
         <ion-label style="font-family: 'Leckerli One', cursive"
@@ -90,8 +92,6 @@
     </ion-segment>
 
     <div class="body" *ngIf="selected==='photo'">
-
-
       <div *ngIf="this.postsimg.length===1">
       <div id="first-bloc" >
         <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
