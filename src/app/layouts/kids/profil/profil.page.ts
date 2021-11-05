@@ -51,44 +51,6 @@ export class ProfilPage implements OnInit {
   checkSelf=false;
   idprofilePassed;
   profileClickedName;
-  userPosts=[
-    {
-    id:1,
-    content:"hello this is my first post,hello this is my first post,hello this is my first post,hello this is my first post",
-    createdAt:"27/08/2020",
-    title:"winterfel",
-    user:{
-      name:"jon snow"
-    }
-  },
-  {
-    id:2,
-    content:"hello this is my second post,hello this is my second post,hello this is my second post,hello this is my second post",
-    createdAt:"07/01/2020",
-    title:"the wall",
-    user:{
-      name:"jon snow"
-    }
-  },
-  {
-    id:3,
-    content:"hello this is my third post,hello this is my third post,hello this is my third post,hello this is my third post",
-    createdAt:"26/12/2020",
-    title:"beyond the wall",
-    user:{
-      name:"jon snow"
-    }
-  },
-  {
-    id:4,
-    content:"hello this is my fourth post,hello this is my fourth post,hello this is my fourth post,hello this is my fourth post",
-    createdAt:"26/12/2020",
-    title:"back to the wall again",
-    user:{
-      name:"jon snow"
-    }
-  }
-];
   isScrollTop: boolean;
   page = 1;
   selectedDate;
@@ -260,12 +222,11 @@ this.getPosts();
   }
 
 
-  GetPostStatusOnly(idpost) {
+  getPostStatusOnly(idpost) {
     console.log(idpost);
-      this.imageservice.GetPostStatusOnly(idpost).subscribe((res) => {
+      this.imageservice.getPostStatusOnly(idpost).subscribe((res) => {
 
         this.postsStatut=  this.postsStatut.concat(res);
-
 
       });
   }
@@ -274,17 +235,15 @@ this.getPosts();
   getPosts(event?) {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
-      console.log("++++++++++++")
 
      this.posts = this.posts.concat(response['data']);
-     console.log( response['data'])
      this.posts.forEach(post => {
       this.getimageBypostId(post.id);
-      this.GetPostStatusOnly(post.id);
+      this.getPostStatusOnly(post.id);
 
       this.posts.push(post);
        });
-    
+
 
       this.savepostsService.getSavedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
 
@@ -292,8 +251,7 @@ this.getPosts();
         this.posts$.map(post=> {
           //console.log(post.post);
           this.getimageBypostId(post.post.id);
-          this.GetPostStatusOnly(post.post.id);
-
+          this.getPostStatusOnly(post.post.id);
           this.posts.push(post.post);
         });
        });
@@ -304,10 +262,10 @@ this.getPosts();
 
         this.posts$.map(post=> {
           this.getimageBypostId(post.post.id);
-          this.GetPostStatusOnly(post.post.id);
+          this.getPostStatusOnly(post.post.id);
           this.posts.push(post.post);
        });
-     
+
 
       });
       console.log( this.posts)
@@ -341,8 +299,6 @@ this.getPosts();
       this.posts$.map(post=> {
         this.posts.push(post.post);
      });
-     console.log(this.posts);
-
     });
    }
 

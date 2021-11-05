@@ -90,7 +90,7 @@ export class ImageService {
       .pipe(map((res) => res.data.data));
   }
 
-  GetPostStatusOnly(idpost): Observable<any[]> {
+  getPostStatusOnly(idpost): Observable<any[]> {
     return this.apiService
       .get(`${UtilsService.apimediafile}GetPosts/StatusOnly/${idpost}`)
       .pipe(map((res) => res.data.data));

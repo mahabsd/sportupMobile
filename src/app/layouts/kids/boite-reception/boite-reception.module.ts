@@ -8,6 +8,7 @@ import { BoiteReceptionPageRoutingModule } from './boite-reception-routing.modul
 
 import { BoiteReceptionPage } from './boite-reception.page';
 import { ComponentModule } from 'src/app/component/component.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ComponentModule } from 'src/app/component/component.module';
     IonicModule,
     BoiteReceptionPageRoutingModule,
     ComponentModule,
-    ChatKidsPageModule
+    ChatKidsPageModule,
+    Ng2SearchPipeModule
   ],
   declarations: [BoiteReceptionPage]
 })

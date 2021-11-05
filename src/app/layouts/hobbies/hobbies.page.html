@@ -37,8 +37,9 @@
       align-items: center;">
         <h4 style="margin-left:40px;" (click)="redirectToprofile(user._id,user.role)">{{user.name}}</h4>
       </ion-col>
-        <ng-container *ngFor="let item2 of buttonColor">
-          <ng-container *ngIf="item2.iduser===user._id">
+    <!--
+            <ng-container *ngFor="let item2 of buttonColor">
+         <ng-container *ngIf="item2.iduser===user._id">
                 <ion-col size="2">
                   <ion-button *ngIf="item2.etat==='no'" expand="block"  id="dejasuivi"  (click)="buttonSuivre(user._id)" >S'abonner</ion-button>
                   <ion-button expand="block" *ngIf="item2.etat==='yes'"  type="button" id="bloquer" (click)="buttonBlock()" >
@@ -47,6 +48,8 @@
                 </ion-col>
             </ng-container>
         </ng-container>
+    -->
+
       </ion-row>
     </ion-grid>
     </ion-card>

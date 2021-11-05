@@ -86,7 +86,7 @@ export class StatusKidsComponent implements OnInit {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
-    
+
 
     const _this = this;
 
@@ -98,16 +98,16 @@ export class StatusKidsComponent implements OnInit {
       .subscribe((res) => {
         if (res == null) {
           _this.follower = false;
-        
+
         } else {
           _this.follower = true;
 
         }
       });
   },
-  (error) => 
+  (error) =>
     console.error(error),
- 
+
 );
   }
   ngOnInit() {
@@ -200,8 +200,6 @@ export class StatusKidsComponent implements OnInit {
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       let tempMedia = mediafiles.mediafiles;
-    console.log(tempMedia)
-    console.log(mediafiles)
 
       if ( tempMedia.length<4){
         this.newMediaFiles= tempMedia.splice(0,1);
@@ -244,13 +242,13 @@ export class StatusKidsComponent implements OnInit {
             }
           });
       },
-      (error) => 
+      (error) =>
         console.error(error),
-     
+
     );
   }
 
-  
+
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
     //console.log(ext);
@@ -259,9 +257,6 @@ export class StatusKidsComponent implements OnInit {
 
   async displayImage(a: any) {
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    console.log("displayImage");
-    console.log(this.mediafiles);
     const modal = await this.modalController.create({
       component: DisplayImgProfilKidsComponent,
       cssClass: 'imageModal',
@@ -273,9 +268,6 @@ export class StatusKidsComponent implements OnInit {
   }
 
   async displayContent(files){
-    console.log("displayContent");
-
-console.log(files)
     const modal = await this.modalController.create({
       component: PostDisplayComponent,
       cssClass: 'imageModal',
@@ -289,8 +281,6 @@ console.log(files)
   async displayVideo(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     // console.log(url);
-    console.log("displayVideo");
-
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
       cssClass: 'imageModal',

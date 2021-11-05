@@ -1,3 +1,7 @@
+.iconstyle{
+
+  height: 40% !important;
+}
 ion-chip{
 --background:white;
 }

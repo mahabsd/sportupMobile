@@ -79,9 +79,7 @@ export class HomePage implements OnInit {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
       this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
-        console.log(res.data.shared);
         this.posts = this.posts.concat(res.data.data);
-        console.log(this.posts);
         if (event) {
           event.target.complete();
         }

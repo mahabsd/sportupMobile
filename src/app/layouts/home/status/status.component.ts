@@ -167,11 +167,6 @@ this.getMe()
   }
 
   async displayImage(a: any) {
-    console.log("here")
-
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    //console.log(url);
-    console.log(this.mediafiles);
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
       cssClass: 'imageModal',

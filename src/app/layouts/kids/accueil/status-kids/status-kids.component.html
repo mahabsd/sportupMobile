@@ -188,7 +188,7 @@
 
         <ion-label class="labelnblikes">{{ comments.length }} </ion-label>
 
-        
+
       </ion-col>
       <ion-col size="2">
         <ng-container *ngIf="!bookmarked; else unbook">
@@ -200,9 +200,7 @@
           <sub>{{ post?.favorisNb }}</sub>
         </ng-template>
       </ion-col>
-      <ion-col size="1">
-        <ion-icon name="close" (click)="presentAlertConfirm(post)"></ion-icon>
-      </ion-col>
+
     </ion-row>
   </div>
 </div>

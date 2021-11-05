@@ -170,25 +170,25 @@ export class HobbiesPage implements OnInit {
       },
       {
         imgsrc: "../../assets/imgsHobbies/avecMoteur.jpg",
-        hobbiename: 'Avec Moteur ',
+        hobbiename: 'Avec Moteur',
         id: 4
       },
 
       {
         imgsrc: "../../assets/imgsHobbies/dansLesAirs.jpg",
-        hobbiename: 'Dans les airs ',
+        hobbiename: 'Dans les airs',
         id: 5
       },
 
       {
         imgsrc: "../../assets/imgsHobbies/DIVERS.jpg",
-        hobbiename: 'Divers ',
+        hobbiename: 'Divers',
         id: 6
       },
 
       {
         imgsrc: "../../assets/imgsHobbies/enEquipe.jpg",
-        hobbiename: 'En Equipe ',
+        hobbiename: 'En Equipe',
         id: 7
       },
       {
@@ -203,27 +203,27 @@ export class HobbiesPage implements OnInit {
       },
       {
         imgsrc: "../../assets/imgsHobbies/rando.jpg",
-        hobbiename: 'Rando ',
+        hobbiename: 'Rando',
         id: 10
       },
       {
         imgsrc: "../../assets/imgsHobbies/RAQUETTES.jpg",
-        hobbiename: 'Raquettes ',
+        hobbiename: 'Raquettes',
         id: 11
       },
       {
         imgsrc: "../../assets/imgsHobbies/rouesansMoteur.jpg",
-        hobbiename: 'Sans Moteur ',
+        hobbiename: 'Sans Moteur',
         id: 12
       },
       {
         imgsrc: "../../assets/imgsHobbies/sportDeGlisse.jpg",
-        hobbiename: 'Sport De Glisse ',
+        hobbiename: 'Sport De Glisse',
         id: 13
       },
       {
         imgsrc: "../../assets/imgsHobbies/sportsDeDuels.jpg",
-        hobbiename: 'sports De Duels ',
+        hobbiename: 'sports De Duels',
         id: 1
       },
       {
@@ -340,7 +340,6 @@ export class HobbiesPage implements OnInit {
                 console.log(res);
                 this.EtatSuivre = true;
               }
-              console.log(this.buttonColor)
 
             });
 

@@ -54,7 +54,7 @@ export class CoachphotoPage implements OnInit {
   ngOnInit() {
   //  this.getMe();
     this.postsOwnerId = this.postService.postsOwnerId;
- 
+
     console.log(  this.postsOwnerId );
     this.getAllPosts();
 
@@ -81,7 +81,6 @@ export class CoachphotoPage implements OnInit {
     this.imageService.addImage(fd).subscribe(async (res) => {
       // console.log(res);
       this.presentToast('Photo ajoutée!');
-      this.getImageByIdUser(this.user$.id);
     });
   }
 
@@ -123,15 +122,11 @@ export class CoachphotoPage implements OnInit {
         toastData.present();
       });
   }
-
- 
   getMe() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = res.data.data;
-   //   this.getImageByIdUser(res?.data?.data?._id);
     });
   }
-
 
   getpostFiles(post) {
     console.log("++++"+post._id)
@@ -143,10 +138,6 @@ export class CoachphotoPage implements OnInit {
             console.log(element);
             this.images.push(element);
           });
-      
-  
-    
-    
         });
       }
 
@@ -166,8 +157,8 @@ export class CoachphotoPage implements OnInit {
       this.posts.forEach(post => {
         this.getpostFiles(post);
       });
-  
-     
+
+
         if (event) {
           event.target.complete();
         }

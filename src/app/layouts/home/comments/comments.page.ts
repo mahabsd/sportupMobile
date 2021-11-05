@@ -5,6 +5,8 @@ import { Post } from 'src/app/Shared/Model/Post';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 import { ModalController } from '@ionic/angular';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-comments',
@@ -15,15 +17,19 @@ export class CommentsPage implements OnInit {
   @Input() post: Post;
   @Input() comments: any = [];
   apiImgUser = `${environment.apiImg}User/`;
-
   comment: Comment = new Comment();
   commentForm: FormGroup;
   apiImg: any;
+  notif: any = { receiver: '', userOwner: '', text: '' };
+  iduser;
+  idprofilePassed;
+  user$: any;
   constructor(
     private commentService: CommentService,
-    private modalController: ModalController) {
+    private modalController: ModalController,
+    private notificationsService: NotificationsService,
+    private userService: UserService) {
     this.apiImg = `${environment.apiImg}users/`;
-    console.log(this.apiImg);
 
   }
 
@@ -33,13 +39,18 @@ export class CommentsPage implements OnInit {
     });
   }
   sendComment(post) {
-    console.log(this.comment);
     this.comments = [];
     // eslint-disable-next-line no-underscore-dangle
+    this.userService.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      this.notif.reciever = post.user._id;
+      this.notif.userOwner = this.user$._id;
+      this.notif.text = "à commenté votre status";
+      this.createNotif(this.notif);
+    });
     return this.commentService.addComment(this.comment, post._id).subscribe(res => {
       this.comment = new Comment();
       this.getCommentByPost();
-      console.log(res);
     });
   }
   async dismissModal() {
@@ -48,9 +59,16 @@ export class CommentsPage implements OnInit {
   getCommentByPost() {
     // eslint-disable-next-line no-underscore-dangle
     this.commentService.getCommentByService(this.post._id).subscribe(arg => {
-      console.log(arg);
       this.comments = arg;
     });
 
+  }
+  dismiss() {
+    this.modalController.dismiss({
+      dismissed: true,
+    });
+  }
+  createNotif(notif: any) {
+    this.notificationsService.postNotification(notif).subscribe();
   }
 }

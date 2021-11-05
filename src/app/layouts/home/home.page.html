@@ -62,8 +62,7 @@
         <div
           *ngFor="let post of posts;let i=index;"
           [class.focus]="indexPub===i"
-          scrollY="true"
-        >
+          scrollY="true">
           <app-status
             [post]="post"
             [index]="i"

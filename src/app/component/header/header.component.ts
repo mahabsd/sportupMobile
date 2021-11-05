@@ -59,7 +59,7 @@ export class HeaderComponent implements OnInit {
   constructor(private modalCtrl: ModalController,
     public popoverController: PopoverController,
     private location: Location,
-    private userservice: UserService,   private followerService: FollowerService
+    private userservice: UserService,
   ) { }
 
   ngOnInit() {

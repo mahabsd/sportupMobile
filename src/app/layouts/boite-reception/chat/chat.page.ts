@@ -71,6 +71,8 @@ export class ChatPage implements OnInit {
     });
   });
     this.socket.fromEvent('message').subscribe(message => {
+      console.log(message);
+
       this.getchat();
     });
   }
