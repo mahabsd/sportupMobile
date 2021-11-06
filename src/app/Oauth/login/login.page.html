@@ -11,7 +11,7 @@
       <h1>Bienvenue</h1>
     </div>
     <form [formGroup]="loginForm">
-      <ion-input type="email" autofocus="true" class="form-controll ion-margin-bottom" mdInput formControlName="email"
+      <ion-input type="email" autofocus="false" class="form-controll ion-margin-bottom" mdInput formControlName="email"
         [ngClass]="{'error':loginForm.controls['email'].errors && !loginForm.controls['email'].pristine}"
         color="{{loginForm.controls['email'].errors && !loginForm.controls['email'].pristine ? 'warning':'primary'}}"
         placeholder="Adresse Email" name="email" required>

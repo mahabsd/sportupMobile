@@ -32,22 +32,20 @@ ion-menu-button {
   .monthview-datetable th {
     border: none !important;
     color: white;
+    margin:5px
   }
   .monthview-current {
     color: rgb(24, 82, 10) !important;
   }
   .cal-green {
     padding-top: 0;
-    border-top-left-radius: 40px;
-    border-top-right-radius: 40px;
-    border-bottom-left-radius: 30px;
-    border-bottom-right-radius: 30px;
+    border-radius: 30px;
 
     background: linear-gradient(
-      54deg,
-      rgba(2, 0, 36, 1) 0%,
+      45deg,
+      rgb(239, 239, 245) 0%,
       rgba(33, 116, 56, 1) 0%,
-      rgb(156, 191, 79) 100%
+      #8ebf25 100%
     );
   }
   .text-muted {
@@ -82,10 +80,6 @@ ion-menu-button {
   .item-native {
     background: #ebebeb18;
   }
-}
-
-td {
-  background-color: red !important;
 }
 
 .item-native {
@@ -142,15 +136,6 @@ ion-content {
 }
 
 
-ion-card .card-content-ios {
-  padding-top: 0px  !important;
-  padding-bottom: 0px !important;
-  padding-left: 0px !important;
-  padding-right: 0px !important;
- 
-}
-
-
 .dateCol {
   position: absolute;
   top: 50%;
@@ -158,3 +143,4 @@ ion-card .card-content-ios {
   transform: translateX(-50%) translateY(-50%);
   padding: 5px;
 }
+

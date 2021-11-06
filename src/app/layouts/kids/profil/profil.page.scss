@@ -43,6 +43,21 @@ ion-segment-button {
   --indicator-color: none;
   min-width: 80px;
 }
+.planning{
+  border-radius: 15px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  margin: 5px 4px 4px;
+  height: 38px;
+  color: #858484;
+  --background-checked: #d8d6d6ab;
+  text-transform: none;
+  min-height: unset;
+  --indicator-color: none;
+  min-width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 #container {
   height: 800px;

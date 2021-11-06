@@ -33,6 +33,7 @@ export class CalendarPage implements OnInit {
   eventSource = [];
   eventDays = [];
   selectedMonth;
+  show = false;
   viewTitle: string;
   apiImg = environment.apiImg + 'User/';
   user$: any;
@@ -69,6 +70,7 @@ export class CalendarPage implements OnInit {
       if(elements[i].className==='monthview-primary-with-event')
 
       events.push(elements[i]);
+
     }
 
     events.forEach(element => {
@@ -78,11 +80,11 @@ export class CalendarPage implements OnInit {
         this.renderer.addClass(element,'light');
     });
 
-    console.log(events);
+    // console.log(events);
   }
   ngOnInit() {
     const url = this.router.url.split('/', 6);
-    console.log(url);
+    // console.log(url);
 
     if (url[1] === 'calendar') {
       this.slider = false;
@@ -118,7 +120,7 @@ export class CalendarPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = res.data.data;
-      console.log(this.user$);
+      // console.log(this.user$);
       this.loadEvents();
     });
   }
@@ -134,7 +136,6 @@ export class CalendarPage implements OnInit {
 
       this.extractEventDays();
     });
-
 
   }
   getDayName(day, month, year) {
@@ -162,7 +163,7 @@ export class CalendarPage implements OnInit {
   }
 
   onCurrentDateChanged(event) {
-    console.log(event.getMonth());
+    // console.log(event.getMonth());
 
     this.selectedMonth = event.getMonth();
     this.selectedYear = event.getYear();
@@ -243,7 +244,7 @@ export class CalendarPage implements OnInit {
   }
 
   formateEventDates(eventTime) {
-    console.log(eventTime);
+    // console.log(eventTime);
 
     const dateFormate: Date = moment(eventTime, 'YYYY-MM-DD HH:mm').toDate();
     return dateFormate;
