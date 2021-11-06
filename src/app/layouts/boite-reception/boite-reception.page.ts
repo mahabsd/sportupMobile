@@ -41,7 +41,6 @@ export class BoiteReceptionPage implements OnInit {
   ngOnInit() {
     // this.getAllusers()
     this.getMe();
-
     this.getfollow();
     this.socket.connect();
     this.socket.emit('message', { msg: 'hey' });
@@ -99,7 +98,6 @@ export class BoiteReceptionPage implements OnInit {
       this.numTimesLeft -= 1;
       event.target.complete();
       this.users2 = [];
-
     }, 500);
   }
 
@@ -126,9 +124,11 @@ export class BoiteReceptionPage implements OnInit {
     if (item.seenuser1.user1 === this.user$ )
     {
       item.seenuser1.lastVisit = Date();
+      item.seenuser1.seen = true;
     }
-    else {
-      item.seenuser1.lastVisit = Date();
+    else if (item.seenuser2.user2 === this.user$ ) {
+      item.seenuser2.lastVisit = Date();
+      item.seenuser2.seen = true;
     }
 
     this.chatService.updateChat(item._id, item).subscribe(res => console.log(res));

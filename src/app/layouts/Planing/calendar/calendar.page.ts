@@ -20,6 +20,7 @@ import * as moment from 'moment';
 import { environment } from 'src/environments/environment';
 import { Subscription } from 'rxjs';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 @Component({
   selector: 'app-home',
   templateUrl: 'calendar.page.html',
@@ -45,6 +46,7 @@ export class CalendarPage implements OnInit {
 
   selectedYear: any;
   isParam: boolean;
+  notif: any = { reciever: '', userOwner: '', text: '', event: '' };
 
   constructor(
     private alertCtrl: AlertController,
@@ -55,6 +57,7 @@ export class CalendarPage implements OnInit {
     private router: Router,
     private renderer: Renderer2,
     private elem: ElementRef,
+    private notificationsService: NotificationsService
   ) {}
 
 
@@ -211,16 +214,13 @@ export class CalendarPage implements OnInit {
 
         event.endTime = dateParsedEnd;
 
-        console.log(event.startTime);
-        console.log(event.endTime);
-
         if (evnt === null) {
           console.log('add');
           this.calendarService.addActivity(event).subscribe(async (res) => {
-            console.log(res);
             this.eventSource.push(res);
             this.loadEvents();
           });
+          this.createNotif(event);
         } else {
           console.log('update');
           console.log(event);
@@ -229,8 +229,7 @@ export class CalendarPage implements OnInit {
             this.modalCtrl.dismiss();
             this.loadEvents();
           });
-        }
-
+          }
         this.extractEventDays();
         this.myCal.loadEvents();
       }
@@ -263,5 +262,13 @@ export class CalendarPage implements OnInit {
 
   removeEvents() {
     this.eventSource = [];
+  }
+
+  createNotif(event){
+    this.notif.userOwner = this.user$._id;
+    this.notif.reciever = this.user$._id;
+    this.notif.text = 'à créé un événnement';
+    this.notif.event = event._id;
+    this.notificationsService.postNotification(this.notif).subscribe(res=> console.log(res));
   }
 }

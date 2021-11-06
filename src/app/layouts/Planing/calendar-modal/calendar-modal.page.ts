@@ -17,8 +17,8 @@ export class CalendarModalPage implements OnInit {
     currentDate: new Date(),
   };
   viewTitle: string;
- 
- 
+
+
   today: Date;
   event: Activity = new Activity();
   selectedEvent;
@@ -34,9 +34,6 @@ export class CalendarModalPage implements OnInit {
     }, 0);
   }
   ngOnInit() {
- console.log(this.selectedEvent);
- 
- 
     if (this.selectedEvent) {
       this.event._id = this.selectedEvent.event._id;
       this.event.activity = this.selectedEvent.event.activity;
@@ -92,9 +89,8 @@ export class CalendarModalPage implements OnInit {
       // this.formatedTime = this.event.startTime.toISOString();
       this.event.startTime = moment(fStart).format('YYYY/MM/DD HH:mm');
       this.event.endTime = moment(fEnd).format('YYYY/MM/DD HH:mm');
-      console.log(this.selectedTime.selectedTime);
     }
- 
+
   }
 
   save() {

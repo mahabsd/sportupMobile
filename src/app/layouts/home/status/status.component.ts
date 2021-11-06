@@ -144,6 +144,11 @@ export class StatusComponent implements OnInit {
     });
   }
   bookmark(post) {
+    this.notif.reciever = post.user._id;
+    this.notif.userOwner = this.user$._id;
+    this.notif.text = "à enregistré votre status";
+    this.notif.postId = post._id
+    this.createNotif(this.notif);
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
       //console.log(res);
       this.bookmarked = true;

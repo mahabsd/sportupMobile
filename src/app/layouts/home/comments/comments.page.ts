@@ -30,7 +30,6 @@ export class CommentsPage implements OnInit {
     private notificationsService: NotificationsService,
     private userService: UserService) {
     this.apiImg = `${environment.apiImg}users/`;
-
   }
 
   ngOnInit() {
