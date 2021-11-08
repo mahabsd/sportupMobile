@@ -221,7 +221,6 @@ console.log("++++"+this.post._id)
       this.mediafiles = mediafiles.mediafiles;
       this.tempMedia = mediafiles.mediafiles;
 
-
       if ( this.tempMedia.length<4){
         this.newMediaFiles= this.tempMedia.splice(0,1);
       }

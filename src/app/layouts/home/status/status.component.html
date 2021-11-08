@@ -42,7 +42,7 @@
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
   <div (click)="displayContent(post)" *ngIf="mediafiles.length === 0">
-    <div style="display: flex; justify-content: center">
+    <div style="display: flex; justify-content: center;flex-direction:column">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -79,6 +79,29 @@
             ></ion-icon>
           </div>
         </ng-container>
+      </div>
+      <div class="comment">
+        <div style="display: flex; float:right;align-items:center">
+          <p>Tous les commentaires</p>
+          <ion-icon name="chevron-down-outline"></ion-icon>
+        </div>
+        <div style="margin-top: 30px;">
+          <div style="display: flex;align-items:center" *ngFor="let item of comments" >
+            <div style="display: flex;">
+              <img style="margin-right: 10px;" src={{item.user.photo}} alt="">
+              <span>{{item.user.name}}</span>
+            </div>
+            <span>{{item.content}}</span>
+          </div>
+        </div>
+        <div style="display: flex;">
+          <img src={{user.photo}} alt="">
+          <input type="text">
+          <ion-icon name="images"></ion-icon>
+          <ion-icon name="camera"></ion-icon>
+          <ion-icon name="attach"></ion-icon>
+          <ion-icon name="mic"></ion-icon>
+        </div>
       </div>
     </div>
   </div>
