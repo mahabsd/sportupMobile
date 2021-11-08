@@ -15,7 +15,7 @@ import { environment } from 'src/environments/environment';
 })
 export class ChatPage implements OnInit {
   @ViewChild('fileInput', { static: false }) multiFileInput: ElementRef;
-  @ViewChild('maindiv') list:any;
+  @ViewChild('maindiv') list: any;
   apiImgUser = `${environment.apiImg}User/`;
   apiImgChat = `${environment.apiImg}chat/`;
 
@@ -24,7 +24,7 @@ export class ChatPage implements OnInit {
   message = '';
   messages = [];
   messages2 = [];
-  IsimgSelected=0;
+  IsimgSelected = 0;
   chatimg = [];
   userSenderId;
   currentUser;
@@ -32,82 +32,64 @@ export class ChatPage implements OnInit {
   username;
   userconnectedrole;
   idprofilePassed;
-  filterchat:string;
+  filterchat: string;
   selectedFiles: any[];
   progressInfos: any[];
-
   selectedPreviews: any = [];
   constructor(private socket: Socket, private plt: Platform,
     private activatedRoute: ActivatedRoute,
-    private userservice: UserService, private chatService: ChatService,   private Renderer: Renderer2,
+    private userservice: UserService, private chatService: ChatService, private Renderer: Renderer2,
     private toastCtrl: ToastController) { }
 
   ngOnInit() {
-    console.log(  this.list)
     //this.list.scrollToBottom(100);
-
     this.getchat();
-    this.idprofilePassed= this.activatedRoute.snapshot.params.id;
+    this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.socket.connect();
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data._id;
-      this.username=res.data.data.name
-      this.userconnectedrole=res.data.data.role;
-      console.log(this.user$);
-
-    let name = ` User-${new Date().getTime()}`;
-
-    this.currentUser =  this.username;
-    this.socket.emit('set-name',  this.username);
-    this.socket.fromEvent('users-changed').subscribe(data => {
-      console.log('getdata', data);
-      let user = data['user'];
-      if (data['event'] === 'left') {
-        this.presentToast(`${user} left the chat`);
-      } else {
-          if(user!== this.currentUser){
-            this.presentToast(`${user} joined the chat`);}
-      }
+      this.username = res.data.data.name;
+      this.userconnectedrole = res.data.data.role;
+      this.currentUser = this.username;
+      this.socket.emit('set-name', this.username);
+      this.socket.fromEvent('users-changed').subscribe(data => {
+        let user = data['user'];
+        if (data['event'] === 'left') {
+          this.presentToast(`${user} left the chat`);
+        } else {
+          if (user !== this.currentUser) {
+            this.presentToast(`${user} joined the chat`);
+          }
+        }
+      });
     });
-  });
     this.socket.fromEvent('message').subscribe(message => {
-      console.log(message);
-
       this.getchat();
     });
   }
   sendMessage() {
-
-console.log( this.selectedFiles)
-
-    const formData=new FormData();
-if(this.selectedFiles!=undefined){
-    for (const file of this.selectedFiles) {
-      formData.append('file', file);
-    }
-   
-
-    this.chatService.uploadImageFile(formData).subscribe((res) => {
-     // console.log(res);
-      this.chatimg=res;
-      this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
+    const formData = new FormData();
+    if (this.selectedFiles != undefined) {
+      for (const file of this.selectedFiles) {
+        formData.append('file', file);
+      }
+      this.chatService.uploadImageFile(formData).subscribe((res) => {
+        this.chatimg = res;
+        this.socket.emit('send-message', { text: this.message, idsender: this.user$, idreceiver: this.idprofilePassed, images: this.chatimg });
         this.message = '';
         this.getchat();
-        this.selectedFiles=[]
+        this.selectedFiles = [];
         this.selectedPreviews = [];
-        this.IsimgSelected=0
-    });
-   
+        this.IsimgSelected = 0;
+      });
     }
     else {
-      this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
+      this.socket.emit('send-message', { text: this.message, idsender: this.user$, idreceiver: this.idprofilePassed, images: this.chatimg });
       this.message = '';
       this.getchat();
-      this.selectedFiles=[]
+      this.selectedFiles = [];
       this.selectedPreviews = [];
-      this.IsimgSelected=0
-
-
+      this.IsimgSelected = 0;
     }
   }
 
@@ -124,20 +106,15 @@ if(this.selectedFiles!=undefined){
       toastData.present();
     });
   }
-
-
-
-  getchat(){
+  getchat() {
     this.userservice.getMe().subscribe((res) => {
-      this.chatService.getChat(res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
-      console.log(res1);
-      this.messages2=res1;
+      this.chatService.getChat(res.data.data._id, this.activatedRoute.snapshot.params.id).subscribe((res1) => {
+        this.messages2 = res1;
       });
     });
   }
 
   choosefromphoto() {
-
     this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/gif, image/png");
     this.multiFileInput.nativeElement.click();
   }
@@ -148,15 +125,12 @@ if(this.selectedFiles!=undefined){
 
   selectFiles(event) {
 
-
     this.progressInfos = [];
     this.selectedFiles = event.target.files;
     this.selectedPreviews = [];
     for (const file of this.selectedFiles) {
-    
-      console.log(  file.type);
 
-      if (file.type === 'image/jpeg'||file.type === 'image/png'||file.type === 'image/pdf'||file.type === 'image/gif') {
+      if (file.type === 'image/jpeg' || file.type === 'image/png' || file.type === 'image/pdf' || file.type === 'image/gif') {
         const reader = new FileReader();
         reader.onload = e => this.selectedPreviews.push(reader.result);
 
@@ -170,25 +144,19 @@ if(this.selectedFiles!=undefined){
         this.selectedPreviews.push('../../../assets/imgs/video.jpg');
 
       }
-      else if (file.type === "audio/mpeg"||file.type === " audio/ogg") {
+      else if (file.type === "audio/mpeg" || file.type === " audio/ogg") {
         this.selectedPreviews.push('../../../assets/imgs/audio.png');
-
       }
-
     }
-    this.IsimgSelected= this.selectedFiles.length
-    console.log( this.selectedFiles.length);
-
+    this.IsimgSelected = this.selectedFiles.length;
   }
 
   getExt(fileName) {
-    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
-    //console.log(ext);Z
-    return ext;
+    return fileName.substr(fileName.lastIndexOf('.') + 1);;
   }
 
-  
-  
+
+
 }
 
 

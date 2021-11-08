@@ -19,20 +19,16 @@ export class EventmodalComponent implements OnInit {
 
   supprimer() {
     this.calendarService.deleteEvent(this.eventSelected._id).subscribe((res) => {
-      console.log(res);
       this.router.navigate(['/calendar']);
       this.modalCtrl.dismiss();
     });
   }
   update() {
- 
-    
-
     this.calendarService.sendEvent(this.eventSelected);
   }
   dismiss() {
     this.modalCtrl.dismiss();
   }
- 
+
   ngOnInit() {}
 }

@@ -11,7 +11,6 @@ export class CalendarService {
   private subject = new Subject<any>();
   constructor(private apiService: UtilsService) { }
 
-
   sendEvent(evt) {
     this.subject.next({ event: evt });
   }
@@ -19,7 +18,6 @@ export class CalendarService {
   getEvent(): Observable<any> {
     return this.subject.asObservable();
   }
-
 
   getActivitiesbyID(id): Observable<Activity[]> {
     return this.apiService
@@ -33,8 +31,6 @@ export class CalendarService {
   }
 
   updateEvent(event) {
-    console.log('akk'+event._id);
-    
     return this.apiService.patch(`${UtilsService.apiCalendar}${event._id}`, event);
   }
 

@@ -60,7 +60,11 @@ const routes: Routes = [
     path: '**',
     redirectTo: ''
   },
-
+  {
+    path: 'planning-kids',
+    loadChildren: () => import('../app/layouts/kids/planning/planning.module').then(m => m.PlanningPageModule),
+  //  canActivate:[AdultsNotAllowedGuard]
+  },
 ];
 
 @NgModule({
