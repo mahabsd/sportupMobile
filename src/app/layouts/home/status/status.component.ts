@@ -64,6 +64,7 @@ export class StatusComponent implements OnInit {
   press = 0;
   liked = false;
   bookmarked = false;
+  showComment = false;
   id;
   iduser1;
   etatSuivre = false;
@@ -105,6 +106,13 @@ export class StatusComponent implements OnInit {
       this.isUserConnected = res.data.data._id;
       this.user$ = res.data.data;
     });
+  }
+
+  showComments() {
+    this.showComment=true
+  }
+  hideComments() {
+    this.showComment=false
   }
 
   async showReactions(ev) {
