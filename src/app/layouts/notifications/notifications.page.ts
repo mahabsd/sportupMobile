@@ -11,7 +11,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 })
 export class NotificationsPage implements OnInit {
 
-notifications: notification = [
+notification: notification = [
     { icon: "icon 1", message: "jon snow a demandé à s'abonner à votre compte", button: "birthday" },
     { icon: "icon 2", message: "jon snow a demandé à s'abonner à votre compte", button: "add" },
     { icon: "icon 3", message: "mbbbbbbbbbbb", button: "birthday" },
@@ -27,13 +27,12 @@ notifications: notification = [
   notif: any;
   user$: any;
   userid: any;
-
+  notifications: any;
   constructor(private eventService: EventService,
     public router: Router,
     private notificationsService: NotificationsService,
     private userservice: UserService
-  ) {
-  }
+  ) { }
 
   ngOnInit() {
     this.getMe();
@@ -56,7 +55,9 @@ notifications: notification = [
     });
   }
   getNotifications() {
-    this.notificationsService.getAllNotifications(this.userid).subscribe(res => console.log(res.data.birthdays));
+    this.notificationsService.getAllNotifications(this.userid).subscribe(res =>{
+      this.notifications = res;
+    });
   }
 }
 type notification = Array<{ icon: string; message: string; button: string }>;
