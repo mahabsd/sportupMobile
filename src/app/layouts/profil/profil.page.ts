@@ -176,7 +176,7 @@ export class ProfilPage implements OnInit {
   buttonSuivre() {
     this.notif.reciever = this.idprofilePassed;
     this.notif.userOwner = this.iduser;
-    this.notif.text = "vous à envoyer une invitation";
+    this.notif.text = "vous a envoyé une invitation";
     this.createNotif(this.notif);
   }
   /* buttonSuivre() {
