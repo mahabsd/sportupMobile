@@ -52,7 +52,7 @@ export class CommentsPage implements OnInit {
       this.user$ = res.data.data;
       this.notif.reciever = post.user._id;
       this.notif.userOwner = this.user$._id;
-      this.notif.text = "à commenté votre status";
+      this.notif.text = "a commenté votre status";
       this.notif.postId = post._id
       this.socket.connect();
       this.socket.emit('notifications', { msg: 'hey' });

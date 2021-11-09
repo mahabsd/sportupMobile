@@ -147,7 +147,7 @@ export class StatusComponent implements OnInit {
     this.shared = true;
     this.notif.reciever = post.user._id;
     this.notif.userOwner = this.user$._id;
-    this.notif.text = "à partagé votre status";
+    this.notif.text = "a partagé votre status";
     this.notif.postId = post._id
     this.socket.connect();
     this.socket.emit('notifications', { notif: this.notif});

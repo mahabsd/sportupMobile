@@ -268,7 +268,7 @@ export class CalendarPage implements OnInit {
   createNotif(event){
     this.notif.userOwner = this.user$._id;
     this.notif.reciever = this.user$._id;
-    this.notif.text = 'à créé un événnement';
+    this.notif.text = 'a créé un événnement';
     this.notif.event = event._id;
     this.notificationsService.postNotification(this.notif).subscribe(res=> console.log(res));
   }
