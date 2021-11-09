@@ -42,7 +42,8 @@
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
   <div (click)="displayContent(post)" *ngIf="mediafiles.length === 0">
-    <div style="display: flex; justify-content: center">
+    <span style="display:flex;padding-left:20px">{{post.content}}</span>
+    <div style="display: flex; justify-content: center;flex-direction:column">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div
@@ -81,6 +82,7 @@
         </ng-container>
       </div>
     </div>
+
   </div>
   <div
   (click)="displayContent(post)"
@@ -210,52 +212,95 @@
     </div>
   </div>
 </ion-grid>
-  <ion-row>
-    <ion-card-content>
-      {{ post?.content }}
-    </ion-card-content>
-  </ion-row>
-  <ion-row lines="none">
+
+  <ion-row style="margin: 0;" lines="none">
     <ion-col size="col-2">
       <ion-chip>
         <ng-container *ngIf="!post?.likedBy.includes(user?._id); else dislikedTemp">
-          <ion-button (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
+          <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
             size="large">
             <img src="../../../../assets/iconPost/{{ post?.iconLike }}.svg" class="iconstyle" id="icon_liked" />
-            <sub>{{ post?.likes }} </sub>
+            <span style="color:#7F867D">{{ post?.likes }} </span>
           </ion-button>
         </ng-container>
         <ng-template #dislikedTemp>
-          <ion-button (dblclick)="showReactions($event)" (click)="disLike(post, $event.target)" shape="round"
+          <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="disLike(post, $event.target)" shape="round"
             fill="clear" size="large">
             <img src="../../../../assets/iconPost/{{ post?.iconLike }}.svg" id="icon_like" />
-            <sub>{{ post?.likes }} </sub>
+            <span style="color:#7F867D">{{ post?.likes }} </span>
           </ion-button>
         </ng-template>
       </ion-chip>
     </ion-col>
     <ion-col style="text-align: end">
       <ion-chip>
-        <ion-button (click)="presentModal(post)" shape="round" fill="clear" size="large">
+        <ion-button style="display: flex;align-items:center" (click)="presentModal(post)" shape="round" fill="clear" size="large">
           <img class="iconstyle" src="../../../../assets/iconPost/icon_comment.svg" />
-          <sub>{{ comments?.length }}</sub>
+          <span style="color:#7F867D">{{ comments?.length }}</span>
         </ion-button>
         <ng-container *ngIf="!bookmarked; else unbook">
-          <ion-button (click)="bookmark(post)" shape="round" fill="clear" size="large ">
+          <ion-button style="display: flex;align-items:center" (click)="bookmark(post)" shape="round" fill="clear" size="large ">
             <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmark.svg" />
-            <sub>{{ post?.favorisNb }}</sub>
+            <span style="color:#7F867D">{{ post?.favorisNb }}</span>
           </ion-button>
         </ng-container>
         <ng-template #unbook>
-          <ion-button (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
+          <ion-button style="display: flex;align-items:center" (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
             <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmarked.svg" />
-            <sub>{{ post?.favorisNb }}</sub>
+            <span style="color:#7F867D">{{ post?.favorisNb }}</span>
           </ion-button>
         </ng-template>
-        <ion-button (click)="share(post)" shape="round" fill="clear" size="large ">
+        <ion-button style="display: flex;align-items:center" (click)="share(post)" shape="round" fill="clear" size="large ">
           <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
-          <sub>{{ post?.sharedeNb }}</sub>
+          <span style="color:#7F867D">{{ post?.sharedeNb }}</span>
         </ion-button>
       </ion-chip>
     </ion-col>
+    <div style="width: 100%;">
+      <div style="display: flex;align-items:center">
+        <ng-container *ngIf="showComment===false; else not" >
+          <ng-container style="position: relative;">
+            <p (click)="showComments()" style="display:flex;align-items:center;font-size:14px;position:absolute;right:20px;color:#7F867D;transform:translateY(-30px)">Afficher plus de commentaires <ion-icon name="chevron-forward-outline"></ion-icon></p>
+          </ng-container>
+          <div style="display: flex;align-items:center;padding-top:15px" >
+            <div style="display: flex;flex-direction:column;align-items:center">
+              <img style="width: 25px; height:25px;border-radius:50%;object-fit:cover" src={{apiImgUser+comments[0].user.photo}} alt="">
+              <span style="font-size: 12px;">{{comments[0].user.name}}</span>
+            </div>
+            <span style="background-color:#EEEFEF ;margin:2px;padding:11px 10px;width:220px;height:40px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;">{{comments[0].content}}</span>
+          </div>
+        </ng-container>
+        <ng-template #not>
+          <p (click)="hideComments()" style="display:flex;align-items:center;font-size:14px;position:absolute;right:20px;color:#7F867D">Afficher plus de commentaires <ion-icon name="chevron-down-outline"></ion-icon></p>
+
+        </ng-template>
+      </div>
+      <div style="margin-top: 10px;">
+        <ng-container *ngIf="showComment===true">
+          <div style="display: flex;align-items:center;margin:3px 0" *ngFor="let item of comments.slice().reverse()" >
+            <div style="display: flex;flex-direction:column;align-items:center">
+              <img style="width: 25px; height:25px;border-radius:50%;object-fit:cover" src={{apiImgUser+item.user.photo}} alt="">
+              <span style="font-size: 12px;">{{item.user.name}}</span>
+            </div>
+            <span style="background-color:#EEEFEF ;margin:2px;padding:11px 10px;width:220px;height:40px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;">{{item.content}}</span>
+          </div>
+        </ng-container>
+      </div>
+      <div style="display: flex;justify-content:space-between;align-items:center; background-color:#EEEFEF; border-radius:10px;margin-top:15px">
+        <div style="display: flex;align-items:center;padding:5px 10px">
+
+            <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover"  [src]="apiImgUser +user$.photo" routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id }}/me" />
+
+        <input placeholder="Ecrivez un commentaire ..." style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
+        </div>
+        <div style="display: flex;">
+          <!-- <ion-icon style="width: 20px;height:20px;margin-right:5px" name="images"></ion-icon> -->
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" alt="">
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/mic.svg" alt="">
+        </div>
+      </div>
+    </div>
   </ion-row>

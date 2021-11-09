@@ -14,6 +14,7 @@ import { Storage } from '@ionic/storage';
 })
 export class LoginPage implements OnInit {
   loginForm: FormGroup;
+  passwordType="password"
   fileUrl: any = null;
   respData: any;
   user: User = new User();
@@ -28,7 +29,7 @@ export class LoginPage implements OnInit {
     private translate: TranslateService,
     private storage: Storage) {
       translate.setDefaultLang('en');
- 
+
       this.storage.get('lan').then((val) => {
         if(val)
         translate.use(val);
@@ -43,7 +44,7 @@ export class LoginPage implements OnInit {
     });
 
 
-    
+
   }
   connectFacebook() {
     console.log('hello facebook');
@@ -52,6 +53,12 @@ export class LoginPage implements OnInit {
     console.log('hello google');
   }
 
+  showPassword() {
+    this.passwordType="text"
+  }
+  hidePassword() {
+    this.passwordType="password"
+  }
   login() {
     // console.log(this.loginForm);
 
