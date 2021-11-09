@@ -34,7 +34,7 @@
       {{notif.message}}
     </p>
     <p>
-      <ng-container *ngIf="notif.button === 'birthday';else second">
+      <ng-container *ngIf="notif.text === 'à commenté votre status';else second">
         <p style="margin-right: 20px"></p>
       </ng-container>
       <ng-template #second>
