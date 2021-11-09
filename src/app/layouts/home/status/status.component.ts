@@ -31,6 +31,7 @@ import { PostDisplayComponent } from '../../post-display/post-display.component'
 import { Router } from '@angular/router';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { NotificationsService } from 'src/app/shared/Service/notifications.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-status',
@@ -88,7 +89,9 @@ export class StatusComponent implements OnInit {
     private videoPlayer: VideoPlayer,
     public router: Router,
     private followerService: FollowerService,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private socket: Socket,
+
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
@@ -146,7 +149,11 @@ export class StatusComponent implements OnInit {
     this.notif.userOwner = this.user$._id;
     this.notif.text = "à partagé votre status";
     this.notif.postId = post._id
+    this.socket.connect();
+    this.socket.emit('notifications', { notif: this.notif});
+    this.socket.fromEvent('notifications').subscribe( (res) => {
     this.createNotif(this.notif);
+    });
     this.favorisService.addShared(post?._id).subscribe((res) => {
       this.shared = true;
     });
@@ -156,8 +163,11 @@ export class StatusComponent implements OnInit {
     this.notif.userOwner = this.user$._id;
     this.notif.text = "à enregistré votre status";
     this.notif.postId = post._id
+    this.socket.connect();
+    this.socket.emit('notifications', { notif: this.notif});
+    this.socket.fromEvent('notifications').subscribe( (res) => {
     this.createNotif(this.notif);
-    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+    });    this.favorisService.addFavoris(post?._id).subscribe((res) => {
       //console.log(res);
       this.bookmarked = true;
     });

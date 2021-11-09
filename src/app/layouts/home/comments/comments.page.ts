@@ -7,6 +7,7 @@ import { environment } from '../../../../environments/environment';
 import { ModalController } from '@ionic/angular';
 import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-comments',
@@ -28,7 +29,9 @@ export class CommentsPage implements OnInit {
     private commentService: CommentService,
     private modalController: ModalController,
     private notificationsService: NotificationsService,
-    private userService: UserService) {
+    private userService: UserService,
+    private socket: Socket,
+    ) {
     this.apiImg = `${environment.apiImg}users/`;
   }
 
@@ -40,17 +43,22 @@ export class CommentsPage implements OnInit {
   sendComment(post) {
     this.comments = [];
     // eslint-disable-next-line no-underscore-dangle
+
+     this.commentService.addComment(this.comment, post._id).subscribe(res => {
+      this.comment = new Comment();
+      this.getCommentByPost();
+    });
     this.userService.getMe().subscribe((res) => {
       this.user$ = res.data.data;
       this.notif.reciever = post.user._id;
       this.notif.userOwner = this.user$._id;
       this.notif.text = "à commenté votre status";
       this.notif.postId = post._id
+      this.socket.connect();
+      this.socket.emit('notifications', { msg: 'hey' });
+      this.socket.fromEvent('notificationso').subscribe( (res) => {
       this.createNotif(this.notif);
-    });
-    return this.commentService.addComment(this.comment, post._id).subscribe(res => {
-      this.comment = new Comment();
-      this.getCommentByPost();
+      });
     });
   }
   async dismissModal() {

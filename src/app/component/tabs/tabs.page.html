@@ -18,7 +18,7 @@
       <img src="../../assets/icon/icon_nvposte.png" (click)="openShareModal()" />
     </ion-tab-button>
     <ion-tab-button>
-      <ion-badge id="notifications-badge" color="danger">5</ion-badge>
+      <ion-badge id="notifications-badge" *ngIf="notifLength>0" color="danger">{{notifLength}}</ion-badge>
       <img [routerLink]="['/menu/tabs/layouts/notifications']" src="../../assets/icon/icon_notification.png" />
     </ion-tab-button>
     <ion-tab-button routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me/coachphoto">

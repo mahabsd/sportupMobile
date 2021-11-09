@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-notifications',
@@ -11,7 +12,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 })
 export class NotificationsPage implements OnInit {
 
-notifications: notification = [
+notification: notification = [
     { icon: "icon 1", message: "jon snow a demandé à s'abonner à votre compte", button: "birthday" },
     { icon: "icon 2", message: "jon snow a demandé à s'abonner à votre compte", button: "add" },
     { icon: "icon 3", message: "mbbbbbbbbbbb", button: "birthday" },
@@ -27,17 +28,23 @@ notifications: notification = [
   notif: any;
   user$: any;
   userid: any;
-
+  notifications: any = [];
+  notifLength: any;
   constructor(private eventService: EventService,
     public router: Router,
     private notificationsService: NotificationsService,
-    private userservice: UserService
-  ) {
-  }
+    private userservice: UserService,
+    private socket: Socket,
+  ) { }
 
   ngOnInit() {
-    this.getMe();
+    //this.getMe();
     this.notif = this.router.url.slice(19,);
+    this.socket.connect();
+    this.socket.emit('message', { msg: 'hey' });
+    this.socket.fromEvent('message').subscribe( (res) => {
+      this.getMe();
+    });
   }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
@@ -56,7 +63,16 @@ notifications: notification = [
     });
   }
   getNotifications() {
-    this.notificationsService.getAllNotifications(this.userid).subscribe(res => console.log(res.data.birthdays));
+    this.notificationsService.getAllNotifications(this.userid).subscribe(res =>{
+      this.notifications = res;
+      this.notifLength =  this.notifications.length;
+    });
+  }
+
+  resetNotifcations(notif) {
+      notif.seen = true;
+    this.notificationsService.updateNotification( notif).subscribe();
+
   }
 }
 type notification = Array<{ icon: string; message: string; button: string }>;

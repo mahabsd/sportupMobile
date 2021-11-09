@@ -27,7 +27,6 @@ export class ChatService {
 
 /////////wehel lhné mayCan't find /api/v1/chat/multifile on this server!"
   uploadImageFile(formData) {
-    console.log(`${UtilsService.apiChat}` + 'multifile')
     return this.apiService.post(
       `${UtilsService.apiChat}` + 'multifile',
       formData
