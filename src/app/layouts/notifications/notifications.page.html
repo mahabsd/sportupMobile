@@ -13,14 +13,15 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <ion-card *ngFor="let notif of notification;let i=index; " scrollY="true" style="
+  <ion-card *ngFor="let notif of notifications;let i=index; " scrollY="true" style="
       font-size: 15px;
       width: 100%;
       display: flex;
       align-items: center;
       margin: 4px 0;
       box-shadow: unset;
-    ">
+    "
+    (click)="resetNotifcations(notif)">
     <img src="../../../assets/icon/person-green.png" style="width: 55px; margin: 2px 7px 0 10px" alt="" />
     <p style="
         width: 60%;

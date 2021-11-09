@@ -12,7 +12,6 @@ export class FollowerService {
 
   constructor(private apiService: UtilsService) { }
   createFollow(follow): Observable<Follow> {
-    console.log(follow)
     return this.apiService.post(UtilsService.apiFollower, follow).pipe(map(res => res));
   }
 

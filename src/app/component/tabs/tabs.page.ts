@@ -12,6 +12,8 @@ import { EventService } from 'src/app/shared/Service/event.service';
 import { AddStatusKidsPage } from 'src/app/layouts/kids/accueil/status-kids/add-status-kids/add-status-kids.page';
 import { ChatService } from 'src/app/shared/Service/chat.service';
 import { Socket } from 'ngx-socket-io';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-tabs',
@@ -26,6 +28,8 @@ export class TabsPage implements OnInit {
   pagetype: string;
   urlpage = this.router.url.split('/', 6);
   notseenMessagesNumber: any = 0;
+  notifications: any;
+  notifLength: any = 0;
   constructor(
     private imageService: ImageService,
     private modalController: ModalController,
@@ -33,18 +37,19 @@ export class TabsPage implements OnInit {
     private userservice: UserService,
     private eventService: EventService,
     private chatService: ChatService,
-    private socket: Socket
+    private socket: Socket,
+    private notificationsService: NotificationsService,
   ) { }
 
   ngOnInit() {
-   this.getMe();
+    this.getMe();
     this.subscription = this.eventService.getMessage().subscribe((message) => {
       this.menuOpened = message.event;
     });
     this.socket.connect();
-    this.socket.emit('message', { msg: 'hey' });
-    this.socket.fromEvent('message').subscribe( (res) => {
-      this.getMe();
+    this.socket.emit('notifications', { msg: 'hey' });
+    this.socket.fromEvent('notifications').subscribe((res) => {
+    this.getMe();
     });
   }
 
@@ -53,6 +58,7 @@ export class TabsPage implements OnInit {
       this.user$ = res.data.data;
       this.userid = res.data.data._id;
       this.getNumberNonreadChats();
+      this.getNotifications();
     });
   }
 
@@ -86,7 +92,7 @@ export class TabsPage implements OnInit {
   }
 
   getNumberNonreadChats() {
-    this.notseenMessagesNumber  = 0;
+    this.notseenMessagesNumber = 0;
     this.chatService.getAllChatsByuser(this.userid).subscribe(res => {
       res.map(msg => {
         if (msg.messages[msg.messages.length - 1].userSender !== this.userid) {
@@ -101,6 +107,12 @@ export class TabsPage implements OnInit {
           }
         }
       });
+    });
+  }
+  getNotifications() {
+    this.notificationsService.getAllNotifications(this.userid).subscribe(res => {
+      this.notifications = res.filter(notif => notif.seen === false);
+      this.notifLength = this.notifications.length;
     });
   }
 }

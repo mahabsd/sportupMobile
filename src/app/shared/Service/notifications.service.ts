@@ -16,5 +16,8 @@ export class NotificationsService {
   postNotification(notif): Observable<any> {
     return this.apiService.patch(`${UtilsService.apiNotif}`, notif).pipe(map((res) => res.data.data));
   }
+  updateNotification( notifs): Observable<any> {
+    return this.apiService.post(`${UtilsService.apiNotif}`, notifs ).pipe(map((res) => res.data.data));
+  }
 
 }

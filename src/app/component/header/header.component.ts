@@ -6,7 +6,6 @@ import { CoachMenuPopOverComponent } from 'src/app/layouts/coachprofile/coach-me
 import { PalmaresPopOverComponent } from 'src/app/layouts/coachprofile/palmares-pop-over/palmares-pop-over.component';
 import { Location } from "@angular/common";
 import { UserService } from 'src/app/Shared/Service/user.service';
-import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { ShowImagePage } from '../modal/show-image/show-image.page';
 
 
@@ -60,6 +59,7 @@ export class HeaderComponent implements OnInit {
     public popoverController: PopoverController,
     private location: Location,
     private userservice: UserService,
+
   ) { }
 
   ngOnInit() {
@@ -71,7 +71,7 @@ export class HeaderComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  BackButtonPalmares(){
+  backButtonPalmares(){
     this.location.back();
   }
   async openCoachMenu(ev: any) {
