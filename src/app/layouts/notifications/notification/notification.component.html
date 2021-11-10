@@ -1,0 +1,21 @@
+<p style="display: flex;">
+  <img src={{apiImgUser+notif.userOwner.photo}} style="width: 45px;height:45px;object-fit: cover; margin: 2px 7px 0 10px;border-radius:50%" alt="" />
+    <p style="
+        width: 60%;
+        height: 40px;
+        margin-right: 10px;
+        font-size: smaller;
+        display: flex;
+        align-items: center;
+      ">
+      {{notif.text}}
+    </p>
+    <p>
+      <ng-container *ngIf="notif.text==='a créé un événnement'">
+        <ion-icon style="width: 55px;height:55px;color: #498034" name="calendar"></ion-icon>
+      </ng-container>
+      <ng-container *ngIf="getExt(mediafiles[0]?.file_name) === 'png'">
+        <img style="width: 55px;height:55px;object-fit:cover" src={{apiImg+mediafiles[0]?.file_name}} alt="">
+      </ng-container>
+    </p>
+

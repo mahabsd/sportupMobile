@@ -81,7 +81,8 @@ export class StatusComponent implements OnInit {
   user$: any;
   constructor(
     private commentService: CommentService,
-    private postService: PostService, private userervice: UserService,
+    private postService: PostService,
+    private userervice: UserService,
     private favorisService: FavorisService,
     private modalController: ModalController,
     private loadingController: LoadingController,
@@ -100,7 +101,7 @@ export class StatusComponent implements OnInit {
   async ngOnInit() {
     this.getMe();
     await this.getCommentByPost();
-    console.log(this.images[0]);
+    // console.log(this.images[0]);
   }
 
 
@@ -161,7 +162,7 @@ export class StatusComponent implements OnInit {
   bookmark(post) {
     this.notif.reciever = post.user._id;
     this.notif.userOwner = this.user$._id;
-    this.notif.text = "à enregistré votre status";
+    this.notif.text = "a enregistré votre status";
     this.notif.postId = post._id
     this.socket.connect();
     this.socket.emit('notifications', { notif: this.notif});
@@ -243,13 +244,13 @@ export class StatusComponent implements OnInit {
     });
   }
   getCommentByPost() {
-    console.log("++++" + this.post._id)
+    // console.log("++++" + this.post._id)
     forkJoin({
       comments: this.commentService.getCommentByService(this.post._id),
       images: this.postService.getPost(this.post._id),
       mediafiles: this.postService.getPost(this.post._id),
       tempMedia: this.postService.getPost(this.post._id),
-    }).subscribe(({ comments, images, mediafiles, tempMedia }) => {
+    }).subscribe(({ comments, images, mediafiles }) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
