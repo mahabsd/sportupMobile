@@ -56,7 +56,7 @@ export class CommentsPage implements OnInit {
       this.notif.postId = post._id
       this.socket.connect();
       this.socket.emit('notifications', { msg: 'hey' });
-      this.socket.fromEvent('notificationso').subscribe( (res) => {
+      this.socket.fromEvent('notifications').subscribe( (res) => {
       this.createNotif(this.notif);
       });
     });

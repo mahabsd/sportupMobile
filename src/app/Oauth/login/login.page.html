@@ -16,13 +16,13 @@
         color="{{loginForm.controls['email'].errors && !loginForm.controls['email'].pristine ? 'warning':'primary'}}"
         placeholder="Adresse Email" name="email" required>
       </ion-input>
-      <ion-input type={{passwordType}} style="position: relative;" class="form-controll ion-margin-bottom" mdInput placeholder="Mot de passe"
+      <ion-input type={{passwordType}} style="position: relative;z-index:0" class="form-controll ion-margin-bottom" mdInput placeholder="Mot de passe"
         formControlName="password" name="password" required>
       <ng-container *ngIf="passwordType==='password' else hide" >
-        <ion-icon style="color:black;position:absolute;right:20px" (click)="showPassword()" name="eye-off"></ion-icon>
+        <ion-icon style="color:black;position:absolute;right:-30px;z-index:20" (click)="showPassword()" name="eye-off"></ion-icon>
       </ng-container>
       <ng-template #hide>
-        <ion-icon style="color:black;position:absolute;right:20px" (click)="hidePassword()" name="eye"></ion-icon>
+        <ion-icon style="color:black;position:absolute;right:-30px;z-index:20" (click)="hidePassword()" name="eye"></ion-icon>
       </ng-template>
 
       </ion-input>
