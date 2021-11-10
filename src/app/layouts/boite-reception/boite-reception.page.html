@@ -27,7 +27,7 @@
               <ion-item class="item-background-color2" (click)="updateSeenMsgs(item)"
                 routerLink="/chat/{{item.userSender._id}}">
                 <ion-label>
-                  <p [ngClass]="">
+                  <p [ngClass]="!item.messages[item.messages.length-1].seen && user$.id !== item.messages[item.messages.length-1].userSender? 'bold': 'notBold'" >
                     <ion-icon style="padding-right:10px" slot="start" name="person"
                       [hidden]="selecteditemIndex===i&&hideicon === true"></ion-icon>
                     {{item.userSender.name}}
@@ -37,11 +37,10 @@
               </ion-item>
             </ng-container>
             <ng-template #receiver>
-
               <ion-item class="item-background-color2" (click)="updateSeenMsgs(item)"
                 routerLink="/chat/{{item.userReceiver._id}}">
                 <ion-label>
-                  <p>
+                  <p [ngClass]="!item.messages[item.messages.length-1].seen && user$.id !== item.messages[item.messages.length-1].userSender? 'bold': 'notBold'">
                     <ion-icon style="padding-right:10px" slot="start" name="person"
                       [hidden]="selecteditemIndex===i&&hideicon === true"></ion-icon>
                     {{item.userReceiver.name}}
@@ -50,7 +49,6 @@
                 <img style="width:15px ; height :15px" src="../../assets/icon/connect2.png" />
               </ion-item>
             </ng-template>
-
             <ion-item-options side="start">
               <ion-item-option
                 style="background-image: linear-gradient(135deg,#247238, #247238,  #8EBF25,#8EBF25) !important">

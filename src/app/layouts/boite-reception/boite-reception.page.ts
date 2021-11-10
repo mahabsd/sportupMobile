@@ -40,7 +40,7 @@ export class BoiteReceptionPage implements OnInit {
 
   ngOnInit() {
     // this.getAllusers()
-    this.getMe();
+    //this.getMe();
     this.getfollow();
     this.socket.connect();
     this.socket.emit('message', { msg: 'hey' });
@@ -119,7 +119,7 @@ export class BoiteReceptionPage implements OnInit {
 
   }
   updateSeenMsgs(item) {
-    item.seen = true;
+    item.messages[item.messages.length-1].seen = true;
 
     if (item.seenuser1.user1 === this.user$ )
     {
