@@ -113,10 +113,10 @@ export class StatusComponent implements OnInit {
   }
 
   showComments() {
-    this.showComment=true
+    this.showComment = true;
   }
   hideComments() {
-    this.showComment=false
+    this.showComment = false;
   }
 
   async showReactions(ev) {
@@ -137,6 +137,17 @@ export class StatusComponent implements OnInit {
   like(post, event) {
     this.post.iconLike = event.id;
     this.likeFn.emit({ post, index: this.index });
+
+    this.socket.connect();
+    this.socket.emit('notifications', { note: 'hey'});
+    this.socket.fromEvent('notifications').subscribe( (res) => {
+      this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
+      this.notif.reciever = post.user._id;
+      this.notif.userOwner = this.user$._id;
+      this.notif.text = "a aimé votre status";
+      this.notif.postId = post._id;
+    this.createNotif(this.notif);
+    });
   }
   disLike(post, event) {
     this.post.iconLike = event.id;
@@ -145,30 +156,33 @@ export class StatusComponent implements OnInit {
 
   onComment() { }
   share(post) {
+    this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
     this.shared = true;
     this.notif.reciever = post.user._id;
     this.notif.userOwner = this.user$._id;
     this.notif.text = "a partagé votre status";
     this.notif.postId = post._id
     this.socket.connect();
-    this.socket.emit('notifications', { notif: this.notif});
-    this.socket.fromEvent('notifications').subscribe( (res) => {
-    this.createNotif(this.notif);
+    this.socket.emit('notifications', { note: 'hey'});
+    this.socket.fromEvent('notifications').subscribe((res) => {
+      this.createNotif(this.notif);
     });
     this.favorisService.addShared(post?._id).subscribe((res) => {
       this.shared = true;
     });
   }
   bookmark(post) {
+    this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
     this.notif.reciever = post.user._id;
     this.notif.userOwner = this.user$._id;
     this.notif.text = "a enregistré votre status";
     this.notif.postId = post._id
     this.socket.connect();
-    this.socket.emit('notifications', { notif: this.notif});
-    this.socket.fromEvent('notifications').subscribe( (res) => {
-    this.createNotif(this.notif);
-    });    this.favorisService.addFavoris(post?._id).subscribe((res) => {
+    this.socket.emit('notifications', { note: 'hey' });
+    this.socket.fromEvent('notifications').subscribe((res) => {
+      this.createNotif(this.notif);
+    });
+    this.favorisService.addFavoris(post?._id).subscribe((res) => {
       //console.log(res);
       this.bookmarked = true;
     });
