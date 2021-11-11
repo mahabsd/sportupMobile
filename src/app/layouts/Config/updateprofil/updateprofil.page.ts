@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
+import { AuthService } from 'src/app/Shared/Auth/auth.service';
 import { ImageService } from 'src/app/Shared/Service/image.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
@@ -14,11 +15,14 @@ export class UpdateprofilPage implements OnInit {
   user$: any = [];
   apiImg = environment.apiImg + 'User/';
   filesToUpload = null;
+  disabledName = true;
+  dateOfToday = new Date();
   constructor(
     private userService: UserService,
     private action: ActionSheetController,
-    private imageService: ImageService
-  ) {}
+    private imageService: ImageService,
+    private authService: AuthService
+  ) { }
   async ngOnInit() {
     this.getMe();
   }
@@ -30,13 +34,15 @@ export class UpdateprofilPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = await res.data.data;
+      console.log(this.dateOfToday);
+      console.log(this.user$);
       console.log(res.data.data);
+      //  this.user$.createdAt -
     });
   }
 
 
   async addImage(source: CameraSource) {
-    console.log('addimmage');
 
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
@@ -48,7 +54,7 @@ export class UpdateprofilPage implements OnInit {
     });
   }
 
- 
+
 
   async selectImageSource() {
     const buttons = [
