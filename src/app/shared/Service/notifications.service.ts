@@ -19,5 +19,7 @@ export class NotificationsService {
   updateNotification( notifs): Observable<any> {
     return this.apiService.post(`${UtilsService.apiNotif}`, notifs ).pipe(map((res) => res.data.data));
   }
-
+  checkNotification(reciever, userOwner): Observable<any> {
+    return this.apiService.get(`${UtilsService.apiNotif}${reciever}/${userOwner}`).pipe(map((res) => res.data.data));
+  }
 }

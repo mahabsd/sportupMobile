@@ -34,7 +34,7 @@ export class ProfilPage implements OnInit {
   userClicked;
   isUser = false;
   isKid = false;
-
+  etatSuivre: any = false;
   public folder: string;
   imagesBasic = [
     {
@@ -67,12 +67,12 @@ export class ProfilPage implements OnInit {
     private notificationsService: NotificationsService
   ) {
     this.getUser();
-    this.getfollow();
   }
 
   ngOnInit() {
-    this.getfollow();
+    this.getUser();
 
+    this.getfollow();
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.typepage = this.activatedRoute.snapshot.params.typepage;
     this.getUserByid();
@@ -86,23 +86,18 @@ export class ProfilPage implements OnInit {
           .getFollow(this.idprofilePassed, this.iduser1)
           .subscribe((res) => {
             if (res == null) {
-              console.log('nope');
               this.follower = false;
             } else {
               this.follower = true;
 
               this.idFollowtoDelete = res._id;
-              console.log(res);
               this.EtatSuivre = true;
-
               // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
-
               if (this.userClicked.role === 'user' || this.userClicked.role === 'pro') {
-                this.router.navigate(["menu/tabs/layouts/coachprofile", this.idprofilePassed, "followed"]);
+                this.router.navigate(['menu/tabs/layouts/coachprofile', this.idprofilePassed, 'followed']);
               }
               else if (this.userClicked.role === 'kids') {
-                this.router.navigate(["tabs/profilkids/", this.idprofilePassed]);
-
+                this.router.navigate(['tabs/profilkids/', this.idprofilePassed]);
               }
             }
           });
@@ -116,14 +111,12 @@ export class ProfilPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      console.log(this.user$);
     });
   }
 
   getUser() {
     this.userService.getMe().subscribe(
       (response) => {
-        console.log(response);
         this.myInformation.userLastName = response.data.data.name;
         this.iduser = response.data.data.id;
         this.userRole = response.data.data.role;
@@ -132,6 +125,7 @@ export class ProfilPage implements OnInit {
         } else if (this.userRole === 'Kids') {
           this.isKid = true;
         }
+        this.checkNotif();
       },
       (error) => {
         console.error(error);
@@ -142,7 +136,6 @@ export class ProfilPage implements OnInit {
   getUserByid() {
     this.userService.getUser(this.idprofilePassed).subscribe(
       (response) => {
-        console.log('user clicked' + response.data.data.name);
         this.profileClickedName = response.data.data.name;
         this.userClicked = response.data.data;
       },
@@ -161,23 +154,15 @@ export class ProfilPage implements OnInit {
 
       translucent: true
     });
-    // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
 
 
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
   itemSelected(data) {
     console.log(data);
-  }
-  buttonSuivre() {
-    this.notif.reciever = this.idprofilePassed;
-    this.notif.userOwner = this.iduser;
-    this.notif.text = "vous a envoyé une invitation";
-    this.createNotif(this.notif);
   }
   /* buttonSuivre() {
 
@@ -185,7 +170,6 @@ export class ProfilPage implements OnInit {
    this.follow.userFollowing = this.iduser;
    this.followerService.createFollow(this.follow).subscribe((res) => {
      if(res['status']==='successs'){
-       console.log(this.userClicked.role)
        if( this.userClicked.role==='user'||this.userClicked.role==='pro'){
          this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
          }
@@ -200,13 +184,25 @@ export class ProfilPage implements OnInit {
   buttonBlock() {
     this.followerService
       .deleteFollow(this.idFollowtoDelete)
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe();
     this.EtatSuivre = false;
     //this.getfollow()
   }
-  createNotif(notif: any) {
-    this.notificationsService.postNotification(notif).subscribe(res => console.log(res));
+  createNotif() {
+    this.notif.reciever = this.idprofilePassed;
+    this.notif.userOwner = this.iduser;
+    this.notif.text = 'vous a envoyé une invitation';
+    this.notificationsService.postNotification(this.notif).subscribe();
+    this.etatSuivre = true;
+    this.checkNotif();
   }
+  checkNotif() {
+    this.notificationsService.checkNotification(this.idprofilePassed, this.iduser).subscribe(res => {
+      console.log(res);
+      if (res) {
+        this.etatSuivre = true;
+      }
+    });
+  }
+
 }

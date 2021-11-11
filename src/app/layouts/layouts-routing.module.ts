@@ -91,6 +91,11 @@ const routes: Routes = [
        // canActivate:[RolesGuardGuard]
       },
       {
+        path: 'help',
+        loadChildren: () => import('./Config/help-page/help-page.module').then(m => m.HelpPagePageModule),
+       // canActivate:[RolesGuardGuard]
+      },
+      {
         path: 'desactivermoncompte',
         loadChildren: () => import('./Config/desactivermoncompte/desactivermoncompte.module').then(m => m.DesactivermoncomptePageModule)
       },
@@ -240,6 +245,10 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'help-page',
+    loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
+  },
 
 ]
   ;
