@@ -3,7 +3,8 @@ import { forkJoin } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 import { CommentService } from '../../../Shared/Service/comment.service';
 import { PostService } from '../../../shared/Service/post.service';
-import { UserService } from '../../../Shared/Service/user.service';
+import {} from "moment"
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-notification',
@@ -16,13 +17,16 @@ export class NotificationComponent implements OnInit {
   images: any = [];
   mediafiles: any = [];
   user: any = [];
+  timeAgo:any
   apiImgUser = `${environment.apiImg}User/`;
   apiImg = `${environment.apiImg}Post/`;
   constructor(private postService: PostService,
-    private commentService: CommentService,private userService: UserService,)
+    private commentService: CommentService)
     { }
     getMe() {
       this.getCommentByPost()
+      this.timeAgo = moment(this.notif.createdAt).startOf('second').fromNow()
+      // console.log(this.notif.text);
     }
 
   getCommentByPost() {
@@ -30,13 +34,11 @@ export class NotificationComponent implements OnInit {
       comments: this.commentService.getCommentByService(this.notif.postId._id),
       images: this.postService.getPost(this.notif.postId._id),
       mediafiles: this.postService.getPost(this.notif.postId._id),
-      user: this.userService.getUser(this.notif.userOwner?.id),
-    }).subscribe(({ comments, images, mediafiles,user }) => {
+
+    }).subscribe(({ comments, images, mediafiles}) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-      this.user = user.data.data
-      console.log(this.user);
     });
   }
   getExt(fileName) {

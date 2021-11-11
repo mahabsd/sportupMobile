@@ -6,20 +6,24 @@
         margin-right: 10px;
         font-size: smaller;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        justify-content:center;
+        flex-direction:column;
       ">
       <ng-container *ngIf="notif.text.includes('anniversaire');else other" >
-        <ng-container *ngIf="notif.userOwner.id===notif.reciever.id;else notYou" >
-          {{user.name}} Aujourd'hui c'est votre anniversaire
+        <ng-container style="display: flex;flex-direction:column" *ngIf="notif.userOwner.id===notif.reciever.id;else notYou" >
+          <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> c'est votre anniversaire </span>
+          <span>{{timeAgo}}</span>
         </ng-container>
-        <ng-template #notYou>
-          {{notif.text}}
+        <ng-template style="display: flex;flex-direction:column" #notYou>
+          <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> fête son anniversaire</span>
+          <span>{{timeAgo}}</span>
         </ng-template>
       </ng-container>
-      <ng-template #other>
-        {{notif.text}}
+      <ng-template style="display: flex;flex-direction:column" #other>
+        <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> {{notif.text}}</span>
+        <span>{{timeAgo}}</span>
       </ng-template>
-      <!-- {{notif.text}} -->
     </p>
     <p>
       <ng-container *ngIf="notif.text==='a créé un événnement'">
@@ -32,7 +36,7 @@
         <button style="background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%);padding:5px;color:white;border-radius:5px">Confirmer</button>
       </ng-container>
       <ng-container *ngIf="notif.text.includes('anniversaire')" >
-        <ion-icon style="width: 55px;height:55px;color: #498034" name="calendar"></ion-icon>
+        <img src="../../../assets/svg/birthday-cake.svg" style="width: 55px;height:55px;" name="calendar">
       </ng-container>
     </p>
 
