@@ -42,6 +42,8 @@ export class CommentsPage implements OnInit {
   }
   sendComment(post) {
     this.comments = [];
+    this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
+
     // eslint-disable-next-line no-underscore-dangle
 
      this.commentService.addComment(this.comment, post._id).subscribe(res => {
