@@ -6,9 +6,24 @@
         margin-right: 10px;
         font-size: smaller;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+        justify-content:center;
+        flex-direction:column;
       ">
-      {{notif.text}}
+      <ng-container *ngIf="notif.text.includes('anniversaire');else other" >
+        <ng-container style="display: flex;flex-direction:column" *ngIf="notif.userOwner.id===notif.reciever.id;else notYou" >
+          <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> c'est votre anniversaire </span>
+          <span>{{timeAgo}}</span>
+        </ng-container>
+        <ng-template style="display: flex;flex-direction:column" #notYou>
+          <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> fête son anniversaire</span>
+          <span>{{timeAgo}}</span>
+        </ng-template>
+      </ng-container>
+      <ng-template style="display: flex;flex-direction:column" #other>
+        <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> {{notif.text}}</span>
+        <span>{{timeAgo}}</span>
+      </ng-template>
     </p>
     <p>
       <ng-container *ngIf="notif.text==='a créé un événnement'">
@@ -16,6 +31,12 @@
       </ng-container>
       <ng-container *ngIf="getExt(mediafiles[0]?.file_name) === 'png'">
         <img style="width: 55px;height:55px;object-fit:cover" src={{apiImg+mediafiles[0]?.file_name}} alt="">
+      </ng-container>
+      <ng-container *ngIf="notif.text==='vous a envoyé une invitation'">
+        <button style="background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%);padding:5px;color:white;border-radius:5px">Confirmer</button>
+      </ng-container>
+      <ng-container *ngIf="notif.text.includes('anniversaire')" >
+        <img src="../../../assets/svg/birthday-cake.svg" style="width: 55px;height:55px;" name="calendar">
       </ng-container>
     </p>
 
