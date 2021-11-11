@@ -13,7 +13,7 @@
 </ion-header>
 
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <ion-card *ngFor="let notif of notifications;let i=index; " scrollY="true" style="
+  <ion-card *ngFor="let notif of notifications.slice().reverse();let i=index; " scrollY="true" style="
       font-size: 15px;
       width: 100%;
       display: flex;

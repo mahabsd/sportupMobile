@@ -8,6 +8,7 @@ import { PlanningPageRoutingModule } from './planning-routing.module';
 
 import { PlanningPage } from './planning.page';
 import { ComponentModule } from 'src/app/component/component.module';
+import { WeekSlidesComponent } from './week-slides/week-slides.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { ComponentModule } from 'src/app/component/component.module';
     PlanningPageRoutingModule,
     ComponentModule
   ],
-  declarations: [PlanningPage]
+  declarations: [PlanningPage,WeekSlidesComponent]
 })
 export class PlanningPageModule {}
