@@ -84,7 +84,6 @@ export class HomePage implements OnInit {
           event.target.complete();
         }
       });
-      console.log(this.user$);
     });
 
   }

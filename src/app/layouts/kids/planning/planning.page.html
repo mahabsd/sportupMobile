@@ -11,51 +11,7 @@
       <option value="ativité">activité</option>
     </select>
   </div>
-  <ion-slides [options]="slideOptsOne" #slideWithNav2
-  >
-    <ion-slide style="display: flex;flex-direction:column" *ngFor="let month of months" >
-      <div style="display: flex;justify-content:space-between;padding:15px">
-        <img style="width: 60px;" src="../../../../assets/svg/yellow-plane.svg" alt="">
-        <img style="width: 60px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
-        <div style="display: flex; flex-direction:column;align-items:center;justify-content:center">
-          <div style="display: flex;font-size:30px">
-            <div>P</div>
-            <div class="yellow">l</div>
-            <div>a</div>
-            <div class="light-green">n</div>
-            <div class="green">n</div>
-            <div>i</div>
-            <div>n</div>
-            <div class="yellow">g</div>
-          </div>
-          <div>{{month}} 2021</div>
-        </div>
-        <img style="width: 60px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
-        <img style="width: 60px;" src="../../../../assets/svg/blue-plane.svg" alt="">
-      </div>
-      <div style="display: flex;flex-direction:column;position:relative;width:100%">
-        <!-- <div>days</div> -->
-        <div style="position: absolute;display:flex;flex-direction:column;left:10px;top:20px">
-          <img style="width: 10px;padding-bottom:35px" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
-          <img style="width: 10px;" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
-        </div>
-        <div style="position: absolute;display:flex;flex-direction:column;right:10px;top:20px">
-          <img style="width: 10px;padding-bottom:35px" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
-          <img style="width: 10px;" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
-        </div>
-        <div class="days">
-          <div style="border-right: #171716 dashed 1px;border-left: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Lundi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Mardi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Mercredi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Jeudi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Vendredi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#FFAB2B ;padding:2px">Samedi</span></div>
-          <div style="border-right: #171716 dashed 1px; font-size:8px" class="day"><span style="background-color:#EF7534 ;padding:2px">Dimanche</span></div>
-        </div>
-        <img style="width: 100%;margin-top:240px;z-index:10" src="../../../../assets/svg/buildings.svg" alt="">
-      </div>
-    </ion-slide>
-  </ion-slides>
+  <app-week-slides></app-week-slides>
   <ion-slides pager="true" [options]="slideOptsTwo" #slideWithNav2
           (ionSlideDidChange)="SlideDidChange(sliderTwo, slideWithNav2)" style="height: 140px;">
           <ion-slide *ngFor="let event of events">
