@@ -10,7 +10,7 @@ export class PlanningPage implements OnInit {
   events = [
     {day: "Lundi",
       date: "5",
-      month: "Avril",
+      month: "Mars",
       year: "2021",
       events: [
         {
@@ -32,7 +32,7 @@ export class PlanningPage implements OnInit {
     },
     {day: "Mardi",
       date: "6",
-      month: "Avril",
+      month: "Janvier",
       year: "2021",
       events: [
         {
@@ -54,7 +54,7 @@ export class PlanningPage implements OnInit {
     },
     {day: "Mercredi",
       date: "7",
-      month: "Avril",
+      month: "Février",
       year: "2021",
       events: [
         {
@@ -76,7 +76,7 @@ export class PlanningPage implements OnInit {
     },
     {day: "Jeudi",
       date: "8",
-      month: "Avril",
+      month: "Mai",
       year: "2021",
       events: [
         {
@@ -98,7 +98,7 @@ export class PlanningPage implements OnInit {
     },
     {day: "Vendredi",
       date: "9",
-      month: "Avril",
+      month: "Juin",
       year: "2021",
       events: [
         {
@@ -120,7 +120,7 @@ export class PlanningPage implements OnInit {
     },
     {day: "Samedi",
       date: "10",
-      month: "Avril",
+      month: "Juillet",
       year: "2021",
       events: [
         {
@@ -142,7 +142,7 @@ export class PlanningPage implements OnInit {
     },
     {day: "Dimanche",
       date: "11",
-      month: "Avril",
+      month: "Aout",
       year: "2021",
       events: [
         {

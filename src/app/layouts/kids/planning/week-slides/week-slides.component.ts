@@ -7,6 +7,162 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeekSlidesComponent implements OnInit {
   months=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"]
+  events = [
+    {day: "Lundi",
+      date: "5",
+      month: "Mars",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    },
+    {day: "Mardi",
+      date: "6",
+      month: "Janvier",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    },
+    {day: "Mercredi",
+      date: "7",
+      month: "Février",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    },
+    {day: "Jeudi",
+      date: "8",
+      month: "Mai",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    },
+    {day: "Vendredi",
+      date: "9",
+      month: "Juin",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    },
+    {day: "Samedi",
+      date: "10",
+      month: "Juillet",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    },
+    {day: "Dimanche",
+      date: "11",
+      month: "Aout",
+      year: "2021",
+      events: [
+        {
+          from: 8,
+          to: 9,
+          text:"cours de français"
+        },
+        {
+          from: 10,
+          to: 11,
+          text:"dance kids"
+        },
+        {
+          from: 12,
+          to: 14,
+          text:"eat lunch"
+        }
+      ]
+    }
+  ]
   constructor() { }
 
   lundi = []
