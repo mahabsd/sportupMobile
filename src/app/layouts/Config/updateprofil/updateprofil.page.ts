@@ -15,7 +15,7 @@ export class UpdateprofilPage implements OnInit {
   user$: any = [];
   apiImg = environment.apiImg + 'User/';
   filesToUpload = null;
-  disabledName = true;
+  disabledName = false;
   dateOfToday = new Date();
   constructor(
     private userService: UserService,
@@ -34,10 +34,15 @@ export class UpdateprofilPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = await res.data.data;
-      console.log(this.dateOfToday);
-      console.log(this.user$);
-      console.log(res.data.data);
-      //  this.user$.createdAt -
+
+      this.userService.getUser(this.user$._id).subscribe(user => {
+        const createdAt = new Date(this.user$.createdAt);
+        if (createdAt.getFullYear() === this.dateOfToday.getFullYear()) {
+          if (this.dateOfToday.getDay() - createdAt.getDate() < 61) {
+            this.disabledName = true;
+          }
+        }
+      });
     });
   }
 
