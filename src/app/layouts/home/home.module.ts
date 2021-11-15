@@ -52,8 +52,8 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     PostDisplayModule,
     SharedModule,
   ],
- 
-    
+
+
   declarations: [HomePage, StatusComponent],
   exports: [HomePage, StatusComponent],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],

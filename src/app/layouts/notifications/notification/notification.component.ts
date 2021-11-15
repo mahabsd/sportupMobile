@@ -26,20 +26,20 @@ export class NotificationComponent implements OnInit {
     getMe() {
       this.getCommentByPost()
       this.timeAgo = moment(this.notif.createdAt).startOf('second').fromNow()
-      // console.log(this.notif.text);
     }
 
   getCommentByPost() {
+    this.notif.postId?
     forkJoin({
-      comments: this.commentService.getCommentByService(this.notif.postId._id),
-      images: this.postService.getPost(this.notif.postId._id),
-      mediafiles: this.postService.getPost(this.notif.postId._id),
+      comments: this.commentService.getCommentByService(this.notif.postId?._id),
+      images: this.postService.getPost(this.notif.postId?._id),
+      mediafiles: this.postService.getPost(this.notif.postId?._id),
 
     }).subscribe(({ comments, images, mediafiles}) => {
       this.comments = comments;
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
-    });
+    }):null;
   }
   getExt(fileName) {
     const ext = fileName?.substr(fileName.lastIndexOf('.') + 1);

@@ -23,8 +23,10 @@ export class HomePage implements OnInit {
   menuLabels = ['Tout', 'Favoris', 'Abonnement']
   indexPub = null;
   posts: any = [];
+  sharedPosts: any = [];
   tout;
   page = 1;
+  hello: any = [];
   maximumPages = 10;
   user$: any = [];
   loading: any;
@@ -80,9 +82,16 @@ export class HomePage implements OnInit {
       this.user$ = res.data.data;
       this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
         this.posts = this.posts.concat(res.data.data);
+        this.posts = this.posts.concat(res.data.shared);
+        this.sharedPosts = res.data.shared;
+        this.hello=this.posts.sort(function (x, y) {
+          return +new Date(y.createdAt)  - +new Date(x.createdAt)
+        })
         if (event) {
           event.target.complete();
         }
+        // console.log(this.hello);
+        // this.hello.map(el=>console.log(el.post?.id))
       });
     });
 
