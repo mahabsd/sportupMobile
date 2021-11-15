@@ -12,7 +12,7 @@
     </ion-col>
   </ion-row>
   <ion-item class="textInput">
-    <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION" [(ngModel)]="user$.name">
+    <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION" [disabled]="disabledName" [(ngModel)]="user$.name">
     </ion-input>
   </ion-item>
   <ion-grid>

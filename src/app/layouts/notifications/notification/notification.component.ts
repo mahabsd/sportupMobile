@@ -17,12 +17,15 @@ export class NotificationComponent implements OnInit {
   images: any = [];
   mediafiles: any = [];
   user: any = [];
-  timeAgo:any
+  timeAgo:any;
   apiImgUser = `${environment.apiImg}User/`;
   apiImg = `${environment.apiImg}Post/`;
   constructor(private postService: PostService,
     private commentService: CommentService)
     { }
+    ngOnInit() {
+      this.getMe();
+    }
     getMe() {
       this.getCommentByPost()
       this.timeAgo = moment(this.notif.createdAt).startOf('second').fromNow()
@@ -46,8 +49,6 @@ export class NotificationComponent implements OnInit {
     return ext;
   }
 
-  ngOnInit() {
-    this.getMe()
-  }
+
 
 }
