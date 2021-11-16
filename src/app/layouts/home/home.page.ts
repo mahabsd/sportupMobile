@@ -20,7 +20,7 @@ import { FollowerService } from '../../shared/Service/follower.service';
 })
 export class HomePage implements OnInit {
   @ViewChild(IonCard, { read: ElementRef }) list: ElementRef;
-  menuLabels = ['Tout', 'Favoris', 'Abonnement']
+  menuLabels = ['Tout', 'Favoris', 'Communauté'];
   indexPub = null;
   posts: any = [];
   sharedPosts: any = [];

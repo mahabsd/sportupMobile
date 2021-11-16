@@ -33,8 +33,8 @@ export class MapsPage implements OnInit {
       center: location,
       zoom: 12,
       disableDefaultUI: true
-    }
-    this.map = new google.maps.Map(this.mapRef.nativeElement, options)
+    };
+    this.map = new google.maps.Map(this.mapRef.nativeElement, options);
   }
 
   tryGeolocation() {

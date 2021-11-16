@@ -62,6 +62,11 @@ const routes: Routes = [
         path: 'hobbies',
         loadChildren: () => import('../../layouts/hobbies/hobbies.module').then(m => m.HobbiesPageModule)
       },
+      {
+        path: 'community',
+        loadChildren: () => import('../../layouts/community/community.module').then( m => m.CommunityPageModule),
+        canActivate:[RolesGuardGuard]
+      },
     ]
   },
   {
