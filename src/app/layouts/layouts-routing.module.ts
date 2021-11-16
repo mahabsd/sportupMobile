@@ -241,14 +241,21 @@ const routes: Routes = [
         path: 'profiladulte/:id',
         loadChildren: () => import('./profil-adulte/profil-adulte.module').then( m => m.ProfilAdultePageModule),
         canActivate:[RolesGuardGuard]
-      }
+      },
+      {
+        path: 'community',
+        loadChildren: () => import('./community/community.module').then( m => m.CommunityPageModule),
+        canActivate:[RolesGuardGuard]
+      },
+      {
+        path: 'help-page',
+        loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  {
-    path: 'help-page',
-    loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
-  },
+
+
 
 ]
   ;
