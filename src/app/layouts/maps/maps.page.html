@@ -4,7 +4,7 @@
   </ion-searchbar>
   <ion-button expand="full" (click)="tryGeolocation()">My position</ion-button>
   <ion-button expand="full" (click)="addMarkers()">Add Markres</ion-button>
-  <ion-list [hidden]="autocompleteItems.length == 0">
+  <ion-list [hidden]="autocompleteItems.length === 0">
     <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
       {{ item.description }}
     </ion-item>

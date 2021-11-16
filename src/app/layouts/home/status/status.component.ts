@@ -101,7 +101,8 @@ export class StatusComponent implements OnInit {
   async ngOnInit() {
     this.getMe();
     await this.getCommentByPost();
-    // console.log(this.images[0]);
+    // console.log(this.post.post?.id);
+    // console.log(this.post.post?.user.name);
   }
 
 
@@ -252,18 +253,16 @@ export class StatusComponent implements OnInit {
   }
   playvid(url) {
     this.videoPlayer.play(url).then(() => {
-      //console.log('video completed');
     }).catch(err => {
       console.log(err);
     });
   }
   getCommentByPost() {
-    // console.log("++++" + this.post._id)
     forkJoin({
-      comments: this.commentService.getCommentByService(this.post._id),
-      images: this.postService.getPost(this.post._id),
-      mediafiles: this.postService.getPost(this.post._id),
-      tempMedia: this.postService.getPost(this.post._id),
+      comments: this.commentService.getCommentByService(this.post.post?._id || this.post.id),
+      images: this.postService.getPost(this.post.post?._id || this.post.id),
+      mediafiles: this.postService.getPost(this.post.post?._id || this.post.id),
+      tempMedia: this.postService.getPost(this.post.post?._id || this.post.id),
     }).subscribe(({ comments, images, mediafiles }) => {
       this.comments = comments;
       this.images = images.images;
@@ -279,7 +278,7 @@ export class StatusComponent implements OnInit {
         this.thirdNewMediaFiles = this.tempMedia.slice(1, 3);
         this.secondNewMediaFiles = this.tempMedia.splice(3, this.mediafiles.length);
       }
-
+      // console.log(this.mediafiles);
 
     });
   }

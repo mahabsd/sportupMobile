@@ -128,7 +128,7 @@ export class CalendarPage implements OnInit {
   loadEvents() {
     this.calendarService.getActivitiesbyID(this.user$._id).subscribe((res) => {
       this.eventSource = res;
-      console.log(res);
+      // console.log(res);
       this.eventSource.forEach((event) => {
         event.startTime = this.formateEventDates(event.startTime);
         event.endTime = this.formateEventDates(event.endTime);

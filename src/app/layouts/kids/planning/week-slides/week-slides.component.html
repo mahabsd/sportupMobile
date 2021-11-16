@@ -31,13 +31,104 @@
           <img style="width: 10px;" src="../../../../assets/svg/zigzag-vertical.svg" alt="">
         </div>
         <div class="days">
-          <div style="border-right: #171716 dashed 1px;border-left: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Lundi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Mardi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Mercredi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Jeudi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#7BC2BF ;padding:2px">Vendredi</span></div>
-          <div style="border-right: #171716 dashed 1px;" class="day"><span style="background-color:#FFAB2B ;padding:2px">Samedi</span></div>
-          <div style="border-right: #171716 dashed 1px; font-size:8px" class="day"><span style="background-color:#EF7534 ;padding:2px">Dimanche</span></div>
+          <div style="border-right: #171716 dashed 1px;border-left: #171716 dashed 1px;" class="day">
+            <span style="background-color:#7BC2BF ;padding:2px">Lundi</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Lundi' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#7BC2BF;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div style="border-right: #171716 dashed 1px;" class="day">
+            <span style="background-color:#7BC2BF ;padding:2px">Mardi</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Mardi' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#7BC2BF;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div style="border-right: #171716 dashed 1px;" class="day">
+            <span style="background-color:#7BC2BF ;padding:2px">Mercredi</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Mercredi' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#7BC2BF;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div style="border-right: #171716 dashed 1px;" class="day">
+            <span style="background-color:#7BC2BF ;padding:2px">Jeudi</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Jeudi' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#7BC2BF;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div style="border-right: #171716 dashed 1px;" class="day">
+            <span style="background-color:#7BC2BF ;padding:2px">Vendredi</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Vendredi' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#7BC2BF;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div style="border-right: #171716 dashed 1px;" class="day">
+            <span style="background-color:#FFAB2B ;padding:2px">Samedi</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Samedi' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#FFAB2B;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+          <div style="border-right: #171716 dashed 1px; font-size:8px" class="day">
+            <span style="background-color:#EF7534 ;padding:2px">Dimanche</span>
+            <div *ngFor="let event of events" >
+              <ng-container *ngIf="event.day==='Dimanche' && event.month===month" >
+                <div style="display: flex;flex-direction:column;justify-content:space-around">
+                  <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
+                  <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#EF7534;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
+                    <span>{{event.from}}h-{{event.to}}h</span>
+                    <span>{{event.text}}</span>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
         </div>
         <img style="width: 100%;margin-top:240px;z-index:10" src="../../../../assets/svg/buildings.svg" alt="">
       </div>

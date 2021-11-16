@@ -12,8 +12,8 @@
     </select>
   </div>
   <app-week-slides></app-week-slides>
-  <ion-slides pager="true" [options]="slideOptsTwo" #slideWithNav2
-          (ionSlideDidChange)="SlideDidChange(sliderTwo, slideWithNav2)" style="height: 140px;">
+  <ion-slides pager="true" [options]="slideOptsTwo"
+          style="height: 140px;">
           <ion-slide *ngFor="let event of events">
             <div class="container">
               <span class="date">{{event.day}}:{{event.date}} {{event.month}} {{event.year}}</span>

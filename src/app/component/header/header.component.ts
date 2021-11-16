@@ -64,7 +64,7 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.getMe()
-    console.log("popver"+this.idprofillepassed);
+    // console.log("popver"+this.idprofillepassed);
    // this.getfollow();
   }
   close() {
@@ -80,7 +80,6 @@ export class HeaderComponent implements OnInit {
       component: CoachMenuPopOverComponent,
       cssClass: 'pop-over-style',
       componentProps: {Etatfollow: this.type,IdprofilePassed: this.idprofillepassed,followid:this.followid},
-
       event: ev,
       translucent: true,
       mode: 'ios'

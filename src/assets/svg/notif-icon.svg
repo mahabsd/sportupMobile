@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="7.093" height="7.991" viewBox="0 0 7.093 7.991">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4b5149"/>
+      <stop offset="0.422" stop-color="#286029"/>
+      <stop offset="0.994" stop-color="#8ab211"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0" y1="0.5" x2="1" y2="0.5" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="Groupe_4100" data-name="Groupe 4100" transform="translate(-2178.965 -804.182)">
+    <path id="Tracé_5879" data-name="Tracé 5879" d="M2185.757,810.782h-6.49a.3.3,0,0,1-.225-.492l.822-.91a.733.733,0,0,0,.192-.495v-1.359a2.436,2.436,0,0,1,2.574-2.407,2.474,2.474,0,0,1,2.338,2.475v1.291a.737.737,0,0,0,.191.495l.823.91A.3.3,0,0,1,2185.757,810.782Zm-3.245,1.391a1.118,1.118,0,0,1-1.129-1.108h2.258A1.119,1.119,0,0,1,2182.512,812.173Z" fill-rule="evenodd" fill="url(#linear-gradient)"/>
+    <path id="Tracé_5880" data-name="Tracé 5880" d="M2182.512,806.025h0a.447.447,0,0,1-.447-.446v-.951a.447.447,0,0,1,.447-.446h0a.446.446,0,0,1,.446.446v.951A.446.446,0,0,1,2182.512,806.025Z" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>
