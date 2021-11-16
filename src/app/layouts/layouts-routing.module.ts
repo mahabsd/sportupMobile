@@ -241,6 +241,11 @@ const routes: Routes = [
         path: 'profiladulte/:id',
         loadChildren: () => import('./profil-adulte/profil-adulte.module').then( m => m.ProfilAdultePageModule),
         canActivate:[RolesGuardGuard]
+      },
+      {
+        path: 'one-status/:id',
+        loadChildren: () => import('./home/one-status/one-status.module').then(m => m.OneStatusPageModule),
+        canActivate:[RolesGuardGuard]
       }
     ],
   },
