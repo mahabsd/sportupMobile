@@ -63,3 +63,13 @@
   );
   padding-inline-end: var(--padding-end);
 }
+
+.alert-radio-icon.sc-ion-alert-md {
+  display: transparent;
+}
+.alert-wrapper.sc-ion-alert-md {
+  position: absolute !important;
+  border-radius: 20px !important;
+  transform: translateY(160px) translateX(-20px) !important;
+  box-shadow: -3px 5px 6px -5px #000000;
+}

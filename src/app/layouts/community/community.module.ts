@@ -8,6 +8,9 @@ import { CommunityPageRoutingModule } from './community-routing.module';
 
 import { CommunityPage } from './community.page';
 import { ComponentModule } from 'src/app/component/component.module';
+import { ShowEventPageModule } from './show-event/show-event.module';
+import { AddPageModule } from './add/add.module';
+import { ShowPagePageModule } from './show-page/show-page.module';
 
 @NgModule({
   imports: [
@@ -15,7 +18,10 @@ import { ComponentModule } from 'src/app/component/component.module';
     FormsModule,
     IonicModule,
     CommunityPageRoutingModule,
-    ComponentModule
+    ComponentModule,
+    ShowEventPageModule,
+    AddPageModule,
+    ShowPagePageModule
   ],
   declarations: [CommunityPage]
 })

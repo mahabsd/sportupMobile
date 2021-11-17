@@ -251,6 +251,10 @@ const routes: Routes = [
         path: 'help-page',
         loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
       },
+      {
+        path: 'add',
+        loadChildren: () => import('./community/add/add.module').then( m => m.AddPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
