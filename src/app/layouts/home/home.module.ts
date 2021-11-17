@@ -4,7 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule, ToastController } from '@ionic/angular';
 import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
-import { FooterPageModule } from '../../component/footer/footer.module';
 import { StatusComponent } from './status/status.component';
 import { PostDisplayModule } from '../post-display/post-display.module';
 import { ReactionsPage } from './reactions/reactions.page';
@@ -44,7 +43,6 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     FormsModule,
     IonicModule,
     HomePageRoutingModule,
-    FooterPageModule,
     ComponentModule,
     ReactiveFormsModule,
     LazyLoadImageModule,
