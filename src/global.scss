@@ -50,7 +50,7 @@
 .imageModal .modal-wrapper ion-content {
 }
 
-.popover-content.sc-ion-popover-ios {
+.popover-content.sc-ion-popover-ios  {
   width: 150px;
   height: 150px;
 }
@@ -66,10 +66,15 @@
 
 .alert-radio-icon.sc-ion-alert-md {
   display: transparent;
+  //background: ;
 }
 .alert-wrapper.sc-ion-alert-md {
   position: absolute !important;
   border-radius: 20px !important;
   transform: translateY(160px) translateX(-20px) !important;
-  box-shadow: -3px 5px 6px -5px #000000;
+  box-shadow: -1px 1px 2px 1px #8c8a8a;
+}
+
+custClass .popover-content.sc-ion-popover-ios{
+  width: 200px;
 }

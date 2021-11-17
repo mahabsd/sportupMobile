@@ -123,9 +123,17 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 
 .confidentiality {
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  border-radius: 30px;
+  background-color: #F1F2F2;
+  width: 70%;
 }
 
 .alert-wrapper.sc-ion-alert-md {
   border-radius: 20px !important;
 }
+.alert-message.sc-ion-alert-md:empty {
+display: none;}

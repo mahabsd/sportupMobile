@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: 'show-page',
     loadChildren: () => import('./show-page/show-page.module').then( m => m.ShowPagePageModule)
+  },
+  {
+    path: 'showmore',
+    loadChildren: () => import('./showmore/showmore.module').then( m => m.ShowmorePageModule)
   }
 ];
 

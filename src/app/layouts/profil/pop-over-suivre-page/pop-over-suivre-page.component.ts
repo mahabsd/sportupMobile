@@ -14,14 +14,10 @@ export class PopOverSuivrePageComponent implements OnInit {
   dismissPopover(msg)
   {
       console.log(msg);
-      
   }
   ngOnInit() {
-    console.log(this.idpassed)
   }
   wochat(){
-  console.log(this.idpassed)
-
   this.userService.getUser(this.idpassed).subscribe(
     (response) => {
       this.user$ = response.data.data;
@@ -30,9 +26,7 @@ export class PopOverSuivrePageComponent implements OnInit {
       }
         else if (response.data.data.role==='kids') {
           this.router.navigate(["chatkids", this.idpassed]);
-
-        }
-      
+      }
     },
     (error) => {
       console.error(error);

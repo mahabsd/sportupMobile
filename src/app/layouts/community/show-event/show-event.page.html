@@ -1,9 +1,76 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>showEvent</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header title="Evennement" [isCommunityCreate]="true"></app-header>
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+  <img
+    src="https://cdn.w600.comps.canstockphoto.com/zumba-calligraphy-on-watercolor-splash-clipart-vector_csp65099256.jpg"
+    alt="">
+  <div class="content">
+    <div class="eventContent">
+      <div class="buttons">
+        <button color="white" style="
+      box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+      border-radius: 10px;
+      margin: 10px 0 0 10px;
+      height: 30px;
+      width: 80px;
+      color: #898b8b;
+      background: white" routerLink="/">
+          message
+        </button>
+        <button color="white" style="
+     box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+     border-radius: 10px;
+     margin: 10px 0 0 10px;
+     height: 30px;
+     width: fit-content;
+     color: #3b8c4f;
+     font-weight: bold;
+     background: white" *ngIf="!interrested" (click)="interest()">
+          ça m'intéresse
+        </button>
+        <button style="
+     box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+     border-radius: 10px;
+     margin: 10px 0 0 10px;
+     height: 30px;
+     width: fit-content;
+     color: white;
+     font-weight: bold;
+     background: #3b8c4f" *ngIf="interrested" (click)="notinterested()">
+          intéréssé(e)
+        </button>
+      </div>
+      <div color="light" class="threePoints" (click)="openEventMenu('ev')">
+        <ion-icon name="ellipsis-horizontal"></ion-icon>
+      </div>
+    </div>
+    <div class="description">
+      <h3> 300 Participants</h3>
+      <div>
+        <h6>Evennement de:  &nbsp;</h6>
+        <span> NOM prenom</span>
+      </div>
+      <div>
+        <h6>Lieu: &nbsp; </h6>
+        <span> Adresse evennement</span>
+      </div>
+      <div>
+        <h6>Durée: &nbsp; </h6>
+        <span>  heures</span>
+      </div>
+      <div>
+        <h6>Evennement public:  &nbsp; </h6>
+        <span> tout le monde peut participer</span>
+      </div>
+      <div>
+        <h6>Description: </h6>
+        <span>
+           .......................................................................................................................................
+          ...............................................................................................................................................................
+          ........................</span>
+      </div>
+    </div>
 
-<ion-content>
+
+  </div>
 
 </ion-content>
