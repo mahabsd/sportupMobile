@@ -18,8 +18,9 @@
         Hello pages
       </div>
       <div *ngIf="selected === 'Evennements'">
+
         <div *ngFor="let event of events" >
-          <div style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:10px;border-radius:10px">
+          <div style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:10px;border-radius:10px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
             <div style="display:flex; justify-content:space-between">
               <div style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px">
                 <span style="color:rgb(95, 95, 95);font-size:large">{{event.name}}</span>
@@ -36,9 +37,9 @@
                   {{event.time}}
                 </div>
               </div>
-              <div>
+              <div style="display: flex;align-items:center">
                 <button class="buttons" style="margin-right: 5px;">ça m'interesse</button>
-                <button class="buttons">share</button>
+                <img  style="width: 33px;height:33px;background-color:white; padding:4px;border-radius:10px;box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);" src="../../assets/svg/share-event.svg" alt="share">
               </div>
             </div>
           </div>
