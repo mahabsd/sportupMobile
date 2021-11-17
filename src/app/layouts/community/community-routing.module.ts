@@ -11,14 +11,6 @@ const routes: Routes = [
   {
     path: 'add',
     loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
-  },
-  {
-    path: 'show-event',
-    loadChildren: () => import('./show-event/show-event.module').then( m => m.ShowEventPageModule)
-  },
-  {
-    path: 'show-page',
-    loadChildren: () => import('./show-page/show-page.module').then( m => m.ShowPagePageModule)
   }
 ];
 

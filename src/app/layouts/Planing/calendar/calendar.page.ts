@@ -86,6 +86,7 @@ export class CalendarPage implements OnInit {
     const url = this.router.url.split('/', 6);
     // console.log(url);
 
+
     if (url[1] === 'calendar') {
       this.slider = false;
     }
@@ -133,7 +134,7 @@ export class CalendarPage implements OnInit {
         event.startTime = this.formateEventDates(event.startTime);
         event.endTime = this.formateEventDates(event.endTime);
       });
-
+      console.log(this.eventSource);
       this.extractEventDays();
     });
 
@@ -156,6 +157,7 @@ export class CalendarPage implements OnInit {
           .sort((a, b) => a - b)
       ),
     ];
+    console.log(this.eventDays);
   }
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {

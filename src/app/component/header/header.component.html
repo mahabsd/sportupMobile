@@ -12,6 +12,9 @@
       <ion-icon *ngIf="isKidPlanning" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
       </ion-icon>
+      <ion-icon *ngIf="isPages" color="light" routerLink="/show-page"
+        name="chevron-back-outline">
+      </ion-icon>
       <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
       </ion-icon>
@@ -84,6 +87,8 @@
     </ion-buttons>
     <ion-title color="light" *ngIf="isKid" class="ion-text-center">
       Accueil</ion-title>
+      <ion-title color="light" *ngIf="isPages" class="ion-text-center">
+        Pages</ion-title>
       <ion-title color="light" *ngIf="isStatus" class="ion-text-center">
         Post</ion-title>
     <ion-title color="light" *ngIf="BoiteRecepetion" class="ion-text-center">
