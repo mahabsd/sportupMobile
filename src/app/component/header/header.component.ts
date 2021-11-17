@@ -51,7 +51,7 @@ export class HeaderComponent implements OnInit {
   @Input()  type: string;
   @Input()  idprofillepassed: string;
   @Input()  followid: string;
-
+  @Input() isCommunityCreate: boolean;
   userid: any;
   user$: any;
 
@@ -65,9 +65,7 @@ export class HeaderComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getMe()
-    // console.log("popver"+this.idprofillepassed);
-   // this.getfollow();
+    this.getMe();
   }
   close() {
     this.modalCtrl.dismiss();

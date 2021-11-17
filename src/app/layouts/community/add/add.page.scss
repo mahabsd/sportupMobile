@@ -1,0 +1,131 @@
+#container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 20px;
+  align-items: center;
+}
+
+ion-segment-button {
+  border-radius: 10px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  margin: 5px 4px 4px;
+  height: 35px;
+  color: #858484;
+  --background-checked: #d8d6d6ab;
+  text-transform: none;
+  min-height: unset;
+  --indicator-color: none;
+  min-width: 80px;
+}
+
+.pageName {
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  margin: 15px 10px 0px 0;
+}
+
+input:focus {
+  outline: none !important;
+}
+
+input {
+  border: none;
+  width: 100%;
+}
+
+.page {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.pageCategory {
+  margin: 50px 10px 0 0;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+}
+
+.description {
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  margin: 15px 10px 0px 0;
+  border: none !important;
+}
+
+textarea {
+  border: none !important;
+}
+
+textarea:focus {
+  outline: none !important;
+}
+
+.create {
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  margin: 30px 0 10px 0;
+  width: 20%;
+  color: white;
+  background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%);
+}
+
+.cancel {
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  width: 20%;
+  color: white;
+  background: linear-gradient(45deg, #901822 0%, #DA1A39 35%, #DD193A 100%);
+}
+
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+input[type=date]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.eventDate {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dateInput label {
+  font-size: 10.5px;
+  width: 140px;
+}
+
+.dateInput {
+  display: flex;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 2px 2px 5px 0px rgb(0 0 0 / 43%);
+  margin: 15px 10px 0px 0;
+  width: 45%;
+}
+
+.eventHour {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dateInput input {
+  font-size: 12px;
+}
+
+.confidentiality {
+  margin: 20px;
+}
+
+.alert-wrapper.sc-ion-alert-md {
+  border-radius: 20px !important;
+}

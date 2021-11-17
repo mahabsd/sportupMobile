@@ -1,55 +1,36 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon
-        routerLink="/tabsKids/accueil"
-        color="light"
-        name="chevron-back-outline"
-      ></ion-icon>
+      <ion-icon routerLink="/tabsKids/accueil" color="light" name="chevron-back-outline"></ion-icon>
     </ion-buttons>
     <ion-buttons slot="end" *ngIf="checkSelf===true">
       <ion-button color="secondary" (click)="presentPopover($event)">
-        <ion-icon
-          style="color: white"
-          slot="icon-only"
-          ios="ellipsis-horizontal"
-          md="ellipsis-vertical"
-        >
+        <ion-icon style="color: white" slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical">
         </ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-buttons slot="end" *ngIf="checkSelf!==true">
-      <ion-button
-        shape="rounded"
-        (click)="presentPopoverNewMsg($event,idprofilePassed)"
-      >
+      <ion-button shape="rounded" (click)="presentPopoverNewMsg($event,idprofilePassed)">
         <ion-icon color="light" name="chevron-down-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
 
     <ion-title color="light" style="text-align: center; margin-left: 20xp">
-      {{title}}</ion-title
-    >
+      {{title}}</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content
-  class="parent"
-  [scrollEvents]="true"
-  (ionScroll)="logScrolling($event)">
+<ion-content class="parent" [scrollEvents]="true" (ionScroll)="logScrolling($event)">
 
   <div class="image1">
-    <ion-img
-      class="imgUser"
-      src="https://www.heysigmund.com/wp-content/uploads/Breaking-Up-With-Kids-The-New-Normal.jpg"
-    ></ion-img>
+    <ion-img class="imgUser"
+      src="https://www.heysigmund.com/wp-content/uploads/Breaking-Up-With-Kids-The-New-Normal.jpg"></ion-img>
 
     <ion-avatar class="image2">
-      <img [src]="apiImgUser +user?.photo"  class="myImageUser" />
+      <img [src]="apiImgUser +user?.photo" class="myImageUser" />
 
       <ion-label color="light" style="white-space: pre">
-        {{user?.name}}</ion-label
-      >
+        {{user?.name}}</ion-label>
     </ion-avatar>
   </div>
   <ion-row>
@@ -68,138 +49,156 @@
     <!-- Segment with default selection -->
     <ion-segment (ionChange)="segmentChanged($event)" value="photo">
       <ion-segment-button value="photo">
-        <ion-label style="font-family: 'Leckerli One', cursive"
-          >Photo</ion-label
-        >
+        <ion-label style="font-family: 'Leckerli One', cursive">Photo</ion-label>
       </ion-segment-button>
       <ion-segment-button value="Publications">
-        <ion-label style="font-family: 'Leckerli One', cursive"
-          >Publications</ion-label
-        >
+        <ion-label style="font-family: 'Leckerli One', cursive">Publications</ion-label>
       </ion-segment-button>
 
       <div class="planning" routerLink="/planning-kids">
-        <ion-label style="font-family: 'Leckerli One', cursive"
-          >Planning</ion-label
-        >
+        <ion-label style="font-family: 'Leckerli One', cursive">Planning</ion-label>
       </div>
 
       <ion-segment-button value="propos">
-        <ion-label style="font-family: 'Leckerli One', cursive"
-          >à propos</ion-label
-        >
+        <ion-label style="font-family: 'Leckerli One', cursive">à propos</ion-label>
       </ion-segment-button>
     </ion-segment>
 
     <div class="body" *ngIf="selected==='photo'">
       <div *ngIf="this.postsimg.length===1">
-      <div id="first-bloc" >
-        <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
-          <div class="left-tape-first"></div>
-          <div class="right-tape-first"></div>
-          <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="    width: 250px;
-            height: 200px;"  [style.background-size]="'cover'"
-              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
-              <ion-icon></ion-icon>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-            <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
-              <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
-            </div>
-          </ng-container>
-        </div>
-      </div>
-    </div>
-
-
-    <div *ngIf="this.postsimg.length>1&&this.postsimg.length<6">
-
-      <div id="first-bloc" >
-        <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
-          <div class="left-tape-first"></div>
-          <div class="right-tape-first"></div>
-          <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="
-            height: 200px;"  [style.background-size]="'cover'"
-              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
-              <ion-icon></ion-icon>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-            <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
-              <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
-            </div>
-          </ng-container>
-        </div>
-        <div id="photo-set-one">
-          <div class="fourPics" style="position: relative"  *ngFor="let file of ResWithTwoimg" >
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
+        <div id="first-bloc">
+          <div id="first-photo" style="position: relative" *ngFor="let file of ResWithOneimg">
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
-              <div style="
-              height: 100px;"  [style.background-size]="'cover'"
-                [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-                errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
-                <ion-icon></ion-icon>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-              <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-                errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
-                <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
-              </div>
-            </ng-container>
-          </div>
-
-        </div>
-
-      </div>
-
-
-    </div>
-
-    <div *ngIf="this.postsimg.length>5">
-
-      <div id="first-bloc" >
-        <div id="first-photo" style="position: relative"  *ngFor="let file of ResWithOneimg" >
-          <div class="left-tape-first"></div>
-          <div class="right-tape-first"></div>
-
-          <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="
-            height: 200px;"  [style.background-size]="'cover'"
-              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png"  (click)="displayContentPhotoTab(file?.file_name)">
-              <ion-icon></ion-icon>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-            <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
-              <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
-            </div>
-          </ng-container>
-        </div>
-        <div id="photo-set-one">
-          <div class="fourPics" style="position: relative"  *ngFor="let file of ResWithTwoimg" >
-            <div class="left-tape-second"></div>
-            <div class="right-tape-second"></div>
-            <ng-container *ngIf="getExt(file.file_name) === 'png'">
-              <div style="
-              height: 100px;"  [style.background-size]="'cover'"
+              <div style="    width: 250px;
+            height: 200px;" [style.background-size]="'cover'"
                 [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
                 errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)">
                 <ion-icon></ion-icon>
               </div>
             </ng-container>
             <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-              <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+              <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+                <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+
+      <div *ngIf="this.postsimg.length>1&&this.postsimg.length<6">
+
+        <div id="first-bloc">
+          <div id="first-photo" style="position: relative" *ngFor="let file of ResWithOneimg">
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div style="
+            height: 200px;" [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)">
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+                <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+              </div>
+            </ng-container>
+          </div>
+          <div id="photo-set-one">
+            <div class="fourPics" style="position: relative" *ngFor="let file of ResWithTwoimg">
+              <div class="left-tape-second"></div>
+              <div class="right-tape-second"></div>
+              <ng-container *ngIf="getExt(file.file_name) === 'png'">
+                <div style="
+              height: 100px;" [style.background-size]="'cover'"
+                  [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                  [lazyLoad]="apiImg + file?.file_name" errorImage="../../../assets/imgs/150.png"
+                  (click)="displayContentPhotoTab(file?.file_name)">
+                  <ion-icon></ion-icon>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+                <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                  errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+                  <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+                </div>
+              </ng-container>
+            </div>
+
+          </div>
+
+        </div>
+
+
+      </div>
+
+      <div *ngIf="this.postsimg.length>5">
+
+        <div id="first-bloc">
+          <div id="first-photo" style="position: relative" *ngFor="let file of ResWithOneimg">
+            <div class="left-tape-first"></div>
+            <div class="right-tape-first"></div>
+
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div style="
+            height: 200px;" [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)">
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+                <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+              </div>
+            </ng-container>
+          </div>
+          <div id="photo-set-one">
+            <div class="fourPics" style="position: relative" *ngFor="let file of ResWithTwoimg">
+              <div class="left-tape-second"></div>
+              <div class="right-tape-second"></div>
+              <ng-container *ngIf="getExt(file.file_name) === 'png'">
+                <div style="
+              height: 100px;" [style.background-size]="'cover'"
+                  [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                  [lazyLoad]="apiImg + file?.file_name" errorImage="../../../assets/imgs/150.png"
+                  (click)="displayContentPhotoTab(file?.file_name)">
+                  <ion-icon></ion-icon>
+                </div>
+              </ng-container>
+              <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+                <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+                  errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+                  <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+                </div>
+              </ng-container>
+            </div>
+
+          </div>
+
+
+        </div>
+        <div id="photo-set-two">
+          <div class="eightPic" style="position: relative" *ngFor="let file of ResWithThreeimg">
+            <div class="left-tape-second"></div>
+            <div class="right-tape-second"></div>
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div style="
+            height: 100px;" [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
+                errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)">
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
                 errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
                 <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
               </div>
@@ -208,31 +207,7 @@
 
         </div>
 
-
       </div>
-     <div id="photo-set-two">
-        <div class="eightPic" style="position: relative" *ngFor="let file of ResWithThreeimg">
-          <div class="left-tape-second"></div>
-          <div class="right-tape-second"></div>
-          <ng-container *ngIf="getExt(file.file_name) === 'png'">
-            <div style="
-            height: 100px;"  [style.background-size]="'cover'"
-              [style.background-image]="'url(' + apiImg + file?.file_name + ')'" [lazyLoad]="apiImg + file?.file_name"
-              errorImage="../../../assets/imgs/150.png" (click)="displayContentPhotoTab(file?.file_name)" >
-              <ion-icon></ion-icon>
-            </div>
-          </ng-container>
-          <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-            <div  [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
-              <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
-            </div>
-          </ng-container>
-        </div>
-
-      </div>
-
-    </div>
 
 
 
@@ -240,101 +215,64 @@
 
     <div class="content-profil" *ngIf="selected==='propos'">
       <div>
-        <div
-          style="
+        <div style="
             display: flex;
             justify-content: space-between;
             align-items: center;
-          "
-        >
+          ">
           <h4>A propos</h4>
-          <ion-icon
-            (click)="updateComment()"
-            style="color: green"
-            name="create"
-          ></ion-icon>
+          <ion-icon (click)="updateComment()" style="color: green" name="create"></ion-icon>
         </div>
       </div>
       <ng-container *ngIf="update;else noupdate">
-        <textarea
-          rows="5"
-          cols="40"
-          wrap="soft"
-          style="margin: 10px 25px; resize: none; text-indent: -35px"
-        >
+        <textarea rows="5" cols="40" wrap="soft" style="margin: 10px 25px; resize: none; text-indent: -35px">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae deserunt consequuntur mollitia cum soluta dolorem omnis quam totam.
-          </textarea
-        >
+          </textarea>
         <div style="display: flex; align-items: center; margin-bottom: 15px">
           <div>
-            <ion-icon
-              style="margin-right: 10px"
-              name="location-sharp"
-            ></ion-icon>
+            <ion-icon style="margin-right: 10px" name="location-sharp"></ion-icon>
             <ion-label style="font-weight: bold">Adresse</ion-label>
           </div>
           <div>
-            <input
-              style="margin-left: 5px; width: 120px; text-align: center"
-              class="commentaire"
-              id="contentadresse"
-              type="text"
-              value="{{user.adresse}} 21 baker street"
-            />
+            <input style="margin-left: 5px; width: 120px; text-align: center" class="commentaire" id="contentadresse"
+              type="text" value="{{user.adresse}} 21 baker street" />
           </div>
           <div style="margin: 0 5px">
             <ion-label style="font-weight: bold">Code postal</ion-label>
           </div>
           <div>
-            <input
-              style="width: 55px; text-align: center"
-              class="commentaire"
-              id="contentPostal"
-              type="text"
-              value="2083"
-            />
+            <input style="width: 55px; text-align: center" class="commentaire" id="contentPostal" type="text"
+              value="2083" />
           </div>
         </div>
 
-        <div
-          style="
+        <div style="
             display: flex;
             align-items: center;
             margin-left: 25px;
             margin-bottom: 10px;
-          "
-        >
+          ">
           <div>
             <ion-label style="font-weight: bold">Ville</ion-label>
           </div>
           <div style="display: flex; align-items: center">
-            <input
-              style="
+            <input style="
                 margin-left: 5px;
                 width: 100px;
                 text-align: center;
                 margin-right: 5px;
-              "
-              type="text"
-              id="contentVille"
-              value="{{user.ville}} Tunis"
-            />
+              " type="text" id="contentVille" value="{{user.ville}} Tunis" />
           </div>
           <div>
             <ion-label style="font-weight: bold">Pays</ion-label>
           </div>
           <div>
-            <input
-              style="
+            <input style="
                 margin-left: 5px;
                 width: 100px;
                 text-align: center;
                 margin-right: 5px;
-              "
-              type="text"
-              id="contentPays"
-              value="{{user.location}} Tunisie"
-            />
+              " type="text" id="contentPays" value="{{user.location}} Tunisie" />
           </div>
         </div>
 
@@ -344,12 +282,7 @@
             <ion-label style="font-weight: bold">Date naissance</ion-label>
           </div>
           <div>
-            <input
-              class="commentaire"
-              type="date"
-              id="datenaissance"
-              value="{{date}}"
-            />
+            <input class="commentaire" type="date" id="datenaissance" value="{{date}}" />
           </div>
         </div>
         <div style="display: flex; align-items: center">
@@ -366,12 +299,7 @@
 
           <ion-item>
             <ng-container *ngIf="user.sexe==='Homme';else Femme">
-              <ion-select
-                interface="popover"
-                placeholder="Select One"
-                value="Homme"
-                [(ngModel)]="user.sexe"
-              >
+              <ion-select interface="popover" placeholder="Select One" value="Homme" [(ngModel)]="user.sexe">
                 <ion-select-option value="Femme">Femme</ion-select-option>
                 <ion-select-option value="Homme">Homme</ion-select-option>
                 <ion-select-option value="Autre">Autre</ion-select-option>
@@ -379,12 +307,7 @@
             </ng-container>
 
             <ng-template #Femme>
-              <ion-select
-                interface="popover"
-                placeholder="Select One"
-                value="Femme"
-                [(ngModel)]="user.sexe"
-              >
+              <ion-select interface="popover" placeholder="Select One" value="Femme" [(ngModel)]="user.sexe">
                 <ion-select-option value="Femme">Femme</ion-select-option>
                 <ion-select-option value="Homme">Homme</ion-select-option>
                 <ion-select-option value="Autre">Autre</ion-select-option>
@@ -395,16 +318,10 @@
         <div style="display: flex; justify-content: space-between">
           <div></div>
           <div style="margin: 15px">
-            <ion-icon
-              style="font-size: 30px; color: red"
-              (click)="updateComment()"
-              name="close-circle-outline"
-            ></ion-icon>
-            <ion-icon
-              style="font-size: 30px; color: green"
-              (click)="userUpdate()"
-              name="checkmark-circle-outline"
-            ></ion-icon>
+            <ion-icon style="font-size: 30px; color: red" (click)="updateComment()" name="close-circle-outline">
+            </ion-icon>
+            <ion-icon style="font-size: 30px; color: green" (click)="userUpdate()" name="checkmark-circle-outline">
+            </ion-icon>
           </div>
         </div>
       </ng-container>
@@ -416,10 +333,7 @@
         </p>
         <div style="display: flex">
           <div style="display: flex; align-items: center; margin-right: 15px">
-            <ion-icon
-              style="margin-right: 10px"
-              name="location-sharp"
-            ></ion-icon>
+            <ion-icon style="margin-right: 10px" name="location-sharp"></ion-icon>
             <ion-label style="font-weight: bold">Adresse</ion-label>
             <!-- <div>{{user.adresse}}</div> -->
             <p style="margin-left: 10px">21 baker street</p>
@@ -444,24 +358,15 @@
         </div>
         <div style="display: flex; align-items: center">
           <ion-icon name="school"></ion-icon>
-          <ion-label style="font-weight: bold; margin-left: 10px"
-            >Etablissement scolaire</ion-label
-          >
+          <ion-label style="font-weight: bold; margin-left: 10px">Etablissement scolaire</ion-label>
           <p style="margin-left: 10px">SCHOOL</p>
         </div>
         <div>
           <div style="display: flex; align-items: center">
             <ion-icon name="calendar"></ion-icon>
-            <ion-label style="font-weight: bold; margin-left: 10px"
-              >Date naissance</ion-label
-            >
+            <ion-label style="font-weight: bold; margin-left: 10px">Date naissance</ion-label>
             <div>
-              <ion-datetime
-                class="commentaire"
-                type="date"
-                id="datenaissance"
-                [(ngModel)]="user.datedenaissance"
-              >
+              <ion-datetime class="commentaire" type="date" id="datenaissance" [(ngModel)]="user.datedenaissance">
               </ion-datetime>
             </div>
           </div>
@@ -478,15 +383,12 @@
     </div>
 
     <div *ngIf="selected==='Publications'">
-      <div
-        style="
+      <div style="
           padding: 10px 5px;
           border-radius: 20px;
           margin: 5px;
           position: relative;
-        "
-        *ngFor="let post of posts"
-      >
+        " *ngFor="let post of posts">
         <div>
           <div style="display: flex; align-items: center">
             <ion-avatar style="margin: 5px 20px; width: 40px; height: 40px">
@@ -494,20 +396,15 @@
             </ion-avatar>
 
             <div style="display: flex; flex-direction: column">
-              <ion-label style="font-weight: bold"
-                >{{post.user.name}}</ion-label
-              >
+              <ion-label style="font-weight: bold">{{post.user.name}}</ion-label>
               <ion-label>{{post.createdAt| date}}</ion-label>
             </div>
-            <p
-              style="
+            <p style="
                 font-size: 30px;
                 position: absolute;
                 right: 60px;
                 top: -30px;
-              "
-              (click)="presentPopover2($event)"
-            >
+              " (click)="presentPopover2($event)">
               ...
             </p>
           </div>
@@ -516,26 +413,18 @@
             <ion-label>{{post.content}} </ion-label>
           </div>
         </div>
-        <div
-          style="
+        <div style="
             display: flex;
             justify-content: space-around;
             align-items: center;
             margin: 10px 0;
-          "
-        >
+          ">
           <div style="display: flex; align-items: center">
-            <ion-icon
-              name="heart-outline"
-              style="color: red; font-size: 30px; margin-right: 10px"
-            ></ion-icon>
+            <ion-icon name="heart-outline" style="color: red; font-size: 30px; margin-right: 10px"></ion-icon>
             Like
           </div>
           <div style="display: flex; align-items: center">
-            <ion-icon
-              name="chatbubble-ellipses-outline"
-              style="font-size: 30px; margin-right: 10px"
-            ></ion-icon>
+            <ion-icon name="chatbubble-ellipses-outline" style="font-size: 30px; margin-right: 10px"></ion-icon>
             Comment
           </div>
         </div>

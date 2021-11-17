@@ -263,7 +263,11 @@ const routes: Routes = [
       {
         path: 'show-page',
         loadChildren: () => import('./community/show-page/show-page.module').then( m => m.ShowPagePageModule)
-      }
+      },
+      {
+        path: 'add',
+        loadChildren: () => import('./community/add/add.module').then( m => m.AddPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

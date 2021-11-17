@@ -32,6 +32,8 @@
       <ion-icon *ngIf="!isModal && AdulteProfile" color="light" routerLink="/tabsKids/accueil"
         name="chevron-back-outline">
       </ion-icon>
+      <ion-icon *ngIf="isCommunityCreate" color="light" routerLink="/tabs/community" name="chevron-back-outline">
+      </ion-icon>
       <ion-button shape="rounded" *ngIf="isCoach || isOption" [routerLink]="['/menu/tabs/layouts/scan']"
         routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
