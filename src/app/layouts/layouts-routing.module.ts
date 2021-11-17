@@ -243,6 +243,11 @@ const routes: Routes = [
         canActivate:[RolesGuardGuard]
       },
       {
+        path: 'one-status/:id',
+        loadChildren: () => import('./home/one-status/one-status.module').then(m => m.OneStatusPageModule),
+        canActivate:[RolesGuardGuard]
+      },
+      {
         path: 'community',
         loadChildren: () => import('./community/community.module').then( m => m.CommunityPageModule),
         canActivate:[RolesGuardGuard]
@@ -250,6 +255,18 @@ const routes: Routes = [
       {
         path: 'help-page',
         loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
+      },
+      {
+        path: 'show-event',
+        loadChildren: () => import('./community/show-event/show-event.module').then( m => m.ShowEventPageModule)
+      },
+      {
+        path: 'show-page',
+        loadChildren: () => import('./community/show-page/show-page.module').then( m => m.ShowPagePageModule)
+      },
+      {
+        path: 'show-pages',
+        loadChildren: () => import('./community/show-pages/show-pages.module').then( m => m.ShowPagesPageModule)
       },
       {
         path: 'add',

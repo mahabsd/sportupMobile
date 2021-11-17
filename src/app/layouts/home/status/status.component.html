@@ -65,7 +65,7 @@
     </div>
   </ng-container>
 
-  <div (click)="displayContent(post)" *ngIf="mediafiles.length === 0">
+  <div routerLink="/one-status/{{ post.post?.id ||post.id }}" *ngIf="mediafiles.length === 0">
     <span style="display:flex;padding-left:20px">{{post.content}}</span>
     <div style="display: flex; justify-content: center;flex-direction:column">
       <div *ngFor="let file of newMediaFiles">
@@ -110,7 +110,7 @@
   </div>
 
   <div
-  (click)="displayContent(post)"
+  routerLink="/one-status/{{ post.post?.id ||post.id }}"
     *ngIf="
       newMediaFiles.length > 0 &&
       thirdNewMediaFiles.length === 0 &&
@@ -141,7 +141,7 @@
           </div>
         </ng-container>
       </div>
-      <div class="nextContainer" (click)="displayContent(post)">
+      <div class="nextContainer" routerLink="/one-status/{{ post.post?.id ||post.id }}">
         <div *ngFor="let file of mediafiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
@@ -173,7 +173,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="secondNewMediaFiles.length !== 0" (click)="displayContent(post)">
+  <div *ngIf="secondNewMediaFiles.length !== 0" routerLink="/one-status/{{ post.post?.id ||post.id }}">
     <div style="display: flex">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
@@ -244,14 +244,14 @@
         <ng-container *ngIf="!post.shared && !post?.likedBy.includes(user?._id) || !post.post?.likedBy.includes(user?._id); else dislikedTemp">
           <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
             size="large">
-            <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle" id="icon_liked" />
+            <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle"  />
             <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
           </ion-button>
         </ng-container>
         <ng-template #dislikedTemp>
           <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="disLike(post, $event.target)" shape="round"
             fill="clear" size="large">
-            <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" id="icon_like" />
+            <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle" />
             <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
           </ion-button>
         </ng-template>
@@ -266,18 +266,18 @@
         <ng-container *ngIf="!bookmarked; else unbook">
           <ion-button style="display: flex;align-items:center" (click)="bookmark(post)" shape="round" fill="clear" size="large ">
             <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmark.svg" />
-            <span style="color:#7F867D;font-size:14px">{{ post?.favorisNb }}</span>
+            <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb }}</span>
           </ion-button>
         </ng-container>
         <ng-template #unbook>
           <ion-button style="display: flex;align-items:center" (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
             <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmarked.svg" />
-            <span style="color:#7F867D;font-size:14px">{{ post?.favorisNb }}</span>
+            <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb  }}</span>
           </ion-button>
         </ng-template>
         <ion-button style="display: flex;align-items:center" (click)="share(post)" shape="round" fill="clear" size="large ">
           <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
-          <span style="color:#7F867D;font-size:14px">{{ post?.sharedeNb }}</span>
+          <span style="color:#7F867D;font-size:14px">{{ post?.post?.sharedeNb || post?.sharedeNb }}</span>
         </ion-button>
       </ion-chip>
     </ion-col>

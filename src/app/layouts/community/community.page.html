@@ -1,62 +1,49 @@
 <app-header title="communauté" [isOption]="true"></app-header>
 <ion-content padding [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <div id="container">
-    <ion-grid>
-      <ion-row id="rowTabFiltre">
-        <ion-col>
-          <button
-          color="white"
-          style="
-            box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
-            border-radius: 10px;
-            margin: 0 10px;
-            height: 30px;
-            width: 80px;
-            color: #898b8b;
-            background: white"
-            routerLink="/add">
-            créer
-         </button>
-          <button
-          color="white"
-          style="
-            box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
-            border-radius: 10px;
-            margin: 0 10px;
-            height: 30px;
-            width: 80px;
-            color: #898b8b;
-            background: white"
-            routerLink="/show-event">
-            pages
-    </button>
+    <div style="padding: 20px;">
+      <ion-segment style="display:flex; align-items:center;justify-content:space-around;padding:0 40px" (ionChange)="segmentChanged($event)">
         <button
-          color="white"
-          style="
-            box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
-            border-radius: 10px;
-            margin: 0 10px;
-            height: 30px;
-            width: 90px;
-            color: #898b8b;
-            background: white"
-            routerLink="/show-page">
-            evennement
+          class="créer"
+            routerLink="/add">
+            Créer
+         </button>
+        <ion-segment-button value="Pages">
+          Pages
+        </ion-segment-button>
+        <ion-segment-button value="Evennements">
+          Evennements
+        </ion-segment-button>
+      </ion-segment>
+      <div *ngIf="selected === 'Pages'">
+        Hello pages
+      </div>
+      <div *ngIf="selected === 'Evennements'">
 
-        </button>
-        </ion-col>
-      </ion-row>
-
-      <ion-row class="bodyFilter">
-        <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
-          <ion-refresher-content
-            pullingIcon="chevron-down-circle-outline"
-            pullingText="Pull to refresh"
-            refreshingSpinner="circles"
-            refreshingText="Refreshing...">
-          </ion-refresher-content>
-        </ion-refresher>
-      </ion-row>
-    </ion-grid>
-  </div>
+        <div *ngFor="let event of events" >
+          <div style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:10px;border-radius:10px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
+            <div style="display:flex; justify-content:space-between">
+              <div style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px">
+                <span style="color:rgb(95, 95, 95);font-size:large">{{event.name}}</span>
+                <span>{{event.participants}} participants</span>
+              </div>
+              <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <div style="display: flex;font-size:12px">
+                <div style="margin-right: 20px;">
+                  {{event.day}} {{event.date}}
+                </div>
+                <div>
+                  {{event.time}}
+                </div>
+              </div>
+              <div style="display: flex;align-items:center">
+                <button class="buttons" style="margin-right: 5px;">ça m'interesse</button>
+                <img  style="width: 33px;height:33px;background-color:white; padding:4px;border-radius:10px;box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);" src="../../assets/svg/share-event.svg" alt="share">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 </ion-content>

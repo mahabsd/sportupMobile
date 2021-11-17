@@ -12,6 +12,15 @@
       <ion-icon *ngIf="isKidPlanning" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
       </ion-icon>
+      <ion-icon *ngIf="isPages" color="light" routerLink="/tabs/community"
+        name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="isPage" color="light" routerLink="/show-pages"
+        name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
+        name="chevron-back-outline">
+      </ion-icon>
       <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && ChatKids" color="light" routerLink="/tabsKids/boitereceptionkids" name="chevron-back-outline">
@@ -83,6 +92,12 @@
     </ion-buttons>
     <ion-title color="light" *ngIf="isKid" class="ion-text-center">
       Accueil</ion-title>
+      <ion-title color="light" *ngIf="isPages" class="ion-text-center">
+        Pages</ion-title>
+        <ion-title color="light" *ngIf="isPage" class="ion-text-center">
+          Page</ion-title>
+      <ion-title color="light" *ngIf="isStatus" class="ion-text-center">
+        Post</ion-title>
     <ion-title color="light" *ngIf="BoiteRecepetion" class="ion-text-center">
       Boite réception</ion-title>
       <ion-title color="light" *ngIf="isKidPlanning" class="ion-text-center">

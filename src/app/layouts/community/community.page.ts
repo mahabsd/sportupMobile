@@ -8,10 +8,59 @@ import { EventService } from 'src/app/shared/Service/event.service';
 })
 export class CommunityPage implements OnInit {
   isScrollTop = false;
+  selected: any;
+  events = [
+    {
+      name: "ZUMBA BEACH",
+      participants: 300,
+      date: "23/08/2021",
+      time: "18:00",
+      day:"Mardi"
+    },
+    {
+      name: "ZUMBA BEACH",
+      participants: 300,
+      date: "23/08/2021",
+      time: "18:00",
+      day:"Mardi"
+    },
+    {
+      name: "ZUMBA BEACH",
+      participants: 300,
+      date: "23/08/2021",
+      time: "18:00",
+      day:"Mardi"
+    },
+    {
+      name: "ZUMBA BEACH",
+      participants: 300,
+      date: "23/08/2021",
+      time: "18:00",
+      day:"Mardi"
+    },
+    {
+      name: "ZUMBA BEACH",
+      participants: 300,
+      date: "23/08/2021",
+      time: "18:00",
+      day:"Mardi"
+    },
+    {
+      name: "ZUMBA BEACH",
+      participants: 300,
+      date: "23/08/2021",
+      time: "18:00",
+      day:"Mardi"
+    }
 
+  ]
   constructor(private eventService: EventService) { }
 
+  segmentChanged(ev: any) {
+    this.selected = ev.detail.value;
+  }
   ngOnInit() {
+    this.selected = 'Pages';
   }
   doRefresh(event) {
    // this.posts = [];

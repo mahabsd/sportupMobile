@@ -4,9 +4,9 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ShowPagePageRoutingModule } from './show-page-routing.module';
+import { ShowPagesPageRoutingModule } from './show-pages-routing.module';
 
-import { ShowPagePage } from './show-page.page';
+import { ShowPagesPage } from './show-pages.page';
 import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
@@ -14,9 +14,9 @@ import { ComponentModule } from 'src/app/component/component.module';
     CommonModule,
     FormsModule,
     IonicModule,
-    ShowPagePageRoutingModule,
+    ShowPagesPageRoutingModule,
     ComponentModule
   ],
-  declarations: [ShowPagePage]
+  declarations: [ShowPagesPage]
 })
-export class ShowPagePageModule {}
+export class ShowPagesPageModule {}

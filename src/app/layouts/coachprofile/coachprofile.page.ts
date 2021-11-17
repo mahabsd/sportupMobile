@@ -80,7 +80,7 @@ export class CoachprofilePage implements OnInit {
 
   getMe() {
     this.userService.getMe().subscribe(async res => {
-      this.user$ = res.data.data;
+      this.user$ = await res.data.data;
     });
 
   }

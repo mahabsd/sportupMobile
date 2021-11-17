@@ -66,6 +66,7 @@ export class StatusKidsComponent implements OnInit {
   bookmarked = false;
   follower = false;
   id;
+  showComment = false;
   images: any = [];
   mediafiles: any = [];
   newMediaFiles: any= [];
@@ -117,7 +118,7 @@ export class StatusKidsComponent implements OnInit {
     this.getMe();
 
     this.getCommentByPost();
-
+    console.log(this.mediafiles);
   }
 
   async presentAlertConfirm(post) {
@@ -203,7 +204,7 @@ export class StatusKidsComponent implements OnInit {
 
       if ( tempMedia.length<4){
         this.newMediaFiles= tempMedia.splice(0,1);
-       console.log( this.newMediaFiles);
+
 
       }
       if (tempMedia.length>3){
@@ -211,10 +212,17 @@ export class StatusKidsComponent implements OnInit {
         this.thirdNewMediaFiles=tempMedia.slice(1,3);
         this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
       }
-
+      console.log(this.newMediaFiles);
 
     });
   }
+  showComments() {
+    this.showComment = true;
+  }
+  hideComments() {
+    this.showComment = false;
+  }
+
 
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;

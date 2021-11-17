@@ -6,11 +6,12 @@ import { HeaderComponent } from './header/header.component';
 import { IonicModule } from '@ionic/angular';
 import { StatusComponent } from '../layouts/home/status/status.component';
 import { ParametresComponent } from './parametres/parametres.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
-  declarations: [HeaderComponent, ParametresComponent,TopMenuComponent],
-  exports: [HeaderComponent, ParametresComponent],
+  declarations: [HeaderComponent,FooterComponent, ParametresComponent,TopMenuComponent],
+  exports: [HeaderComponent,FooterComponent, ParametresComponent],
   imports: [
     CommonModule,
     ComponentRoutingModule,

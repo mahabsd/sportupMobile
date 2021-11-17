@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { MapsPageRoutingModule } from './maps-routing.module';
 
 import { MapsPage } from './maps.page';
-import { HeaderComponent } from '../../component/header/header.component';
 import { ComponentModule } from 'src/app/component/component.module';
 
 @NgModule({
