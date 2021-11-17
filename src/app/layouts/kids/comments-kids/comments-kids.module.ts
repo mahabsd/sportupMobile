@@ -9,6 +9,7 @@ import { CommentsKidsPageRoutingModule } from './comments-kids-routing.module';
 import { CommentsKidsPage } from './comments-kids.page';
 import { BrowserModule } from '@angular/platform-browser';
 import { HeaderComponent } from 'src/app/component/header/header.component';
+import { FooterComponent } from 'src/app/component/footer/footer.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { HeaderComponent } from 'src/app/component/header/header.component';
     ReactiveFormsModule,
     BrowserModule
   ],
-  declarations: [CommentsKidsPage,HeaderComponent]
+  declarations: [CommentsKidsPage,HeaderComponent,FooterComponent]
 })
 export class CommentsKidsPageModule {}
