@@ -10,16 +10,16 @@
     </ion-refresher-content>
   </ion-refresher>
   <ion-grid>
-    <ion-row>
-      <ion-col class="my-thin-col stylecards" *ngFor="let post of posts ">
+    <div style="display:flex;flex-wrap:wrap;justify-content:space-around;width:100%">
+      <div class="my-thin-col stylecards" *ngFor="let post of posts ">
         <app-status-kids
           [post]="post"
           [user]="user$"
           (disLikeFn)="disLike(post)"
           (likeFn)="like(post)"
         ></app-status-kids>
-      </ion-col>
-    </ion-row>
+      </div>
+    </div>
   </ion-grid>
   <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
     <ion-infinite-scroll-content

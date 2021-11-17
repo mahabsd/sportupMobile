@@ -1,0 +1,94 @@
+<app-header [isStatus]="true"> </app-header>
+
+<ion-content>
+<div *ngFor="let file of mediafiles" >
+  <div
+  style="width: 95%; height: 220px;border-radius:10px;margin:10px"
+  id="first"
+  [style.background-size]="'cover'"
+  [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+  errorImage="../../../assets/imgs/150.png"></div>
+  <div style="display: flex;align-items:center;justify-content:space-evenly">
+    <ng-container *ngIf="!post?.likedBy.includes(user?._id) || !post.post?.likedBy.includes(user?._id); else dislikedTemp">
+      <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
+        size="large">
+        <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle" id="icon_liked" />
+        <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
+      </ion-button>
+    </ng-container>
+    <ng-template #dislikedTemp>
+      <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="disLike(post, $event.target)" shape="round"
+        fill="clear" size="large">
+        <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" id="icon_like" />
+        <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
+      </ion-button>
+    </ng-template>
+
+      <ion-button style="display: flex;align-items:center" (click)="presentModal(post)" shape="round" fill="clear" size="large">
+        <img class="iconstyle" src="../../../../assets/iconPost/icon_comment.svg" />
+        <span style="color:#7F867D;font-size:14px">{{ comments?.length }}</span>
+      </ion-button>
+      <ng-container *ngIf="!bookmarked; else unbook">
+        <ion-button style="display: flex;align-items:center" (click)="bookmark(post)" shape="round" fill="clear" size="large ">
+          <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmark.svg" />
+          <span style="color:#7F867D;font-size:14px">{{ post?.favorisNb }}</span>
+        </ion-button>
+      </ng-container>
+      <ng-template #unbook>
+        <ion-button style="display: flex;align-items:center" (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
+          <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmarked.svg" />
+          <span style="color:#7F867D;font-size:14px">{{ post?.favorisNb }}</span>
+        </ion-button>
+      </ng-template>
+      <ion-button style="display: flex;align-items:center" (click)="share(post)" shape="round" fill="clear" size="large ">
+        <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
+        <span style="color:#7F867D;font-size:14px">{{ post?.sharedeNb }}</span>
+      </ion-button>
+  </div>
+  <div style="width: 100%;">
+    <div style="display: flex;align-items:center">
+      <ng-container *ngIf="showComment===false; else not" >
+        <ng-container *ngIf="comments.length!==0"  style="position: relative;">
+          <p (click)="showComments()" style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D;transform:translateY(-30px)">Afficher plus de commentaires <ion-icon name="chevron-forward-outline"></ion-icon></p>
+        </ng-container>
+        <ng-container *ngIf="comments.length!==0" >
+          <div style="display: flex;align-items:center;padding-top:15px" >
+            <div style="display: flex;flex-direction:column;align-items:center">
+              <img style="width: 22px; height:22px;border-radius:50%;object-fit:cover" src={{apiImgUser+comments[0].user.photo}} alt="">
+              <span style="font-size: 12px;">{{comments[0].user.name}}</span>
+            </div>
+            <span style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px">{{comments[0].content}}</span>
+          </div>
+        </ng-container>
+      </ng-container>
+      <ng-template #not>
+        <p (click)="hideComments()" style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D">Afficher moins de commentaires <ion-icon name="chevron-down-outline"></ion-icon></p>
+      </ng-template>
+    </div>
+    <div style="margin-top: 10px;">
+      <ng-container *ngIf="showComment===true">
+        <div style="display: flex;align-items:center;margin:3px 0" *ngFor="let item of comments.slice().reverse()" >
+          <div style="display: flex;flex-direction:column;align-items:center">
+            <img style="width: 22px; height:22px;border-radius:50%;object-fit:cover" src={{apiImgUser+item.user.photo}} alt="">
+            <span style="font-size: 12px;">{{item.user.name}}</span>
+          </div>
+          <span style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px">{{item.content}}</span>
+        </div>
+      </ng-container>
+    </div>
+    <div style="display: flex;justify-content:space-between;align-items:center; background-color:#EEEFEF; border-radius:10px;margin:10px 0 20px 0">
+      <div style="display: flex;align-items:center;padding:0px 10px">
+        <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover"  src={{apiImgUser+user.photo}} routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
+        <input placeholder="Ecrivez un commentaire ..." style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
+      </div>
+      <div style="display: flex;">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" alt="">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/mic.svg" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+</ion-content>

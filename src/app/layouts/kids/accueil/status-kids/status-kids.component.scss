@@ -342,7 +342,6 @@ ion-toolbar {
     border-radius: 50%;
   }
 
-
   .inner-badge-KO {
     display: table;
     position: absolute;
@@ -356,7 +355,6 @@ ion-toolbar {
     display: table-cell;
     vertical-align: middle;
     padding: 8px;
-
   }
 
   .inner-badge-Tchat {
@@ -373,9 +371,9 @@ ion-toolbar {
     vertical-align: middle;
     padding: 8px;
   }
-
-
-
+input:focus{
+  outline: none;
+}
 
 
 
@@ -437,17 +435,6 @@ ion-slide {
   width: 4rem !important;
   margin-right: -2px !important;
   }
-  .img-wrapper {
-  //  min-height: 200px;
-    width: 103%;
-    //background-size: cover;
-    background-repeat: no-repeat;
-    border-radius: 15px;
-    //box-shadow: inset 1px 1px 1px 1px #247238;
-   // background-image: linear-gradient(180deg, rgb(219, 215, 215), rgb(219, 215, 215)40%, rgb(219, 215, 215));
-
-
-}
 .centered {
   position: absolute;
   top: 5px;

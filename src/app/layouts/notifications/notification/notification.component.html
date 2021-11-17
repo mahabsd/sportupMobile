@@ -20,9 +20,18 @@
           <span style="opacity: 50%;font-size:12px">{{timeAgo}}</span>
         </ng-template>
       </ng-container>
-      <ng-template style="display: flex;flex-direction:column" #other>
-        <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> {{notif.text}}</span>
-        <span style="opacity: 50%;font-size:12px">{{timeAgo}}</span>
+      <ng-template #other>
+        <ng-container *ngIf="notif.text==='a partagé votre status' || notif.text==='a aimé votre status' || notif.text==='a commenté votre status' || notif.text==='a enregistré votre status';else notStatus" >
+          <div routerLink="/one-status/{{ notif.postId.id  }}" style="display: flex;flex-direction:column">
+            <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> {{notif.text}}</span>
+            <span style="opacity: 50%;font-size:12px">{{timeAgo}}</span>
+          </div>
+        </ng-container>
+        <ng-template #notStatus>
+          <span><b style="text-transform: capitalize;">{{notif.userOwner.name}}&nbsp;</b> {{notif.text}}</span>
+            <span style="opacity: 50%;font-size:12px">{{timeAgo}}</span>
+        </ng-template>
+
       </ng-template>
     </p>
     <p>
