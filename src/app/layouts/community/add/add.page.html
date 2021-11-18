@@ -60,17 +60,19 @@
         <input placeholder="" type="date"/>
       </ion-item>
     </ion-row>
-    <ion-list class="confidentiality">
-      <ion-list-header style="background-color: #F1F2F2;">
-        <ion-label>
-          Confidentialité
-        </ion-label>
-      </ion-list-header>
+    <ion-list style="margin-top: 10px;" >
+
       <ion-item style="background-color: #F1F2F2;">
-        <ion-select placeholder="" style="background-color: #F1F2F2;">
-          <ion-select-option value="Private">Private</ion-select-option>
-          <ion-select-option value="Public">Public</ion-select-option>
-        </ion-select>
+        <ion-list-header class="confidentiality">
+          <ion-label>
+            Confidentialité
+          </ion-label>
+          <ion-select placeholder="" style="background-color: #F1F2F2;">
+            <ion-select-option value="Private">Private</ion-select-option>
+            <ion-select-option value="Public">Public</ion-select-option>
+          </ion-select>
+        </ion-list-header>
+
       </ion-item>
     </ion-list>
     <ion-item class="description">

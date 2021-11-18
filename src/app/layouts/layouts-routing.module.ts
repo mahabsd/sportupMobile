@@ -272,6 +272,10 @@ const routes: Routes = [
         path: 'add',
         loadChildren: () => import('./community/add/add.module').then( m => m.AddPageModule)
       },
+      {
+        path: 'show-event',
+        loadChildren: () => import('./community/show-event/show-event.module').then( m => m.ShowEventPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
