@@ -9,7 +9,6 @@ export class AddPage implements OnInit {
   evennement: any = false;
   page: any = false;
   selected: any;
-  conf=false;
   dropDown=false;
   private: boolean;
   public: boolean;

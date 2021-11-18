@@ -8,6 +8,8 @@ import { EventService } from 'src/app/shared/Service/event.service';
 })
 export class CommunityPage implements OnInit {
   isScrollTop = false;
+
+  dropDown: boolean;
   selected: any;
   events = [
     {
@@ -61,7 +63,10 @@ export class CommunityPage implements OnInit {
   }
   ngOnInit() {
     this.selected = 'Pages';
+
   }
+
+
   doRefresh(event) {
    // this.posts = [];
     setTimeout(() => {
