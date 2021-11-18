@@ -11,19 +11,14 @@ export class AddPage implements OnInit {
   selected: any;
   conf=false;
   dropDown=false;
+  private: boolean;
+  public: boolean;
   constructor() { }
 
   ngOnInit() {
+    this.private = false;
+    this.public = true;
     this.selected = 'Page';
-  }
-
-   toggleConf() {
-    if(this.conf===false){
-      this.conf=true;
-    }
-    else if (this.conf===true){
-      this.conf=false;
-    }
   }
 
   openDropDown(){
