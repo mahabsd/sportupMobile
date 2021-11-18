@@ -15,7 +15,11 @@ export class ShowEventPage implements OnInit {
      private eventService: EventService) { }
 
   ngOnInit() {
+
   }
+
+
+
   interest() {
     this.interrested = true;
   }
