@@ -1,4 +1,3 @@
-
 <app-header title="Créer" [isCommunityCreate]="true"></app-header>
 
 <ion-content>
@@ -18,13 +17,15 @@
   <ion-grid *ngIf="selected === 'Page'" class="page">
     <div>Informations sur la page:</div>
     <ion-item class="pageName">
-      <input placeholder="Nom de la page (Obligatoire)" type=""/>
+      <input placeholder="Nom de la page (Obligatoire)" type="" />
     </ion-item>
-    <div  style="margin-top: 10px; font-size:12px;color:grey;width:90%">Utilisez le nom de votre entreprise, marque ou organisation, ou un nom qui explique l'objet de la page</div>
+    <div style="margin-top: 10px; font-size:12px;color:grey;width:90%">Utilisez le nom de votre entreprise, marque ou
+      organisation, ou un nom qui explique l'objet de la page</div>
     <ion-item class="pageCategory">
-      <input placeholder="Catégorie (Obligatoire)" type=""/>
+      <input placeholder="Catégorie (Obligatoire)" type="" />
     </ion-item>
-    <div style="margin-top: 10px; font-size:12px; color:grey;width:90%">Choisissez une catégorie qui décrit le type de l'entreprise, d'organisation ou de sujet que votre page représente</div>
+    <div style="margin-top: 10px; font-size:12px; color:grey;width:90%">Choisissez une catégorie qui décrit le type de
+      l'entreprise, d'organisation ou de sujet que votre page représente</div>
 
     <ion-item class="description">
       <textarea placeholder="Description" rows=5></textarea>
@@ -36,31 +37,31 @@
 
   </ion-grid>
 
-  <ion-grid  *ngIf="selected === 'Evennement'">
+  <ion-grid *ngIf="selected === 'Evennement'">
     <ion-item class="pageName">
-      <input placeholder="Nom de l'evennement (Obligatoire)" type=""/>
+      <input placeholder="Nom de l'evennement (Obligatoire)" type="" />
     </ion-item>
     <ion-row class="eventDate">
       <ion-item class="dateInput">
         <label for="">date de début</label>
-        <input placeholder="" type="date"/>
+        <input placeholder="" type="date" />
       </ion-item>
       <ion-item class="dateInput">
-        <label for="" >date de fin</label>
-        <input placeholder="" type="date"/>
+        <label for="">date de fin</label>
+        <input placeholder="" type="date" />
       </ion-item>
     </ion-row>
-      <ion-row class="eventHour">
+    <ion-row class="eventHour">
       <ion-item class="dateInput">
         <label for="">heure de début</label>
-        <input placeholder="" type="date"/>
+        <input placeholder="" type="date" />
       </ion-item>
       <ion-item class="dateInput">
         <label for="">heure de fin</label>
-        <input placeholder="" type="date"/>
+        <input placeholder="" type="date" />
       </ion-item>
     </ion-row>
-   <!-- <ion-list style="margin-top: 10px;" >
+    <!-- <ion-list style="margin-top: 10px;" >
 
       <ion-item style="background-color: #F1F2F2;">
         <ion-list-header class="confidentiality">
@@ -75,47 +76,52 @@
 
       </ion-item>
     </ion-list>-->
-    <div style="display: flex;align-items:center;position:relative">
+    <div style="display: flex;flex-direction:column; align-items:flex-start;position:relative;border-radius:10px; width:70%; background-color: #F1F2F2;">
       <span style="margin-right:10px">confidentialité</span>
-      <ng-container style="display: flex;align-items:center"  *ngIf="conf===false;else private" >
-        <img style="width:15px;height:15px" src="../../../assets/svg/globe.svg" alt="">
-        <span>Public</span>
-      </ng-container>
-      <ng-template style="display: flex;align-items:center" #private>
-        <img style="width:15px;height:15px"  src="../../../assets/svg/lock.svg" alt="">
-        <span>Private</span>
-      </ng-template>
-      <ng-container *ngIf="dropDown===false;else open" >
-        <ion-icon (click)="openDropDown()" name="chevron-forward-outline"></ion-icon>
-      </ng-container>
-      <ng-template #open>
-        <ion-icon (click)="openDropDown()" name="chevron-down-outline"></ion-icon>
-      </ng-template>
-    <div *ngIf="dropDown===true;else close">
-      <div style="position: absolute; display:flex;flex-direction:column;z-index:10;background-color:white;box-shadow:-5px 5px 10px black;border-radius:10px;transform:translateX(-100px) translateY(25px)">
-        <div (click)="toggleConf()" style="display: flex;align-items:center">
-          <img style="width:20px;height:20px"  src="../../../assets/svg/lock.svg" alt="">
-          <div style="display: flex;flex-direction:column">
-            <span>Private</span>
-            <span style="font-size: 10px;">Only invited people can see the event</span>
+      <div>
+        <ng-container style="display: flex;align-items:center" *ngIf="conf===false;else private">
+          <img style="width:15px;height:15px" src="../../../assets/svg/globe.svg" alt="">
+          <span>Public</span>
+        </ng-container>
+        <ng-template style="display: flex;align-items:center" #private>
+          <img style="width:15px;height:15px" src="../../../assets/svg/lock.svg" alt="">
+          <span>Private</span>
+        </ng-template>
+        <ng-container *ngIf="dropDown===false;else open">
+          <ion-icon (click)="openDropDown()" name="chevron-forward-outline"></ion-icon>
+        </ng-container>
+        <ng-template #open>
+          <ion-icon (click)="openDropDown()" name="chevron-down-outline"></ion-icon>
+        </ng-template>
+      </div>
+      <div *ngIf="dropDown===true;else close">
+        <div
+          style="position: absolute; display:flex;flex-direction:column;z-index:10;background-color:white;box-shadow:-5px 5px 10px rgb(113, 113, 113);border-radius:10px;transform:translateX(-150px) translateY(25px)">
+          <div (click)="toggleConf()" style="display: flex;align-items:center">
+            <img style="width:20px;height:20px" src="../../../assets/svg/lock.svg" alt="">
+            <div style="display: flex;flex-direction:column">
+              <span>Private</span>
+              <span style="font-size: 10px;">Only invited people can see the event</span>
+            </div>
+            <ng-container *ngIf="conf===true">
+              <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </ng-container>
           </div>
-        </div>
-        <div (click)="toggleConf()" style="display: flex;align-items:center">
-          <img style="width:20px;height:20px" src="../../../assets/svg/globe.svg" alt="">
-          <div style="display: flex;flex-direction:column">
-            <span>Public</span>
-            <span style="font-size: 10px;">Anyone can see the event</span>
-          </div>
-          <ng-container>
+          <div (click)="toggleConf()" style="display: flex;align-items:center">
             <img style="width:20px;height:20px" src="../../../assets/svg/globe.svg" alt="">
-          </ng-container>
-
+            <div style="display: flex;flex-direction:column">
+              <span>Public</span>
+              <span style="font-size: 10px;">Anyone can see the event</span>
+            </div>
+            <ng-container *ngIf="conf===false">
+              <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </ng-container>
+          </div>
         </div>
       </div>
-    </div>
-    <ng-template #close>
-      <div style="position: absolute;"></div>
-    </ng-template>
+      <ng-template #close>
+        <div style="position: absolute;"></div>
+      </ng-template>
 
     </div>
 
