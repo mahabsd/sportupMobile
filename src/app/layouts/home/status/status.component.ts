@@ -8,7 +8,6 @@ import {
 } from '@angular/core';
 import {
   IonVirtualScroll,
-  NavController,
   PopoverController,
   ModalController,
   LoadingController,
@@ -17,7 +16,6 @@ import { ReactionsPage } from '../reactions/reactions.page';
 import { PostService } from '../../../Shared/Service/post.service';
 import { Post } from '../../../Shared/Model/Post';
 import { forkJoin, Observable } from 'rxjs';
-import { FormGroup } from '@angular/forms';
 import { Comment } from '../../../Shared/Model/Comment';
 import { CommentService } from '../../../Shared/Service/comment.service';
 import { CommentsPage } from '../comments/comments.page';
@@ -32,6 +30,8 @@ import { Router } from '@angular/router';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 import { Socket } from 'ngx-socket-io';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { EventListModalComponent } from '../../planning/event-list-modal/event-list-modal.component';
 
 @Component({
   selector: 'app-status',
@@ -58,9 +58,7 @@ export class StatusComponent implements OnInit {
   secondNewMediaFiles: any = [];
   thirdNewMediaFiles: any = [];
   tempMedia: any = [];
-  // eslint-disable-next-line @typescript-eslint/naming-convention
   Post$: Observable<Post[]>;
-  // user: any;
   tap = 0;
   press = 0;
   liked = false;
@@ -79,6 +77,8 @@ export class StatusComponent implements OnInit {
   iduser;
   idProfilePassed;
   user$: any;
+
+  name: any;
   constructor(
     private commentService: CommentService,
     private postService: PostService,
@@ -92,6 +92,7 @@ export class StatusComponent implements OnInit {
     private followerService: FollowerService,
     private notificationsService: NotificationsService,
     private socket: Socket,
+    private userService: UserService,
 
   ) {
     window.addEventListener('contextmenu', (e) => {
@@ -101,10 +102,10 @@ export class StatusComponent implements OnInit {
   async ngOnInit() {
     this.getMe();
     await this.getCommentByPost();
-    // console.log(this.post.post?.id);
-    // console.log(this.post.post?.user.name);
+    this.commentForm = new FormGroup({
+      contentControl: new FormControl('', Validators.required)
+    });
   }
-
 
   getMe() {
     this.userervice.getMe().subscribe((res) => {
@@ -155,7 +156,30 @@ export class StatusComponent implements OnInit {
     this.disLikeFn.emit({ post, index: this.index });
   }
 
-  onComment() { }
+   sendComment(post)  {
+    this.comments = [];
+    this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
+    this.commentService.addComment(this.comment, post._id).subscribe(res =>  {
+
+    });
+    this.comment = new Comment();
+    this.getCommentByPost();
+
+     console.log(this.comment);
+     this.userService.getMe().subscribe((res) => {
+      this.user$ = res.data.data;
+      this.notif.reciever = post.user._id;
+      this.notif.userOwner = this.user$._id;
+      this.notif.text = "a commenté votre status";
+      this.notif.postId = post._id
+      this.socket.connect();
+      this.socket.emit('notifications', { msg: 'hey' });
+      this.socket.fromEvent('notifications').subscribe( (res) => {
+      this.createNotif(this.notif);
+      });
+    });
+
+  }
   share(post) {
     this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
     this.shared = true;
@@ -195,20 +219,7 @@ export class StatusComponent implements OnInit {
     });
   }
 
-  async presentModal(post) {
-    const modal = await this.modalController.create({
-      component: CommentsPage,
-      cssClass: 'my-custom-class',
-      componentProps: {
-        post,
-        comments: this.comments,
-      },
-    });
-    await modal.present();
-    await modal.onWillDismiss().then((result) => {
-      this.getCommentByPost();
-    });
-  }
+
 
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
@@ -268,8 +279,6 @@ export class StatusComponent implements OnInit {
       this.images = images.images;
       this.mediafiles = mediafiles.mediafiles;
       this.tempMedia = mediafiles.mediafiles;
-
-
       if (this.tempMedia.length < 4) {
         this.newMediaFiles = this.tempMedia.splice(0, 1);
       }
@@ -326,7 +335,7 @@ export class StatusComponent implements OnInit {
     );
   }
   createNotif(notif: any) {
-    this.notificationsService.postNotification(notif).subscribe(res => console.log(res));
+    this.notificationsService.postNotification(notif).subscribe();
   }
 
 }
