@@ -1,6 +1,6 @@
 <ion-slides [options]="slideOptsOne"
   >
-    <ion-slide style="display: flex;flex-direction:column" *ngFor="let month of months" >
+    <ion-slide style="display: flex;flex-direction:column" *ngFor="let month of months;let index=index" >
       <div style="display: flex;justify-content:space-between;padding:15px">
         <img style="width: 60px;" src="../../../../assets/svg/yellow-plane.svg" alt="">
         <img style="width: 60px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
@@ -17,6 +17,9 @@
           </div>
           <div>{{month}} </div> <div> {{ date | date : 'yyyy' }} </div>
         </div>
+        <!-- <div *ngFor="let activity of activities" >
+          {{activity.startTime | date : 'MMMM' }}
+        </div> -->
         <img style="width: 60px;" src="../../../../assets/svg/zigzag-horizon.svg" alt="">
         <img style="width: 60px;" src="../../../../assets/svg/blue-plane.svg" alt="">
       </div>
@@ -33,8 +36,8 @@
         <div class="days">
           <div style="border-right: #171716 dashed 1px;border-left: #171716 dashed 1px;" class="day">
             <span style="background-color:#7BC2BF ;padding:2px">Lundi</span>
-            <div *ngFor="let event of events" >
-              <ng-container *ngIf="event.day==='Lundi' && event.month===month" >
+            <div *ngFor="let event of eventsKids" >
+              <ng-container *ngIf="event.date==='0' && event.month===index" >
                 <div style="display: flex;flex-direction:column;justify-content:space-around">
                   <span style="margin:5px 0;font-size:12px">{{event.date}} {{event.month}}</span>
                   <div style="display: flex;flex-direction:column;margin:5px 0;padding:2px 0;background-color:#7BC2BF;color:rgb(0, 0, 0)" *ngFor="let event of event.events" >
