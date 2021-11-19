@@ -12,7 +12,6 @@ import { CommentsPage } from './comments/comments.page';
 import { CommentsPageModule } from './comments/comments.module';
 import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
 import { SharedModule } from '../../shared/modules/shared.module';
-
 import { switchMap } from 'rxjs/operators';
 @Injectable()
 export class LazyLoadImageHooks extends IntersectionObserverHooks {
@@ -49,11 +48,11 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     CommentsPageModule,
     PostDisplayModule,
     SharedModule,
-  ],
+    ],
 
 
-  declarations: [HomePage, StatusComponent],
-  exports: [HomePage, StatusComponent],
+  declarations: [HomePage,StatusComponent],
+  exports: [HomePage,StatusComponent],
   providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],
 
 })

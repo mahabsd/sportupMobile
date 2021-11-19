@@ -259,7 +259,7 @@
     </ion-col>
     <ion-col style="text-align: end">
       <ion-chip>
-        <ion-button style="display: flex;align-items:center" (click)="presentModal(post)" shape="round" fill="clear" size="large">
+        <ion-button style="display: flex;align-items:center" shape="round" fill="clear" size="large">
           <img class="iconstyle" src="../../../../assets/iconPost/icon_comment.svg" />
           <span style="color:#7F867D;font-size:14px">{{ comments?.length }}</span>
         </ion-button>
@@ -316,10 +316,11 @@
       <div style="display: flex;justify-content:space-between;align-items:center; background-color:#EEEFEF; border-radius:10px;margin:10px 0 20px 0">
         <div style="display: flex;align-items:center;padding:0px 10px">
           <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover"  src={{apiImgUser+user.photo}} routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
-          <input placeholder="Ecrivez un commentaire ..." style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
+          <input placeholder="Ecrivez un commentaire ..." [(ngModel)]="comment.content"  style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
         </div>
         <div style="display: flex;">
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" alt="">
+          <ion-icon style="width: 20px;height:20px;margin-right:5px;color:gray"  (click)="sendComment(post.post||post)" name="send"></ion-icon>
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" (click)="sendComment(post.post||post)" alt="">
           <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
           <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
           <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
