@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeekSlidesComponent implements OnInit {
   months=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"]
+  date = new Date();
   events = [
     {day: "Lundi",
       date: "5",

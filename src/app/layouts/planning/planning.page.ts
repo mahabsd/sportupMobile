@@ -22,7 +22,6 @@ export class PlanningPage implements OnInit {
   next() {
     this.slides.slideNext();
   }
-  
   back() {
     this.slides.slidePrev();
   }
@@ -32,7 +31,7 @@ export class PlanningPage implements OnInit {
     this.selectedDate = event.selectedTime;
   }
 
-  
+
   @ViewChild(CalendarModalPage) myCal: CalendarComponent;
   constructor(public modalController: ModalController,private alertController:AlertController) { }
 
@@ -57,7 +56,7 @@ async presentAlertConfirm() {
         role: 'cancel',
         cssClass: 'secondary',
         handler: () => {
-          
+
           console.log('Confirm Cancel: blah');
         }
       }, {

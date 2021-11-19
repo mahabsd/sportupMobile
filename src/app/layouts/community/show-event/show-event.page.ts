@@ -11,14 +11,13 @@ import { ShowmorePage } from '../showmore/showmore.page';
 export class ShowEventPage implements OnInit {
   interrested;
   isScrollTop: boolean;
+  dropDown: boolean;
   constructor(public popoverController: PopoverController,
      private eventService: EventService) { }
 
   ngOnInit() {
-
+    this.dropDown=false;
   }
-
-
 
   interest() {
     this.interrested = true;
@@ -50,5 +49,12 @@ export class ShowEventPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
-
+  openDropDown() {
+    if(this.dropDown===false){
+      this.dropDown=true;
+    }
+    else if(this.dropDown===true){
+      this.dropDown=false;
+    }
+  }
 }
