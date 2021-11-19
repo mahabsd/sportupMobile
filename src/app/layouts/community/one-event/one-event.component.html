@@ -1,13 +1,13 @@
-<div style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:10px;border-radius:10px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
-  <div style="display:flex; justify-content:space-between">
-    <div style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px">
+<div style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:0 10px ;border-radius:5px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
+  <div  style="display:flex; justify-content:space-between">
+    <div routerLink="/community/show-event" style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px">
       <span style="color:rgb(95, 95, 95);font-size:large">{{event.name}}</span>
       <span>{{event.participants}} participants</span>
     </div>
-    <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+    <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;height:20px">
       <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
       <ng-container *ngIf="dropDown">
-        <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-150px) translateY(10px);display:flex;flex-direction:column;width:180px;color:rgb(168, 168, 168)">
+        <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-150px) translateY(10px);display:flex;flex-direction:column;width:180px;color:rgb(168, 168, 168);box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);">
           <span>Enregistrer</span>
           <span>Inviter des amis</span>
           <span>Signaler l'évenement</span>
@@ -16,7 +16,7 @@
     </div>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center">
-    <div style="display: flex;font-size:12px">
+    <div routerLink="/community/show-event" style="display: flex;font-size:12px">
       <div style="margin-right: 20px;">
         {{event.day}} {{event.date}}
       </div>
@@ -31,6 +31,7 @@
       box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
       border-radius: 10px;
       margin-right:10px;
+      margin-bottom:5px;
       height: 30px;
       color: #3b8c4f;
       font-weight: bold;
@@ -43,13 +44,14 @@
       box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
       border-radius: 10px;
       margin-right:10px;
+      margin-bottom:5px;
       height: 30px;
       color: white;
       font-weight: bold;
       background: #3b8c4f" *ngIf="interrested" (click)="notinterested()">
           intéréssé
         </button>
-      <img  style="width: 33px;height:33px;background-color:white; padding:4px;border-radius:10px;box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);" src="../../assets/svg/share-event.svg" alt="share">
+      <img style="width: 33px;height:33px;background-color:white; padding:4px;border-radius:10px;box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);margin-bottom:5px" src="../../assets/svg/share-event.svg" alt="share">
     </div>
   </div>
 </div>
