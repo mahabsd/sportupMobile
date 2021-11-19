@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { NotificationsService } from 'src/app/shared/Service/notifications.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { CalendarComponent } from 'ionic2-calendar';
+import { Activity } from 'src/app/shared/Model/Activity';
 
 @Component({
   selector: 'app-planning',
@@ -186,7 +187,7 @@ export class PlanningPage implements OnInit {
   eventDays: any[];
   selectedMonth: any;
   user$: any;
-  activities: import("/Users/sportup/Desktop/sportupMobile-maha/sportupMobile/src/app/shared/Model/Activity").Activity[];
+  activities: Activity[];
 
   constructor(private modalCtrl: ModalController,
     private calendarService: CalendarService,
@@ -531,7 +532,11 @@ export class PlanningPage implements OnInit {
   getAllCalendarEvents() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = res.data.data;
-      this.calendarService.getActivitiesbyID(this.user$._id).subscribe(res => this.activities = res);
+      this.calendarService.getActivitiesbyID(this.user$._id).subscribe(async res => {
+        this.activities = await res
+      });
+
     });
+
   }
 }

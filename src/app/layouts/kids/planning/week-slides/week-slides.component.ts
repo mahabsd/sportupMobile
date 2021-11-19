@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { CalendarService } from 'src/app/shared/Service/calendar.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
 
 @Component({
   selector: 'app-week-slides',
@@ -6,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./week-slides.component.scss'],
 })
 export class WeekSlidesComponent implements OnInit {
+  activities
+  dates = {activity:{}, startDate: "", startDay: "", startMonth: "", startYear: "",endDate: "", endDay: "", endMonth: "", endYear: "" }
+  eventsKids=[]
   months=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"]
-  date = new Date();
   events = [
     {day: "Lundi",
       date: "5",
@@ -164,17 +168,54 @@ export class WeekSlidesComponent implements OnInit {
       ]
     }
   ]
-  constructor() { }
+  date=new Date()
+  user$: any;
+  constructor(private calendarService: CalendarService,private userService: UserService) { }
 
-  lundi = []
-  mardi = []
-  mercredi = []
-  jeudi = []
-  vendredi = []
-  samedi = []
-  dimac=[]
+  ngOnInit() {
+    this.getAllCalendarEvents()
 
-  ngOnInit() {}
+  }
+  getDayOfTheWeek(date) {
+    date = new Date(date)
+    return date.getDay();
+  }
+  getDayOfTheMonth(date) {
+    date = new Date(date)
+    return date.getDate();
+  }
+  getMonth(date) {
+    date = new Date(date)
+    return date.getMonth();
+  }
+  getYear(date) {
+    date = new Date(date)
+    return date.getFullYear();
+  }
+
+  getAllCalendarEvents() {
+    this.userService.getMe().subscribe(async (res) => {
+      this.user$ = res.data.data;
+      this.calendarService.getActivitiesbyID(this.user$._id).subscribe(async res => {
+        this.activities = await res
+        this.activities.map(el => {
+          this.dates.startDate = this.getDayOfTheWeek(el.startTime)
+          this.dates.startDay = this.getDayOfTheMonth(el.startTime)
+          this.dates.startMonth = this.getMonth(el.startTime)
+          this.dates.startYear = this.getYear(el.startTime)
+          this.dates.endDate = this.getDayOfTheWeek(el.endTime)
+          this.dates.endDay = this.getDayOfTheMonth(el.endTime)
+          this.dates.endMonth = this.getMonth(el.endTime)
+          this.dates.endYear = this.getYear(el.endTime)
+          this.dates.activity=el
+          this.eventsKids.push(this.dates)
+        })
+        console.log(this.eventsKids);
+      });
+
+    });
+
+  }
   slideOptsOne = {
     slidesPerView: 1,
     coverflowEffect: {
