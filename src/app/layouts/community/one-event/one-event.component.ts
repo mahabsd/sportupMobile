@@ -12,7 +12,7 @@ export class OneEventComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.dropDown=false
+    this.dropDown=false;
   }
   interest() {
     this.interrested = true;

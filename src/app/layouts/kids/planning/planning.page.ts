@@ -1,5 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {  IonSlides } from '@ionic/angular';
+import { AlertController, IonSlides, ModalController } from '@ionic/angular';
+import { CalendarService } from 'src/app/shared/Service/calendar.service';
+import { CalendarModalPage } from '../../Planing/calendar-modal/calendar-modal.page';
+import * as moment from 'moment';
+import { NotificationsService } from 'src/app/shared/Service/notifications.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
+import { CalendarComponent } from 'ionic2-calendar';
+
 @Component({
   selector: 'app-planning',
   templateUrl: './planning.page.html',
@@ -7,8 +14,11 @@ import {  IonSlides } from '@ionic/angular';
 })
 export class PlanningPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
+  @ViewChild(CalendarComponent) myCal: CalendarComponent;
+
   events = [
-    {day: "Lundi",
+    {
+      day: "Lundi",
       date: "5",
       month: "Mars",
       year: "2021",
@@ -16,21 +26,22 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     },
-    {day: "Mardi",
+    {
+      day: "Mardi",
       date: "6",
       month: "Janvier",
       year: "2021",
@@ -38,21 +49,22 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     },
-    {day: "Mercredi",
+    {
+      day: "Mercredi",
       date: "7",
       month: "Février",
       year: "2021",
@@ -60,21 +72,22 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     },
-    {day: "Jeudi",
+    {
+      day: "Jeudi",
       date: "8",
       month: "Mai",
       year: "2021",
@@ -82,21 +95,22 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     },
-    {day: "Vendredi",
+    {
+      day: "Vendredi",
       date: "9",
       month: "Juin",
       year: "2021",
@@ -104,21 +118,22 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     },
-    {day: "Samedi",
+    {
+      day: "Samedi",
       date: "10",
       month: "Juillet",
       year: "2021",
@@ -126,21 +141,22 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     },
-    {day: "Dimanche",
+    {
+      day: "Dimanche",
       date: "11",
       month: "Aout",
       year: "2021",
@@ -148,24 +164,35 @@ export class PlanningPage implements OnInit {
         {
           from: 8,
           to: 9,
-          text:"cours de français"
+          text: "cours de français"
         },
         {
           from: 10,
           to: 11,
-          text:"dance kids"
+          text: "dance kids"
         },
         {
           from: 12,
           to: 14,
-          text:"eat lunch"
+          text: "eat lunch"
         }
       ]
     }
-  ]
-    months=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Septembre","Octobre","Novembre","Décembre"]
-  ;
-  constructor() { }
+  ];
+  months = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet",
+    "Septembre", "Octobre", "Novembre", "Décembre"];
+  eventSource = [];
+  notif: any;
+  eventDays: any[];
+  selectedMonth: any;
+  user$: any;
+  activities: import("/Users/sportup/Desktop/sportupMobile-maha/sportupMobile/src/app/shared/Model/Activity").Activity[];
+
+  constructor(private modalCtrl: ModalController,
+    private calendarService: CalendarService,
+    private notificationsService: NotificationsService,
+    private alertCtrl: AlertController,
+    private userService: UserService) { }
   checkIfNavDisabled(object, slideView) {
     this.checkisBeginning(object, slideView);
     this.checkisEnd(object, slideView);
@@ -183,7 +210,7 @@ export class PlanningPage implements OnInit {
   }
 
   slideOptsTwo = {
-    initialSlide: this.events.length-1,
+    initialSlide: this.events.length - 1,
     spaceBetween: -50,
     slidesPerView: 3,
     centeredSlides: false,
@@ -198,12 +225,10 @@ export class PlanningPage implements OnInit {
     on: {
       beforeInit() {
         const swiper = this;
-
         swiper.classNames.push(
           `${swiper.params.containerModifierClass}coverflow`
         );
         swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);
-
         swiper.params.watchSlidesProgress = true;
         swiper.originalParams.watchSlidesProgress = true;
       },
@@ -252,7 +277,7 @@ export class PlanningPage implements OnInit {
 
           $slideEl.transform(slideTransform);
           $slideEl[0].style.zIndex =
-            -Math.abs(Math.round(offsetMultiplier)) ;
+            -Math.abs(Math.round(offsetMultiplier));
           if (params.slideShadows) {
             // Set shadows
             let $shadowBeforeEl = isHorizontal
@@ -334,24 +359,24 @@ export class PlanningPage implements OnInit {
           const slideOffset = $slideEl[0].swiperSlideOffset;
           const offsetMultiplier = ((center - slideOffset - (slideSize / 2)) / slideSize) * params.modifier;
 
-           let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
+          let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
           let rotateX = isHorizontal ? 0 : rotate * offsetMultiplier;
           // var rotateZ = 0
           let translateZ = -translate * Math.abs(offsetMultiplier);
 
-           let translateY = isHorizontal ? 0 : params.stretch * (offsetMultiplier);
+          let translateY = isHorizontal ? 0 : params.stretch * (offsetMultiplier);
           let translateX = isHorizontal ? params.stretch * (offsetMultiplier) : 0;
 
-           // Fix for ultra small values
+          // Fix for ultra small values
           if (Math.abs(translateX) < 0.001) translateX = 0;
           if (Math.abs(translateY) < 0.001) translateY = 0;
           if (Math.abs(translateZ) < 0.001) translateZ = 0;
           if (Math.abs(rotateY) < 0.001) rotateY = 0;
           if (Math.abs(rotateX) < 0.001) rotateX = 0;
 
-           const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-           $slideEl.transform(slideTransform);
+          $slideEl.transform(slideTransform);
           $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
           if (params.slideShadows) {
             // Set shadows
@@ -370,7 +395,7 @@ export class PlanningPage implements OnInit {
           }
         }
 
-         // Set correct perspective for IE10
+        // Set correct perspective for IE10
         if (swiper.support.pointerEvents || swiper.support.prefixedPointerEvents) {
           const ws = $wrapperEl[0].style;
           ws.perspectiveOrigin = `${center}px 50%`;
@@ -386,15 +411,127 @@ export class PlanningPage implements OnInit {
     }
   }
 
-  next(){
+  next() {
     this.slides.slideNext();
   }
 
-  prev(){
+  prev() {
     this.slides.slidePrev();
   }
 
   ngOnInit() {
+    this.getMe();
+    this.getAllCalendarEvents();
   }
+  getMe() {
+    this.userService.getMe().subscribe(async (res) => {
+      this.user$ = res.data.data;
+      // console.log(this.user$);
+      this.loadEvents();
+    });
+  }
+  open() {
+    console.log('heyyy');
+  }
+  async openCalModal(sTime, evnt) {
+    console.log('hey');
+    const modal = await this.modalCtrl.create({
+      component: CalendarModalPage,
+      cssClass: 'cal-modal',
+      backdropDismiss: false,
+      componentProps: {
+        selectedTime: sTime,
+        selectedEvent: evnt,
+      },
+    });
+    await modal.present();
 
+    modal.onDidDismiss().then((result) => {
+      if (result.data && result.data.event && result.data.event.startTime) {
+        const event = result.data.event;
+        const dateParsedStart: Date = moment(
+          event.startTime,
+          'YYYY-MM-DD HH:mm'
+        ).toDate();
+        const dateParsedEnd: Date = moment(
+          event.endTime,
+          'YYYY-MM-DD HH:mm'
+        ).toDate();
+
+        event.startTime = dateParsedStart;
+        event.endTime = dateParsedEnd;
+
+        if (evnt === null) {
+          this.calendarService.addActivity(event).subscribe(async (res) => {
+            this.eventSource.push(res);
+            this.loadEvents();
+          });
+          this.createNotif(event);
+        } else {
+          this.calendarService.updateEvent(event).subscribe((res) => {
+            this.modalCtrl.dismiss();
+            this.loadEvents();
+          });
+        }
+        this.extractEventDays();
+        this.myCal.loadEvents();
+      }
+    });
+
+  }
+  loadEvents() {
+    this.calendarService.getActivitiesbyID(this.user$._id).subscribe((res) => {
+      this.eventSource = res;
+      // console.log(res);
+      this.eventSource.forEach((event) => {
+        event.startTime = this.formateEventDates(event.startTime);
+        event.endTime = this.formateEventDates(event.endTime);
+      });
+      this.extractEventDays();
+    });
+
+  }
+  formateEventDates(eventTime) {
+    // console.log(eventTime);
+
+    const dateFormate: Date = moment(eventTime, 'YYYY-MM-DD HH:mm').toDate();
+    return dateFormate;
+  }
+  // Calendar event was clicked
+  async onEventSelected(event) {
+    const alert = await this.alertCtrl.create({
+      header: event.activity,
+      subHeader: event.lieu,
+      // eslint-disable-next-line max-len
+      message: 'Activité: ' + event.notes,
+      buttons: ['OK'],
+    });
+    alert.present();
+  }
+  extractEventDays() {
+    //Get event days by selected month
+    // eslint-disable-next-line max-len
+    this.eventDays = [
+      ...new Set(
+        this.eventSource
+          .filter((event) => event.startTime.getMonth() === this.selectedMonth)
+          .map((event) => event.startTime.getDate())
+          .sort((a, b) => a - b)
+      ),
+    ];
+  }
+  createNotif(event) {
+    this.getMe();
+    this.notif.userOwner = this.user$._id;
+    this.notif.reciever = this.user$._id;
+    this.notif.text = 'a créé un événnement';
+    this.notif.event = event._id;
+    this.notificationsService.postNotification(this.notif).subscribe(res => console.log(res));
+  }
+  getAllCalendarEvents() {
+    this.userService.getMe().subscribe(async (res) => {
+      this.user$ = res.data.data;
+      this.calendarService.getActivitiesbyID(this.user$._id).subscribe(res => this.activities = res);
+    });
+  }
 }

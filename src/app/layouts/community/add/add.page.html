@@ -61,61 +61,54 @@
         <input placeholder="" type="date" />
       </ion-item>
     </ion-row>
-    <!-- <ion-list style="margin-top: 10px;" >
-
-      <ion-item style="background-color: #F1F2F2;">
-        <ion-list-header class="confidentiality">
-          <ion-label>
-            Confidentialité
-          </ion-label>
-          <ion-select placeholder="" style="background-color: #F1F2F2;">
-            <ion-select-option value="Private">Private</ion-select-option>
-            <ion-select-option value="Public">Public</ion-select-option>
-          </ion-select>
-        </ion-list-header>
-
-      </ion-item>
-    </ion-list>-->
-    <div style="display: flex;flex-direction:column; align-items:flex-start;position:relative;border-radius:10px; width:70%; background-color: #F1F2F2;margin:5px">
-      <span style="margin-right:10px; color: #909890;">confidentialité</span>
-      <div>
-        <ng-container style="display: flex;align-items:center" *ngIf="public;else privacy">
-          <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/globe.svg" alt="">
-          <span style="color:#8F978F">Public</span>
-        </ng-container>
-        <ng-template style="display: flex;align-items:center" #privacy>
-          <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/lock.svg" alt="">
-          <span style="color:#8F978F">Private</span>
-        </ng-template>
-        <ng-container *ngIf="dropDown===false;else open">
-          <ion-icon (click)="openDropDown()" name="chevron-forward-outline"></ion-icon>
-        </ng-container>
-        <ng-template #open>
-          <ion-icon (click)="openDropDown()" name="chevron-down-outline"></ion-icon>
-        </ng-template>
+    <div (click)="openDropDown()" (blur)="openDropDown()"
+      style="display: flex;flex-direction:column; align-items:flex-start;position:relative;border-radius:20px; width:70%; background-color: #F1F2F2;margin:5px;">
+      <span style="margin-right:10px; color: #909890;  margin-left:10px">confidentialité</span>
+      <div style="margin-left:15px; display:flex;align-items: center; justify-content:space-between;width: 90%; padding:5px">
+        <div>
+          <ng-container style="display: flex;align-items:center" *ngIf="public;else privacy">
+            <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/globe.svg" alt="">
+            <span style="color:#8F978F; font-weight:bold;">Public</span>
+          </ng-container>
+          <ng-template style="display: flex;align-items:center" #privacy>
+            <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/lock.svg" alt="">
+            <span style="color:#8F978F; font-weight:bold;">Private</span>
+          </ng-template>
+        </div>
+        <div>
+          <ng-container *ngIf="dropDown===false;else open">
+            <ion-icon style="color:#8F978F" name="chevron-forward-outline"></ion-icon>
+          </ng-container>
+          <ng-template #open>
+            <ion-icon style="color:#8F978F" name="chevron-down-outline"></ion-icon>
+          </ng-template>
+        </div>
       </div>
       <div *ngIf="dropDown===true;else close">
         <div
-          style="position: absolute;padding:12px;width:250px; display:flex;flex-direction:column;z-index:10;background-color:white;box-shadow:-5px 5px 10px rgb(113, 113, 113);border-radius:10px;transform:translateX(20px) translateY(10px)">
-          <div (click)="private = true;public=false" style="display: flex;align-items:center;justify-content:space-between">
+          style="position: absolute;padding:12px;width:250px; display:flex;flex-direction:column;z-index:10;background-color:white;
+          box-shadow:-5px 5px 10px rgb(113, 113, 113);border-radius:10px;transform:translateX(20px) translateY(3px)">
+          <div (click)="private = true;public=false"
+            style="display: flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/lock.svg" alt="">
-            <div style="display: flex;flex-direction:column">
-              <span style="font-size: 14px;">Private</span>
-              <span style="font-size: 10px;">Only invited people can see the event</span>
-            </div>
+              <div style="display: flex;flex-direction:column">
+                <span style="font-size: 14px; color:#8F978F">Private</span>
+                <span style="font-size: 10px;">Only invited people can see the event</span>
+              </div>
             </div>
             <ng-container *ngIf="private">
               <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
             </ng-container>
           </div>
-          <div (click)="public = true; private=false" style="display: flex;align-items:center;justify-content:space-between">
+          <div (click)="public = true; private=false"
+            style="display: flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/globe.svg" alt="">
-            <div style="display: flex;flex-direction:column">
-              <span style="font-size:14px">Public</span>
-              <span style="font-size: 10px;">Anyone can see the event</span>
-            </div>
+              <div style="display: flex;flex-direction:column">
+                <span style="font-size:14px;color:#8F978F">Public</span>
+                <span style="font-size: 10px;">Anyone can see the event</span>
+              </div>
             </div>
             <ng-container *ngIf="public">
               <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">

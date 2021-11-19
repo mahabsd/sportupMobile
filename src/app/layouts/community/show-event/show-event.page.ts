@@ -10,10 +10,12 @@ import { EventService } from 'src/app/shared/Service/event.service';
 export class ShowEventPage implements OnInit {
   interrested: boolean;
   isScrollTop: boolean;
+  dropDown: boolean;
   constructor(public popoverController: PopoverController,
   private eventService: EventService) { }
 
   ngOnInit() {
+    this.dropDown=false;
   }
 
   interest() {
@@ -32,5 +34,12 @@ export class ShowEventPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
-
+  openDropDown() {
+    if(this.dropDown===false){
+      this.dropDown=true;
+    }
+    else if(this.dropDown===true){
+      this.dropDown=false;
+    }
+  }
 }

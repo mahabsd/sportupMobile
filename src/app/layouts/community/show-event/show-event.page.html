@@ -17,30 +17,40 @@
           message
         </button>
         <button color="white" style="
-     box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
-     border-radius: 10px;
-     margin: 10px 0 0 10px;
-     height: 30px;
-     width: fit-content;
-     color: #3b8c4f;
-     font-weight: bold;
-     background: white" *ngIf="!interrested" (click)="interest()">
-          ça m'intéresse
-        </button>
-        <button style="
-     box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
-     border-radius: 10px;
-     margin: 10px 0 0 10px;
-     height: 30px;
-     width: fit-content;
-     color: white;
-     font-weight: bold;
-     background: #3b8c4f" *ngIf="interrested" (click)="notinterested()">
-          intéréssé(e)
-        </button>
+        width:120px;
+        box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+        border-radius: 10px;
+        height: 30px;
+        color: #3b8c4f;
+        font-weight: bold;
+        margin: 10px 0 0 10px;
+        background: white" *ngIf="!interrested" (click)="interest()">
+            ça m'intéresse
+          </button>
+          <button style="
+          width:120px;
+          box-shadow: 0px 3px 10px rgba(114, 114, 114, 0.452);
+          border-radius: 10px;
+          margin: 10px 0 0 10px;
+          height: 30px;
+          color: white;
+          font-weight: bold;
+          background: #3b8c4f" *ngIf="interrested" (click)="notinterested()">
+              intéréssé(e)
+            </button>
       </div>
-      <div color="light" class="threePoints" (click)="openEventMenu('ev')">
-        <ion-icon name="ellipsis-horizontal"></ion-icon>
+      <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+        <div class="threePoints">
+          <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+        </div>
+        <ng-container *ngIf="dropDown">
+          <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+          width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+            <span style="font-size: 13px;">Enregistrer</span>
+            <span style="font-size: 13px;">Inviter des amis</span>
+            <span style="font-size: 13px;">Signaler l'évenement</span>
+          </div>
+        </ng-container>
       </div>
     </div>
     <div class="description">
