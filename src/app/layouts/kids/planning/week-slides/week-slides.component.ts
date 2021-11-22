@@ -12,169 +12,12 @@ export class WeekSlidesComponent implements OnInit {
   dates = {activity:{}, startDate: "", startDay: "", startMonth: "", startYear: "",endDate: "", endDay: "", endMonth: "", endYear: "" }
   eventsKids=[]
   months=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"]
-  events = [
-    {day: "Lundi",
-      date: "5",
-      month: "Mars",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    },
-    {day: "Mardi",
-      date: "6",
-      month: "Janvier",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    },
-    {day: "Mercredi",
-      date: "7",
-      month: "Février",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    },
-    {day: "Jeudi",
-      date: "8",
-      month: "Mai",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    },
-    {day: "Vendredi",
-      date: "9",
-      month: "Juin",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    },
-    {day: "Samedi",
-      date: "10",
-      month: "Juillet",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    },
-    {day: "Dimanche",
-      date: "11",
-      month: "Aout",
-      year: "2021",
-      events: [
-        {
-          from: 8,
-          to: 9,
-          text:"cours de français"
-        },
-        {
-          from: 10,
-          to: 11,
-          text:"dance kids"
-        },
-        {
-          from: 12,
-          to: 14,
-          text:"eat lunch"
-        }
-      ]
-    }
-  ]
   date=new Date()
   user$: any;
   constructor(private calendarService: CalendarService,private userService: UserService) { }
 
   ngOnInit() {
     this.getAllCalendarEvents()
-
   }
   getDayOfTheWeek(date) {
     date = new Date(date)
@@ -199,6 +42,7 @@ export class WeekSlidesComponent implements OnInit {
       this.calendarService.getActivitiesbyID(this.user$._id).subscribe(async res => {
         this.activities = await res
         this.activities.map(el => {
+          this.dates={activity:{}, startDate: "", startDay: "", startMonth: "", startYear: "",endDate: "", endDay: "", endMonth: "", endYear: "" }
           this.dates.startDate = this.getDayOfTheWeek(el.startTime)
           this.dates.startDay = this.getDayOfTheMonth(el.startTime)
           this.dates.startMonth = this.getMonth(el.startTime)
@@ -207,10 +51,9 @@ export class WeekSlidesComponent implements OnInit {
           this.dates.endDay = this.getDayOfTheMonth(el.endTime)
           this.dates.endMonth = this.getMonth(el.endTime)
           this.dates.endYear = this.getYear(el.endTime)
-          this.dates.activity=el
-          this.eventsKids.push(this.dates)
+          this.dates.activity = el
+          this.eventsKids=[...this.eventsKids,this.dates]
         })
-        console.log(this.eventsKids);
       });
 
     });
