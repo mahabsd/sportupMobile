@@ -29,7 +29,7 @@ export class OneStatusPage implements OnInit {
   id= this.activatedRoute.snapshot.params.id;
   constructor(
     private postService: PostService,
-    private userervice: UserService,
+    private userservice: UserService,
     private activatedRoute: ActivatedRoute
   ) { }
 
@@ -45,7 +45,7 @@ export class OneStatusPage implements OnInit {
     this.showComment = false;
   }
   getMe() {
-    this.userervice.getMe().subscribe((res) => {
+    this.userservice.getMe().subscribe((res) => {
       this.isUserConnected = res.data.data._id;
       this.user$ = res.data.data;
     });
@@ -53,7 +53,7 @@ export class OneStatusPage implements OnInit {
   getPost() {
     this.postService.getPost(this.id).subscribe(async res => {
       this.post = await res
-      this.comments = res.comments
+      // this.comments = res.comments
       this.mediafiles = res.mediafiles
       this.user = res.user
       console.log(res);

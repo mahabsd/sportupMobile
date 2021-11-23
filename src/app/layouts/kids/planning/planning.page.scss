@@ -63,16 +63,9 @@ select{
   font-size: 13px;
 }
 ion-slides {
+  width: 400px;
   --bullet-background: #C3B5BA;
   --bullet-background-active: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%)
 }
 
-.swiper-slide {
-    opacity: 0.2;
-    transform: scale(50%);
-}
-//active slide
-.swiper-slide-next {
-  opacity: 1;
-  transform: scale(100%);
-}
+
