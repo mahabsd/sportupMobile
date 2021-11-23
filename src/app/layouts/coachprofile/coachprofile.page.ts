@@ -68,6 +68,7 @@ export class CoachprofilePage implements OnInit {
     this.getUserByid();
     this.getfollow();
     this.publiations();
+    this.getfollowers();
 
   }
 
@@ -89,8 +90,6 @@ export class CoachprofilePage implements OnInit {
   getUserByid() {
 
     this.userService.getMe().subscribe(async res => {
-      console.log(res.data.data);
-
       this.userService.getUser(this.idprofilePassed).subscribe(
         (response) => {
           this.user$ = response.data.data;
@@ -113,7 +112,6 @@ export class CoachprofilePage implements OnInit {
     this.pub = true;
   }
   segmentChanged(ev: any) {
-    console.log('Segment changed', ev.detail.value);
     this.selected = ev.detail.value;
 
   }
@@ -126,15 +124,10 @@ export class CoachprofilePage implements OnInit {
           .getFollow(this.idprofilePassed, this.iduser1)
           .subscribe((res) => {
             if (res == null) {
-              console.log('nope');
               this.follower = false;
             } else {
               this.followId = res._id;
               this.follower = true;
-
-              console.log(res);
-
-
             }
           });
       },
@@ -146,6 +139,11 @@ export class CoachprofilePage implements OnInit {
   publiations() {
     this.userId = this.router.url.slice(32, 56);
     this.postService.postsOwner(this.userId);
+  }
+  getfollowers(){
+    console.log(this.userId);
+    this.followerService.getFollowers(this.userId).subscribe(res=>
+      console.log('followings: '+res.results, 'followers: ' + res.resultsFollowers));
   }
 
 }
