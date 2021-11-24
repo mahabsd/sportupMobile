@@ -11,7 +11,6 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class ImageService {
   private subject = new Subject<any>();
-  private images: any = [];
   constructor(private apiService: UtilsService) {}
 
   // add image and save it in formdata
@@ -22,7 +21,6 @@ export class ImageService {
       resultType: CameraResultType.Base64,
       source,
     });
-    console.log('image', image);
     const blobData = this.b64toBlob(
       image.base64String,
       `image/${image.format}`

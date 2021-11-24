@@ -84,25 +84,20 @@ ion-item {
 }
 
 .profileID {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 150px;
   text-align: start;
   color: white;
 }
-
-.profileID h4 {
-  margin-left: 10px;
-}
-
-.profileID ion-avatar {
-  margin-left: 30px;
-}
-
 
 .profileContainer {
   flex-direction: column;
   justify-content: flex-end;
   height: 200px;
   background-size: cover;
+  padding-left: 10px;
 }
 
 .details {
@@ -112,4 +107,10 @@ ion-item {
   align-self: flex-end;
   height: 50px;
   font-size: 10px !important;
+}
+.edit-profile-cover{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 10px;
 }

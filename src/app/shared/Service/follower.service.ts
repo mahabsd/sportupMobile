@@ -38,6 +38,10 @@ export class FollowerService {
   deleteFollow(id: any) {
     return this.apiService.delete(`${UtilsService.apiFollower}`+id);
   }
+  getFollowers(userId) {
+    return this.apiService.get(`${UtilsService.apiFollower}${userId}`, ).pipe(map((res) => res));
+
+  }
 
 
 }
