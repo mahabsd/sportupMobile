@@ -54,7 +54,6 @@ export class UpdateprofilPage implements OnInit {
     this.getFormData(this.user$, fd);
 
     this.userService.updateMe(fd).subscribe(async (res) => {
-      console.log(res);
       this.getMe();
     });
   }
@@ -93,8 +92,6 @@ export class UpdateprofilPage implements OnInit {
     const fd = new FormData();
     this.getFormData(this.user$, fd);
 
-    this.userService.updateMe(fd).subscribe(async (res) => {
-      console.log(res);
-    });
+    this.userService.updateMe(fd).subscribe();
   }
 }

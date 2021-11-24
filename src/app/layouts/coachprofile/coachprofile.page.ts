@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ModalController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
@@ -8,6 +8,8 @@ import { PostService } from 'src/app/Shared/Service/post.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
 import { Storage } from '@ionic/storage';
+import { CameraSource } from '@capacitor/core';
+import { ImageService } from 'src/app/Shared/Service/image.service';
 
 
 
@@ -25,8 +27,8 @@ export class CoachprofilePage implements OnInit {
     spaceBetween: 20
   };
 
-  user$: any = [];
-  selected
+  user$: any;
+  selected;
   profileName;
   idprofilePassed;
   iduser1;
@@ -42,6 +44,8 @@ export class CoachprofilePage implements OnInit {
   isScrollTop: boolean;
   userId: string;
   publications;
+  followingsNumber: any;
+  followersNumber: any;
   constructor(private userService: UserService,
     private modalController: ModalController,
     private followerService: FollowerService,
@@ -50,15 +54,17 @@ export class CoachprofilePage implements OnInit {
     private router: Router,
     private postService: PostService,
     private translate: TranslateService,
-    public storage: Storage) {
-      translate.setDefaultLang('en');
+    public storage: Storage,
+    private action: ActionSheetController,
+    private imageService: ImageService) {
+    translate.setDefaultLang('en');
 
-      // the lang to use, if the lang isn't available, it will use the current loader to get them
-     translate.use('en');
-   storage.get('lan').then((val) => {
-     if(val)
-      translate.use(val);
-   });
+    // the lang to use, if the lang isn't available, it will use the current loader to get them
+    translate.use('en');
+    storage.get('lan').then((val) => {
+      if (val)
+        translate.use(val);
+    });
   }
 
   ngOnInit() {
@@ -69,6 +75,7 @@ export class CoachprofilePage implements OnInit {
     this.getfollow();
     this.publiations();
     this.getfollowers();
+console.log(this.idprofilePassed);
 
   }
 
@@ -88,13 +95,12 @@ export class CoachprofilePage implements OnInit {
 
 
   getUserByid() {
-
     this.userService.getMe().subscribe(async res => {
       this.userService.getUser(this.idprofilePassed).subscribe(
         (response) => {
           this.user$ = response.data.data;
           if (res.data.data._id === response.data.data._id) {
-            this.testConnected = true
+            this.testConnected = true;
           }
         },
         (error) => {
@@ -140,10 +146,49 @@ export class CoachprofilePage implements OnInit {
     this.userId = this.router.url.slice(32, 56);
     this.postService.postsOwner(this.userId);
   }
-  getfollowers(){
-    console.log(this.userId);
-    this.followerService.getFollowers(this.userId).subscribe(res=>
-      console.log('followings: '+res.results, 'followers: ' + res.resultsFollowers));
+  getfollowers() {
+    this.followerService.getFollowers(this.userId).subscribe(async res => {
+      this.followingsNumber =  res.results;
+      this.followersNumber =  res.resultsFollowers;
+    });
+  }
+  async addImage(source: CameraSource) {
+
+    const fd = new FormData();
+    await this.imageService.readyImage(source, fd);
+    this.getFormData(this.user$, fd);
+    this.userService.updateCoverMe(fd).subscribe(async (res) => {
+     await this.getMe();
+    });
+  }
+
+  async selectImageSource() {
+    const buttons = [
+      {
+        text: 'Take Photo',
+        icon: 'camera',
+        handler: () => {
+          this.addImage(CameraSource.Camera);
+        },
+      },
+      {
+        text: 'Choose from photos',
+        icon: 'image',
+        handler: () => {
+          this.addImage(CameraSource.Photos);
+        },
+      },
+    ];
+
+    const actionSheet = await this.action.create({
+      header: 'Select Image Source',
+      buttons,
+    });
+
+    await actionSheet.present();
+  }
+  getFormData(object, formdata: FormData) {
+    Object.keys(object).forEach((key) => formdata.append(key, object[key]));
   }
 
 }

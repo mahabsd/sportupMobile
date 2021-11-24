@@ -1,22 +1,26 @@
 <app-header title="COACH" [isCoach]="true"   [type]="type" [idprofillepassed]="idprofilePassed"  [followid]="followId" ></app-header>
 
 
-<ion-row [style.background-image]="'url(' + coachInfo.backgroundImage + ')'" class="profileContainer">
+<ion-row [style.background-image]="'url(' + apiImg+user$?.cover + ')'" class="profileContainer">
+
+  <ion-avatar class="edit-profile-cover" (click)="selectImageSource()" *ngIf="idprofilePassed === this.iduser1" >
+   <ion-icon name="create"> </ion-icon>
+ </ion-avatar>
   <div class="profileID">
     <ion-avatar>
       <img [src]="apiImg+user$?.photo">
     </ion-avatar>
-    <h4>{{user$.name}}</h4>
+    <h4>{{user$?.name}}</h4>
   </div>
   <ion-row class="details">
     <ion-col>
-      <p>2 k</p>
+      <p>{{followersNumber<1000?followersNumber: followersNumber/1000 +'k'}}</p>
     </ion-col>
     <ion-col>
       <p>{{'profile.abonnees' | translate}}</p>
     </ion-col>
     <ion-col>
-      <p>500</p>
+      <p>{{followingsNumber<1000?followingsNumber: followingsNumber/1000 +'k'}}</p>
     </ion-col>
     <ion-col>
       <p>{{'profile.abonnement' | translate}}</p>
