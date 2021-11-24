@@ -1,6 +1,9 @@
+import { ModalController } from '@ionic/angular';
 import { Component, Input, OnInit } from '@angular/core';
+import { EventmodalComponent } from 'src/app/layouts/Planing/eventmodal/eventmodal.component';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-week-slides',
@@ -9,12 +12,17 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 })
 export class WeekSlidesComponent implements OnInit {
   activities
+  eventDays: any[];
+  selectedMonth: any;
   dates = {activity:{}, startDate: "", startDay: "", startMonth: "", startYear: "",endDate: "", endDay: "", endMonth: "", endYear: "" }
   eventsKids=[]
   months=["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Aout","Septembre","Octobre","Novembre","Décembre"]
   date=new Date()
   user$: any;
-  constructor(private calendarService: CalendarService,private userService: UserService) { }
+  eventSource = [];
+  constructor(private calendarService: CalendarService,
+    private userService: UserService,
+    private modalCtrl: ModalController) { }
 
   ngOnInit() {
     this.getAllCalendarEvents()
@@ -58,6 +66,52 @@ export class WeekSlidesComponent implements OnInit {
 
     });
 
+  }
+  async openDetailModal(evt) {
+    const modal = await this.modalCtrl.create({
+      component: EventmodalComponent,
+      cssClass: 'cal-modal',
+      backdropDismiss: false,
+      componentProps: {
+        eventSelected: evt,
+      },
+    });
+    await modal.present();
+
+    modal.onDidDismiss().then((result) => {
+      this.loadEvents();
+    });
+  }
+  loadEvents() {
+    this.calendarService.getActivitiesbyID(this.user$._id).subscribe((res) => {
+      this.eventSource = res;
+      // console.log(res);
+      this.eventSource.forEach((event) => {
+        event.startTime = this.formateEventDates(event.startTime);
+        event.endTime = this.formateEventDates(event.endTime);
+      });
+      this.extractEventDays();
+    });
+
+
+  }
+  formateEventDates(eventTime) {
+    // console.log(eventTime);
+
+    const dateFormate: Date = moment(eventTime, 'YYYY-MM-DD HH:mm').toDate();
+    return dateFormate;
+  }
+  extractEventDays() {
+    //Get event days by selected month
+    // eslint-disable-next-line max-len
+    this.eventDays = [
+      ...new Set(
+        this.eventSource
+          .filter((event) => event.startTime.getMonth() === this.selectedMonth)
+          .map((event) => event.startTime.getDate())
+          .sort((a, b) => a - b)
+      ),
+    ];
   }
   slideOptsOne = {
     slidesPerView: 1,

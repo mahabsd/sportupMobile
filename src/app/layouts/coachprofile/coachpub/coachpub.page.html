@@ -8,14 +8,20 @@
 
     <!-- <ion-virtual-scroll [items]="posts"> -->
     <ion-card *ngFor="let post of posts;let i=index;" scrollY="true" style="width : 100%; border-radius: 10px;padding:0 10px">
-      <div style="display: flex;justify-content:space-between">
-        <div></div>
-        <div class="delete" color="light" (click)="openPostMenu(post)">
-          <ion-icon name="ellipsis-horizontal"></ion-icon>
+      <ng-container *ngIf="user$?._id===post?.user?.id" >
+        <div style="display: flex;justify-content:space-between">
+          <div></div>
+          <div class="delete" color="light" (click)="openPostMenu(post)">
+            <ion-icon name="ellipsis-horizontal"></ion-icon>
+          </div>
         </div>
-      </div>
-      <app-status [post]="post" [index]="i" [user]="user$">
-      </app-status>
+        <app-status [post]="post"
+        [index]="i"
+        [user]="user$"
+        (disLikeFn)="disLike($event)"
+        (likeFn)="like($event)">
+        </app-status>
+      </ng-container>
     </ion-card>
     <!-- </ion-virtual-scroll> -->
   </ion-row>

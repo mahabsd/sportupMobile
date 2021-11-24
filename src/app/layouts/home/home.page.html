@@ -1,6 +1,6 @@
 <app-header title="Home" [isOption]="true"></app-header>
-<ion-content padding [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <div id="container">
+<ion-content style="background-color: gray;" padding [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+  <div style="background-color: rgb(235, 235, 235);" id="container">
     <ion-grid>
       <ion-row id="rowTabFiltre">
         <ion-col>
@@ -61,11 +61,13 @@
 
         <!-- <ion-virtual-scroll [items]="posts"> -->
         <div
+        style="background-color: white;margin:5px -4px 0 -5px"
           *ngFor="let post of posts;let i=index;"
           [class.focus]="indexPub===i"
           scrollY="true">
           <ng-container>
             <app-status
+
             [post]="post"
             [index]="i"
             [user]="user$"

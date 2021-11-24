@@ -7,6 +7,7 @@ import { NotificationsService } from 'src/app/shared/Service/notifications.servi
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { CalendarComponent } from 'ionic2-calendar';
 import { Activity } from 'src/app/shared/Model/Activity';
+import { EventmodalComponent } from '../../Planing/eventmodal/eventmodal.component';
 
 @Component({
   selector: 'app-planning',
@@ -278,6 +279,21 @@ export class PlanningPage implements OnInit {
       buttons: ['OK'],
     });
     alert.present();
+  }
+  async openDetailModal(evt) {
+    const modal = await this.modalCtrl.create({
+      component: EventmodalComponent,
+      cssClass: 'cal-modal',
+      backdropDismiss: false,
+      componentProps: {
+        eventSelected: evt,
+      },
+    });
+    await modal.present();
+
+    modal.onDidDismiss().then((result) => {
+      this.loadEvents();
+    });
   }
   extractEventDays() {
     //Get event days by selected month
