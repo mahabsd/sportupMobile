@@ -1,40 +1,36 @@
-<ion-content>
-  <ion-toolbar color="dark">
-    <ion-buttons slot="start">
-      <ion-button (click)="update()" large
-        ><ion-icon name="create-outline" size="large"></ion-icon
-      ></ion-button>
-      <ion-button (click)="supprimer()" large
-        ><ion-icon name="trash-outline" size="large"></ion-icon
-      ></ion-button>
-    </ion-buttons>
+<ion-content style="background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%)">
+  <ion-toolbar>
+    <div id="content" >
+      <ion-buttons slot="start">
+        <ion-button (click)="update()" large
+          ><ion-icon color="light" name="create-outline" size="large"></ion-icon
+        ></ion-button>
+        <ion-button (click)="supprimer()" large
+          ><ion-icon color="light" name="trash-outline" size="large"></ion-icon
+        ></ion-button>
+      </ion-buttons>
 
-    <ion-buttons slot="end">
-      <ion-button (click)="dismiss()" large
-        ><ion-icon name="close-circle-outline" size="large"></ion-icon
-      ></ion-button>
-    </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-button (click)="dismiss()" large
+          ><ion-icon color="light" name="close-circle-outline" size="large"></ion-icon
+        ></ion-button>
+      </ion-buttons>
+    </div>
+    <ion-title id="title">
+      Title : {{ eventSelected.activity.activity ||  eventSelected.activity  }}
+    </ion-title>
   </ion-toolbar>
 
-  <ion-item>
-    <ion-title
-      style="
-        background-image: linear-gradient(
-          119deg,
-          rgba(92, 99, 91, 1) 0%,
-          rgba(36, 114, 56, 1) 35%,
-          rgb(122, 113, 172) 100%
-        );
-      "
-    >
-      {{ eventSelected.activity }}
-    </ion-title>
-  </ion-item>
 
-  <ion-item>
-    <p>Lieu: {{ eventSelected.lieu }}</p>
+
+
+
+  <ion-item style="display: flex;">
+    <ion-icon class="icons" name="map"></ion-icon>
+    <p>Place : {{ eventSelected.activity.lieu || eventSelected.lieu }}</p>
   </ion-item>
-  <ion-item>
-    <p>Notes: {{ eventSelected.notes }}</p>
+  <ion-item style="display: flex;">
+    <ion-icon class="icons" name="information-circle-outline"></ion-icon>
+    <p>Note : {{ eventSelected.activity.notes || eventSelected.notes }}</p>
   </ion-item>
 </ion-content>

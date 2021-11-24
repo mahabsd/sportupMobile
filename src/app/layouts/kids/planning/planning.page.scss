@@ -41,18 +41,17 @@ select{
 .container{
   display: flex;
   flex-direction: column;
-  align-items:flex-start;
   background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%);
   padding: 10px;
   border-radius: 15px;
-  align-self: start;
-  margin-top: 14px;
+  margin-top: -30px;
+  height: 100px;
 }
 .date{
   background-color: white;
   border-radius: 17px;
   width: 100%;
-  padding: 5px 0;
+  padding: 5px 5px;
   margin-bottom: 5px;
   font-size: 15px;
 }
@@ -63,7 +62,6 @@ select{
   font-size: 13px;
 }
 ion-slides {
-  width: 400px;
   --bullet-background: #C3B5BA;
   --bullet-background-active: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%)
 }

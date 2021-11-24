@@ -16,698 +16,698 @@
           style="height: 140px;">
           <ion-slide *ngFor="let event of eventsKids">
             <div *ngIf="event.startMonth==0" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==1" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Février {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==2" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Mars {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==3" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Avril {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==4" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Mai {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==5" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Juin {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==6" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Juillet {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==7" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Aout {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==8" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Septembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==9" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Octobre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==10" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Novembre {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>
             <div *ngIf="event.startMonth==11" >
-              <div *ngIf="event.startDate==0"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==0"  class="container">
                 <span class="date">Dimanche:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==1"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==1"  class="container">
                 <span class="date">Lundi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==2"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==2"  class="container">
                 <span class="date">Mardi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==3"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==3"  class="container">
                 <span class="date">Mercredi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==4"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==4"  class="container">
                 <span class="date">Jeudi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==5"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==5"  class="container">
                 <span class="date">Vendredi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
-              <div *ngIf="event.startDate==6"  class="container">
+              <div (click)="openDetailModal(event)"  *ngIf="event.startDate==6"  class="container">
                 <span class="date">Samedi:{{event.startDay}} Janvier {{event.startYear}}</span>
                 <div style="display: flex;justify-content:space-around;width:100%">
                   <span class="events">{{event.activity.activity}}</span>
-                  <span class="events">At: {{event.activity.lieu}}</span>
-                  <span class="events">note:{{event.activity.notes}}</span>
+                  <span class="events">At&nbsp;:&nbsp;{{event.activity.lieu}}</span>
+                  <span class="events">Note&nbsp;:&nbsp;{{event.activity.notes}}</span>
                 </div>
               </div>
             </div>

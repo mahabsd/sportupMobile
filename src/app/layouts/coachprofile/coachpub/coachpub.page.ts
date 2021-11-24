@@ -18,6 +18,7 @@ export class CoachpubPage implements OnInit {
   // eslint-disable-next-line max-len
   user$: any = [];
   posts: any = [];
+  indexPub = null;
   page = 1;
   selectedDate;
   isScrollTop: boolean;
@@ -34,11 +35,22 @@ export class CoachpubPage implements OnInit {
     await this.getMe();
 
   }
-
+// Function to call like API
+like(event) {
+  this.indexPub = event.index;
+  this.postService.likePost(event.post).subscribe(res => {
+  });
+}
+// Function to call deslike API
+disLike(event) {
+  this.indexPub = event.index;
+  this.postService.disLikePost(event.post).subscribe(res => {
+  });
+}
   getMe() {
     this.userService.getMe().subscribe(async res => {
       this.user$ = await res.data.data;
-
+      console.log(this.user$);
       await this.getPosts();
     });
   }
@@ -54,7 +66,6 @@ export class CoachpubPage implements OnInit {
        });
        this.savepostsService.getAllSharedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
         this.posts$ = res.data.data;
-        console.log(res.data.data);
 
         this.posts$.map(post=> {
           this.posts.push(post.post);
@@ -101,7 +112,6 @@ export class CoachpubPage implements OnInit {
 getAllsharedPosts() {
   this.savepostsService.getAllSharedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
     this.posts$ = res.data.data;
-    console.log(res.data.data);
 
     this.posts$.map(post=> {
       this.posts.push(post.post);

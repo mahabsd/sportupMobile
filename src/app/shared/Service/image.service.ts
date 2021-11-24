@@ -82,15 +82,15 @@ export class ImageService {
     return this.apiService.delete(`${UtilsService.apiImage}` + id);
   }
 
-  getImageBypost(idpost): Observable<any[]> {
+  getImageBypost(idPost): Observable<any[]> {
     return this.apiService
-      .get(`${UtilsService.apimediafile}MediaByPost/${idpost}`)
+      .get(`${UtilsService.apimediafile}MediaByPost/${idPost}`)
       .pipe(map((res) => res.data.data));
   }
 
-  getPostStatusOnly(idpost): Observable<any[]> {
+  getPostStatusOnly(idPost): Observable<any[]> {
     return this.apiService
-      .get(`${UtilsService.apimediafile}GetPosts/StatusOnly/${idpost}`)
+      .get(`${UtilsService.apimediafile}GetPosts/StatusOnly/${idPost}`)
       .pipe(map((res) => res.data.data));
   }
 }

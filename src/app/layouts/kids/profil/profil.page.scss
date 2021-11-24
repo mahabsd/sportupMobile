@@ -23,13 +23,16 @@
   position: relative;
   top: 0;
   left: 0;
+
 }
 .image2 {
-  width: 80px;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: absolute;
-  bottom: 1px;
+  bottom: 10px;
   left: 14px;
+  height: 80px;
 }
 ion-segment-button {
   border-radius: 15px;
@@ -433,11 +436,7 @@ ion-slide {
   top: 35%;
   left: 5px;
 }
-.myImageUser {
-  border-radius: 15px;
-  width: 50px;
-  height: 50px;
-}
+
 h1 {
   font-size: 14px;
   font-weight: 400;
@@ -803,7 +802,7 @@ $color-white: #fff;
 }
 
 .content-profil {
-  padding: 0 10px;
+  padding: 0 10px 20px 10px;
 }
 
 .myFooter {
@@ -1393,25 +1392,28 @@ svg {
   }
 }
 
-#first-bloc {
+.first-bloc {
   display: flex;
   margin-top: 15px;
+
 }
-#first-photo {
+.first-photo {
   height: 185px;
-  width: 290px;
-  border-radius: 5px;
-  margin-left: 40px;
+  width: 170px;
+  border-radius: 10px;
+  margin-left: 0px;
+  object-fit: cover;
 }
 
 .fourPics {
   height: 80px;
   width: 80px;
-  margin: 0px 12px 23px 0px;
-  border-radius: 5px;
+  margin: 0px 12px 5px 0px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-#photo-set-one {
+.photo-set-one {
   display: flex;
   flex-wrap: wrap;
   padding-left: 10px;
@@ -1427,61 +1429,61 @@ svg {
 #photo-set-two {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  padding: 15px;
+  justify-content: space-between;
 }
 
 .eightPic {
-  width: 72px;
-  margin: 10px;
-  margin-left: 30px;
-  border-radius: 5px;
+  width: 75px;
+  margin: 7px;
+  border-radius: 10px;
 }
 
-.left-tape-first {
+.left-tape-0 {
   position: absolute;
   border-radius: 5px;
-  width: 16px  ;
-      height: 28px  ;
+  width: 20px;
+  height: 30px;
   background-color: rgba(226, 183, 43, 0.753);
   transform: rotate(-30deg);
   top: -15px;
   left: -10px;
 }
 
-.right-tape-first {
+.right-tape-0 {
   position: absolute;
   border-radius: 5px;
-  width: 16px  ;
-      height: 28px ;
+  width: 20px;
+  height: 30px;
   background-color: rgba(226, 183, 43, 0.753);
   transform: rotate(30deg);
-  top: -20px;
-  right: 0px;
+  top: -15px;
+  right: -12px;
 }
 
-.left-tape-second {
+.left-tape-1 {
   position: absolute;
   border-radius: 5px;
-  width: 13px;
-  height: 26px;
+  width: 20px;
+  height: 30px;
   background-color: rgba(189, 43, 226, 0.753);
   transform: rotate(-15deg);
   top: -15px;
   left: -5px;
 }
 
-.right-tape-second {
+.right-tape-1 {
   position: absolute;
   border-radius: 5px;
-  width: 13px;
-  height: 26px;
+  width: 20px;
+  height: 30px;
   background-color: rgba(189, 43, 226, 0.753);
   transform: rotate(15deg);
   top: -17px;
   right: -5px;
 }
 
-.left-tape-third {
+.left-tape-2 {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1492,7 +1494,7 @@ svg {
   left: -5px;
 }
 
-.right-tape-third {
+.right-tape-2 {
   position: absolute;
   border-radius: 5px;
   width: 20px;
@@ -1503,24 +1505,25 @@ svg {
   right: -5px;
 }
 
-.left-tape-fourth {
+.left-tape-3 {
   position: absolute;
   border-radius: 5px;
   width: 20px;
   height: 30px;
-  background-color: rgba(226, 183, 43, 0.753);
+  background-color: rgba(43, 226, 67, 0.753);
   transform: rotate(-15deg);
   top: -15px;
   left: -5px;
 }
 
-.right-tape-fourth {
+.right-tape-3 {
   position: absolute;
   border-radius: 5px;
   width: 20px;
   height: 30px;
-  background-color: rgba(226, 183, 43, 0.753);
+  background-color: rgba(43, 226, 67, 0.753);
   transform: rotate(15deg);
   top: -17px;
   right: -5px;
 }
+

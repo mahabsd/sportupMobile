@@ -25,6 +25,7 @@ import { ImageProfileComponent } from '../../coachprofile/image-profile/image-pr
 import { VideoPlayer } from '@ionic-native/video-player/ngx';
 import { PostDisplayComponent } from '../../post-display/post-display.component';
 import { DisplayImgProfilKidsComponent } from './display-img-profil-kids/display-img-profil-kids.component';
+import { async } from '@angular/core/testing';
 
 @Component({
   selector: 'app-profil',
@@ -49,7 +50,7 @@ export class ProfilPage implements OnInit {
   date;
   title: any;
   checkSelf=false;
-  idprofilePassed;
+  idProfilePassed;
   profileClickedName;
   isScrollTop: boolean;
   page = 1;
@@ -63,10 +64,6 @@ export class ProfilPage implements OnInit {
   ResWithOneimg: any= [];
   ResWithTwoimg: any= [];
   ResWithThreeimg: any= [];
-  blocFourOneLeft:"left-tape-";
-  blocFourTwoLeft:"left-tape-second";
-  blocFourThreeLeft:"left-tape-third";
-  blocFourFourLeft:"left-tape-fourth";
   constructor(private userservice: UserService,
      private postKidsService: PostKidsService,
     public popoverController: PopoverController,
@@ -75,7 +72,7 @@ export class ProfilPage implements OnInit {
       private savepostsService: FavorisService,
       private eventService: EventService,
       private postService: PostService,
-      private imageservice:ImageService,
+      private imageService:ImageService,
       private videoPlayer: VideoPlayer,
       private modalController: ModalController,
 
@@ -84,25 +81,17 @@ export class ProfilPage implements OnInit {
   ngOnInit() {
     this.selected = 'photo';
     this.getMe();
-    //this.getMyPostsKids();
     this.title = "Profile";
-    this.idprofilePassed = this.activatedRoute.snapshot.params.id;
-
-
-    this.getUserByid();
-this.getPosts();
-//this.getCommentByPost()
-//this.getImageBypost()
+    this.idProfilePassed = this.activatedRoute.snapshot.params.id;
+    this.getUserById();
+    this.getPosts();
   }
 
-  getUserByid() {
-    this.userService.getUser(this.idprofilePassed).subscribe(
-      (response) => {
-        console.log('user clicked' + response.data.data);
-        this.user = response.data.data;
-       // this.profileClickedName = response.data.data.name;
-      console.log(this.user);
-      this.date=this.user.datedenaissance.slice(0,10);
+  getUserById() {
+    this.userService.getUser(this.idProfilePassed).subscribe(
+      async(response) => {
+        this.user = await response.data.data;
+        this.date=await this.user.datedenaissance.slice(0,10);
       },
       (error) => {
         console.error(error);
@@ -110,17 +99,16 @@ this.getPosts();
     );
   }
   async getMe() {
-    this.userservice.getMe().subscribe((res) => {
-    //  this.user = res.data.data;
-      if(this.idprofilePassed===res.data.data._id){
-        this.checkSelf=true;
+    this.userservice.getMe().subscribe(async(res) => {
+      if(this.idProfilePassed===res.data.data._id){
+        this.checkSelf=await true;
       }
     });
   }
 
   getMyPostsKids() {
-    this.userservice.getMe().subscribe((res) => {
-      this.user_id = res.data.data._id;
+    this.userservice.getMe().subscribe(async(res) => {
+      this.user_id = await res.data.data._id;
       this.postKidsService.getMyPostsKids(this.user_id).subscribe((res1) => {
         this.posts = res1['data'];
       });
@@ -176,16 +164,16 @@ this.getPosts();
   }
 
 
-  async presentPopoverNewMsg(ev: any,idprofilePassed) {
+  async presentPopoverNewMsg(ev: any,idProfilePassed) {
     const popover = await this.popoverController.create({
       component: PopOverSuivrePageComponent,
      // cssClass: 'popoverProfil-custom-class',
       event: ev,
-      componentProps: {idpassed: idprofilePassed},
+      componentProps: {idpassed: idProfilePassed},
 
       translucent: true
     });
-   // console.log(idprofilePassed)
+   // console.log(idProfilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; ';
     await popover.present();
     const { role } = await popover.onDidDismiss();
@@ -204,16 +192,27 @@ this.getPosts();
     this.update = false;
   }
 
+  divIndex(index) {
+    if (index%4===0) {
+      return "3"
+    } else if (index % 3===0) {
+      return "2"
+    } else if (index % 2===0) {
+      return "1"
+    }else return "0"
+  }
+
 
    getimageBypostId(idpost) {
-      this.imageservice.getImageBypost(idpost).subscribe((res) => {
-        this.postsimg$=res;
+      this.imageService.getImageBypost(idpost).subscribe(async(res) => {
+        this.postsimg$ = await res
+        console.log(res);
         this.postsimg$.map(post=> {
           this.postsimg.push(post);
-
-          console.log(res.length)
-
-       });
+          this.postsimg.sort(function (a, b) {
+            return a.createdAt - b.createdAt
+          });
+        });
 
       this.ResWithOneimg= this.postsimg.slice(0,1);
       this.ResWithTwoimg= this.postsimg.slice(1,5);
@@ -223,8 +222,7 @@ this.getPosts();
 
 
   getPostStatusOnly(idpost) {
-    console.log(idpost);
-      this.imageservice.getPostStatusOnly(idpost).subscribe((res) => {
+      this.imageService.getPostStatusOnly(idpost).subscribe((res) => {
 
         this.postsStatut=  this.postsStatut.concat(res);
 
@@ -234,7 +232,7 @@ this.getPosts();
 
   getPosts(event?) {
     this.postsOwnerId = this.postService.postsOwnerId;
-    this.postService.getAllPostsById(this.page, this.idprofilePassed).subscribe((response) => {
+    this.postService.getAllPostsById(this.page, this.idProfilePassed).subscribe((response) => {
 
      this.posts = this.posts.concat(response['data']);
      this.posts.forEach(post => {
@@ -243,19 +241,7 @@ this.getPosts();
 
       this.posts.push(post);
        });
-
-
-      this.savepostsService.getSavedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
-
-        this.posts$ = res.data.data;
-        this.posts$.map(post=> {
-          //console.log(post.post);
-          this.getimageBypostId(post.post.id);
-          this.getPostStatusOnly(post.post.id);
-          this.posts.push(post.post);
-        });
-       });
-       this.savepostsService.getAllSharedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
+       this.savepostsService.getAllSharedPosts(this.page,  this.idProfilePassed ).subscribe((res: any) => {
 
         this.posts$ = res.data.data;
         //console.log(res.data.data);
@@ -264,11 +250,11 @@ this.getPosts();
           this.getimageBypostId(post.post.id);
           this.getPostStatusOnly(post.post.id);
           this.posts.push(post.post);
+          console.log(this.posts);
        });
 
 
       });
-      console.log( this.posts)
        if (event) {
         event.target.complete();
       }
@@ -292,7 +278,7 @@ this.getPosts();
   }
 
   getAllsharedPosts() {
-    this.savepostsService.getAllSharedPosts(this.page,  this.idprofilePassed ).subscribe((res: any) => {
+    this.savepostsService.getAllSharedPosts(this.page,  this.idProfilePassed ).subscribe((res: any) => {
       this.posts$ = res.data.data;
       console.log(res.data.data);
 
