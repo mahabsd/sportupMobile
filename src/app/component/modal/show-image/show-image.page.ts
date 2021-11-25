@@ -30,8 +30,6 @@ export class ShowImagePage implements OnInit {
     this.modalController.dismiss();
   }
   getItems($event) {
-    console.log(this.users);
-
     const val = $event.target.value;
     if (val && val.trim() !== '') {
       this.isItemAvailable = true;
@@ -82,9 +80,7 @@ export class ShowImagePage implements OnInit {
         .subscribe((res) => {
           if (res == null) {
             this.router.navigate(['/profil-kid/', userId]);
-            console.log('nope');
           } else {
-            console.log(res);
             this.router.navigate(['tabs/profilkids/', userId]);
           }
         },

@@ -13,8 +13,8 @@ export class DesactivermoncomptePage implements OnInit {
   constructor(private userService: UserService, private authService: AuthService,private router: Router) { }
 
   ngOnInit() {
-     
-    
+
+
   }
 
 
@@ -22,7 +22,6 @@ export class DesactivermoncomptePage implements OnInit {
     const form = {password:this.passwd, reason: this.reason}
     console.log(form);
     this.userService.deactivate(form).subscribe(res => {
-      console.log(res);
       this.authService.logout();
       this.router.navigate(['/login'])
 

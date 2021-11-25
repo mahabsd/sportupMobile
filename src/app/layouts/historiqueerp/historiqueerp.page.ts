@@ -38,7 +38,7 @@ export class HistoriqueerpPage implements OnInit {
   }
   ngOnInit() {
   }
- 
+
 
 
   async openModal() {
@@ -61,7 +61,7 @@ export class HistoriqueerpPage implements OnInit {
             role: 'cancel',
             cssClass: 'secondary',
             handler: () => {
-              console.log('nill');
+              console.log('null');
 
             }
           }, {
@@ -82,9 +82,8 @@ export class HistoriqueerpPage implements OnInit {
 
   separateDate(record, recordIndex, records) {
 
- 
+
     const datepipe: DatePipe = new DatePipe('en-US');
-      console.log(records);
 
     if (recordIndex === 0) {
 
@@ -92,12 +91,10 @@ export class HistoriqueerpPage implements OnInit {
     }
     const firstPrev = datepipe.transform(records[recordIndex - 1].date, 'MM/dd/yyyy');
     const firstCurrent = datepipe.transform(record.date, 'MM/dd/yyyy');
-    console.log(firstPrev);
 
     //transformer  firstprev et firstcurrent au format (dd/mm/yyyy) et apres les comparer
     const datenow = new Date();
     if (firstPrev !== firstCurrent) {
-      console.log('ok');
 
       return firstCurrent;
 

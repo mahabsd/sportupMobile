@@ -9,7 +9,7 @@ import { connectableObservableDescriptor } from 'rxjs/internal/observable/Connec
 export class AproposPage implements OnInit {
   public folder: string;
   private currentColor: string
-  constructor(private activatedRoute: ActivatedRoute) { 
+  constructor(private activatedRoute: ActivatedRoute) {
 
     this.currentColor = 'secondary';
 
@@ -18,7 +18,7 @@ export class AproposPage implements OnInit {
     this.folder = this.activatedRoute.snapshot.paramMap.get('id');
   }
   itemSelected(data) {
-    console.log(data)
+    console.log(data);
   }
   Button_Publication() {
     console.log('Action Button Publication ')

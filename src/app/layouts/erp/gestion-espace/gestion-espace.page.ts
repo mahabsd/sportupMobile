@@ -72,7 +72,6 @@ export class GestionEspacePage implements OnInit {
     });
     await modal.present();
     modal.onDidDismiss().then((result) => {
-      console.log('ggggggg', result.data);
       var events = [];
       let Start = result.data.event.startTime
       let newDate = new Date(Start);
@@ -92,7 +91,6 @@ export class GestionEspacePage implements OnInit {
               ),
         allDay: false,
       });
-      console.log(events)
       this.eventSource = events;
     });
   }

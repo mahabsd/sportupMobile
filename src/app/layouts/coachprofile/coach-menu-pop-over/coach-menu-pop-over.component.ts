@@ -24,7 +24,7 @@ export class CoachMenuPopOverComponent implements OnInit {
     private userService: UserService,
     private router: Router,
     private modalCtrl: ModalController,
-    private storageService: StorageService, 
+    private storageService: StorageService,
     private followerService: FollowerService,
     ) { }
 
@@ -37,7 +37,6 @@ export class CoachMenuPopOverComponent implements OnInit {
   else  if(this.Etatfollow==='me'){
     this.follower=false
   }
-    console.log("popover"+this.IdprofilePassed)
   }
 
   getMe() {
@@ -51,15 +50,10 @@ export class CoachMenuPopOverComponent implements OnInit {
   }
 
   desabonner(){
-   
       this.followerService
         .deleteFollow(this.followid)
         .subscribe((res) => {
-          console.log(res);
           this.router.navigate(["profil",this.IdprofilePassed,'adulte']);
-
         });
-    
-
   }
 }

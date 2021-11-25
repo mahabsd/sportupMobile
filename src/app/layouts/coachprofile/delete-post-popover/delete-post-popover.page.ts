@@ -17,12 +17,8 @@ export class DeletePostPopoverPage implements OnInit {
 
   ngOnInit() {
     this.post = this.navParams.data.paramID;
-    console.log(this.post);
-
   }
   delete(post) {
-    console.log(this.post);
-
     this.postService.deletePost(post).subscribe();
   }
   update() {

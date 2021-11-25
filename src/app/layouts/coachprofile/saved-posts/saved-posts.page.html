@@ -1,0 +1,16 @@
+<app-header [isSaved]="true"></app-header>
+
+<ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
+<div>
+  <span>Toutes les publications </span>
+  <span>enregistrées</span>
+</div>
+  <ion-row  *ngFor="let post of posts$; let index = index">
+    <app-status [post]="post" [index]="index" [user]="user" [isBookMarked]=true (disLikeFn)="disLike($event)" (likeFn)="like($event)">
+    </app-status>
+  </ion-row>
+  <ion-infinite-scroll threshold="5%" (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="crescent" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>

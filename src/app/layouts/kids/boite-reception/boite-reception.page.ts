@@ -45,9 +45,6 @@ export class BoiteReceptionPage implements OnInit {
     await modal.present();
 
     await modal.onWillDismiss().then((result) => {
-     console.log("closed");
-
-
     });
 
 
@@ -55,8 +52,7 @@ export class BoiteReceptionPage implements OnInit {
 
    getkids() {
     this.userservice.getUsersKids().subscribe((res) => {
-      this.kids=res
-     console.log(res);
+      this.kids=res;
     });
   }
 

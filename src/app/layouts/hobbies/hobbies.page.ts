@@ -259,13 +259,11 @@ export class HobbiesPage implements OnInit {
 
     this.slideWithNav2.getActiveIndex().then((index) => {
       this.selectedIndex = index - 3;
-      console.log(this.selectedIndex);
       this.HobbiesData.forEach(e => {
         if (e.id === this.selectedIndex) {
           this.sportname = e.hobbiename;
           this.hobbiesService.findbyactivity(this.sportname).subscribe((res: any) => {
             this.userlist = res.data.data;
-            console.log(res);
             this.getfollow();
           }
           );
@@ -292,7 +290,6 @@ export class HobbiesPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.HobbiesData[0].hobbiename)
     this.getMe()
     this.getfollow()
   }
@@ -324,9 +321,6 @@ export class HobbiesPage implements OnInit {
               if (res == null) {
 
                 this.buttonColor.push({ "etat": "no", "iduser": element._id });
-                console.log(this.buttonColor)
-
-                console.log('nope' + element._id);
 
                 this.EtatSuivre = false;
                 this.follower = false;
@@ -334,10 +328,8 @@ export class HobbiesPage implements OnInit {
                 this.buttonColor.push({ "etat": "yes", "iduser": element._id });
 
                 this.follower = true;
-                console.log('yessss' + element._id);
 
                 this.idFollowtoDelete = res._id;
-                console.log(res);
                 this.EtatSuivre = true;
               }
 
@@ -359,19 +351,17 @@ export class HobbiesPage implements OnInit {
       this.followerService
         .deleteFollow(this.idFollowtoDelete)
         .subscribe((res) => {
-          console.log(res);
         });
     }
 
     this.EtatSuivre = false;
-    this.getfollow()
+    this.getfollow();
   }
 
 
   buttonSuivre(idprofilePassed) {
 
     this.selectedRow = idprofilePassed;
-    console.log(this.iduser)
     this.userservice.getMe().subscribe((res) => {
       this.iduser = res.data.data._id;
 
@@ -398,9 +388,7 @@ export class HobbiesPage implements OnInit {
           .subscribe((res) => {
             if (res == null) {
               this.router.navigate(["profil",userpassedid,'adulte']);
-              console.log('nope');
             } else {
-              console.log(res);
               if (res != null) {
                 if( role==='user'||role==='pro'){
                   this.router.navigate(["menu/tabs/layouts/coachprofile",userpassedid,"followed"]);

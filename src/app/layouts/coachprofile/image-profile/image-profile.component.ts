@@ -23,18 +23,13 @@ export class ImageProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-   
-console.log(this.image)
-   
   }
 
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
-    //console.log(ext);
     return ext;
   }
 
-  
   dismiss() {
     // using the injected ModalController this page
     // can "dismiss" itself and optionally pass back data
@@ -43,13 +38,10 @@ console.log(this.image)
     });
   }
   async addImage(source: CameraSource) {
-    console.log('addimage');
-
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
     fd.append('createdBy', this.image.createdBy);
     this.imageService.addImage(fd).subscribe(async (res) => {
-      console.log(res);
     });
   }
 
@@ -80,13 +72,11 @@ console.log(this.image)
   }
   supprimer(image) {
     this.imageService.deleteimage(image.id).subscribe((res) => {
-      console.log(res);
       this.dismiss();
     });
   }
   modifier(image) {
     this.imageService.updateImage(image).subscribe((res) => {
-      console.log(res);
       this.dismiss();
     });
   }

@@ -53,9 +53,9 @@ export class HeaderComponent implements OnInit {
   @Input()  idprofillepassed: string;
   @Input()  followid: string;
   @Input() isCommunityCreate: boolean;
+  @Input() isSaved: boolean;
   userid: any;
   user$: any;
-
   iduser1;
   follower = false;
   constructor(private modalCtrl: ModalController,
@@ -91,7 +91,6 @@ export class HeaderComponent implements OnInit {
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   async openCoachPalmares(ev: any) {
@@ -105,7 +104,6 @@ export class HeaderComponent implements OnInit {
     await popover.present();
 
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
   async openERPModal() {

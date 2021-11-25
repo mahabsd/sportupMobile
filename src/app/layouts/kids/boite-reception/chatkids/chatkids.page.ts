@@ -42,11 +42,10 @@ import { environment } from 'src/environments/environment';
       private activatedRoute: ActivatedRoute,
       private userservice: UserService, private chatService: ChatService,
       private toastCtrl: ToastController,   private Renderer: Renderer2) { }
-  
+
       ngOnInit() {
-        console.log(  this.list)
         //this.list.scrollToBottom(100);
-    
+
         this.getchat();
         this.idprofilePassed= this.activatedRoute.snapshot.params.id;
         this.socket.connect();
@@ -54,14 +53,12 @@ import { environment } from 'src/environments/environment';
           this.user$ = res.data.data._id;
           this.username=res.data.data.name
           this.userconnectedrole=res.data.data.role;
-          console.log(this.user$);
-    
+
         let name = ` User-${new Date().getTime()}`;
-    
+
         this.currentUser =  this.username;
         this.socket.emit('set-name',  this.username);
         this.socket.fromEvent('users-changed').subscribe(data => {
-          console.log('getdata', data);
           let user = data['user'];
           if (data['event'] === 'left') {
             this.presentToast(`${user} left the chat`);
@@ -76,16 +73,12 @@ import { environment } from 'src/environments/environment';
         });
       }
       sendMessage() {
-    
-    console.log( this.selectedFiles)
-    
+
         const formData=new FormData();
     if(this.selectedFiles!=undefined){
         for (const file of this.selectedFiles) {
           formData.append('file', file);
         }
-       
-    
         this.chatService.uploadImageFile(formData).subscribe((res) => {
          // console.log(res);
           this.chatimg=res;
@@ -96,7 +89,7 @@ import { environment } from 'src/environments/environment';
             this.selectedPreviews = [];
             this.IsimgSelected=0
         });
-       
+
         }
         else {
           this.socket.emit('send-message', { text: this.message,idsender: this.user$,idreceiver:this.idprofilePassed,images:   this.chatimg});
@@ -105,12 +98,12 @@ import { environment } from 'src/environments/environment';
           this.selectedFiles=[]
           this.selectedPreviews = [];
           this.IsimgSelected=0
-    
-    
+
+
         }
       }
-    
-  
+
+
     ionViewWillLeave() {
       this.socket.disconnect();
     }
@@ -124,76 +117,69 @@ import { environment } from 'src/environments/environment';
         toastData.present();
       });
     }
-  
+
     getMe() {
       this.userservice.getMe().subscribe((res) => {
         this.user$ = res.data.data._id;
-        console.log(this.user$);
       });
     }
-  
-  
+
+
 
     getchat(){
       this.userservice.getMe().subscribe((res) => {
         this.chatService.getChat(res.data.data._id,this.activatedRoute.snapshot.params.id).subscribe((res1) => {
-        console.log(res1);
         this.messages2=res1;
         });
       });
     }
-  
+
     choosefromphoto() {
-  
+
       this.Renderer.setAttribute(this.multiFileInput.nativeElement, "accept", "image/jpg, image/jpeg, image/gif, image/png");
       this.multiFileInput.nativeElement.click();
     }
-  
+
     getType(file) {
       return file.type;
     }
-  
+
     selectFiles(event) {
-  
-  
+
+
       this.progressInfos = [];
       this.selectedFiles = event.target.files;
       this.selectedPreviews = [];
       for (const file of this.selectedFiles) {
-      
-        console.log(  file.type);
-  
         if (file.type === 'image/jpeg'||file.type === 'image/png'||file.type === 'image/pdf'||file.type === 'image/gif') {
           const reader = new FileReader();
           reader.onload = e => this.selectedPreviews.push(reader.result);
-  
+
           reader.readAsDataURL(file);
         }
         else if (file.type === "video/mp4") {
           this.selectedPreviews.push('../../../assets/imgs/video.jpg');
-  
+
         }
         else if (file.type === "application/pdf") {
           this.selectedPreviews.push('../../../assets/imgs/video.jpg');
-  
+
         }
         else if (file.type === "audio/mpeg"||file.type === " audio/ogg") {
           this.selectedPreviews.push('../../../assets/imgs/audio.png');
-  
+
         }
-  
+
       }
-      this.IsimgSelected= this.selectedFiles.length
-      console.log( this.selectedFiles.length);
-  
+      this.IsimgSelected= this.selectedFiles.length;
     }
-  
+
     getExt(fileName) {
       const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
       //console.log(ext);Z
       return ext;
     }
-  
+
   }
-  
+
 

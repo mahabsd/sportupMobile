@@ -206,7 +206,6 @@ export class PlanningPage implements OnInit {
     console.log('heyyy');
   }
   async openCalModal(sTime, evnt) {
-    console.log('hey');
     const modal = await this.modalCtrl.create({
       component: CalendarModalPage,
       cssClass: 'cal-modal',

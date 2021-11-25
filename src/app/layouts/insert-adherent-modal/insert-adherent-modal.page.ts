@@ -27,11 +27,10 @@ export class InsertAdherentModalPage implements OnInit {
       this.modalReady = true;
     }, 0);
   }
-  save() {    
-    this.modalCtrl.dismiss({event: this.adherent})
-    console.log(this.adherent)
+  save() {
+    this.modalCtrl.dismiss({event: this.adherent});
   }
-  
+
   close() {
     this.modalCtrl.dismiss();
   }

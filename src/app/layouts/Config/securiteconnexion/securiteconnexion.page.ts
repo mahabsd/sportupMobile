@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AccesshistoryService } from 'src/app/shared/Service/accesshistory.service';
-import { HttpClient  } from '@angular/common/http';  
+import { HttpClient  } from '@angular/common/http';
 @Component({
   selector: 'app-securiteconnexion',
   templateUrl: './securiteconnexion.page.html',
@@ -12,12 +12,11 @@ export class SecuriteconnexionPage implements OnInit {
   constructor(private accessHistory: AccesshistoryService,private http:HttpClient) { }
 
   ngOnInit() {
-     
+
     this.accessHistory.getHistory().subscribe(
       (response) => {
-          console.log(response);
           this.history = response;
-          
+
 
     });
   }
@@ -31,7 +30,6 @@ export class SecuriteconnexionPage implements OnInit {
   loadIp() {
     this.http.get('https://jsonip.com').subscribe(
       (value:any) => {
-        console.log(value);
         this.ipAddress = value.ip;
       },
       (error) => {

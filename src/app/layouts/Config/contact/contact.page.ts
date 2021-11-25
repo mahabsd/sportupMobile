@@ -15,8 +15,7 @@ export class ContactPage implements OnInit {
   sendMail()
   {
       this.inviteService.sendContact({email: this.email,name: this.name, message: this.message, sujet: this.sujet}).subscribe(async res => {
-        console.log(res);
- 
+
       });
   }
   ngOnInit() {

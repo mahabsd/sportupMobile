@@ -105,13 +105,11 @@ export class LoginPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Confirmer',
           handler: () => {
             this.router.navigateByUrl('/confirmation');
-            console.log('Confirm Okay');
           }
         }
       ]

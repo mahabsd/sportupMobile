@@ -51,13 +51,11 @@ share(post) {
 
 bookmark(post) {
   this.favorisService.addFavoris(this.post._id).subscribe((res) => {
-    //console.log(res);
     this.bookmarked = true;
   });
 }
 unBookmark(post) {
   this.favorisService.addFavoris(this.post._id).subscribe((res) => {
-    //console.log(res);
     this.bookmarked = false;
   });
 }

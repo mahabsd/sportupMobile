@@ -18,7 +18,6 @@ export class HistoriquepersonnelPage implements OnInit {
     this.getMe();
     this.activityHistory.getHistory().subscribe((res) => {
       this.history = res;
-      console.log(this.history);
     });
   }
 

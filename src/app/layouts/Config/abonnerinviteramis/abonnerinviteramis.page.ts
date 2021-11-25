@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { InvitemodalComponent} from '../invitemodal/invitemodal.component';
- 
+
 @Component({
   selector: 'app-abonnerinviteramis',
   templateUrl: './abonnerinviteramis.page.html',
@@ -39,11 +39,10 @@ export class AbonnerinviteramisPage implements OnInit {
     return await modal.present();
   }
 
- 
+
 
   getMe() {
     this.userService.getMe().subscribe(async res => {
-      console.log(res.data.data);
       this.user$ = res.data.data;
     });
   }

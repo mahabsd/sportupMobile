@@ -52,12 +52,10 @@ export class OneStatusPage implements OnInit {
   }
   getPost() {
     this.postService.getPost(this.id).subscribe(async res => {
-      this.post = await res
+      this.post = await res;
       // this.comments = res.comments
-      this.mediafiles = res.mediafiles
-      this.user = res.user
-      console.log(res);
-
-    })
+      this.mediafiles = res.mediafiles;
+      this.user = res.user;
+    });
   }
 }

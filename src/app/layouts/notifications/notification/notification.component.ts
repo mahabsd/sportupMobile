@@ -25,7 +25,6 @@ export class NotificationComponent implements OnInit {
     { }
     ngOnInit() {
       this.getMe();
-      console.log(this.notif);
     }
     getMe() {
       this.getCommentByPost()

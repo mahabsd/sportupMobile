@@ -75,7 +75,6 @@ export class CoachprofilePage implements OnInit {
     this.getfollow();
     this.publiations();
     this.getfollowers();
-console.log(this.idprofilePassed);
 
   }
 
