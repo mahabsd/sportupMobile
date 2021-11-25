@@ -36,20 +36,15 @@ title="Comments"
     private commentService: CommentService,
     private modalController: ModalController,private userService:UserService) {
     this.apiImg = `${environment.apiImg}users/`;
-    console.log(this.apiImg);
 
   }
 
   ngOnInit() {
-    console.log("userrrr" + this.userid);
-  
-    
+
     this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
 
     });
-    console.log(this.post);
-    console.log(this.comments);
     this.getCommentByPost();
 
   }
@@ -62,13 +57,11 @@ title="Comments"
 
   }
   sendComment(post) {
-    console.log(this.comment);
     this.comments = [];
     // eslint-disable-next-line no-underscore-dangle
     return this.commentService.addComment(this.comment, post._id).subscribe(res => {
       this.comment = new Comment();
       this.getCommentByPost();
-      console.log(res);
     });
   }
 
@@ -79,8 +72,6 @@ title="Comments"
 
     this.commentService.updateComments(this.selectedCom).subscribe(res => {
 
-
-      console.log(res);
     });
 
   }
@@ -91,7 +82,6 @@ title="Comments"
     // eslint-disable-next-line no-underscore-dangle
     this.commentService.getCommentByService(this.post._id).subscribe(arg => {
       this.comments = arg;
-      console.log(this.comments);
 
     });
 

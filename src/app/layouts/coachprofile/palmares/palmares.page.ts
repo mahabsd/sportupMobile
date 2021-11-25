@@ -103,12 +103,10 @@ export class PalmaresPage implements OnInit {
 
     this.coachService.updateCoach(this.coach).subscribe(async res => {
       this.readOnlyPalmares = !this.readOnlyPalmares;
-      console.log(res);
     });
   }
   getCoachByIdUser(user) {
     this.coachService.getCoach(user).subscribe(async (res: any) => {
-      console.log(res);
       this.coach = res;
     });
   }

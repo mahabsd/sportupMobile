@@ -263,16 +263,20 @@
           <img class="iconstyle" src="../../../../assets/iconPost/icon_comment.svg" />
           <span style="color:#7F867D;font-size:14px">{{ comments?.length }}</span>
         </ion-button>
-        <ng-container *ngIf="!bookmarked; else unbook">
+        <ng-container *ngIf="!bookmarked && !isBookMarked; else unbook || isBookMarked">
           <ion-button style="display: flex;align-items:center" (click)="bookmark(post)" shape="round" fill="clear" size="large ">
-            <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmark.svg" />
-            <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb }}</span>
+            <ion-icon  style="color:#7F867D;font-size:14px;height:20px;width:20px"
+            name="bookmark-outline">
+          </ion-icon>
+              <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb }}</span>
           </ion-button>
         </ng-container>
         <ng-template #unbook>
           <ion-button style="display: flex;align-items:center" (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
-            <img class="iconstyle" src="../../../../assets/iconPost/icon_bookmarked.svg" />
-            <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb  }}</span>
+            <ion-icon  style="color:#7F867D;font-size:14px;height:20px;width:20px "
+            name="bookmark" >
+          </ion-icon>
+          <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb  }}</span>
           </ion-button>
         </ng-template>
         <ion-button style="display: flex;align-items:center" (click)="share(post)" shape="round" fill="clear" size="large ">

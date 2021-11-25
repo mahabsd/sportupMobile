@@ -1,11 +1,9 @@
-<app-header title="COACH" [isCoach]="true"   [type]="type" [idprofillepassed]="idprofilePassed"  [followid]="followId" ></app-header>
-
-
+<app-header title={{user$?.name}} style="text-transform: capitalize " [isCoach]="true" [type]="type" [idprofillepassed]="idprofilePassed"
+  [followid]="followId"></app-header>
 <ion-row [style.background-image]="'url(' + apiImg+user$?.cover + ')'" class="profileContainer">
-
-  <ion-avatar class="edit-profile-cover" (click)="selectImageSource()" *ngIf="idprofilePassed === this.iduser1" >
-   <ion-icon name="create"> </ion-icon>
- </ion-avatar>
+  <ion-avatar class="edit-profile-cover" (click)="selectImageSource()" *ngIf="idprofilePassed === this.iduser1">
+    <ion-icon name="create"> </ion-icon>
+  </ion-avatar>
   <div class="profileID">
     <ion-avatar>
       <img [src]="apiImg+user$?.photo">
@@ -30,7 +28,7 @@
 <ion-content>
   <ion-tabs>
     <ion-tab-bar slot="top">
-      <ion-tab-button   tab="coachphoto">
+      <ion-tab-button tab="coachphoto">
         <ion-label>{{'profile.photo' | translate}}</ion-label>
       </ion-tab-button>
       <ion-tab-button tab="coachpub" id="middle">

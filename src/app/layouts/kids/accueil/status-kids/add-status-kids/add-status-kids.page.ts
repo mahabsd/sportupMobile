@@ -48,7 +48,6 @@ export class AddStatusKidsPage implements OnInit {
     private Renderer: Renderer2,public router: Router
   ) { }
   ngOnInit() {
-    console.log(this.pagetype)
     this.loadImage();
 
     this.postForm = new FormGroup({
@@ -149,7 +148,7 @@ export class AddStatusKidsPage implements OnInit {
       fd.append('photo', this.filesToUpload, this.filesToUpload?.name);
     }
     if (this.post?.content) {
-      
+
       fd.append('content', this.post?.content);
       fd.append('type', 'kids');
 
@@ -307,21 +306,21 @@ export class AddStatusKidsPage implements OnInit {
 
         if(this.selectedFiles.length>1){
           this.AlertpresentToast("vous devez ajouter seulement une image")
-          
+
         }
         else {
           if (this.selectedFiles[0].type === 'image/png'||this.selectedFiles[0].type === 'image/jpeg') {
             const reader = new FileReader();
             reader.onload = e => this.selectedPreviews.push(reader.result);
-    
+
             reader.readAsDataURL(this.selectedFiles[0]);
           }
           else if (this.selectedFiles[0].type === "video/mp4") {
             this.selectedPreviews.push('../../../assets/imgs/150.png');
-    
+
           }
         }
-            
+
     this.actionSheet.dismiss();
   }
 
@@ -331,7 +330,7 @@ export class AddStatusKidsPage implements OnInit {
 
   /* uploadFile(event: EventTarget) {
      console.log('uploadfile');
- 
+
      const eventObj: MSInputMethodContext = event as MSInputMethodContext;
      const target: HTMLInputElement = eventObj.target as HTMLInputElement;
      const file: File = target.files[0];
@@ -339,7 +338,7 @@ export class AddStatusKidsPage implements OnInit {
      console.log(file);
      this.postService.uploadImageFile(file).subscribe((newImage: ImageModel) => {
        this.images.push(newImage);
- 
+
      });
    }*/
 }

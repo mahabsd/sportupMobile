@@ -18,14 +18,11 @@ export class ShowActivityPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.table(this.navParams);
-
     this.getAll(this.navParams.data.paramID);
   }
   getAll(activity) {
     this.activiteKidService.getAll(activity).subscribe((res) => {
       this.activities = res.data.data;
-      console.log(this.activities);
     });
   }
 

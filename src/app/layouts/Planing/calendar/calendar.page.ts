@@ -97,8 +97,6 @@ export class CalendarPage implements OnInit {
 
     this.subscription = this.calendarService.getEvent().subscribe((event) => {
       this.openCalModal(null, event);
-
-      console.log(event);
     });
   }
 
@@ -134,7 +132,6 @@ export class CalendarPage implements OnInit {
         event.startTime = this.formateEventDates(event.startTime);
         event.endTime = this.formateEventDates(event.endTime);
       });
-      console.log(this.eventSource);
       this.extractEventDays();
     });
 
@@ -218,17 +215,13 @@ export class CalendarPage implements OnInit {
         event.endTime = dateParsedEnd;
 
         if (evnt === null) {
-          console.log('add');
           this.calendarService.addActivity(event).subscribe(async (res) => {
             this.eventSource.push(res);
             this.loadEvents();
           });
           this.createNotif(event);
         } else {
-          console.log('update');
-          console.log(event);
           this.calendarService.updateEvent(event).subscribe((res) => {
-            console.log(res);
             this.modalCtrl.dismiss();
             this.loadEvents();
           });
@@ -272,6 +265,6 @@ export class CalendarPage implements OnInit {
     this.notif.reciever = this.user$._id;
     this.notif.text = 'a créé un événnement';
     this.notif.event = event._id;
-    this.notificationsService.postNotification(this.notif).subscribe(res=> console.log(res));
+    this.notificationsService.postNotification(this.notif).subscribe();
   }
 }

@@ -67,7 +67,6 @@ export class BoiteReceptionPage implements OnInit {
 
   getAllusers() {
     this.userservice.getRoleUsers().subscribe((res) => {
-      //console.log(res)
     });
   }
 

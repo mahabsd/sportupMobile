@@ -35,22 +35,21 @@ export class CoachpubPage implements OnInit {
     await this.getMe();
 
   }
-// Function to call like API
-like(event) {
-  this.indexPub = event.index;
-  this.postService.likePost(event.post).subscribe(res => {
-  });
-}
-// Function to call deslike API
-disLike(event) {
-  this.indexPub = event.index;
-  this.postService.disLikePost(event.post).subscribe(res => {
-  });
-}
+  // Function to call like API
+  like(event) {
+    this.indexPub = event.index;
+    this.postService.likePost(event.post).subscribe(res => {
+    });
+  }
+  // Function to call deslike API
+  disLike(event) {
+    this.indexPub = event.index;
+    this.postService.disLikePost(event.post).subscribe(res => {
+    });
+  }
   getMe() {
     this.userService.getMe().subscribe(async res => {
       this.user$ = await res.data.data;
-      console.log(this.user$);
       await this.getPosts();
     });
   }
@@ -58,23 +57,19 @@ disLike(event) {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.postsOwnerId).subscribe((response) => {
       this.posts = this.posts.concat(response['data']);
-      this.savepostsService.getSavedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
+      this.savepostsService.getSavedPosts(this.page, this.postsOwnerId).subscribe((res: any) => {
         this.posts$ = res.data.data;
-        this.posts$.map(post=> {
+        this.posts$.map(post => {
           this.posts.push(post.post);
         });
-       });
-       this.savepostsService.getAllSharedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
-        this.posts$ = res.data.data;
-
-        this.posts$.map(post=> {
-          this.posts.push(post.post);
-       });
-       console.log(this.posts);
-
       });
-    // this.getAllsharedPosts();
-       if (event) {
+      this.savepostsService.getAllSharedPosts(this.page, this.postsOwnerId).subscribe((res: any) => {
+        this.posts$ = res.data.data;
+        this.posts$.map(post => {
+          this.posts.push(post.post);
+        });
+      });
+      if (event) {
         event.target.complete();
       }
     }, error => {
@@ -109,16 +104,5 @@ disLike(event) {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
-getAllsharedPosts() {
-  this.savepostsService.getAllSharedPosts(this.page,  this.postsOwnerId ).subscribe((res: any) => {
-    this.posts$ = res.data.data;
-
-    this.posts$.map(post=> {
-      this.posts.push(post.post);
-   });
-   console.log(this.posts);
-
-  });
- }
 
 }

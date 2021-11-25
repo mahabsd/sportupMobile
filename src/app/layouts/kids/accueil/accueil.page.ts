@@ -66,20 +66,16 @@ export class AccueilPage implements OnInit {
   getAllPostsKids() {
     this.postKidsService.getAllPostsKids().subscribe((res) => {
       this.posts = res['data'];
-      console.log(res['data']);
     });
   }
 
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      console.log(this.user$);
     });
   }
   async like(post) {
-    console.log('like');
     await this.postKidsService.likePostKids(post).subscribe((res) => {
-      console.log(res);
       this.getAllPostsKids();
     });
 
@@ -91,7 +87,6 @@ export class AccueilPage implements OnInit {
     console.log('diss');
 
     this.postKidsService.disLikePostKids(post).subscribe((res) => {
-      console.log(res);
       this.getAllPostsKids();
     });
   }
@@ -108,7 +103,6 @@ export class AccueilPage implements OnInit {
     await modal.present();
 
     await modal.onWillDismiss().then((result) => {
-      console.log(post);
       this.idpostcom = post.id;
       this.getCommentByPost();
     });
@@ -131,13 +125,9 @@ export class AccueilPage implements OnInit {
 
   getCommentByPost() {
     this.posts.forEach((element) => {
-      console.log(element.id);
       this.commentService.getCommentByService(element.id).subscribe((arg) => {
         this.comments = arg;
-
-        console.log(this.comments.length);
         this.dict.push({ post: element.id, comment: this.comments.length });
-        console.log(this.dict);
       });
     });
 
@@ -160,16 +150,11 @@ export class AccueilPage implements OnInit {
     this.userservice.getMe().subscribe(res => {
       this.user$ = res.data.data;
       this.postService.getAllfollowingPosts(this.page, this.user$._id).pipe(share()).subscribe(res => {
-        //console.log(res.data.shared);
-       // console.log(res.data.data);
-
-
         this.posts1 =res.data.data;
         this.posts1.forEach(e => {
             this.posts= this.posts.concat(e);
 
          });
-        //console.log(this.posts);
         if (event) {
           event.target.complete();
         }

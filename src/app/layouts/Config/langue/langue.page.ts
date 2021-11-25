@@ -11,13 +11,11 @@ export class LanguePage implements OnInit {
 
   constructor(public storage: Storage) { }
   selectLanguage(event) {
-    console.log('SELECT ', event.target.value);
     this.storage.set('lan',event.target.value);
   }
- 
+
   ngOnInit() {
     this.storage.get('lan').then((val) => {
-      console.log('Your age is', val);
     });
   }
 

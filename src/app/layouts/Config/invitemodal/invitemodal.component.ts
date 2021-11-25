@@ -20,16 +20,13 @@ export class InvitemodalComponent implements OnInit {
 
   sendText(){
       this.inviteService.sendText({tel: this.phoneNumber.internationalNumber}).subscribe(async res => {
-        console.log(res);
 
       });
-    
+
   }
   sendMail()
   {
       this.inviteService.sendMail({email: this.email}).subscribe(async res => {
-        console.log(res);
- 
       });
   }
 

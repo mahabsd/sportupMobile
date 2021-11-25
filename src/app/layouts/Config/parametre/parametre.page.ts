@@ -24,7 +24,6 @@ export class ParametrePage implements OnInit {
     this.userService.getMe().subscribe(async res => {
       this.user = res.data.data;
       this.name = this.user.name
-      console.log(this.user.name);
     });
 
 

@@ -16,15 +16,11 @@ export class ParametresComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.post);
   }
   deletePost(post) {
-    console.log(post._id);
-
     this.postService.deletePost(post).subscribe(async res => {
-      console.log(res);
       await this.popoverController.dismiss();
-    })
+    });
   }
 
   async alertDelete(post) {
@@ -37,8 +33,6 @@ export class ParametresComponent implements OnInit {
           role: 'cancel',
           cssClass: 'danger',
           handler: () => {
-            console.log('ok');
-
           }
         }, {
           text: 'Okay',

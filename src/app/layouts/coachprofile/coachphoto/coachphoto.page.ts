@@ -54,10 +54,7 @@ export class CoachphotoPage implements OnInit {
   ngOnInit() {
   //  this.getMe();
     this.postsOwnerId = this.postService.postsOwnerId;
-
-    console.log(  this.postsOwnerId );
     this.getAllPosts();
-
   }
 
   async presentModal(img: any) {
@@ -129,7 +126,6 @@ export class CoachphotoPage implements OnInit {
   }
 
   getpostFiles(post) {
-    console.log("++++"+post._id)
         forkJoin({
           mediafiles: this.postService.getPost(post._id),
         }).subscribe(({ mediafiles }) => {
@@ -143,15 +139,12 @@ export class CoachphotoPage implements OnInit {
 
       getExt(fileName) {
         const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
-        //console.log(ext);
         return ext;
       }
       getAllPosts(event?) {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
-      console.log(this.postsOwnerId);
       this.postService.getAllPostsById(this.page, this.postsOwnerId).pipe(share()).subscribe(res => {
-        console.log(res);
         this.posts=res.data;
 
       this.posts.forEach(post => {

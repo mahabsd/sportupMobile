@@ -71,7 +71,6 @@ export class ResetpassPage implements OnInit {
     }
 
     this.userService.resetPassword(body).subscribe(async (response) => {
-      console.log('hello user', response);
       this.router.navigateByUrl('/login');
       await this.presentToast(response.status, 'success', 'middle');
     }, async err => {

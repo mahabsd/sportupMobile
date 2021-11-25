@@ -55,6 +55,19 @@
           name="chevron-back-outline">
         </ion-icon>
       </ion-buttons>
+      <ion-buttons slot="start">
+        <ion-icon *ngIf="isSaved" color="light" routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me"
+          name="chevron-back-outline">
+        </ion-icon>
+      </ion-buttons>
+      <div *ngIf="isSaved"  class="savedPosts">
+        <ion-icon  color="light"
+        name="bookmark-outline">
+      </ion-icon>
+        Enregistré
+      </div>
+
+      
       <ion-buttons>
         <ion-button shape="rounded" *ngIf="isKid" slot="start" [routerLink]="['/activite']"
           routerLinkActive="router-link-active">

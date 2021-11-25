@@ -126,7 +126,6 @@ export class GestionAdherentPage implements OnInit {
     });
     await modal.present();
     modal.onDidDismiss().then((result) => {
-      console.log('ggggggg', result.data);
       const events = [];
       const start = result.data.event.startTime;
       const newDate = new Date(start);
@@ -146,7 +145,6 @@ export class GestionAdherentPage implements OnInit {
         ),
         allDay: false,
       });
-      console.log(events);
       this.eventSource = events;
     });
   }

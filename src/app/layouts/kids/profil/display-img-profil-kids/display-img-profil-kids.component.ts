@@ -24,7 +24,6 @@ isvideo=false;
 }
 
   ngOnInit() {
-    console.log(this.post)
 
     if( this.post.split(/[#?]/)[0].split('.').pop().trim().includes('png')|| this.post.split(/[#?]/)[0].split('.').pop().trim().includes('jpeg')){
       this.isimage=true;

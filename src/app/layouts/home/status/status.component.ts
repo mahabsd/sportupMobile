@@ -45,6 +45,7 @@ export class StatusComponent implements OnInit {
   @Input() user: any;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
+  @Input  () isBookMarked: boolean;
   apiImgUser = `${environment.apiImg}User/`;
   apiImg = `${environment.apiImg}Post/`;
   commentForm: FormGroup;
@@ -77,7 +78,6 @@ export class StatusComponent implements OnInit {
   iduser;
   idProfilePassed;
   user$: any;
-
   name: any;
   constructor(
     private commentService: CommentService,
@@ -165,7 +165,6 @@ export class StatusComponent implements OnInit {
     this.comment = new Comment();
     this.getCommentByPost();
 
-     console.log(this.comment);
      this.userService.getMe().subscribe((res) => {
       this.user$ = res.data.data;
       this.notif.reciever = post.user._id;
@@ -208,13 +207,11 @@ export class StatusComponent implements OnInit {
       this.createNotif(this.notif);
     });
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
-      //console.log(res);
       this.bookmarked = true;
     });
   }
   unBookmark(post) {
     this.favorisService.addFavoris(post?._id).subscribe((res) => {
-      //console.log(res);
       this.bookmarked = false;
     });
   }
@@ -223,7 +220,6 @@ export class StatusComponent implements OnInit {
 
   getExt(fileName) {
     const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
-    //console.log(ext);
     return ext;
   }
 
@@ -251,7 +247,6 @@ export class StatusComponent implements OnInit {
 
   async displayVideo(file: any) {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    // console.log(url);
 
     const modal = await this.modalController.create({
       component: ImageProfileComponent,
@@ -287,8 +282,6 @@ export class StatusComponent implements OnInit {
         this.thirdNewMediaFiles = this.tempMedia.slice(1, 3);
         this.secondNewMediaFiles = this.tempMedia.splice(3, this.mediafiles.length);
       }
-      console.log(this.post);
-
     });
   }
   async presentPopover(ev: any) {
@@ -322,9 +315,7 @@ export class StatusComponent implements OnInit {
           .subscribe((res) => {
             if (res == null) {
               this.router.navigate(['profil', iduserpassed, 'adulte']);
-              console.log('nope');
             } else {
-              console.log(res);
               this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed']);
             }
           });

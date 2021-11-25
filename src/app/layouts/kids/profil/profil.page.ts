@@ -141,7 +141,6 @@ export class ProfilPage implements OnInit {
   }
 
   segmentChanged(ev: any) {
-    console.log('Segment changed', ev.detail.value);
     this.selected = ev.detail.value;
     if (this.selected === 'propos') {
       this.title = "Modifier profile";
@@ -186,8 +185,6 @@ export class ProfilPage implements OnInit {
 
     this.userService.updateMe(this.user).subscribe(res => {
 
-
-      console.log(res);
     });
     this.update = false;
   }
@@ -206,7 +203,6 @@ export class ProfilPage implements OnInit {
    getimageBypostId(idpost) {
       this.imageService.getImageBypost(idpost).subscribe(async(res) => {
         this.postsimg$ = await res
-        console.log(res);
         this.postsimg$.map(post=> {
           this.postsimg.push(post);
           this.postsimg.sort(function (a, b) {

@@ -69,10 +69,6 @@ export class SigninPage implements OnInit {
 
   }
   enableSection(event) {
-    console.log(event.target);
-    console.log('section', this.section);
-    console.log(this.user.role);
-
     // this.section = '';
     this.section = event.target.id;
     this.role = this.user.role;
@@ -92,8 +88,6 @@ export class SigninPage implements OnInit {
     if(age<13)
     this.user.role='kids';
     this.signinService.signUp(this.user).subscribe(res => {
-      console.log(res);
-
       this.presentToast('Bienvenue ' + this.user.name, 'success', 'middle');
       this.router.navigateByUrl('/confirmation');
     }, err => {

@@ -272,7 +272,10 @@ const routes: Routes = [
         path: 'add',
         loadChildren: () => import('./community/add/add.module').then( m => m.AddPageModule)
       },
-
+      {
+        path: 'saved-posts',
+        loadChildren: () => import('./coachprofile/saved-posts/saved-posts.module').then( m => m.SavedPOSTSPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
