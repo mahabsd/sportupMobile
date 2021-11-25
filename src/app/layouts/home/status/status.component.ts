@@ -287,7 +287,7 @@ export class StatusComponent implements OnInit {
         this.thirdNewMediaFiles = this.tempMedia.slice(1, 3);
         this.secondNewMediaFiles = this.tempMedia.splice(3, this.mediafiles.length);
       }
-      // console.log(this.mediafiles);
+      console.log(this.post);
 
     });
   }

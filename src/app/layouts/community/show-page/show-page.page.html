@@ -1,5 +1,240 @@
 <app-header [isPage]="true"></app-header>
 
-<ion-content>
+<ion-content  [scrollEvents]="true" >
+  <div style="position: relative;">
+    <div style="position: absolute;bottom:15px;left:10px;display:flex;flex-direction:column;align-items:center">
+      <img style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;" src="../../../assets/svg/person-icon.svg" alt="">
+      <span style="font-size: 18px;color:white">SPORT'UP</span>
+    </div>
+    <img src="https://starwalk.space/gallery/images/june-2020-planet-parade-what-is-it-and-how-can-you-see-it/1920x1080.jpg" alt="">
+  </div>
+  <div style="background-color: rgb(241, 241, 241);height:100%">
+    <div style="display: flex;">
+      <ion-segment style="display:flex; align-items:center;justify-content:space-around;padding:0 5px;width:100%;" (ionChange)="segmentChanged($event)">
+        <ion-segment-button value="Acceuil">
+          Acceuil
+        </ion-segment-button>
+        <ion-segment-button value="A propos">
+          A propos
+        </ion-segment-button>
+        <ion-segment-button value="Photos">
+          Photos
+        </ion-segment-button>
+      </ion-segment>
+      <button>
+        Message
+      </button>
+      <ng-container *ngIf="followedPage===true;else notFollowed" >
+        <button style="color:green;font-weight:bold" (click)="toggleFollow()">
+          Suivre
+        </button>
+      </ng-container>
+      <ng-template #notFollowed>
+        <button style="background-color: green;color:white" (click)="toggleFollow()">
+          Suivie
+        </button>
+      </ng-template>
 
+      <button style="position: relative;width:20px;height:15px;margin-top:12px">
+        <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;">
+          <ion-icon name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+          <ng-container *ngIf="dropDown">
+            <div style="font-size:15px;position: absolute;background-color:rgb(243, 243, 243);padding:10px;border-radius:15px;transform:translateX(-210px) translateY(20px);display:flex;flex-direction:column;width:210px;color:rgb(168, 168, 168);box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);justify-content:space-around;align-items:flex-start;">
+              <span>Rechercher dans la page</span>
+              <hr>
+              <span>Inviter des amis à s'abonner</span>
+              <hr>
+              <span>Signaler la page</span>
+              <hr>
+              <span>Bloquer la page</span>
+            </div>
+          </ng-container>
+        </div>
+      </button>
+
+    </div>
+
+    <div *ngIf="selected === 'Acceuil'">
+      <div style="display:flex;align-items:center;background-color:rgb(226, 226, 226);padding:8px 10px;margin:5px;border-radius:25px;justify-content:space-between;margin:20px 10px">
+        <input placeholder="Exprimez vous!" type="text" style="border: none;background-color:unset">
+        <img style="width:20px;height:20px;" src="../../../assets/svg/black-add-page.svg" alt="">
+      </div>
+      <div style="padding: 10px;font-size:12px;color:rgb(107, 107, 107);background-color:white;margin:10px 0">
+        <div style="display: flex;align-items:center">
+          <img style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px" src="../../../assets/svg/person-icon.svg" alt="">
+          <div style="display: flex;flex-direction:column;justify-content:space-around">
+            <span>Nom Prénom</span>
+            <span style="font-size:8px;">Coach sportif</span>
+          </div>
+        </div>
+        <div style="line-height: 20px;;margin:10px 0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, natus explicabo necessitatibus asperiores, ratione vitae quisquam amet saepe, laborum tempora suscipit!
+        </div>
+        <div style="display: flex; justify-content:space-between;padding:5px 15px;width:100%">
+          <div style="display: flex;align-items:center">
+            <span style="margin-right:10px">983</span>
+            <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_like.svg" alt="">
+          </div>
+          <div style="display: flex;align-items:center">
+            <div style="display: flex;align-items:center;margin-right:15px">
+              <span style="margin-right:10px">175</span>
+              <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_comment.svg" alt="">
+            </div>
+            <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/iconPost/icon_bookmark.svg" alt="">
+            <img style="width: 20px;height:20px;" src="../../../assets/svg/share-event.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div style="padding: 10px;font-size:12px;color:rgb(107, 107, 107);background-color:white;margin:10px 0">
+        <div style="display: flex;align-items:center">
+          <img style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px" src="../../../assets/svg/person-icon.svg" alt="">
+          <div style="display: flex;flex-direction:column;justify-content:space-around">
+            <span>Nom Prénom</span>
+            <span style="font-size:8px;">Coach sportif</span>
+          </div>
+        </div>
+        <div style="line-height: 20px;;margin:10px 0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, natus explicabo necessitatibus asperiores, ratione vitae quisquam amet saepe, laborum tempora suscipit!
+        </div>
+        <div style="display: flex; justify-content:space-between;padding:5px 15px;width:100%">
+          <div style="display: flex;align-items:center">
+            <span style="margin-right:10px">983</span>
+            <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_like.svg" alt="">
+          </div>
+          <div style="display: flex;align-items:center">
+            <div style="display: flex;align-items:center;margin-right:15px">
+              <span style="margin-right:10px">175</span>
+              <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_comment.svg" alt="">
+            </div>
+            <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/iconPost/icon_bookmark.svg" alt="">
+            <img style="width: 20px;height:20px;" src="../../../assets/svg/share-event.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div style="padding: 10px;font-size:12px;color:rgb(107, 107, 107);background-color:white;margin:10px 0">
+        <div style="display: flex;align-items:center">
+          <img style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px" src="../../../assets/svg/person-icon.svg" alt="">
+          <div style="display: flex;flex-direction:column;justify-content:space-around">
+            <span>Nom Prénom</span>
+            <span style="font-size:8px;">Coach sportif</span>
+          </div>
+        </div>
+        <div style="line-height: 20px;;margin:10px 0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, natus explicabo necessitatibus asperiores, ratione vitae quisquam amet saepe, laborum tempora suscipit!
+        </div>
+        <div style="display: flex; justify-content:space-between;padding:5px 15px;width:100%">
+          <div style="display: flex;align-items:center">
+            <span style="margin-right:10px">983</span>
+            <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_like.svg" alt="">
+          </div>
+          <div style="display: flex;align-items:center">
+            <div style="display: flex;align-items:center;margin-right:15px">
+              <span style="margin-right:10px">175</span>
+              <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_comment.svg" alt="">
+            </div>
+            <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/iconPost/icon_bookmark.svg" alt="">
+            <img style="width: 20px;height:20px;" src="../../../assets/svg/share-event.svg" alt="">
+          </div>
+        </div>
+      </div>
+      <div style="padding: 10px;font-size:12px;color:rgb(107, 107, 107);background-color:white;margin:10px 0">
+        <div style="display: flex;align-items:center">
+          <img style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px" src="../../../assets/svg/person-icon.svg" alt="">
+          <div style="display: flex;flex-direction:column;justify-content:space-around">
+            <span>Nom Prénom</span>
+            <span style="font-size:8px;">Coach sportif</span>
+          </div>
+        </div>
+        <div style="line-height: 20px;;margin:10px 0">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis, natus explicabo necessitatibus asperiores, ratione vitae quisquam amet saepe, laborum tempora suscipit!
+        </div>
+        <div style="display: flex; justify-content:space-between;padding:5px 15px;width:100%">
+          <div style="display: flex;align-items:center">
+            <span style="margin-right:10px">983</span>
+            <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_like.svg" alt="">
+          </div>
+          <div style="display: flex;align-items:center">
+            <div style="display: flex;align-items:center;margin-right:15px">
+              <span style="margin-right:10px">175</span>
+              <img style="width: 20px;height:20px;" src="../../../assets/iconPost/icon_comment.svg" alt="">
+            </div>
+            <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/iconPost/icon_bookmark.svg" alt="">
+            <img style="width: 20px;height:20px;" src="../../../assets/svg/share-event.svg" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selected === 'A propos'">
+      <div style="font-size: 17px;font-weight:bold;margin:10px 0 35px 15px ">
+        <span style="margin-right:10px">300</span>
+        <span>Participants</span>
+      </div>
+      <div style="margin: 15px;">
+        <div>
+          <span style="font-size: 17px;font-weight:bold">Page :</span>
+          <span>Sport'up agancy</span>
+        </div>
+        <div>
+          <span style="font-size: 17px;font-weight:bold">Lieu :</span>
+          <span>Adresse</span>
+        </div>
+        <div>
+          <span style="font-size: 17px;font-weight:bold">Contact :</span>
+          <span>88 888 888</span>
+        </div>
+        <div>
+          <span style="font-size: 17px;font-weight:bold">Site web :</span>
+          <span>www.sportup.com</span>
+        </div>
+        <div>
+          <span style="font-size: 17px;font-weight:bold">Email :</span>
+          <span>sportup@gmail.com</span>
+        </div>
+      </div>
+      <ng-container *ngIf="more===false;else showmore" >
+        <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+          <span style="font-size: 17px;font-weight:bold;">Description :</span>
+          <span >
+            Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit Perferendis, quisquam odio.
+            Corrupti aperiam omnis exercitationem facere minima, blanditiis
+            aspernatur voluptate nihil magni eos error quod voluptatem in ipsum
+            ciendis vel?
+          </span>
+        </div>
+        <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
+      </ng-container>
+      <ng-template #showmore>
+        <div style="margin-left: 15px; ">
+          <span style="font-size: 17px;font-weight:bold;">Description :</span>
+          <span >
+            Lorem ipsum dolor
+            sit amet, consectetur adipisicing elit Perferendis, quisquam odio.
+            Corrupti aperiam omnis exercitationem facere minima, blanditiis
+            aspernatur voluptate nihil magni eos error quod voluptatem in ipsum
+            ciendis vel?
+          </span>
+        </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir moins</span>
+      </ng-template>
+
+    </div>
+    <div *ngIf="selected === 'Photos'">
+      <div style="display: flex;margin:10px">
+        <div style="display: flex;">
+          <img style="border-radius:15px;height: 144.5px;width:144.5px;object-fit:cover" src={{photos[0].url}} alt="">
+          <img style="border-radius:15px;height: 144.5px;width:144.5px;margin-left:10px;object-fit:cover" src={{photos[1].url}} alt="">
+        </div>
+        <div style="display: flex;flex-direction:column">
+          <img style="border-radius:15px;height: 67px;width:67px;margin:0 0 10px 10px;object-fit:cover" src={{photos[2].url}} alt="">
+          <img style="border-radius:15px;height: 67px;width:67px;margin-left:10px;object-fit:cover" src={{photos[3].url}} alt="">
+        </div>
+      </div>
+      <div style="display: flex;flex-wrap:wrap;width:100%;margin-left:10px">
+        <div *ngFor="let photo of photos"  >
+          <img style="width: 67px;height:67px;border-radius:15px;margin-right:10px;object-fit:cover" [src]="photo.url" alt="">
+        </div>
+      </div>
+    </div>
+
+  </div>
 </ion-content>
