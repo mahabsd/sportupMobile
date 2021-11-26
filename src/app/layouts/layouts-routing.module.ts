@@ -276,9 +276,15 @@ const routes: Routes = [
         path: 'saved-posts',
         loadChildren: () => import('./coachprofile/saved-posts/saved-posts.module').then( m => m.SavedPOSTSPageModule)
       },
+      {
+        path: 'welcome',
+        loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+
 
 
 
