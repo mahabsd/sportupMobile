@@ -54,6 +54,7 @@ export class HeaderComponent implements OnInit {
   @Input()  followid: string;
   @Input() isCommunityCreate: boolean;
   @Input() isSaved: boolean;
+  @Input() isActivityKids: boolean;
   userid: any;
   user$: any;
   iduser1;
@@ -62,7 +63,7 @@ export class HeaderComponent implements OnInit {
     public popoverController: PopoverController,
     private location: Location,
     private userservice: UserService,
-
+    private modalController: ModalController,
   ) { }
 
   ngOnInit() {
@@ -127,7 +128,10 @@ async openSearch() {
   });
   return await modal.present();
 }
-
+async closeModal() {
+  const onClosedData = 'Wrapped Up!';
+  await this.modalController.dismiss(onClosedData);
+}
 
 }
 

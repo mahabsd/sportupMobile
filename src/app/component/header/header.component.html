@@ -66,8 +66,10 @@
       </ion-icon>
         Enregistré
       </div>
+      <ion-buttons *ngIf="isActivityKids" (click)="closeModal()" slot="start">
+        <ion-icon  color="light" name="chevron-back-outline"></ion-icon>
+      </ion-buttons>
 
-      
       <ion-buttons>
         <ion-button shape="rounded" *ngIf="isKid" slot="start" [routerLink]="['/activite']"
           routerLinkActive="router-link-active">
@@ -118,4 +120,5 @@
     <ion-title color="light" class="ion-text-center title-font">
       {{title}}</ion-title>
   </ion-toolbar>
+
 </ion-header>
