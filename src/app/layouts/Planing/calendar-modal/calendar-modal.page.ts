@@ -40,6 +40,7 @@ export class CalendarModalPage implements OnInit {
       this.event.lieu = this.selectedEvent.event.lieu;
       this.event.notes = this.selectedEvent.event.notes;
       this.selectedTime = this.selectedEvent.event.startTime;
+      console.log(this.selectedEvent);
 
       // eslint-disable-next-line max-len
       const fStart = new Date(
@@ -65,6 +66,7 @@ export class CalendarModalPage implements OnInit {
       this.event.startTime = moment(fStart).format('YYYY/MM/DD HH:mm');
       this.event.endTime = moment(fEnd).format('YYYY/MM/DD HH:mm');
     } else {
+      console.log(this.selectedEvent);
       // eslint-disable-next-line max-len
       const fStart = new Date(
         Date.UTC(

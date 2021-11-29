@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
 
 @Component({
@@ -7,10 +8,12 @@ import { EventService } from 'src/app/shared/Service/event.service';
   styleUrls: ['./community.page.scss'],
 })
 export class CommunityPage implements OnInit {
+  @ViewChild(IonSlides) slides: IonSlides;
   isScrollTop = false;
 
   dropDown: boolean;
   selected: any;
+
   events = [
     {
       name: "ZUMBA BEACH",
@@ -152,11 +155,16 @@ export class CommunityPage implements OnInit {
   }
   ngOnInit() {
     this.selected = 'Pages';
-
+    this.dropDown=false;
   }
 
+  next(){
+    this.slides.slideNext();
+  }
 
-
+  prev(){
+    this.slides.slidePrev();
+  }
 
   doRefresh(event) {
    // this.posts = [];
@@ -173,6 +181,15 @@ export class CommunityPage implements OnInit {
       this.isScrollTop = true;;
     }
     this.eventService.sendMessage(this.isScrollTop);
+  }
+
+  openDropDown() {
+    if(this.dropDown===false){
+      this.dropDown=true;
+    }
+    else if(this.dropDown===true){
+      this.dropDown=false;
+    }
   }
 
 }

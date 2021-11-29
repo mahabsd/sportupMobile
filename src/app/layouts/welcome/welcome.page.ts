@@ -121,6 +121,7 @@ export class WelcomePage implements OnInit {
       depth: 100,
       modifier: 1,
       slideShadows: true,
+      loop:true
     },
     on: {
       beforeInit() {

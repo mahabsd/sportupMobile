@@ -611,7 +611,7 @@ ion-toolbar {
     }
 
     & .message-submit {
-        background-image: linear-gradient(135deg, #247238, #247238, #8EBF25, #8EBF25);
+        background-image: linear-gradient(250deg, #247238, #247238, #8EBF25, #8EBF25);
         position: absolute;
         height: 25px;
         top: 8px;
@@ -683,47 +683,31 @@ ion-toolbar {
     border: 0;
     outline: 0;
     font-size: $ruler;
-    border-radius: 10px;
+    border-radius: 5px;
     padding: $ruler;
     background-color:white;
     text-shadow: 1px 1px 0 $color-white;
-    box-shadow: -5px -5px 20px $color-white, 1px 1px 5px;
-    width: 94%;
+    box-shadow: inset 0px 1px 5px rgb(148, 148, 148);
+    width: 96%;
     margin-bottom: 10px;
     margin-left: 8px;
     margin-right: 5px;
   }
 
-  .MyinputUpdate1  {
-    border: 0;
-    outline: 0;
-    font-size: $ruler;
-    border-radius: $ruler*10;
-    padding: $ruler;
-    background-color:white;
-    text-shadow: 1px 1px 0 $color-white;
-    box-shadow: -5px -5px 20px $color-white, 1px 1px 5px;
-    width: 27%;
-    height: 10PX;
-    margin-top: 8px;
-    margin-bottom: 8px;
-
-    margin-left: 11px;
-    margin-right: 5px;
-  }
   .ion-textarea{
     border: 0;
     outline: 0;
-    border-radius: 10px;
+    font-size: $ruler;
+    border-radius: 5px;
+    padding: $ruler;
     background-color:white;
     text-shadow: 1px 1px 0 $color-white;
-    box-shadow: 5px 5px 5px 5px gray, 5px 5px 5px 5px;
-    width: 94%;
-    height: 40%;
+    box-shadow: inset 0px 1px 5px rgb(148, 148, 148);
+    width: 96%;
     margin-bottom: 10px;
     margin-left: 8px;
     margin-right: 5px;
-
+    height: 40%;
   }
 .list .item-radio .item-content {
   background-color: black;
@@ -735,5 +719,5 @@ ion-toolbar {
 }
 .item-radio input:checked + .radio-content .item-content {
     /* style the item content when its checked */
-    background: black; 
+    background: black;
 }

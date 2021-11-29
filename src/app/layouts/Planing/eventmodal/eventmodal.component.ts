@@ -17,18 +17,32 @@ export class EventmodalComponent implements OnInit {
     private router: Router
   ) {}
 
-  supprimer() {
+  supprimerAdult() {
     this.calendarService.deleteEvent(this.eventSelected._id).subscribe((res) => {
       this.router.navigate(['/calendar']);
       this.modalCtrl.dismiss();
     });
   }
-  update() {
+  supprimerKids() {
+    this.calendarService.deleteEvent(this.eventSelected.activity._id).subscribe((res) => {
+      this.router.navigate(['/planning-kids']);
+      this.modalCtrl.dismiss();
+    });
+
+  }
+  updateAdult() {
     this.calendarService.sendEvent(this.eventSelected);
+    console.log(this.eventSelected);
+  }
+  updateKids() {
+    this.calendarService.sendEvent(this.eventSelected);
+    console.log(this.eventSelected.activity);
   }
   dismiss() {
     this.modalCtrl.dismiss();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // console.log(this.eventSelected);
+  }
 }

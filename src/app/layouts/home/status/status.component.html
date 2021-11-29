@@ -1,21 +1,5 @@
 <ion-grid >
   <ion-row lines="none">
-    <!-- <ion-avatar slot="" class="ion-padding" *ngIf="isUserConnected !== post?.user?._id && post.shared===undefined">
-      <img [src]="apiImgUser + post?.user?.photo" (click)="getfollow(post?.user?._id)" />
-    </ion-avatar>
-    <ion-label (click)="getfollow(post?.user?._id)" class="ion-justify-content-center"
-      *ngIf="isUserConnected !== post?.user?._id" style="display: grid; align-self: center">
-      <h3 class="
-          ion-text-capitalize
-          ion-align-self-start
-          ion-justify-content-start
-          ion-text-start
-        " routerLinkActive="router-link-active">
-        {{ post?.user?.name }}
-      </h3>
-      <p>{{ post?.createdAt | date }}</p>
-    </ion-label> -->
-
     <ion-avatar slot="" class="ion-padding" >
       <img [src]="apiImgUser + post?.user?.photo" routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
     </ion-avatar>
@@ -32,18 +16,21 @@
         {{ post.user.name }} shared {{post?.post?.user.name}}'s post
       </h3>
       </ng-container>
-      <ng-template #mine>
-        <h3 class="
-          ion-text-capitalize
-          ion-align-self-start
-          ion-justify-content-start
-          ion-text-start
-        " routerLinkActive="router-link-active">
-        {{ post?.user?.name }}
-      </h3>
-      </ng-template>
+      <div style="display: flex;">
+        <ng-template #mine>
+          <h3 class="
+            ion-text-capitalize
+            ion-align-self-start
+            ion-justify-content-start
+            ion-text-start
+          " routerLinkActive="router-link-active">
+          {{ post?.user?.name }}
+        </h3>
+        </ng-template>
 
-      <p>{{ post?.createdAt | date }}</p>
+        <p style="color: #a5a5a5;">{{ post?.createdAt | date }}</p>
+        <span style="margin-left:15px ;">{{post.content}}</span>
+      </div>
     </ion-label>
 
     <ion-button color="light" slot="end" shape="round" fill="clear" size="small" (click)="presentPopover($event)">
@@ -54,7 +41,7 @@
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length > 0">
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <ng-container *ngIf="post.shared===true" >
+  <ng-container style="display: flex;flex-direction:column" *ngIf="post.shared===true" >
     <div style="display: flex; align-items:center;margin-top:-20px">
       <ion-avatar slot="" class="ion-padding" >
         <img [src]="apiImgUser + post.post.user.photo" routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
@@ -63,10 +50,12 @@
         {{ post.post?.user?.name }}
       </span>
     </div>
+    <span>{{post?.post?.content}}</span>
   </ng-container>
 
   <div routerLink="/one-status/{{ post.post?.id ||post.id }}" *ngIf="mediafiles.length === 0">
-    <span style="display:flex;padding-left:20px">{{post.content}}</span>
+
+
     <div style="display: flex; justify-content: center;flex-direction:column">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
@@ -323,8 +312,8 @@
           <input placeholder="Ecrivez un commentaire ..." [(ngModel)]="comment.content"  style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
         </div>
         <div style="display: flex;">
-          <ion-icon style="width: 20px;height:20px;margin-right:5px;color:gray"  (click)="sendComment(post.post||post)" name="send"></ion-icon>
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" (click)="sendComment(post.post||post)" alt="">
+          <ion-icon style="width: 20px;height:20px;margin-right:5px;color:gray"  (click)="sendComment(post)" name="send"></ion-icon>
+          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg"  alt="">
           <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
           <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
           <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
