@@ -36,6 +36,7 @@ export class UtilsService {
   public static apimediafile = UtilsService.remoteAdress + 'media/';
   public static apimyaccesshistory = UtilsService.remoteAdress + 'accesshistory/myaccesshistory/';
   public static apiNotif = UtilsService.remoteAdress + 'notifications/';
+  public static apiIp = UtilsService.remoteAdress + 'getIps/';
 
   public static apimyactivityhistory = UtilsService.remoteAdress + 'activityhistory';
   public static apideactivation = UtilsService.remoteAdress + 'deactivateaccount';
