@@ -3,12 +3,12 @@
 <ion-content>
 <div *ngFor="let file of mediafiles" >
   <div
-  style="width: 95%; height: 220px;border-radius:10px;margin:10px"
+  style="width: 95%; height: 220px;border-radius:10px;margin:20px 10px"
   id="first"
   [style.background-size]="'cover'"
   [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
   errorImage="../../../assets/imgs/150.png"></div>
-  <div style="display: flex;align-items:center;justify-content:space-evenly">
+  <!-- <div style="display: flex;align-items:center;justify-content:space-evenly">
     <ng-container *ngIf="!post?.likedBy.includes(user?._id) || !post.post?.likedBy.includes(user?._id); else dislikedTemp">
       <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
         size="large">
@@ -89,6 +89,6 @@
         <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/mic.svg" alt="">
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
 </ion-content>

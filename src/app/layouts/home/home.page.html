@@ -1,9 +1,9 @@
 <app-header title="Home" [isOption]="true"></app-header>
 <ion-content style="background-color: gray;" padding [scrollEvents]="true" (ionScroll)="logScrolling($event)">
-  <div style="background-color: rgb(235, 235, 235);" id="container">
-    <ion-grid>
+  <div style="background-color: rgb(241, 241, 241);" id="container">
+    <ion-grid >
       <ion-row id="rowTabFiltre">
-        <ion-col>
+        <ion-col style="margin: -12px 0;">
           <button
           color="white"
           style="
@@ -48,7 +48,7 @@
         </ion-col>
       </ion-row>
 
-      <ion-row class="bodyFilter">
+      <ion-row class="bodyFilter" style="margin: -5px 0 0 0;">
         <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
           <ion-refresher-content
             pullingIcon="chevron-down-circle-outline"

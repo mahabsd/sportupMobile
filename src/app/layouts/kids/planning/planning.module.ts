@@ -12,6 +12,7 @@ import { WeekSlidesComponent } from './week-slides/week-slides.component';
 
 @NgModule({
   imports: [
+
     CommonModule,
     FormsModule,
     IonicModule,

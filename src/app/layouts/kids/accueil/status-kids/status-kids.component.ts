@@ -118,7 +118,7 @@ export class StatusKidsComponent implements OnInit {
     this.getMe();
 
     this.getCommentByPost();
-    console.log(this.mediafiles);
+    // console.log(this.mediafiles);
   }
 
   async presentAlertConfirm(post) {
@@ -212,7 +212,7 @@ export class StatusKidsComponent implements OnInit {
         this.thirdNewMediaFiles=tempMedia.slice(1,3);
         this.secondNewMediaFiles=tempMedia.splice(3,this.mediafiles.length);
       }
-      console.log(this.newMediaFiles);
+      // console.log(this.newMediaFiles);
 
     });
   }

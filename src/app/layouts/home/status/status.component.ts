@@ -105,6 +105,7 @@ export class StatusComponent implements OnInit {
     this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
     });
+    console.log(this.post);
   }
 
   getMe() {
@@ -265,7 +266,7 @@ export class StatusComponent implements OnInit {
   }
   getCommentByPost() {
     forkJoin({
-      comments: this.commentService.getCommentByService(this.post.post?._id || this.post.id),
+      comments: this.commentService.getCommentByService( this.post.id),
       images: this.postService.getPost(this.post.post?._id || this.post.id),
       mediafiles: this.postService.getPost(this.post.post?._id || this.post.id),
       tempMedia: this.postService.getPost(this.post.post?._id || this.post.id),
@@ -283,6 +284,7 @@ export class StatusComponent implements OnInit {
         this.secondNewMediaFiles = this.tempMedia.splice(3, this.mediafiles.length);
       }
     });
+
   }
   async presentPopover(ev: any) {
     const popover = await this.popoverCtrl.create({

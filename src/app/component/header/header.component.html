@@ -15,9 +15,10 @@
       <ion-icon *ngIf="isPages" color="light" routerLink="/tabs/community"
         name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="isPage" color="light" routerLink="/show-pages"
+      <ion-icon *ngIf="isPage" color="light" routerLink="/tabs/community"
         name="chevron-back-outline">
       </ion-icon>
+
       <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
       </ion-icon>
@@ -107,6 +108,8 @@
     </ion-buttons>
     <ion-title color="light" *ngIf="isKid" class="ion-text-center">
       Accueil</ion-title>
+      <ion-title color="light" *ngIf="isWelcome" class="ion-text-center">
+        Bienvenue</ion-title>
       <ion-title color="light" *ngIf="isPages" class="ion-text-center">
         Pages</ion-title>
         <ion-title color="light" *ngIf="isPage" class="ion-text-center">

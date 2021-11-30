@@ -2,12 +2,33 @@
   <ion-toolbar>
     <div id="content" >
       <ion-buttons slot="start">
-        <ion-button (click)="update()" large
+        <div style="display: flex;" *ngIf="eventSelected.activity.activity;else adult">
+          <div (click)="updateKids()">
+            <ion-button large
           ><ion-icon color="light" name="create-outline" size="large"></ion-icon
         ></ion-button>
-        <ion-button (click)="supprimer()" large
+          </div>
+        <div (click)="supprimerKids()">
+          <ion-button    large
           ><ion-icon color="light" name="trash-outline" size="large"></ion-icon
         ></ion-button>
+        </div>
+        </div>
+        <ng-template  #adult>
+          <div style="display: flex;">
+            <div (click)="updateAdult()">
+              <ion-button large
+              ><ion-icon color="light" name="create-outline" size="large"></ion-icon
+        ></ion-button>
+            </div>
+            <div (click)="supprimerAdult()">
+              <ion-button large
+          ><ion-icon color="light" name="trash-outline" size="large"></ion-icon
+        ></ion-button>
+            </div>
+          </div>
+        </ng-template>
+
       </ion-buttons>
 
       <ion-buttons slot="end">

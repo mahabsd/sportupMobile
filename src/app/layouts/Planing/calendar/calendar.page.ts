@@ -154,7 +154,7 @@ export class CalendarPage implements OnInit {
           .sort((a, b) => a - b)
       ),
     ];
-    console.log(this.eventDays);
+    // console.log(this.eventDays);
   }
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {

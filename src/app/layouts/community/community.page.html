@@ -14,8 +14,343 @@
           Evennements
         </ion-segment-button>
       </ion-segment>
-      <div *ngIf="selected === 'Pages'">
-        Hello pages
+      <div style="padding: 10px 0 0 0;display:flex;flex-direction:column;" *ngIf="selected === 'Pages'">
+        <span style="margin-top:20px;font-size:20px;color:rgb(194, 194, 194);margin-left:20%">Pages que vous gérez</span>
+        <div style="display: flex;align-items:center">
+          <ion-icon style="margin: 20px 0 0 0;width:20px" (click)="prev()" name="chevron-back"></ion-icon>
+          <ion-slides style="margin: 20px 0 0 0;height:110px;width:90%" pager="false" [options]="slideOpts">
+            <ion-slide style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px;">
+              <div routerLink="/show-page" style="display: flex;align-items:center;width:100%;padding:0 12px">
+                <span style="margin-right: 10px;">LOGO</span>
+                <span>Sport'up Agency</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;width:100%;padding:0 12px">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte de reception</span>
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Inviter à s'abonner</span>
+              </div>
+            </ion-slide>
+            <ion-slide style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px">
+              <div routerLink="/show-page" style="display: flex;align-items:center;width:100%;padding:0 12px">
+                <span style="margin-right: 10px;">LOGO</span>
+                <span>Sport'up Agency</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;width:100%;padding:0 12px">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte de reception</span>
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Inviter à s'abonner</span>
+              </div>
+            </ion-slide>
+            <ion-slide style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px">
+              <div routerLink="/show-page" style="display: flex;align-items:center;width:100%;padding:0 12px">
+                <span style="margin-right: 10px;">LOGO</span>
+                <span>Sport'up Agency</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;width:100%;padding:0 12px">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte de reception</span>
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Inviter à s'abonner</span>
+              </div>
+            </ion-slide>
+            <ion-slide style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px">
+              <div routerLink="/show-page" style="display: flex;align-items:center;width:100%;padding:0 12px">
+                <span style="margin-right: 10px;">LOGO</span>
+                <span>Sport'up Agency</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;width:100%;padding:0 12px">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte de reception</span>
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Inviter à s'abonner</span>
+              </div>
+            </ion-slide>
+          </ion-slides>
+          <ion-icon style="margin: 20px 0 0 0;width:20px" (click)="next()" name="chevron-forward"></ion-icon>
+        </div>
+        <span style="margin-top:35px;font-size:20px;color:rgb(194, 194, 194);margin-left:20%">Suggestions pour vous</span>
+        <div style="height:300px;overflow-y:scroll;">
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 1</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 2</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 3</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 4</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 5</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 6</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 7</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 8</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 9</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 10</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div style="display: flex;width:95%;justify-content:space-between;padding:20px 10px;margin:10px 0;background-color:rgb(230, 230, 230);border-radius:10px;box-shadow:3px 3px 5px gray">
+              <div routerLink="/show-page" style="display: flex;align-items:center">
+                <span style="margin-right:10px">LOGO</span>
+                <span>Page 11</span>
+              </div>
+              <div style="display: flex;width:150px;justify-content:space-evenly;align-items:center">
+                <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">J'aime</span>
+                <img style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" src="../../assets/svg/share-event.svg" alt="">
+                <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative">
+                  <div class="threePoints">
+                    <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+                  </div>
+                  <ng-container *ngIf="dropDown">
+                    <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
+                    width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
+                      <span style="font-size: 15px;">Enregistrer</span>
+                      <span style="font-size: 15px;">Inviter des amis</span>
+                      <span style="font-size: 15px;">Signaler l'évenement</span>
+                      <span style="font-size: 15px;">Bloquer cette page</span>
+                    </div>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div *ngIf="selected === 'Evennements'">
 

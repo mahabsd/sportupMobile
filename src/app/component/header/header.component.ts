@@ -27,6 +27,7 @@ export class HeaderComponent implements OnInit {
   @Input() isOptionPageSuivre: boolean = false;
 
   @Input() isCoach: boolean = false;
+  @Input() isWelcome: boolean = false;
   @Input() isPalmares: boolean = false;
   @Input() isModProfile: boolean = false;
   @Input() BoiteRecepetionKids: boolean = false;
