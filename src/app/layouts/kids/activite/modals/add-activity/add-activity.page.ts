@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { ActiviteKidService } from 'src/app/shared/Service/activite-kid.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, RequiredValidator, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-activity',
@@ -28,28 +28,33 @@ export class AddActivityPage implements OnInit {
   suivi: boolean;
   recompense: boolean;
   rows: any = [1];
+  validForm: boolean;
   constructor(
     private modalController: ModalController,
     private navParams: NavParams,
     private activiteKidService: ActiviteKidService,
     private userservice: UserService,
     private toastCtrl: ToastController,
-    ) { }
+  ) { }
 
   ngOnInit() {
-    this.private = false;
-    this.public = true;
     this.dropDown = false;
+    this.validForm = false;
+    this.cours = false;
+    this.jeux = false;
+    this.devoirs = false;
+    this.suivi = false;
+    this.recompense= false;
     this.modelId = this.navParams.data.paramID;
     this.modalTitle = this.navParams.data.paramTitle;
     this.activityKid = new FormGroup({
-      activite: new FormControl(''),
-      content: new FormControl(''),
-      user: new FormControl(this.user$)
+      activite: new FormControl('', Validators.required),
+      content: new FormControl('', Validators.required),
+      user: new FormControl(this.user$),
+      linkTitle: new FormControl('',)
     });
     this.getMe();
   }
-
   async closeModal() {
     const onClosedData = 'Wrapped Up!';
     await this.modalController.dismiss(onClosedData);
@@ -62,9 +67,26 @@ export class AddActivityPage implements OnInit {
     });
   }
   confirm() {
-    this.activiteKidService.addActivity(this.activityKid.value).subscribe(res=>{
-     this.presentToast('activité crée avec succés', 'success', 'bottom');
-     });
+    console.log(this.activityKid.valid);
+
+    if (this.activityKid.valid) {
+      this.validForm = true;
+      this.activiteKidService.addActivity(this.activityKid.value).subscribe(res => {
+        this.activityKid = new FormGroup({
+          activite: new FormControl('', Validators.required),
+          content: new FormControl('', Validators.required),
+          user: new FormControl(this.user$),
+          linkTitle: new FormControl('',)
+        });
+        this.cours = false;
+        this.jeux = false;
+        this.devoirs = false;
+        this.suivi = false;
+        this.recompense= false;
+        this.presentToast('activité créée avec succés', 'success', 'bottom');
+      });
+      this.validForm = false;
+    }
   }
   openDropDown() {
     if (this.dropDown === false) {
@@ -76,9 +98,10 @@ export class AddActivityPage implements OnInit {
   }
   addInput() {
     this.activityKid = new FormGroup({
-      activite: new FormControl(''),
-      content: new FormControl(''),
-      user: new FormControl(this.user$)
+      activite: new FormControl('', Validators.required),
+      content: new FormControl('', Validators.required),
+      user: new FormControl(this.user$),
+      linkTitle: new FormControl('',)
     });
     this.rows.push(this.rows.length);
   }

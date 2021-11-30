@@ -51,4 +51,7 @@ export class ShowActivityPage implements OnInit {
     });
     return await modal.present();
   }
+  goToUrl(url) {
+    window.location.href=url;
+}
 }

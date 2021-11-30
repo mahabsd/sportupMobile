@@ -25,14 +25,17 @@
                 <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/devoirs.svg" alt="">
                 <span style="color:#8F978F; font-weight:bold;margin-left:5px">Devoirs et activités</span>
               </div>
+                       <!--
+
               <div style="display: flex;align-items:center" *ngIf="suivi;">
                 <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/suivi.svg" alt="">
                 <span style="color:#8F978F; font-weight:bold;margin-left:5px">Suivi</span>
               </div>
-              <div style="display: flex;align-items:center" *ngIf="recompense">
+    <div style="display: flex;align-items:center" *ngIf="recompense">
                 <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/recompense.svg" alt="">
                 <span style="color:#8F978F; font-weight:bold;margin-left:5px"> Récompenses</span>
               </div>
+         -->
             </div>
             <div>
               <ng-container *ngIf="dropDown === false;else open">
@@ -60,7 +63,7 @@
                 </ng-container>
               </div>
               <div (click)="cours = false;recompense= false;jeux=true;suivi = false;devoirs=false;
-              this.activityKid.patchValue({activite: 'jeux' });  "
+              this.activityKid.patchValue({activite: 'jeux' });"
                 style="display: flex;align-items:center;justify-content:space-between">
                 <div style="display:flex;align-items:center;justify-content:space-between">
                   <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/jeux.svg" alt="">
@@ -85,7 +88,8 @@
                   <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
                 </ng-container>
               </div>
-              <div (click)="cours = false;recompense= false;jeux=false;suivi = true;devoirs=false;
+                       <!--
+     <div (click)="cours = false;recompense= false;jeux=false;suivi = true;devoirs=false;
               this.activityKid.patchValue({activite: 'suivi' }); "
                 style="display: flex;align-items:center;justify-content:space-between">
                 <div style="display:flex;align-items:center;justify-content:space-between">
@@ -98,7 +102,7 @@
                   <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
                 </ng-container>
               </div>
-              <div (click)="cours = false;recompense= true;jeux=false;suivi = false;devoirs=false;
+    <div (click)="cours = false;recompense= true;jeux=false;suivi = false;devoirs=false;
               this.activityKid.patchValue({activite: 'recompense' });  "
                 style="display: flex;align-items:center;justify-content:space-between">
                 <div style="display:flex;align-items:center;justify-content:space-between">
@@ -111,6 +115,8 @@
                   <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
                 </ng-container>
               </div>
+              -->
+
             </div>
           </div>
           <ng-template #close>
@@ -118,9 +124,11 @@
         </div>
         <div style="width:100%"  *ngFor="let row of rows;">
           <ion-col text-center style="padding-top: 50px ;display:flex;align-self:center ;width:100%">
-            <input class="input-text" type="text" placeholder="Ajoutez ici (un lien, une description ...) "
+            <input class="input-text" type="text" placeholder="Ajoutez un lien"
               formControlName="content">
-            <button (click)="confirm()"
+              <input class="input-text" type="text" placeholder="Titre"
+              formControlName="linkTitle">
+            <button (click)="confirm()" [disabled]= "validForm"
               style="border-radius:15px;margin-left: 5px;color:white;width:80px; height:40px;background-image: linear-gradient(135deg, #247238, #247238, #8EBF25, #8EBF25);">Ajouter</button>
           </ion-col>
         </div>
