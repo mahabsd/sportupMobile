@@ -1,5 +1,5 @@
 <app-header title="MODIFIER PROFILE" [isParam]="true"></app-header>
-<ion-content>
+<ion-content *ngIf="editing===true" >
   <ion-row style="margin-bottom: 10px;">
     <ion-col size="3">
       <ion-avatar>
@@ -11,8 +11,9 @@
       <h6 (click)="selectImageSource()">modifier la photo de profil</h6>
     </ion-col>
   </ion-row>
+
   <ion-item class="textInput">
-    <ion-input type="text" placeholder="PALMARES" rows="6" placeholder="NOM D'UTILISATION" [disabled]="disabledName" [(ngModel)]="user$.name">
+    <ion-input type="text" placeholder="A PROPOS" rows="6" placeholder="NOM D'UTILISATION" [disabled]="disabledName" [(ngModel)]="user$.name">
     </ion-input>
   </ion-item>
   <ion-grid>
@@ -24,7 +25,7 @@
       </p>
     </ion-row>
     <ion-item class="textInput palmares">
-      <ion-textarea type="text" placeholder="PALMARES" rows="3" [(ngModel)]="user$.palmares"></ion-textarea>
+      <ion-textarea type="text" placeholder="A PROPOS" rows="3" [(ngModel)]="user$.palmares"></ion-textarea>
     </ion-item>
     <ion-item class="textInput">
       <ion-label>Adresse e-mail</ion-label>
@@ -61,7 +62,7 @@
     </ion-col>
   </ion-row>
   <ion-row style="padding:20px;">
-    <button style="
+    <!-- <button style="
       margin-right: 25px;
       background-image: linear-gradient(
         40deg,
@@ -74,7 +75,82 @@
       color: white;
       font-size: 10px;
     " (click)="updateMe()">Envoyer
-    </button>
-    <ion-label class="desac">Desactivez mon compte</ion-label>
+    </button> -->
+
+    <ion-label class="desac" routerLink="/desactivermoncompte">Desactivez mon compte</ion-label>
+  </ion-row>
+  <div style="display: flex;">
+    <img (click)="updateMe()"  (click)="toggleEdit()" style="width: 30px;height:30px;margin-right:10px" src="../../../assets/svg/green-tick.svg" alt="">
+    <img (click)="toggleEdit()" style="width: 30px;height:30px" src="../../../assets/svg/red-x.svg" alt="">
+  </div>
+</ion-content>
+<ion-content *ngIf="editing===false" >
+  <ion-row style="margin-bottom: 10px;">
+    <ion-col size="3">
+      <ion-avatar>
+        <img [src]="apiImg+user$?.photo">
+      </ion-avatar>
+    </ion-col>
+    <ion-col size="9">
+      <h5>{{user$.name}} {{user$.lastname}}</h5>
+    </ion-col>
+  </ion-row >
+  <ion-row style="position: relative;">
+    <div (click)="toggleEdit()" style="width:20px;height:20px;position:absolute;right:0;top:-30px">
+      <img src="../../../assets/svg/green-pen.svg" alt="">
+    </div>
+  </ion-row>
+  <ion-item class="textInput">
+    <span  >
+      {{user$.name}}
+    </span>
+  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <p style="font-size: small;">
+        Aidez les gens a trouver votre compte a l'aide de votre nom le plus connu,
+        que ce soit votre nom complet ,votre surnom ou votre nom d'entreprise
+      </p>
+    </ion-row>
+    <label>A PROPOS</label>
+    <ion-item style="height: 150px;padding:15px 0;margin-top:10px" class="textInput palmares">
+      <span style="height: 150px;width:100%">{{user$.palmares}}aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</span>
+    </ion-item>
+    <ion-item class="textInput">
+      <ion-label>Email</ion-label>
+      <span>{{user$.email}}</span>
+    </ion-item>
+    <ion-item class="textInput">
+      <ion-label>Numero de telephone</ion-label>
+      <span>{{user$.phone}}</span>
+    </ion-item>
+    <ion-item class="textInput">
+      <ion-label>Date de naissance</ion-label>
+      <span displayFormat="MMM D YYYY">{{date}}</span>
+    </ion-item>
+  </ion-grid>
+  <ion-row>
+    <ion-col>
+      <ion-item class="textInput">
+        <ion-label>Gender</ion-label>
+        <span style="text-transform: capitalize;">{{user$.sexe}}</span>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item class="textInput">
+        <ion-label>Weight</ion-label>
+        <span>{{user$.weight}} Kg</span>
+      </ion-item>
+    </ion-col>
+    <ion-col>
+      <ion-item class="textInput">
+        <ion-label>Height</ion-label>
+        <span>{{user$.height}}cm</span>
+      </ion-item>
+    </ion-col>
+  </ion-row>
+  <ion-row style="padding:20px;">
+
+    <ion-label class="desac" routerLink="/desactivermoncompte">Desactivez mon compte</ion-label>
   </ion-row>
 </ion-content>

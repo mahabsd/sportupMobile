@@ -8,17 +8,17 @@ import { UtilsService } from './utils.service';
   providedIn: 'root'
 })
 export class AccesshistoryService {
- 
+
   constructor(private apiService: UtilsService) { }
 
- 
+
 
   getHistory(): Observable<any> {
     return this.apiService
       .get(`${UtilsService.apimyaccesshistory}`)
       .pipe(map((res) => res.data.data));
   }
- 
+
   deleteHistory() {
     return this.apiService.delete(`${UtilsService.apimyaccesshistory}`);
   }

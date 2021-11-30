@@ -17,6 +17,10 @@ export class UpdateprofilPage implements OnInit {
   filesToUpload = null;
   disabledName = false;
   dateOfToday = new Date();
+  editing: boolean;
+  birthDay: any
+  date
+  options = {  year: 'numeric', month: 'long', day: 'numeric' };
   constructor(
     private userService: UserService,
     private action: ActionSheetController,
@@ -25,6 +29,7 @@ export class UpdateprofilPage implements OnInit {
   ) { }
   async ngOnInit() {
     this.getMe();
+    this.editing=false
   }
 
   envoyer() {
@@ -34,6 +39,12 @@ export class UpdateprofilPage implements OnInit {
   getMe() {
     this.userService.getMe().subscribe(async (res) => {
       this.user$ = await res.data.data;
+      console.log(this.user$);
+      this.birthDay = this.user$.datedenaissance
+      this.date = new Date(this.birthDay)
+      this.date=this.date.toLocaleDateString("en-US", this.options)
+      console.log(this.date);
+      // console.log(this.date.toLocaleDateString("en-US", this.options))
 
       this.userService.getUser(this.user$._id).subscribe(user => {
         const createdAt = new Date(this.user$.createdAt);
@@ -42,10 +53,19 @@ export class UpdateprofilPage implements OnInit {
             this.disabledName = true;
           }
         }
+
       });
     });
   }
 
+  toggleEdit() {
+    if (this.editing === false) {
+      this.editing=true
+    } else if (this.editing === true) {
+      this.editing=false
+    }
+    console.log(this.editing);
+  }
 
   async addImage(source: CameraSource) {
 
@@ -55,6 +75,7 @@ export class UpdateprofilPage implements OnInit {
 
     this.userService.updateMe(fd).subscribe(async (res) => {
       this.getMe();
+      console.log("updated");
     });
   }
 
