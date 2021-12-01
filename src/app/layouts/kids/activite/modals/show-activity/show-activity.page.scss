@@ -1,4 +1,3 @@
-
 .background {
   position: absolute;
 }
@@ -9,11 +8,44 @@
 }
 
 .games {
-  height:150px;
-  width:150px;
+  height: 150px;
+  width: 150px;
 
 }
+
 .plus {
   height: 50px;
   width: 50px;
+}
+
+.recompense {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recompense img {
+  margin-top: 20px;
+  position: absolute;
+  width: 400px;
+}
+
+.recompense span {
+  font-size: 25px;
+  margin-top: 30px;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.grid img {
+  height: 120px;
+  width: 120px;
 }
