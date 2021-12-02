@@ -54,25 +54,6 @@
 </ion-content>
 
 <ion-content class="ion-padding" *ngIf="activity === 'recompense'">
-  <!--
-  <ion-grid style="height: 100%; display: flex;flex-direction:column; justify-content:space-between">
-    <div *ngFor="let activity of activities">
-      <ion-item>
-        <ion-label *ngIf="activity.content.indexOf('http') !== 0">{{activity.content}}</ion-label>
-        <a href={{activity.content}} *ngIf="activity.content.indexOf('https') === 0">{{activity.content}}</a>
-      </ion-item>
-      <ion-item>
-        <ion-button shape="round" color="danger" (click)="delete(activity._id)">Supprimer mon activité </ion-button>
-      </ion-item>
-    </div>
-
-    <ion-row class="ion-align-self-end">
-      <ion-col text-center>
-        <ion-button shape="round" color="warning" (click)="closeModal()">retour</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
--->
   <div class="recompense">
     <img src="../../../assets/svg/formsRecompense.svg" alt="">
     <span>Mes Récompenses</span>
@@ -231,31 +212,12 @@
       </div>
     </div>
   </ion-grid>
-  <!--
-  <ion-grid style="height: 100%; display: flex;flex-direction:column; justify-content:space-between">
-    <div *ngFor="let activity of activities">
-      <ion-item>
-        <ion-label *ngIf="activity.content.indexOf('http') !== 0">{{activity.content}}</ion-label>
-        <a href={{activity.content}} *ngIf="activity.content.indexOf('https') === 0">{{activity.content}}</a>
-      </ion-item>
-      <ion-item>
-        <ion-button shape="round" color="danger" (click)="delete(activity._id)">Supprimer mon activité </ion-button>
-      </ion-item>
-    </div>
-
-    <ion-row class="ion-align-self-end">
-      <ion-col text-center>
-        <ion-button shape="round" color="warning" (click)="closeModal()">retour</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  -->
 
 
 </ion-content>
 <ion-content class="ion-padding" *ngIf="activity === 'devoirs'">
   <div class="drop">
-    <span>vendredi  <strong> 19-11-2021</strong></span>
+    <span>vendredi <strong> 19-11-2021</strong></span>
     <div class="chevron">
       <ng-container *ngIf="dropDown===false;else open">
         <ion-icon style="color:#8F978F" name="chevron-forward-outline"></ion-icon>
@@ -265,22 +227,11 @@
       </ng-template>
     </div>
   </div>
-  <ion-grid style="height: 100%; display: flex;flex-direction:column; justify-content:space-between">
-    <div *ngFor="let activity of activities">
-      <ion-item>
-        <ion-label *ngIf="activity.content.indexOf('http') !== 0">{{activity.content}}</ion-label>
-        <a href={{activity.content}} *ngIf="activity.content.indexOf('https') === 0">{{activity.content}}</a>
-      </ion-item>
-      <ion-item>
-        <ion-button shape="round" color="danger" (click)="delete(activity._id)">Supprimer mon activité </ion-button>
-      </ion-item>
-    </div>
-
-    <ion-row class="ion-align-self-end">
-      <ion-col text-center>
-        <ion-button shape="round" color="warning" (click)="closeModal()">retour</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+  <div class="devoirs" *ngFor="let activity of activities">
+    <img src="../../../assets/svg/ischecked.svg" *ngIf="checked" (click)="checked = false"alt="">
+    <img src="../../../assets/svg/isnotcheckd.svg" *ngIf="!checked" (click)="checked = true"alt="">
+      <ion-label *ngIf="activity.content.indexOf('http') !== 0">    <span> - 8h-9h : Cours de français {{activity.content}}</span></ion-label>
+      <a href={{activity.content}} *ngIf="activity.content.indexOf('https') === 0">    <span> - 8h-9h : Cours de français {{activity.content}}</span></a>
+    <ion-icon shape="round" color="danger" name="trash" (click)="delete(activity._id)"></ion-icon>
+  </div>
 </ion-content>

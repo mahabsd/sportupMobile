@@ -19,6 +19,9 @@ export class ShowActivityPage implements OnInit {
   examsNumber: any;
   recompenseNumber: any;
   dropDown: any;
+  notchecked: boolean;
+  checked: boolean;
+
   constructor(private activiteKidService: ActiviteKidService,
     private modalController: ModalController,
     private navParams: NavParams) { }
@@ -29,6 +32,8 @@ export class ShowActivityPage implements OnInit {
     this.examsNumber = 4;
     this.recompenseNumber = 0;
     this.dropDown = false;
+    this.notchecked = false;
+    this.checked = false;
     this.activity = this.navParams.data.paramID;
     this.getAll(this.activity);
   }
