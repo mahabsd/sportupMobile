@@ -1,0 +1,653 @@
+<app-header title="Confidentialité et sécurité" [isParam]="true"></app-header>
+
+<ion-content>
+<div *ngIf="user?.role==='user'"  style="display: flex;flex-direction:column;align-items:center;background-color:rgb(233, 233, 233);color:gray">
+  <span style="margin: 5px;font-size:30px;color:green;margin:25px 0">Confidentialité et sécurité </span>
+  <span style="margin: 5px;">
+    Chez Smuppy ، nous respectons et protégeons la sécurité de vos données grâce
+    à une infrastructure de sécurité de pointe,  une gestion des données responsable
+    et des outils de sécurité faciles à utiliser qui vous permettent de garder le contrôle.
+  </span>
+  <span style="margin: 5px;">
+    <strong>EN UTILISANT LE SERVICE, VOUS NOUS PROMETTEZ  AVOIR LU, COMPRIS,
+      ET ACCEPTÉ CETTE POLITIQUE DE CONFIDENTIALITÉ, ET  ÊTRE ÂGÉ DE 13 ANS
+      OU PLUS (OU QU’UN PARENT OU TUTEUR A LU ET ACCEPTÉ CETTE POLITIQUE DE
+      CONFIDENTIALITÉ POUR VOUS).
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Si vous n’acceptez pas ou n’êtes pas en mesure de faire cette promesse,
+    vous ne devez pas utiliser le Service. “RGPD” désigne le Règlement Général
+    sur la Protection des Données (UE) 2016/679 du Parlement Européen et du Conseil
+    du 27 avril 2016 relatif à la protection des personnes physiques à l’égard du
+    traitement des données à caractère personnel et à la libre circulation de ces données.
+    “‘UE/EEE” comprend tous les États membres actuels de l’Union européenne et de l’Espace
+    économique européen."Le processus, en ce qui concerne les données à caractère personnel,
+    comprend la collecte, le stockage et la divulgation à des tiers.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      A. TYPES DE DONNÉES À CARACTÈRE PERSONNEL QUE NOUS RECUEILLONS
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous recueillons les données que vous nous indiquez volontairement
+    (par exemple vos intérêts,  vos préférences alimentaires, poids, taille).
+    En outre, nous recueillons automatiquement certaines données (par exemple votre
+    adresse IP). Il est également possible que nous recevions des données à votre sujet
+    de la part d’un tiers.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      1. Données que vous nous indiquez
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    <span style="margin: 5px;">
+      Comme tous les comptes pour réseaux sociaux, vous avez besoin d’une adresse
+      e-mail ou d’un numéro de téléphone et d’un mot de passe pour y accéder. La
+      première chose à faire c’est de s’assurer que vous connaissez cette boîte e-mail
+      et ce numéro de téléphone et que vous êtes seule à y avoir accès.
+    </span>
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      2. Données que nous recueillons automatiquement
+    </strong>
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Données sur la façon dont vous nous avez trouvés
+  </span>
+  <span style="margin: 5px;">
+    Nous recueillons des données sur votre application ou URL de référence
+    (c’est-à-dire l’application ou l’endroit sur le Web où vous étiez lorsque vous
+    avez cliqué sur notre application).
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Données sur le type d’appareil et sa localisation
+  </span>
+  <span style="margin: 5px;">
+    Nous recueillons des données à partir de votre appareil. Ces données comprennent
+    par exemple : les paramètres de langue, l’adresse IP, le fuseau horaire, le type
+    et le modèle de l’appareil, les paramètres de l’appareil, le système d’exploitation,
+    le fournisseur d’accès Internet, l’opérateur mobile, l’ID du matériel.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Données d’utilisation
+  </span>
+  <span style="margin: 5px;">
+    Nous enregistrons la manière dont vous interagissez avec notre service.
+    Par exemple, nous pouvons enregistrer vos clics sur certaines zones de l’interface,
+    les fonctions et le contenu avec lesquels vous interagissez, la fréquence et la
+    durée de votre utilisation de Smuppy.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Identiﬁants publicitaires
+  </span>
+  <span style="margin: 5px;">
+    Nous recueillons votre IDFA (Identiﬁant publicitaire d’Apple) ou votre AAID
+    (Identiﬁant publicitaire de Google) (en fonction du système d’exploitation de
+    votre appareil) lorsque vous accédez à notre application. Vous pouvez généralement
+    réinitialiser ces chiffres par le biais des paramètres du système d’exploitation
+    de votre appareil (mais nous n’avons aucun contrôle là-dessus).
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Données de transaction
+  </span>
+  <span style="margin: 5px;">
+    Lorsque vous procédez à des paiements par le biais du service, vous devez
+    fournir des données de votre compte bancaire, tel que votre numéro de carte
+    de crédit, à nos prestataires de services tiers. Nous ne recueillons ni conservons
+    l’intégralité des données relatives au numéro de carte de crédit, bien que nous
+    puissions recevoir des données relatives à la carte de crédit, des données
+    concernant la transaction – parmi lesquelles la date, l’heure et le montant de
+    la transaction, le type de méthode de paiement utilisé.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    LocalStorage
+  </span>
+  <span style="margin: 5px;">
+    Stockage DOM (Document Object Model), ou encore localStorage, est une technique
+    d'enregistrement de données dans un navigateur web. Le stockage web local permet
+    l'enregistrement persistant, comme avec les cookies mais avec une capacité bien
+    plus grande, et sans avoir à rajouter de données dans l'entête de requête HTTP.
+    Il existe deux types de stockage web local : le stockage local et le stockage de
+    session, équivalant respectivement aux cookies persistants et aux cookies de session.
+    Localstorage est en particulier utilisé pour vous reconnaître automatiquement chaque
+    fois que vous visitez notre application. En conséquence de quoi, les informations que
+    vous aurez entrées auparavant dans certains formulaires sur l’application apparaîtront
+    automatiquement la prochaine fois que vous utiliserez notre service.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      B. DANS QUEL BUT NOUS TRAITONS LES DONNÉES À CARACTÈRE PERSONNEL
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous traitons vos données à caractère personnel :
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      1. Afin de  fournir notre service
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Cela permet notamment de vous permettre d’utiliser le Service sans heurts et de
+    prévenir ou de résoudre les erreurs ou les problèmes techniques du Service.
+    Pour l’hébergement des données personnelles, et pour permettre à ce site de
+    fonctionner et d’être distribué, nous utilisons les services
+    <span style="color: blue;font-weight:bold">web d’Amazon Amazon Web Services (AWS), qui sont des services d’hébergement
+      et de back-end (arrière-plan) fournis par Amazon.
+    </span>
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      2. Aﬁn de personnaliser votre expérience
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous traitons vos données personnelles, telles que vos objectifs (par exemple,
+    le poids cible), pour ajuster le contenu du Service et vous proposer des offres
+    adaptées à vos préférences personnelles.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      3. Aﬁn de vous fournir une assistance client
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous traitons vos données à caractère personnel aﬁn de répondre à vos
+    demandes d’assistance technique, d’informations sur le Service ou à toute
+    autre prise de contact que vous aurez avec nous. À cette fin, nous pouvons
+    vous envoyer, par exemple, des notiﬁcations sur la performance de notre Service,
+    la sécurité, les transactions de paiement, des avis concernant nos conditions
+    d’utilisation ou la présente politique de confidentialité.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      4. Aﬁn de mesurer et d’analyser votre utilisation du Service
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Cela nous aide à mieux comprendre notre activité, à analyser nos opérations,
+    à maintenir, améliorer, innover, planiﬁer, concevoir et développer l’application.
+    Nous utilisons ces données à des ﬁns d’analyse statistique, pour tester et
+    améliorer nos offres. Cela nous permet de mieux comprendre quelles sont les
+    caractéristiques et les sections de l’application que nos utilisateurs apprécient
+    le plus, quelles sont les catégories d’utilisateurs qui utilisent notre application.
+    En conséquence, nous décidons souvent de la manière d’améliorer le l’application
+    en fonction des résultats obtenus par ce traitement.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      5. Aﬁn de vous envoyer des communications commerciales
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous traitons vos données à caractère personnel pour les campagnes marketing.
+    Nous pouvons ajouter votre adresse électronique à notre liste de marketing.
+    Vous recevrez ainsi des informations sur nos produits, telles que des oﬀres
+    spéciales. Si vous ne souhaitez pas que nous vous envoyions d’e-mails de
+    marketing, vous pouvez vous désabonner. Nos partenaires et nous, utilisons
+    vos données à caractère personnel aﬁn de personnaliser les publicités.
+    Par exemple, si vous avez accédé à notre application, vous pourriez voir
+    apparaître des publicités.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      6. Aﬁn de procéder à vos paiements
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous fournissons des services payants dans le cadre du Service. Pour ce faire,
+    nous utilisons des services tiers pour le traitement des paiements (par exemple,
+    des processeurs de paiement). À la suite de ce traitement, vous pourrez effectuer
+    un paiement pour un service Business Premium : nous serons informés que le paiement
+    a été effectué et vous recevrez l'accès. Nous ne conserverons ni ne recueillerons
+    nous-mêmes les détails de votre carte de paiement. Ces informations seront
+    fournies directement à nos tiers chargés du traitement des paiements.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      7. Aﬁn de faire respecter nos conditions générales d’utilisation et de prévenir et combattre la fraude
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous utilisons les données à caractère personnel pour faire respecter nos
+    accords et nos engagements contractuels à détecter, prévenir et combattre la
+    fraude. À la suite de ce traitement, nous pouvons partager vos informations avec
+    des tiers, y compris les services de police (tout particulièrement si un
+    litige survient en rapport avec nos conditions d’utilisation).
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      8. Par obligation légale
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous pouvons traiter, utiliser ou partager vos données lorsque la loi l’exige,
+    en particulier si un organisme d’application de la loi demande vos données par
+    les moyens légaux disponibles.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      C. D’APRÈS QUELLE BASE JURIDIQUE NOUS TRAITONS VOS DONNÉES À CARACTÈRE PERSONNEL
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Dans cette section, nous vous expliquons quelle base juridique nous utilisons
+    pour chacun des buts cités dans la deuxième section. Pour plus d’informations
+    sur un des buts du traitement des données, veuillez vous reporter à la section B.
+  </span>
+  <span style="margin: 5px;">
+    Nous traitons vos données à caractère personnel en vertu des bases juridiques suivantes :
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      1. pour remplir notre contrat avec vous
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    En vertu de cette base juridique, nous :
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Fournissons notre Service (conformément à nos conditions d’utilisation)
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Personnalisons votre expérience
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Gérons votre compte et vous fournissons une assistance client
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Communiquons avec vous concernant votre utilisation de notre Service
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Traitons vos paiements
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      2. Pour nos intérêts légitimes (ou ceux d’autres personnes), à moins que vos
+      intérêts ou les droits et libertés fondamentaux qui exigent la protection des
+      données à caractère personnel ne l’emportent sur ces intérêts :
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous nous appuyons sur des intérêts légitimes,
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Pour communiquer avec vous concernant votre utilisation de notre service
+  </span>
+  <span style="margin: 5px;">
+    L’intérêt légitime sur lequel nous nous appuyons dans ce cas est notre intérêt
+    à vous encourager à utiliser notre service plus souvent. Nous prenons également
+    en compte les avantages potentiels pour vous qui peuvent vous conduire à un mode
+    de vie meilleur.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Pour étudier et analyser votre utilisation du service
+  </span>
+  <span style="margin: 5px;">
+    Notre intérêt légitime est dans ce cas de vouloir améliorer notre service a ̀
+    comprendre les préférences des utilisateurs et de pouvoir vous offrir une meilleure
+    expérience (par exemple, pour rendre l’utilisation du Site web plus facile et
+    plus agréable ou pour introduire et tester de nouvelles fonctionnalités).
+  </span>
+  <span style="margin: 5px;">
+    Pour vous envoyer des communications commerciales
+  </span>
+  <span style="margin: 5px;">
+    L’intérêt légitime sur lequel nous nous appuyons dans ce cas est notre
+    intérêt à promouvoir notre service de manière mesurée et appropriée.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Pour personnaliser nos publicités
+  </span>
+  <span style="margin: 5px;">
+    L’intérêt légitime sur lequel nous nous appuyons dans ce cas est notre
+    intérêt à promouvoir notre service d’une manière raisonnablement ciblée.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Pour faire respecter nos conditions d’utilisation et pour prévenir et combattre la fraude
+  </span>
+  <span style="margin: 5px;">
+    Nos intérêts légitimes dans ce cas sont de faire respecter nos droits légaux,
+    de prévenir et de traiter la fraude, l’utilisation non autorisée du service,
+    le non-respect de nos conditions générales d’utilisation.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      3. pour respecter les obligations légales.
+    </strong>
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      D. AVEC QUI NOUS PARTAGEONS VOS DONNÉES À CARACTÈRE PERSONNEL
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous partageons des informations avec des tierces parties qui nous aident
+    à exploiter, fournir, améliorer, intégrer, personnaliser, soutenir et
+    commercialiser notre Service. Nous pouvons partager certains ensembles
+    de données personnelles, en particulier aux ﬁns indiquées dans la section B
+    de la présente politique de confidentialité. Les types de tiers avec lesquels
+    nous partageons des informations sont notamment les suivants :
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      1.Les fournisseurs de services
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous partageons les données à caractère personnel avec des tiers que
+    nous engageons pour fournir des services ou exercer des fonctions commerciales
+    en notre nom, sur la base de nos instructions. Nous pouvons partager vos
+    informations personnelles avec les types de prestataires de services suivants :
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Des fournisseurs de stockage sur le cloud
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Des fournisseurs d’analyse de données
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Des partenaires commerciaux
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      2. Les organismes chargés de l’application de la loi et autres autorités publiques
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous pouvons utiliser et divulguer des données à caractère personnel
+    pour faire respecter nos conditions d’utilisation, pour protéger nos
+    droits, notre vie privée, notre sécurité ou nos biens et/ou ceux de nos
+    affiliés, vous ou d’autres personnes et pour répondre aux demandes des
+    tribunaux, des forces de l’ordre, des organismes de régulation et d’autres
+    autorités publiques et gouvernementales ou dans d’autres cas prévus par la loi.
+  </span>
+  <span style="margin: 5px;">
+    <strong>
+      3. Des tierces parties dans le cadre d’une fusion ou d’une acquisition
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Au fur et à mesure que nous développons notre entreprise, nous pouvons
+    acheter ou vendre des actifs ou des offres commerciales. Les informations
+    sur les utilisateurs font généralement partie des actifs commerciaux
+    transférés dans ce type de transactions. Nous pouvons également partager
+    ces informations avec toute entité affilié (par exemple une société mère ou
+    une filiale) et pouvons également transférer ces informations au cours d’une
+    transaction d’entreprise, comme la vente de notre entreprise, un désinvestissement,
+    une fusion, une consolidation ou une vente d’actifs, ou dans le cas peu probable
+    d’une faillite.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      E. DE QUELLE FAÇON VOUS POUVEZ EXERCER VOTRE DROIT DE RESPECT À LA VIE PRIVÉE
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Aﬁn de contrôler vos données à caractère personnel, vous disposez des droits suivants :
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Accès révision/mise à jour/correction de vos données à caractère personnel.
+    Vous pouvez consulter, modifier, changer ou demander une copie de vos données
+    à caractère personnel recueillies lors de votre utilisation de l’application
+    Supprimer vos données à caractère personnel.
+  </span>
+  <span style="text-decoration: underline;margin: 10px 0px 10px 35px;">
+    Si vous demandez la suppression de vos données à caractère personnel,
+    nous nous efforcerons d’honorer correctement votre demande. Dans certains
+    cas, nous pourrons être tenus légalement de conserver certaines données
+    pendant un certain temps ; dans ce cas-là, nous répondrons à votre demande
+    après nous être acquittés de nos obligations.
+  </span>
+  <span style="margin: 5px;">
+    Si vous êtes basé dans l’Espace économique européen:
+  </span>
+  <span style="margin: 5px;">
+    Le droit de déposer une plainte auprès d’une autorité de contrôle. Nous
+    préférerions que vous nous contactiez directement, aﬁn que nous puissions
+    répondre à vos préoccupations. Néanmoins, vous avez le droit de déposer
+    une plainte auprès d’une autorité de contrôle de la protection des données
+    compétente, en particulier dans l’État membre de l’UE où vous résidez,
+    travaillez ou où l’infraction présumée a eu lieu.e économique européen:
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      F. TRANSFERTS INTERNATIONAUX DE DONNÉES
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous sommes actifs à l’échelle mondiale. Nous pouvons donc transférer
+    des données à caractère personnel vers des pays autres que celui dans
+    lequel les données ont été recueillies à l’origine aﬁn de fournir le
+    Service déﬁni dans les conditions d’utilisation et aux ﬁns indiquées
+    dans la présente politique de confidentialité. Si ces pays n’ont pas
+    les mêmes lois sur la protection des données que le pays dans lequel
+    vous avez initialement fourni les informations, nous déployons des
+    mesures de protection spéciales.
+  </span>
+  <span style="margin: 5px;">
+    En particulier si nous transférons des données à caractère personnel
+    provenant de l’EEE vers des pays n’ayant pas un niveau de protection
+    des données adéquat, nous utilisons l’une des bases juridiques suivantes :
+    les clauses contractuelles types approuvées par la Commission européenne,
+    ou bien (II) le cadre de protection de la vie privée entre l’UE et les
+    États-Unis, ou encore les décisions d’adéquation de la Commission européenne
+    concernant certains pays.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      G. CHANGEMENTS RELATIFS À LA POLITIQUE DE CONFIDENTIALITÉ
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Il est possible que nous modifions la présente politique de confidentialité
+    de temps en temps. Si nous décidons d’apporter des modifications importantes
+    à la présente politique de confidentialité, vous en serez informé par notre
+    service ou par tout autre moyen de contact disponible et vous aurez la
+    possibilité de consulter la version révisée de la politique de confidentialité.
+  </span>
+  <span style="margin: 5px;">
+    Apprenez à prononcer. En continuant à accéder ou à utiliser le Service
+    après l’entrée en vigueur de ces modifications, vous acceptez d’être
+    lié par la politique de confidentialité révisée.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      H. CONSERVATION DES DONNÉES
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Nous conserverons vos données à caractère personnel aussi longtemps
+    qu’il sera raisonnablement nécessaire pour remplir les objectifs
+    énoncés dans la présente politique de confidentialité (y compris
+    pour vous fournir le Service), ce qui inclut (mais n’est pas limité
+    à) toute la période durant laquelle vous aurez un compte sur l’application.
+    Nous conserverons et utiliserons également vos données à caractère
+    personnel si nécessaire pour nous conformer à nos obligations légales,
+    résoudre des litiges et respecter nos accords.
+  </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      I. NOUS CONTACTER
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Vous pouvez nous contacter à tout moment pour obtenir des détails
+    concernant cette politique de conﬁdentialité et ses versions antérieures.
+    Pour toute question concernant votre compte ou vos données personnelles,
+    veuillez nous contacter dans la rubrique paramètre /contact.
+  </span>
+</div>
+<div *ngIf="user?.role==='kids'" style="display: flex;flex-direction:column;align-items:center;background-color:rgb(233, 233, 233);color:gray">
+  <span style="margin: 5px;font-size:30px;color:green;margin:25px 0">Confidentialité et sécurité </span>
+  <span style="margin: 10px 5px;">
+    <strong>
+      Politique de confidentialité de Smuppy Kids
+    </strong>
+  </span>
+  <span style="margin: 5px;">
+    Smuppy Kids de Smuppy est une application de messagerie, d’appels audio
+    et vidéo, de partage de contenu et d’interaction pour les enfants, qui
+    leur permet de communiquer avec leurs proches et leurs amis dans un
+    environnement amusant et adapté à leur âge.
+  </span>
+  <span style="margin: 5px;">
+    Smuppy kids est conçu pour vous permettre de contrôler quand et comment votre enfant partage des données ainsi que les personnes avec qui il communique. Vous pouvez également voir comment il utilise l’application, notamment en ayant accès aux informations qu’il partage et reçoit. Veuillez lire la présente Politique de confidentialité avec votre enfant pour veiller à ce que vous compreniez tous deux les informations que nous collectons lorsque votre enfant utilise Smuppy kids et la façon dont nous utilisons et partageons ces informations.
+  </span>
+  <span style="margin: 5px;">
+    Certaines fonctionnalités décrites dans cette Politique de confidentialité sont facultatives et uniquement accessibles à votre enfant si vous le décidez.
+  </span>
+  <span style="margin: 5px;">
+    Si vous interagissez avec votre enfant sur Smuppy Kids, la politique d’utilisation des données de Smuppy vous est applicable.
+  </span>
+  <span style="margin: 5px;">
+    Quels types d’informations collectons-nous ?
+  </span>
+  <span style="margin: 5px;">
+    Nous collectons les informations suivantes auprès des enfants et de leurs parents ou tuteurs lors de leur inscription et leur utilisation de notre application.
+  </span>
+  <span style="margin: 5px;">
+    • Détails du compte : Selon les fonctionnalités que vous et votre enfant utilisez, nous collectons les informations suivantes :
+  </span>
+  <span style="margin: 5px;">
+    • les prénom et nom de votre enfant ;
+  </span>
+  <span style="margin: 5px;">
+    • la photo de profil de votre enfant ;
+  </span>
+  <span style="margin: 5px;">
+    •la photo de couverture;
+  </span>
+  <span style="margin: 5px;">
+    • toute information de connexion fournie par vous ou votre enfant ;
+  </span>
+  <span style="margin: 5px;">
+    • les données démographiques concernant votre enfant, comme son genre et sa date de naissance si vous choisissez de les communiquer ;
+  </span>
+  <span style="margin: 5px;">
+    • les identifiants uniques propres à votre enfant, comme un nom d’utilisateur Smuppy kids ;
+  </span>
+  <span style="margin: 5px;">
+    • les informations supplémentaires concernant votre enfant que vous ou votre enfant pourriez fournir.
+  </span>
+  <span style="margin: 5px;">
+    • Utilisation de Messenger Kids : Nous collectons les types d’informations suivants concernant l’utilisation de Messenger Kids par votre enfant 
+  </span>
+  <span style="margin: 5px;">
+    • Contenu et communications : Nous collectons le contenu et le type de messages, y compris les stickers, gifs, photos ou vidéos que votre enfant partage à partir des messages qu’il envoie ou reçoit dans Smuppy kids. Cela peut inclure l’image ou la voix de votre enfant si celles-ci sont fournies. Nous collectons également des informations sur ce contenu, comme des métadonnées, ce qui peut inclure des informations comme la taille des fichiers, le nom d’une photo ou d’une vidéo et la date ou l’heure de la prise d’une photo.
+  </span>
+  <span style="margin: 5px;">
+    • Contacts : Nous recueillons des informations sur les contacts de votre enfant sur Smuppy kids et sur la façon dont votre enfant interagit avec eux — par exemple, les contacts les plus fréquents.
+  </span>
+  <span style="margin: 5px;">
+    • Utilisation : Nous collectons des informations sur la façon dont votre enfant utilise Smuppy kids, comme les fonctionnalités qu’il utilise, l’utilisation des appels audio ou vidéo ainsi que des jeux et la façon dont il interagit avec l’application.
+  </span>
+  <span style="margin: 5px;">
+    • Formulaires de contact et sondages : Nous collectons les informations que votre enfant nous communique par le biais de sondages et de formulaires de contact.
+  </span>
+  <span style="margin: 5px;">
+    • Informations sur l’appareil : Nous recueillons des informations concernant le téléphone ou tout autre appareil utilisé par votre enfant pour accéder à Smuppy Kids. Ces informations comprennent :
+  </span>
+  <span style="margin: 5px;">
+    • Caractéristiques de l’appareil : les informations telles que le système d’exploitation, les versions matérielle et logicielle ainsi que l’espace de stockage disponible.
+  </span>
+  <span style="margin: 5px;">
+    • Identifiants : les identifiants uniques et identifiants d’appareils.
+  </span>
+  <span style="margin: 5px;">
+    • Données issues des réglages de l’appareil : les informations fournies par le biais des réglages de l’appareil que vous ou votre enfant activez, notamment le fuseau horaire et l’accès à votre appareil photo, à vos photos ou à votre microphone.
+  </span>
+  <span style="margin: 5px;">
+    • Réseau et connexions : les informations telles que la langue, l’adresse IP et la vitesse de connexion.
+  </span>
+  <span style="margin: 5px;">
+    Comment utilisons-nous ces informations ?
+  </span>
+  <span style="margin: 5px;">
+    • Permettre à votre enfant de communiquer : Nous utilisons les informations dont nous disposons à propos de vous et de votre enfant pour lui permettre de communiquer avec les autres.
+  </span>
+  <span style="margin: 5px;">
+    • Personnaliser l’expérience de votre enfant dans Smuppy Kids : Nous utilisons les informations à notre disposition pour optimiser l’application pour votre enfant et pour les autres utilisateurs, notamment pour la personnalisation des fonctionnalités du produit et les suggestions de contact pour votre enfant. Cela inclut de positionner les personnes avec lesquelles votre enfant communique le plus au début de leur liste de contacts, de recommander des fonctionnalités telles qu’une nouvelle activité ou une récompense.
+  </span>
+  <span style="margin: 5px;">
+    • Améliorer nos services : Nous utilisons les informations à notre disposition pour évaluer, résoudre des problèmes, améliorer, créer et développer nos produits et pour faire de Smuppy Kids un service plus amusant, plus sûr et plus sécurisé pour les enfants. Cela inclut de mener des recherches et des analyses en utilisant les informations que nous collectons afin d’améliorer ou développer les services Smuppy.
+  </span>
+  <span style="margin: 5px;">
+    • Communiquer avec les parents ou tuteurs et leurs enfants : Nous utilisons les informations à notre disposition pour communiquer avec vous et tout autre parent ou tuteur qui gère le compte de votre enfant. Nous pouvons aussi utiliser ces informations pour communiquer avec votre enfant. Par exemple, nos communications peuvent comprendre des informations sur les activités et les connexions de votre enfant, des mises à jour sur l’application Smuppy Kids, des informations à propos de nos politiques, conditions et pratiques. Lorsque vous ou votre enfant nous contactez, nous utilisons ces informations pour répondre à ces communications.
+  </span>
+  <span style="margin: 5px;">
+    • Protection et sécurité avancées sur Smuppy Kids et en dehors : Nous utilisons les informations à notre disposition pour améliorer la sécurité de nos utilisateurs pendant l’utilisation de Smuppy Kids et en dehors de Smuppy Kids. Cela implique d’examiner l’activité suspecte, le contenu signalé, les violations à nos conditions ou nos politiques, de prévenir le contenu indésirable et autres mauvaises expériences, de lutter contre les comportements dangereux, de vérifier les comptes et les activités et de préserver l’intégrité de Smuppy Kids. Pour ce faire, nous pouvons avoir recours à des contrôles effectués par du personnel humain et à des systèmes automatisés.
+  </span>
+  <span style="margin: 5px;">
+    Comment ces informations sont-elles partagées ?
+  </span>
+  <span style="margin: 5px;">
+    • Les contacts de votre enfant.
+  </span>
+  <span style="margin: 5px;">
+    •Vous pouvez approuver chaque demande de contact une par une ou vous pouvez choisir de permettre à votre enfant d’envoyer et d’accepter des demandes de contact sans que vous ayez besoin de les approuver une par une. Vous pouvez aussi permettre à votre enfant de rejoindre des conversations de groupe sur Smuppy Kids incluant des utilisateurs qui n’ont pas été approuvés un par un. Si vous autorisez votre enfant à envoyer et accepter des demandes de contact ou à rejoindre des conversations de groupe, vous conserverez toujours votre capacité d’examiner et supprimer les contacts. Vous allez devoir activer ces fonctionnalités au nom de votre enfant et vous pourrez les désactiver à tout moment.
+  </span>
+  <span style="margin: 5px;">
+    • Le nom de votre enfant, sa photo de profil, son statut actif et sa relation avec vous et tout autre responsable de son compte, sont des informations partagées avec les personnes avec lesquelles votre enfant communique. Vous pouvez exercer les contrôles disponibles par le biais du Tableau de bord des parents afin de décider si les contacts de votre enfant peuvent voir les informations supplémentaires du compte de votre enfant (comme son anniversaire).
+  </span>
+  <span style="margin: 5px;">
+    • Les personnes avec qui votre enfant communique voient le contenu que votre enfant partage avec eux. Il est important d’examiner soigneusement les contacts de votre enfant et les autorisations sur ses contacts, puisque les personnes qui peuvent voir ses messages pourraient décider de les partager à d’autres personnes qui n’ont pas été approuvées pour communiquer avec votre enfant. Par exemple, les contacts de votre enfant peuvent faire des captures d’écran, télécharger et repartager le contenu des messages de votre enfant avec d’autres personnes, dans Smuppy Kids ou par le biais d’autres produits.
+  </span>
+  <span style="margin: 5px;">
+    • Nos fournisseurs et prestataires de services. Nous pouvons transmettre les informations que nous collectons à des prestataires de service tiers nécessaires au bon fonctionnement de Smuppy Kids, notamment aux entreprises qui fournissent une infrastructure ou une assistance technique (comme un réseau de diffusion de contenu), proposent un service client ou analysent la façon dont l’application est utilisée pour nous aider à améliorer le service. Ces partenaires doivent se conformer à des obligations strictes en matière de confidentialité des données et de sécurité, comme des restrictions sur leur manière d’utiliser les données. Nous ne vendons aucune de vos informations ou celles de votre enfant à quiconque et nous ne le ferons jamais.
+  </span>
+  <span style="margin: 5px;">
+    • Smuppy Kids est proposé par Smuppy et nous pouvons partager les informations que nous collectons au sein de Smuppy Kids avec les Entités Smuppy aux fins décrites ci-dessus et pour améliorer les services fournis par les Entités Smuppy.
+  </span>
+  <span style="margin: 5px;">
+    • Nouveaux propriétaires. Si les droits de propriété ou le contrôle d’une partie ou de l’intégralité de Smuppy Kids changent, nous avons la possibilité de transmettre les informations au nouveau propriétaire.
+  </span>
+  <span style="margin: 5px;">
+    • Respect des lois ou demandes légales. Nous partageons des informations avec les forces de l’ordre ou en réponse à des demandes légales dans les circonstances décrites ci-dessous.
+  </span>
+  <span style="margin: 5px;">
+    Pour empêcher Smuppy de collecter et d’utiliser les informations personnelles de votre enfant sur Smuppy Kids, vous pouvez supprimer le compte de votre enfant via nos Pages d’aide. Si vous supprimez le compte de votre enfant, nous supprimerons les informations de son profil, les informations concernant son activité et ses contacts, les informations de son appareil et le texte de ses messages, conformément à la description ci-dessus. Toutefois, les messages et le contenu envoyé et reçu par votre enfant avant la suppression de son compte restent visibles pour les utilisateurs qui, comme indiqué ci-dessus, peuvent le repartager avec d’autres personnes.
+  </span>
+  <span style="margin: 5px;">
+    Nous conservons les informations jusqu’à ce que ce ne soit plus nécessaire pour fournir nos services ou jusqu’à ce que le compte de votre enfant soit supprimé, en fonction de la première de ces éventualités à se produire. Il s’agit d’une décision au cas par cas qui dépend de facteurs tels que la nature des données, la raison de leur collecte et de leur traitement, et les besoins légaux ou opérationnels de leur conservation. Nous pouvons par exemple conserver des informations d’inscription sur injonction en application de la loi, afin de rendre la communauté Smuppy Kids plus sûre.
+  </span>
+  <span style="margin: 5px;">
+    Signalement d’une activité suspecte
+  </span>
+  <span style="margin: 5px;">
+    Comme décrit ci-dessus, nous utilisons les informations à notre disposition pour promouvoir la sécurité des enfants sur Smuppy Kids, mais nous mettons également à leur disposition un outil de signalement qu’ils peuvent utiliser si nécessaire. Sur son compte, votre enfant peut signaler tout contenu inapproprié (notamment du contenu pouvant s’apparenter à du harcèlement, du contenu intimidant, violent ou à caractère sexuel) ou toute activité suspecte (par exemple, s’il/elle pense qu’une personne a usurpé l’identité d’un de ses amis ou d’un membre de sa famille) et bloquer immédiatement l’individu incriminé surSmuppy Kids. Si votre enfant signale une personne, nous vous en informerons.
+  </span>
+  <span style="margin: 5px;">
+    Comment procédons-nous pour répondre aux demandes légales ou pour éviter tout préjudice ?
+  </span>
+  <span style="margin: 5px;">
+    Nous accédons aux informations de votre enfant, les conservons et les partageons avec les régulateurs, les forces de l’ordre ou autorités réglementaires ou d’autres :
+  </span>
+  <span style="margin: 5px;">
+    • Pour répondre à une demande légale, si nous pensons de bonne foi que la loi l’exige. Nous pouvons également répondre aux demandes légales lorsque nous pensons de bonne foi que la réponse est requise par la loi applicable au sein de cette juridiction, qu’elle affecte des utilisateurs au sein de cette juridiction, et qu’elle est conforme aux normes reconnues au niveau international.
+  </span>
+  <span style="margin: 5px;">
+    • Lorsque nous avons des raisons de penser de bonne foi que cela est nécessaire pour : détecter, prévenir et faire cesser la fraude, l’utilisation non autorisée de Messenger Kids, des violations de nos conditions ou politiques ou toute autre activité dangereuse ou illégale ; pour nous protéger (notamment pour protéger nos droits, notre propriété ou nos produits), vous protéger ou protéger d’autres personnes, notamment dans le cadre d’enquêtes ou de demandes réglementaires ; ou pour éviter tout décès ou tout préjudice corporel imminent.
+  </span>
+  <span style="margin: 5px;">
+    Les informations à votre sujet ou celui de votre enfant que nous recevons peuvent être utilisées et conservées pendant un certain temps lorsqu’elles font l’objet d’une obligation ou d’une demande légale, d’une enquête gouvernementale ou d’enquêtes concernant d’éventuelles violations de nos conditions ou politiques, ou pour éviter tout autre préjudice. Nous conservons également pendant une durée minimale d’un an les informations des comptes désactivés suite à une violation des conditions d’utilisation, et ce, afin d’éviter les abus répétés ou d’autres violations des conditions d’utilisation.
+  </span>
+  <span style="margin: 5px;">
+    Comment gérons-nous et transférons-nous les données dans le cadre de nos services internationaux ?
+  </span>
+  <span style="margin: 5px;">
+    Nous partageons des informations à l’international, à la fois en interne avec les Entités Smuppy, en externe avec nos partenaires et avec ceux avec qui vous communiquez et avec qui vous partagez à travers le monde, conformément à cette politique. Vos informations peuvent, par exemple, être transférées ou transmises, stockées ou traitées aux États-Unis ou dans d’autres pays en dehors du pays de votre résidence, aux fins décrites dans la présente politique. Ces transferts de données sont nécessaires à la fourniture des services énoncés dans les Conditions générales de Smuppy Kids. Ils nous permettent également d’exploiter et de vous fournir nos produits dans le monde entier. Nous utilisons les clauses contractuelles types, nous nous appuyons sur les décisions d’adéquation de la Commission Européenne concernant certains pays le cas échéant, et nous obtenons votre consentement pour ces transferts de données vers les États-Unis et d’autres pays.
+  </span>
+  <span style="margin: 5px;">
+    Mises à jour et modifications apportées à cette politique
+  </span>
+  <span style="margin: 5px;">
+    Avant d’apporter des modifications à nos pratiques de partage, de collecte ou d’utilisation des données telles que décrites dans cette Politique, nous vous informerons, en tant que parent ou tuteur d’un enfant possédant un compte Smuppy Kids, et vous offrirons la possibilité d’examiner lesdites modifications avant qu’elles s’appliquent à votre enfant.
+  </span>
+  <button style="background: linear-gradient(135deg,  #8EBF25,#8EBF25,#247238, #247238);padding:10px 15px;color:white;margin-bottom:15px;border-radius:10px" routerLink="/contact">CONTACTER SMUPPY</button>
+</div>
+</ion-content>

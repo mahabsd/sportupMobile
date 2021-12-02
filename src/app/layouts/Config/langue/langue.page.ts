@@ -7,15 +7,30 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./langue.page.scss'],
 })
 export class LanguePage implements OnInit {
-  public fish: string;
+  public lang: string;
+
 
   constructor(public storage: Storage) { }
-  selectLanguage(event) {
-    this.storage.set('lan',event.target.value);
+  selectLanguage(lang) {
+    this.storage.set('lan',lang);
   }
+
+  setFrench() {
+    this.lang="french"
+  }
+  setEnglish() {
+    this.lang="english"
+  }
+
+  setSpanish() {
+    this.lang="spanish"
+  }
+
 
   ngOnInit() {
     this.storage.get('lan').then((val) => {
+      this.lang = val
+      console.log(this.lang);
     });
   }
 

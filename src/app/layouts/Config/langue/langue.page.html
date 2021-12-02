@@ -1,6 +1,6 @@
 <app-header title="Langue" [isParam]="true"></app-header>
 
-<ion-content>
+<ion-content style="font-weight: bold;">
   <ion-row style="margin: 15px 15px 15px 15px;">
     <ion-col size="12">
       <div style="font-weight: bold;font-size:medium;margin-top: 5px;">
@@ -9,55 +9,49 @@
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="1"></ion-col>
-    <ion-col text-center>
-      <ion-card no-padding style="margin: 2px !important; ">
+
+    <div style="width: 100%;margin:0 15px">
+      <ion-card no-padding style="height:170%;box-shadow:5px 5px 15px gray;border-radius:10px">
         <ion-card-header>
-          <ion-label style="color: grey;font-weight: bold;font-size:smaller;margin-top: 5px;">
+          <ion-label style="color: grey;font-weight: bold;margin-top: 5px;">
             SELECTIONNEZ VOTRE LANGUE
           </ion-label>
         </ion-card-header>
-        <ion-card-content>
-          <ion-list>
-            <ion-radio-group allow-empty-selection="true" (ionChange)="selectLanguage($event)"
-              >
-              <ion-list-header>
-              </ion-list-header>
-              <ion-item lines="none">
-                <ion-label style="color: grey;font-weight: bold;font-size:small;margin-top: 5px;">FRANCAIS</ion-label>
-                <ion-radio slot="start" value="fr" checked></ion-radio>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-label style="color: grey;font-weight: bold;font-size:small;margin-top: 5px;">ANGLAIS</ion-label>
-                <ion-radio slot="start" value="en"></ion-radio>
-              </ion-item>
-              <ion-item lines="none">
-                <ion-label style="color: grey;font-weight: bold;font-size:small;margin-top: 5px;">ESPAGNOL</ion-label>
-                <ion-radio slot="start" value="es"></ion-radio>
-              </ion-item>
-            </ion-radio-group>
-          </ion-list>
-          <ion-row style="    padding-bottom: 30px;padding-top: 30px;">
-            <ion-col size="7">
+        <ion-card-content style="display: flex;flex-direction:column;justify-content:space-between;position:relative">
+          <div style="margin-top:20%">
+            <div style="display: flex;margin-top:10px;font-size:15px">
+              <div *ngIf="lang!=='french'"  style="width: 20px;height: 20px;"></div>
+              <img *ngIf="lang==='french'"  style="width: 20px;height:20px;" src="../../../assets/svg/green-tick-language.svg" alt="" />
+              <span style="margin-left:15px;" (click)="setFrench()">Français</span>
+            </div>
+            <div style="display: flex;margin-top:10px;font-size:15px">
+              <div *ngIf="lang!=='english'"  style="width: 20px;height: 20px;"></div>
+              <img *ngIf="lang==='english'" style="width: 20px;height:20px;" src="../../../assets/svg/green-tick-language.svg" alt="" />
+              <span style="margin-left:15px;" (click)="setEnglish()">English</span>
+            </div>
+            <div style="display: flex;margin-top:10px;font-size:15px">
+              <div *ngIf="lang!=='spanish'"  style="width: 20px;height: 20px;"></div>
+              <img *ngIf="lang==='spanish'" style="width: 20px;height:20px;" src="../../../assets/svg/green-tick-language.svg" alt="" />
+              <span style="margin-left:15px;" (click)="setSpanish()">Espanol</span>
+            </div>
+          </div>
 
-            </ion-col>
-            <ion-col size="4">
+
+            <div style="position: absolute;bottom:-100px;right:120px">
               <div routerLink="/parametre" class="message-box">
                 <div type="submit" class="message-submit">
-                  <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" name="send-outline">OK</h6>
+                  <h6 style="font-size: small;color:white; top:0px;    margin-top: 5px;" (click)="selectLanguage(lang)" name="send-outline">OK</h6>
                 </div>
               </div>
-            </ion-col>
-            <ion-col size="1">
+            </div>
 
-            </ion-col>
-          </ion-row>
+
 
         </ion-card-content>
       </ion-card>
 
-    </ion-col>
-    <ion-col size="1"></ion-col>
+    </div>
+
   </ion-row>
 </ion-content>
 <ion-footer>
