@@ -13,7 +13,7 @@ export class AddActivityPage implements OnInit {
 
   modalTitle: string;
   modelId: number;
-  Activity = 'Ajouter une activité';
+  activityTitle = 'Ajouter une activité';
   activity;
   user$: any;
   content: any;
@@ -51,7 +51,7 @@ export class AddActivityPage implements OnInit {
       activite: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
       user: new FormControl(this.user$),
-      linkTitle: new FormControl('',)
+      linkTitle: new FormControl('', Validators.required)
     });
     this.getMe();
   }
@@ -67,8 +67,6 @@ export class AddActivityPage implements OnInit {
     });
   }
   confirm() {
-    console.log(this.activityKid.valid);
-
     if (this.activityKid.valid) {
       this.validForm = true;
       this.activiteKidService.addActivity(this.activityKid.value).subscribe(res => {
