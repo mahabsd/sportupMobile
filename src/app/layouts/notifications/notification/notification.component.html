@@ -42,7 +42,7 @@
         <img style="width: 55px;height:55px;object-fit:cover" src={{apiImg+mediafiles[0]?.file_name}} alt="">
       </ng-container>
       <ng-container *ngIf="notif.text==='vous a envoyé une invitation'">
-        <button style="background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%);padding:5px;color:white;border-radius:5px">Confirmer</button>
+        <button style="background: linear-gradient(45deg, #4B5149 0%, #286029 35%, #8AB211 100%);padding:5px;color:white;border-radius:5px" (click)=""Confirmer</button>
       </ng-container>
       <ng-container *ngIf="notif.text.includes('anniversaire')" >
         <img src="../../../assets/svg/birthday-cake.svg" style="width: 55px;height:55px;" name="calendar">

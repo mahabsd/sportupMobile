@@ -105,7 +105,6 @@ export class StatusComponent implements OnInit {
     this.commentForm = new FormGroup({
       contentControl: new FormControl('', Validators.required)
     });
-    console.log(this.post);
   }
 
   getMe() {

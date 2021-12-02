@@ -19,11 +19,10 @@ export class ProfileResolverService implements Resolve<User>{
 
     // });
     const observable: Observable<User[]> = Observable.create(observer => {
-      console.log(Users);
 
       observer.next(Users);
       observer.complete();
-    })
+    });
     return this.userService.getMe();
 
   }

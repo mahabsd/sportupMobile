@@ -14,11 +14,26 @@ export class ShowActivityPage implements OnInit {
   activities;
   activity: any;
   dataReturned: any;
+  courseNumber: any;
+  gamesNumber: any;
+  examsNumber: any;
+  recompenseNumber: any;
+  dropDown: any;
+  notchecked: boolean;
+  checked: boolean;
+
   constructor(private activiteKidService: ActiviteKidService,
     private modalController: ModalController,
     private navParams: NavParams) { }
 
   ngOnInit() {
+    this.courseNumber = 1;
+    this.gamesNumber = 3;
+    this.examsNumber = 4;
+    this.recompenseNumber = 0;
+    this.dropDown = false;
+    this.notchecked = false;
+    this.checked = false;
     this.activity = this.navParams.data.paramID;
     this.getAll(this.activity);
   }

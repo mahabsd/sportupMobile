@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="11.057" height="11.058" viewBox="0 0 11.057 11.058">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.05" y1="0.05" x2="0.95" y2="0.95" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f4f3f4"/>
+      <stop offset="1" stop-color="#ecebeb"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4b5149"/>
+      <stop offset="0.422" stop-color="#286029"/>
+      <stop offset="0.994" stop-color="#8ab211"/>
+    </linearGradient>
+  </defs>
+  <g id="Groupe_254" data-name="Groupe 254" transform="translate(-796.609 -473.159)">
+    <g id="Groupe_253" data-name="Groupe 253" opacity="0.3" style="mix-blend-mode: multiply;isolation: isolate">
+      <rect id="Rectangle_134" data-name="Rectangle 134" width="10.541" height="10.541" rx="1.807" transform="translate(797.126 473.676)" fill="#fff" opacity="0"/>
+      <rect id="Rectangle_135" data-name="Rectangle 135" width="10.541" height="10.541" rx="1.807" transform="translate(797.108 473.658)" fill="#efeff0" opacity="0.034"/>
+      <rect id="Rectangle_136" data-name="Rectangle 136" width="10.541" height="10.541" rx="1.807" transform="translate(797.09 473.64)" fill="#e0dee1" opacity="0.069"/>
+      <rect id="Rectangle_137" data-name="Rectangle 137" width="10.541" height="10.541" rx="1.807" transform="translate(797.073 473.622)" fill="#d1cfd2" opacity="0.103"/>
+      <rect id="Rectangle_138" data-name="Rectangle 138" width="10.541" height="10.541" rx="1.807" transform="translate(797.055 473.604)" fill="#c2c1c4" opacity="0.138"/>
+      <rect id="Rectangle_139" data-name="Rectangle 139" width="10.541" height="10.541" rx="1.807" transform="translate(797.037 473.587)" fill="#b5b3b7" opacity="0.172"/>
+      <rect id="Rectangle_140" data-name="Rectangle 140" width="10.541" height="10.541" rx="1.807" transform="translate(797.019 473.569)" fill="#a8a6ab" opacity="0.207"/>
+      <rect id="Rectangle_141" data-name="Rectangle 141" width="10.541" height="10.541" rx="1.807" transform="translate(797.001 473.551)" fill="#9c9a9e" opacity="0.241"/>
+      <rect id="Rectangle_142" data-name="Rectangle 142" width="10.541" height="10.541" rx="1.807" transform="translate(796.984 473.533)" fill="#908e93" opacity="0.276"/>
+      <rect id="Rectangle_143" data-name="Rectangle 143" width="10.541" height="10.541" rx="1.807" transform="translate(796.966 473.515)" fill="#858288" opacity="0.31"/>
+      <rect id="Rectangle_144" data-name="Rectangle 144" width="10.541" height="10.541" rx="1.807" transform="translate(796.948 473.497)" fill="#7a787d" opacity="0.345"/>
+      <rect id="Rectangle_145" data-name="Rectangle 145" width="10.541" height="10.541" rx="1.807" transform="translate(796.93 473.48)" fill="#706e73" opacity="0.379"/>
+      <rect id="Rectangle_146" data-name="Rectangle 146" width="10.541" height="10.541" rx="1.807" transform="translate(796.912 473.462)" fill="#66646a" opacity="0.414"/>
+      <rect id="Rectangle_147" data-name="Rectangle 147" width="10.541" height="10.541" rx="1.807" transform="translate(796.894 473.444)" fill="#5d5b61" opacity="0.448"/>
+      <rect id="Rectangle_148" data-name="Rectangle 148" width="10.541" height="10.541" rx="1.807" transform="translate(796.877 473.426)" fill="#545358" opacity="0.483"/>
+      <rect id="Rectangle_149" data-name="Rectangle 149" width="10.541" height="10.541" rx="1.807" transform="translate(796.859 473.408)" fill="#4c4b50" opacity="0.517"/>
+      <rect id="Rectangle_150" data-name="Rectangle 150" width="10.541" height="10.541" rx="1.807" transform="translate(796.841 473.391)" fill="#454349" opacity="0.552"/>
+      <rect id="Rectangle_151" data-name="Rectangle 151" width="10.541" height="10.541" rx="1.807" transform="translate(796.823 473.373)" fill="#3e3c42" opacity="0.586"/>
+      <rect id="Rectangle_152" data-name="Rectangle 152" width="10.541" height="10.541" rx="1.807" transform="translate(796.805 473.355)" fill="#37363b" opacity="0.621"/>
+      <rect id="Rectangle_153" data-name="Rectangle 153" width="10.541" height="10.541" rx="1.807" transform="translate(796.788 473.337)" fill="#303035" opacity="0.655"/>
+      <rect id="Rectangle_154" data-name="Rectangle 154" width="10.541" height="10.541" rx="1.807" transform="translate(796.77 473.319)" fill="#2a2a2f" opacity="0.69"/>
+      <rect id="Rectangle_155" data-name="Rectangle 155" width="10.541" height="10.541" rx="1.807" transform="translate(796.752 473.302)" fill="#252529" opacity="0.724"/>
+      <rect id="Rectangle_156" data-name="Rectangle 156" width="10.541" height="10.541" rx="1.807" transform="translate(796.734 473.284)" fill="#1f2024" opacity="0.759"/>
+      <rect id="Rectangle_157" data-name="Rectangle 157" width="10.541" height="10.541" rx="1.807" transform="translate(796.716 473.266)" fill="#1b1b1f" opacity="0.793"/>
+      <rect id="Rectangle_158" data-name="Rectangle 158" width="10.541" height="10.541" rx="1.807" transform="translate(796.698 473.248)" fill="#16171b" opacity="0.828"/>
+      <rect id="Rectangle_159" data-name="Rectangle 159" width="10.541" height="10.541" rx="1.807" transform="translate(796.681 473.23)" fill="#121316" opacity="0.862"/>
+      <rect id="Rectangle_160" data-name="Rectangle 160" width="10.541" height="10.541" rx="1.807" transform="translate(796.663 473.212)" fill="#0f0f12" opacity="0.897"/>
+      <rect id="Rectangle_161" data-name="Rectangle 161" width="10.541" height="10.541" rx="1.807" transform="translate(796.645 473.195)" fill="#0b0c0e" opacity="0.931"/>
+      <rect id="Rectangle_162" data-name="Rectangle 162" width="10.541" height="10.541" rx="1.807" transform="translate(796.627 473.177)" fill="#070809" opacity="0.966"/>
+      <rect id="Rectangle_163" data-name="Rectangle 163" width="10.541" height="10.541" rx="1.807" transform="translate(796.609 473.159)" fill="#040506"/>
+    </g>
+    <rect id="Rectangle_164" data-name="Rectangle 164" width="10.541" height="10.541" rx="1.807" transform="translate(796.609 473.159)" fill="url(#linear-gradient)"/>
+    <path id="Tracé_1060" data-name="Tracé 1060" d="M805.808,475.629l-.02-.02a.846.846,0,0,0-1.193,0l-3.9,3.895-1.448-1.448a.846.846,0,0,0-1.193,0l-.02.021a.846.846,0,0,0,0,1.194l2.064,2.065a.847.847,0,0,0,1.194,0l4.512-4.513A.847.847,0,0,0,805.808,475.629Z" fill="url(#linear-gradient-2)"/>
+  </g>
+</svg>

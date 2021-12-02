@@ -42,9 +42,7 @@ export class PostService {
     return this.utilsService
       .get(`${UtilsService.apiPost}?page=${page}&limit=5`)
       .pipe(
-        map((res) => {
-          return res.data;
-        })
+        map((res) => {return res.data;})
       );
   }
 
