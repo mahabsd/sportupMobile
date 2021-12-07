@@ -3,9 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ModalController, PopoverController } from '@ionic/angular';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 import { Follow } from 'src/app/shared/Model/Follow';
+import { FavorisService } from 'src/app/Shared/Service/favoris.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { NotificationsService } from 'src/app/shared/Service/notifications.service';
+import { PostService } from 'src/app/Shared/Service/post.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
+import { environment } from 'src/environments/environment';
 import { CoachMenuPopOverComponent } from '../coachprofile/coach-menu-pop-over/coach-menu-pop-over.component';
 import { PopOverSuivrePageComponent } from './pop-over-suivre-page/pop-over-suivre-page.component';
 
@@ -17,11 +20,13 @@ import { PopOverSuivrePageComponent } from './pop-over-suivre-page/pop-over-suiv
 export class ProfilPage implements OnInit {
   // activatedroute importer luser selon leur id
   // en utilisant lapi
+  apiImg = environment.apiImg + 'User/';
   EtatSuivre = false;
   notif: any = { reciever: '', userOwner: '', text: '' };
   idfollow;
   user$
   profileClickedName;
+  visitedUser;
   myInformation: any = { userLastName: '', userFirstName: '' };
   iduser;
   iduser1;
@@ -36,6 +41,8 @@ export class ProfilPage implements OnInit {
   isKid = false;
   etatSuivre: any = false;
   public folder: string;
+  followingsNumber
+  followersNumber
   imagesBasic = [
     {
       img: 'https://mdbootstrap.com/img/Photos/Horizontal/Nature/12-col/img%20(117).jpg',
@@ -57,6 +64,7 @@ export class ProfilPage implements OnInit {
     },
   ];
   userRole: any;
+  postsNum
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -64,7 +72,9 @@ export class ProfilPage implements OnInit {
     private modalController: ModalController,
     public router: Router,
     public popoverController: PopoverController,
-    private notificationsService: NotificationsService
+    private notificationsService: NotificationsService,
+    private postService: PostService,
+    private savepostsService: FavorisService
   ) {
     this.getUser();
   }
@@ -72,10 +82,30 @@ export class ProfilPage implements OnInit {
   ngOnInit() {
     this.getUser();
 
-    this.getfollow();
+
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.typepage = this.activatedRoute.snapshot.params.typepage;
     this.getUserByid();
+    this.getfollowers()
+    this.getfollow();
+
+    this.getPosts()
+  }
+
+  getfollowers() {
+    this.followerService.getFollowers(this.idprofilePassed).subscribe(async res => {
+      this.followingsNumber =  res.results;
+      this.followersNumber = res.resultsFollowers;
+    });
+  }
+
+  getPosts() {
+    console.log(this.idprofilePassed);
+    this.postService.getAllPostsById(1,this.idprofilePassed).subscribe(res => {
+      this.postsNum = res.results
+
+      console.log(this.postsNum);
+    })
   }
 
   getfollow() {
@@ -136,6 +166,7 @@ export class ProfilPage implements OnInit {
   getUserByid() {
     this.userService.getUser(this.idprofilePassed).subscribe(
       (response) => {
+        this.visitedUser=response.data.data
         this.profileClickedName = response.data.data.name;
         this.userClicked = response.data.data;
       },
@@ -198,7 +229,7 @@ export class ProfilPage implements OnInit {
   }
   checkNotif() {
     this.notificationsService.checkNotification(this.idprofilePassed, this.iduser).subscribe(res => {
-      console.log(res);
+
       if (res) {
         this.etatSuivre = true;
       }

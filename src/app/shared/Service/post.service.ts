@@ -49,10 +49,11 @@ export class PostService {
   getAllPostsById(page?, id?): Observable<any> {
     // console.log(page);
     // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
+    console.log(id);
     return this.utilsService
       .get(`${UtilsService.apiPost}?user=${id}`)
       .pipe(
-        map((res) => {return res.data;})
+        map((res) => {return res;})
       );
   }
   getPost(id): Observable<Post> {
