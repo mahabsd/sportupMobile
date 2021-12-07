@@ -1,12 +1,12 @@
 ion-content{
-  
+
   --background:#f1f2f2
 }
 
 ion-menu-button {
   color: var(--ion-color-primary);
 }
- 
+
 
 // css button
 $ruler: 16px;
@@ -21,7 +21,7 @@ $color-white: #FFF;
 }
 #suiv {
   position: relative;
-  top: -20px;
+  top: -30px;
 border: 0;
 outline: 0;
 font-size: $ruler;
@@ -31,7 +31,7 @@ width: 130px;
 height: 40px;
 margin-right: 10px;
 background:linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(68,74,56,1) 0%, rgba(36,114,56,1) 14%, rgba(142,191,37,1) 100%);
-font-family: Montserrat,sans-serif; color:white;  font-weight: 100; 
+font-family: Montserrat,sans-serif; color:white;  font-weight: 100;
 }
 ion-buttons ion-button {
   --border-radius: 50%;
@@ -49,7 +49,7 @@ ion-buttons ion-button {
 }
 #dejasuiv {
   position: relative;
-  top: -20px;
+  top: -30px;
 border: 0;
 outline: 0;
 font-size: $ruler;
@@ -59,7 +59,7 @@ width: 130px;
 height: 40px;
 margin-right: 10px;
 background:grey;
-font-family: Montserrat,sans-serif; color:white;  font-weight: 100; 
+font-family: Montserrat,sans-serif; color:white;  font-weight: 100;
 }
 
 
@@ -67,7 +67,7 @@ font-family: Montserrat,sans-serif; color:white;  font-weight: 100;
 
 #bloq{
   position: relative;
-  top: -20px;
+  top: -30px;
   border: 0;
   outline: 0;
   font-size: $ruler;
@@ -76,10 +76,10 @@ font-family: Montserrat,sans-serif; color:white;  font-weight: 100;
   background: linear-gradient(
     300deg
     , #d60e0ed8, #d60e0ed8, #860202, #7c0000);
-   
+
 width: 130px;
 height: 40px;
-font-family: Montserrat,sans-serif; color:white;  font-weight: 100; 
+font-family: Montserrat,sans-serif; color:white;  font-weight: 100;
   }
 button {
 color:#61677C;
@@ -102,23 +102,10 @@ font-weight: 800;
   font-size: $ruler*1.2;
 
   .icon {
-    margin-right: 0; 
+    margin-right: 0;
   }
 }
 }
-
-.myFooter {
-  border-radius: $ruler/2;
-  padding-bottom: 05px;
-  line-height: 0;
-  box-shadow: inset 1px 1px 1px 1px #247238;
-  display: inline-flex;
-  justify-content: center;
-  margin: 0 $ruler*2;
-  font-size: $ruler*3.2;
-  width: 340px;
-}
-
 
 .card-background-page {
   ion-card {
@@ -145,42 +132,34 @@ font-weight: 800;
    padding: 2px;
  }
 .mygallery{
-  border-radius: 6px; 
-
-
+  border-radius: 6px;
 }
 
-.avatarGrid{
-  margin-top: 5px;
-}
 
-.infoContainer{
-  margin-bottom: 30px; margin-left: 30px; margin-right: 30px;
-}
-.activityGrid{
-  background-color :#f1f2f2;margin-top: 8px; margin-left: 5px; margin-right: 5px; 
-}
 
 .info {
-  font-family: Montserrat,sans-serif; color:#464646;font-size: 11px;
+  font-family: Montserrat,sans-serif;
+  color:#ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
+  margin-right: 5px;
 }
 
 .infoItem{
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
 }
 
 .infoName{
-  margin-top: 10px;
+  margin-right: 15px;
+  color:white;
 }
-
-.myFooter{
-  border-radius: $ruler/2;
-  padding-bottom: 05px;
-  line-height: 0;
-  box-shadow: inset 1px 1px 1px 1px #cecece;
-  justify-content: center;
-  width: 96%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 5px;
+.name{
+  color:white;
+  font-weight: bold;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: rgb(0, 0, 0);
+  font-size: 24px;
 }

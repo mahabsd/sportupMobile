@@ -144,7 +144,7 @@ export class CoachphotoPage implements OnInit {
     this.userService.getMe().subscribe(res => {
       this.user$ = res.data.data;
       this.postService.getAllPostsById(this.page, this.postsOwnerId).pipe(share()).subscribe(res => {
-        this.posts=res.data;
+        this.posts=res.data.data;
 
       this.posts.forEach(post => {
         this.getpostFiles(post);

@@ -13,7 +13,7 @@
           ion-justify-content-start
           ion-text-start
         " routerLinkActive="router-link-active">
-        {{ post.user.name }} shared {{post?.post?.user.name}}'s post
+        <strong>{{ post.user.name }}</strong> shared {{post?.post?.user.name}}'s post
       </h3>
       </ng-container>
       <div style="display: flex;">
@@ -24,7 +24,7 @@
             ion-justify-content-start
             ion-text-start
           " routerLinkActive="router-link-active">
-          {{ post?.user?.name }}
+          <strong>{{ post?.user?.name }}</strong>
         </h3>
         </ng-template>
 
@@ -277,7 +277,7 @@
     <div style="width: 100%;">
       <div style="display: flex;align-items:center">
         <ng-container *ngIf="showComment===false; else not" >
-          <ng-container *ngIf="comments.length!==0"  style="position: relative;">
+          <ng-container *ngIf="comments.length>1"  style="position: relative;">
             <p (click)="showComments()" style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D;transform:translateY(-30px)">Afficher plus de commentaires <ion-icon name="chevron-forward-outline"></ion-icon></p>
           </ng-container>
           <ng-container *ngIf="comments.length!==0" >

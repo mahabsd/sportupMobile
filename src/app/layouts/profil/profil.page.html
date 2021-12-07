@@ -22,60 +22,49 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid class="ion-justify-content-center avatarGrid">
-    <ion-row class=" ion-justify-content-center">
-      <ion-avatar style="width: 100px; height:100px">
-        <img src="https://www.computerhope.com/jargon/g/guest-user.jpg">
-      </ion-avatar>
-    </ion-row>
-    <ion-row style="background-color:#f1f2f2" class="ion-justify-content-center infoName">
+  <div style="position: relative;" >
+    <div style="display: flex;align-items:center;position:absolute;bottom:30px;justify-content:space-between;width:100%">
+      <div style="display: flex;align-items:center" >
+        <ion-avatar>
+          <img [src]="apiImg+visitedUser?.photo">
+        </ion-avatar>
+        <div class="ion-justify-content-center infoName">
+          <ion-label>
+            <span class="name">{{profileClickedName}} </span>
+          </ion-label>
+        </div>
+      </div>
 
-      <ion-label style="font-family:Montserrat, sans-serif; color:#898b8b; font-size: small;">
-        <h1>{{profileClickedName | uppercase}} </h1>
-      </ion-label>
+      <ion-row color="light" class="infoContainer">
+        <div  class="infoItem">
+          <p class="info">{{postsNum}}</p>
+          <p class="info">Publications</p>
+        </div>
+        <div  class="infoItem">
+          <p class="info">{{followersNumber}}</p>
+          <p class="info">Abonnés</p>
+        </div>
+        <div  class="infoItem">
+          <p class="info">{{followingsNumber}}</p>
+          <p class="info">Abonnements</p>
+        </div>
+      </ion-row>
+    </div>
+    <div>
+      <img style="object-fit:cover;z-index:-10;height:210px;width:100%" [src]="apiImg+visitedUser?.cover" alt="">
+    </div>
 
+  </div>
+  <ion-row style=" padding-top: 5px;" class="ion-justify-content-center">
+    <button type="button" id="dejasuiv" style="background-color: #808080c4;" *ngIf="etatSuivre === true">
+     invitaion envoyée
+    </button>
+    <button (click)="createNotif()" id="suiv" type="button"  *ngIf="etatSuivre === false">
+      Suivre
+    </button>
+  <button (click)="buttonBlock()" id="bloq" type="button">
+    Bloquer
+  </button>
+</ion-row>
 
-    </ion-row>
-
-    <ion-row color="light" class="infoContainer">
-
-      <ion-col size="4" class="infoItem">
-
-        <p class="info">253</p>
-
-        <p class="info">Publications</p>
-
-      </ion-col>
-      <ion-col size="4" class="infoItem">
-
-        <p class="info">500</p>
-
-
-        <p class="info">Abonnés</p>
-
-      </ion-col>
-      <ion-col size="4" class="infoItem">
-
-        <p class="info">2K</p>
-
-        <p class="info">Abonnements</p>
-
-      </ion-col>
-
-    </ion-row>
-    <ion-row style="background-color :white;padding-top: 5px;">
-    </ion-row>
-    <ion-row style="background-color :#f1f2f2; padding-top: 5px;" class="ion-justify-content-center">
-        <button type="button" id="dejasuiv" style="background-color: #808080c4;" *ngIf="etatSuivre === true">
-         invitaion envoyée
-        </button>
-        <button (click)="createNotif()" id="suiv" type="button"  *ngIf="etatSuivre === false ">
-          Suivre
-        </button>
-      <button (click)="buttonBlock()" id="bloq" type="button">
-        Bloquer
-      </button>
-
-    </ion-row>
-  </ion-grid>
 </ion-content>

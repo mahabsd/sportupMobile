@@ -230,7 +230,7 @@ export class ProfilPage implements OnInit {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.idProfilePassed).subscribe((response) => {
 
-     this.posts = this.posts.concat(response['data']);
+     this.posts = this.posts.concat(response['data'].data);
      this.posts.forEach(post => {
       this.getimageBypostId(post.id);
       this.getPostStatusOnly(post.id);

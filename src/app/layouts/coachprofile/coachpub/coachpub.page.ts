@@ -56,7 +56,7 @@ export class CoachpubPage implements OnInit {
   getPosts(event?) {
     this.postsOwnerId = this.postService.postsOwnerId;
     this.postService.getAllPostsById(this.page, this.postsOwnerId).subscribe((response) => {
-      this.posts = this.posts.concat(response['data']);
+      this.posts = this.posts.concat(response['data'].data);
       this.savepostsService.getSavedPosts(this.page, this.postsOwnerId).subscribe((res: any) => {
         this.posts$ = res.data.data;
         this.posts$.map(post => {

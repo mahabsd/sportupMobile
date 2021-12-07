@@ -1,32 +1,28 @@
 <app-header title="Historique personnel" [isParam]="true"></app-header>
 
-<ion-content>
-  <ion-row style="margin: 15px 15px -45px 15px;">
-  
-  </ion-row>
-  <ion-row>
-    <ion-card class="no-padding" style="box-shadow:  0px 0px 0px 0px !important ">
-      <ion-card-content>
-        <p style="font-size: bold;">
-          l'historique personnel contient votre activité sportup, comme les publications que vous créées et ce que vous
-          avez aimé vous pouvez sélectionner, gérer l'activité pour gérer les publications que vous avez crées
-        </p>
-      </ion-card-content>
-    </ion-card>
-  </ion-row>
+<ion-content style="padding-top:50px;">
+  <span style="margin-left:50px;font-size:20px;font-weight:bold;color:green">HISTORIQUE PERSONNEL</span>
+  <p style="font-size: 18px;margin:10px">
+    l'historique personnel contient votre activité sportup, comme les publications que vous créées et ce que vous
+    avez aimé vous pouvez sélectionner, gérer l'activité pour gérer les publications que vous avez crées
+  </p>
+
+  <div style="margin-top:30px" *ngFor="let date of datesThree" >
+    <strong style="margin-left:15px">{{date}}</strong>
+    <div *ngFor="let event of history">
+
+      <div style="display: flex;margin:15px" *ngIf="date=== (event.dateCreated | date)" >
+        <ion-avatar style="margin-right: 20px;">
+          <img [src]="apiImg+user$?.photo">
+        </ion-avatar>
+        <div>
+          <b style="font-size: 13px;"> {{event.description}}</b>
+          <p> {{event.activity}}</p>
+      </div>
+      </div>
 
 
-  <ion-item *ngFor="let event of history">
+    </div>
+  </div>
 
-    <ion-avatar style="margin-right: 20px;">
-      <img [src]="apiImg+user$?.photo">
-    </ion-avatar>
- 
-    <ion-label>
-      <p>{{event.dateCreated | date}}</p>
-      <b style="font-size: 13px;"> {{event.description}}</b>
-
-    <p> {{event.activity}}</p>
-  </ion-label>
-  </ion-item>
 </ion-content>

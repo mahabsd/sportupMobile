@@ -85,6 +85,8 @@ const routes: Routes = [
         loadChildren: () => import('./Config/historiquepersonnel/historiquepersonnel.module').then(m => m.HistoriquepersonnelPageModule),
        // canActivate:[RolesGuardGuard]
       },
+
+
       {
         path: 'contact',
         loadChildren: () => import('./Config/contact/contact.module').then(m => m.ContactPageModule),
@@ -232,6 +234,12 @@ const routes: Routes = [
         // canActivate:[RolesGuardGuard]
       },
       {
+        path: 'confidentialite',
+        loadChildren: () => import('./Config/confidentialite/confidentialite.module').
+          then(m => m.ConfidentialitePageModule),
+        // canActivate:[RolesGuardGuard]
+      },
+      {
         path: 'reglespublicitaires',
         loadChildren: () => import('./Config/reglespublicitaires/reglespublicitaires.module').
           then(m => m.ReglespublicitairesModule),
@@ -283,6 +291,10 @@ const routes: Routes = [
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+
+
+
+
 
 
 
