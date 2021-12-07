@@ -123,12 +123,8 @@ export class ProfilAdultePage implements OnInit {
     });
     // console.log(idprofilePassed)
     popover.style.cssText = '--max-width: 150px;--max-height: 100px;--border-radius:70px; '
-
-
     await popover.present();
-
     const { role } = await popover.onDidDismiss();
-    console.log('onDidDismiss resolved with role', role);
   }
 
 

@@ -98,8 +98,7 @@ export class ShowImagePage implements OnInit {
       if (res == null) {
         this.router.navigate(['profil', iduserpassed, 'adulte']);
       } else {
-        console.log(res);
-        this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed']);
+        this.router.navigate(['menu/tabs/layouts/coachprofile', iduserpassed, 'followed/coachphoto']);
       }
     },
     (error) => {
