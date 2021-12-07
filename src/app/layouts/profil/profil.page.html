@@ -69,12 +69,13 @@
         <button type="button" id="dejasuiv" style="background-color: #808080c4;" *ngIf="etatSuivre === true">
          invitaion envoyée
         </button>
-        <button (click)="createNotif()" id="suiv" type="button"  *ngIf="etatSuivre === false">
+        <button (click)="createNotif()" id="suiv" type="button"  *ngIf="etatSuivre === false ">
           Suivre
         </button>
       <button (click)="buttonBlock()" id="bloq" type="button">
         Bloquer
       </button>
+
     </ion-row>
   </ion-grid>
 </ion-content>

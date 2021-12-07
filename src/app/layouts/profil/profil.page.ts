@@ -15,12 +15,11 @@ import { PopOverSuivrePageComponent } from './pop-over-suivre-page/pop-over-suiv
   styleUrls: ['./profil.page.scss'],
 })
 export class ProfilPage implements OnInit {
-  // activatedroute importer luser selon leur id
-  // en utilisant lapi
+
   EtatSuivre = false;
   notif: any = { reciever: '', userOwner: '', text: '' };
   idfollow;
-  user$
+  user$;
   profileClickedName;
   myInformation: any = { userLastName: '', userFirstName: '' };
   iduser;
@@ -57,6 +56,7 @@ export class ProfilPage implements OnInit {
     },
   ];
   userRole: any;
+  confirmer: boolean;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -70,12 +70,13 @@ export class ProfilPage implements OnInit {
   }
 
   ngOnInit() {
+   // this.confirmer = false;
     this.getUser();
-
     this.getfollow();
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.typepage = this.activatedRoute.snapshot.params.typepage;
     this.getUserByid();
+    this.checkNotif();
   }
 
   getfollow() {
@@ -83,13 +84,11 @@ export class ProfilPage implements OnInit {
       (response) => {
         this.iduser1 = response.data.data.id;
         this.followerService
-          .getFollow(this.idprofilePassed, this.iduser1)
-          .subscribe((res) => {
+          .getFollow(this.idprofilePassed, this.iduser1).subscribe((res) => {
             if (res == null) {
               this.follower = false;
             } else {
               this.follower = true;
-
               this.idFollowtoDelete = res._id;
               this.EtatSuivre = true;
               // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
@@ -199,7 +198,9 @@ export class ProfilPage implements OnInit {
   checkNotif() {
     this.notificationsService.checkNotification(this.idprofilePassed, this.iduser).subscribe(res => {
       console.log(res);
-      if (res) {
+      console.log(this.idprofilePassed);
+
+      if (res.data ) {
         this.etatSuivre = true;
       }
     });

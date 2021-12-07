@@ -367,14 +367,14 @@ export class HobbiesPage implements OnInit {
 
       this.follow.userFollowed = idprofilePassed;
       this.follow.userFollowing = this.iduser;
-      this.followerService.createFollow(this.follow).subscribe((res) => {
+      this.followerService.createFollow(this.iduser, this.follow).subscribe((res) => {
 
 
       });
     });
 
 
-    this.getfollow()
+    this.getfollow();
     //this.router.navigate(["profilkids",this.idprofilePassed]);
 
   }
