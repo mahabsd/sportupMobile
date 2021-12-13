@@ -2,20 +2,20 @@
   <!-- Tab bar -->
   <ion-tab-bar slot="bottom" translucent="true" [ngClass]="menuOpened? 'hideTabs' : 'showTabs'">
     <ion-tab-button title="accueil">
-      <img [routerLink]="['/menu/tabs/home']"  style="width: 20px;height:20px" src="../../assets/svg/home.svg" />
+      <img [routerLink]="['/tabs/home']"  style="width: 20px;height:20px" src="../../assets/svg/home.svg" />
     </ion-tab-button>
     <ion-tab-button tab="map">
       <ion-badge id="notifications-badge" color="danger" *ngIf="notseenMessagesNumber > 0">{{notseenMessagesNumber}}</ion-badge>
-      <img [routerLink]="['/menu/tabs/layouts/boitereception']"  style="width: 20px;height:20px" src="../../assets/svg/messages.svg" />
+      <img [routerLink]="['/tabs/layouts/boitereception']"  style="width: 20px;height:20px" src="../../assets/svg/messages.svg" />
     </ion-tab-button>
     <ion-tab-button>
       <img style="width: 20px;height:20px" src="../../assets/svg/add-home.svg" (click)="openShareModal()" />
     </ion-tab-button>
     <ion-tab-button>
       <ion-badge id="notifications-badge" *ngIf="notifLength>0" color="danger">{{notifLength}}</ion-badge>
-      <img style="width: 20px;height:20px" [routerLink]="['/menu/tabs/layouts/notifications']" src="../../assets/svg/notif-icon.svg" />
+      <img style="width: 20px;height:20px" [routerLink]="['/tabs/layouts/notifications']" src="../../assets/svg/notif-icon.svg" />
     </ion-tab-button>
-    <ion-tab-button routerLink="/menu/tabs/layouts/coachprofile/{{userid}}/me/coachphoto">
+    <ion-tab-button routerLink="/tabs/layouts/coachprofile/{{userid}}/me/coachphoto">
       <img style="width: 20px;height:20px" src="../../assets/svg/person-icon.svg" />
     </ion-tab-button>
   </ion-tab-bar>

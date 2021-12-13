@@ -6,6 +6,8 @@ import { HobbiesService } from 'src/app/shared/Service/hobbies.service';
 import { Follow } from 'src/app/shared/Model/Follow';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { Router } from '@angular/router';
+import { UserHobby } from 'src/app/shared/Model/userHobby';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-hobbies',
@@ -21,24 +23,24 @@ export class HobbiesPage implements OnInit {
   HobbiesData: any = [];
   userlist: any = [];
   buttonColor: any = [];
-
   recherche: any;
   follower = false;
   idFollowtoDelete
   EtatSuivre = false;
   follow: Follow = new Follow();
-  iduser; iduser1
-  idyoooo; selectedRow
+  iduser;
+  iduser1;
+  idyoooo;
+  selectedRow;
   slideOptsTwo = {
-    initialSlide: 1,
-
+    initialSlide: 0,
     speed: 400,
-    spaceBetween: -8,
+    spaceBetween: -30,
     slidesPerView: 3,
     centeredSlides: false,
     loop: true,
     coverflowEffect: {
-      rotate: 40,
+      rotate: 0,
       stretch: 0,
       depth: 100,
       modifier: 1,
@@ -155,83 +157,20 @@ export class HobbiesPage implements OnInit {
     },
   };
   isScrollTop: boolean;
+  userHobby: UserHobby = new UserHobby();
+  hobbies: any;
+  rechercheHobby: any;
+  apiImgHobby = `${environment.apiImg}hobbies/`;
+  recherche2;
+  searchResult = "personne n'aime ce hobby!"
 
   constructor(public hobbiesService: HobbiesService,
-     private eventService: EventService,
-      private followerService: FollowerService,
-       private userservice: UserService,
-       private router: Router
+    private eventService: EventService,
+    private followerService: FollowerService,
+    private userservice: UserService,
+    private router: Router
   ) {
-    this.HobbiesData = [
-      {
-        imgsrc: "../../assets/imgsHobbies/Aquatique.jpg",
-        hobbiename: 'Aquatique',
-        id: 3
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/avecMoteur.jpg",
-        hobbiename: 'Avec Moteur',
-        id: 4
-      },
 
-      {
-        imgsrc: "../../assets/imgsHobbies/dansLesAirs.jpg",
-        hobbiename: 'Dans les airs',
-        id: 5
-      },
-
-      {
-        imgsrc: "../../assets/imgsHobbies/DIVERS.jpg",
-        hobbiename: 'Divers',
-        id: 6
-      },
-
-      {
-        imgsrc: "../../assets/imgsHobbies/enEquipe.jpg",
-        hobbiename: 'En Equipe',
-        id: 7
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/fullnature.jpg",
-        hobbiename: 'Full nature',
-        id: 8
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/marche.jpg",
-        hobbiename: 'Marche',
-        id: 9
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/rando.jpg",
-        hobbiename: 'Rando',
-        id: 10
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/RAQUETTES.jpg",
-        hobbiename: 'Raquettes',
-        id: 11
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/rouesansMoteur.jpg",
-        hobbiename: 'Sans Moteur',
-        id: 12
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/sportDeGlisse.jpg",
-        hobbiename: 'Sport De Glisse',
-        id: 13
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/sportsDeDuels.jpg",
-        hobbiename: 'sports De Duels',
-        id: 1
-      },
-      {
-        imgsrc: "../../assets/imgsHobbies/trainingEtDancing.jpg",
-        hobbiename: 'Training et Dancing',
-        id: 2
-      }
-    ];
 
     this.sliderTwo = {
       isBeginningSlide: true,
@@ -258,13 +197,13 @@ export class HobbiesPage implements OnInit {
     this.checkIfNavDisabled(object, slideView);
 
     this.slideWithNav2.getActiveIndex().then((index) => {
-      this.selectedIndex = index - 3;
-      this.HobbiesData.forEach(e => {
+      this.selectedIndex = index + 1;
+      this.hobbies.forEach(e => {
         if (e.id === this.selectedIndex) {
-          this.sportname = e.hobbiename;
-          this.hobbiesService.findbyactivity(this.sportname).subscribe((res: any) => {
+          this.hobbiesService.getAllUsersByHobby(e._id).subscribe((res: any) => {
             this.userlist = res.data.data;
-            this.getfollow();
+            console.log(this.userlist);
+
           }
           );
         }
@@ -290,8 +229,9 @@ export class HobbiesPage implements OnInit {
   }
 
   ngOnInit() {
-    this.getMe()
-    this.getfollow()
+    this.getMe();
+    this.getfollow();
+    this.getAllHobbies();
   }
   logScrolling(event) {
     if (event.detail.deltaY < 0) {
@@ -380,29 +320,43 @@ export class HobbiesPage implements OnInit {
   }
 
 
-  redirectToprofile(userpassedid,role){
+  redirectToprofile(userpassedid, role) {
     this.userservice.getMe().subscribe(
       (response) => {
         this.iduser1 = response.data.data.id;
-        this.followerService.getFollow(userpassedid, this.iduser1)
-          .subscribe((res) => {
-            if (res == null) {
-              this.router.navigate(["profil",userpassedid,'adulte']);
-            } else {
-              if (res != null) {
-                if( role==='user'||role==='pro'){
-                  this.router.navigate(["menu/tabs/layouts/coachprofile",userpassedid,"followed"]);
+        console.log(this.iduser1);
+        console.log(userpassedid);
+
+        if (this.iduser1 === userpassedid) {
+          this.router.navigateByUrl(`/tabs/layouts/coachprofile/${this.iduser1}/me/coachphoto`);
+        } else {
+          this.followerService.getFollow(userpassedid, this.iduser1)
+            .subscribe((res) => {
+              if (res == null) {
+                this.router.navigate(['profil', userpassedid, 'adulte']);
+              } else {
+                if (res != null) {
+                  if (role === 'user' || role === 'pro') {
+                    this.router.navigate(['menu/tabs/layouts/coachprofile', userpassedid, 'followed']);
                   }
-                  else if (role==='kids'){
-                    this.router.navigate(["tabs/profilkids/",userpassedid]);
-                  }
+                }
               }
-            }
-          });
+            });
+        }
       },
       (error) => {
         console.error(error);
       }
     );
   }
+  getAllHobbies() {
+    this.hobbiesService.getHobbies().subscribe((res: any) => {
+      this.hobbies = res.data.data;
+      this.hobbies.sort((a, b) => a.id - b.id);
+    });
+  }
+  getAllUsersByHobby(hobby) {
+    this.hobbiesService.getAllUsersByHobby(hobby).subscribe(res => console.log(res));
+  }
+
 }

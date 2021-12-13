@@ -234,8 +234,7 @@ export class ProfilPage implements OnInit {
   checkNotif() {
     this.notificationsService.checkNotification(this.idprofilePassed, this.iduser).subscribe(res => {
 
-      console.log(res);
-      console.log(this.idprofilePassed);
+      console.log(res.data);
 
       if (res.data ) {
         this.etatSuivre = true;

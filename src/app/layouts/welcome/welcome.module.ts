@@ -8,6 +8,7 @@ import { WelcomePageRoutingModule } from './welcome-routing.module';
 
 import { WelcomePage } from './welcome.page';
 import { ComponentModule } from '../../component/component.module';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   imports: [
@@ -16,6 +17,7 @@ import { ComponentModule } from '../../component/component.module';
     IonicModule,
     WelcomePageRoutingModule,
     ComponentModule,
+    Ng2SearchPipeModule
   ],
   declarations: [WelcomePage]
 })
