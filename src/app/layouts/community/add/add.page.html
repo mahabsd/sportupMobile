@@ -17,21 +17,46 @@
   <ion-grid *ngIf="selected === 'Page'" class="page">
     <div>Informations sur la page:</div>
     <ion-item class="pageName">
-      <input placeholder="Nom de la page (Obligatoire)" type="" />
+      <input placeholder="Nom de la page (Obligatoire)" type="" [(ngModel)]="page.name" />
     </ion-item>
     <div style="margin-top: 10px; font-size:12px;color:grey;width:90%">Utilisez le nom de votre entreprise, marque ou
       organisation, ou un nom qui explique l'objet de la page</div>
     <ion-item class="pageCategory">
-      <input placeholder="Catégorie (Obligatoire)" type="" />
+      <ion-list style="width: 100%;">
+        <ion-item>
+          <ion-label>Catégorie</ion-label>
+          <ion-select [(ngModel)]="page.category" placeholder="Catégorie">
+            <ion-select-option value="lieu">lieu</ion-select-option>
+            <ion-select-option value="Commerce">Commerce local</ion-select-option>
+            <ion-select-option value="Entreprise">Entreprise</ion-select-option>
+            <ion-select-option value="Organisme">Organisme</ion-select-option>
+            <ion-select-option value="Institution">Institution</ion-select-option>
+            <ion-select-option value="Marque">Marque</ion-select-option>
+            <ion-select-option value="Produit">Produit</ion-select-option>
+            <ion-select-option value="Artiste">Artiste</ion-select-option>
+            <ion-select-option value="Personnalité">Personnalité publique</ion-select-option>
+            <ion-select-option value="Divertissement">Divertissement</ion-select-option>
+            <ion-select-option value="association">association</ion-select-option>
+            <ion-select-option value="communauté">communauté</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </ion-list>
     </ion-item>
+
     <div style="margin-top: 10px; font-size:12px; color:grey;width:90%">Choisissez une catégorie qui décrit le type de
       l'entreprise, d'organisation ou de sujet que votre page représente</div>
-
+    <div>
+      <ion-button shape="rounded" [routerLink]="['/tabs/layouts/maps']" routerLinkActive="router-link-active">
+        <img src="../../assets/icon/icon_position.png" alt="">
+      </ion-button>
+      <span>Ajouter votre adresse sur le map</span>
+    </div>
     <ion-item class="description">
-      <textarea placeholder="Description" rows=5></textarea>
+      <textarea placeholder="Description" [(ngModel)]="page.description" rows=5></textarea>
     </ion-item>
     <div class="buttons">
-      <button class="create">Créer</button>
+      <button class="create" (click)="createPage(page)">Créer</button>
       <button class="cancel">Annuler</button>
     </div>
 
@@ -39,32 +64,33 @@
 
   <ion-grid *ngIf="selected === 'Evennement'">
     <ion-item class="pageName">
-      <input placeholder="Nom de l'evennement (Obligatoire)" type="" />
+      <input placeholder="Nom de l'evennement (Obligatoire)"  [(ngModel)]="event.activity" type="" />
     </ion-item>
     <ion-row class="eventDate">
       <ion-item class="dateInput">
         <label for="">date de début</label>
-        <input placeholder="" type="date" />
+        <input placeholder="" type="date" [(ngModel)]="event.startTime" />
       </ion-item>
       <ion-item class="dateInput">
         <label for="">date de fin</label>
-        <input placeholder="" type="date" />
+        <input placeholder="" type="date" [(ngModel)]="event.endTime" />
       </ion-item>
     </ion-row>
     <ion-row class="eventHour">
       <ion-item class="dateInput">
         <label for="">heure de début</label>
-        <input placeholder="" type="date" />
+        <input placeholder="" type="time" [(ngModel)]="event.startHour" />
       </ion-item>
       <ion-item class="dateInput">
         <label for="">heure de fin</label>
-        <input placeholder="" type="date" />
+        <input placeholder="" type="time" [(ngModel)]="event.endHour" />
       </ion-item>
     </ion-row>
     <div (click)="openDropDown()" (blur)="openDropDown()"
       style="display: flex;flex-direction:column; align-items:flex-start;position:relative;border-radius:20px; width:70%; background-color: #F1F2F2;margin:5px;">
       <span style="margin-right:10px; color: #909890;  margin-left:10px">confidentialité</span>
-      <div style="margin-left:15px; display:flex;align-items: center; justify-content:space-between;width: 90%; padding:5px">
+      <div
+        style="margin-left:15px; display:flex;align-items: center; justify-content:space-between;width: 90%; padding:5px">
         <div>
           <ng-container style="display: flex;align-items:center" *ngIf="public;else privacy">
             <img style="width:15px;height:15px; color:#8F978F" src="../../../assets/svg/globe.svg" alt="">
@@ -85,10 +111,9 @@
         </div>
       </div>
       <div *ngIf="dropDown===true;else close">
-        <div
-          style="position: absolute;padding:12px;width:250px; display:flex;flex-direction:column;z-index:10;background-color:white;
+        <div style="position: absolute;padding:12px;width:250px; display:flex;flex-direction:column;z-index:10;background-color:white;
           box-shadow:-5px 5px 10px rgb(113, 113, 113);border-radius:10px;transform:translateX(20px) translateY(3px)">
-          <div (click)="private = true;public=false"
+          <div (click)="private = true; event.description = 'private';public=false; event.description = 'public'"
             style="display: flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/lock.svg" alt="">
@@ -101,7 +126,8 @@
               <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
             </ng-container>
           </div>
-          <div (click)="public = true; private=false"
+          <div (click)="public = true ; event.description = 'public'; private=false;
+           event.description = 'private'"
             style="display: flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/globe.svg" alt="">
@@ -122,10 +148,10 @@
     </div>
 
     <ion-item class="description">
-      <textarea placeholder="Description" rows=5></textarea>
+      <textarea placeholder="Description" [(ngModel)]="event.description" rows=5></textarea>
     </ion-item>
     <div class="buttons">
-      <button class="create">Créer</button>
+      <button class="create" (click)="createEvent(event)">Créer</button>
       <button class="cancel">Annuler</button>
     </div>
   </ion-grid>

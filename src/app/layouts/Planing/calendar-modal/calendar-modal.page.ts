@@ -17,8 +17,6 @@ export class CalendarModalPage implements OnInit {
     currentDate: new Date(),
   };
   viewTitle: string;
-
-
   today: Date;
   event: Activity = new Activity();
   selectedEvent;
@@ -91,6 +89,7 @@ export class CalendarModalPage implements OnInit {
       // this.formatedTime = this.event.startTime.toISOString();
       this.event.startTime = moment(fStart).format('YYYY/MM/DD HH:mm');
       this.event.endTime = moment(fEnd).format('YYYY/MM/DD HH:mm');
+      this.event.type = 'calendar';
     }
 
   }

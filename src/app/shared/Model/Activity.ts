@@ -9,4 +9,9 @@ export class Activity {
   createdAt: Date;
   updatedAt: Date;
   createdby: User;
+  type: string;
+  startHour: string;
+  endHour: string;
+  confidentiality: string;
+  description: string;
 }

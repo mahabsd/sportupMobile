@@ -40,6 +40,8 @@ export class UtilsService {
 
   public static apimyactivityhistory = UtilsService.remoteAdress + 'activityhistory';
   public static apideactivation = UtilsService.remoteAdress + 'deactivateaccount';
+  public static apiPage = UtilsService.remoteAdress + 'pages';
+
   token: any;
   myToast: any;
   header: any;
