@@ -18,6 +18,9 @@
       <ion-icon *ngIf="isPage" color="light" routerLink="/tabs/community"
         name="chevron-back-outline">
       </ion-icon>
+      <ion-icon *ngIf="isPublicity" color="light" routerLink="/menu/tabs/home"
+        name="chevron-back-outline">
+      </ion-icon>
 
       <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
@@ -120,6 +123,8 @@
       Boite réception</ion-title>
       <ion-title color="light" *ngIf="isKidPlanning" class="ion-text-center">
         Calendrier</ion-title>
+        <ion-title color="light" *ngIf="isPublicity" class="ion-text-center">
+          Espace Publicité</ion-title>
     <ion-title color="light" class="ion-text-center title-font">
       {{title}}</ion-title>
   </ion-toolbar>

@@ -487,15 +487,10 @@ ion-toolbar {
 
 }
 
-.map {
-  height: 100%;
-}
-
-
-
-
 #map {
-  height: 100%;
+  height: 90%;
+  margin: 20px;
+  border-radius: 10px;
 }
 
 #container {
@@ -530,3 +525,4 @@ ion-title {
   color: rgb(36, 131, 14);
   font-size: 20px;
 }
+
