@@ -1,0 +1,95 @@
+<app-header [isPublicity]="true"></app-header>
+
+<ion-content>
+  <div>
+    <div style="display: flex; width:100%;padding: 30px 20px 10px 20px;justify-content:space-between;position:relative">
+      <span style="font-weight: bold;">Récapitulatif</span>
+      <div (click)="toggleDropDown()" style="display: flex;align-items:center">
+        <span>{{dropDownValue}}</span>
+        <div style="display: flex;align-items:center" *ngIf="!dropdown;else open" >
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+        <ng-template #open>
+          <ion-icon name="chevron-down"></ion-icon>
+        </ng-template>
+
+      </div>
+      <div *ngIf="dropdown" class="dropdown">
+        <span style="margin: 10px;" (click)="setToday()">Aujourd'hui</span>
+        <span style="margin: 10px;" (click)="setWeek()">7 derniers jours</span>
+        <span style="margin: 10px;" (click)="setMonth()">Mois dernier</span>
+        <span style="margin: 10px;" (click)="setTrim()">Trimestre dernier</span>
+        <span style="margin: 10px;" (click)="setSem()">Semestre dernier</span>
+        <span style="margin: 10px;" (click)="setYear()">Année dernière</span>
+      </div>
+    </div>
+    <div style="margin: 20px;">
+      <span style="color: grey; font-size:14px">
+        Sport'up a dépensé 15$ sur 2 publicités au cours des 7 derniers jours
+      </span>
+    </div>
+    <ion-slides style="margin: -30px 0 0 0;" pager="true" [options]="slideOpts">
+      <ion-slide>
+        <div class="divOfSlide" >
+          <span style="font-size: 15px;">Couverture</span>
+          <span>9087</span>
+        </div>
+        <div  class="divOfSlide">
+          <span style="font-size: 15px;">Interaction avec la publicité</span>
+          <span>9087</span>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div  class="divOfSlide">
+          <span style="font-size: 15px;">Couverture</span>
+          <span>9087</span>
+        </div>
+        <div  class="divOfSlide">
+          <span style="font-size: 15px;">Interaction avec la publicité</span>
+          <span>9087</span>
+        </div>
+      </ion-slide>
+      <ion-slide>
+        <div  class="divOfSlide">
+          <span style="font-size: 15px;">Couverture</span>
+          <span>9087</span>
+        </div>
+        <div class="divOfSlide">
+          <span style="font-size: 15px;">Interaction avec la publicité</span>
+          <span>9087</span>
+        </div>
+      </ion-slide>
+    </ion-slides>
+    <div style="margin: 20px;">
+      <span style="font-weight: bold;">Publicités</span>
+      <div style="margin: 20px;box-shadow:10px 10px 10px rgba(151, 151, 151, 0.774);padding:15px;border-radius:15px;background-color:rgb(243, 243, 243)">
+        <div style="width: 100%; display:flex;justify-content:flex-end">
+          <span style="font-size: 12px;color:green">Afficher les résultats</span>
+        </div>
+        <div style="margin:10px;display: flex; width:100%;justify-content:space-between;align-items:center">
+          <img style="width: 60px;height:60px" src="../../assets//svg/birthday-cake.svg" alt="">
+          <span>Obtenir plus de messages</span>
+        </div>
+        <div style="margin:10px;display: flex;width:100%;justify-content:space-between">
+          <div style="display: flex;flex-direction:column;align-items:center">
+            <span>9000</span>
+            <span>Couverture</span>
+          </div>
+          <div style="display: flex;flex-direction:column;align-items:center">
+            <span>52</span>
+            <span>messages</span>
+          </div>
+          <div style="display: flex;flex-direction:column;align-items:center">
+            <span>7.2 $</span>
+            <span>Dépenses</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: flex;justify-content:flex-end;width:95%;">
+      <div style="margin: 10px;padding:10px;box-shadow:10px 10px 10px rgb(136, 136, 136);background-color:rgb(243, 243, 243);border-radius:10px">
+        <span style="color: grey; font-size:12px">Promouvoir une pubication</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

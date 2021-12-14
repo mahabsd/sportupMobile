@@ -114,6 +114,7 @@ export class StatusComponent implements OnInit {
     });
   }
 
+
   showComments() {
     this.showComment = true;
   }

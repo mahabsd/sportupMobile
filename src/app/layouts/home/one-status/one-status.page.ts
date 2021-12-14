@@ -53,8 +53,9 @@ export class OneStatusPage implements OnInit {
   getPost() {
     this.postService.getPost(this.id).subscribe(async res => {
       this.post = await res;
-      // this.comments = res.comments
+      this.comments = res.comments
       this.mediafiles = res.mediafiles;
+      console.log(this.mediafiles);
       this.user = res.user;
     });
   }

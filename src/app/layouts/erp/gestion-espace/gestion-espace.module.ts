@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { GestionEspacePageRoutingModule } from './gestion-espace-routing.module';
 
 import { GestionEspacePage } from './gestion-espace.page';
-import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { ChartsModule } from 'ng2-charts';
     FormsModule,
     IonicModule,
     GestionEspacePageRoutingModule,
-    ChartsModule
   ],
   declarations: [GestionEspacePage]
 })
