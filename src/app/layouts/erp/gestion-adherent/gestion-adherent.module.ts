@@ -7,7 +7,6 @@ import { IonicModule } from '@ionic/angular';
 import { GestionAdherentPageRoutingModule } from './gestion-adherent-routing.module';
 
 import { GestionAdherentPage } from './gestion-adherent.page';
-import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   imports: [
@@ -15,7 +14,6 @@ import { ChartsModule } from 'ng2-charts';
     FormsModule,
     IonicModule,
     GestionAdherentPageRoutingModule,
-    ChartsModule
   ],
   declarations: [GestionAdherentPage]
 })

@@ -288,9 +288,19 @@ const routes: Routes = [
         path: 'welcome',
         loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
       },
+      {
+        path: 'publicity',
+        loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
+      },
+
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
+  {
+    path: 'publicity',
+    loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
+  },
+
 
 
 

@@ -56,6 +56,7 @@ export class HeaderComponent implements OnInit {
   @Input() isCommunityCreate: boolean;
   @Input() isSaved: boolean;
   @Input() isActivityKids: boolean;
+  @Input() isPublicity: boolean;
   userid: any;
   user$: any;
   iduser1;

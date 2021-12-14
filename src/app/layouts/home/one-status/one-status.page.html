@@ -2,12 +2,7 @@
 
 <ion-content>
 <div *ngFor="let file of mediafiles" >
-  <div
-  style="width: 95%; height: 220px;border-radius:10px;margin:20px 10px"
-  id="first"
-  [style.background-size]="'cover'"
-  [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-  errorImage="../../../assets/imgs/150.png"></div>
+  <img id="first" [src]=apiImg+file?.file_name alt="">
   <!-- <div style="display: flex;align-items:center;justify-content:space-evenly">
     <ng-container *ngIf="!post?.likedBy.includes(user?._id) || !post.post?.likedBy.includes(user?._id); else dislikedTemp">
       <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
@@ -91,4 +86,6 @@
     </div>
   </div> -->
 </div>
+
+
 </ion-content>
