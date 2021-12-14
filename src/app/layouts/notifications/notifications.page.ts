@@ -69,10 +69,11 @@ export class NotificationsPage implements OnInit {
     });
   }
 
-  resetNotifcations(notif) {
-      notif.seen = true;
-    this.notificationsService.updateNotification(notif).subscribe();
+ // resetNotifcations(notif) {
+//      notif.seen = true;
+ //   this.notificationsService.updateNotification(notif).subscribe();
+//
+  //}
 
-  }
 }
-type notification = Array<{ icon: string; message: string; button: string }>;
+

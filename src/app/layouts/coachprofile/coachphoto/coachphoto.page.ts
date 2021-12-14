@@ -131,7 +131,6 @@ export class CoachphotoPage implements OnInit {
         }).subscribe(({ mediafiles }) => {
           this.mediafiles = mediafiles.mediafiles;
           this.mediafiles.forEach(element => {
-            console.log(element);
             this.images.push(element);
           });
         });

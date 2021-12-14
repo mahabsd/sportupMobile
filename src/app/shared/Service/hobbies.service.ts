@@ -10,7 +10,7 @@ export class HobbiesService {
 
   constructor(private apiService: UtilsService) { }
   addHobby(hobby: any): Observable<any> {
-    return this.apiService.patch(`${UtilsService.apiHobbies}`, hobby).pipe(((res) => res));
+    return this.apiService.post(`${UtilsService.apiHobbies}`, hobby).pipe(((res) => res));
   }
   getHobbies(): Observable<[]> {
     return this.apiService.get(`${UtilsService.apiHobbies}`).pipe(((res) => res));
@@ -18,5 +18,8 @@ export class HobbiesService {
 
   findbyactivity(hobby: any): Observable<[]> {
     return this.apiService.get(`${UtilsService.apiUSER}?activity=${hobby}`).pipe(((res) => res));
+  }
+  getAllUsersByHobby(hobbyId): Observable<[]> {
+    return this.apiService.get(`${UtilsService.apiHobbies}hobbiesByUser/?hobby=${hobbyId}`).pipe(((res) => res));
   }
 }

@@ -31,14 +31,11 @@ export class PostService {
       .pipe(map((res) => res));
   }
   disLikePost(post: Post): Observable<Post> {
-    console.log(post);
     return this.utilsService
       .patch(UtilsService.apiPost + 'dislikePost', post)
       .pipe(map((res) => res));
   }
   getAllPosts(page?): Observable<Post[]> {
-    // console.log(page);
-    // return this.utilsService.get(`${UtilsService.apiPost}/?page=${page}&limit=5`).pipe(map(res => res.data));
     return this.utilsService
       .get(`${UtilsService.apiPost}?page=${page}&limit=5`)
       .pipe(

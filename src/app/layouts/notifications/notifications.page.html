@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-icon routerLink="/menu/tabs/home" color="light" name="chevron-back-outline"></ion-icon>
+      <ion-icon routerLink="/tabs/home" color="light" name="chevron-back-outline"></ion-icon>
     </ion-buttons>
     <ion-title color="light" style="text-align: center; width: 100%; margin-left: 20xp">
       <div style="display: flex; align-items: center; justify-content: center">
@@ -21,7 +21,7 @@
       margin: 4px 0;
       box-shadow: unset;
     "
-    (click)="resetNotifcations(notif)">
+   >
     <app-notification style="display: flex;justify-content:space-between;align-items:center;width:90%" [notif]="notif" ></app-notification>
   </ion-card>
 </ion-content>

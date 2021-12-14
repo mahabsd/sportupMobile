@@ -66,7 +66,7 @@ export class LoginPage implements OnInit {
       // console.log('hello user', response);
 
       if (response.user.role === "user"||response.user.role === "pro"||response.user.role === "admin") {
-        location.href = '/menu/tabs/home';
+        location.href = '/tabs/home';
 
       }
       else {

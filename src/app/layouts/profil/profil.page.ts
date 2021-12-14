@@ -21,10 +21,11 @@ export class ProfilPage implements OnInit {
   // activatedroute importer luser selon leur id
   // en utilisant lapi
   apiImg = environment.apiImg + 'User/';
+
   EtatSuivre = false;
   notif: any = { reciever: '', userOwner: '', text: '' };
   idfollow;
-  user$
+  user$;
   profileClickedName;
   visitedUser;
   myInformation: any = { userLastName: '', userFirstName: '' };
@@ -65,6 +66,7 @@ export class ProfilPage implements OnInit {
   ];
   userRole: any;
   postsNum
+  confirmer: boolean;
   constructor(
     private activatedRoute: ActivatedRoute,
     private userService: UserService,
@@ -80,9 +82,8 @@ export class ProfilPage implements OnInit {
   }
 
   ngOnInit() {
+   // this.confirmer = false;
     this.getUser();
-
-
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.typepage = this.activatedRoute.snapshot.params.typepage;
     this.getUserByid();
@@ -106,6 +107,11 @@ export class ProfilPage implements OnInit {
 
       console.log(this.postsNum);
     })
+    this.getfollow();
+    this.idprofilePassed = this.activatedRoute.snapshot.params.id;
+    this.typepage = this.activatedRoute.snapshot.params.typepage;
+    this.getUserByid();
+    this.checkNotif();
   }
 
   getfollow() {
@@ -113,13 +119,11 @@ export class ProfilPage implements OnInit {
       (response) => {
         this.iduser1 = response.data.data.id;
         this.followerService
-          .getFollow(this.idprofilePassed, this.iduser1)
-          .subscribe((res) => {
+          .getFollow(this.idprofilePassed, this.iduser1).subscribe((res) => {
             if (res == null) {
               this.follower = false;
             } else {
               this.follower = true;
-
               this.idFollowtoDelete = res._id;
               this.EtatSuivre = true;
               // this.router.navigate(["menu/tabs/layouts/coachprofile",this.idprofilePassed,"followed"]);
@@ -230,7 +234,9 @@ export class ProfilPage implements OnInit {
   checkNotif() {
     this.notificationsService.checkNotification(this.idprofilePassed, this.iduser).subscribe(res => {
 
-      if (res) {
+      console.log(res.data);
+
+      if (res.data ) {
         this.etatSuivre = true;
       }
     });

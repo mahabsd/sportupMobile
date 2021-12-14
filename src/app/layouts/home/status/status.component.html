@@ -1,10 +1,10 @@
 <ion-grid >
   <ion-row lines="none">
     <ion-avatar slot="" class="ion-padding" >
-      <img [src]="apiImgUser + post?.user?.photo" routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
+      <img [src]="apiImgUser + post?.user?.photo" routerLink="/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto" />
     </ion-avatar>
 
-    <ion-label [routerLink]="['/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto']" class="ion-justify-content-center"
+    <ion-label [routerLink]="['/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto']" class="ion-justify-content-center"
        style="display: grid; align-self: center">
       <ng-container *ngIf="post.shared===true; else mine">
         <h3 class="
@@ -44,7 +44,7 @@
   <ng-container style="display: flex;flex-direction:column" *ngIf="post.shared===true" >
     <div style="display: flex; align-items:center;margin-top:-20px">
       <ion-avatar slot="" class="ion-padding" >
-        <img [src]="apiImgUser + post.post.user.photo" routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
+        <img [src]="apiImgUser + post.post.user.photo" routerLink="/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto" />
       </ion-avatar>
         <span style="text-transform: capitalize;">
         {{ post.post?.user?.name }}
@@ -308,7 +308,7 @@
       </div>
       <div style="display: flex;justify-content:space-between;align-items:center; background-color:#EEEFEF; border-radius:10px;margin:10px 3px 20px 3px">
         <div style="display: flex;align-items:center;padding:0px 10px">
-          <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover"  src={{apiImgUser+user.photo}} routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me" />
+          <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover"  src={{apiImgUser+user.photo}} routerLink="/tabs/layouts/coachprofile/coachphoto" />
           <input placeholder="Ecrivez un commentaire ..." [(ngModel)]="comment.content"  style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
         </div>
         <div style="display: flex;">

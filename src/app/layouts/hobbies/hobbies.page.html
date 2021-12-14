@@ -1,57 +1,44 @@
 <app-header [title]="title" [isDetails]="true" [isOption]="true"></app-header>
 <ion-content [scrollEvents]="true" (ionScroll)="logScrolling($event)">
   <h5>Bienvenue sur votre onglet des hobbies</h5>
-  <h6>rechercher des personnes selon votre activité préférée</h6>
   <ion-grid>
-    <ion-row>
-      <ion-col size="1">
-        <span class="slider-nav arrow-prev" (click)="slidePrev(sliderTwo,slideWithNav2)">
-          <div class="prev-icon-custom custon-nav" [class.disabled]="sliderTwo.isBeginningSlide"></div>
-        </span>
-      </ion-col>
-      <ion-col size="10">
-        <ion-slides pager="true" autoplay="3000" loop="true" [options]="slideOptsTwo" #slideWithNav2
-          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)" style="height: 200px;">
-          <ion-slide *ngFor="let item of HobbiesData">
+    <!--
+    <ion-searchbar [(ngModel)]="recherche"></ion-searchbar>
+    -->
+    <div class="slides">
+      <img src="../../assets/svg/arrowLeft.svg" class="arrow" [class.disabled]="sliderTwo.isBeginningSlide"
+        (click)="slidePrev(sliderTwo,slideWithNav2)" alt="">
+
+      <ion-col>
+        <ion-slides [options]="slideOptsTwo" #slideWithNav2 loop="true"
+          (ionSlideDidChange)="SlideDidChange(sliderTwo,slideWithNav2)">
+          <ion-slide *ngFor="let item of hobbies  | filter : recherche; ">
             <div class="container">
-              <img src={{item.imgsrc}}>
-              <div class="centered">{{item.hobbiename}}</div>
+              <img class="hobby" src="{{apiImgHobby + item.imgsrc}}">
+              <div class="centered">{{item.hobby }}</div>
             </div>
+
           </ion-slide>
         </ion-slides>
       </ion-col>
-      <ion-col size="1">
-        <span class="slider-nav arrow-next" (click)="slideNext(sliderTwo,slideWithNav2)">
-          <div class="next-icon-custom custon-nav" [class.disabled]="sliderTwo.isEndSlide"></div>
-        </span>
-      </ion-col>
-    </ion-row>
+      <img src="../../assets/svg/arrowRight.svg" class="arrow" (click)="slideNext(sliderTwo,slideWithNav2)"
+        [class.disabled]="sliderTwo.isEndSlide" alt="">
+    </div>
   </ion-grid>
-  <ion-searchbar placeholder="rechercher" [(ngModel)]="recherche"></ion-searchbar>
-  <div style="text-align: center;margin: 20px auto">
-    <ion-card *ngFor="let user of userlist | filter : recherche;let i=index; " scrollY="true"
-      style="font-size:20px; width : 100%;display:flex;align-items: center; justify-content:space-between">
-      <ion-grid>
-        <ion-row>
-      <ion-col size="4" style="   display: flex;
-      align-items: center;">
-        <h4 style="margin-left:40px;" (click)="redirectToprofile(user._id,user.role)">{{user.name}}</h4>
-      </ion-col>
-    <!--
-            <ng-container *ngFor="let item2 of buttonColor">
-         <ng-container *ngIf="item2.iduser===user._id">
-                <ion-col size="2">
-                  <ion-button *ngIf="item2.etat==='no'" expand="block"  id="dejasuivi"  (click)="buttonSuivre(user._id)" >S'abonner</ion-button>
-                  <ion-button expand="block" *ngIf="item2.etat==='yes'"  type="button" id="bloquer" (click)="buttonBlock()" >
-                    Demande en cours
-                  </ion-button>
-                </ion-col>
-            </ng-container>
-        </ng-container>
-    -->
+  <h6>rechercher des personnes selon leurs acitivités</h6>
 
-      </ion-row>
-    </ion-grid>
-    </ion-card>
+  <ion-searchbar [(ngModel)]="recherche2"></ion-searchbar>
+
+  <div class="users">
+    <div *ngFor="let user of userlist | filter : recherche2;let i=index; " scrollY="true" class="userName">
+      <h4 (click)="redirectToprofile(user.user._id,user.user.role)">{{
+        user.user.name}}
+      </h4>
+      <!--
+            <ion-button *ngIf="recherche2 === user.user.name" expand="block" id="dejasuivi"
+            (click)="buttonSuivre(user.user._id)">S'abonner</ion-button>
+        -->
+    </div>
+    <h4 *ngIf="userlist.length === 0"> {{searchResult}} </h4>
   </div>
 </ion-content>

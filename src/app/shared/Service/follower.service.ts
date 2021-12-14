@@ -11,11 +11,14 @@ import { Observable } from 'rxjs';
 export class FollowerService {
 
   constructor(private apiService: UtilsService) { }
-  createFollow(follow): Observable<Follow> {
-    return this.apiService.post(UtilsService.apiFollower, follow).pipe(map(res => res));
+  createFollow(userId, follow): Observable<Follow> {
+    return this.apiService.post(`${UtilsService.apiFollower}${userId}`, follow).pipe(map(res => res));
   }
 
   getFollow(followed,following) {
+    console.log(followed);
+    console.log(following);
+
     return this.apiService.get(`${UtilsService.apiFollower}${followed}/${following}`).pipe(map((res) => res.data.data));
 
   }
