@@ -50,7 +50,7 @@
       <ion-button shape="rounded" [routerLink]="['/tabs/layouts/maps']" routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_position.png" alt="">
       </ion-button>
-      <span>Ajouter votre adresse sur le map</span>
+      <span>Ajouter l'adresse de la page sur le map</span>
     </div>
     <ion-item class="description">
       <textarea placeholder="Description" [(ngModel)]="page.description" rows=5></textarea>
@@ -146,7 +146,12 @@
         <div style="position: absolute;"></div>
       </ng-template>
     </div>
-
+    <div>
+      <ion-button shape="rounded" [routerLink]="['/tabs/layouts/maps']" routerLinkActive="router-link-active">
+        <img src="../../assets/icon/icon_position.png" alt="">
+      </ion-button>
+      <span>Ajouter l'adresse de l'evennement sur le map</span>
+    </div>
     <ion-item class="description">
       <textarea placeholder="Description" [(ngModel)]="event.description" rows=5></textarea>
     </ion-item>
