@@ -17,7 +17,7 @@ const routes: Routes = [
     loadChildren: () => import('./show-pages/show-pages.module').then( m => m.ShowPagesPageModule)
   },
   {
-    path: 'show-event',
+    path: 'show-event/:id',
     loadChildren: () => import('./show-event/show-event.module').then( m => m.ShowEventPageModule)
   },
 

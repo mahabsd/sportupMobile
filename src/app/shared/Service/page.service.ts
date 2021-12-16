@@ -12,7 +12,7 @@ export class PageService {
   constructor(private apiService: UtilsService) { }
   getpagesbyID(id): Observable<Page[]> {
     return this.apiService
-      .get(`${UtilsService.apiPage}`)
+      .get(`${UtilsService.apiPage}/getAll/?createdBy=${id}`)
       .pipe(map((res) => res.data.data));
   }
   addPage(Page): Observable<Page> {

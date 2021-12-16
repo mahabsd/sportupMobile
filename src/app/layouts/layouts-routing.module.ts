@@ -265,7 +265,7 @@ const routes: Routes = [
         loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
       },
       {
-        path: 'show-event',
+        path: 'show-event/:id',
         loadChildren: () => import('./community/show-event/show-event.module').then( m => m.ShowEventPageModule)
       },
       {

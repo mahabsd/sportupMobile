@@ -1,6 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { PageService } from 'src/app/shared/Service/page.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
+import { async } from '@angular/core/testing';
+import { CalendarService } from 'src/app/shared/Service/calendar.service';
 
 @Component({
   selector: 'app-community',
@@ -20,42 +24,42 @@ export class CommunityPage implements OnInit {
       participants: 300,
       date: "23/08/2021",
       time: "18:00",
-      day:"Mardi"
+      day: "Mardi"
     },
     {
       name: "ZUMBA BEACH",
       participants: 300,
       date: "23/08/2021",
       time: "18:00",
-      day:"Mardi"
+      day: "Mardi"
     },
     {
       name: "ZUMBA BEACH",
       participants: 300,
       date: "23/08/2021",
       time: "18:00",
-      day:"Mardi"
+      day: "Mardi"
     },
     {
       name: "ZUMBA BEACH",
       participants: 300,
       date: "23/08/2021",
       time: "18:00",
-      day:"Mardi"
+      day: "Mardi"
     },
     {
       name: "ZUMBA BEACH",
       participants: 300,
       date: "23/08/2021",
       time: "18:00",
-      day:"Mardi"
+      day: "Mardi"
     },
     {
       name: "ZUMBA BEACH",
       participants: 300,
       date: "23/08/2021",
       time: "18:00",
-      day:"Mardi"
+      day: "Mardi"
     }
 
   ]
@@ -97,24 +101,24 @@ export class CommunityPage implements OnInit {
           const slideOffset = $slideEl[0].swiperSlideOffset;
           const offsetMultiplier = ((center - slideOffset - (slideSize / 2)) / slideSize) * params.modifier;
 
-           let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
+          let rotateY = isHorizontal ? rotate * offsetMultiplier : 0;
           let rotateX = isHorizontal ? 0 : rotate * offsetMultiplier;
           // var rotateZ = 0
           let translateZ = -translate * Math.abs(offsetMultiplier);
 
-           let translateY = isHorizontal ? 0 : params.stretch * (offsetMultiplier);
+          let translateY = isHorizontal ? 0 : params.stretch * (offsetMultiplier);
           let translateX = isHorizontal ? params.stretch * (offsetMultiplier) : 0;
 
-           // Fix for ultra small values
+          // Fix for ultra small values
           if (Math.abs(translateX) < 0.001) translateX = 0;
           if (Math.abs(translateY) < 0.001) translateY = 0;
           if (Math.abs(translateZ) < 0.001) translateZ = 0;
           if (Math.abs(rotateY) < 0.001) rotateY = 0;
           if (Math.abs(rotateX) < 0.001) rotateX = 0;
 
-           const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
-           $slideEl.transform(slideTransform);
+          $slideEl.transform(slideTransform);
           $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
           if (params.slideShadows) {
             // Set shadows
@@ -133,7 +137,7 @@ export class CommunityPage implements OnInit {
           }
         }
 
-         // Set correct perspective for IE10
+        // Set correct perspective for IE10
         if (swiper.support.pointerEvents || swiper.support.prefixedPointerEvents) {
           const ws = $wrapperEl[0].style;
           ws.perspectiveOrigin = `${center}px 50%`;
@@ -147,29 +151,36 @@ export class CommunityPage implements OnInit {
           .transition(duration);
       }
     }
-  }
-  constructor(private eventService: EventService) { }
+  };
+  user: any;
+  personalEvents = [];
+  constructor(private eventService: EventService,
+    public pageService: PageService,
+    public userService: UserService,
+    public calendarService: CalendarService) { }
 
   segmentChanged(ev: any) {
     this.selected = ev.detail.value;
   }
   ngOnInit() {
     this.selected = 'Pages';
-    this.dropDown=false;
+    this.dropDown = false;
+    this.getPersonalPages();
+    this.getPersonalEvents();
   }
 
-  next(){
+  next() {
     this.slides.slideNext();
   }
 
-  prev(){
+  prev() {
     this.slides.slidePrev();
   }
 
   doRefresh(event) {
-   // this.posts = [];
+    // this.posts = [];
     setTimeout(() => {
-     // this.getAllPostsByEvent();
+      // this.getAllPostsByEvent();
       event.target.complete();
     }, 1000);
   }
@@ -184,12 +195,28 @@ export class CommunityPage implements OnInit {
   }
 
   openDropDown() {
-    if(this.dropDown===false){
-      this.dropDown=true;
+    if (this.dropDown === false) {
+      this.dropDown = true;
     }
-    else if(this.dropDown===true){
-      this.dropDown=false;
+    else if (this.dropDown === true) {
+      this.dropDown = false;
     }
+  }
+
+
+  getPersonalPages() {
+    this.userService.getMe().subscribe(async res => {
+      this.user = await res.data.data;
+      this.pageService.getpagesbyID(this.user._id).subscribe(async arg => await console.log(arg));
+    });
+  }
+  getPersonalEvents() {
+    this.userService.getMe().subscribe(async res => {
+      this.user = await res.data.data;
+      this.calendarService.getAllEvents().subscribe(events => {
+        this.personalEvents = events.filter(event => event.type === 'event');
+      });
+    });
   }
 
 }
