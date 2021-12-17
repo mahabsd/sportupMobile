@@ -273,10 +273,6 @@ const routes: Routes = [
         loadChildren: () => import('./community/show-page/show-page.module').then( m => m.ShowPagePageModule)
       },
       {
-        path: 'show-pages',
-        loadChildren: () => import('./community/show-pages/show-pages.module').then( m => m.ShowPagesPageModule)
-      },
-      {
         path: 'add',
         loadChildren: () => import('./community/add/add.module').then( m => m.AddPageModule)
       },

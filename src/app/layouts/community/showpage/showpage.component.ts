@@ -1,69 +1,20 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { PageService } from 'src/app/shared/Service/page.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
-import { async } from '@angular/core/testing';
-import { CalendarService } from 'src/app/shared/Service/calendar.service';
 
 @Component({
-  selector: 'app-community',
-  templateUrl: './community.page.html',
-  styleUrls: ['./community.page.scss'],
+  selector: 'app-showpage',
+  templateUrl: './showpage.component.html',
+  styleUrls: ['./showpage.component.scss'],
 })
-export class CommunityPage implements OnInit {
+export class ShowpageComponent implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
-  isScrollTop = false;
-
-  dropDown: boolean;
+  @Input() page: any;
   selected: any;
-
-  events = [
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    }
-
-  ]
-
+  isScrollTop = false;
+  dropDown: boolean;
   slideOpts = {
     slidesPerView: 1,
     coverflowEffect: {
@@ -116,7 +67,8 @@ export class CommunityPage implements OnInit {
           if (Math.abs(rotateY) < 0.001) rotateY = 0;
           if (Math.abs(rotateX) < 0.001) rotateX = 0;
 
-          const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)  rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          const slideTransform = `translate3d(${translateX}px,${translateY}px,${translateZ}px)
+           rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
 
           $slideEl.transform(slideTransform);
           $slideEl[0].style.zIndex = -Math.abs(Math.round(offsetMultiplier)) + 1;
@@ -152,24 +104,18 @@ export class CommunityPage implements OnInit {
       }
     }
   };
-  user: any;
-  personalEvents = [];
-  myPages: any;
   constructor(private eventService: EventService,
     public pageService: PageService,
-    public userService: UserService,
-    public calendarService: CalendarService) { }
+    public userService: UserService,) { }
 
+  ngOnInit() {
+    this.dropDown = false;
+    console.log(this.page);
+
+  }
   segmentChanged(ev: any) {
     this.selected = ev.detail.value;
   }
-  ngOnInit() {
-    this.selected = 'Pages';
-    this.dropDown = false;
-    this.getPersonalPages();
-    this.getPersonalEvents();
-  }
-
   next() {
     this.slides.slideNext();
   }
@@ -203,21 +149,4 @@ export class CommunityPage implements OnInit {
       this.dropDown = false;
     }
   }
-
-
-  getPersonalPages() {
-    this.userService.getMe().subscribe(async res => {
-      this.user = await res.data.data;
-      this.pageService.getpagesbyID(this.user._id).subscribe( arg =>  this.myPages = arg);
-    });
-  }
-  getPersonalEvents() {
-    this.userService.getMe().subscribe(async res => {
-      this.user = await res.data.data;
-      this.calendarService.getAllEvents().subscribe(events => {
-        this.personalEvents = events.filter(event => event.type === 'event');
-      });
-    });
-  }
-
 }

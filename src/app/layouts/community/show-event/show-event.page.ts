@@ -56,4 +56,5 @@ export class ShowEventPage implements OnInit {
        this.event = await res[0];
       });
   }
+
 }
