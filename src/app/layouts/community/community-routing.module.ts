@@ -16,6 +16,10 @@ const routes: Routes = [
     path: 'show-event/:id',
     loadChildren: () => import('./show-event/show-event.module').then( m => m.ShowEventPageModule)
   },
+  {
+    path: 'show-page/:id',
+    loadChildren: () => import('./show-page/show-page.module').then( m => m.ShowPagePageModule)
+  }
 
 ];
 

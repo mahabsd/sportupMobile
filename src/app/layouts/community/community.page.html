@@ -16,9 +16,7 @@
       </ion-segment>
       <div *ngIf="selected === 'Pages'">
 
-        <div *ngFor="let page of myPages"  >
-          <app-showpage [page]="page"></app-showpage>
-        </div>
+          <app-showpage [page]="myPages"></app-showpage>
       </div>
       <div *ngIf="selected === 'Evennements'">
 

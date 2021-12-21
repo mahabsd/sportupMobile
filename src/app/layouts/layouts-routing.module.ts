@@ -269,7 +269,7 @@ const routes: Routes = [
         loadChildren: () => import('./community/show-event/show-event.module').then( m => m.ShowEventPageModule)
       },
       {
-        path: 'show-page',
+        path: 'show-page/:id',
         loadChildren: () => import('./community/show-page/show-page.module').then( m => m.ShowPagePageModule)
       },
       {
@@ -288,7 +288,6 @@ const routes: Routes = [
         path: 'publicity',
         loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
       },
-
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

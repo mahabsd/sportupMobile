@@ -28,5 +28,10 @@ export class PageService {
   deletepage(id: any) {
     return this.apiService.delete(`${UtilsService.apiPage}` + id);
   }
+  getOnePage(id): Observable<Page[]> {
+    return this.apiService
+      .get(`${UtilsService.apiPage}/getAll/?_id=${id}`)
+      .pipe(map((res) => res.data.data));
+  }
 }
 

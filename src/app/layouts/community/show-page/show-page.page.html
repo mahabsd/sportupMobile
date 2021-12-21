@@ -4,7 +4,7 @@
   <div style="position: relative;">
     <div style="position: absolute;bottom:15px;left:10px;display:flex;flex-direction:column;align-items:center">
       <img style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;" src="../../../assets/svg/person-icon.svg" alt="">
-      <span style="font-size: 18px;color:white">SPORT'UP</span>
+      <span style="font-size: 18px;color:white"> {{page?.name}}</span>
     </div>
     <img src="https://starwalk.space/gallery/images/june-2020-planet-parade-what-is-it-and-how-can-you-see-it/1920x1080.jpg" alt="">
   </div>
@@ -172,7 +172,7 @@
       <div style="margin: 15px;">
         <div>
           <span style="font-size: 17px;font-weight:bold">Page :</span>
-          <span>Sport'up agancy</span>
+          <span>{{page?.name}}</span>
         </div>
         <div>
           <span style="font-size: 17px;font-weight:bold">Lieu :</span>
@@ -195,11 +195,7 @@
         <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
           <span style="font-size: 17px;font-weight:bold;">Description :</span>
           <span >
-            Lorem ipsum dolor
-            sit amet, consectetur adipisicing elit Perferendis, quisquam odio.
-            Corrupti aperiam omnis exercitationem facere minima, blanditiis
-            aspernatur voluptate nihil magni eos error quod voluptatem in ipsum
-            ciendis vel?
+            {{page?.description}}
           </span>
         </div>
         <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
@@ -208,11 +204,7 @@
         <div style="margin-left: 15px; ">
           <span style="font-size: 17px;font-weight:bold;">Description :</span>
           <span >
-            Lorem ipsum dolor
-            sit amet, consectetur adipisicing elit Perferendis, quisquam odio.
-            Corrupti aperiam omnis exercitationem facere minima, blanditiis
-            aspernatur voluptate nihil magni eos error quod voluptatem in ipsum
-            ciendis vel?
+            {{page?.description}}
           </span>
         </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir moins</span>
       </ng-template>

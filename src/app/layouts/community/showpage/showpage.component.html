@@ -1,13 +1,13 @@
 
 <div style="padding: 10px 0 0 0;display:flex;flex-direction:column;">
   <span style="margin-top:20px;font-size:20px;color:rgb(194, 194, 194);margin-left:20%">Pages que vous gérez</span>
-  <div style="display: flex;align-items:center">
+  <div style="display: flex;align-items:center" >
     <ion-icon style="margin: 20px 0 0 0;width:20px" (click)="prev()" name="chevron-back"></ion-icon>
-    <ion-slides style="margin: 20px 0 0 0;height:110px;width:90%" pager="false" [options]="slideOpts">
-      <ion-slide style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px;">
+    <ion-slides style="margin: 20px 0 0 0;height:110px;width:90%" pager="false" [options]="slideOpts" >
+      <ion-slide routerLink="/community/show-page/{{item._id}}" *ngFor="let item of page"  style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px;">
         <div routerLink="/show-page" style="display: flex;align-items:center;width:100%;padding:0 12px">
           <span style="margin-right: 10px;">LOGO</span>
-          <span> {{page?.name}}</span>
+          <span> {{item?.name}}</span>
         </div>
         <div style="display:flex;justify-content:space-between;width:100%;padding:0 12px">
           <span style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte de reception</span>
