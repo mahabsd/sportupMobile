@@ -167,7 +167,6 @@ directionsService.route(route, (response,status)=> {
         zoom: 8,
       }
     );
-    //routerLink="/menu/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me"
     const contentString =
     `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: none;color:green" href="/menu/tabs/layouts/coachprofile/${this.user.id}/me">
       <ion-avatar slot="" class="ion-padding" >
