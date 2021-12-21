@@ -12,6 +12,7 @@ import { ShowEventPageModule } from './show-event/show-event.module';
 import { AddPageModule } from './add/add.module';
 import { ShowPagePageModule } from './show-page/show-page.module';
 import { OneEventComponent } from './one-event/one-event.component';
+import { ShowpageComponent } from './showpage/showpage.component';
 
 @NgModule({
   imports: [
@@ -24,6 +25,6 @@ import { OneEventComponent } from './one-event/one-event.component';
     AddPageModule,
     ShowPagePageModule,
   ],
-  declarations: [CommunityPage,OneEventComponent]
+  declarations: [CommunityPage,OneEventComponent,ShowpageComponent]
 })
 export class CommunityPageModule {}

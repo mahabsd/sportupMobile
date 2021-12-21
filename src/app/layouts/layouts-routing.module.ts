@@ -265,16 +265,12 @@ const routes: Routes = [
         loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
       },
       {
-        path: 'show-event',
+        path: 'show-event/:id',
         loadChildren: () => import('./community/show-event/show-event.module').then( m => m.ShowEventPageModule)
       },
       {
-        path: 'show-page',
+        path: 'show-page/:id',
         loadChildren: () => import('./community/show-page/show-page.module').then( m => m.ShowPagePageModule)
-      },
-      {
-        path: 'show-pages',
-        loadChildren: () => import('./community/show-pages/show-pages.module').then( m => m.ShowPagesPageModule)
       },
       {
         path: 'add',
@@ -292,7 +288,6 @@ const routes: Routes = [
         path: 'publicity',
         loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
       },
-
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },

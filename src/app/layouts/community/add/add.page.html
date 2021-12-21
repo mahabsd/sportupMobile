@@ -117,7 +117,7 @@
       <div *ngIf="dropDown===true;else close">
         <div style="position: absolute;padding:12px;width:250px; display:flex;flex-direction:column;z-index:10;background-color:white;
           box-shadow:-5px 5px 10px rgb(113, 113, 113);border-radius:10px;transform:translateX(20px) translateY(3px)">
-          <div (click)="private = true; event.description = 'private';public=false; event.description = 'public'"
+          <div (click)="private = true; event.confidentiality = 'private';public=false; event.confidentiality = 'public'"
             style="display: flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/lock.svg" alt="">
@@ -130,8 +130,8 @@
               <img style="width:20px;height:20px" src="../../../assets/svg/check-privacy.svg" alt="">
             </ng-container>
           </div>
-          <div (click)="public = true ; event.description = 'public'; private=false;
-           event.description = 'private'"
+          <div (click)="public = true ; event.confidentiality = 'public'; private=false;
+           event.confidentiality = 'private'"
             style="display: flex;align-items:center;justify-content:space-between">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <img style="width:20px;height:20px;margin-right:5px" src="../../../assets/svg/globe.svg" alt="">

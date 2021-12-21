@@ -13,13 +13,13 @@ const routes: Routes = [
     loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
   },
   {
-    path: 'show-pages',
-    loadChildren: () => import('./show-pages/show-pages.module').then( m => m.ShowPagesPageModule)
-  },
-  {
-    path: 'show-event',
+    path: 'show-event/:id',
     loadChildren: () => import('./show-event/show-event.module').then( m => m.ShowEventPageModule)
   },
+  {
+    path: 'show-page/:id',
+    loadChildren: () => import('./show-page/show-page.module').then( m => m.ShowPagePageModule)
+  }
 
 ];
 

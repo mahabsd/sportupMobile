@@ -24,6 +24,17 @@ export class CalendarService {
       .get(`${UtilsService.apiCalendar}`)
       .pipe(map((res) => res.data.data));
   }
+  getEventsbyID(id): Observable<Activity[]> {
+    return this.apiService
+      .get(`${UtilsService.apiCalendar}?createdBy=${id}&type='event'`)
+      .pipe(map((res) => res.data.data));
+  }
+  getAllEvents(): Observable<Activity[]> {
+    let event = 'event';
+    return this.apiService
+      .get(`${UtilsService.apiCalendar}?type=${event}`)
+      .pipe(map((res) => res.data.data));
+  }
   addActivity(activity): Observable<Activity> {
     return this.apiService
       .post(`${UtilsService.apiCalendar}`, activity)
@@ -36,5 +47,10 @@ export class CalendarService {
 
   deleteEvent(id: any) {
     return this.apiService.delete(`${UtilsService.apiCalendar}` + id);
+  }
+  getEventbyID(id): Observable<Activity[]> {
+    return this.apiService
+      .get(`${UtilsService.apiCalendar}${id}`)
+      .pipe(map((res) => res.data.data));
   }
 }
