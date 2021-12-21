@@ -138,3 +138,9 @@ input[type=date]::-webkit-calendar-picker-indicator {
 }
 .alert-message.sc-ion-alert-md:empty {
 display: none;}
+
+#map {
+  height: 200px;
+  margin: 20px;
+  border-radius: 10px;
+}

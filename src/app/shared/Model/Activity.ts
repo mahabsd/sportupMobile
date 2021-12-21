@@ -14,4 +14,6 @@ export class Activity {
   endHour: string;
   confidentiality: string;
   description: string;
+  langitude: string;
+  lattitude: string;
 }

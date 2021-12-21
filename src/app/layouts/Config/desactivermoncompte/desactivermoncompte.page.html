@@ -6,9 +6,8 @@
     <ion-card class="no-padding" style="box-shadow:  0px 0px 0px 0px !important ">
       <ion-card-content>
         <p style="font-size: bold;">
-          Bonjour
-          Vous pouvez désactiver votre compte. Ce faisant,votre compte sera masqué jusqu'a ce que vous le réactiviez en
-          vous reconnectant
+          Bonjour <span style="text-transform: capitalize;">{{user?.name}}</span>
+          Pourquoi désactivez vous votre compte?
         </p>
       </ion-card-content>
     </ion-card>
@@ -25,21 +24,45 @@
   <ion-row>
     <ion-col size="1"></ion-col>
     <ion-col size="10">
-      <ion-list>
-        <ion-list-header style="color: black;font-weight: bold;font-size:smaller;margin-top: 5px; ">
-          <p style="color: black;font-weight: bold;font-size:smaller;margin-top: 5px;">
-            Selectionner:</p>
-        </ion-list-header>
-        <ion-item>
-          <ion-select multiple="false" cancelText="Cancel" okText="OK" [(ngModel)]="reason">
-            <ion-select-option value="secondaccount">J'AI CREE UN SECOND COMPTE </ion-select-option>
-            <ion-select-option value="utilisation">PROBLEME D'UTILISATION</ion-select-option>
-            <ion-select-option value="confidentialite">PROBLEME DE CONFIDENTIALITE </ion-select-option>
-            <ion-select-option value="publicite">TROP DE PUBLICITE</ion-select-option>
-            <ion-select-option value="autre">AUTRE CHOSE </ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
+      <div>
+        <div  (click)="toggleDropDown()" *ngIf="!dropDown;else open"  style="display: flex;align-items:center">
+          <span>Sélectionnez une option</span>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+        <ng-template #open>
+          <div (click)="toggleDropDown()" style="display: flex;align-items:center">
+            <span >Sélectionnez une option</span>
+            <ion-icon name="chevron-down"></ion-icon>
+          </div>
+        </ng-template>
+        <div style="position:relative">
+          <div *ngIf="dropDown" style="position: absolute;background-color: rgb(207, 207, 207);padding:15px;border-radius:10px;z-index:10;right:20px;width:300px">
+            <div (click)="choseOne()" (click)="toggleDropDown()" style="display: flex;align-items:center;justify-content:space-between;margin:5px">
+              <span class="{{boldOne}}" style="margin-right: 20px;">J'ai créé un second compte</span>
+              <img *ngIf="option==='J\'ai créé un second compte'"  style="width: 15px;height:15px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </div>
+            <div (click)="choseTwo()" (click)="toggleDropDown()" style="display: flex;align-items:center;justify-content:space-between;margin:5px">
+              <span class="{{boldTwo}}" style="margin-right: 20px;">Problème d'utilisation</span>
+              <img *ngIf="option==='Problème d\'utilisation'" style="width: 15px;height:15px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </div>
+            <div (click)="choseThree()" (click)="toggleDropDown()" style="display: flex;align-items:center;justify-content:space-between;margin:5px">
+              <span class="{{boldThree}}" style="margin-right: 20px;">Problème de confidentialité</span>
+              <img *ngIf="option==='Problème de confidentialité'" style="width: 15px;height:15px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </div>
+            <div (click)="choseFour()" (click)="toggleDropDown()" style="display: flex;align-items:center;justify-content:space-between;margin:5px">
+              <span class="{{boldFour}}" style="margin-right: 20px;">Trop de publicités</span>
+              <img *ngIf="option==='Trop de publicités'" style="width: 15px;height:15px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </div>
+            <div (click)="choseFive()" (click)="toggleDropDown()" style="display: flex;align-items:center;justify-content:space-between;margin:5px">
+              <span class="{{boldFive}}" style="margin-right: 20px;">Autre chose</span>
+              <img *ngIf="option==='Autre chose'" style="width: 15px;height:15px" src="../../../assets/svg/check-privacy.svg" alt="">
+            </div>
+          </div>
+        </div>
+        <div style="margin-top:10px;margin-left:10px">
+          <span style="font-weight: bold;">{{option}}</span>
+        </div>
+      </div>
     </ion-col>
     <ion-col size="1"></ion-col>
   </ion-row>
@@ -52,6 +75,27 @@
         </p>
       </div>
     </ion-col>
+
+  </ion-row>
+  <ion-row>
+    <ion-col size="1">
+    </ion-col>
+    <ion-col size="10">
+      <input style="font-size: small;" class="MyinputUpdate" type="password" placeholder="Mot de passe" [(ngModel)]="passwd" />
+    </ion-col>
+    <ion-col size="1">
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="1"></ion-col>
+    <ion-col size="7">
+      <div style="font-size:small;margin-top: 5px;">
+        <p style="color: black;font-weight: bold;font-size:smaller;margin-top: 5px;">
+          VEUILLEZ CONFIRMER VOTRE CODE PARENTAL
+        </p>
+      </div>
+    </ion-col>
+
   </ion-row>
   <ion-row>
     <ion-col size="1">
