@@ -46,12 +46,16 @@
 
     <div style="margin-top: 10px; font-size:12px; color:grey;width:90%">Choisissez une catégorie qui décrit le type de
       l'entreprise, d'organisation ou de sujet que votre page représente</div>
-    <div>
-      <ion-button shape="rounded" [routerLink]="['/tabs/layouts/maps']" routerLinkActive="router-link-active">
+    <div *ngIf="page.category==='lieu'||page.category==='Commerce local'||page.category==='Entreprise'||page.category==='Organisme'||page.category==='Institution'||page.category==='association'"  style="display: flex; align-items:center;margin:5px">
+      <ion-button (click)="toggleMap()" style="margin: 5px;" color="success" shape="rounded" routerLinkActive="router-link-active">
         <img src="../../assets/icon/icon_position.png" alt="">
       </ion-button>
       <span>Ajouter l'adresse de la page sur le map</span>
     </div>
+    <div *ngIf="showMap">
+      <div #map id="map"></div>
+    </div>
+
     <ion-item class="description">
       <textarea placeholder="Description" [(ngModel)]="page.description" rows=5></textarea>
     </ion-item>
@@ -146,11 +150,14 @@
         <div style="position: absolute;"></div>
       </ng-template>
     </div>
-    <div>
-      <ion-button shape="rounded" [routerLink]="['/tabs/layouts/maps']" routerLinkActive="router-link-active">
+    <div style="display: flex;align-items:center">
+      <ion-button (click)="toggleMap()" color="success" shape="rounded">
         <img src="../../assets/icon/icon_position.png" alt="">
       </ion-button>
       <span>Ajouter l'adresse de l'evennement sur le map</span>
+    </div>
+    <div *ngIf="showMap">
+      <div #map id="map"></div>
     </div>
     <ion-item class="description">
       <textarea placeholder="Description" [(ngModel)]="event.description" rows=5></textarea>
@@ -161,3 +168,5 @@
     </div>
   </ion-grid>
 </ion-content>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-VMPrrhwq2tQrKGcT8mbEpTEmPzAK5y8"></script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
