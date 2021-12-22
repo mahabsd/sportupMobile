@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { PageService } from 'src/app/shared/Service/page.service';
@@ -158,8 +158,15 @@ export class CommunityPage implements OnInit {
   constructor(private eventService: EventService,
     public pageService: PageService,
     public userService: UserService,
-    public calendarService: CalendarService) { }
-
+    public calendarService: CalendarService,
+    private elemRef: ElementRef) { }
+    @HostListener('click', ['$event.target'])
+    onClickOutside(targetElement) {
+      const target = this.elemRef.nativeElement.querySelector('div');
+      if (targetElement.tagName === target.tagName) {
+        this.dropDown= false;
+      }
+    }
   segmentChanged(ev: any) {
     this.selected = ev.detail.value;
   }

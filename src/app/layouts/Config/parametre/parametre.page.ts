@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/Shared/Auth/auth.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -16,8 +16,15 @@ export class ParametrePage implements OnInit {
   apiImg = environment.apiImg + 'User/';
   name: any;
 
-  constructor(private authService: AuthService, private userService: UserService) { }
-
+  constructor(private authService: AuthService, private userService: UserService,
+    private elemRef: ElementRef) { }
+    @HostListener('click', ['$event.target'])
+    onClickOutside(targetElement) {
+      const target = this.elemRef.nativeElement.querySelector('div');
+      if (targetElement.tagName === target.tagName) {
+        this.dropDown= false;
+      }
+    }
   ngOnInit() {
     this.getMe();
     this.dropDown=false

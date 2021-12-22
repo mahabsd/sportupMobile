@@ -1,6 +1,6 @@
-<div routerLink="/community/show-event/{{event._id}}"  style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:0 10px ;border-radius:5px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
+<div  style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:0 10px ;border-radius:5px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
   <div  style="display:flex; justify-content:space-between">
-    <div  style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px">
+    <div  style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px" routerLink="/community/show-event/{{event._id}}" >
       <span style="color:rgb(95, 95, 95);font-size:large">{{event.activity}}</span>
       <span>{{event.participants}} participants</span>
     </div>
@@ -15,7 +15,7 @@
       </ng-container>
     </div>
   </div>
-  <div style="display:flex;justify-content:space-around;align-items:center">
+  <div style="display:flex;justify-content:space-around;align-items:center" routerLink="/community/show-event/{{event._id}}" >
     <div  style="display: flex;font-size:12px">
       <div style="margin-right: 20px;">
         {{event.startTime | date: 'd' }} {{event.startTime | date:'shortDate'}}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { Activity } from 'src/app/shared/Model/Activity';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -21,8 +21,15 @@ export class AddPage implements OnInit {
   event: Activity = new Activity();
   constructor(private pageService: PageService,
     private userService: UserService,
-    private calendarService: CalendarService) { }
-
+    private calendarService: CalendarService,
+    private elemRef: ElementRef) { }
+    @HostListener('click', ['$event.target'])
+    onClickOutside(targetElement) {
+      const target = this.elemRef.nativeElement.querySelector('div');
+      if (targetElement.tagName === target.tagName) {
+        this.dropDown= false;
+      }
+    }
   ngOnInit() {
     this.private = false;
     this.public = true;
@@ -38,10 +45,7 @@ export class AddPage implements OnInit {
       this.dropDown = false;
     }
   }
-
-
   segmentChanged(ev: any) {
-    console.log('Segment changed', ev.detail.value);
     this.selected = ev.detail.value;
   }
   createPage(page) {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PopoverController } from '@ionic/angular';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
@@ -20,8 +20,15 @@ export class ShowEventPage implements OnInit {
   constructor(public popoverController: PopoverController,
   private eventService: EventService,
   private activatedRoute: ActivatedRoute,
-  private calendarService: CalendarService) { }
-
+  private calendarService: CalendarService,
+  private elemRef: ElementRef) { }
+  @HostListener('click', ['$event.target'])
+  onClickOutside(targetElement) {
+    const target = this.elemRef.nativeElement.querySelector('div');
+    if (targetElement.tagName === target.tagName) {
+      this.dropDown= false;
+    }
+  }
   ngOnInit() {
     this.getOneEvent();
     this.dropDown=false;

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ModalController, NavParams, ToastController } from '@ionic/angular';
 import { ActiviteKidService } from 'src/app/shared/Service/activite-kid.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -35,8 +35,14 @@ export class AddActivityPage implements OnInit {
     private activiteKidService: ActiviteKidService,
     private userservice: UserService,
     private toastCtrl: ToastController,
-  ) { }
-
+    private elemRef: ElementRef) { }
+    @HostListener('click', ['$event.target'])
+    onClickOutside(targetElement) {
+      const target = this.elemRef.nativeElement.querySelector('div');
+      if (targetElement.tagName === target.tagName) {
+        this.dropDown= false;
+      }
+    }
   ngOnInit() {
     this.dropDown = false;
     this.validForm = false;

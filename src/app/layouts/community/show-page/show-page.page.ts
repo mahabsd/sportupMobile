@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { CameraSource } from '@capacitor/core';
+import { ActionSheetController } from '@ionic/angular';
+import { ImageService } from 'src/app/Shared/Service/image.service';
 import { PageService } from 'src/app/shared/Service/page.service';
+import { UserService } from 'src/app/Shared/Service/user.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-show-page',
@@ -8,6 +13,7 @@ import { PageService } from 'src/app/shared/Service/page.service';
   styleUrls: ['./show-page.page.scss'],
 })
 export class ShowPagePage implements OnInit {
+
   selected: any;
   followedPage: boolean;
   dropDown: boolean;
@@ -52,20 +58,38 @@ export class ShowPagePage implements OnInit {
   ];
   id: any;
   page: any;
+  userid: any;
+  isMessageDisplay: boolean;
+  apiImg = environment.apiImg + 'page/';
 
   constructor(private activatedRoute: ActivatedRoute,
-    public pageService: PageService,) { }
+    public pageService: PageService,
+    private userservice: UserService,
+    private imageService: ImageService,
+    private elemRef: ElementRef,
+    private action: ActionSheetController,
+    ) { }
+  @HostListener('click', ['$event.target'])
+  onClickOutside(targetElement) {
+    const target = this.elemRef.nativeElement.querySelector('div');
+    if (targetElement.tagName === target.tagName) {
+      this.dropDown = false;
+    }
+  }
   segmentChanged(ev: any) {
     this.selected = ev.detail.value;
   }
+
   ngOnInit() {
     this.selected = 'Acceuil';
     this.followedPage = false;
     this.dropDown = false;
     this.more = false;
     this.id = this.activatedRoute.snapshot.params.id;
+    this.getMe();
     this.getOnePage();
   }
+
   openDropDown() {
     if (this.dropDown === false) {
       this.dropDown = true;
@@ -91,9 +115,45 @@ export class ShowPagePage implements OnInit {
   }
 
   getOnePage() {
-    this.pageService.getOnePage(this.id).subscribe(res =>  { this.page = res[0];
-    console.log(res);
+    this.pageService.getOnePage(this.id).subscribe(res => {
+      this.page = res[0];
+    });
+  }
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.userid = res.data.data._id;
+    });
+  }
+  async addImage(source: CameraSource) {
+
+    const fd = new FormData();
+    await this.imageService.readyImage(source, fd);
+    this.getFormData(this.page, fd);
+    this.pageService.updateCoverPage(fd).subscribe(async (res) => {
+      await this.getOnePage();
      });
+  }
+  async selectImageSource() {
+    const buttons = [
+      {
+        text: 'Choose from gallery',
+        icon: 'image',
+        handler: () => {
+          this.addImage(CameraSource.Photos);
+        },
+      },
+    ];
+
+    const actionSheet = await this.action.create({
+      header: 'Select from phone',
+      buttons,
+    });
+
+    await actionSheet.present();
+  }
+  getFormData(object, formdata: FormData) {
+    Object.keys(object).forEach((key) => formdata.append(key, object[key]));
   }
 
 }
+

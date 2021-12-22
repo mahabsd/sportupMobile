@@ -33,5 +33,8 @@ export class PageService {
       .get(`${UtilsService.apiPage}/getAll/?_id=${id}`)
       .pipe(map((res) => res.data.data));
   }
+  updateCoverPage(page){
+    return this.apiService.patch(`${UtilsService.apiPage}` +  '/cover', page);
+  }
 }
 

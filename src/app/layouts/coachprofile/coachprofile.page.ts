@@ -163,14 +163,7 @@ export class CoachprofilePage implements OnInit {
   async selectImageSource() {
     const buttons = [
       {
-        text: 'Take Photo',
-        icon: 'camera',
-        handler: () => {
-          this.addImage(CameraSource.Camera);
-        },
-      },
-      {
-        text: 'Choose from photos',
+        text: 'Choose from gallery',
         icon: 'image',
         handler: () => {
           this.addImage(CameraSource.Photos);
@@ -179,7 +172,7 @@ export class CoachprofilePage implements OnInit {
     ];
 
     const actionSheet = await this.action.create({
-      header: 'Select Image Source',
+      header: 'Select from phone',
       buttons,
     });
 

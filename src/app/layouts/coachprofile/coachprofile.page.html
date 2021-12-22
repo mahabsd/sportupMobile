@@ -1,5 +1,5 @@
-<app-header title={{user$?.name}} style="text-transform: capitalize " [isCoach]="true" [type]="type" [idprofillepassed]="idprofilePassed"
-  [followid]="followId"></app-header>
+<app-header title={{user$?.name}} style="text-transform: capitalize " [isCoach]="true" [type]="type"
+  [idprofillepassed]="idprofilePassed" [followid]="followId"></app-header>
 <ion-row [style.background-image]="'url(' + apiImg+user$?.cover + ')'" class="profileContainer">
   <ion-avatar class="edit-profile-cover" (click)="selectImageSource()" *ngIf="idprofilePassed === this.iduser1">
     <ion-icon name="create"> </ion-icon>
