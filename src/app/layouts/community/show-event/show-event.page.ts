@@ -1,9 +1,12 @@
 import { Component, ElementRef, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { PopoverController } from '@ionic/angular';
+import { ActionSheetController, PopoverController } from '@ionic/angular';
 import { CalendarService } from 'src/app/shared/Service/calendar.service';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { async } from '@angular/core/testing';
+import { UserService } from 'src/app/Shared/Service/user.service';
+import { CameraSource } from '@capacitor/core';
+import { ImageService } from 'src/app/Shared/Service/image.service';
 
 @Component({
   selector: 'app-show-event',
@@ -16,12 +19,17 @@ export class ShowEventPage implements OnInit {
   dropDown: boolean;
   id= this.activatedRoute.snapshot.params.id;
   event: any;
+  userid: any;
 
   constructor(public popoverController: PopoverController,
   private eventService: EventService,
   private activatedRoute: ActivatedRoute,
   private calendarService: CalendarService,
-  private elemRef: ElementRef) { }
+  private elemRef: ElementRef,
+  private userservice: UserService,
+  private imageService: ImageService,
+  private action: ActionSheetController,
+  ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
     const target = this.elemRef.nativeElement.querySelector('div');
@@ -30,10 +38,15 @@ export class ShowEventPage implements OnInit {
     }
   }
   ngOnInit() {
-    this.getOneEvent();
     this.dropDown=false;
+    this.getMe();
+    this.getOneEvent();
   }
-
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.userid = res.data.data._id;
+    });
+  }
   interest() {
     this.interrested = true;
   }
@@ -61,7 +74,43 @@ export class ShowEventPage implements OnInit {
   getOneEvent() {
     this.calendarService.getEventbyID(this.id).subscribe(async res=> {
        this.event = await res[0];
+       console.log( this.event );
+
       });
   }
+  async addImage(source: CameraSource) {
+    const fd = new FormData();
+    await this.imageService.readyImage(source, fd);
 
+    this.getFormData(this.event, fd);
+    console.log(this.event);
+
+    this.calendarService.updateCoverEvent(fd).subscribe(async (res) => {
+      await this.getOneEvent();
+     });
+  }
+  async selectImageSource() {
+    const buttons = [
+      {
+        text: 'Choose from gallery',
+        icon: 'image',
+        handler: () => {
+          this.addImage(CameraSource.Photos);
+        },
+      },
+    ];
+
+    const actionSheet = await this.action.create({
+      header: 'Select from phone',
+      buttons,
+    });
+
+    await actionSheet.present();
+  }
+  getFormData(object, formdata: FormData) {
+
+    Object.keys(object).forEach((key) => formdata.append(key, object[key]));
+
+
+  }
 }

@@ -16,8 +16,6 @@ export class FollowerService {
   }
 
   getFollow(followed,following) {
-    console.log(followed);
-    console.log(following);
 
     return this.apiService.get(`${UtilsService.apiFollower}${followed}/${following}`).pipe(map((res) => res.data.data));
 

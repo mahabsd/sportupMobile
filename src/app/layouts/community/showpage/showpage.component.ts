@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { PageService } from 'src/app/shared/Service/page.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 
@@ -104,14 +105,18 @@ export class ShowpageComponent implements OnInit {
       }
     }
   };
+  friends: any;
+  userid: any;
+  selectedFriends: any;
   constructor(private eventService: EventService,
     public pageService: PageService,
-    public userService: UserService,) { }
+    public userService: UserService,
+    private followerService: FollowerService,
+    private userservice: UserService) { }
 
   ngOnInit() {
     this.dropDown = false;
-    console.log(this.page);
-
+    this.getMe();
   }
   segmentChanged(ev: any) {
     this.selected = ev.detail.value;
@@ -148,5 +153,21 @@ export class ShowpageComponent implements OnInit {
     else if (this.dropDown === true) {
       this.dropDown = false;
     }
+  }
+  getMe() {
+    this.userservice.getMe().subscribe((res) => {
+      this.userid = res.data.data._id;
+    });
+  }
+  getAllfriends() {
+    this.followerService.getFollowers(this.userid)
+      .subscribe(res => {
+        this.friends = res.data.data;
+      });
+  }
+  submitInvitations(event, selected){
+    console.log(event);
+    console.log(selected);
+
   }
 }

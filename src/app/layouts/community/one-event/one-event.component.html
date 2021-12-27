@@ -9,7 +9,12 @@
       <ng-container *ngIf="dropDown">
         <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-150px) translateY(10px);display:flex;flex-direction:column;width:180px;color:rgb(168, 168, 168);box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);">
           <span>Enregistrer</span>
-          <span>Inviter des amis</span>
+            <ion-item (click)="getAllfriends()">
+              <ion-label>Inviter des amis</ion-label>
+              <ion-select [(ngModel)]="selectedFriends" multiple="true" ok-text="okey!" cancel-text="Nah" >
+                  <ion-select-option *ngFor="let friend of friends" value="{{friend.userFollowed._id}}">{{friend.userFollowed.name}}</ion-select-option>
+              </ion-select>
+          </ion-item>
           <span>Signaler l'évenement</span>
         </div>
       </ng-container>
@@ -64,4 +69,5 @@
       {{event.endTime | date: 'shortTime'}}
     </div>
   </div>
+
 </div>
