@@ -64,6 +64,7 @@ export class ShowPagePage implements OnInit {
   apiImg = environment.apiImg + 'page/';
   friends: any;
   selectedFriends: any;
+  updateImage: any;
   constructor(private activatedRoute: ActivatedRoute,
     public pageService: PageService,
     private userservice: UserService,
@@ -89,6 +90,7 @@ export class ShowPagePage implements OnInit {
     this.dropDown = false;
     this.more = false;
     this.id = this.activatedRoute.snapshot.params.id;
+    this.updateImage = false;
     this.getMe();
     this.getOnePage();
   }
@@ -160,6 +162,34 @@ export class ShowPagePage implements OnInit {
     Object.keys(object).forEach((key) => formdata.append(key, object[key]));
 
   }
+  async addProfile(source: CameraSource) {
+
+    const fd = new FormData();
+    await this.imageService.readyImage(source, fd);
+    this.getFormData(this.page, fd);
+    this.pageService.updateProfileImagePage(fd).subscribe(async (res) => {
+      await this.getOnePage();
+     });
+  }
+  async selectProfileSource() {
+    const buttons = [
+      {
+        text: 'Choose from gallery',
+        icon: 'image',
+        handler: () => {
+          this.addProfile(CameraSource.Photos);
+        },
+      },
+    ];
+
+    const actionSheet = await this.action.create({
+      header: 'Select from phone',
+      buttons,
+    });
+
+    await actionSheet.present();
+  }
+
   getAllfriends() {
     this.followerService.getFollowers(this.userid)
     .subscribe(res => {
