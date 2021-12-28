@@ -36,5 +36,8 @@ export class PageService {
   updateCoverPage(page){
     return this.apiService.patch(`${UtilsService.apiPage}` +  '/cover', page);
   }
+  updateProfileImagePage(page){
+    return this.apiService.patch(`${UtilsService.apiPage}/imageProfile` , page);
+  }
 }
 

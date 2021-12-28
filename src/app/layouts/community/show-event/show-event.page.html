@@ -3,8 +3,10 @@
 
     <div style="position: relative;">
       <img
-      src="https://cdn.w600.comps.canstockphoto.com/zumba-calligraphy-on-watercolor-splash-clipart-vector_csp65099256.jpg"
+      *ngIf="event?.cover"
+      src="{{ apiImg+event?.cover}} "
       alt="">
+      <img  *ngIf="!event?.cover" src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/wp-cms/uploads/2021/03/LinkedIn-Default-Background-2020-.jpg" alt="">
       <ion-avatar style="position:absolute; bottom:-40px; right:-30px" class="edit-profile-cover"
         (click)="selectImageSource()" *ngIf="event?.createdBy._id === userid">
         <ion-icon name="create" color="dark"> </ion-icon>

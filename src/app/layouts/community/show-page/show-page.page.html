@@ -9,11 +9,22 @@
           <ion-icon name="create" color="light" style="height: 25px; width:25px;"> </ion-icon>
         </ion-avatar>
       </div>
-      <img style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
+      <div style="postion:relative">
+        <img (click)="updateImage = true" *ngIf="!page?.photo" style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
         src="../../../assets/svg/person-icon.svg" alt="">
+        <img (click)="updateImage = true" *ngIf="page?.photo" style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
+        src="{{apiImg+page?.photo}} " alt="">
+        <ion-avatar style="position: absolute; bottom:-10px;right:0 " class="edit-profile-cover" (click)="selectProfileSource()"
+        *ngIf="page?.createdBy._id === userid && updateImage">
+        <ion-icon name="create" color="success" style=""> </ion-icon>
+      </ion-avatar>
+      </div>
+
       <span style="font-size: 18px;color:white"> {{page?.name}} </span>
     </div>
-    <img src="{{apiImg+page?.cover}} " alt="">
+    <img *ngIf="page?.cover" src="{{apiImg+page?.cover}} " alt="">
+    <img  *ngIf="!page?.cover" src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/wp-cms/uploads/2021/03/LinkedIn-Default-Background-2020-.jpg" alt="">
+
     <ion-avatar style="position: absolute; top:0px; left: 0px;" class="edit-profile-cover" (click)="selectImageSource()"
       *ngIf="page?.createdBy._id === userid">
       <ion-icon name="create" color="success" style="height:0px; width:0px;"> </ion-icon>

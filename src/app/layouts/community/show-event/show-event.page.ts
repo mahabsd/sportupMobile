@@ -7,6 +7,7 @@ import { async } from '@angular/core/testing';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { CameraSource } from '@capacitor/core';
 import { ImageService } from 'src/app/Shared/Service/image.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-show-event',
@@ -20,6 +21,7 @@ export class ShowEventPage implements OnInit {
   id= this.activatedRoute.snapshot.params.id;
   event: any;
   userid: any;
+  apiImg = environment.apiImg + 'Activity/';
 
   constructor(public popoverController: PopoverController,
   private eventService: EventService,
