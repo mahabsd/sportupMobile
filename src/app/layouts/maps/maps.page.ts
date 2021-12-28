@@ -32,6 +32,8 @@ export class MapsPage implements OnInit {
   time: string;
   routeColor = 'blue';
   icon: string;
+  apiImgPage = `${environment.apiImg}page/`;
+  apiImgEvent=`${environment.apiImg}event/`;
   icons = [
     {
       type: "lieu",
@@ -66,7 +68,6 @@ export class MapsPage implements OnInit {
       }, suppressMarkers: true
     });
   imagePath = "../../assets/icon/m/m";
-  //https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m
 
   constructor(public pageService: PageService,private zone: NgZone,private userService: UserService) {}
 
@@ -220,28 +221,25 @@ this.directionsService.route(route, (response,status)=> {
         let marker = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map: this.map,
+        animation: google.maps.Animation.BOUNCE,
       })
       this.distantMarkers.push(marker)
       if (this.distantMarkers.length === 2) { this.makeRoute() }
   })
     for (let i = 0; i < this.allPages.length; i++){
-      this.icon = ""
-      this.icons.map(el => {
-        if (this.allPages[i].category === el.type) {
-          this.icon = el.url
-        }
-      }
-      )
+      let shape={coords: [25,25,25], type: 'circle'}
       let marker = new google.maps.Marker({
         position: { lat: +this.allPages[i].lattitude, lng: +this.allPages[i].langitude },
         map: this.map,
         title: this.allPages[i].name,
-        label:this.allPages[i].name,
+        label: this.allPages[i].name,
         icon: {
-          url: this.icon,
-          size: new google.maps.Size(62,62),
-          scaledSize: new google.maps.Size(62, 62),
-          labelOrigin: new google.maps.Point(30, 70)
+          url: this.allPages[i].photo?this.apiImgPage + this.allPages[i].photo:this.icons[1].url,
+          size: new google.maps.Size(50,50),
+          scaledSize: new google.maps.Size(50, 50),
+          labelOrigin: new google.maps.Point(30, 70),
+          shape : shape,
+          optimized:false,
         },
         animation: google.maps.Animation.DROP,
       })
