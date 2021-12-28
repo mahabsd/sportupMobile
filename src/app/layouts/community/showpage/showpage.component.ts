@@ -110,7 +110,7 @@ export class ShowpageComponent implements OnInit {
 
   ngOnInit() {
     this.dropDown = false;
-    console.log(this.page);
+    // console.log(this.page);
 
   }
   segmentChanged(ev: any) {

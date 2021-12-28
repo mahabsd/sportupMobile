@@ -155,6 +155,7 @@ export class CommunityPage implements OnInit {
   user: any;
   personalEvents = [];
   myPages: any;
+  allPages: any;
   constructor(private eventService: EventService,
     public pageService: PageService,
     public userService: UserService,
@@ -175,6 +176,7 @@ export class CommunityPage implements OnInit {
     this.dropDown = false;
     this.getPersonalPages();
     this.getPersonalEvents();
+    this.getAllPages()
   }
 
   next() {
@@ -217,6 +219,9 @@ export class CommunityPage implements OnInit {
       this.user = await res.data.data;
       this.pageService.getpagesbyID(this.user._id).subscribe( arg =>  this.myPages = arg);
     });
+  }
+  getAllPages() {
+    this.pageService.getAllPages().subscribe(async (res:any) => this.allPages = await res.data.data);
   }
   getPersonalEvents() {
     this.userService.getMe().subscribe(async res => {

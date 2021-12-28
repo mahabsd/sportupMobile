@@ -27,6 +27,9 @@
     <ion-button *ngIf="distantMarkers.length===2" color="success" style="margin-left:8px;" (click)="setWalking()">
       <ion-icon name="walk"></ion-icon>
     </ion-button>
+    <ion-button *ngIf="distantMarkers.length===2" color="danger" style="margin-left:8px;" (click)="deleteDistance()">
+      <ion-icon name="close-circle-outline"></ion-icon>
+    </ion-button>
   </div>
   <ion-list style="position: absolute;z-index:20;top:130px;width:100%" [hidden]="autocompleteItems.length === 0">
     <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item)">
