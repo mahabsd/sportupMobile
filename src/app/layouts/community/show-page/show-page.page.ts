@@ -2,6 +2,7 @@ import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CameraSource } from '@capacitor/core';
 import { ActionSheetController } from '@ionic/angular';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { ImageService } from 'src/app/Shared/Service/image.service';
 import { PageService } from 'src/app/shared/Service/page.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
@@ -61,13 +62,15 @@ export class ShowPagePage implements OnInit {
   userid: any;
   isMessageDisplay: boolean;
   apiImg = environment.apiImg + 'page/';
-
+  friends: any;
+  selectedFriends: any;
   constructor(private activatedRoute: ActivatedRoute,
     public pageService: PageService,
     private userservice: UserService,
     private imageService: ImageService,
     private elemRef: ElementRef,
     private action: ActionSheetController,
+    private followerService: FollowerService,
     ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
@@ -129,6 +132,8 @@ export class ShowPagePage implements OnInit {
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
     this.getFormData(this.page, fd);
+    console.log(fd);
+
     this.pageService.updateCoverPage(fd).subscribe(async (res) => {
       await this.getOnePage();
      });
@@ -153,7 +158,13 @@ export class ShowPagePage implements OnInit {
   }
   getFormData(object, formdata: FormData) {
     Object.keys(object).forEach((key) => formdata.append(key, object[key]));
-  }
 
+  }
+  getAllfriends() {
+    this.followerService.getFollowers(this.userid)
+    .subscribe(res => {
+      this.friends = res.data.data;
+     } );
+  }
 }
 

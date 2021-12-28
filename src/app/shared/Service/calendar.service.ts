@@ -53,4 +53,9 @@ export class CalendarService {
       .get(`${UtilsService.apiCalendar}${id}`)
       .pipe(map((res) => res.data.data));
   }
+  updateCoverEvent(event) {
+    console.log(event);
+
+    return this.apiService.put(`${UtilsService.apiCalendar}cover`, event);
+  }
 }

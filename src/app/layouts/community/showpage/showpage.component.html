@@ -36,8 +36,13 @@
               <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-130px) translateY(10px);display:flex;flex-direction:column;
               width:150px;color:rgb(168, 168, 168);box-shadow:-5px 5px 10px rgb(113, 113, 113);">
                 <span style="font-size: 15px;">Enregistrer</span>
-                <span style="font-size: 15px;">Inviter des amis</span>
-                <span style="font-size: 15px;">Signaler l'évenement</span>
+                <ion-item (click)="getAllfriends()">
+                  <ion-label>Inviter des amis</ion-label>
+                  <ion-select [(ngModel)]="selectedFriends" (click)="submitInvitations($event, selectedFriends)" multiple="true" ok-text="okey!" cancel-text="Nah">
+                    <ion-select-option *ngFor="let friend of friends"  value="{{friend?.userFollowed._id}}">
+                      {{friend?.userFollowed.name}}</ion-select-option>
+                  </ion-select>
+                </ion-item>
                 <span style="font-size: 15px;">Bloquer cette page</span>
               </div>
             </ng-container>
