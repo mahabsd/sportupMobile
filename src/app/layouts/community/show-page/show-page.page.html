@@ -62,8 +62,8 @@
         </button>
       </ng-template>
       <button style="position: relative;width:20px;height:15px;margin-top:12px">
-        <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;">
-          <ion-icon name="ellipsis-horizontal"
+        <div  style="position:relative;">
+          <ion-icon (click)="openDropDown()" (blur)="openDropDown()" name="ellipsis-horizontal"
             style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
           <ng-container *ngIf="dropDown">
             <div

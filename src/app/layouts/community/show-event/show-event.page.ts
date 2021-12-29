@@ -8,6 +8,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 import { CameraSource } from '@capacitor/core';
 import { ImageService } from 'src/app/Shared/Service/image.service';
 import { environment } from 'src/environments/environment';
+import { FollowerService } from 'src/app/shared/Service/follower.service';
 
 @Component({
   selector: 'app-show-event',
@@ -26,6 +27,8 @@ export class ShowEventPage implements OnInit {
   private: boolean;
   dropDown1: boolean;
   update: boolean;
+  friends: any;
+  selectedFriends: any;
   constructor(public popoverController: PopoverController,
     private eventService: EventService,
     private activatedRoute: ActivatedRoute,
@@ -34,6 +37,7 @@ export class ShowEventPage implements OnInit {
     private userservice: UserService,
     private imageService: ImageService,
     private action: ActionSheetController,
+    private followerService: FollowerService
   ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
@@ -127,5 +131,11 @@ export class ShowEventPage implements OnInit {
     else if (this.dropDown === true) {
       this.dropDown = false;
     }
+  }
+  getAllfriends() {
+    this.followerService.getFollowers(this.userid)
+    .subscribe(res => {
+      this.friends = res.data.data;
+     } );
   }
 }
