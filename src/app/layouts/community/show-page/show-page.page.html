@@ -57,7 +57,6 @@
           Suivie
         </button>
       </ng-template>
-
       <button style="position: relative;width:20px;height:15px;margin-top:12px">
         <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;">
           <ion-icon name="ellipsis-horizontal"
@@ -67,9 +66,9 @@
               style="font-size:15px;position: absolute;background-color:rgb(243, 243, 243);padding:10px;border-radius:15px;transform:translateX(-210px) translateY(20px);display:flex;flex-direction:column;width:210px;color:rgb(168, 168, 168);box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);justify-content:space-around;align-items:flex-start;">
               <span>Rechercher dans la page</span>
               <hr>
-              <ion-item (click)="getAllfriends()">
+              <ion-item (click)="getAllfriends()" >
                 <ion-label>Inviter des amis</ion-label>
-                <ion-select [(ngModel)]="selectedFriends" multiple="true" ok-text="okey!" cancel-text="Nah">
+                <ion-select [(ngModel)]="selectedFriends"  multiple="true" ok-text="okey!" cancel-text="Nah">
                   <ion-select-option *ngFor="let friend of friends" value="{{friend?.userFollowed._id}}">
                     {{friend?.userFollowed.name}}</ion-select-option>
                 </ion-select>
