@@ -60,7 +60,6 @@ export class CalendarService {
   }
   updateCoverEvent(event) {
     console.log(event);
-
     return this.apiService.put(`${UtilsService.apiCalendar}cover`, event);
   }
 }

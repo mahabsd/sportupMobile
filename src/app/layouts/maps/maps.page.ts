@@ -3,6 +3,7 @@ import { UserService } from 'src/app/Shared/Service/user.service';
 import MarkerClusterer from '@googlemaps/markerclustererplus';
 import { environment } from 'src/environments/environment';
 import { PageService } from 'src/app/shared/Service/page.service';
+import { CalendarService } from 'src/app/shared/Service/calendar.service';
 
 declare var google: any;
 // declare var MarkerClusterer: any;
@@ -41,7 +42,7 @@ export class MapsPage implements OnInit {
     },
     {
       type: "Entreprise",
-      url:"https://fr.seaicons.com/wp-content/uploads/2015/06/companies-icon.png"
+      url:"http://cdn.onlinewebfonts.com/svg/img_451784.png"
     },
     {
       type: "Commerce local",
@@ -60,7 +61,8 @@ export class MapsPage implements OnInit {
       url:"https://img2.freepng.fr/20180609/gcb/kisspng-malaysian-red-crescent-society-logo-international-andrea-harsell-luna-roja-5b1c1f41da23a6.4158441115285696658935.jpg"
     },
   ];
-  allPages: any[]=[];
+  allPages: any[] = [];
+  allEvents: any[]=[];
   directionsService = new google.maps.DirectionsService();
   directionsRenderer = new google.maps.DirectionsRenderer({
       polylineOptions: {
@@ -69,13 +71,15 @@ export class MapsPage implements OnInit {
     });
   imagePath = "../../assets/icon/m/m";
 
-  constructor(public pageService: PageService,private zone: NgZone,private userService: UserService) {}
+  constructor(private calendarService: CalendarService,public pageService: PageService,private zone: NgZone,private userService: UserService) {}
 
   ngOnInit() {
     this.getAllPages()
     this.getUser()
+    this.getEvents()
 
   }
+
   setWalking() {
     this.routeColor='blue'
     this.travelMode = 'WALKING'
@@ -98,10 +102,19 @@ export class MapsPage implements OnInit {
     }
   }
   getAllPages() {
-    this.pageService.getAllPages().subscribe(async (res: any) => {
+    this.pageService.getAllPages().subscribe(async (res: any) =>
       this.allPages = await res.data.data,
-        console.log(this.allPages);
-    });
+        );
+  }
+  getEvents() {
+    this.calendarService.getAllEvents().subscribe(async res=> {
+      await res.map(el => (
+        el.lieu?null:this.allEvents.push(el)
+      ))
+      //
+       console.log( this.allEvents );
+
+      });
   }
   hideMarkers(): void {
     this.setMapOnAll(null);
@@ -170,7 +183,7 @@ this.directionsService.route(route, (response,status)=> {
       }
     );
     const contentString =
-    `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: none;color:green" href="/menu/tabs/layouts/coachprofile/${this.user.id}/me">
+    `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: n;color:green" href="/menu/tabs/layouts/coachprofile/${this.user.id}/me">
       <ion-avatar slot="" class="ion-padding" >
         <img src="${this.apiImgUser + this.user?.photo}"/>
       </ion-avatar>
@@ -235,6 +248,25 @@ this.directionsService.route(route, (response,status)=> {
         label: this.allPages[i].name,
         icon: {
           url: this.allPages[i].photo?this.apiImgPage + this.allPages[i].photo:this.icons[1].url,
+          size: new google.maps.Size(50,50),
+          scaledSize: new google.maps.Size(50, 50),
+          labelOrigin: new google.maps.Point(30, 70),
+          shape : shape,
+          optimized:false,
+        },
+        animation: google.maps.Animation.DROP,
+      })
+      this.markers.push(marker)
+    }
+    for (let i = 0; i < this.allEvents.length; i++){
+      let shape={coords: [25,25,25], type: 'circle'}
+      let marker = new google.maps.Marker({
+        position: { lat: +this.allEvents[i].lattitude, lng: +this.allEvents[i].langitude },
+        map: this.map,
+        title: this.allEvents[i].activity,
+        label: this.allEvents[i].activity,
+        icon: {
+          url: this.allEvents[i].cover?this.apiImgPage + this.allEvents[i].cover:this.icons[1].url,
           size: new google.maps.Size(50,50),
           scaledSize: new google.maps.Size(50, 50),
           labelOrigin: new google.maps.Point(30, 70),
