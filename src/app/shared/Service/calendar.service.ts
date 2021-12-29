@@ -29,11 +29,6 @@ export class CalendarService {
       .get(`${UtilsService.apiCalendar}?createdBy=${id}&type='event'`)
       .pipe(map((res) => res.data.data));
   }
-  getEvents(): Observable<Activity[]> {
-    return this.apiService
-      .get(`${UtilsService.apiCalendar}?type='event'`)
-      .pipe(map((res) => res.data.data));
-  }
   getAllEvents(): Observable<Activity[]> {
     let event = 'event';
     return this.apiService

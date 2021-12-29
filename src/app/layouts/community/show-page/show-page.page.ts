@@ -196,5 +196,8 @@ export class ShowPagePage implements OnInit {
       this.friends = res.data.data;
      } );
   }
+  onClick(selectedFriends) {
+    console.log(selectedFriends);
+  }
 }
 

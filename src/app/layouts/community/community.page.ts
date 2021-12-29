@@ -177,6 +177,7 @@ export class CommunityPage implements OnInit {
     this.getPersonalPages();
     this.getPersonalEvents();
     this.getAllPages()
+    this.getEvents();
   }
 
   next() {
@@ -231,5 +232,10 @@ export class CommunityPage implements OnInit {
       });
     });
   }
+  getEvents() {
 
+      this.calendarService.getAllEvents().subscribe(events => {
+console.log(events);
+      });
+  }
 }

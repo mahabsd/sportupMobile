@@ -115,6 +115,7 @@ export class ShowpageComponent implements OnInit {
     private userservice: UserService) { }
 
   ngOnInit() {
+    this.selectedFriends = "eeeeeee"
     this.dropDown = false;
     this.getMe();
   }
@@ -165,9 +166,8 @@ export class ShowpageComponent implements OnInit {
         this.friends = res.data.data;
       });
   }
-  submitInvitations(event, selected){
-    console.log(event);
-    console.log(selected);
+  submitInvitations(){
+    console.log(this.selectedFriends);
 
   }
 }
