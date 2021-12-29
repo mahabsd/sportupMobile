@@ -65,6 +65,7 @@ export class ShowPagePage implements OnInit {
   friends: any;
   selectedFriends: any;
   updateImage: any;
+  update: any;
   constructor(private activatedRoute: ActivatedRoute,
     public pageService: PageService,
     private userservice: UserService,
@@ -91,6 +92,7 @@ export class ShowPagePage implements OnInit {
     this.more = false;
     this.id = this.activatedRoute.snapshot.params.id;
     this.updateImage = false;
+    this.update = false;
     this.getMe();
     this.getOnePage();
   }
@@ -199,5 +201,6 @@ export class ShowPagePage implements OnInit {
   onClick(selectedFriends) {
     console.log(selectedFriends);
   }
+
 }
 

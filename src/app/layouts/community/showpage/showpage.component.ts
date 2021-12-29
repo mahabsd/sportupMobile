@@ -115,7 +115,7 @@ export class ShowpageComponent implements OnInit {
     private userservice: UserService) { }
 
   ngOnInit() {
-    this.selectedFriends = "eeeeeee"
+    this.selectedFriends = '';
     this.dropDown = false;
     this.getMe();
   }

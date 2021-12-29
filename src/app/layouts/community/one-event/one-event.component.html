@@ -4,8 +4,8 @@
       <span style="color:rgb(95, 95, 95);font-size:large">{{event.activity}}</span>
       <span>{{event.participants}} participants</span>
     </div>
-    <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;height:20px">
-      <ion-icon class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
+    <div  style="position:relative;height:20px">
+      <ion-icon (click)="openDropDown()" (blur)="openDropDown()" class="button" name="ellipsis-horizontal" style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
       <ng-container *ngIf="dropDown">
         <div style="position: absolute;background-color:rgb(243, 243, 243);padding:15px;border-radius:15px;transform:translateX(-150px) translateY(10px);display:flex;flex-direction:column;width:180px;color:rgb(168, 168, 168);box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);">
           <span>Enregistrer</span>

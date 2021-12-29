@@ -18,29 +18,34 @@ export class ShowEventPage implements OnInit {
   interrested: boolean;
   isScrollTop: boolean;
   dropDown: boolean;
-  id= this.activatedRoute.snapshot.params.id;
+  id = this.activatedRoute.snapshot.params.id;
   event: any;
   userid: any;
   apiImg = environment.apiImg + 'Activity/';
-
+  public: boolean;
+  private: boolean;
+  dropDown1: boolean;
+  update: boolean;
   constructor(public popoverController: PopoverController,
-  private eventService: EventService,
-  private activatedRoute: ActivatedRoute,
-  private calendarService: CalendarService,
-  private elemRef: ElementRef,
-  private userservice: UserService,
-  private imageService: ImageService,
-  private action: ActionSheetController,
+    private eventService: EventService,
+    private activatedRoute: ActivatedRoute,
+    private calendarService: CalendarService,
+    private elemRef: ElementRef,
+    private userservice: UserService,
+    private imageService: ImageService,
+    private action: ActionSheetController,
   ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
     const target = this.elemRef.nativeElement.querySelector('div');
     if (targetElement.tagName === target.tagName) {
-      this.dropDown= false;
+      this.dropDown = false;
     }
   }
   ngOnInit() {
-    this.dropDown=false;
+    this.dropDown = false;
+    this.dropDown1 = false;
+    this.update = false;
     this.getMe();
     this.getOneEvent();
   }
@@ -65,20 +70,20 @@ export class ShowEventPage implements OnInit {
     }
     this.eventService.sendMessage(this.isScrollTop);
   }
-  openDropDown() {
-    if(this.dropDown===false){
-      this.dropDown=true;
+  openDropDown1() {
+    if (this.dropDown1 === false) {
+      this.dropDown1 = true;
     }
-    else if(this.dropDown===true){
-      this.dropDown=false;
+    else if (this.dropDown1 === true) {
+      this.dropDown1 = false;
     }
   }
   getOneEvent() {
-    this.calendarService.getEventbyID(this.id).subscribe(async res=> {
-       this.event = await res[0];
-       console.log( this.event );
+    this.calendarService.getEventbyID(this.id).subscribe(async res => {
+      this.event = await res[0];
+      console.log(this.event);
 
-      });
+    });
   }
   async addImage(source: CameraSource) {
     const fd = new FormData();
@@ -89,7 +94,7 @@ export class ShowEventPage implements OnInit {
 
     this.calendarService.updateCoverEvent(fd).subscribe(async (res) => {
       await this.getOneEvent();
-     });
+    });
   }
   async selectImageSource() {
     const buttons = [
@@ -114,5 +119,13 @@ export class ShowEventPage implements OnInit {
     Object.keys(object).forEach((key) => formdata.append(key, object[key]));
 
 
+  }
+  openDropDown() {
+    if (this.dropDown === false) {
+      this.dropDown = true;
+    }
+    else if (this.dropDown === true) {
+      this.dropDown = false;
+    }
   }
 }
