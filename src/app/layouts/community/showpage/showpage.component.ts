@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, OnInit, ViewChild } from '@angular/core';
 import { IonSlides } from '@ionic/angular';
 import { EventService } from 'src/app/shared/Service/event.service';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
@@ -108,12 +108,20 @@ export class ShowpageComponent implements OnInit {
   friends: any;
   userid: any;
   selectedFriends: any;
+
   constructor(private eventService: EventService,
     public pageService: PageService,
     public userService: UserService,
     private followerService: FollowerService,
+    private elemRef: ElementRef,
     private userservice: UserService) { }
-
+    @HostListener('click', ['$event.target'])
+    onClickOutside(targetElement) {
+      const target = this.elemRef.nativeElement.querySelector('div');
+      if (targetElement.tagName === target.tagName) {
+        this.dropDown = false;
+      }
+    }
   ngOnInit() {
     this.selectedFriends = '';
     this.dropDown = false;
