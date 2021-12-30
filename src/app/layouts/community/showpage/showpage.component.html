@@ -3,9 +3,9 @@
   <div style="display: flex;align-items:center">
     <ion-icon style="margin: 20px 0 0 0;width:20px" (click)="prev()" name="chevron-back"></ion-icon>
     <ion-slides style="margin: 20px 0 0 0;height:110px;width:90%" pager="false" [options]="slideOpts">
-      <ion-slide routerLink="/community/show-page/{{item._id}}" *ngFor="let item of page"
+      <ion-slide *ngFor="let item of page"
         style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px;">
-        <div routerLink="/show-page" style="display: flex;align-items:center;width:100%;padding:0 12px">
+        <div  routerLink="/community/show-page/{{item._id}}" style="display: flex;align-items:center;width:100%;padding:0 12px">
           <span style="margin-right: 10px;">LOGO</span>
           <span> {{item?.name}}</span>
         </div>
@@ -13,9 +13,14 @@
           <span
             style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte
             de reception</span>
-          <span
-            style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Inviter
-            à s'abonner</span>
+
+            <div style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" (click)="getAllfriends()">
+              <ion-label>Inviter</ion-label>
+              <ion-select [(ngModel)]="selectedFriends" multiple="true" ok-text="okey!" cancel-text="Nah">
+                <ion-select-option *ngFor="let friend of friends" value="{{friend?.userFollowed._id}}">
+                  {{friend?.userFollowed.name}}</ion-select-option>
+              </ion-select>
+            </div>
         </div>
       </ion-slide>
     </ion-slides>
