@@ -20,7 +20,9 @@
       </ion-icon>
       <ion-icon *ngIf="isPublicity" color="light" routerLink="/menu/tabs/home"
         name="chevron-back-outline">
-      </ion-icon>
+      </ion-icon><ion-icon *ngIf="isBoostPub" color="light" routerLink="/tabs/layouts/publicity"
+      name="chevron-back-outline">
+    </ion-icon>
 
       <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
@@ -74,6 +76,7 @@
         <ion-icon  color="light" name="chevron-back-outline"></ion-icon>
       </ion-buttons>
 
+
       <ion-buttons>
         <ion-button shape="rounded" *ngIf="isKid" slot="start" [routerLink]="['/activite']"
           routerLinkActive="router-link-active">
@@ -125,6 +128,8 @@
         Calendrier</ion-title>
         <ion-title color="light" *ngIf="isPublicity" class="ion-text-center">
           Espace Publicité</ion-title>
+          <ion-title color="light" *ngIf="isBoostPub" class="ion-text-center">
+            Booster la publication</ion-title>
     <ion-title color="light" class="ion-text-center title-font">
       {{title}}</ion-title>
   </ion-toolbar>

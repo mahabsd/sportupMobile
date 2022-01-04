@@ -1,75 +1,17 @@
-import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
-import { IonSlides } from '@ionic/angular';
-import { EventService } from 'src/app/shared/Service/event.service';
-import { PageService } from 'src/app/shared/Service/page.service';
-import { UserService } from 'src/app/Shared/Service/user.service';
-import { async } from '@angular/core/testing';
-import { CalendarService } from 'src/app/shared/Service/calendar.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-community',
-  templateUrl: './community.page.html',
-  styleUrls: ['./community.page.scss'],
+  selector: 'app-boost-pub',
+  templateUrl: './boost-pub.page.html',
+  styleUrls: ['./boost-pub.page.scss'],
 })
-export class CommunityPage implements OnInit {
-  @ViewChild(IonSlides) slides: IonSlides;
-  isScrollTop = false;
-
-  dropDown: boolean;
-  selected: any;
-
-  events = [
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    },
-    {
-      name: "ZUMBA BEACH",
-      participants: 300,
-      date: "23/08/2021",
-      time: "18:00",
-      day: "Mardi"
-    }
-
-  ]
-
+export class BoostPubPage implements OnInit {
   slideOpts = {
     slidesPerView: 1,
     coverflowEffect: {
-      rotate: 50,
+      rotate: 0,
       stretch: 0,
-      depth: 100,
+      depth: 0,
       modifier: 1,
       slideShadows: false,
     },
@@ -152,90 +94,125 @@ export class CommunityPage implements OnInit {
       }
     }
   };
-  user: any;
-  personalEvents = [];
-  myPages: any;
-  allPages: any;
-  constructor(private eventService: EventService,
-    public pageService: PageService,
-    public userService: UserService,
-    public calendarService: CalendarService,
-    private elemRef: ElementRef) { }
-    @HostListener('click', ['$event.target'])
-    onClickOutside(targetElement) {
-      const target = this.elemRef.nativeElement.querySelector('div');
-      if (targetElement.tagName === target.tagName) {
-        this.dropDown= false;
-      }
-    }
-  segmentChanged(ev: any) {
-    this.selected = ev.detail.value;
-  }
+  obj: string;
+  cat: string;
+  aud: string;
+  card: string;
+  dropDownObj: boolean;
+  dropDownCat: boolean;
+  dropDownAud: boolean;
+  price: number;
+  days: number;
+  constructor() { }
+
   ngOnInit() {
-    this.selected = 'Pages';
-    this.dropDown = false;
-    this.getPersonalPages();
-    this.getPersonalEvents();
-    this.getAllPages()
-    this.getEvents();
+    this.cat = "Enjeu social, électoral ou politique"
+    this.obj = "Recevoir plus de messages"
+    this.aud = "Créer une cible"
+    this.card = "Master Card"
+    this.dropDownObj = false
+    this.dropDownCat = false
+    this.dropDownAud = false
+    this.days = 0
+    this.price = 0
   }
 
-  next() {
-    this.slides.slideNext();
+  //functions for objectives
+  setMessage() {
+    this.obj = "Recevoir plus de messages"
+  }
+  setPage() {
+    this.obj = "Promouvoir votre page"
+  }
+  setCalls() {
+    this.obj = "Recevoir plus d'appels"
+  }
+  setWebPage() {
+    this.obj = "Attirer plus de visiteurs sur votre site web"
+  }
+  setProspects() {
+    this.obj = "Obtenir plus de prospects"
   }
 
-  prev() {
-    this.slides.slidePrev();
+  //functions for categories
+  setSocial() {
+    this.cat = "Enjeu social, électoral ou politique"
+  }
+  setJob() {
+    this.cat = "Offre d'emploi"
+  }
+  setHouse() {
+    this.cat = "Offre de logement ou services connexes"
+  }
+  setOther() {
+    this.cat = "Autre"
   }
 
-  doRefresh(event) {
-    // this.posts = [];
-    setTimeout(() => {
-      // this.getAllPostsByEvent();
-      event.target.complete();
-    }, 1000);
+  //functions for audiance
+  setTarget() {
+    this.aud = "Créer une cible"
   }
-  logScrolling(event) {
-    if (event.detail.deltaY < 0) {
-      this.isScrollTop = false;
+  setFollowers() {
+    this.aud = "Personnes qui aiment votre page"
+  }
+  setFollowersAndFriends() {
+    this.aud = "Personnes qui aiment votre page et leurs amis"
+  }
 
+  //drop downs
+
+  toggleDropDownObj() {
+    if (this.dropDownObj === false) {
+      this.dropDownObj = true
     } else {
-      this.isScrollTop = true;;
-    }
-    this.eventService.sendMessage(this.isScrollTop);
-  }
-
-  openDropDown() {
-    if (this.dropDown === false) {
-      this.dropDown = true;
-    }
-    else if (this.dropDown === true) {
-      this.dropDown = false;
+      this.dropDownObj = false
     }
   }
 
+  toggleDropDownCat() {
+    if (this.dropDownCat === false) {
+      this.dropDownCat = true
+    } else {
+      this.dropDownCat = false
+    }
+  }
 
-  getPersonalPages() {
-    this.userService.getMe().subscribe(async res => {
-      this.user = await res.data.data;
-      this.pageService.getpagesbyID(this.user._id).subscribe( arg =>  this.myPages = arg);
-    });
+  toggleDropDownAud() {
+    if (this.dropDownAud === false) {
+      this.dropDownAud = true
+    } else {
+      this.dropDownAud = false
+    }
   }
-  getAllPages() {
-    this.pageService.getAllPages().subscribe(async (res:any) => this.allPages = await res.data.data);
-  }
-  getPersonalEvents() {
-    this.userService.getMe().subscribe(async res => {
-      this.user = await res.data.data;
-      this.calendarService.getAllEvents().subscribe(events => {
-        this.personalEvents = events.filter(event => event.type === 'event');
-      });
-    });
-  }
-  getEvents() {
 
-      this.calendarService.getAllEvents().subscribe(events => {
-console.log(events);
-      });
+
+  //days and price functions
+  incresePrice() {
+    this.price++
   }
+
+  increseDays() {
+    this.days++
+  }
+
+  decresePrice() {
+    this.price !== 0 ? this.price-- : null
+  }
+
+  decreseDays() {
+    this.days !== 0 ? this.days-- : null
+  }
+
+  //payment functions
+
+  setMasterCard() {
+    this.card = "Master Card"
+  }
+  setVisa() {
+    this.card = "Visa"
+  }
+  setCarteBleue() {
+    this.card = "Carte Bleue"
+  }
+
 }

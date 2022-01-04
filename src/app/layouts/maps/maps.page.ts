@@ -2,6 +2,8 @@ import { Component, ElementRef, NgZone, OnInit, ViewChild } from '@angular/core'
 import { UserService } from 'src/app/Shared/Service/user.service';
 import MarkerClusterer from '@googlemaps/markerclustererplus';
 import { environment } from 'src/environments/environment';
+import { PageService } from 'src/app/shared/Service/page.service';
+import { CalendarService } from 'src/app/shared/Service/calendar.service';
 
 declare var google: any;
 // declare var MarkerClusterer: any;
@@ -24,118 +26,127 @@ export class MapsPage implements OnInit {
   user
 
   apiImgUser = `${environment.apiImg}User/`;
-  travelMode='WALKING'
+  travelMode = 'WALKING'
   startAddress: any;
   endAddress: any;
-  dist:string;
+  dist: string;
   time: string;
-  routeColor='blue'
-  picks = [
+  routeColor = 'blue';
+  icon: string;
+  apiImgPage = `${environment.apiImg}page/`;
+  apiImg = environment.apiImg + 'Activity/'
+  icons = [
     {
-      type: "event",
-      name: "Zumba Beach",
-      startDate: "23/08/2021",
-      endDate: "23/08/2021",
-      startHour: "18:00",
-      endHour: "23:00",
-      participants: 300,
-      lat:36.887473,
-      lng: 10.330088,
-      url:"https://icon-library.com/images/zumba-icon/zumba-icon-8.jpg"
+      type: "lieu",
+      url: "http://cdn.onlinewebfonts.com/svg/img_398600.png"
     },
     {
-      type: "entreprise",
-      name: "Sport'Up",
-      lat:36.888585,
-      lng: 10.320889,
-      url:"https://fr.seaicons.com/wp-content/uploads/2015/06/companies-icon.png"
+      type: "Entreprise",
+      url: "http://cdn.onlinewebfonts.com/svg/img_451784.png"
     },
     {
-      type: "commerce local",
-      name: "Café",
-      lat:36.889463,
-      lng: 10.322127,
-      url:"https://cdn.imgbin.com/10/15/2/city-icon-coffee-shop-icon-cafe-icon-FfiVAU8U.jpg"
+      type: "Commerce local",
+      url: "https://findicons.com/files/icons/2718/pretty_office_icon_set_part_11/512/shop.png"
     },
     {
       type: "Organisme",
-      name: "BH bank",
-      lat:36.888842,
-      lng: 10.322130,
-      url:"https://upload.wikimedia.org/wikipedia/commons/6/6d/BH_BANK.png"
+      url: "http://cdn.onlinewebfonts.com/svg/img_451784.png"
     },
     {
-      type: "institution",
-      name: "Lycée pilote",
-      lat:36.888974,
-      lng: 10.321389,
-      url:"https://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Round_Landmark_School_Icon_-_Transparent.svg/1024px-Round_Landmark_School_Icon_-_Transparent.svg.png"
+      type: "event",
+      url: "https://cdn.iconscout.com/icon/premium/png-256-thumb/event-6-285437.png"
     },
     {
       type: "association",
-      name: "croissant rouge",
-      lat:36.888561,
-      lng: 10.321891,
-      url:"https://img2.freepng.fr/20180609/gcb/kisspng-malaysian-red-crescent-society-logo-international-andrea-harsell-luna-roja-5b1c1f41da23a6.4158441115285696658935.jpg"
+      url: "https://img2.freepng.fr/20180609/gcb/kisspng-malaysian-red-crescent-society-logo-international-andrea-harsell-luna-roja-5b1c1f41da23a6.4158441115285696658935.jpg"
     },
   ];
+  allPages: any[] = [];
+  allEvents: any[] = [];
+  directionsService = new google.maps.DirectionsService();
+  directionsRenderer = new google.maps.DirectionsRenderer({
+    polylineOptions: {
+      strokeColor: this.routeColor
+    }, suppressMarkers: true
+  });
   imagePath = "../../assets/icon/m/m";
-  //https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m
 
-  constructor(private zone: NgZone,private userService: UserService) {}
+  constructor(private calendarService: CalendarService, public pageService: PageService, private zone: NgZone, private userService: UserService) { }
 
   ngOnInit() {
+    this.getAllPages()
     this.getUser()
+    this.getEvents()
   }
+
   setWalking() {
-    this.routeColor='blue'
+    this.routeColor = 'blue'
     this.travelMode = 'WALKING'
     this.makeRoute()
   }
   setDriving() {
-    this.routeColor='green'
+    this.routeColor = 'green'
     this.travelMode = 'DRIVING'
     this.makeRoute()
   }
-  getDistTime(dist,time,start,end){
+  getDistTime(dist, time, start, end) {
     this.dist = dist
     this.time = time
     this.startAddress = start
-    this.endAddress=end
+    this.endAddress = end
+  }
+  setMapOnAll(map: google.maps.Map | null) {
+    for (let i = 0; i < this.distantMarkers.length; i++) {
+      this.distantMarkers[i].setMap(map);
+    }
+  }
+  getAllPages() {
+    this.pageService.getAllPages().subscribe(async (res: any) =>
+      this.allPages = await res.data.data,
+    );
+  }
+  getEvents() {
+    this.calendarService.getAllEvents().subscribe(async res => {
+      await res.map(el => (
+        el.confidentiality !== "public" || el.lieu ? null : this.allEvents.push(el)
+      ))
+    });
+  }
+  hideMarkers(): void {
+    this.setMapOnAll(null);
+  }
+  deleteDistance() {
+    this.hideMarkers();
+    this.distantMarkers = [];
+    this.directionsRenderer.setMap(null)
   }
 
+
   makeRoute() {
-      let directionsService = new google.maps.DirectionsService();
-    let directionsRenderer = new google.maps.DirectionsRenderer({
-      polylineOptions: {
-        strokeColor: this.routeColor
-      }, suppressMarkers: true
-      });
-      directionsRenderer.setMap(this.map); // Existing map object displays directions
-// Create route from existing points used for markers
-const start = {lat: this.distantMarkers[0].position.toJSON().lat, lng: this.distantMarkers[0].position.toJSON().lng};
-const finish = {lat: this.distantMarkers[1].position.toJSON().lat, lng: this.distantMarkers[1].position.toJSON().lng};
-const route = {
-    origin: start,
-    destination: finish,
-    travelMode: this.travelMode
-}
-
-directionsService.route(route, (response,status)=> {
-  if (status == 'OK') {
-    var dist = response.routes[0].legs[0].distance.text
-    var time = response.routes[0].legs[0].duration.text
-    var start = response.routes[0].legs[0].start_address
-    var end = response.routes[0].legs[0].end_address
-
-    directionsRenderer.setDirections(response); // Add route to the map
-    var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
-    console.log(response)
-    this.getDistTime(dist,time,start,end)
-    }else {
-      window.alert('Directions request failed due to ' + status);
+    this.directionsRenderer.setMap(this.map); // Existing map object displays directions
+    // Create route from existing points used for markers
+    const start = { lat: this.distantMarkers[0].position.toJSON().lat, lng: this.distantMarkers[0].position.toJSON().lng };
+    const finish = { lat: this.distantMarkers[1].position.toJSON().lat, lng: this.distantMarkers[1].position.toJSON().lng };
+    const route = {
+      origin: start,
+      destination: finish,
+      travelMode: this.travelMode
     }
-  });
+
+    this.directionsService.route(route, (response, status) => {
+      if (status == 'OK') {
+        var dist = response.routes[0].legs[0].distance.text
+        var time = response.routes[0].legs[0].duration.text
+        var start = response.routes[0].legs[0].start_address
+        var end = response.routes[0].legs[0].end_address
+        this.directionsRenderer.setDirections(response); // Add route to the map
+        // var directionsData = response.routes[0].legs[0]; // Get data about the mapped route
+        // console.log(response)
+        this.getDistTime(dist, time, start, end)
+      } else {
+        window.alert('Directions request failed due to ' + status);
+      }
+    });
   }
   getUser() {
     this.userService.getMe().subscribe(res => {
@@ -143,9 +154,7 @@ directionsService.route(route, (response,status)=> {
       this.user = res.data.data
       this.tryGeolocation()
     })
-
   }
-
   tryGeolocation() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.lat = position.coords.latitude
@@ -157,8 +166,9 @@ directionsService.route(route, (response,status)=> {
 
 
   initMap(): void {
+
     this.markers = []
-    this.distantMarkers=[]
+    this.distantMarkers = []
     this.map = new google.maps.Map(
       document.getElementById("map") as HTMLElement,
       {
@@ -168,32 +178,36 @@ directionsService.route(route, (response,status)=> {
       }
     );
     const contentString =
-    `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: none;color:green" href="/menu/tabs/layouts/coachprofile/${this.user.id}/me">
+      `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: n;color:green" href="/menu/tabs/layouts/coachprofile/${this.user.id}/me">
       <ion-avatar slot="" class="ion-padding" >
         <img src="${this.apiImgUser + this.user?.photo}"/>
       </ion-avatar>
       <span style="font-size:15px;font-weight:bold;text-transform:capitalize">${this.user.name}</span>
     </a>`
 
-  const infoWindow = new google.maps.InfoWindow({
-    content: contentString,
-  })
+    const infoWindow = new google.maps.InfoWindow({
+      content: contentString,
+    })
 
     let marker = new google.maps.Marker({
       position: { lat: this.lat, lng: this.lng },
       map: this.map,
       title: 'I am here!',
-      label:this.user.name.charAt(0).toUpperCase() +this.user.name.slice(1),
+      label: {
+        text: this.user.name.charAt(0).toUpperCase() + this.user.name.slice(1),
+        fontSize: "15px",
+        fontWeight: "bold"
+      },
       icon: {
         url: this.apiImgUser + this.user?.photo,
-        size: new google.maps.Size(54,54),
+        size: new google.maps.Size(54, 54),
         scaledSize: new google.maps.Size(54, 54),
         labelOrigin: new google.maps.Point(28, 70),
-        optimized:false
+        optimized: false
       },
       animation: google.maps.Animation.DROP,
     })
-    var styles= [
+    var styles = [
       MarkerClusterer.withDefaultStyle(
         {
           height: 25,
@@ -213,42 +227,105 @@ directionsService.route(route, (response,status)=> {
 
     this.map.addListener("click", (mapsMouseEvent) => {
 
-        // console.log(this.distantMarkers)
-        let lat = mapsMouseEvent.latLng.toJSON().lat
-        let lng = mapsMouseEvent.latLng.toJSON().lng
-        let marker = new google.maps.Marker({
+      // console.log(this.distantMarkers)
+      let lat = mapsMouseEvent.latLng.toJSON().lat
+      let lng = mapsMouseEvent.latLng.toJSON().lng
+      let marker = new google.maps.Marker({
         position: { lat: lat, lng: lng },
         map: this.map,
+        animation: google.maps.Animation.BOUNCE,
       })
       this.distantMarkers.push(marker)
       if (this.distantMarkers.length === 2) { this.makeRoute() }
-  })
-    for (let i = 0; i < this.picks.length; i++){
+    })
+    for (let i = 0; i < this.allPages.length; i++) {
+      let shape = { coords: [25, 25, 25], type: 'circle' }
       let marker = new google.maps.Marker({
-        position: { lat: this.picks[i].lat, lng: this.picks[i].lng },
+        position: { lat: +this.allPages[i].lattitude, lng: +this.allPages[i].langitude },
         map: this.map,
-        title: this.picks[i].name,
-        label:this.picks[i].name,
+        title: this.allPages[i].name,
+        label: {
+          text: this.allPages[i].name.charAt(0).toUpperCase() + this.allPages[i].name.slice(1),
+          fontSize: "15px",
+          fontWeight: "bold",
+          color: "blue"
+        },
         icon: {
-          url: this.picks[i].url,
-          size: new google.maps.Size(62,62),
-          scaledSize: new google.maps.Size(62, 62),
-          labelOrigin: new google.maps.Point(30, 70)
+          url: this.allPages[i].photo ? this.apiImgPage + this.allPages[i].photo : this.icons[1].url,
+          size: new google.maps.Size(50, 50),
+          scaledSize: new google.maps.Size(50, 50),
+          labelOrigin: new google.maps.Point(30, 70),
+          shape: shape,
+          optimized: false,
         },
         animation: google.maps.Animation.DROP,
       })
       this.markers.push(marker)
+      const contentString =
+        `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: n;color:green" href="/community/show-page/${this.allPages[i]._id}">
+      <ion-avatar slot="" class="ion-padding" >
+        <img src="${this.allPages[i].photo ? this.apiImgPage + this.allPages[i].photo : this.icons[1].url}"/>
+      </ion-avatar>
+      <span style="font-size:15px;font-weight:bold;text-transform:capitalize">${this.allPages[i].name}</span>
+    </a>`
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: contentString,
+      })
+      marker.addListener('click', () => {
+        infoWindow.open({
+          anchor: marker,
+          map: this.map,
+        });
+      });
+    }
+    for (let i = 0; i < this.allEvents.length; i++) {
+      let shape = { coords: [25, 25, 25], type: 'circle' }
+      let marker = new google.maps.Marker({
+        position: { lat: +this.allEvents[i].lattitude, lng: +this.allEvents[i].langitude },
+        map: this.map,
+        title: this.allEvents[i].activity,
+        label: {
+          text: this.allEvents[i].activity.charAt(0).toUpperCase() + this.allEvents[i].activity.slice(1),
+          fontSize: "15px",
+          fontWeight: "bold",
+          color: "red"
+        },
+        icon: {
+          url: this.allEvents[i].cover ? this.apiImg + this.allEvents[i].cover : this.icons[4].url,
+          size: new google.maps.Size(50, 50),
+          scaledSize: new google.maps.Size(50, 50),
+          labelOrigin: new google.maps.Point(30, 70),
+          shape: shape,
+          optimized: false,
+        },
+        animation: google.maps.Animation.DROP,
+      })
+      this.markers.push(marker)
+      const contentString =
+        `<a style="display:flex;flex-direction:column;align-items:center;text-decoration: n;color:green" href="/community/show-event/${this.allEvents[i]._id}">
+      <ion-avatar slot="" class="ion-padding" >
+        <img src="${this.allEvents[i].cover ? this.apiImg + this.allEvents[i].cover : this.icons[4].url}"/>
+      </ion-avatar>
+      <span style="font-size:15px;font-weight:bold;text-transform:capitalize">${this.allEvents[i].activity}</span>
+    </a>`
+
+      const infoWindow = new google.maps.InfoWindow({
+        content: contentString,
+      })
+      marker.addListener('click', () => {
+        infoWindow.open({
+          anchor: marker,
+          map: this.map,
+        });
+      });
     }
     const MC = new MarkerClusterer(this.map, this.markers, mcOptions)
-
-
-      marker.addListener('click', function () {
-        navigator.geolocation.getCurrentPosition((position) => {
-          let lat = position.coords.latitude+0.0012
-          let lng = position.coords.longitude-0.0001
-          infoWindow.setPosition(new google.maps.LatLng({lat,lng}));
-          infoWindow.open(this.map);
-        });
+    marker.addListener('click', () => {
+      infoWindow.open({
+        anchor: marker,
+        map: this.map,
+      });
     });
   }
 

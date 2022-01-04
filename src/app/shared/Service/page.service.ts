@@ -33,6 +33,11 @@ export class PageService {
       .get(`${UtilsService.apiPage}/getAll/?_id=${id}`)
       .pipe(map((res) => res.data.data));
   }
+  getAllPages(): Observable<Page[]> {
+    return this.apiService
+      .get(`${UtilsService.apiPage}/getAll`)
+      .pipe(map((res) => res));
+  }
   updateCoverPage(page){
     return this.apiService.patch(`${UtilsService.apiPage}` +  '/cover', page);
   }

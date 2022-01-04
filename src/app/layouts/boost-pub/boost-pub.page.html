@@ -1,0 +1,206 @@
+<app-header [isBoostPub]="true"></app-header>
+
+<ion-content>
+  <ion-slides pager="true" [options]="slideOpts">
+    <ion-slide style="width:100%">
+      <div style="display: flex; flex-direction:column;width:100%;padding:10px;align-items:center">
+        <span style="color: #91978f;font-weight:bold;font-size:20px">Booster une publication</span>
+        <div class="create-use-container" style="display: flex;justify-content:space-around;width:100%">
+          <div class="create-use">
+            Créer une publication
+          </div>
+          <div class="create-use" style="background-color: #f1f2f2;">
+            Utiliser une publication
+          </div>
+        </div>
+        <div (click)="toggleDropDownObj()" class="dropDown">
+          <span>Objectif</span>
+          <ion-icon *ngIf="!dropDownObj" name="chevron-forward"></ion-icon>
+          <ion-icon *ngIf="dropDownObj" name="chevron-down"></ion-icon>
+        </div>
+        <div *ngIf="dropDownObj" class="choices">
+          <div (click)="setMessage()">
+            <span *ngIf="obj!=='Recevoir plus de messages'" class="choice">Recevoir plus de messages</span>
+            <span *ngIf="obj==='Recevoir plus de messages'" class="choice" style="font-weight: bold;">Recevoir plus de
+              messages</span>
+            <img *ngIf="obj==='Recevoir plus de messages'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setPage()">
+            <span *ngIf="obj!=='Promouvoir votre page'" class="choice">Promouvoir votre page</span>
+            <span *ngIf="obj==='Promouvoir votre page'" class="choice" style="font-weight: bold;">Promouvoir votre
+              page</span>
+            <img *ngIf="obj==='Promouvoir votre page'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setCalls()">
+            <span *ngIf="obj!=='Recevoir plus d\'appels'" class="choice">Recevoir plus d'appels</span>
+            <span *ngIf="obj==='Recevoir plus d\'appels'" style="font-weight: bold;" class="choice">Recevoir plus
+              d'appels</span>
+            <img *ngIf="obj==='Recevoir plus d\'appels'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setWebPage()">
+            <span *ngIf="obj!=='Attirer plus de visiteurs sur votre site web'" class="choice">Attirer plus de visiteurs
+              sur votre site web</span>
+            <span *ngIf="obj==='Attirer plus de visiteurs sur votre site web'" style="font-weight: bold;"
+              class="choice">Attirer plus de visiteurs sur votre site web</span>
+            <img *ngIf="obj==='Attirer plus de visiteurs sur votre site web'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setProspects()">
+            <span *ngIf="obj!=='Obtenir plus de prospects'" class="choice">Obtenir plus de prospects</span>
+            <span *ngIf="obj==='Obtenir plus de prospects'" class="choice" style="font-weight: bold;">Obtenir plus de
+              prospects</span>
+            <img *ngIf="obj==='Obtenir plus de prospects'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+        </div>
+        <div (click)="toggleDropDownCat()" class="dropDown">
+          <span>Catégorie publicitaire</span>
+          <ion-icon *ngIf="!dropDownCat" name="chevron-forward"></ion-icon>
+          <ion-icon *ngIf="dropDownCat" name="chevron-down"></ion-icon>
+        </div>
+        <div class="choices" *ngIf="dropDownCat">
+          <div (click)="setSocial()">
+            <span *ngIf="cat!=='Enjeu social, électoral ou politique'" class="choice">Enjeu social, électoral ou
+              politique</span>
+            <span *ngIf="cat==='Enjeu social, électoral ou politique'" class="choice" style="font-weight: bold;">Enjeu
+              social, électoral ou politique</span>
+            <img *ngIf="cat==='Enjeu social, électoral ou politique'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setJob()">
+            <span *ngIf="cat!=='Offre d\'emploi'" class="choice">Offre d'emploi</span>
+            <span *ngIf="cat==='Offre d\'emploi'" class="choice" style="font-weight: bold;">Offre d'emploi</span>
+            <img *ngIf="cat==='Offre d\'emploi'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setHouse()">
+            <span *ngIf="cat!=='Offre de logement ou services connexes'" class="choice">Offre de logement ou services
+              connexes</span>
+            <span *ngIf="cat==='Offre de logement ou services connexes'" class="choice" style="font-weight: bold;">Offre
+              de logement ou services connexes</span>
+            <img *ngIf="cat==='Offre de logement ou services connexes'" style="width: 20px; height:20px"
+              src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+          <div (click)="setOther()">
+            <span *ngIf="cat!=='Autre'" class="choice">Autre</span>
+            <span *ngIf="cat==='Autre'" class="choice" style="font-weight: bold;">Autre</span>
+            <img *ngIf="cat==='Autre'" style="width: 20px; height:20px" src="../../assets/svg/check-privacy.svg" alt="">
+          </div>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide
+      style="width:100%;display:flex;flex-direction:column;align-items:flex-start;margin-left:10px;padding-bottom:15px">
+      <div (click)="toggleDropDownAud()" class="dropDown">
+        <span>Audiance</span>
+        <ion-icon *ngIf="!dropDownAud" name="chevron-forward"></ion-icon>
+        <ion-icon *ngIf="dropDownAud" name="chevron-down"></ion-icon>
+      </div>
+      <div class="choices" *ngIf="dropDownAud">
+        <div (click)="setTarget()">
+          <span *ngIf="aud!=='Créer une cible'" class="choice">Créer une cible</span>
+          <span *ngIf="aud==='Créer une cible'" class="choice" style="font-weight: bold;">Créer une cible</span>
+          <img *ngIf="aud==='Créer une cible'" style="width: 20px; height:20px" src="../../assets/svg/check-privacy.svg"
+            alt="">
+        </div>
+        <div (click)="setFollowers()">
+          <span *ngIf="aud!=='Personnes qui aiment votre page'" class="choice">Personnes qui aiment votre page
+            connexes</span>
+          <span *ngIf="aud==='Personnes qui aiment votre page'" class="choice" style="font-weight: bold;">Personnes qui
+            aiment votre page</span>
+          <img *ngIf="aud==='Personnes qui aiment votre page'" style="width: 20px; height:20px"
+            src="../../assets/svg/check-privacy.svg" alt="">
+        </div>
+        <div (click)="setFollowersAndFriends()">
+          <span *ngIf="aud!=='Personnes qui aiment votre page et leurs amis'" class="choice">Personnes qui aiment votre
+            page et leurs amis</span>
+          <span *ngIf="aud==='Personnes qui aiment votre page et leurs amis'" class="choice"
+            style="font-weight: bold;">Personnes qui aiment votre page et leurs amis</span>
+          <img *ngIf="aud==='Personnes qui aiment votre page et leurs amis'" style="width: 20px; height:20px"
+            src="../../assets/svg/check-privacy.svg" alt="">
+        </div>
+      </div>
+      <div class="title">
+        <span>Budget</span>
+      </div>
+      <div class="price">
+        <span>{{price}}.00 EUR</span>
+        <div style="display: flex;margin-left:5px">
+          <ion-icon (click)="incresePrice()" style="color: #91978f;" name="add-circle"></ion-icon>
+          <ion-icon (click)="decresePrice()" style="color: #91978f;" name="remove-circle"></ion-icon>
+        </div>
+      </div>
+      <div class="title">
+        <span>Durée</span>
+      </div>
+      <div style="display: flex; justify-content:space-around;width:100%;align-items:center">
+        <div class="period" style="display: flex;align-items:center">
+          <div style="display: flex;flex-direction:column;margin-right: 10px">
+            <ion-icon (click)="increseDays()" style="color: #91978f;" name="add-circle"></ion-icon>
+            <ion-icon (click)="decreseDays()" style="color: #91978f;" name="remove-circle"></ion-icon>
+          </div>
+          <span>{{days}} Jours</span>
+        </div>
+        <div style="display: flex;flex-direction:column;justify-content:center;align-items:center" class="date">
+          <span>Date de fin</span>
+          <ion-input style="padding: 0 !important;" type="date"></ion-input>
+        </div>
+      </div>
+      <div class="title">
+        <span>Résultats quotidiens estimés</span>
+      </div>
+      <div style="display: flex;flex-direction:column">
+        <div class="estimation">
+          <span>Personnes touchées : </span>
+          <span> 2.4K - 6.9K</span>
+        </div>
+        <div class="estimation">
+          <span>Cliques sur un lien : </span>
+          <span> 152 - 440</span>
+        </div>
+      </div>
+      <div class="title">
+        <span>Récapitulatif du paiement :</span>
+      </div>
+      <div style="display: flex;flex-direction:column;align-items:flex-start">
+        <div class="estimation">
+          <span>Votre publication sera booter pendant {{days}} jours</span>
+        </div>
+        <div class="estimation">
+          <span>Budget total : {{price}} EUR</span>
+        </div>
+      </div>
+    </ion-slide>
+    <ion-slide style="display: flex;flex-direction:column;align-items:flex-start">
+      <div style="display: flex;width:100%;">
+        <div style="margin: 10px 20px;">
+          <span class="title">Moyen de paiement</span>
+          <div class="payment">
+            <span>{{card}}</span>
+            <input type="text" placeholder="*******">
+          </div>
+        </div>
+        <div style="margin: 10px 20px;">
+          <img (click)="setMasterCard()" style="width: 40px;margin-right:5px"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/MasterCard_Logo.svg/2560px-MasterCard_Logo.svg.png"
+            alt="">
+          <img (click)="setVisa()" style="width: 40px;margin-right:5px"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/1024px-Old_Visa_Logo.svg.png"
+            alt="">
+          <img (click)="setCarteBleue()" style="width: 40px;margin-right:5px"
+            src="https://upload.wikimedia.org/wikipedia/fr/thumb/7/72/Logo_GIE-CB.jpg/1200px-Logo_GIE-CB.jpg" alt="">
+        </div>
+      </div>
+      <div style="margin: 10px 35px;">
+        <span class="title">Aperçu de la publication</span>
+      </div>
+      <div style="align-self: center;">
+        POST
+      </div>
+      <ion-button style="align-self: center;" color="success">Promouvoir maintenant</ion-button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>
