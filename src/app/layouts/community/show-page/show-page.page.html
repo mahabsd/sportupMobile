@@ -4,26 +4,30 @@
   <div style="position: relative;">
     <div style="position: absolute;bottom:15px;left:10px;display:flex;flex-direction:column;align-items:center">
       <div style="position: relative">
-        <ion-avatar style="position: absolute; top:50px; left:320px;" class="edit-profile-cover"
+        <ion-avatar style="position: absolute; top:50px; left:300px;" class="edit-profile-cover"
           (click)="selectImageSource()" *ngIf="page?.createdBy._id === userid">
-          <ion-icon name="create" color="light" style="height: 25px; width:25px;"> </ion-icon>
+          <ion-icon name="create" color="light" style="color: green;"> </ion-icon>
         </ion-avatar>
       </div>
       <div style="postion:relative">
-        <img (click)="updateImage = true" *ngIf="!page?.photo" style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
-        src="../../../assets/svg/person-icon.svg" alt="">
-        <img (click)="updateImage = true" *ngIf="page?.photo" style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
-        src="{{apiImg+page?.photo}} " alt="">
-        <ion-avatar style="position: absolute; bottom:-10px;right:0 " class="edit-profile-cover" (click)="selectProfileSource()"
-        *ngIf="page?.createdBy._id === userid && updateImage">
-        <ion-icon name="create" color="success" style=""> </ion-icon>
-      </ion-avatar>
+        <img (click)="updateImage = true" *ngIf="!page?.photo"
+          style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
+          src="../../../assets/svg/person-icon.svg" alt="">
+        <img (click)="updateImage = true" *ngIf="page?.photo"
+          style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
+          src="{{apiImg+page?.photo}} " alt="">
+        <ion-avatar style="position: absolute; bottom:-10px;right:0 " class="edit-profile-cover"
+          (click)="selectProfileSource()" *ngIf="page?.createdBy._id === userid && updateImage">
+          <ion-icon name="create" color="success" style=""> </ion-icon>
+        </ion-avatar>
       </div>
 
       <span style="font-size: 18px;color:white"> {{page?.name}} </span>
     </div>
     <img *ngIf="page?.cover" src="{{apiImg+page?.cover}} " alt="">
-    <img  *ngIf="!page?.cover" src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/wp-cms/uploads/2021/03/LinkedIn-Default-Background-2020-.jpg" alt="">
+    <img *ngIf="!page?.cover"
+      src="https://images.fastcompany.net/image/upload/w_596,c_limit,q_auto:best,f_auto/wp-cms/uploads/2021/03/LinkedIn-Default-Background-2020-.jpg"
+      alt="">
 
     <ion-avatar style="position: absolute; top:0px; left: 0px;" class="edit-profile-cover" (click)="selectImageSource()"
       *ngIf="page?.createdBy._id === userid">
@@ -58,17 +62,17 @@
         </button>
       </ng-template>
       <button style="position: relative;width:20px;height:15px;margin-top:12px">
-        <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;">
-          <ion-icon name="ellipsis-horizontal"
+        <div  style="position:relative;">
+          <ion-icon (click)="openDropDown()" (blur)="openDropDown()" name="ellipsis-horizontal"
             style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
           <ng-container *ngIf="dropDown">
             <div
               style="font-size:15px;position: absolute;background-color:rgb(243, 243, 243);padding:10px;border-radius:15px;transform:translateX(-210px) translateY(20px);display:flex;flex-direction:column;width:210px;color:rgb(168, 168, 168);box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);justify-content:space-around;align-items:flex-start;">
               <span>Rechercher dans la page</span>
               <hr>
-              <ion-item (click)="getAllfriends()" >
+              <ion-item (click)="getAllfriends()">
                 <ion-label>Inviter des amis</ion-label>
-                <ion-select [(ngModel)]="selectedFriends"  multiple="true" ok-text="okey!" cancel-text="Nah">
+                <ion-select [(ngModel)]="selectedFriends" multiple="true" ok-text="okey!" cancel-text="Nah">
                   <ion-select-option *ngFor="let friend of friends" value="{{friend?.userFollowed._id}}">
                     {{friend?.userFollowed.name}}</ion-select-option>
                 </ion-select>
@@ -211,50 +215,95 @@
       </div>
     </div>
     <div *ngIf="selected === 'A propos'">
-      <div style="font-size: 17px;font-weight:bold;margin:10px 0 35px 15px ">
-        <span style="margin-right:10px">300</span>
-        <span>Participants</span>
+      <ion-icon name="create"  class="createIcom" *ngIf="page?.createdBy._id === userid"
+        (click)="update === false ? update = true: update = false"></ion-icon>
+      <div *ngIf="update=== false">
+        <div style="font-size: 17px;font-weight:bold;margin:10px 0 35px 15px ">
+          <span style="margin-right:10px">300</span>
+          <span>Participants</span>
+        </div>
+        <div style="margin: 15px;">
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Page :</span>
+            <span>{{page?.name}}</span>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Lieu :</span>
+            <span>Adresse</span>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Contact :</span>
+            <span>88 888 888</span>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Site web :</span>
+            <span>www.sportup.com</span>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Email :</span>
+            <span>sportup@gmail.com</span>
+          </div>
+        </div>
+        <ng-container *ngIf="more===false;else showmore">
+          <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+            <span style="font-size: 17px;font-weight:bold;">Description :</span>
+            <span>
+              {{page?.description}}
+            </span>
+          </div>
+          <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
+        </ng-container>
+        <ng-template #showmore>
+          <div style="margin-left: 15px; ">
+            <span style="font-size: 17px;font-weight:bold;">Description :</span>
+            <span>
+              {{page?.description}}
+            </span>
+          </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir
+            moins</span>
+        </ng-template>
       </div>
-      <div style="margin: 15px;">
-        <div>
-          <span style="font-size: 17px;font-weight:bold">Page :</span>
-          <span>{{page?.name}}</span>
+
+      <div *ngIf="update">
+        <div style="margin: 15px;">
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Page :</span>
+            <input class="input"  placeholder="{{page?.name}}" />
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Lieu :</span>
+            <input class="input"  placeholder="Adresse"/>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Contact :</span>
+            <input class="input"  placeholder="88 888 888"/>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Site web :</span>
+            <input class="input"  placeholder="www.sportup.com"/>
+          </div>
+          <div>
+            <span style="font-size: 17px;font-weight:bold">Email :</span>
+            <input class="input"  placeholder="sportup@gmail.com" />
+          </div>
         </div>
-        <div>
-          <span style="font-size: 17px;font-weight:bold">Lieu :</span>
-          <span>Adresse</span>
-        </div>
-        <div>
-          <span style="font-size: 17px;font-weight:bold">Contact :</span>
-          <span>88 888 888</span>
-        </div>
-        <div>
-          <span style="font-size: 17px;font-weight:bold">Site web :</span>
-          <span>www.sportup.com</span>
-        </div>
-        <div>
-          <span style="font-size: 17px;font-weight:bold">Email :</span>
-          <span>sportup@gmail.com</span>
-        </div>
+        <ng-container *ngIf="more===false;else showmore">
+          <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
+            <span style="font-size: 17px;font-weight:bold;">Description :</span>
+            <input class="input" placeholder="{{page?.description}}" />
+          </div>
+          <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
+        </ng-container>
+        <ng-template #showmore>
+          <div style="margin-left: 15px; ">
+            <span style="font-size: 17px;font-weight:bold;">Description :</span>
+            <span>
+              {{page?.description}}
+            </span>
+          </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir
+            moins</span>
+        </ng-template>
       </div>
-      <ng-container *ngIf="more===false;else showmore">
-        <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
-          <span style="font-size: 17px;font-weight:bold;">Description :</span>
-          <span>
-            {{page?.description}}
-          </span>
-        </div>
-        <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
-      </ng-container>
-      <ng-template #showmore>
-        <div style="margin-left: 15px; ">
-          <span style="font-size: 17px;font-weight:bold;">Description :</span>
-          <span>
-            {{page?.description}}
-          </span>
-        </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir
-          moins</span>
-      </ng-template>
 
     </div>
     <div *ngIf="selected === 'Photos'">

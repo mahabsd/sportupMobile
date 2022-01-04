@@ -44,3 +44,14 @@ button{
 input:focus{
   outline: unset;
 }
+.input{
+  outline: unset;
+  border: none;
+  border-bottom: #858484;
+  background-color: rgb(241, 241, 241);
+}
+
+.createIcom {
+  margin-left: 375px;
+  color: green;
+}
