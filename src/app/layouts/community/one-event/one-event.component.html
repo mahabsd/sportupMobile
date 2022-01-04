@@ -1,7 +1,7 @@
 <div  style="margin: 40px 0; background-color:rgb(231, 231, 231);padding:0 10px ;border-radius:5px;box-shadow: 3px 3px 5px rgba(70, 69, 69, 0.562);">
   <div  style="display:flex; justify-content:space-between">
-    <div  style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px" routerLink="/community/show-event/{{event._id}}" >
-      <span style="color:rgb(95, 95, 95);font-size:large">{{event.activity}}</span>
+    <div  style="display: flex;flex-direction:column;margin-top:10px;margin-bottom:20px;width:100%" routerLink="/community/show-event/{{event._id}}" >
+      <span style="color:rgb(95, 95, 95);font-size:large;width:100%">{{event.activity}}</span>
       <span>{{event.participants}} participants</span>
     </div>
     <div (click)="openDropDown()" (blur)="openDropDown()" style="position:relative;height:20px">
@@ -20,8 +20,8 @@
       </ng-container>
     </div>
   </div>
-  <div style="display:flex;justify-content:space-around;align-items:center" routerLink="/community/show-event/{{event._id}}" >
-    <div  style="display: flex;font-size:12px">
+  <div style="display:flex;justify-content:space-around;align-items:center">
+    <div routerLink="/community/show-event/{{event._id}}"  style="display: flex;font-size:12px">
       <div style="margin-right: 20px;">
         {{event.startTime | date: 'd' }} {{event.startTime | date:'shortDate'}}
       </div>
@@ -61,7 +61,7 @@
       <img style="width: 33px;height:33px;background-color:white; padding:4px;border-radius:10px;box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.562);margin-bottom:5px" src="../../assets/svg/share-event.svg" alt="share">
     </div>
   </div>
-  <div  style="display: flex;font-size:12px">
+  <div  routerLink="/community/show-event/{{event._id}}"  style="display: flex;font-size:12px">
     <div style="margin-right: 20px;">
       {{event.endTime | date: 'd'}} {{event.endTime  | date:'shortDate'}}
     </div>

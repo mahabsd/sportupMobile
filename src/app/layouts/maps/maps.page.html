@@ -1,22 +1,23 @@
 <app-header title="Map" [isDetails]="true"></app-header>
-<ion-content  style="position: relative;" [fullscreen]="true">
+<ion-content style="position: relative;" [fullscreen]="true">
   <div style="position: absolute;z-index:10;top:76px;left:20px">
-    <ion-searchbar style="width: 80%;" [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()" placeholder="Search for a place">
+    <ion-searchbar style="width: 80%;" [(ngModel)]="autocomplete.input" (ionInput)="updateSearchResults()"
+      placeholder="Search for a place">
     </ion-searchbar>
 
-      <ion-item *ngIf="distantMarkers.length===2" style="margin-left:8px;border-radius:5px;width:90%">
-        <ion-label>From :</ion-label>
-        <ion-input  >{{startAddress}}</ion-input>
-      </ion-item>
-      <ion-item *ngIf="distantMarkers.length===2" style="margin-left:8px;border-radius:5px;width:90%;margin-top:5px">
-        <ion-label>To :</ion-label>
-        <ion-input>{{endAddress}}</ion-input>
-      </ion-item>
-      <ion-item *ngIf="distantMarkers.length===2" style="margin-left:8px;border-radius:5px;width:90%;margin-top:5px">
-        <ion-input>{{dist}}</ion-input>
-        <ion-input>{{time}}</ion-input>
-        <ion-input>{{travelMode}}</ion-input>
-      </ion-item>
+    <ion-item *ngIf="distantMarkers.length===2" style="margin-left:8px;border-radius:5px;width:90%">
+      <ion-label>From :</ion-label>
+      <ion-input>{{startAddress}}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="distantMarkers.length===2" style="margin-left:8px;border-radius:5px;width:90%;margin-top:5px">
+      <ion-label>To :</ion-label>
+      <ion-input>{{endAddress}}</ion-input>
+    </ion-item>
+    <ion-item *ngIf="distantMarkers.length===2" style="margin-left:8px;border-radius:5px;width:90%;margin-top:5px">
+      <ion-input>{{dist}}</ion-input>
+      <ion-input>{{time}}</ion-input>
+      <ion-input>{{travelMode}}</ion-input>
+    </ion-item>
 
     <ion-button color="success" style="margin-left:8px;" (click)="tryGeolocation()">
       <ion-icon name="locate"></ion-icon>

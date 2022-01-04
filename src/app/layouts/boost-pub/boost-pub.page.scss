@@ -1,0 +1,128 @@
+:host ::ng-deep .swiper-pagination {
+  bottom: 0%;
+
+  .swiper-pagination-bullet {
+    background: #949494;
+    width: 8px;
+    height: 8px;
+    opacity: 5.2;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #247238;
+    width: 8px;
+    height: 8px;
+    opacity: 5.2;
+  }
+}
+
+.create-use {
+  margin: 5px;
+  box-shadow: 10px 10px 10px rgb(207, 207, 207);
+  padding: 10px 20px;
+  font-size: 14px;
+  border-radius: 10px;
+  color: #91978f;
+}
+
+.create-use-container {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.dropDown {
+  display: flex;
+  align-items: center;
+  width: 50%;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f1f2f2;
+  border-radius: 15px;
+  color: #91978f;
+  margin: 10px 0;
+  font-size: 14px;
+  align-self: flex-start;
+  margin-left: 10px
+}
+
+.choices {
+  display: flex;
+  align-items: center;
+  width: 95%;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f1f2f2;
+  border-radius: 10px;
+  color: #91978f;
+  margin: 0 0 10px 0;
+  flex-direction: column;
+  box-shadow: 5px 5px 10px rgb(206, 206, 206)
+}
+
+.choices div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.choice {
+  font-size: 16px;
+  margin: 6.5px 0;
+  text-align: start;
+}
+
+.title {
+  color: #91978f;
+  font-size: 15px;
+  font-weight: bold;
+  margin: 10px
+}
+
+.price {
+  display: flex;
+  margin: 10px;
+  background-color: #f1f2f2;
+  font-size: 15px;
+  color: #91978f;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.period {
+  background-color: #f1f2f2;
+  font-size: 20px;
+  color: #91978f;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.date {
+  background-color: #f1f2f2;
+  font-size: 16px;
+  color: #91978f;
+  padding-top: 8px;
+  border-radius: 10px;
+}
+
+.estimation {
+  display: flex;
+  font-size: 15px;
+  color: #91978f;
+  margin-left: 10px
+}
+
+.payment {
+  background-color: #f1f2f2;
+  font-size: 14px;
+  color: #91978f;
+  padding: 8px;
+  border-radius: 10px;
+  margin-top: 5px;
+}
+
+.payment input {
+  width: 100px;
+}
