@@ -9,4 +9,7 @@ export class Page {
   lattitude: string;
   category: string;
   description: string;
+  contact:  string;
+  email:  string;
+  webSite:  string;
 }

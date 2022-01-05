@@ -42,7 +42,7 @@ export class CalendarService {
   }
 
   updateEvent(event) {
-    return this.apiService.patch(`${UtilsService.apiCalendar}${event._id}`, event);
+    return this.apiService.put(`${UtilsService.apiCalendar}${event._id}`, event);
   }
 
   deleteEvent(id: any) {

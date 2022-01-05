@@ -6,20 +6,17 @@
       <div style="position: relative">
         <ion-avatar style="position: absolute; top:50px; left:300px;" class="edit-profile-cover"
           (click)="selectImageSource()" *ngIf="page?.createdBy._id === userid">
-          <ion-icon name="create" color="light" style="color: green;"> </ion-icon>
+          <ion-icon name="create"  color="light" > </ion-icon>
         </ion-avatar>
       </div>
       <div style="postion:relative">
         <img (click)="updateImage = true" *ngIf="!page?.photo"
           style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
           src="../../../assets/svg/person-icon.svg" alt="">
-        <img (click)="updateImage = true" *ngIf="page?.photo"
+        <img (click)="updateImage = true; selectProfileSource()" *ngIf="page?.photo"
           style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
           src="{{apiImg+page?.photo}} " alt="">
-        <ion-avatar style="position: absolute; bottom:-10px;right:0 " class="edit-profile-cover"
-          (click)="selectProfileSource()" *ngIf="page?.createdBy._id === userid && updateImage">
-          <ion-icon name="create" color="success" style=""> </ion-icon>
-        </ion-avatar>
+
       </div>
 
       <span style="font-size: 18px;color:white"> {{page?.name}} </span>
@@ -31,7 +28,7 @@
 
     <ion-avatar style="position: absolute; top:0px; left: 0px;" class="edit-profile-cover" (click)="selectImageSource()"
       *ngIf="page?.createdBy._id === userid">
-      <ion-icon name="create" color="success" style="height:0px; width:0px;"> </ion-icon>
+      <ion-icon name="create" c class="createIcom" style="height:0px; width:0px;"> </ion-icon>
     </ion-avatar>
   </div>
   <div style="background-color: rgb(241, 241, 241);height:100%">
@@ -268,29 +265,29 @@
         <div style="margin: 15px;">
           <div>
             <span style="font-size: 17px;font-weight:bold">Page :</span>
-            <input class="input"  placeholder="{{page?.name}}" />
+            <input [(ngModel)]="page.name" class="input"  placeholder="{{page?.name}}" />
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Lieu :</span>
-            <input class="input"  placeholder="Adresse"/>
+            <input [(ngModel)]="page.address" class="input"  placeholder="Adresse"/>
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Contact :</span>
-            <input class="input"  placeholder="88 888 888"/>
+            <input [(ngModel)]="page.phone" class="input"  placeholder="88 888 888"/>
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Site web :</span>
-            <input class="input"  placeholder="www.sportup.com"/>
+            <input [(ngModel)]="page.website"  class="input"  placeholder="www.sportup.com"/>
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Email :</span>
-            <input class="input"  placeholder="sportup@gmail.com" />
+            <input [(ngModel)]="page.email"  class="input"  placeholder="sportup@gmail.com" />
           </div>
         </div>
         <ng-container *ngIf="more===false;else showmore">
           <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
             <span style="font-size: 17px;font-weight:bold;">Description :</span>
-            <input class="input" placeholder="{{page?.description}}" />
+            <input [(ngModel)]="page.description"  class="input" placeholder="{{page?.description}}" />
           </div>
           <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
         </ng-container>
@@ -303,6 +300,11 @@
           </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir
             moins</span>
         </ng-template>
+<div style="display: flex;justify-content:flex-end ">
+  <img (click)="updatePage()" style="width: 30px;height:30px;margin: 20px 10px 0 0;" src="../../../../assets/svg/green-tick.svg" alt="">
+  <img (click)="update = false" style="width: 30px;height:30px;margin: 20px 10px 0 0;" src="../../../../assets/svg/red-x.svg" alt="">
+</div>
+
       </div>
 
     </div>

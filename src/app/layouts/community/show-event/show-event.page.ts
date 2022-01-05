@@ -133,4 +133,9 @@ export class ShowEventPage implements OnInit {
       this.friends = res.data.data;
      } );
   }
+  updateEvent() {
+    console.log(this.event);
+
+    this.calendarService.updateEvent(this.event).subscribe(res => console.log(res));
+  }
 }

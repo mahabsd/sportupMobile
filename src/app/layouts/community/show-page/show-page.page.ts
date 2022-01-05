@@ -73,7 +73,7 @@ export class ShowPagePage implements OnInit {
     private elemRef: ElementRef,
     private action: ActionSheetController,
     private followerService: FollowerService,
-    ) { }
+  ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
     const target = this.elemRef.nativeElement.querySelector('div');
@@ -140,7 +140,7 @@ export class ShowPagePage implements OnInit {
 
     this.pageService.updateCoverPage(fd).subscribe(async (res) => {
       await this.getOnePage();
-     });
+    });
   }
   async selectImageSource() {
     const buttons = [
@@ -171,7 +171,7 @@ export class ShowPagePage implements OnInit {
     this.getFormData(this.page, fd);
     this.pageService.updateProfileImagePage(fd).subscribe(async (res) => {
       await this.getOnePage();
-     });
+    });
   }
   async selectProfileSource() {
     const buttons = [
@@ -194,13 +194,17 @@ export class ShowPagePage implements OnInit {
 
   getAllfriends() {
     this.followerService.getFollowers(this.userid)
-    .subscribe(res => {
-      this.friends = res.data.data;
-     } );
+      .subscribe(res => {
+        this.friends = res.data.data;
+      });
   }
   onClick(selectedFriends) {
     console.log(selectedFriends);
   }
+  updatePage() {
+    console.log(this.page);
 
+    this.pageService.updatepage(this.page).subscribe(res => console.log(res));
+  }
 }
 
