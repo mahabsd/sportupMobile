@@ -32,6 +32,10 @@ import { NotificationsService } from 'src/app/shared/Service/notifications.servi
 import { Socket } from 'ngx-socket-io';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { EventListModalComponent } from '../../planning/event-list-modal/event-list-modal.component';
+import { File } from '@ionic-native/file/ngx';
+import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { MediaCapture, MediaFile, CaptureError, CaptureImageOptions } from '@awesome-cordova-plugins/media-capture/ngx';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-status',
@@ -45,7 +49,7 @@ export class StatusComponent implements OnInit {
   @Input() user: any;
   @Output() likeFn = new EventEmitter();
   @Output() disLikeFn = new EventEmitter();
-  @Input  () isBookMarked: boolean;
+  @Input() isBookMarked: boolean;
   apiImgUser = `${environment.apiImg}User/`;
   apiImg = `${environment.apiImg}Post/`;
   commentForm: FormGroup;
@@ -79,6 +83,12 @@ export class StatusComponent implements OnInit {
   idProfilePassed;
   user$: any;
   name: any;
+  status: string;
+  audioFile: MediaObject;
+  isRecording: boolean;
+  record: any;
+  options: CaptureImageOptions = { limit: 3 };
+  blob: Blob;
   constructor(
     private commentService: CommentService,
     private postService: PostService,
@@ -93,13 +103,18 @@ export class StatusComponent implements OnInit {
     private notificationsService: NotificationsService,
     private socket: Socket,
     private userService: UserService,
-
+    private media: Media,
+    private file: File,
+    private mediaCapture: MediaCapture,
+    private platform: Platform
   ) {
     window.addEventListener('contextmenu', (e) => {
       e.preventDefault();
     });
   }
   async ngOnInit() {
+    this.status = '';
+    this.isRecording = false;
     this.getMe();
     await this.getCommentByPost();
     this.commentForm = new FormGroup({
@@ -142,14 +157,14 @@ export class StatusComponent implements OnInit {
     this.likeFn.emit({ post, index: this.index });
 
     this.socket.connect();
-    this.socket.emit('notifications', { note: 'hey'});
-    this.socket.fromEvent('notifications').subscribe( (res) => {
+    this.socket.emit('notifications', { note: 'hey' });
+    this.socket.fromEvent('notifications').subscribe((res) => {
       this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
       this.notif.reciever = post.user._id;
       this.notif.userOwner = this.user$._id;
       this.notif.text = "a aimé votre status";
       this.notif.postId = post._id;
-    this.createNotif(this.notif);
+      this.createNotif(this.notif);
     });
   }
   disLike(post, event) {
@@ -157,16 +172,16 @@ export class StatusComponent implements OnInit {
     this.disLikeFn.emit({ post, index: this.index });
   }
 
-   sendComment(post)  {
+  sendComment(post) {
     this.comments = [];
     this.notif = { reciever: '', userOwner: '', text: '', postId: '' };
-    this.commentService.addComment(this.comment, post._id).subscribe(res =>  {
+    this.commentService.addComment(this.comment, post._id).subscribe(res => {
 
     });
     this.comment = new Comment();
     this.getCommentByPost();
 
-     this.userService.getMe().subscribe((res) => {
+    this.userService.getMe().subscribe((res) => {
       this.user$ = res.data.data;
       this.notif.reciever = post.user._id;
       this.notif.userOwner = this.user$._id;
@@ -174,8 +189,8 @@ export class StatusComponent implements OnInit {
       this.notif.postId = post._id
       this.socket.connect();
       this.socket.emit('notifications', { msg: 'hey' });
-      this.socket.fromEvent('notifications').subscribe( (res) => {
-      this.createNotif(this.notif);
+      this.socket.fromEvent('notifications').subscribe((res) => {
+        this.createNotif(this.notif);
       });
     });
 
@@ -188,7 +203,7 @@ export class StatusComponent implements OnInit {
     this.notif.text = "a partagé votre status";
     this.notif.postId = post._id
     this.socket.connect();
-    this.socket.emit('notifications', { note: 'hey'});
+    this.socket.emit('notifications', { note: 'hey' });
     this.socket.fromEvent('notifications').subscribe((res) => {
       this.createNotif(this.notif);
     });
@@ -266,7 +281,7 @@ export class StatusComponent implements OnInit {
   }
   getCommentByPost() {
     forkJoin({
-      comments: this.commentService.getCommentByService( this.post.id),
+      comments: this.commentService.getCommentByService(this.post.id),
       images: this.postService.getPost(this.post.post?._id || this.post.id),
       mediafiles: this.postService.getPost(this.post.post?._id || this.post.id),
       tempMedia: this.postService.getPost(this.post.post?._id || this.post.id),
@@ -330,5 +345,37 @@ export class StatusComponent implements OnInit {
   createNotif(notif: any) {
     this.notificationsService.postNotification(notif).subscribe();
   }
+  recordAudio() {
+    //   this.audioFile = this.media.create(this.file.externalRootDirectory + '/audiofile.mp3');
+    //   this.audioFile.startRecord();
+    if (this.platform.is('cordova')) {
+      let fd = new FormData();
+      // You're on a device, call the native plugins. Example:
+      this.mediaCapture.captureAudio(this.options)
+        .then(
+          (data: MediaFile[]) => {
+           //  this.blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
+             //fd.append('audio', this.blob);
+             this.commentService.recordAudio( this.post._id, data).subscribe(res => {
+              this.isRecording = false;
+            }
+            );
+          },
+          (err: CaptureError) => console.error(err)
+        );
+
+      this.status = 'recording...';
+      this.isRecording = true;
+    } else {
+      // You're testing in browser, do nothing or mock the plugins' behaviour.
+      console.log('you are not on device');
+
+    }
+  }
+  stopRecording() {
+    //  this.audioFile.stopRecord();
+    this.status = 'records stopped';
+  }
+
 
 }

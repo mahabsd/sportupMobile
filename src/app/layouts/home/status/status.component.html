@@ -1,11 +1,12 @@
-<ion-grid >
+<ion-grid>
   <ion-row lines="none">
-    <ion-avatar slot="" class="ion-padding" >
-      <img [src]="apiImgUser + post?.user?.photo" routerLink="/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto" />
+    <ion-avatar slot="" class="ion-padding">
+      <img [src]="apiImgUser + post?.user?.photo"
+        routerLink="/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto" />
     </ion-avatar>
 
-    <ion-label [routerLink]="['/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto']" class="ion-justify-content-center"
-       style="display: grid; align-self: center">
+    <ion-label [routerLink]="['/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto']"
+      class="ion-justify-content-center" style="display: grid; align-self: center">
       <ng-container *ngIf="post.shared===true; else mine">
         <h3 class="
           ion-text-capitalize
@@ -13,8 +14,8 @@
           ion-justify-content-start
           ion-text-start
         " routerLinkActive="router-link-active">
-        <strong>{{ post.user.name }}</strong> shared {{post?.post?.user.name}}'s post
-      </h3>
+          <strong>{{ post.user.name }}</strong> shared {{post?.post?.user.name}}'s post
+        </h3>
       </ng-container>
       <div style="display: flex;">
         <ng-template #mine>
@@ -24,8 +25,8 @@
             ion-justify-content-start
             ion-text-start
           " routerLinkActive="router-link-active">
-          <strong>{{ post?.user?.name }}</strong>
-        </h3>
+            <strong>{{ post?.user?.name }}</strong>
+          </h3>
         </ng-template>
 
         <p style="color: #a5a5a5;">{{ post?.createdAt | date }}</p>
@@ -41,12 +42,13 @@
   <ion-row lines="none" class="ion-justify-content-center ion-margin" *ngIf="images.length > 0">
     <img [lazyLoad]="apiImg + images[0]?.image_name" />
   </ion-row>
-  <ng-container style="display: flex;flex-direction:column" *ngIf="post.shared===true" >
+  <ng-container style="display: flex;flex-direction:column" *ngIf="post.shared===true">
     <div style="display: flex; align-items:center;margin-top:-20px">
-      <ion-avatar slot="" class="ion-padding" >
-        <img [src]="apiImgUser + post.post.user.photo" routerLink="/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto" />
+      <ion-avatar slot="" class="ion-padding">
+        <img [src]="apiImgUser + post.post.user.photo"
+          routerLink="/tabs/layouts/coachprofile/{{ post.user.id || post.post.user.id }}/me/coachphoto" />
       </ion-avatar>
-        <span style="text-transform: capitalize;">
+      <span style="text-transform: capitalize;">
         {{ post.post?.user?.name }}
       </span>
     </div>
@@ -59,21 +61,14 @@
     <div style="display: flex; justify-content: center;flex-direction:column">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
-          <div
-            style="width: 350px; height: 220px"
-            id="first"
-            [style.background-size]="'cover'"
+          <div style="width: 350px; height: 220px" id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-
-            errorImage="../../../assets/imgs/150.png"
-
-          >
+            errorImage="../../../assets/imgs/150.png">
             <ion-icon></ion-icon>
           </div>
         </ng-container>
         <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-          <div
-            style="
+          <div style="
               margin-left: 15px;
               width: 350px;
               height: 220px;
@@ -81,16 +76,9 @@
               justify-content: center;
               align-items: center;
               border-radius: 10px;
-            "
-            [style.background-size]="'cover'"
-            [style.background-image]="'url(../../../assets/imgs/150.png)'"
-            errorImage="../../../assets/imgs/150.png"
-            (click)="displayVideo(file)"
-          >
-            <ion-icon
-              style="height: 50px; width: 50px"
-              name="videocam"
-            ></ion-icon>
+            " [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+            errorImage="../../../assets/imgs/150.png" (click)="displayVideo(file)">
+            <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
           </div>
         </ng-container>
       </div>
@@ -98,20 +86,17 @@
 
   </div>
 
-  <div
-  routerLink="/one-status/{{ post.post?.id ||post.id }}"
-    *ngIf="
+  <div routerLink="/one-status/{{ post.post?.id ||post.id }}" *ngIf="
       newMediaFiles.length > 0 &&
       thirdNewMediaFiles.length === 0 &&
       mediafiles.length !== 0
-    "
-  >
+    ">
     <div style="display: flex; justify-content: center">
       <div *ngFor="let file of newMediaFiles">
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div style="width: 250px" id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-            errorImage="../../../assets/imgs/150.png" >
+            errorImage="../../../assets/imgs/150.png">
             <ion-icon></ion-icon>
           </div>
         </ng-container>
@@ -135,13 +120,12 @@
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-              errorImage="../../../assets/imgs/150.png"  >
+              errorImage="../../../assets/imgs/150.png">
               <ion-icon></ion-icon>
             </div>
           </ng-container>
           <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-            <div
-              style="
+            <div style="
                 margin-left: 15px;
                 width: 50px;
                 height: 50px;
@@ -149,12 +133,8 @@
                 justify-content: center;
                 align-items: center;
                 border-radius: 10px;
-              "
-              [style.background-size]="'cover'"
-              [style.background-image]="'url(../../../assets/imgs/150.png)'"
-              errorImage="../../../assets/imgs/150.png"
-              (click)="displayVideo(mediafiles)"
-            >
+              " [style.background-size]="'cover'" [style.background-image]="'url(../../../assets/imgs/150.png)'"
+              errorImage="../../../assets/imgs/150.png" (click)="displayVideo(mediafiles)">
               <ion-icon name="videocam"></ion-icon>
             </div>
           </ng-container>
@@ -168,7 +148,7 @@
         <ng-container *ngIf="getExt(file.file_name) === 'png'">
           <div id="first" [style.background-size]="'cover'"
             [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-            errorImage="../../../assets/imgs/150.png"  >
+            errorImage="../../../assets/imgs/150.png">
             <ion-icon></ion-icon>
           </div>
         </ng-container>
@@ -188,11 +168,11 @@
         </ng-container>
       </div>
       <div class="nextContainer" style="position: relative">
-        <div *ngFor="let file of thirdNewMediaFiles" >
+        <div *ngFor="let file of thirdNewMediaFiles">
           <ng-container *ngIf="getExt(file.file_name) === 'png'">
             <div id="next" [style.background-size]="'cover'"
               [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-              errorImage="../../../assets/imgs/150.png"  >
+              errorImage="../../../assets/imgs/150.png">
               <ion-icon></ion-icon>
             </div>
           </ng-container>
@@ -204,7 +184,7 @@
             </div>
           </ng-container>
         </div>
-        <div   style="
+        <div style="
             position: absolute;
             background-color: rgba(0, 0, 0, 0.219);
             color: rgb(255, 255, 255);
@@ -227,98 +207,130 @@
   </div>
 </ion-grid>
 
-  <ion-row style="margin-top:-12px" lines="none">
-    <ion-col size="col-2">
-      <ion-chip>
-        <ng-container *ngIf="!post.shared && !post?.likedBy.includes(user?._id) || !post.post?.likedBy.includes(user?._id); else dislikedTemp">
-          <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="like(post, $event.target)" shape="round" fill="clear"
-            size="large">
-            <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle"  />
-            <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
-          </ion-button>
-        </ng-container>
-        <ng-template #dislikedTemp>
-          <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)" (click)="disLike(post, $event.target)" shape="round"
-            fill="clear" size="large">
-            <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle" />
-            <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
-          </ion-button>
-        </ng-template>
-      </ion-chip>
-    </ion-col>
-    <ion-col style="text-align: end">
-      <ion-chip>
-        <ion-button style="display: flex;align-items:center" shape="round" fill="clear" size="large">
-          <img class="iconstyle" src="../../../../assets/iconPost/icon_comment.svg" />
-          <span style="color:#7F867D;font-size:14px">{{ comments?.length }}</span>
+<ion-row style="margin-top:-12px" lines="none">
+  <ion-col size="col-2">
+    <ion-chip>
+      <ng-container
+        *ngIf="!post.shared && !post?.likedBy.includes(user?._id) || !post.post?.likedBy.includes(user?._id); else dislikedTemp">
+        <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)"
+          (click)="like(post, $event.target)" shape="round" fill="clear" size="large">
+          <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle" />
+          <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
         </ion-button>
-        <ng-container *ngIf="!bookmarked && !isBookMarked; else unbook || isBookMarked">
-          <ion-button style="display: flex;align-items:center" (click)="bookmark(post)" shape="round" fill="clear" size="large ">
-            <ion-icon  style="color:#7F867D;font-size:14px;height:20px;width:20px"
-            name="bookmark-outline">
-          </ion-icon>
-              <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb }}</span>
-          </ion-button>
-        </ng-container>
-        <ng-template #unbook>
-          <ion-button style="display: flex;align-items:center" (click)="unBookmark(post)" shape="round" fill="clear" size="large ">
-            <ion-icon  style="color:#7F867D;font-size:14px;height:20px;width:20px "
-            name="bookmark" >
-          </ion-icon>
-          <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb  }}</span>
-          </ion-button>
-        </ng-template>
-        <ion-button style="display: flex;align-items:center" (click)="share(post)" shape="round" fill="clear" size="large ">
-          <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
-          <span style="color:#7F867D;font-size:14px">{{ post?.post?.sharedeNb || post?.sharedeNb }}</span>
+      </ng-container>
+      <ng-template #dislikedTemp>
+        <ion-button style="display: flex;align-items:center" (dblclick)="showReactions($event)"
+          (click)="disLike(post, $event.target)" shape="round" fill="clear" size="large">
+          <img src="../../../../assets/iconPost/{{ post?.iconLike || post.post?.iconLike }}.svg" class="iconstyle" />
+          <span style="color:#7F867D;font-size:14px">{{ post?.likes || post.post?.likes }} </span>
         </ion-button>
-      </ion-chip>
-    </ion-col>
-    <div style="width: 100%;">
-      <div style="display: flex;align-items:center">
-        <ng-container *ngIf="showComment===false; else not" >
-          <ng-container *ngIf="comments.length>1"  style="position: relative;">
-            <p (click)="showComments()" style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D;transform:translateY(-30px)">Afficher plus de commentaires <ion-icon name="chevron-forward-outline"></ion-icon></p>
-          </ng-container>
-          <ng-container *ngIf="comments.length!==0" >
-            <div style="display: flex;align-items:center;padding-top:15px;margin-left:7px" >
-              <div style="display: flex;flex-direction:column;align-items:center">
-                <img style="width: 22px; height:22px;border-radius:50%;object-fit:cover" src={{apiImgUser+comments[0].user.photo}} alt="">
-                <span style="font-size: 12px;">{{comments[0].user.name}}</span>
-              </div>
-              <span style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px">{{comments[0].content}}</span>
-            </div>
-          </ng-container>
+      </ng-template>
+    </ion-chip>
+  </ion-col>
+  <ion-col style="text-align: end">
+    <ion-chip>
+      <ion-button style="display: flex;align-items:center" shape="round" fill="clear" size="large">
+        <img class="iconstyle" src="../../../../assets/iconPost/icon_comment.svg" />
+        <span style="color:#7F867D;font-size:14px">{{ comments?.length }}</span>
+      </ion-button>
+      <ng-container *ngIf="!bookmarked && !isBookMarked; else unbook || isBookMarked">
+        <ion-button style="display: flex;align-items:center" (click)="bookmark(post)" shape="round" fill="clear"
+          size="large ">
+          <ion-icon style="color:#7F867D;font-size:14px;height:20px;width:20px" name="bookmark-outline">
+          </ion-icon>
+          <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb }}</span>
+        </ion-button>
+      </ng-container>
+      <ng-template #unbook>
+        <ion-button style="display: flex;align-items:center" (click)="unBookmark(post)" shape="round" fill="clear"
+          size="large ">
+          <ion-icon style="color:#7F867D;font-size:14px;height:20px;width:20px " name="bookmark">
+          </ion-icon>
+          <span style="color:#7F867D;font-size:14px">{{ post?.post?.favorisNb || post?.favorisNb }}</span>
+        </ion-button>
+      </ng-template>
+      <ion-button style="display: flex;align-items:center" (click)="share(post)" shape="round" fill="clear"
+        size="large ">
+        <img class="iconstyle" src="../../../../assets/iconPost/icon_share.svg" />
+        <span style="color:#7F867D;font-size:14px">{{ post?.post?.sharedeNb || post?.sharedeNb }}</span>
+      </ion-button>
+    </ion-chip>
+  </ion-col>
+  <div style="width: 100%;">
+    <div style="display: flex;align-items:center">
+      <ng-container *ngIf="showComment===false; else not">
+        <ng-container *ngIf="comments.length>1" style="position: relative;">
+          <p (click)="showComments()"
+            style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D;transform:translateY(-30px)">
+            Afficher plus de commentaires <ion-icon name="chevron-forward-outline"></ion-icon>
+          </p>
         </ng-container>
-        <ng-template #not>
-          <p (click)="hideComments()" style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D">Afficher moins de commentaires <ion-icon name="chevron-down-outline"></ion-icon></p>
-
-        </ng-template>
-      </div>
-      <div style="margin-top: 12px ;margin-left:4px">
-        <ng-container *ngIf="showComment===true">
-          <div style="display: flex;align-items:center;margin:3px " *ngFor="let item of comments.slice().reverse()" >
+        <ng-container *ngIf="comments.length!==0">
+          <div style="display: flex;align-items:center;padding-top:15px;margin-left:7px">
             <div style="display: flex;flex-direction:column;align-items:center">
-              <img style="width: 22px; height:22px;border-radius:50%;object-fit:cover" src={{apiImgUser+item.user.photo}} alt="">
-              <span style="font-size: 12px;">{{item.user.name}}</span>
+              <img style="width: 22px; height:22px;border-radius:50%;object-fit:cover"
+                src={{apiImgUser+comments[0].user.photo}} alt="">
+              <span style="font-size: 12px;">{{comments[0].user.name}}</span>
             </div>
-            <span style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px">{{item.content}}</span>
-          </div>
+            <span
+              style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px" *ngIf="comments[0].content.indexOf('file:///storage') ===  -1" >{{comments[0].content}}</span>
+
+              <audio
+              controls
+              *ngIf="comments[0].content.indexOf('file:///storage') !==  -1"
+              src="{{comments[0].content}}">
+                  Your browser does not support the
+                  <code>audio</code> element.
+          </audio>
+            </div>
         </ng-container>
+      </ng-container>
+      <ng-template #not>
+        <p (click)="hideComments()"
+          style="display:flex;align-items:center;font-size:12px;position:absolute;right:20px;color:#7F867D">Afficher
+          moins de commentaires <ion-icon name="chevron-down-outline"></ion-icon>
+        </p>
+
+      </ng-template>
+    </div>
+    <div style="margin-top: 12px ;margin-left:4px">
+      <ng-container *ngIf="showComment===true">
+        <div style="display: flex;align-items:center;margin:3px " *ngFor="let item of comments.slice().reverse()">
+          <div style="display: flex;flex-direction:column;align-items:center">
+            <img style="width: 22px; height:22px;border-radius:50%;object-fit:cover" src={{apiImgUser+item.user.photo}}
+              alt="">
+            <span style="font-size: 12px;">{{item.user.name}}</span>
+          </div>
+          <span
+            style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px">{{item.content}}</span>
+        </div>
+      </ng-container>
+    </div>
+    <div
+      style="display: flex;justify-content:space-between;align-items:center; background-color:#EEEFEF; border-radius:10px;margin:10px 3px 20px 3px">
+      <div style="display: flex;align-items:center;padding:0px 10px">
+        <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover" src={{apiImgUser+user.photo}}
+          routerLink="/tabs/layouts/coachprofile/coachphoto" />
+        <input placeholder="Ecrivez un commentaire ..." [(ngModel)]="comment.content"
+          style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px"
+          type="text">
       </div>
-      <div style="display: flex;justify-content:space-between;align-items:center; background-color:#EEEFEF; border-radius:10px;margin:10px 3px 20px 3px">
-        <div style="display: flex;align-items:center;padding:0px 10px">
-          <img style="width: 30px; height:30px;border-radius:50%;object-fit:cover"  src={{apiImgUser+user.photo}} routerLink="/tabs/layouts/coachprofile/coachphoto" />
-          <input placeholder="Ecrivez un commentaire ..." [(ngModel)]="comment.content"  style="margin-left:5px;font-size:15px;border: none; background-color:#EEEFEF;margin-right:10px;padding:10px" type="text">
-        </div>
-        <div style="display: flex;">
-          <ion-icon style="width: 20px;height:20px;margin-right:5px;color:gray"  (click)="sendComment(post)" name="send"></ion-icon>
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg"  alt="">
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
-          <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/mic.svg" alt="">
-        </div>
+      <div style="display: flex;">
+        <ion-icon style="width: 20px;height:20px;margin-right:5px;color:gray" (click)="sendComment(post)" name="send">
+        </ion-icon>
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" alt="">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
+<!--
+     <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
+        <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
+
+-->
+        <img *ngIf="!isRecording" (click)="recordAudio()" style="width: 20px;height:20px;margin-right:5px"
+          src="../../../assets/svg/mic.svg" alt="">
+        <img style="width: 22px;height:22px;margin-right:5px;border-radius:50px; color:red;" src="../../../../assets/icon/sound-recorder-icon.png"
+          *ngIf="isRecording" (click)="stopRecording() ; isRecording = false" />
+
       </div>
     </div>
-  </ion-row>
+  </div>
+</ion-row>

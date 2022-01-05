@@ -85,17 +85,12 @@ export class ShowEventPage implements OnInit {
   getOneEvent() {
     this.calendarService.getEventbyID(this.id).subscribe(async res => {
       this.event = await res[0];
-      console.log(this.event);
-
     });
   }
   async addImage(source: CameraSource) {
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
-
     this.getFormData(this.event, fd);
-    console.log(this.event);
-
     this.calendarService.updateCoverEvent(fd).subscribe(async (res) => {
       await this.getOneEvent();
     });
