@@ -5,7 +5,8 @@
     <ion-slides style="margin: 20px 0 0 0;height:110px;width:90%" pager="false" [options]="slideOpts">
       <ion-slide *ngFor="let item of page"
         style="background-color:rgb(230, 230, 230);display:flex;flex-direction:column;justify-content:space-between;padding:10px;border-radius:20px;">
-        <div  routerLink="/community/show-page/{{item._id}}" style="display: flex;align-items:center;width:100%;padding:0 12px">
+        <div routerLink="/community/show-page/{{item._id}}"
+          style="display: flex;align-items:center;width:100%;padding:0 12px">
           <span style="margin-right: 10px;">LOGO</span>
           <span> {{item?.name}}</span>
         </div>
@@ -14,13 +15,15 @@
             style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px">Boîte
             de reception</span>
 
-            <div style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px" (click)="getAllfriends()">
-              <ion-label>Inviter</ion-label>
-              <ion-select [(ngModel)]="selectedFriends" multiple="true" ok-text="okey!" cancel-text="Nah">
-                <ion-select-option *ngFor="let friend of friends" value="{{friend?.userFollowed._id}}">
-                  {{friend?.userFollowed.name}}</ion-select-option>
-              </ion-select>
-            </div>
+          <div
+            style="background-color: rgb(255, 255, 255);padding:5px;border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px"
+            (click)="getAllfriends()">
+            <ion-label>Inviter</ion-label>
+            <ion-select [(ngModel)]="selectedFriends" multiple="true" ok-text="okey!" cancel-text="Nah">
+              <ion-select-option *ngFor="let friend of friends" value="{{friend?.userFollowed._id}}">
+                {{friend?.userFollowed.name}}</ion-select-option>
+            </ion-select>
+          </div>
         </div>
       </ion-slide>
     </ion-slides>
@@ -41,8 +44,8 @@
           <img
             style="width: 25px;height:25px;padding:2px;background-color: rgb(255, 255, 255);border-radius:5px;box-shadow:3px 3px 3px rgb(116, 115, 115);font-size:15px"
             src="../../assets/svg/share-event.svg" alt="">
-          <div  style="position:relative">
-            <div  (click)="openDropDown()" class="threePoints">
+          <div style="position:relative">
+            <div (click)="openDropDown()" class="threePoints">
               <ion-icon class="button" name="ellipsis-horizontal"
                 style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
             </div>
@@ -52,8 +55,8 @@
                 <span style="font-size: 15px;">Enregistrer</span>
                 <ion-item (click)="getAllfriends()">
                   <ion-label>Inviter des amis</ion-label>
-                  <ion-select [(ngModel)]="selectedFriends" placeholder="{{selectedFriends}}" (ionChange)="submitInvitations()"
-                    multiple="true" ok-text="okey!" cancel-text="Nah">
+                  <ion-select [(ngModel)]="selectedFriends" placeholder="{{selectedFriends}}"
+                    (ionChange)="submitInvitations()" multiple="true" ok-text="okey!" cancel-text="Nah">
                     <ion-select-option *ngFor="let friend of friends" value="{{friend?.userFollowed._id}}">
                       {{friend?.userFollowed.name}}
                     </ion-select-option>

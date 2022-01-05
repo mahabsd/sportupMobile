@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from '../Shared/Auth/auth.service';
 import { AdultsNotAllowedGuard } from '../shared/Guard/adults-not-allowed.guard';
 import { RolesGuardGuard } from '../shared/Guard/roles-guard.guard';
+import {  } from './boost-pub/boost-pub.module';
 
 const routes: Routes = [
   {
@@ -288,6 +289,10 @@ const routes: Routes = [
         path: 'publicity',
         loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
       },
+      {
+        path: 'boost-pub',
+        loadChildren: () => import('./boost-pub/boost-pub.module').then( m => m.BoostPubPageModule)
+      },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -295,6 +300,11 @@ const routes: Routes = [
     path: 'publicity',
     loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
   },
+  {
+    path: 'boost-pub',
+    loadChildren: () => import('./boost-pub/boost-pub.module').then( m => m.BoostPubPageModule)
+  },
+
 
 
 
