@@ -54,6 +54,8 @@ export class CoachphotoPage implements OnInit {
   ngOnInit() {
   //  this.getMe();
     this.postsOwnerId = this.postService.postsOwnerId;
+    console.log( this.postsOwnerId);
+
     this.getAllPosts();
   }
 

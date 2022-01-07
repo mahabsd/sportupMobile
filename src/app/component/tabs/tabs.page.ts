@@ -26,7 +26,7 @@ export class TabsPage implements OnInit {
   userid;
   subscription: Subscription;
   pagetype: string;
-  urlpage = this.router.url.split('/', 6);
+  urlpage = this.router.url.split('/', 6)[4];
   notseenMessagesNumber: any = 0;
   notifications: any;
   notifLength: any = 0;
