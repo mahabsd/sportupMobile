@@ -138,19 +138,19 @@
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Lieu :</span>
-            <span>Adresse</span>
+            <span>{{page?.address}}</span>
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Contact :</span>
-            <span>88 888 888</span>
+            <span>{{page?.phone}}</span>
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Site web :</span>
-            <span>www.sportup.com</span>
+            <span>{{page?.webSite}}</span>
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Email :</span>
-            <span>sportup@gmail.com</span>
+            <span>{{page?.email}}</span>
           </div>
         </div>
         <ng-container *ngIf="more===false;else showmore">

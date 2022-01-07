@@ -9,6 +9,8 @@ import { PostService } from 'src/app/Shared/Service/post.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
 import { ModalShearePage } from '../../home/modal-sheare/modal-sheare.page';
+import { share } from 'rxjs/operators';
+import { forkJoin, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-show-page',
@@ -70,6 +72,9 @@ export class ShowPagePage implements OnInit {
   update: any;
   user: any;
   posts: any;
+  pages: any = 1;
+  mediafiles: any;
+  images: any;
   constructor(private activatedRoute: ActivatedRoute,
     public pageService: PageService,
     private userservice: UserService,
@@ -79,6 +84,7 @@ export class ShowPagePage implements OnInit {
     private followerService: FollowerService,
     private modalController: ModalController,
     private postService: PostService,
+    private userService: UserService
   ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
@@ -102,6 +108,7 @@ export class ShowPagePage implements OnInit {
     this.getMe();
     this.getOnePage();
     this.getAllPosts();
+    this.getAllImagesPosts();
   }
 
   openDropDown() {
@@ -227,8 +234,33 @@ export class ShowPagePage implements OnInit {
   getAllPosts() {
     this.postService.getAllPostsByPage(this.id).subscribe(res=>{
       this.posts = res.data.data;
-      console.log(this.posts);
     } );
+  }
+  getpostFiles(post) {
+    forkJoin({
+      mediafiles: this.postService.getPost(post._id),
+    }).subscribe(({ mediafiles }) => {
+      this.mediafiles = mediafiles.mediafiles;
+      this.mediafiles.forEach(element => {
+        this.images.push(element);
+      });
+    });
+  }
+
+  getAllImagesPosts(event?) {
+    this.userService.getMe().subscribe(res => {
+      this.user = res.data.data;
+      this.postService.getAllPostsByPage(this.id).pipe(share()).subscribe(res => {
+        this.posts = res.data.data;
+        this.posts.forEach(post => {
+          this.getpostFiles(post);
+        });
+        if (event) {
+          event.target.complete();
+        }
+      });
+    });
+
   }
 }
 
