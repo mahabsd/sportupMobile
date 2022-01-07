@@ -22,7 +22,7 @@ export class PageService {
   }
 
   updatepage(page) {
-    return this.apiService.patch(`${UtilsService.apiPage}${page._id}`, page);
+    return this.apiService.put(`${UtilsService.apiPage}/${page._id}`, page);
   }
 
   deletepage(id: any) {

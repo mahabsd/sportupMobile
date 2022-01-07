@@ -108,19 +108,19 @@
       <h3> 300 Participants</h3>
       <div>
         <h6>Evennement de: &nbsp;</h6>
-        <input class="input" placeholder=" {{event?.activity}}" />
+        <input [(ngModel)]="event.activity"  class="input" placeholder=" {{event?.activity}}" />
       </div>
       <div>
         <h6>Lieu: &nbsp; </h6>
-        <input class="input" placeholder="Adresse evennement" />
+        <input [(ngModel)]="event.lieu"  class="input" placeholder="Adresse evennement" />
       </div>
       <div>
         <h6>Date de début: &nbsp; </h6>
-        <input class="input" type="date" placeholder="{{event?.startTime   | date:'medium'}}" />
+        <input [(ngModel)]="event.startTime" class="input" type="date" placeholder="{{event?.startTime   | date:'medium'}}" />
       </div>
       <div>
         <h6>Date de fin: &nbsp; </h6>
-        <input class="input" type="date" placeholder="{{event?.endTime   | date:'medium' }}" />
+        <input [(ngModel)]="event.endTime" class="input" type="date" placeholder="{{event?.endTime   | date:'medium' }}" />
       </div>
 
       <div>
@@ -187,10 +187,13 @@
       </div>
       <div>
         <h6>Description: &nbsp; </h6>
-        <input class="input" placeholder="{{event?.description}}"/>
+        <input class="input" [(ngModel)]="event.description" placeholder="{{event?.description}}"/>
       </div>
     </div>
-
+    <div *ngIf="update" style="display: flex;justify-content:flex-end ">
+      <img (click)="updateEvent()" style="width: 30px;height:30px;margin: 20px 10px 0 0;" src="../../../../assets/svg/green-tick.svg" alt="">
+      <img (click)="update = false" style="width: 30px;height:30px;margin: 20px 10px 0 0;" src="../../../../assets/svg/red-x.svg" alt="">
+    </div>
   </div>
 
 </ion-content>

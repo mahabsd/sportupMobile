@@ -85,17 +85,12 @@ export class ShowEventPage implements OnInit {
   getOneEvent() {
     this.calendarService.getEventbyID(this.id).subscribe(async res => {
       this.event = await res[0];
-      console.log(this.event);
-
     });
   }
   async addImage(source: CameraSource) {
     const fd = new FormData();
     await this.imageService.readyImage(source, fd);
-
     this.getFormData(this.event, fd);
-    console.log(this.event);
-
     this.calendarService.updateCoverEvent(fd).subscribe(async (res) => {
       await this.getOneEvent();
     });
@@ -137,5 +132,10 @@ export class ShowEventPage implements OnInit {
     .subscribe(res => {
       this.friends = res.data.data;
      } );
+  }
+  updateEvent() {
+    console.log(this.event);
+
+    this.calendarService.updateEvent(this.event).subscribe(res => console.log(res));
   }
 }

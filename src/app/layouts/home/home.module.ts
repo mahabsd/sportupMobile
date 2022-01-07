@@ -13,6 +13,10 @@ import { CommentsPageModule } from './comments/comments.module';
 import { Attributes, IntersectionObserverHooks, LazyLoadImageModule, LAZYLOAD_IMAGE_HOOKS } from 'ng-lazyload-image';
 import { SharedModule } from '../../shared/modules/shared.module';
 import { switchMap } from 'rxjs/operators';
+import { File } from '@ionic-native/file/ngx';
+import { Media, MediaObject } from '@ionic-native/media/ngx';
+import { MediaCapture } from '@awesome-cordova-plugins/media-capture/ngx';
+
 @Injectable()
 export class LazyLoadImageHooks extends IntersectionObserverHooks {
   toast: any;
@@ -48,12 +52,14 @@ export class LazyLoadImageHooks extends IntersectionObserverHooks {
     CommentsPageModule,
     PostDisplayModule,
     SharedModule,
+
     ],
 
 
   declarations: [HomePage,StatusComponent],
   exports: [HomePage,StatusComponent],
-  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks }],
+  providers: [{ provide: LAZYLOAD_IMAGE_HOOKS, useClass: LazyLoadImageHooks },File,
+    Media, MediaCapture],
 
 })
 export class HomePageModule { }

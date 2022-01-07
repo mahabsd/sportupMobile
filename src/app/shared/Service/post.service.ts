@@ -14,7 +14,6 @@ export class PostService {
     private storage: StorageService
   ) {}
   createPost(post): Observable<Post> {
-    console.log(post);
     return this.utilsService
       .post(UtilsService.apiPost, post)
       .pipe(map((res) => res));
@@ -78,5 +77,13 @@ export class PostService {
   getAllfollowingPosts(page, iduser) {
     return this.utilsService.get(`${UtilsService.apiPost}following/${iduser}?page=${page}&limit=5`).pipe(map((res) => res));
   }
+  getAllPostsByPage(id?): Observable<any> {
+    console.log(id);
 
+    return this.utilsService
+      .get(`${UtilsService.apiPost}?pageId=${id}`)
+      .pipe(
+        map((res) => {return res;})
+      );
+  }
 }

@@ -27,6 +27,9 @@ export class CommentService {
   deleteComment(id: any) {
     return this.apiService.delete(`${UtilsService.apiComment}`+id);
   }
+  recordAudio(post, data){
+    return this.apiService.post(`${UtilsService.apiPost}${post}/comments/audioComment`, data).pipe(map((res) => res));
+  }
 }
 
 

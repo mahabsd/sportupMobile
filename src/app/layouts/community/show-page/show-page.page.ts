@@ -1,12 +1,14 @@
 import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CameraSource } from '@capacitor/core';
-import { ActionSheetController } from '@ionic/angular';
+import { ActionSheetController, ModalController } from '@ionic/angular';
 import { FollowerService } from 'src/app/shared/Service/follower.service';
 import { ImageService } from 'src/app/Shared/Service/image.service';
 import { PageService } from 'src/app/shared/Service/page.service';
+import { PostService } from 'src/app/Shared/Service/post.service';
 import { UserService } from 'src/app/Shared/Service/user.service';
 import { environment } from 'src/environments/environment';
+import { ModalShearePage } from '../../home/modal-sheare/modal-sheare.page';
 
 @Component({
   selector: 'app-show-page',
@@ -66,6 +68,8 @@ export class ShowPagePage implements OnInit {
   selectedFriends: any;
   updateImage: any;
   update: any;
+  user: any;
+  posts: any;
   constructor(private activatedRoute: ActivatedRoute,
     public pageService: PageService,
     private userservice: UserService,
@@ -73,7 +77,9 @@ export class ShowPagePage implements OnInit {
     private elemRef: ElementRef,
     private action: ActionSheetController,
     private followerService: FollowerService,
-    ) { }
+    private modalController: ModalController,
+    private postService: PostService,
+  ) { }
   @HostListener('click', ['$event.target'])
   onClickOutside(targetElement) {
     const target = this.elemRef.nativeElement.querySelector('div');
@@ -95,6 +101,7 @@ export class ShowPagePage implements OnInit {
     this.update = false;
     this.getMe();
     this.getOnePage();
+    this.getAllPosts();
   }
 
   openDropDown() {
@@ -129,6 +136,7 @@ export class ShowPagePage implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.userid = res.data.data._id;
+      this.user = res.data.data;
     });
   }
   async addImage(source: CameraSource) {
@@ -140,7 +148,7 @@ export class ShowPagePage implements OnInit {
 
     this.pageService.updateCoverPage(fd).subscribe(async (res) => {
       await this.getOnePage();
-     });
+    });
   }
   async selectImageSource() {
     const buttons = [
@@ -171,7 +179,7 @@ export class ShowPagePage implements OnInit {
     this.getFormData(this.page, fd);
     this.pageService.updateProfileImagePage(fd).subscribe(async (res) => {
       await this.getOnePage();
-     });
+    });
   }
   async selectProfileSource() {
     const buttons = [
@@ -194,13 +202,33 @@ export class ShowPagePage implements OnInit {
 
   getAllfriends() {
     this.followerService.getFollowers(this.userid)
-    .subscribe(res => {
-      this.friends = res.data.data;
-     } );
+      .subscribe(res => {
+        this.friends = res.data.data;
+      });
   }
   onClick(selectedFriends) {
     console.log(selectedFriends);
   }
-
+  updatePage() {
+    this.pageService.updatepage(this.page).subscribe(res => console.log(res));
+  }
+  async openShareModal() {
+    const modal = await this.modalController.create({
+      component: ModalShearePage,
+      componentProps: {
+        user: this.user,
+        page: this.page._id
+      },
+    });
+    await modal.present();
+    await modal.onWillDismiss().then((result) => {
+    });
+  }
+  getAllPosts() {
+    this.postService.getAllPostsByPage(this.id).subscribe(res=>{
+      this.posts = res.data.data;
+      console.log(this.posts);
+    } );
+  }
 }
 
