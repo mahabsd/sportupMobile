@@ -17,6 +17,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular/cli": "^12.2.14",
     "@angular/common": "~12.0.1",
     "@angular/core": "~12.0.1",
     "@angular/forms": "~12.0.1",
@@ -54,6 +55,8 @@
     "cordova-android": "9.1.0",
     "cordova-plugin-multiple-documents-picker": "^1.0.0",
     "cordova-plugin-video-player": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
+    "cordova-plugins": "^1.0.0",
+    "cordova-res": "^0.15.4",
     "flag-icon-css": "^3.5.0",
     "google-libphonenumber": "^3.2.24",
     "ion-intl-tel-input": "^1.0.5",
