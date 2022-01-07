@@ -18,7 +18,7 @@ const { Camera } = Plugins;
 })
 export class ModalShearePage implements OnInit {
   @Input() user: User;
- 
+  @Input() page;
   // user: User = new User();
   post: Post = new Post();
   postForm: FormGroup;
@@ -44,7 +44,7 @@ export class ModalShearePage implements OnInit {
     private Renderer: Renderer2,
   ) { }
   ngOnInit() {
- 
+
     this.loadImage();
 
     this.postForm = new FormGroup({
@@ -124,7 +124,6 @@ export class ModalShearePage implements OnInit {
   }
 
   createPost() {
-    console.log(this.filesToUpload);
     const fd = new FormData();
     if (this.filesToUpload) {
 
@@ -137,6 +136,9 @@ export class ModalShearePage implements OnInit {
 
       fd.append('content', this.post?.content);
       fd.append('type', 'user');
+     if (this.page) {
+      fd.append('pageId', this.page);
+     }
 
     }
 
@@ -150,7 +152,6 @@ export class ModalShearePage implements OnInit {
 
       this.uploadFiles(fd);
     } else {
-      console.log(fd);
 
       this.postService.createPost(fd).subscribe((res) => {
         this.presentToast('Fichiers Ajoutées');
@@ -170,7 +171,6 @@ export class ModalShearePage implements OnInit {
   loadImage() {
     this.postService.getAllPosts().subscribe((res) => {
       this.posts = res;
-      console.log(this.posts);
     });
   }
   deleteImage(post, index) {
@@ -237,8 +237,6 @@ export class ModalShearePage implements OnInit {
   }
 
   async addImage(source: CameraSource) {
-    console.log('addimage');
-
     const image = await Camera.getPhoto({
       quality: 60,
       allowEditing: true,
@@ -277,7 +275,6 @@ export class ModalShearePage implements OnInit {
       formData.append('files', file);
     }
     this.postService.uploadImageFile(formData).subscribe((res) => {
-      console.log(res);
       this.presentToast('Fichiers Ajoutées');
       this.closeModal();
       window.location.reload();
@@ -288,17 +285,13 @@ export class ModalShearePage implements OnInit {
     this.selectedFiles = event.target.files;
     this.selectedPreviews = [];
     for (const file of this.selectedFiles) {
-      console.log('tpye' + file.type);
-
       if (file.type === 'image/jpeg') {
         const reader = new FileReader();
         reader.onload = e => this.selectedPreviews.push(reader.result);
-
         reader.readAsDataURL(file);
       }
       else if (file.type === "video/mp4") {
         this.selectedPreviews.push('../../../assets/imgs/150.png');
-
       }
     }
 
