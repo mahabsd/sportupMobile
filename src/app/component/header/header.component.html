@@ -6,30 +6,28 @@
       <ion-icon *ngIf="!isModal && BoiteRecepetionKids" color="light" routerLink="/tabsKids/accueil"
         name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/tabs/home"
-        name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && BoiteRecepetion" color="light" routerLink="/tabs/home" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="isKidPlanning" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
         name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="isPages" color="light" routerLink="/tabs/community"
-        name="chevron-back-outline">
+      <ion-icon *ngIf="isPages" color="light" routerLink="/tabs/community" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="isPage" color="light" routerLink="/tabs/community"
-        name="chevron-back-outline">
+      <ion-icon *ngIf="isPage" color="light" routerLink="/tabs/community" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="isPublicity" color="light" routerLink="/menu/tabs/home"
-        name="chevron-back-outline">
-      </ion-icon><ion-icon *ngIf="isBoostPub" color="light" routerLink="/tabs/layouts/publicity"
-      name="chevron-back-outline">
-    </ion-icon>
+      <ion-icon *ngIf="isPublicity" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="isBoostPub" color="light" routerLink="/tabs/layouts/publicity" name="chevron-back-outline">
+      </ion-icon>
+      <ion-icon *ngIf="isReport" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
+      </ion-icon>
 
-      <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}"
-        name="chevron-back-outline">
+      <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/tabs/home" name="chevron-back-outline">
       </ion-icon>
-      <ion-icon *ngIf="!isModal && ChatKids" color="light" routerLink="/tabsKids/boitereceptionkids" name="chevron-back-outline">
+      <ion-icon *ngIf="!isModal && ChatKids" color="light" routerLink="/tabsKids/boitereceptionkids"
+        name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && isPalmares" color="light" (click)="backButtonPalmares()" name="chevron-back-outline">
       </ion-icon>
@@ -52,8 +50,7 @@
         <img src="../../assets/icon/icon_scan.png" class="image" alt="">
       </ion-button>
       <ion-buttons slot="start">
-        <ion-icon *ngIf="isParam" color="light" routerLink="/parametre"
-          name="chevron-back-outline">
+        <ion-icon *ngIf="isParam" color="light" routerLink="/parametre" name="chevron-back-outline">
         </ion-icon>
       </ion-buttons>
       <ion-buttons slot="start">
@@ -66,14 +63,13 @@
           name="chevron-back-outline">
         </ion-icon>
       </ion-buttons>
-      <div *ngIf="isSaved"  class="savedPosts">
-        <ion-icon  color="light"
-        name="bookmark-outline">
-      </ion-icon>
+      <div *ngIf="isSaved" class="savedPosts">
+        <ion-icon color="light" name="bookmark-outline">
+        </ion-icon>
         Enregistré
       </div>
       <ion-buttons *ngIf="isActivityKids" (click)="closeModal()" slot="start">
-        <ion-icon  color="light" name="chevron-back-outline"></ion-icon>
+        <ion-icon color="light" name="chevron-back-outline"></ion-icon>
       </ion-buttons>
 
 
@@ -84,7 +80,7 @@
         </ion-button>
       </ion-buttons>
     </ion-buttons>
-    <ion-buttons slot="end"  (click)="openSearch()">
+    <ion-buttons slot="end" (click)="openSearch()">
       <ion-button shape="rounded" routerLinkActive="router-link-active">
         <img style="width: 20px;height:20px" src="../../assets/svg/search.svg" alt="">
       </ion-button>
@@ -114,22 +110,24 @@
     </ion-buttons>
     <ion-title color="light" *ngIf="isKid" class="ion-text-center">
       Accueil</ion-title>
-      <ion-title color="light" *ngIf="isWelcome" class="ion-text-center">
-        Bienvenue</ion-title>
-      <ion-title color="light" *ngIf="isPages" class="ion-text-center">
-        Pages</ion-title>
-        <ion-title color="light" *ngIf="isPage" class="ion-text-center">
-          Page</ion-title>
-      <ion-title color="light" *ngIf="isStatus" class="ion-text-center">
-        Post</ion-title>
+    <ion-title color="light" *ngIf="isWelcome" class="ion-text-center">
+      Bienvenue</ion-title>
+    <ion-title color="light" *ngIf="isPages" class="ion-text-center">
+      Pages</ion-title>
+    <ion-title color="light" *ngIf="isPage" class="ion-text-center">
+      Page</ion-title>
+    <ion-title color="light" *ngIf="isStatus" class="ion-text-center">
+      Post</ion-title>
     <ion-title color="light" *ngIf="BoiteRecepetion" class="ion-text-center">
       Boite réception</ion-title>
-      <ion-title color="light" *ngIf="isKidPlanning" class="ion-text-center">
-        Calendrier</ion-title>
-        <ion-title color="light" *ngIf="isPublicity" class="ion-text-center">
-          Espace Publicité</ion-title>
-          <ion-title color="light" *ngIf="isBoostPub" class="ion-text-center">
-            Booster la publication</ion-title>
+    <ion-title color="light" *ngIf="isKidPlanning" class="ion-text-center">
+      Calendrier</ion-title>
+    <ion-title color="light" *ngIf="isPublicity" class="ion-text-center">
+      Espace Publicité</ion-title>
+    <ion-title color="light" *ngIf="isReport" class="ion-text-center">
+      Signaler</ion-title>
+    <ion-title color="light" *ngIf="isBoostPub" class="ion-text-center">
+      Booster la publication</ion-title>
     <ion-title color="light" class="ion-text-center title-font">
       {{title}}</ion-title>
   </ion-toolbar>
