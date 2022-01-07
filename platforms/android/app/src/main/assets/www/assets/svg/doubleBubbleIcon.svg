@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="21.694" height="21.471" viewBox="0 0 21.694 21.471">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" y1="1" x2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4b5149"/>
+      <stop offset="0.422" stop-color="#286029"/>
+      <stop offset="0.994" stop-color="#8ab211"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.148" y1="0.855" x2="0.852" y2="0.145" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="user_story" data-name="user story" transform="translate(-2433.17 -1401.909)">
+    <g id="Groupe_4553" data-name="Groupe 4553">
+      <g id="Groupe_4552" data-name="Groupe 4552">
+        <g id="Groupe_4551" data-name="Groupe 4551">
+          <g id="Groupe_4550" data-name="Groupe 4550">
+            <g id="Groupe_4546" data-name="Groupe 4546">
+              <ellipse id="Ellipse_1186" data-name="Ellipse 1186" cx="9.085" cy="8.992" rx="9.085" ry="8.992" transform="translate(2433.17 1401.909)" fill="#fff"/>
+              <ellipse id="Ellipse_1187" data-name="Ellipse 1187" cx="8.528" cy="8.44" rx="8.528" ry="8.44" transform="translate(2433.727 1402.46)" fill="url(#linear-gradient)"/>
+            </g>
+            <g id="Groupe_4549" data-name="Groupe 4549">
+              <ellipse id="Ellipse_1188" data-name="Ellipse 1188" cx="9.085" cy="8.992" rx="9.085" ry="8.992" transform="translate(2436.695 1405.397)" fill="#fff"/>
+              <ellipse id="Ellipse_1189" data-name="Ellipse 1189" cx="8.528" cy="8.44" rx="8.528" ry="8.44" transform="translate(2437.251 1405.948)" fill="url(#linear-gradient-2)"/>
+              <g id="Groupe_4548" data-name="Groupe 4548">
+                <g id="Groupe_4547" data-name="Groupe 4547">
+                  <path id="Tracé_6212" data-name="Tracé 6212" d="M2448.514,1411.032a2.735,2.735,0,1,1-2.735-2.706A2.721,2.721,0,0,1,2448.514,1411.032Z" fill="#fff"/>
+                  <path id="Tracé_6213" data-name="Tracé 6213" d="M2446.255,1415.15h-.951a5.231,5.231,0,0,0-4.585,2.7,6.217,6.217,0,0,0,10.12,0A5.229,5.229,0,0,0,2446.255,1415.15Z" fill="#fff"/>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

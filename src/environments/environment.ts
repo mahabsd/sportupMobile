@@ -7,7 +7,7 @@ export const environment = {
   apiUrl: 'http://localhost:4112/api/v1/',
   //  apiUrl: 'http://192.168.1.3:4112/api/v1/',
   // apiImg: 'http://9db908ef441a.ngrok.io/img/',
-  apiImg: 'http://localhost:4112/img/',
+  apiImg: 'http://192.168.1.21:4112/img/',
   token: 'token',
   currentUser: 'currentUser',
   idUser: 'id',

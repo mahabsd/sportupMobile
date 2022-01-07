@@ -71,9 +71,9 @@ export class CoachprofilePage implements OnInit {
     this.idprofilePassed = this.activatedRoute.snapshot.params.id;
     this.type = this.activatedRoute.snapshot.params.type;
     this.getMe();
+    this.publiations();
     this.getUserByid();
     this.getfollow();
-    this.publiations();
     this.getfollowers();
 
   }
@@ -141,7 +141,7 @@ export class CoachprofilePage implements OnInit {
     );
   }
   publiations() {
-    this.userId = this.router.url.slice(32, 56);
+    this.userId = this.activatedRoute.snapshot.params.id;
     this.postService.postsOwner(this.userId);
   }
   getfollowers() {

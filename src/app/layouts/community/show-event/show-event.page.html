@@ -79,7 +79,7 @@
       </div>
       <div>
         <h6>Lieu: &nbsp; </h6>
-        <span> Adresse evennement</span>
+        <span> {{event?.lieu}}</span>
       </div>
       <div>
         <h6>Date de début: &nbsp; </h6>
@@ -89,10 +89,13 @@
         <h6>Date de fin: &nbsp; </h6>
         <span> {{event?.endTime | date:'medium' }}</span>
       </div>
+   <!--
       <div>
         <h6>Durée: &nbsp; </h6>
         <span> heures</span>
       </div>
+   -->
+
       <div>
         <h6>Evennement public: &nbsp; </h6>
         <span *ngIf="event?.confidentiality === 'public'"> tout le monde peut participer</span>

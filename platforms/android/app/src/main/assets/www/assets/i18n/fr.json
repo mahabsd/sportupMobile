@@ -1,0 +1,25 @@
+{
+    "welcomeMessage": "Thanks for joining, {{ name }}! It's great to have you!",
+    "home": {
+        "tout": "tout",
+        "favoris": "favoris",
+        "abonnement": "abonnement"
+      },
+
+      "login":{
+        "oublie":"Mot de passe oublié",
+        "enfants": "Espace Anfant"
+      },
+      "settings":{
+        "language":"Changer Language",
+        "enfants": "Espace Anfant"
+      },
+      "profile":{
+        "photo":"Photo",
+        "publication": "Publication",
+        "calendrier": "Calendrier",
+        "palmares": "Palmarès",
+        "abonnees": "Abonnees",
+        "abonnement": "Abonnement"
+      }
+  }
