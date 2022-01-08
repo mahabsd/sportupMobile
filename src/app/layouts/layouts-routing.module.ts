@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthService } from '../Shared/Auth/auth.service';
 import { AdultsNotAllowedGuard } from '../shared/Guard/adults-not-allowed.guard';
 import { RolesGuardGuard } from '../shared/Guard/roles-guard.guard';
-import {  } from './boost-pub/boost-pub.module';
+import { } from './boost-pub/boost-pub.module';
 
 const routes: Routes = [
   {
@@ -11,7 +11,7 @@ const routes: Routes = [
     children: [
       {
         path: 'profil/:id/:typepage',
-        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule), canActivate:[RolesGuardGuard]
+        loadChildren: () => import('./profil/profil.module').then(m => m.ProfilPageModule), canActivate: [RolesGuardGuard]
       },
       {
         path: 'profil-kid/:id',
@@ -20,7 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'apropos',
-        loadChildren: () => import('./apropos/apropos.module').then(m => m.AproposPageModule),  canActivate:[RolesGuardGuard]
+        loadChildren: () => import('./apropos/apropos.module').then(m => m.AproposPageModule), canActivate: [RolesGuardGuard]
 
       },
       {
@@ -37,25 +37,25 @@ const routes: Routes = [
       {
         path: 'boitereception',
         loadChildren: () => import('./boite-reception/boite-reception.module').then(m => m.BoiteReceptionPageModule),
-         canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
 
       },
       {
         path: 'chat/:id',
         loadChildren: () => import('./boite-reception/chat/chat.module').then(m => m.ChatPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
 
       {
         path: 'chatkids/:id',
         loadChildren: () => import('./kids/boite-reception/chatkids/chatkids.module').then(m => m.ChatkidsPageModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
 
       },
       {
         path: 'maps',
         loadChildren: () => import('./maps/maps.module').then(m => m.MapsPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'parametre',
@@ -65,17 +65,17 @@ const routes: Routes = [
       {
         path: 'abonnerinviteramis',
         loadChildren: () => import('./Config/abonnerinviteramis/abonnerinviteramis.module').then(m => m.AbonnerinviteramisPageModule),
-       // canActivate:[RolesGuardGuard]
+        // canActivate:[RolesGuardGuard]
       },
       {
         path: 'updateprofil',
         loadChildren: () => import('./Config/updateprofil/updateprofil.module').then(m => m.UpdateprofilPageModule),
-      //  canActivate:[RolesGuardGuard]
+        //  canActivate:[RolesGuardGuard]
       },
       {
         path: 'securiteconnexion',
         loadChildren: () => import('./Config/securiteconnexion/securiteconnexion.module').then(m => m.SecuriteconnexionPageModule),
-       // canActivate:[RolesGuardGuard]
+        // canActivate:[RolesGuardGuard]
       },
       {
         path: 'langue',
@@ -84,19 +84,19 @@ const routes: Routes = [
       {
         path: 'historiquepersonnel',
         loadChildren: () => import('./Config/historiquepersonnel/historiquepersonnel.module').then(m => m.HistoriquepersonnelPageModule),
-       // canActivate:[RolesGuardGuard]
+        // canActivate:[RolesGuardGuard]
       },
 
 
       {
         path: 'contact',
         loadChildren: () => import('./Config/contact/contact.module').then(m => m.ContactPageModule),
-       // canActivate:[RolesGuardGuard]
+        // canActivate:[RolesGuardGuard]
       },
       {
         path: 'help',
         loadChildren: () => import('./Config/help-page/help-page.module').then(m => m.HelpPagePageModule),
-       // canActivate:[RolesGuardGuard]
+        // canActivate:[RolesGuardGuard]
       },
       {
         path: 'desactivermoncompte',
@@ -105,28 +105,28 @@ const routes: Routes = [
       {
         path: 'calendar',
         loadChildren: () => import('./Planing/calendar/calendar.module').then(m => m.CalendarPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'statistiqueuser',
         loadChildren: () => import('./statistiqueuser/statistiqueuser.module').then(m => m.StatistiqueuserPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       }
       ,
       {
         path: 'image-modal',
         loadChildren: () => import('./image-modal/image-modal.module').then(m => m.ImageModalPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'erp',
         loadChildren: () => import('./erp/erp.module').then(m => m.ErpPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'insert-material-modal',
         loadChildren: () => import('./insert-material-modal/insert-material-modal.module').then(m => m.InsertMaterialModalPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
 
       {
@@ -167,62 +167,62 @@ const routes: Routes = [
       {
         path: 'accueil',
         loadChildren: () => import('./kids/accueil/accueil.module').then(m => m.AccueilPageModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
       },
       {
         path: 'home',
         loadChildren: () => import('./home/home.module').then(m => m.HomePageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
 
       {
         path: 'planning-kids',
         loadChildren: () => import('./kids/planning/planning.module').then(m => m.PlanningPageModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
       },
       {
         path: 'message',
         loadChildren: () => import('./kids/message/message.module').then(m => m.MessagePageModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
 
       },
       {
         path: 'maps',
         loadChildren: () => import('./kids/maps/maps.module').then(m => m.MapsPageModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
 
       },
       {
         path: 'activite',
         loadChildren: () => import('./kids/activite/activite.module').then(m => m.ActivitePageModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
 
       },
       {
         path: 'kids',
         loadChildren: () => import('./kids/kids.module').then(m => m.KidsModule),
-        canActivate:[AdultsNotAllowedGuard]
+        canActivate: [AdultsNotAllowedGuard]
       },
 
       {
         path: 'ami',
         loadChildren: () => import('./ami/ami.module').then(m => m.AmiPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'coachprofile/:id/:type',
         loadChildren: () => import('./coachprofile/coachprofile.module').then(m => m.CoachprofilePageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'palmares/:id',
         loadChildren: () => import('./coachprofile/palmares/palmares.module').then(m => m.PalmaresPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'scan',
         loadChildren: () => import('./scan/scan.module').then(m => m.ScanPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'notifications',
@@ -248,62 +248,67 @@ const routes: Routes = [
       },
       {
         path: 'profiladulte/:id',
-        loadChildren: () => import('./profil-adulte/profil-adulte.module').then( m => m.ProfilAdultePageModule),
-        canActivate:[RolesGuardGuard]
+        loadChildren: () => import('./profil-adulte/profil-adulte.module').then(m => m.ProfilAdultePageModule),
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'one-status/:id',
         loadChildren: () => import('./home/one-status/one-status.module').then(m => m.OneStatusPageModule),
-        canActivate:[RolesGuardGuard]
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'community',
-        loadChildren: () => import('./community/community.module').then( m => m.CommunityPageModule),
-        canActivate:[RolesGuardGuard]
+        loadChildren: () => import('./community/community.module').then(m => m.CommunityPageModule),
+        canActivate: [RolesGuardGuard]
       },
       {
         path: 'help-page',
-        loadChildren: () => import('./Config/help-page/help-page.module').then( m => m.HelpPagePageModule)
+        loadChildren: () => import('./Config/help-page/help-page.module').then(m => m.HelpPagePageModule)
       },
       {
         path: 'show-event/:id',
-        loadChildren: () => import('./community/show-event/show-event.module').then( m => m.ShowEventPageModule)
+        loadChildren: () => import('./community/show-event/show-event.module').then(m => m.ShowEventPageModule)
       },
       {
         path: 'show-page/:id',
-        loadChildren: () => import('./community/show-page/show-page.module').then( m => m.ShowPagePageModule)
+        loadChildren: () => import('./community/show-page/show-page.module').then(m => m.ShowPagePageModule)
       },
       {
         path: 'add',
-        loadChildren: () => import('./community/add/add.module').then( m => m.AddPageModule)
+        loadChildren: () => import('./community/add/add.module').then(m => m.AddPageModule)
       },
       {
         path: 'saved-posts',
-        loadChildren: () => import('./coachprofile/saved-posts/saved-posts.module').then( m => m.SavedPOSTSPageModule)
+        loadChildren: () => import('./coachprofile/saved-posts/saved-posts.module').then(m => m.SavedPOSTSPageModule)
       },
       {
         path: 'welcome',
-        loadChildren: () => import('./welcome/welcome.module').then( m => m.WelcomePageModule)
+        loadChildren: () => import('./welcome/welcome.module').then(m => m.WelcomePageModule)
       },
       {
         path: 'publicity',
-        loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
+        loadChildren: () => import('./publicity/publicity.module').then(m => m.PublicityPageModule)
       },
       {
         path: 'boost-pub',
-        loadChildren: () => import('./boost-pub/boost-pub.module').then( m => m.BoostPubPageModule)
+        loadChildren: () => import('./boost-pub/boost-pub.module').then(m => m.BoostPubPageModule)
       },
     ],
   },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'publicity',
-    loadChildren: () => import('./publicity/publicity.module').then( m => m.PublicityPageModule)
+    loadChildren: () => import('./publicity/publicity.module').then(m => m.PublicityPageModule)
   },
   {
     path: 'boost-pub',
-    loadChildren: () => import('./boost-pub/boost-pub.module').then( m => m.BoostPubPageModule)
+    loadChildren: () => import('./boost-pub/boost-pub.module').then(m => m.BoostPubPageModule)
   },
+  {
+    path: 'report',
+    loadChildren: () => import('./config/report/report.module').then(m => m.ReportPageModule)
+  },
+
 
 
 

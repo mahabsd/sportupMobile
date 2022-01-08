@@ -11,7 +11,7 @@ import { environment } from 'src/environments/environment';
 import { ModalShearePage } from '../../home/modal-sheare/modal-sheare.page';
 import { share } from 'rxjs/operators';
 import { forkJoin, Subscription } from 'rxjs';
-
+import { ImageProfileComponent } from '../../coachprofile/image-profile/image-profile.component';
 @Component({
   selector: 'app-show-page',
   templateUrl: './show-page.page.html',
@@ -74,7 +74,7 @@ export class ShowPagePage implements OnInit {
   posts: any;
   pages: any = 1;
   mediafiles: any;
-  images: any;
+  images: any[] = [];
   constructor(private activatedRoute: ActivatedRoute,
     public pageService: PageService,
     private userservice: UserService,
@@ -232,21 +232,39 @@ export class ShowPagePage implements OnInit {
     });
   }
   getAllPosts() {
-    this.postService.getAllPostsByPage(this.id).subscribe(res=>{
+    this.postService.getAllPostsByPage(this.id).subscribe(res => {
       this.posts = res.data.data;
-    } );
+    });
   }
   getpostFiles(post) {
     forkJoin({
       mediafiles: this.postService.getPost(post._id),
     }).subscribe(({ mediafiles }) => {
+      // console.log(mediafiles.mediafiles)
       this.mediafiles = mediafiles.mediafiles;
-      this.mediafiles.forEach(element => {
-        this.images.push(element);
+      this.mediafiles.forEach(el => {
+        this.images.push(el),
+          post.mediafiles = mediafiles.mediafiles
       });
     });
+    console.log(post)
   }
+  getExt(fileName) {
+    const ext = fileName.substr(fileName.lastIndexOf('.') + 1);
+    return ext;
+  }
+  async displayVideo(file: any) {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
 
+    const modal = await this.modalController.create({
+      component: ImageProfileComponent,
+      cssClass: 'imageModal',
+      componentProps: {
+        video: file,
+      },
+    });
+    return await modal.present();
+  }
   getAllImagesPosts(event?) {
     this.userService.getMe().subscribe(res => {
       this.user = res.data.data;

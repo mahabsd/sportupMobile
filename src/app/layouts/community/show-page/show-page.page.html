@@ -6,7 +6,7 @@
       <div style="position: relative">
         <ion-avatar style="position: absolute; top:50px; left:300px;" class="edit-profile-cover"
           (click)="selectImageSource()" *ngIf="page?.createdBy._id === userid">
-          <ion-icon name="create"  color="light" > </ion-icon>
+          <ion-icon name="create" color="light"> </ion-icon>
         </ion-avatar>
       </div>
       <div style="postion:relative">
@@ -15,7 +15,7 @@
           src="../../../assets/svg/person-icon.svg" alt="">
         <img (click)="updateImage = true; selectProfileSource()" *ngIf="page?.photo"
           style="width:70px;height:70px;margin-right:10px;background-color:white;border-radius:50%;padding:5px;"
-          src="{{apiImg+page?.photo}} " alt="">
+          src="{{apiImg+page?.photo}}" alt="">
 
       </div>
 
@@ -59,7 +59,7 @@
         </button>
       </ng-template>
       <button style="position: relative;width:20px;height:15px;margin-top:12px">
-        <div  style="position:relative;">
+        <div style="position:relative;">
           <ion-icon (click)="openDropDown()" (blur)="openDropDown()" name="ellipsis-horizontal"
             style="display: flex;justify-content:center;align-items:center;height:15px"></ion-icon>
           <ng-container *ngIf="dropDown">
@@ -86,25 +86,53 @@
     </div>
 
     <div *ngIf="selected === 'Acceuil'">
-      <div  *ngIf="page?.createdBy._id === userid"
+      <div *ngIf="page?.createdBy._id === userid"
         style="display:flex;align-items:center;background-color:rgb(226, 226, 226);padding:8px 10px;margin:5px;border-radius:25px;justify-content:space-between;margin:20px 10px">
         <input placeholder="Exprimez vous!" type="text" style="border: none;background-color:unset">
-        <img (click)="openShareModal()" style="width:20px;height:20px;" src="../../../assets/svg/black-add-page.svg" alt="">
+        <img (click)="openShareModal()" style="width:20px;height:20px;" src="../../../assets/svg/black-add-page.svg"
+          alt="">
       </div>
-      <div style="padding: 10px;font-size:12px;color:rgb(107, 107, 107);background-color:white;margin:10px 0" *ngFor="let post of posts">
+      <div style="padding: 10px;font-size:12px;color:rgb(107, 107, 107);background-color:white;margin:10px 0"
+        *ngFor="let post of posts">
         <div style="display: flex;align-items:center">
           <img
             style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px"
             src="../../../assets/svg/person-icon.svg" alt="">
           <div style="display: flex;flex-direction:column;justify-content:space-around">
             <span>{{page?.name}} </span>
-           <!--
+            <!--
  <span style="font-size:8px;">Coach sportif</span>
            -->
           </div>
         </div>
         <div style="line-height: 20px;;margin:10px 0">
           {{post?.content }}
+        </div>
+        <div>
+          <div *ngFor="let file of post.mediafiles">
+            <ng-container *ngIf="getExt(file.file_name) === 'png'">
+              <div style="width: 350px; height: 220px" id="first" [style.background-size]="'cover'"
+                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
+                errorImage="../../../assets/imgs/150.png">
+                <ion-icon></ion-icon>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
+              <div style="
+                        margin-left: 15px;
+                        width: 350px;
+                        height: 220px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px;
+                      " [style.background-size]="'cover'"
+                [style.background-image]="'url(../../../assets/imgs/150.png)'" errorImage="../../../assets/imgs/150.png"
+                (click)="displayVideo(file)">
+                <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+              </div>
+            </ng-container>
+          </div>
         </div>
         <div style="display: flex; justify-content:space-between;padding:5px 15px;width:100%">
           <div style="display: flex;align-items:center">
@@ -124,7 +152,7 @@
       </div>
     </div>
     <div *ngIf="selected === 'A propos'">
-      <ion-icon name="create"  class="createIcom" *ngIf="page?.createdBy._id === userid"
+      <ion-icon name="create" class="createIcom" *ngIf="page?.createdBy._id === userid"
         (click)="update === false ? update = true: update = false"></ion-icon>
       <div *ngIf="update=== false">
         <div style="font-size: 17px;font-weight:bold;margin:10px 0 35px 15px ">
@@ -177,29 +205,29 @@
         <div style="margin: 15px;">
           <div>
             <span style="font-size: 17px;font-weight:bold">Page :</span>
-            <input [(ngModel)]="page.name" class="input"  placeholder="{{page?.name}}" />
+            <input [(ngModel)]="page.name" class="input" placeholder="{{page?.name}}" />
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Lieu :</span>
-            <input [(ngModel)]="page.address" class="input"  placeholder="Adresse"/>
+            <input [(ngModel)]="page.address" class="input" placeholder="Adresse" />
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Contact :</span>
-            <input [(ngModel)]="page.phone" class="input"  placeholder="88 888 888"/>
+            <input [(ngModel)]="page.phone" class="input" placeholder="88 888 888" />
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Site web :</span>
-            <input [(ngModel)]="page.website"  class="input"  placeholder="www.sportup.com"/>
+            <input [(ngModel)]="page.website" class="input" placeholder="www.sportup.com" />
           </div>
           <div>
             <span style="font-size: 17px;font-weight:bold">Email :</span>
-            <input [(ngModel)]="page.email"  class="input"  placeholder="sportup@gmail.com" />
+            <input [(ngModel)]="page.email" class="input" placeholder="sportup@gmail.com" />
           </div>
         </div>
         <ng-container *ngIf="more===false;else showmore">
           <div style="margin-left: 15px; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;">
             <span style="font-size: 17px;font-weight:bold;">Description :</span>
-            <input [(ngModel)]="page.description"  class="input" placeholder="{{page?.description}}" />
+            <input [(ngModel)]="page.description" class="input" placeholder="{{page?.description}}" />
           </div>
           <span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir plus</span>
         </ng-container>
@@ -212,10 +240,12 @@
           </div><span style="margin-left:15px;font-weight:bold;font-size:10px" (click)="toggleShowMore()">voir
             moins</span>
         </ng-template>
-<div style="display: flex;justify-content:flex-end ">
-  <img (click)="updatePage()" style="width: 30px;height:30px;margin: 20px 10px 0 0;" src="../../../../assets/svg/green-tick.svg" alt="">
-  <img (click)="update = false" style="width: 30px;height:30px;margin: 20px 10px 0 0;" src="../../../../assets/svg/red-x.svg" alt="">
-</div>
+        <div style="display: flex;justify-content:flex-end ">
+          <img (click)="updatePage()" style="width: 30px;height:30px;margin: 20px 10px 0 0;"
+            src="../../../../assets/svg/green-tick.svg" alt="">
+          <img (click)="update = false" style="width: 30px;height:30px;margin: 20px 10px 0 0;"
+            src="../../../../assets/svg/red-x.svg" alt="">
+        </div>
 
       </div>
 
@@ -223,7 +253,8 @@
     <div *ngIf="selected === 'Photos'">
       <div style="display: flex;margin:10px">
         <div style="display: flex;">
-          <img style="border-radius:15px;height: 144.5px;width:144.5px;object-fit:cover" src={{photos[0].url}} alt="">
+          <img style="border-radius:15px;height: 144.5px;width:144.5px;object-fit:cover"
+            src="{{apiImg+images[1].file_name}}" alt="">
           <img style="border-radius:15px;height: 144.5px;width:144.5px;margin-left:10px;object-fit:cover"
             src={{photos[1].url}} alt="">
         </div>

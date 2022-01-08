@@ -50,14 +50,15 @@ export class HeaderComponent implements OnInit {
   @Input() CoachProfileNotConnectedUser: boolean = false;
   @Input() ChatKids: boolean = false;
 
-  @Input()  type: string;
-  @Input()  idprofillepassed: string;
-  @Input()  followid: string;
+  @Input() type: string;
+  @Input() idprofillepassed: string;
+  @Input() followid: string;
   @Input() isCommunityCreate: boolean;
   @Input() isSaved: boolean;
   @Input() isActivityKids: boolean;
   @Input() isPublicity: boolean;
   @Input() isBoostPub: boolean;
+  @Input() isReport: boolean;
   userid: any;
   user$: any;
   iduser1;
@@ -76,7 +77,7 @@ export class HeaderComponent implements OnInit {
     this.modalCtrl.dismiss();
   }
 
-  backButtonPalmares(){
+  backButtonPalmares() {
     this.location.back();
   }
   async openCoachMenu(ev: any) {
@@ -84,13 +85,13 @@ export class HeaderComponent implements OnInit {
     const popover = await this.popoverController.create({
       component: CoachMenuPopOverComponent,
       cssClass: 'pop-over-style',
-      componentProps: {Etatfollow: this.type,IdprofilePassed: this.idprofillepassed,followid:this.followid},
+      componentProps: { Etatfollow: this.type, IdprofilePassed: this.idprofillepassed, followid: this.followid },
       event: ev,
       translucent: true,
       mode: 'ios'
     });
-    if(this.type==='followed'){
-    popover.style.cssText = '--max-height:100px;--max-width:200px;';
+    if (this.type === 'followed') {
+      popover.style.cssText = '--max-height:100px;--max-width:200px;';
     }
     await popover.present();
 
@@ -120,21 +121,21 @@ export class HeaderComponent implements OnInit {
   getMe() {
     this.userservice.getMe().subscribe((res) => {
       this.user$ = res.data.data;
-      this.userid= res.data.data._id;
+      this.userid = res.data.data._id;
     });
-}
+  }
 
-async openSearch() {
-  const modal = await this.modalCtrl.create({
-    component: ShowImagePage,
-    cssClass: ''
-  });
-  return await modal.present();
-}
-async closeModal() {
-  const onClosedData = 'Wrapped Up!';
-  await this.modalController.dismiss(onClosedData);
-}
+  async openSearch() {
+    const modal = await this.modalCtrl.create({
+      component: ShowImagePage,
+      cssClass: ''
+    });
+    return await modal.present();
+  }
+  async closeModal() {
+    const onClosedData = 'Wrapped Up!';
+    await this.modalController.dismiss(onClosedData);
+  }
 
 }
 

@@ -33,7 +33,9 @@
         <span style="margin-left:15px ;">{{post.content}}</span>
       </div>
     </ion-label>
-
+    <span style="position:absolute;right:10px">
+      <ion-icon routerLink="/tabs/layouts/report" style="color: #7F867D;" name="ellipsis-horizontal-outline"></ion-icon>
+    </span>
     <ion-button color="light" slot="end" shape="round" fill="clear" size="small" (click)="presentPopover($event)">
       <ion-icon color="light" style="color: #fff" slot="icon-only" name="ellipsis-vertical">
       </ion-icon>
