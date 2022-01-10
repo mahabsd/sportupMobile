@@ -138,6 +138,7 @@ export class ShowPagePage implements OnInit {
   getOnePage() {
     this.pageService.getOnePage(this.id).subscribe(res => {
       this.page = res[0];
+      console.log(this.page)
     });
   }
   getMe() {

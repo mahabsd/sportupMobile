@@ -97,7 +97,7 @@
         <div style="display: flex;align-items:center">
           <img
             style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px"
-            src="../../../assets/svg/person-icon.svg" alt="">
+            src="{{apiImg+page?.photo}}" alt="">
           <div style="display: flex;flex-direction:column;justify-content:space-around">
             <span>{{page?.name}} </span>
             <!--
@@ -113,7 +113,7 @@
             <ng-container *ngIf="getExt(file.file_name) === 'png'">
               <div style="width: 350px; height: 220px" id="first" [style.background-size]="'cover'"
                 [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-                errorImage="../../../assets/imgs/150.png">
+                errorImage="../../../../assets/imgs/150.png">
                 <ion-icon></ion-icon>
               </div>
             </ng-container>
