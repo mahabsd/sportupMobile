@@ -307,7 +307,11 @@ const routes: Routes = [
   {
     path: 'report',
     loadChildren: () => import('./config/report/report.module').then(m => m.ReportPageModule)
+  },  {
+    path: 'sum-reports',
+    loadChildren: () => import('./config/sum-reports/sum-reports.module').then( m => m.SumReportsPageModule)
   },
+
 
 
 

@@ -48,16 +48,19 @@
       <button>
         Message
       </button>
-      <ng-container *ngIf="followedPage===true;else notFollowed">
-        <button style="color:green;font-weight:bold" (click)="toggleFollow()">
-          Suivre
-        </button>
-      </ng-container>
-      <ng-template #notFollowed>
-        <button style="background-color: green;color:white" (click)="toggleFollow()">
-          Suivie
-        </button>
-      </ng-template>
+
+      <div *ngIf="userid!==page?.createdBy._id">
+        <ng-container *ngIf="followedPage===true;else notFollowed">
+          <button style="color:green;font-weight:bold" (click)="toggleFollow()">
+            Suivre
+          </button>
+        </ng-container>
+        <ng-template #notFollowed>
+          <button style="background-color: green;color:white" (click)="toggleFollow()">
+            Suivie
+          </button>
+        </ng-template>
+      </div>
       <button style="position: relative;width:20px;height:15px;margin-top:12px">
         <div style="position:relative;">
           <ion-icon (click)="openDropDown()" (blur)="openDropDown()" name="ellipsis-horizontal"
@@ -97,7 +100,7 @@
         <div style="display: flex;align-items:center">
           <img
             style="width:30px;height:30px;margin-right:10px;background-color:rgb(212, 212, 212);border-radius:50%;padding:5px"
-            src="../../../assets/svg/person-icon.svg" alt="">
+            src="{{apiImg+page?.photo}}" alt="">
           <div style="display: flex;flex-direction:column;justify-content:space-around">
             <span>{{page?.name}} </span>
             <!--
@@ -110,26 +113,9 @@
         </div>
         <div>
           <div *ngFor="let file of post.mediafiles">
-            <ng-container *ngIf="getExt(file.file_name) === 'png'">
-              <div style="width: 350px; height: 220px" id="first" [style.background-size]="'cover'"
-                [style.background-image]="'url(' + apiImg + file?.file_name + ')'"
-                errorImage="../../../assets/imgs/150.png">
-                <ion-icon></ion-icon>
-              </div>
-            </ng-container>
-            <ng-container *ngIf="getExt(file.file_name) === 'mp4'">
-              <div style="
-                        margin-left: 15px;
-                        width: 350px;
-                        height: 220px;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        border-radius: 10px;
-                      " [style.background-size]="'cover'"
-                [style.background-image]="'url(../../../assets/imgs/150.png)'" errorImage="../../../assets/imgs/150.png"
-                (click)="displayVideo(file)">
-                <ion-icon style="height: 50px; width: 50px" name="videocam"></ion-icon>
+            <ng-container>
+              <div style="width: 350px; height: 220px">
+                <img src="{{apiImg+file?.file_name}}" alt="">
               </div>
             </ng-container>
           </div>
@@ -253,22 +239,24 @@
     <div *ngIf="selected === 'Photos'">
       <div style="display: flex;margin:10px">
         <div style="display: flex;">
-          <img style="border-radius:15px;height: 144.5px;width:144.5px;object-fit:cover"
-            src="{{apiImg+images[1].file_name}}" alt="">
-          <img style="border-radius:15px;height: 144.5px;width:144.5px;margin-left:10px;object-fit:cover"
-            src={{photos[1].url}} alt="">
+          <img *ngIf="images[0]" style="border-radius:15px;height: 144.5px;width:144.5px;object-fit:cover"
+            src="{{apiImg+images[0]?.file_name}}" alt="">
+          <img *ngIf="images[1]"
+            style="border-radius:15px;height: 144.5px;width:144.5px;margin-left:10px;object-fit:cover"
+            src="{{apiImg+images[1]?.file_name}}" alt="">
         </div>
         <div style="display: flex;flex-direction:column">
-          <img style="border-radius:15px;height: 67px;width:67px;margin:0 0 10px 10px;object-fit:cover"
-            src={{photos[2].url}} alt="">
-          <img style="border-radius:15px;height: 67px;width:67px;margin-left:10px;object-fit:cover"
-            src={{photos[3].url}} alt="">
+          <img *ngIf="images[2]"
+            style="border-radius:15px;height: 67px;width:67px;margin:0 0 10px 10px;object-fit:cover"
+            src="{{apiImg+images[2]?.file_name}}" alt="">
+          <img *ngIf="images[3]" style="border-radius:15px;height: 67px;width:67px;margin-left:10px;object-fit:cover"
+            src="{{apiImg+images[3]?.file_name}}" alt="">
         </div>
       </div>
       <div style="display: flex;flex-wrap:wrap;width:100%;margin-left:10px">
-        <div *ngFor="let photo of photos">
-          <img style="width: 67px;height:67px;border-radius:15px;margin-right:10px;object-fit:cover" [src]="photo.url"
-            alt="">
+        <div *ngFor="let image of images | slice:4">
+          <img style="width: 67px;height:67px;border-radius:15px;margin-right:10px;object-fit:cover"
+            src="{{apiImg+image?.file_name}}" alt="">
         </div>
       </div>
     </div>

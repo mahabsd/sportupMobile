@@ -21,7 +21,8 @@
       </ion-icon>
       <ion-icon *ngIf="isReport" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
       </ion-icon>
-
+      <ion-icon *ngIf="isSumReport" color="light" routerLink="/menu/tabs/home" name="chevron-back-outline">
+      </ion-icon>
       <ion-icon *ngIf="isStatus" color="light" routerLink="/tabsKids/profilkids/{{userid}}" name="chevron-back-outline">
       </ion-icon>
       <ion-icon *ngIf="!isModal && ChatAdulte" color="light" routerLink="/tabs/home" name="chevron-back-outline">
@@ -126,6 +127,8 @@
       Espace Publicité</ion-title>
     <ion-title color="light" *ngIf="isReport" class="ion-text-center">
       Signaler</ion-title>
+    <ion-title color="light" *ngIf="isSumReport" class="ion-text-center">
+      Vos Signalements</ion-title>
     <ion-title color="light" *ngIf="isBoostPub" class="ion-text-center">
       Booster la publication</ion-title>
     <ion-title color="light" class="ion-text-center title-font">

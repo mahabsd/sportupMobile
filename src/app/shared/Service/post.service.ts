@@ -12,7 +12,7 @@ export class PostService {
   constructor(
     private utilsService: UtilsService,
     private storage: StorageService
-  ) {}
+  ) { }
   createPost(post): Observable<Post> {
     return this.utilsService
       .post(UtilsService.apiPost, post)
@@ -38,7 +38,7 @@ export class PostService {
     return this.utilsService
       .get(`${UtilsService.apiPost}?page=${page}&limit=5`)
       .pipe(
-        map((res) => {return res.data;})
+        map((res) => { return res.data; })
       );
   }
 
@@ -49,12 +49,12 @@ export class PostService {
     return this.utilsService
       .get(`${UtilsService.apiPost}?user=${id}`)
       .pipe(
-        map((res) => {return res;})
+        map((res) => { return res; })
       );
   }
   getPost(id): Observable<Post> {
     return this.utilsService.get(`${UtilsService.apiPost}${id}`).pipe(
-      map((res) => {return res.data.data;})
+      map((res) => { return res.data.data; })
     );
   }
   getAllPostsKids(): Observable<Post[]> {
@@ -71,19 +71,18 @@ export class PostService {
       formData
     );
   }
-  postsOwner(id){
+  postsOwner(id) {
     this.postsOwnerId = id;
   }
   getAllfollowingPosts(page, iduser) {
     return this.utilsService.get(`${UtilsService.apiPost}following/${iduser}?page=${page}&limit=5`).pipe(map((res) => res));
   }
   getAllPostsByPage(id?): Observable<any> {
-    console.log(id);
 
     return this.utilsService
       .get(`${UtilsService.apiPost}?pageId=${id}`)
       .pipe(
-        map((res) => {return res;})
+        map((res) => { return res; })
       );
   }
 }

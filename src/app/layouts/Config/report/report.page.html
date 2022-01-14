@@ -1,5 +1,16 @@
 <app-header [isReport]="true"></app-header>
 
 <ion-content>
-
+  <div style="display: flex; flex-direction:column;align-items:center;text-align:center">
+    <span style="margin: 20px;font-weight:bold">Nous vous remercions d'avoir signalé</span>
+    <span style="margin: 20px;">Nous examinerons votre rapport et vous informerons de notre décision</span>
+    <span style="margin: 20px;font-weight:bold;color:green">SIGNALER UNE INFRACTION AUX REGLES DE CONFIDENTIALITE</span>
+    <div style="display: flex;justify-content:space-between">
+      <ion-input style="width: 280px;background-color:rgb(209, 209, 209);border-radius:10px;margin-right:10px"
+        placeholder="Saisissez l'url de la photo/video/page">
+      </ion-input>
+      <button
+        style="color: green;background-color:rgb(218, 218, 218);font-weight:bold;border-radius:10px;box-shadow:5px 5px 5px gray">SIGNALER</button>
+    </div>
+  </div>
 </ion-content>

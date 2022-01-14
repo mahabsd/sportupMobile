@@ -1,0 +1,82 @@
+<app-header [isSumReport]="true"></app-header>
+
+<ion-content>
+  <div style="display: flex;flex-direction:column;padding:10px;text-align:center">
+    <span style="font-size: 20px; color:green;margin:0 30px">PROPRIETE INTELLECTUELLE</span>
+    <p style="text-align: justify;">Promouvoir le respect de la propriété intellectuelle, c'est
+      créer un environnement où la propriété intellectuelle peut
+      jouer son rôle pour stimuler l'innovation et la créativité.
+      <span style="font-weight: bold;color:green">Les conditions de services</span> de Smuppy n'autorisent
+      pas la pubplication de contenu qui enfreint les droits de
+      propriété intellectuelle d'autrui, notamment les droits
+      d'auteur et les marques déposées
+    </p>
+    <ion-input style="background-color: rgb(209, 209, 209);border-radius:10px;margin:40px 0"
+      placeholder="Signaler une violation de la propriété intellectuelle"></ion-input>
+    <span style="font-size: 20px; color:green">LISTE DU CONTENU SIGNALE</span>
+    <div>
+      <div
+        style="background-color: rgb(211, 211, 211);display:flex;justify-content:space-between;align-items:center;padding:15px 10px;font-weight:bold;border-radius:10px;margin:10px">
+        <span>Les profiles signalés</span>
+        <div (click)="toggleProfile()" *ngIf="profileOpen===false;else closedProfile"
+          style="display: flex;align-items:center">
+          <span style="font-size: 10px;">ouvrir</span>
+          <ion-icon name="chevron-forward"></ion-icon>
+        </div>
+        <ng-template #closedProfile>
+          <div (click)="toggleProfile()" style="display: flex;align-items:center">
+            <span style="font-size: 10px;">fermer</span>
+            <ion-icon name="chevron-down"></ion-icon>
+          </div>
+        </ng-template>
+      </div>
+      <div *ngIf="profileOpen">
+        <div style="display: flex; justify-content:space-between;padding:10px" *ngFor="let profile of reportedProfiles">
+          <span>{{profile.name}} {{profile.surname}}</span>
+          <span style="color: rgb(196, 196, 196);">{{profile.details}}</span>
+        </div>
+      </div>
+    </div>
+    <div
+      style="background-color: rgb(211, 211, 211);display:flex;justify-content:space-between;align-items:center;padding:15px 10px;font-weight:bold;border-radius:10px;margin:10px">
+      <span>Les status signalés</span>
+      <div (click)="toggleStatus()" *ngIf="statusOpen===false;else closedStatus"
+        style="display: flex;align-items:center">
+        <span style="font-size: 10px;">ouvrir</span>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </div>
+      <ng-template #closedStatus>
+        <div (click)="toggleStatus()" style="display: flex;align-items:center">
+          <span style="font-size: 10px;">fermer</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </div>
+      </ng-template>
+    </div>
+    <div *ngIf="statusOpen">
+      <div style="display: flex; justify-content:space-between;padding:10px" *ngFor="let status of reportedStatus">
+        <span>{{status.createdBy}}</span>
+        <span style="color: rgb(196, 196, 196);">{{status.details}}</span>
+      </div>
+    </div>
+    <div
+      style="background-color: rgb(211, 211, 211);display:flex;justify-content:space-between;align-items:center;padding:15px 10px;font-weight:bold;border-radius:10px;margin:10px">
+      <span>Les pages signalés</span>
+      <div (click)="togglePage()" *ngIf="pageOpen===false;else closedPage" style="display: flex;align-items:center">
+        <span style="font-size: 10px;">ouvrir</span>
+        <ion-icon name="chevron-forward"></ion-icon>
+      </div>
+      <ng-template #closedPage>
+        <div (click)="togglePage()" style="display: flex;align-items:center">
+          <span style="font-size: 10px;">fermer</span>
+          <ion-icon name="chevron-down"></ion-icon>
+        </div>
+      </ng-template>
+    </div>
+    <div *ngIf="pageOpen">
+      <div style="display: flex; justify-content:space-between;padding:10px" *ngFor="let page of reportedPages">
+        <span>{{page.page}}</span>
+        <span style="color: rgb(196, 196, 196);">{{page.details}}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>
