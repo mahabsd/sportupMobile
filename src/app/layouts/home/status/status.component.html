@@ -275,16 +275,15 @@
               <span style="font-size: 12px;">{{comments[0].user.name}}</span>
             </div>
             <span
-              style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px" *ngIf="comments[0].content.indexOf('file:///storage') ===  -1" >{{comments[0].content}}</span>
+              style="background-color:#EEEFEF ;margin:2px;padding:7px 10px;width:220px;height:30px;border-radius:15px;text-align:start;text-overflow:ellipsis;overflow:hidden;white-space: nowrap;font-size:12px"
+              *ngIf="comments[0].content.indexOf('file:///storage') ===  -1">{{comments[0].content}}</span>
 
-              <audio
-              controls
-              *ngIf="comments[0].content.indexOf('file:///storage') !==  -1"
+            <audio controls *ngIf="comments[0].content.indexOf('file:///storage') !==  -1"
               src="{{comments[0].content}}">
-                  Your browser does not support the
-                  <code>audio</code> element.
-          </audio>
-            </div>
+              Your browser does not support the
+              <code>audio</code> element.
+            </audio>
+          </div>
         </ng-container>
       </ng-container>
       <ng-template #not>
@@ -322,15 +321,16 @@
         </ion-icon>
         <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/pics.svg" alt="">
         <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/camera.svg" alt="">
-<!--
+        <!--
      <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/gif.svg" alt="">
         <img style="width: 20px;height:20px;margin-right:5px" src="../../../assets/svg/attach.svg" alt="">
 
 -->
         <img *ngIf="!isRecording" (click)="recordAudio()" style="width: 20px;height:20px;margin-right:5px"
           src="../../../assets/svg/mic.svg" alt="">
-        <img style="width: 22px;height:22px;margin-right:5px;border-radius:50px; color:red;" src="../../../../assets/icon/sound-recorder-icon.png"
-          *ngIf="isRecording" (click)="stopRecording() ; isRecording = false" />
+        <img style="width: 22px;height:22px;margin-right:5px;border-radius:50px; color:red;"
+          src="../../../../assets/icon/sound-recorder-icon.png" *ngIf="isRecording"
+          (click)="stopRecording() ; isRecording = false" />
 
       </div>
     </div>

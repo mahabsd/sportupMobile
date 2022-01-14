@@ -59,6 +59,7 @@ export class HeaderComponent implements OnInit {
   @Input() isPublicity: boolean;
   @Input() isBoostPub: boolean;
   @Input() isReport: boolean;
+  @Input() isSumReport: boolean;
   userid: any;
   user$: any;
   iduser1;
